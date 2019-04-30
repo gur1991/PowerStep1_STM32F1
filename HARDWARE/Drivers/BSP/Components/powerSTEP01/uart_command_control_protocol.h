@@ -19,7 +19,7 @@ typedef enum Command_type{
 		SEND_COMMAND_AND_WAIT_NOTBUSY_TYPE,
 		DELAY_TIME_TYPE,
 	
-		ONE_DEVICE_MOVE_TYPE=150,
+		ONE_DEVICE_MOVE_TYPE,
 		ONE_DEVICE_WAIT_TYPE,
 		ONE_DEVICE_GET_POS_TYPE,
 		ONE_DEVICE_SET_MARK_TYPE,
@@ -34,7 +34,7 @@ typedef union{
 	struct{
 		uint8_t devices;//0,1,2
 		powerstep01_Commands_t types;//gpowerstep01_Commands_t
-		int16_t steps;//+forward -backward
+		int32_t steps;//+forward -backward
 	}request;
 	struct{
 		uint8_t ret;
@@ -60,48 +60,94 @@ typedef union{
 	}response;
 }rest_pos_type_t;
 
-typedef struct{
+typedef union{ 
+	struct{
 		uint8_t Nor;//±£¡ÙŒª
-}send_command_and_wait_no_busy_type_t;
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}	send_command_and_wait_no_busy_type_t;
 
-typedef struct{
+typedef union{
+struct{
 		uint16_t time_ms;
+}request;
+struct{
+		uint8_t ret;
+}response;
 }delay_time_type_t;
 
-typedef struct{
+typedef union{ 
+struct{
 		uint8_t devices;//0,1,2
-		int16_t steps;//+forward -backward
+		int32_t steps;//+forward -backward
+}request;
+struct{
+		uint8_t ret;
+}response;
 }one_device_move_type_t;
 
-typedef struct{
+typedef union{
+struct{
 		uint8_t devices;//0,1,2
+}request;
+struct{
+		uint8_t ret;
+}response;
 }one_device_wait_type_t;
 
-typedef struct{
+typedef union{ 
+	struct{
 		uint8_t devices;//0,1,2
+}request;
+struct{
+		int32_t pos;
+		uint8_t ret;	
+}response;
 }one_device_get_pos_type_t;
 
-typedef struct{
+typedef union{
+struct{
 		uint8_t devices;//0,1,2
-		int16_t pos;
+		int32_t pos;
+}request;
+struct{
+		uint8_t ret;
+}response;
 }one_device_set_mark_type_t;
 
-typedef struct{
+typedef union{
+struct{
 		uint8_t devices;//0,1,2
 		powerstep01_Registers_t para;
+}request;
+struct{
+		powerstep01_Registers_t result_para;
+		uint8_t ret;
+}response;
 }get_para_type_t;
 
-typedef struct{
+typedef union{
+struct{
 		uint8_t devices;//0,1,2
 		powerstep01_Registers_t para;
 		uint32_t value;
+}request;
+struct{
+		uint8_t ret;
+}response;
 }set_para_type_t;
 
-typedef struct{
+typedef union{ 
+struct{
 		uint8_t devices;//0,1,2
 		motorStepMode_t StepMode;
+}request;
+struct{
+		uint8_t ret;
+}response;
 }select_step_mode_t;
-
 
 
 typedef struct{

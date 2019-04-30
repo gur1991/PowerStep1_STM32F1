@@ -321,56 +321,74 @@ uint8_t test_protocl(void){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-uint8_t test_move(){
+uint8_t test_protocl_new(Command_type_t types){
 		uint8_t ret =0;
-		uint16_t len=0;
-		move_type_t motor;
-	
-		motor.request.devices=0;
-		motor.request.steps=6400;
-		motor.request.types=POWERSTEP01_GO_TO;
-	
-		len=sizeof(motor.request);
-  
-	/*
-	uint8_t type =MOVE_TYPE;
-	USART1_Send((u8*)&type,1);
-	
-	switch(type){
-		case MOVE_TYPE:
-				call_back(send_cmd);
-				wait_recevie()
-				USART1_Send((u8*)&motor,len);
-				call_back(para);
-	}
+		Powerstep1_contorl_motor_command_t motorCommand;
+		motorCommand.type = types;
+		//motorCommand.CommandPowerStep1.move.request.devices
+		//motorCommand.CommandPowerStep1
 	
 	
-	*/
-	
-	
-	return ret;
+		return ret;
 }
+
+uint8_t master_powerStep01_move(move_type_t tx_move){
+		uint8_t ret =0;
+		u8 len=0;
+		move_type_t rx_move;
+	
+		Powerstep1_contorl_motor_command_t master_motorCommand,slave_motorCommand;
+		master_motorCommand.type = MOVE_TYPE;
+		master_motorCommand.CommandPowerStep1.move=tx_move;
+		
+		RS485_Send_Data(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t));
+		UART3_Receive_Data(&slave_motorCommand,&len);
+		
+		switch(slave_motorCommand.type){
+			case MOVE_TYPE:
+						rx_move=slave_motorCommand.CommandPowerStep1.move;
+						printf("devices %d \r\n",rx_move.request.devices);
+						printf("steps %d \r\n",rx_move.request.steps);
+						printf("types %d \r\n",rx_move.request.types);
+						break;
+			default:
+					printf("no found this cmd ! \r\n");
+		}
+	
+		return ret;
+}
+
+
+void test_run(void){
+	move_type_t tx_move;
+	tx_move.request.devices=2;
+	tx_move.request.steps=6400;
+	tx_move.request.types=POWERSTEP01_GO_TO;
+	
+	master_powerStep01_move(tx_move);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

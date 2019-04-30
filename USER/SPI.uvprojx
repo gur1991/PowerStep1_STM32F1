@@ -624,6 +624,16 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\UART3\uart3.c</FilePath>
             </File>
+            <File>
+              <FileName>master_uart_control_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\master_uart_control_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>slave_uart_control_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\slave_uart_control_interface.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

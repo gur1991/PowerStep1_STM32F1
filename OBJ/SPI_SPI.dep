@@ -1,5 +1,5 @@
 Dependencies for Project 'SPI', Target 'SPI': (DO NOT MODIFY !)
-F (.\main.c)(0x5CC7B4A9)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5CC7EEA2)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x59254212)
 I (..\USER\stm32f1xx.h)(0x571DE09C)
 I (..\USER\stm32f103xe.h)(0x571DE09C)
@@ -68,7 +68,7 @@ I (..\USMART\usmart_str.h)(0x575F7A22)
 I (..\HARDWARE\W25QXX\w25qxx.h)(0x592CE0EC)
 I (..\HARDWARE\UART3\uart3.h)(0x5CC6CF8B)
 I (..\HARDWARE\RS485\rs485.h)(0x592CE307)
-I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC7B3D9)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC81012)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5CC50CB5)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5CC2903E)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5AB0CB6C)
@@ -1882,8 +1882,8 @@ I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5CC50CB5)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5CC2903E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5AB0CB6C)
-F (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c)(0x5CC7D107)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\uart_command_control_protocol.o --omf_browse ..\obj\uart_command_control_protocol.crf --depend ..\obj\uart_command_control_protocol.d)
-I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC7B3D9)
+F (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c)(0x5CC7DF51)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\uart_command_control_protocol.o --omf_browse ..\obj\uart_command_control_protocol.crf --depend ..\obj\uart_command_control_protocol.d)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC81012)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5CC50CB5)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5CC2903E)
@@ -2066,7 +2066,7 @@ F (..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.c)(0x5CC578F4)(-c --cpu
 I (..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h)(0x5AFB086F)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5AB0CB6C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
-F (..\HARDWARE\RS485\rs485.c)(0x5CC6D13A)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\rs485.o --omf_browse ..\obj\rs485.crf --depend ..\obj\rs485.d)
+F (..\HARDWARE\RS485\rs485.c)(0x5CC7E62F)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\rs485.o --omf_browse ..\obj\rs485.crf --depend ..\obj\rs485.d)
 I (..\HARDWARE\RS485\rs485.h)(0x592CE307)
 I (..\SYSTEM\sys\sys.h)(0x59254212)
 I (..\USER\stm32f1xx.h)(0x571DE09C)
@@ -2186,6 +2186,134 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
+F (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\master_uart_control_interface.c)(0x5CC8118F)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\master_uart_control_interface.o --omf_browse ..\obj\master_uart_control_interface.crf --depend ..\obj\master_uart_control_interface.d)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\master_uart_control_interface.h)(0x5CC7E50E)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC81012)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5CC50CB5)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5CC2903E)
+I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5AB0CB6C)
+I (..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h)(0x5AFB086F)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
+I (..\SYSTEM\sys\sys.h)(0x59254212)
+I (..\USER\stm32f1xx.h)(0x571DE09C)
+I (..\USER\stm32f103xe.h)(0x571DE09C)
+I (..\CORE\core_cm3.h)(0x563336C5)
+I (..\CORE\core_cmInstr.h)(0x563336C5)
+I (..\CORE\cmsis_armcc.h)(0x563336C5)
+I (..\CORE\core_cmFunc.h)(0x563336C5)
+I (..\USER\system_stm32f1xx.h)(0x571DE09C)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x571E2CF8)
+I (..\USER\stm32f1xx_hal_conf.h)(0x59293E9C)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x571E2F9D)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x571E2F9D)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_eth.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cec.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_crc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sram.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_fsmc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nor.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2s.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_iwdg.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pccard.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sd.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_sdmmc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nand.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_usart.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_irda.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_smartcard.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_wwdg.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
+F (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\slave_uart_control_interface.c)(0x5CC8101F)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\slave_uart_control_interface.o --omf_browse ..\obj\slave_uart_control_interface.crf --depend ..\obj\slave_uart_control_interface.d)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\slave_uart_control_interface.h)(0x5CC7E1FB)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h)(0x5CC81012)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5CC50CB5)
+I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5CC2903E)
+I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5AB0CB6C)
+I (..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h)(0x5AFB086F)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
+I (..\SYSTEM\sys\sys.h)(0x59254212)
+I (..\USER\stm32f1xx.h)(0x571DE09C)
+I (..\USER\stm32f103xe.h)(0x571DE09C)
+I (..\CORE\core_cm3.h)(0x563336C5)
+I (..\CORE\core_cmInstr.h)(0x563336C5)
+I (..\CORE\cmsis_armcc.h)(0x563336C5)
+I (..\CORE\core_cmFunc.h)(0x563336C5)
+I (..\USER\system_stm32f1xx.h)(0x571DE09C)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x571E2CF8)
+I (..\USER\stm32f1xx_hal_conf.h)(0x59293E9C)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x571E2F9D)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x571E2F9D)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_eth.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cec.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_crc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sram.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_fsmc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nor.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2s.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_iwdg.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pccard.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sd.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_sdmmc.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nand.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_usart.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_irda.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_smartcard.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_wwdg.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
+I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 F (..\USMART\usmart.c)(0x576BA916)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\RS485 -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc-ID:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\usmart.o --omf_browse ..\obj\usmart.crf --depend ..\obj\usmart.d)
 I (..\USMART\usmart.h)(0x575F7A44)
 I (..\USMART\usmart_str.h)(0x575F7A22)

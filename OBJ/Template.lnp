@@ -39,6 +39,8 @@
 "..\obj\x_nucleo_ihmxx.o"
 "..\obj\rs485.o"
 "..\obj\uart3.o"
+"..\obj\master_uart_control_interface.o"
+"..\obj\slave_uart_control_interface.o"
 "..\obj\usmart.o"
 "..\obj\usmart_config.o"
 "..\obj\usmart_str.o"
