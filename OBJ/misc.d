@@ -1,0 +1,9 @@
+..\obj\misc.o: ..\STM32F10x_FWLib\src\misc.c
+..\obj\misc.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\misc.o: D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include\stm32f10x.h
+..\obj\misc.o: ..\CORE\core_cm3.h
+..\obj\misc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\misc.o: ..\CORE\core_cmInstr.h
+..\obj\misc.o: ..\CORE\cmsis_armcc.h
+..\obj\misc.o: ..\CORE\core_cmFunc.h
+..\obj\misc.o: D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include\system_stm32f10x.h

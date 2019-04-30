@@ -8,7 +8,8 @@
 #include "powerstep01.h" 
 #include "motor.h"
 #include "x_nucleo_ihmxx.h"	 
-	 
+#include "stdio.h"	 
+#include "sys.h"
 uint8_t motorInit(void);	 
 	 
 typedef enum Command_type{ 

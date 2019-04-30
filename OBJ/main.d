@@ -66,3 +66,10 @@
 ..\obj\main.o: ..\USMART\usmart.h
 ..\obj\main.o: ..\USMART\usmart_str.h
 ..\obj\main.o: ..\HARDWARE\W25QXX\w25qxx.h
+..\obj\main.o: ..\HARDWARE\UART3\uart3.h
+..\obj\main.o: ..\HARDWARE\RS485\rs485.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h

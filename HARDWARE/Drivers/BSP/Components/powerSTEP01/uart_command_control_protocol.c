@@ -212,6 +212,137 @@ uint8_t motorInit(void){
 }
 
 
+void master_device_send(void){
+		uint8_t ret=0;
+		Command_type_t types= MOVE_TYPE;
+		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF[5];
+		u8 len=0;
+		
+		RS485_Send_Data(&types,sizeof(Command_type_t));
+		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+   
+}
+void master_device_receive(void){
+		uint8_t ret=0;
+		Command_type_t types= MOVE_TYPE;
+		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF[5];
+		u8 len=0;
+		
+		RS485_Send_Data(&types,sizeof(Command_type_t));
+		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+    
+
+
+}
+void slave_device_send(void){
+		uint8_t ret=0;
+		Command_type_t types= MOVE_TYPE;
+		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF[5];
+		u8 len=0;
+		
+		UART3_Receive_Data(RX_CMD_BUF,&len);
+		
+		printf("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
+}
+void slave_device_receive(void){
+		uint8_t ret=0;
+		Command_type_t types= MOVE_TYPE;
+		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF[5];
+		u8 len=0;
+		
+		UART3_Receive_Data(RX_CMD_BUF,&len);
+		
+		printf("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
+}
+
+uint8_t test_protocl(void){
+		uint8_t ret=0;
+		Command_type_t types= MOVE_TYPE;
+		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF[5];
+		
+		u8 TX_CMD_BUF_SLAVE[5]={1,2,3,4,5};
+		u8 RX_CMD_BUF_SLAVE[5];
+			
+		u8 RX_PARA_BUF[100];
+		u8 len=0;
+		move_type_t motor_slave;
+		move_type_t motor_master;
+	
+		motor_master.request.devices=2;
+		motor_master.request.steps=6400;
+		motor_master.request.types=POWERSTEP01_GO_TO;
+	
+	//	len=sizeof(motor.request);
+		
+		
+		RS485_Send_Data(&types,sizeof(Command_type_t));
+		printf("master send len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+						UART3_Receive_Data(RX_CMD_BUF_SLAVE,&len);
+						printf("slave receive len: %d, types: %d \r\n",len,RX_CMD_BUF_SLAVE[0]);
+						TX_CMD_BUF_SLAVE[0]=0;
+						UART3_Send_Data(TX_CMD_BUF_SLAVE,1);
+						printf("slave send len: %d, result: %d \r\n",1,TX_CMD_BUF_SLAVE[0]);
+		RS485_Receive_Data(RX_CMD_BUF,&len);
+		printf("master receive len: %d, result: %d \r\n",len,RX_CMD_BUF[0]);
+		
+		RS485_Send_Data(&motor_master.request,sizeof(motor_master.request));
+		printf("master send request \r\n");
+						
+		switch(RX_CMD_BUF_SLAVE[0]){
+			case MOVE_TYPE:
+					
+									UART3_Receive_Data(&motor_slave.request,&len);
+									printf("slave receive request \r\n");
+									printf("devices:%d \r\n",motor_slave.request.devices);
+									printf("steps:%d \r\n",motor_slave.request.steps);
+									printf("types:%d \r\n",motor_slave.request.types);
+			
+									/*
+											slave motor run cmd
+									*/
+									motor_slave.response.ret=100;
+									UART3_Send_Data(&motor_slave.response,sizeof(motor_slave.response));
+									printf("slave send response \r\n");
+					RS485_Receive_Data(&motor_master.response,&len);
+					printf("master receive len: %d, result: %d \r\n",len,motor_master.response.ret);
+					printf("\r\n\r\n");
+					break;
+			default:
+					printf("no found this cmd ! \r\n");
+
+		}
+		
+		return ret;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 uint8_t test_move(){

@@ -22,12 +22,85 @@ Dialog DLL:      TARMSTM.DLL V1.65.0.0
  
 <h2>Project:</h2>
 D:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\SPI.uvprojx
-Project File Date:  04/28/2019
+Project File Date:  04/30/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SPI'
-"..\OBJ\Template.axf" - 0 Error(s), 0 Warning(s).
+compiling uart_command_control_protocol.c...
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h(128): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(211): warning:  #111-D: statement is unreachable
+  		return ret;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(161): warning:  #177-D: variable "myMaxSpeed" was declared but never referenced
+    uint32_t myMaxSpeed;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(162): warning:  #177-D: variable "myMinSpeed" was declared but never referenced
+    uint32_t myMinSpeed;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(163): warning:  #177-D: variable "myAcceleration" was declared but never referenced
+    uint16_t myAcceleration;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(164): warning:  #177-D: variable "myDeceleration" was declared but never referenced
+    uint16_t myDeceleration;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(165): warning:  #177-D: variable "readData" was declared but never referenced
+    uint32_t readData;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(222): warning:  #223-D: function "RS485_Send_Data" declared implicitly
+  		RS485_Send_Data(&types,sizeof(Command_type_t));
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(216): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(218): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(219): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(220): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(233): warning:  #223-D: function "RS485_Send_Data" declared implicitly
+  		RS485_Send_Data(&types,sizeof(Command_type_t));
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(227): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(229): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(230): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(231): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(246): warning:  #223-D: function "UART3_Receive_Data" declared implicitly
+  		UART3_Receive_Data(RX_CMD_BUF,&len);
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(240): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(241): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(242): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(257): warning:  #223-D: function "UART3_Receive_Data" declared implicitly
+  		UART3_Receive_Data(RX_CMD_BUF,&len);
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(251): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(252): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(253): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(283): warning:  #223-D: function "RS485_Send_Data" declared implicitly
+  		RS485_Send_Data(&types,sizeof(Command_type_t));
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(285): warning:  #223-D: function "UART3_Receive_Data" declared implicitly
+  						UART3_Receive_Data(RX_CMD_BUF_SLAVE,&len);
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(288): warning:  #223-D: function "UART3_Send_Data" declared implicitly
+  						UART3_Send_Data(TX_CMD_BUF_SLAVE,1);
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(290): warning:  #223-D: function "RS485_Receive_Data" declared implicitly
+  		RS485_Receive_Data(RX_CMD_BUF,&len);
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(265): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(271): warning:  #177-D: variable "RX_PARA_BUF" was declared but never referenced
+  		u8 RX_PARA_BUF[100];
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(376): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(350): warning:  #550-D: variable "len" was set but never used
+  		uint16_t len=0;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c(351): warning:  #550-D: variable "motor" was set but never used
+  		move_type_t motor;
+..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c: 34 warnings, 0 errors
+linking...
+Program Size: Code=12732 RO-data=568 RW-data=336 ZI-data=2360  
+FromELF: creating hex file...
+"..\OBJ\Template.axf" - 0 Error(s), 34 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\MOTOR\SPI2_MOTOR\USER\RTE

@@ -37,6 +37,8 @@
 "..\obj\stm32f1xx_nucleo.o"
 "..\obj\x_nucleo_ihm03a1_stm32f1xx.o"
 "..\obj\x_nucleo_ihmxx.o"
+"..\obj\rs485.o"
+"..\obj\uart3.o"
 "..\obj\usmart.o"
 "..\obj\usmart_config.o"
 "..\obj\usmart_str.o"
