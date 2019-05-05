@@ -58,4 +58,10 @@
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
+..\obj\uart3.o: ..\SYSTEM\usart\usart.h
 ..\obj\uart3.o: ..\SYSTEM\delay\delay.h
+..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h
+..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h
+..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h
+..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
+..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h

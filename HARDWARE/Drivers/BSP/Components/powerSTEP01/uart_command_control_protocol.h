@@ -11,6 +11,9 @@
 #include "stdio.h"	 
 #include "sys.h"
 uint8_t motorInit(void);	 
+
+#define OVER_UART_VALUE0 0x0d
+#define OVER_UART_VALUE1 0x0a
 	 
 typedef enum Command_type{ 
 		MOVE_TYPE=100,
@@ -166,7 +169,7 @@ typedef struct{
 				set_para_type_t  set_para;
 				select_step_mode_t  select_step_mode;
 		}CommandPowerStep1;
-
+		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;
 
 

@@ -1,5 +1,7 @@
 #include "uart3.h"
+#include "usart.h"
 #include "delay.h"
+#include "uart_command_control_protocol.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32F103开发板
@@ -14,26 +16,67 @@
 ////////////////////////////////////////////////////////////////////////////////// 	
 
 UART_HandleTypeDef USART3_Handler;  //USART2句柄(用于RS485)
+//#define  RXBUFFERSIZE_UART3 1
+//u8 aRxBuffer_uart3[RXBUFFERSIZE_UART3];//HAL库使用的串口接收缓冲
 
 #if EN_USART3_RX   		//如果使能了接收   	  
 //接收缓存区 	
 u8 UART3_RX_BUF[64];  	//接收缓冲,最大64个字节.
 //接收到的数据长度
 u8 UART3_RX_CNT=0;  
+u8 FLAG_UART_SLAVE =0;
 
 void USART3_IRQHandler(void)
 {
-    u8 res;	  
+    u8 res;
     if((__HAL_UART_GET_FLAG(&USART3_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	 	
 		HAL_UART_Receive(&USART3_Handler,&res,1,1000);
 		if(UART3_RX_CNT<64)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
-			UART3_RX_CNT++;						//接收数据增加1 
+			//printf("slave uart %d  UART3_RX_BUF:%d\r\n",UART3_RX_BUF[UART3_RX_CNT],UART3_RX_CNT);
+			//printf(" rx_buf[%d] %d \r\n",UART3_RX_CNT,UART3_RX_BUF[UART3_RX_CNT]);
+			UART3_RX_CNT++;						//接收数据增加1	
 		} 
+		
+		if(UART3_RX_CNT>=3&&UART3_RX_BUF[UART3_RX_CNT-1]==OVER_UART_VALUE1&&UART3_RX_BUF[UART3_RX_CNT-2]==OVER_UART_VALUE0){
+					//printf(" slave over \r\n");
+					//protocol_handle_uart_powerstep01_plain_slave_cmd();
+					FLAG_UART_SLAVE=1;
+		}
+
 	} 
-}    
+} 
+/*
+
+//串口1中断服务程序
+void USART3_IRQHandler(void)                	
+{ 
+	u32 timeout=0;
+#if SYSTEM_SUPPORT_OS	 	//使用OS
+	OSIntEnter();    
+#endif
+
+	HAL_UART_IRQHandler(&USART3_Handler);	//调用HAL库中断处理公用函数
+	timeout=0;
+   while (HAL_UART_GetState(&USART3_Handler) != HAL_UART_STATE_READY)//等待就绪
+	{
+	 timeout++;////超时处理
+     if(timeout>HAL_MAX_DELAY) break;		
+	}
+     
+	timeout=0;
+	while(HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3) != HAL_OK)//一次处理完成之后，重新开启中断并设置RxXferCount为1
+	{
+	 timeout++; //超时处理
+	 if(timeout>HAL_MAX_DELAY) break;	
+	}
+#if SYSTEM_SUPPORT_OS	 	//使用OS
+	OSIntExit();  											 
+#endif
+} 
+*/
 #endif
 
 #define RCC_APB2Periph_GPIOB             ((uint32_t)0x00000008)
@@ -94,7 +137,7 @@ void UART3_Init(u32 bound)
 	USART3_Handler.Init.Mode=UART_MODE_TX_RX;		    //收发模式
 	USART3_Handler.Init.OverSampling = UART_OVERSAMPLING_16;
 	HAL_UART_Init(&USART3_Handler);			        //HAL_UART_Init()会使能USART2
-    
+  //HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3);//该函数会开启接收中断：标志位UART_IT_RXNE，并且设置接收缓冲以及接收缓冲接收最大数据量
   __HAL_UART_DISABLE_IT(&USART3_Handler,UART_IT_TC);
 #if EN_USART3_RX
 	__HAL_UART_ENABLE_IT(&USART3_Handler,UART_IT_RXNE);//开启接收中断
@@ -122,7 +165,7 @@ void UART3_Receive_Data(u8 *buf,u8 *len)
 	u8 rxlen=UART3_RX_CNT;
 	u8 i=0;
 	*len=0;				//默认为0
-	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
+	//delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==UART3_RX_CNT&&rxlen)//接收到了数据,且接收完成了
 	{
 		for(i=0;i<rxlen;i++)

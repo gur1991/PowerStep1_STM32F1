@@ -59,3 +59,8 @@
 ..\obj\rs485.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\rs485.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\rs485.o: ..\SYSTEM\delay\delay.h
+..\obj\rs485.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.h
+..\obj\rs485.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h
+..\obj\rs485.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h
+..\obj\rs485.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
+..\obj\rs485.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h

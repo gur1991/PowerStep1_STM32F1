@@ -7,8 +7,14 @@ static void protocol_powerstep01_move(move_type_t* data){
 		performer.request.steps=data->request.steps;
 		performer.request.types=data->request.types;
 		//void Powerstep01_QueueCommands(uint8_t deviceId, uint8_t command, int32_t value)
+		
+		printf("slave devices %d \r\n",performer.request.devices);
+		printf("slave steps %d \r\n",performer.request.steps);
+		printf("slave types %d \r\n",performer.request.types);
+	
 		Powerstep01_QueueCommands(performer.request.devices,performer.request.types,performer.request.steps);
 		data->response.ret=0;	
+		
 }
 
 static void protocol_powerstep01_power(power_type_t* data){
@@ -47,6 +53,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.steps = data->request.steps;
 		BSP_MotorControl_GoTo(performer.request.devices,performer.request.steps); 
 		data->response.ret=0;
+		
 }
 
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
@@ -98,10 +105,9 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		u8 len=0;
-		//move_type_t rx_move;
-	
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
-	
+		printf("start slave uart\r\n");
+		
 		UART3_Receive_Data(&slave_motorCommand,&len);
 		switch(slave_motorCommand.type){
 			case MOVE_TYPE:
@@ -140,8 +146,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			default:
 					printf("no found this cmd ! \r\n");
 		}
-		//UART3_Send_Data(&motor_slave.response,sizeof(motor_slave.response));
-		UART3_Send_Data(&slave_motorCommand,sizeof(Powerstep1_contorl_motor_command_t));
+		UART3_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
+		printf("end slave uart\r\n");
 }
 
 

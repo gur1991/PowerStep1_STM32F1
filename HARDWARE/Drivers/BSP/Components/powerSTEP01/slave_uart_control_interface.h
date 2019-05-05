@@ -3,5 +3,6 @@
 #include "uart_command_control_protocol.h"
 
 
+void protocol_handle_uart_powerstep01_plain_slave_cmd(void);
 
 #endif

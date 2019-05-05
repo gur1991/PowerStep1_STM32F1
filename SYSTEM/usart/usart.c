@@ -1,5 +1,6 @@
 #include "sys.h"
 #include "usart.h"	
+#include "uart3.h"	
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //Èç¹ûÊ¹ÓÃucos,Ôò°üÀ¨ÏÂÃæµÄÍ·ÎÄ¼ş¼´¿É.
 #if SYSTEM_SUPPORT_OS
@@ -63,13 +64,19 @@ int fputc(int ch, FILE *f)
 //´®¿Ú1ÖĞ¶Ï·şÎñ³ÌĞò
 //×¢Òâ,¶ÁÈ¡USARTx->SRÄÜ±ÜÃâÄªÃûÆäÃîµÄ´íÎó   	
 u8 USART_RX_BUF[USART_REC_LEN];     //½ÓÊÕ»º³å,×î´óUSART_REC_LEN¸ö×Ö½Ú.
+u8 USART3_RX_BUF[USART3_REC_LEN]; 
+
+
 //½ÓÊÕ×´Ì¬
 //bit15£¬	½ÓÊÕÍê³É±êÖ¾
 //bit14£¬	½ÓÊÕµ½0x0d
 //bit13~0£¬	½ÓÊÕµ½µÄÓĞĞ§×Ö½ÚÊıÄ¿
 u16 USART_RX_STA=0;       //½ÓÊÕ×´Ì¬±ê¼Ç	  
+u16 USART_RX_STA_UART3=0; 
 
+u8 aRxBuffer_UART3[RXBUFFERSIZE_UART3];//
 u8 aRxBuffer[RXBUFFERSIZE];//HAL¿âÊ¹ÓÃµÄ´®¿Ú½ÓÊÕ»º³å
+
 UART_HandleTypeDef UART1_Handler; //UART¾ä±ú
   
 //³õÊ¼»¯IO ´®¿Ú1 
@@ -124,6 +131,46 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+	#if 0
+	printf("fuck 33\r\n");
+	if(huart->Instance==USART3){
+		printf("ddsds %d \r\n",aRxBuffer_UART3[0]);
+		#if 1
+		printf("fuck 44\r\n");
+		if((USART_RX_STA_UART3&0x8000)==0)//½ÓÊÕÎ´Íê³É
+		{
+			printf("fuck 55\r\n");
+			if(USART_RX_STA_UART3&0x4000)//½ÓÊÕµ½ÁË0x0d
+			{
+				printf("fuck 66\r\n");
+				if(aRxBuffer_UART3[0]!=0x0a){
+						USART_RX_STA_UART3=0;//½ÓÊÕ´íÎó,ÖØĞÂ¿ªÊ¼
+						printf("fuck 77\r\n");
+				}
+				else {USART_RX_STA_UART3|=0x8000;	//½ÓÊÕÍê³ÉÁ
+						printf("fuck 88\r\n");
+					
+				}	
+			HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3);				
+			}
+			else //»¹Ã»ÊÕµ½0X0D
+			{	
+				if(aRxBuffer_UART3[0]==0x0d){USART_RX_STA_UART3|=0x4000;printf("fuck 99\r\n");}
+				else
+				{
+					printf("fuck aa\r\n");
+					USART3_RX_BUF[USART_RX_STA_UART3&0X3FFF]=aRxBuffer_UART3[0] ;
+					
+					USART_RX_STA_UART3++;
+					HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3);
+					if(USART_RX_STA_UART3>(USART3_REC_LEN-1))USART_RX_STA_UART3=0;//½ÓÊÕÊı¾İ´íÎó,ÖØĞÂ¿ªÊ¼½ÓÊÕ	  
+				}		 
+			}
+		}
+		#endif
+	}
+#endif	
+	/**************************************************************************/
 	if(huart->Instance==USART1)//Èç¹ûÊÇ´®¿Ú1
 	{
 		if((USART_RX_STA&0x8000)==0)//½ÓÊÕÎ´Íê³É
@@ -155,7 +202,6 @@ void USART1_IRQHandler(void)
 #if SYSTEM_SUPPORT_OS	 	//Ê¹ÓÃOS
 	OSIntEnter();    
 #endif
-	
 	HAL_UART_IRQHandler(&UART1_Handler);	//µ÷ÓÃHAL¿âÖĞ¶Ï´¦Àí¹«ÓÃº¯Êı
 	
 	timeout=0;

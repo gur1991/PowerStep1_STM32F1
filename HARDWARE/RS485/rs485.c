@@ -1,5 +1,7 @@
 #include "rs485.h"
 #include "delay.h"
+#include "uart_command_control_protocol.h"
+
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32F103开发板
@@ -20,18 +22,25 @@ UART_HandleTypeDef USART2_RS485Handler;  //USART2句柄(用于RS485)
 u8 RS485_RX_BUF[64];  	//接收缓冲,最大64个字节.
 //接收到的数据长度
 u8 RS485_RX_CNT=0;  
-
+u8 FLAG_UART_MASTER =0;
 void USART2_IRQHandler(void)
 {
     u8 res;	  
     if((__HAL_UART_GET_FLAG(&USART2_RS485Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
-	{	 	
+	{	
 		HAL_UART_Receive(&USART2_RS485Handler,&res,1,1000);
 		if(RS485_RX_CNT<64)
 		{
 			RS485_RX_BUF[RS485_RX_CNT]=res;		//记录接收到的值
+			//printf("master uart %d  RS485_RX_CNT:%d\r\n",RS485_RX_BUF[RS485_RX_CNT],RS485_RX_CNT);	
+
 			RS485_RX_CNT++;						//接收数据增加1 
-		} 
+			
+		}
+		if(RS485_RX_CNT>=3&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
+					//printf("master uart over \r\n");
+					FLAG_UART_MASTER=1;	
+		}	
 	} 
 }    
 #endif

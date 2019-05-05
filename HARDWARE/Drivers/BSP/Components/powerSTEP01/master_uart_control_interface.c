@@ -1,5 +1,5 @@
 #include "master_uart_control_interface.h"
-
+//#include "rs485.h"
 uint8_t master_powerStep01_move_command(move_type_t data){
 		uint8_t ret =0;
 		u8 len =0;
@@ -7,29 +7,45 @@ uint8_t master_powerStep01_move_command(move_type_t data){
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MOVE_TYPE;
 		master_motorCommand.CommandPowerStep1.move=data;
+	  master_motorCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
+		master_motorCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		printf("start master_powerStep01_move_command \r\n");	
 		
-		RS485_Send_Data(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t));
+		RS485_Send_Data((u8*)(&master_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
+		printf("master 1  \r\n");
 		//HAL_Delay(1000);
-		delay_ms(10);//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束  ---slave 应该在10ms内向master反馈
+		//debug start---gur
+		//protocol_handle_uart_powerstep01_plain_slave_cmd();
+		//debug end---gur
+	//	delay_ms(300);//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束  ---slave 应该在10ms内向master反馈
 		//最多等待1分钟
+		printf("master 2  \r\n");
 		while(1){
-			RS485_Receive_Data(&master_motorCommand,&len);
+			if(FLAG_UART_MASTER){
+					//delay_ms(100);
+					RS485_Receive_Data((u8*)(&master_motorCommand),&len);
+					FLAG_UART_MASTER=0;
+					printf("master receive data ok\r\n");
+					break;		
+			}
 			times--;
-			if(len>=0||times ==0)break;
+		if(times ==0)break;
 			delay_ms(10);
+			//printf("wait  \r\n");
 		}
+		printf("wait out \r\n");
 		//len值为0的时候，从设备没有反馈
-		if(len==0){
+		if(len!=0){
 				ret = master_motorCommand.CommandPowerStep1.move.response.ret;
 		}else{
 				ret = 1;//fail
 		}
+		printf("mster ret %d \r\n",ret);
 		printf("end master_powerStep01_move_command \r\n");
 		return ret;
 }
 
-
+#if 0
 
 uint8_t master_powerStep01_power_command(power_type_t data){
 		uint8_t ret =0;
@@ -327,4 +343,4 @@ uint8_t master_powerStep01_select_step_mode(select_step_mode_t data){
 		printf("end master_powerStep01_select_step_mode \r\n");
 		return ret;
 }
-
+#endif

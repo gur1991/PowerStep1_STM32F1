@@ -13,7 +13,7 @@
 //Copyright(C) 广州市星翼电子科技有限公司 2014-2024
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 	
-
+extern u8 FLAG_UART_MASTER;
 extern u8 RS485_RX_BUF[64]; 		//接收缓冲,最大64个字节
 extern u8 RS485_RX_CNT;   			//接收到的数据长度
 

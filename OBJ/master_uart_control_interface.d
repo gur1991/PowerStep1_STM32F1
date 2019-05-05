@@ -63,3 +63,4 @@
 ..\obj\master_uart_control_interface.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\master_uart_control_interface.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\master_uart_control_interface.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
+..\obj\master_uart_control_interface.o: ..\HARDWARE\RS485\rs485.h

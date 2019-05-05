@@ -58,3 +58,4 @@
 ..\obj\usart.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\usart.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\usart.o: ..\SYSTEM\usart\usart.h
+..\obj\usart.o: ..\HARDWARE\UART3\uart3.h

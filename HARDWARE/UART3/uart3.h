@@ -15,6 +15,8 @@
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 	
 
+extern u8 FLAG_UART_SLAVE;
+extern UART_HandleTypeDef USART3_Handler;
 extern u8 UART3_RX_BUF[64]; 		//接收缓冲,最大64个字节
 extern u8 UART3_RX_CNT;   			//接收到的数据长度
 
