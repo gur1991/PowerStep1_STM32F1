@@ -6,7 +6,6 @@ static void protocol_powerstep01_move(move_type_t* data){
 		performer.request.devices=data->request.devices;
 		performer.request.steps=data->request.steps;
 		performer.request.types=data->request.types;
-		//void Powerstep01_QueueCommands(uint8_t deviceId, uint8_t command, int32_t value)
 		
 		printf("slave devices %d \r\n",performer.request.devices);
 		printf("slave steps %d \r\n",performer.request.steps);
@@ -23,7 +22,9 @@ static void protocol_powerstep01_power(power_type_t* data){
 		performer.request.devices=data->request.devices;
 		performer.request.power=data->request.power;
 		
+		printf("slave devices %d \r\n",performer.request.devices);
 		if(performer.request.power==0)BSP_MotorControl_CmdSoftStop(performer.request.devices);
+		printf("slave power %d \r\n",performer.request.power);
 		data->response.ret=0;
 	
 }
@@ -31,18 +32,21 @@ static void protocol_powerstep01_power(power_type_t* data){
 static void protocol_powerstep01_rest_pos(rest_pos_type_t* data){
 		rest_pos_type_t performer;
 		performer.request.devices=data->request.devices;
-	
-		BSP_MotorControl_CmdResetPos(performer.request.devices);
 		
+		printf("slave devices %d \r\n",performer.request.devices);
+		BSP_MotorControl_CmdResetPos(performer.request.devices);//此函数不连接硬件阻塞
+		printf("slave devices2 %d \r\n",performer.request.devices);
 		data->response.ret=0;
 }
 
 static void protocol_powerstep01_send_command_and_wait_no_busy(send_command_and_wait_no_busy_type_t* data){
 		send_command_and_wait_no_busy_type_t performer;
-		 
+		
+		printf("slave wait  \r\n"); 
 		BSP_MotorControl_SendQueuedCommands();
     /* Wait for all device ends moving */ 
-    BSP_MotorControl_WaitForAllDevicesNotBusy();
+    BSP_MotorControl_WaitForAllDevicesNotBusy();//此函数不连接硬件阻塞
+		printf("slave busy  \r\n");
 		data->response.ret=0;	
 }
 
@@ -51,7 +55,12 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		
 		performer.request.devices = data->request.devices;
 		performer.request.steps = data->request.steps;
-		BSP_MotorControl_GoTo(performer.request.devices,performer.request.steps); 
+	
+		printf("slave devices %d \r\n",performer.request.devices);
+
+		//此函数不连接电机会阻塞
+		//BSP_MotorControl_GoTo(performer.request.devices,performer.request.steps);
+		printf("slave steps %d \r\n",performer.request.steps);	
 		data->response.ret=0;
 		
 }
@@ -59,21 +68,30 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
 		one_device_wait_type_t performer;
 		performer.request.devices=data->request.devices;
-		BSP_MotorControl_WaitWhileActive(performer.request.devices);
+		printf("slave devices %d \r\n",performer.request.devices);
+		BSP_MotorControl_WaitWhileActive(performer.request.devices);//此函数不连接硬件阻塞
+		printf("slave devices2 %d \r\n",performer.request.devices);
 		data->response.ret=0;
 }
 
 static void protocol_powerstep01_one_device_get_pos(one_device_get_pos_type_t*data){
 			one_device_get_pos_type_t performer;
 			performer.request.devices=data->request.devices;
-			data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);
+			printf("slave devices %d \r\n",performer.request.devices);
+			data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);//此函数不连接硬件阻塞
+	
+			data->response.pos=876;
+			printf("slave devices2 %d \r\n",performer.request.devices);
 		  data->response.ret=0;
 }
 static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*data){
 			one_device_set_mark_type_t performer;
 			performer.request.devices=data->request.devices;
 			performer.request.pos=data->request.pos;
-			BSP_MotorControl_SetMark(performer.request.devices, performer.request.pos); 
+	
+			printf("slave devices %d \r\n",performer.request.devices);
+			BSP_MotorControl_SetMark(performer.request.devices, performer.request.pos);//此函数不连接硬件阻塞
+			printf("slave pos %d \r\n",performer.request.pos);
 			data->response.ret=0;
 }
 
@@ -82,7 +100,11 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 			get_para_type_t performer;
 			performer.request.devices=data->request.devices;
 			performer.request.para=data->request.para;
+			
+			printf("slave devices %d \r\n",performer.request.devices);
+			//此函数不连接硬件阻塞
 			data->response.result_para=BSP_MotorControl_CmdGetParam(performer.request.devices, performer.request.para);
+			printf("slave para %d \r\n",performer.request.para);
 			data->response.ret=0;
 }
 static void protocol_powerstep01_set_para(set_para_type_t*data){
@@ -90,14 +112,21 @@ static void protocol_powerstep01_set_para(set_para_type_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.para=data->request.para;
 			performer.request.value=data->request.value;
+			printf("slave devices %d \r\n",performer.request.devices);
+	//此函数不连接硬件阻塞
 			BSP_MotorControl_CmdSetParam(performer.request.devices,performer.request.para,performer.request.value);
+			printf("slave para %d \r\n",performer.request.para);
 			data->response.ret=0;
 }
 static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			select_step_mode_t performer;
 			performer.request.devices=data->request.devices;
 			performer.request.StepMode=data->request.StepMode;
+			
+			printf("slave devices %d \r\n",performer.request.devices);
+	//此函数不连接硬件阻塞
 			BSP_MotorControl_SelectStepMode(performer.request.devices, performer.request.StepMode);
+			printf("slave StepMode %d \r\n",performer.request.StepMode);
 			data->response.ret=0;
 }
 

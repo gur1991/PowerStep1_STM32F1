@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\RS485;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\RS485;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -633,6 +633,11 @@
               <FileName>slave_uart_control_interface.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\slave_uart_control_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>light.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\LIGHT\light.c</FilePath>
             </File>
           </Files>
         </Group>
