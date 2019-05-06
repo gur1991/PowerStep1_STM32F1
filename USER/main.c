@@ -67,7 +67,7 @@ while(1){}
 return 0;
 #endif
 
-#if 1
+#if 0
 			RS485_Init(115200);
 		printf("into master device \r\n");
 		//RS485_Send_Data(TX_BUF,5);
