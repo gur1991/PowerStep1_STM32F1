@@ -130,7 +130,111 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			data->response.ret=0;
 }
 
-//select_step_mode_t
+static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
+			get_light_sensor_level_t performer;
+			performer.request.number=data->request.number;
+			
+			printf("slave devices %d \r\n",performer.request.number);
+			data->response.value=Light_Sensor_Get(performer.request.number);
+			data->response.ret=0;
+}
+
+static void protocol_cheminert_c52(cheminert_c52_type_t*data){
+			static const u8 tx_buf_cp[]={'C','P',0x0d,0x0a};//41 0D 0A
+			static const u8 tx_buf_cca[]={'C','C','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_ccb[]={'C','C','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_cwa[]={'C','W','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_cwb[]={'C','W','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_dt[]={'D','T','1',0x0d,0x0a};//4F 4B 0D 0A 
+			static const u8 tx_buf_goa[]={'G','O','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_gob[]={'G','O','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_md[]={'M','D',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
+			//u8 tx_buf_rc[]={'R','C',0x0d,0x0a};
+			static const u8 tx_buf_sb[]={'S','B',0x0d,0x0a};
+			//u8 tx_buf_sb4K80[]={'S','B','4','K','8','0',0x0d,0x0a};
+			static const u8 tx_buf_sn[]={'S','N',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
+			static const u8 tx_buf_to[]={'T','O',0x0d,0x0a};//42 0D 0A 41 0D 0A 
+			//u8 tx_buf_tt[]={'T','T',0x0d,0x0a};
+			static const u8 tx_buf_vr[]={'V','R',0x0d,0x0a};//43 35 78 5F 20 43 36 78 5F 20 32 36 30 20 46 65 62 20 30 39 20 32 30 31 36 0D 0A 
+	
+			u8 rx_buf[64];
+			u8 tx_size=0;
+			u8 tx_buf[10];
+			
+			cheminert_c52_type_t performer;
+			u8 ret,rx_size,i;
+			u16 timeout;
+			timeout=data->request.timeout;
+			performer.request.para=data->request.para;
+			switch(performer.request.para){
+					case CHEMINERT_C52_CP:
+								tx_size=sizeof(tx_buf_cp);	
+								memcpy(tx_buf,tx_buf_cp,tx_size);
+								break;
+				  case CHEMINERT_C52_CCA: 
+								tx_size=sizeof(tx_buf_cca);	
+								memcpy(tx_buf,tx_buf_cca,tx_size);
+								break;
+					case CHEMINERT_C52_CCB:
+								tx_size=sizeof(tx_buf_ccb);	
+								memcpy(tx_buf,tx_buf_ccb,tx_size);
+								break;
+					case CHEMINERT_C52_CWA:
+								tx_size=sizeof(tx_buf_cwa);	
+								memcpy(tx_buf,tx_buf_cwa,tx_size);
+								break;
+					case CHEMINERT_C52_CWB:		
+								tx_size=sizeof(tx_buf_cwb);	
+								memcpy(tx_buf,tx_buf_cwb,tx_size);
+								break;
+					case CHEMINERT_C52_DT:
+								tx_size=sizeof(tx_buf_dt);	
+								memcpy(tx_buf,tx_buf_dt,tx_size);
+								break;								
+					case CHEMINERT_C52_GOA:
+								tx_size=sizeof(tx_buf_goa);	
+								memcpy(tx_buf,tx_buf_goa,tx_size);
+								break;
+					case CHEMINERT_C52_GOB:
+								tx_size=sizeof(tx_buf_gob);	
+								memcpy(tx_buf,tx_buf_gob,tx_size);
+								break;
+					case CHEMINERT_C52_MD:		
+								tx_size=sizeof(tx_buf_md);	
+								memcpy(tx_buf,tx_buf_md,tx_size);
+								break;
+					case CHEMINERT_C52_SB:
+								tx_size=sizeof(tx_buf_sb);	
+								memcpy(tx_buf,tx_buf_sb,tx_size);
+								break;
+					case CHEMINERT_C52_SN:
+								tx_size=sizeof(tx_buf_sn);	
+								memcpy(tx_buf,tx_buf_sn,tx_size);
+								break;
+					case CHEMINERT_C52_TO:
+								tx_size=sizeof(tx_buf_to);	
+								memcpy(tx_buf,tx_buf_to,tx_size);
+								break;
+					case CHEMINERT_C52_VR:		
+								tx_size=sizeof(tx_buf_vr);	
+								memcpy(tx_buf,tx_buf_vr,tx_size);
+								break;
+					default:
+								printf("no found this cmd ! \r\n");
+			
+			}
+			ret=cheminert_c52_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout);
+		
+			if(!ret){
+						memcpy(data->response.buf,rx_buf,rx_size);
+						data->response.size=rx_size;
+			}
+			
+			data->response.ret=ret;		
+
+}
+
+//
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		u8 len=0;
@@ -169,8 +273,14 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case 	SET_PARAM_TYPE:
 						protocol_powerstep01_set_para(&slave_motorCommand.CommandPowerStep1.set_para);
 						break;	
-			case SElECT_STEP_MODE:
+			case SElECT_STEP_MODE_TYPE:
 						protocol_powerstep01_select_step_mode(&slave_motorCommand.CommandPowerStep1.select_step_mode);
+						break;
+			case GET_LIGHT_LEVEL_TYPE:
+						protocol_get_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_light_sensor_level);
+						break;
+			case CHEMINERT_C52_TYPE:
+						protocol_cheminert_c52(&slave_motorCommand.CommandPowerStep1.cheminert_c52);
 						break;
 			default:
 					printf("no found this cmd ! \r\n");
@@ -179,6 +289,21 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		printf("end slave uart\r\n");
 }
 
+
+u8 test_actuator(void){
+	u8 ret=0,i;
+	cheminert_c52_type_t cheminert_c52;
+	cheminert_c52.request.para=	CHEMINERT_C52_TO;
+	cheminert_c52.request.timeout=200;
+	protocol_cheminert_c52(&cheminert_c52);
+	printf("ret:%d \r\n",cheminert_c52.response.ret);
+	printf("size:%d \r\n",cheminert_c52.response.size);
+	for(i=0;i<cheminert_c52.response.size;i++){
+				printf("%c",cheminert_c52.response.buf[i]);
+	}
+	printf("\r\n");
+	return ret;
+}
 
 
 

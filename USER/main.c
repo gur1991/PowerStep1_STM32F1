@@ -47,6 +47,8 @@ int main(void)
 	get_para_type_t tx_get_para;
 	set_para_type_t tx_set_para;
 	select_step_mode_t tx_select_step_mode;
+	cheminert_c52_type_t cheminert_c52;
+	
 	
 	tx_move.request.devices=2;
 	tx_move.request.steps=6400;
@@ -79,34 +81,34 @@ int main(void)
 	tx_select_step_mode.request.devices=12;
 	tx_select_step_mode.request.StepMode=13;
 	
+	cheminert_c52.request.para=CHEMINERT_C52_CP;
+	
+	
     HAL_Init();                    	 	//初始化HAL库    
     Stm32_Clock_Init(RCC_PLL_MUL9);   	//设置时钟,72M
 	delay_init(72);               		//初始化延时函数
 	uart_init(115200);					//初始化串口
 	usmart_dev.init(84); 		   		//初始化USMART	
 	LED_Init();							//初始化LED	
-	//KEY_Init();							//初始化按键
+	KEY_Init();							//初始化按键
 	Light_Sensor_Init();
-	while(1){
-			printf("LIGHT: %d \r\n",LIGHT_VALUE0);
-			delay_ms(30);	
-	}
 
 
-#if 0
-	RS485_Init(115200);
+
+#if 1
+	//RS485_Init(115200);
+	RS485_Init(9600);
 	UART3_Init(115200);
 	
-	RS485_Send_Data(TX_BUF,5);
-	//delay_ms(1);
-	//UART3_Receive_Data(RX_BUF,&len);
-	//delay_ms(200);
-	UART3_Send_Data(TX_BUF,5);
-	//delay_ms(1);
-	//RS485_Receive_Data(RX_BUF,&len);
-	//delay_ms(200);
-	//master_powerStep01_move_command(tx_move);
-while(1){}
+while(1){	
+				key=KEY_Scan(0);
+				len=0;
+				if(key==KEY0_PRES)//KEY0按下,发送一次数据
+				{
+					test_actuator();
+				
+				}
+}
 
 return 0;
 #endif

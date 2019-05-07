@@ -32,12 +32,10 @@ void USART2_IRQHandler(void)
 		if(RS485_RX_CNT<64)
 		{
 			RS485_RX_BUF[RS485_RX_CNT]=res;		//记录接收到的值
-			//printf("master uart %d  RS485_RX_CNT:%d\r\n",RS485_RX_BUF[RS485_RX_CNT],RS485_RX_CNT);	
-
 			RS485_RX_CNT++;						//接收数据增加1 
 			
 		}
-		if(RS485_RX_CNT>=3&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
+		if(RS485_RX_CNT>=2&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
 					//printf("master uart over \r\n");
 					FLAG_UART_MASTER=1;	
 		}	
@@ -111,7 +109,7 @@ void RS485_Receive_Data(u8 *buf,u8 *len)
 	u8 rxlen=RS485_RX_CNT;
 	u8 i=0;
 	*len=0;				//默认为0
-//	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
+	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==RS485_RX_CNT&&rxlen)//接收到了数据,且接收完成了
 	{
 		for(i=0;i<rxlen;i++)

@@ -266,7 +266,7 @@ uint8_t master_powerStep01_select_step_mode(select_step_mode_t data){
 		u8 len =0;
 		u8 times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
-		master_motorCommand.type = SElECT_STEP_MODE;
+		master_motorCommand.type = SElECT_STEP_MODE_TYPE;
 		master_motorCommand.CommandPowerStep1.select_step_mode=data;
 		printf("start master_powerStep01_select_step_mode \r\n");	
 		
@@ -281,5 +281,58 @@ uint8_t master_powerStep01_select_step_mode(select_step_mode_t data){
 				}
 		}
 		printf("end master_powerStep01_select_step_mode ,ret:%d \r\n",ret);
+		return ret;
+}
+
+uint8_t master_get_light_sensor_level(get_light_sensor_level_t data,uint8_t*value){
+		uint8_t ret =0;
+		u8 len =0;
+		u8 times =100;
+		Powerstep1_contorl_motor_command_t master_motorCommand;
+		master_motorCommand.type = GET_LIGHT_LEVEL_TYPE;
+		master_motorCommand.CommandPowerStep1.get_light_sensor_level=data;
+		printf("start master_get_light_sensor_level \r\n");	
+		
+		ret=Master_PowerStep01_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
+		printf("wait out \r\n");
+		//len值为0的时候，从设备没有反馈
+		if(!ret){
+				if(len!=0){
+						ret = master_motorCommand.CommandPowerStep1.get_light_sensor_level.response.ret;
+				}else{
+						ret = 1;//fail
+				}
+				*value=master_motorCommand.CommandPowerStep1.get_light_sensor_level.response.value;
+		}
+	
+		printf("end master_get_light_sensor_level ,ret:%d \r\n",ret);
+		return ret;
+}
+//cheminert_c52_type_t
+uint8_t master_cheminert_c52(cheminert_c52_type_t data,uint8_t*buf,uint8_t*buf_size){
+		uint8_t ret =0;
+		u8 len =0;
+		u8 size=0;
+		u8 times =100;
+		Powerstep1_contorl_motor_command_t master_motorCommand;
+		master_motorCommand.type = CHEMINERT_C52_TYPE;
+		master_motorCommand.CommandPowerStep1.cheminert_c52=data;
+		printf("start master_cheminert_c52 \r\n");	
+		
+		ret=Master_PowerStep01_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
+		printf("wait out \r\n");
+		//len值为0的时候，从设备没有反馈
+		if(!ret){
+				if(len!=0){
+						ret = master_motorCommand.CommandPowerStep1.cheminert_c52.response.ret;
+				}else{
+						ret = 1;//fail
+				}
+				size=master_motorCommand.CommandPowerStep1.cheminert_c52.response.size;
+				memcpy(buf,master_motorCommand.CommandPowerStep1.cheminert_c52.response.buf,size);
+				*buf_size=size;
+		}
+	
+		printf("end master_cheminert_c52 ,ret:%d \r\n",ret);
 		return ret;
 }
