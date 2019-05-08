@@ -139,7 +139,7 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			data->response.ret=0;
 }
 
-static void protocol_cheminert_c52(cheminert_c52_type_t*data){
+static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			static const u8 tx_buf_cp[]={'C','P',0x0d,0x0a};//41 0D 0A
 			static const u8 tx_buf_cca[]={'C','C','A',0x0d,0x0a};//41 0D 0A 
 			static const u8 tx_buf_ccb[]={'C','C','B',0x0d,0x0a};//42 0D 0A 
@@ -156,18 +156,44 @@ static void protocol_cheminert_c52(cheminert_c52_type_t*data){
 			static const u8 tx_buf_to[]={'T','O',0x0d,0x0a};//42 0D 0A 41 0D 0A 
 			//u8 tx_buf_tt[]={'T','T',0x0d,0x0a};
 			static const u8 tx_buf_vr[]={'V','R',0x0d,0x0a};//43 35 78 5F 20 43 36 78 5F 20 32 36 30 20 46 65 62 20 30 39 20 32 30 31 36 0D 0A 
-	
+			
+			static const u8 tx_buf_cc1[]={'C','C','1',0x0d,0x0a};
+			static const u8 tx_buf_cc2[]={'C','C','2',0x0d,0x0a};
+			static const u8 tx_buf_cc3[]={'C','C','3',0x0d,0x0a};
+      static const u8 tx_buf_cc4[]={'C','C','4',0x0d,0x0a};
+      static const u8 tx_buf_cc5[]={'C','C','5',0x0d,0x0a};
+      static const u8 tx_buf_cc6[]={'C','C','6',0x0d,0x0a};
+      static const u8 tx_buf_cw1[]={'C','W','1',0x0d,0x0a};
+			static const u8 tx_buf_cw2[]={'C','W','2',0x0d,0x0a};
+			static const u8 tx_buf_cw3[]={'C','W','3',0x0d,0x0a};
+			static const u8 tx_buf_cw4[]={'C','W','4',0x0d,0x0a};
+			static const u8 tx_buf_cw5[]={'C','W','5',0x0d,0x0a};
+      static const u8 tx_buf_cw6[]={'C','W','6',0x0d,0x0a};
+			static const u8 tx_buf_gh[]={'G','H',0x0d,0x0a};
+			static const u8 tx_buf_go1[]={'G','O','1',0x0d,0x0a};
+			static const u8 tx_buf_go2[]={'G','O','2',0x0d,0x0a};
+			static const u8 tx_buf_go3[]={'G','O','3',0x0d,0x0a};
+			static const u8 tx_buf_go4[]={'G','O','4',0x0d,0x0a};
+		  static const u8 tx_buf_go5[]={'G','O','5',0x0d,0x0a};
+			static const u8 tx_buf_go6[]={'G','O','6',0x0d,0x0a};
+			static const u8 tx_buf_mn[]={'M','N',0x0d,0x0a};
+			static const u8 tx_buf_sd[]={'S','D',0x0d,0x0a};
+			static const u8 tx_buf_sdcc[]={'S','D','C','C',0x0d,0x0a};
+			static const u8 tx_buf_sdcw[]={'S','D','C','W',0x0d,0x0a};
+			
 			u8 rx_buf[64];
 			u8 tx_size=0;
 			u8 tx_buf[10];
+			bool wait_flag=true;
 			
-			cheminert_c52_type_t performer;
+			cheminert_c52_c55_type_t performer;
 			u8 ret,rx_size,i;
 			u16 timeout;
 			timeout=data->request.timeout;
 			performer.request.para=data->request.para;
 			switch(performer.request.para){
 					case CHEMINERT_C52_CP:
+					case CHEMINERT_C55_CP:	
 								tx_size=sizeof(tx_buf_cp);	
 								memcpy(tx_buf,tx_buf_cp,tx_size);
 								break;
@@ -199,15 +225,18 @@ static void protocol_cheminert_c52(cheminert_c52_type_t*data){
 								tx_size=sizeof(tx_buf_gob);	
 								memcpy(tx_buf,tx_buf_gob,tx_size);
 								break;
-					case CHEMINERT_C52_MD:		
+					case CHEMINERT_C52_MD:
+					case CHEMINERT_C55_MD:		
 								tx_size=sizeof(tx_buf_md);	
 								memcpy(tx_buf,tx_buf_md,tx_size);
 								break;
 					case CHEMINERT_C52_SB:
+					case CHEMINERT_C55_SB:
 								tx_size=sizeof(tx_buf_sb);	
 								memcpy(tx_buf,tx_buf_sb,tx_size);
 								break;
 					case CHEMINERT_C52_SN:
+					case CHEMINERT_C55_SN:
 								tx_size=sizeof(tx_buf_sn);	
 								memcpy(tx_buf,tx_buf_sn,tx_size);
 								break;
@@ -215,15 +244,111 @@ static void protocol_cheminert_c52(cheminert_c52_type_t*data){
 								tx_size=sizeof(tx_buf_to);	
 								memcpy(tx_buf,tx_buf_to,tx_size);
 								break;
-					case CHEMINERT_C52_VR:		
+					case CHEMINERT_C55_VR:
+					case CHEMINERT_C52_VR:						
 								tx_size=sizeof(tx_buf_vr);	
 								memcpy(tx_buf,tx_buf_vr,tx_size);
 								break;
+				  case CHEMINERT_C55_CC1:
+								tx_size=sizeof(tx_buf_cc1);	
+								memcpy(tx_buf,tx_buf_cc1,tx_size);
+								break;
+				  case CHEMINERT_C55_CC2:
+								tx_size=sizeof(tx_buf_cc2);	
+								memcpy(tx_buf,tx_buf_cc2,tx_size);
+								break;
+				  case CHEMINERT_C55_CC3:
+								tx_size=sizeof(tx_buf_cc3);	
+								memcpy(tx_buf,tx_buf_cc3,tx_size);
+								break;
+				  case CHEMINERT_C55_CC4:
+								tx_size=sizeof(tx_buf_cc4);	
+								memcpy(tx_buf,tx_buf_cc4,tx_size);
+								break;
+				  case CHEMINERT_C55_CC5:
+								tx_size=sizeof(tx_buf_cc5);	
+								memcpy(tx_buf,tx_buf_cc5,tx_size);
+								break;
+				  case CHEMINERT_C55_CC6:
+								tx_size=sizeof(tx_buf_cc6);	
+								memcpy(tx_buf,tx_buf_cc6,tx_size);
+								break;					
+				  case CHEMINERT_C55_CW1:
+								tx_size=sizeof(tx_buf_cw1);	
+								memcpy(tx_buf,tx_buf_cw1,tx_size);
+								break;
+				  case CHEMINERT_C55_CW2:
+								tx_size=sizeof(tx_buf_cw2);	
+								memcpy(tx_buf,tx_buf_cw2,tx_size);
+								break;						
+				  case CHEMINERT_C55_CW3:
+								tx_size=sizeof(tx_buf_cw3);	
+								memcpy(tx_buf,tx_buf_cw3,tx_size);
+								break;						
+				  case CHEMINERT_C55_CW4:
+								tx_size=sizeof(tx_buf_cw4);	
+								memcpy(tx_buf,tx_buf_cw4,tx_size);
+								break;						
+				  case CHEMINERT_C55_CW5:
+								tx_size=sizeof(tx_buf_cw5);	
+								memcpy(tx_buf,tx_buf_cw5,tx_size);
+								break;						
+				  case CHEMINERT_C55_CW6:
+								tx_size=sizeof(tx_buf_cw6);	
+								memcpy(tx_buf,tx_buf_cw6,tx_size);
+								break;						
+				  case CHEMINERT_C55_GH:
+								tx_size=sizeof(tx_buf_gh);	
+								memcpy(tx_buf,tx_buf_gh,tx_size);
+								break;		
+				  case CHEMINERT_C55_GO1:
+								tx_size=sizeof(tx_buf_go1);	
+								memcpy(tx_buf,tx_buf_go1,tx_size);
+								break;
+				  case CHEMINERT_C55_GO2:
+								tx_size=sizeof(tx_buf_go2);	
+								memcpy(tx_buf,tx_buf_go2,tx_size);
+								break;		
+				  case CHEMINERT_C55_GO3:
+								tx_size=sizeof(tx_buf_go3);	
+								memcpy(tx_buf,tx_buf_go3,tx_size);
+								break;						
+				  case CHEMINERT_C55_GO4:
+								tx_size=sizeof(tx_buf_go4);	
+								memcpy(tx_buf,tx_buf_go4,tx_size);
+								break;
+				  case CHEMINERT_C55_GO5:
+								tx_size=sizeof(tx_buf_go5);	
+								memcpy(tx_buf,tx_buf_go5,tx_size);
+								break;
+				  case CHEMINERT_C55_GO6:
+								tx_size=sizeof(tx_buf_go6);	
+								memcpy(tx_buf,tx_buf_go6,tx_size);
+								break;
+				  case CHEMINERT_C55_MN:
+								tx_size=sizeof(tx_buf_mn);	
+								memcpy(tx_buf,tx_buf_mn,tx_size);
+								break;					
+				  case CHEMINERT_C55_SD:
+								tx_size=sizeof(tx_buf_sd);	
+								memcpy(tx_buf,tx_buf_sd,tx_size);
+								break;						
+				  case CHEMINERT_C55_SDCC:
+								tx_size=sizeof(tx_buf_sdcc);	
+								memcpy(tx_buf,tx_buf_sdcc,tx_size);
+								wait_flag=false;
+								break;	
+				  case CHEMINERT_C55_SDCW:
+								tx_size=sizeof(tx_buf_sdcw);	
+								memcpy(tx_buf,tx_buf_sdcw,tx_size);
+								wait_flag=false;
+								break;
+					
 					default:
 								printf("no found this cmd ! \r\n");
 			
 			}
-			ret=cheminert_c52_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout);
+			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout,wait_flag);
 		
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
@@ -231,7 +356,6 @@ static void protocol_cheminert_c52(cheminert_c52_type_t*data){
 			}
 			
 			data->response.ret=ret;		
-
 }
 
 //
@@ -279,8 +403,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case GET_LIGHT_LEVEL_TYPE:
 						protocol_get_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_light_sensor_level);
 						break;
-			case CHEMINERT_C52_TYPE:
-						protocol_cheminert_c52(&slave_motorCommand.CommandPowerStep1.cheminert_c52);
+			case CHEMINERT_C52_C55_TYPE:
+						protocol_cheminert_c52_c55(&slave_motorCommand.CommandPowerStep1.cheminert_c52_c55);
 						break;
 			default:
 					printf("no found this cmd ! \r\n");
@@ -292,14 +416,14 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 
 u8 test_actuator(void){
 	u8 ret=0,i;
-	cheminert_c52_type_t cheminert_c52;
-	cheminert_c52.request.para=	CHEMINERT_C52_TO;
-	cheminert_c52.request.timeout=200;
-	protocol_cheminert_c52(&cheminert_c52);
-	printf("ret:%d \r\n",cheminert_c52.response.ret);
-	printf("size:%d \r\n",cheminert_c52.response.size);
-	for(i=0;i<cheminert_c52.response.size;i++){
-				printf("%c",cheminert_c52.response.buf[i]);
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.para=	CHEMINERT_C55_MN;
+	cheminert_c52_c55.request.timeout=200;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	printf("ret:%d \r\n",cheminert_c52_c55.response.ret);
+	printf("size:%d \r\n",cheminert_c52_c55.response.size);
+	for(i=0;i<cheminert_c52_c55.response.size;i++){
+				printf("%c",cheminert_c52_c55.response.buf[i]);
 	}
 	printf("\r\n");
 	return ret;

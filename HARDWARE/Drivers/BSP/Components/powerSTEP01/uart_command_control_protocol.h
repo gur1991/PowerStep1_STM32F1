@@ -32,7 +32,7 @@ typedef enum Command_type{
 		SElECT_STEP_MODE_TYPE,
 	
 		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
-		CHEMINERT_C52_TYPE,
+		CHEMINERT_C52_C55_TYPE,
 }Command_type_t;
 
 
@@ -49,7 +49,37 @@ typedef enum Command_Cheminert_type{
 		CHEMINERT_C52_SB,
 		CHEMINERT_C52_SN,
 		CHEMINERT_C52_TO,
-		CHEMINERT_C52_VR
+		CHEMINERT_C52_VR,
+	
+		CHEMINERT_C55_CP,
+		CHEMINERT_C55_CC1,
+		CHEMINERT_C55_CC2,
+		CHEMINERT_C55_CC3,
+		CHEMINERT_C55_CC4,
+		CHEMINERT_C55_CC5,
+		CHEMINERT_C55_CC6,
+		CHEMINERT_C55_CW1,
+		CHEMINERT_C55_CW2,
+		CHEMINERT_C55_CW3,
+		CHEMINERT_C55_CW4,
+		CHEMINERT_C55_CW5,
+		CHEMINERT_C55_CW6,
+		CHEMINERT_C55_GH,
+		CHEMINERT_C55_GO1,
+		CHEMINERT_C55_GO2,
+		CHEMINERT_C55_GO3,
+		CHEMINERT_C55_GO4,
+		CHEMINERT_C55_GO5,
+		CHEMINERT_C55_GO6,
+		CHEMINERT_C55_MD,
+		CHEMINERT_C55_MN,
+		CHEMINERT_C55_SB,
+		CHEMINERT_C55_SD,
+		CHEMINERT_C55_SDCC,
+		CHEMINERT_C55_SDCW,
+		CHEMINERT_C55_SN,
+		CHEMINERT_C55_VR,
+		
 }Command_Cheminert_type_t;
 typedef union{ 
 	struct{
@@ -192,7 +222,7 @@ struct{
 		uint8_t size;
 		uint8_t buf[64];
 }response;
-}cheminert_c52_type_t;
+}cheminert_c52_c55_type_t;
 
 
 
@@ -214,51 +244,12 @@ typedef struct{
 				select_step_mode_t  select_step_mode;
 			
 				get_light_sensor_level_t get_light_sensor_level;
-				cheminert_c52_type_t cheminert_c52;
+				cheminert_c52_c55_type_t cheminert_c52_c55;
 		}CommandPowerStep1;
 		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;
 
 
-/***********************actuator**************************************/
-#if 0
-#define OVER_UART_CHEMINERT_VALUE0 0x0d
-#define OVER_UART_CHEMINERT_VALUE1 0x0a
 
-typedef enum Command_Cheminert_type{ 
-		CHEMINERT_C52_CP_TYPE=25,//actuator 
-		CHEMINERT_C52_CCA_TYPE,
-		CHEMINERT_C52_CCB_TYPE,
-		CHEMINERT_C52_CWA_TYPE,
-		CHEMINERT_C52_CWB_TYPE,
-		CHEMINERT_C52_DT_TYPE,
-		CHEMINERT_C52_GOA_TYPE,
-		CHEMINERT_C52_GOB_TYPE,
-		CHEMINERT_C52_MD_TYPE,
-		CHEMINERT_C52_SB_TYPE,
-		CHEMINERT_C52_SN_TYPE,
-		CHEMINERT_C52_TO_TYPE,
-		CHEMINERT_C52_VR_TYPE
-}Command_Cheminert_type_t;
-//actuator
-//CHEMINERT_C52_CP_TYPE
-typedef union{ 
-struct{
-		uint8_t command[2];//0,1,2...
-}request;
-struct{
-		uint8_t ret;
-		uint8_t value[20];
-}response;
-}cheminert_c52_cp_t;
-
-typedef struct{
-		Command_Cheminert_type_t type;
-		union {
-				cheminert_c52_cp_t cheminert_c52_cp;
-
-		}CommandCheminertC52;
-}Cheminert_c52_contorl_actuator_command_t;
-#endif
 	 
 #endif 

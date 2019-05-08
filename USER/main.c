@@ -47,7 +47,7 @@ int main(void)
 	get_para_type_t tx_get_para;
 	set_para_type_t tx_set_para;
 	select_step_mode_t tx_select_step_mode;
-	cheminert_c52_type_t cheminert_c52;
+	cheminert_c52_c55_type_t cheminert_c52;
 	
 	
 	tx_move.request.devices=2;
