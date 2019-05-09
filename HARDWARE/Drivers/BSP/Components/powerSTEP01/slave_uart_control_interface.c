@@ -357,6 +357,55 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			
 			data->response.ret=ret;		
 }
+/*
+		u8 S100_STX;
+		u8 S100_ID[2];
+		u8 S100_AI;
+		u8 S100_PFC[2];
+		u8 S100_VALUE[6];
+		u8 S100_CRC[3];
+		u8 S100_ETX;
+*/
+static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
+			pump_s100_command_type_t performer;
+			PUMP_S100_REPLY_type_t type;
+	    pump_s100_reply_type_t s100_reply;
+			uint8_t ret=0,i;
+			
+			printf("size:%d \r\n",sizeof(data->request.para.S100_VALUE));	
+			for(i=0;i<sizeof(data->request.para.S100_VALUE);i++){
+					printf("value gggg:%d\r\n",data->request.para.S100_VALUE[i]);
+			}	
+	
+			performer.request.para.S100_STX=data->request.para.S100_STX;
+			memcpy(performer.request.para.S100_ID,data->request.para.S100_ID,sizeof(performer.request.para.S100_ID));
+			performer.request.para.S100_AI=data->request.para.S100_AI;
+			memcpy(performer.request.para.S100_PFC,data->request.para.S100_PFC,sizeof(performer.request.para.S100_PFC));
+			memcpy(performer.request.para.S100_VALUE,data->request.para.S100_VALUE,sizeof(performer.request.para.S100_VALUE));
+			memcpy(performer.request.para.S100_CRC,data->request.para.S100_CRC,sizeof(performer.request.para.S100_CRC));
+			performer.request.para.S100_ETX=data->request.para.S100_ETX;
+			
+			performer.request.timeout=data->request.timeout;
+			
+
+			
+			ret=pump_s100_transfer(&(performer.request.para), &type, &s100_reply,performer.request.timeout);
+			
+			data->response.ret=ret;	
+			data->response.PUMP_S100_REPLY_type=type;
+	
+			if(type==SPECIAL_ACK_S100){
+						data->response.s100_reply.SpecialACK.S100_RESULT=s100_reply.SpecialACK.S100_RESULT;
+			}else if(type==NORMAL_ANSWER_S100){
+						data->response.s100_reply.NormalAnswer.S100_AI=s100_reply.NormalAnswer.S100_AI;
+						memcpy(data->response.s100_reply.NormalAnswer.S100_VALUE,s100_reply.NormalAnswer.S100_VALUE,sizeof(s100_reply.NormalAnswer.S100_VALUE));
+			}else if(type==ACTIVE_EVENT_S100){
+						data->response.s100_reply.ActiveEvent.S100_AI=s100_reply.ActiveEvent.S100_AI;
+						memcpy(data->response.s100_reply.ActiveEvent.S100_VALUE,s100_reply.ActiveEvent.S100_VALUE,sizeof(s100_reply.ActiveEvent.S100_VALUE));
+						memcpy(data->response.s100_reply.ActiveEvent.S100_PFC,s100_reply.ActiveEvent.S100_PFC,sizeof(s100_reply.ActiveEvent.S100_PFC));
+			}
+}
+
 
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
@@ -406,6 +455,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case CHEMINERT_C52_C55_TYPE:
 						protocol_cheminert_c52_c55(&slave_motorCommand.CommandPowerStep1.cheminert_c52_c55);
 						break;
+			case PUMP_S100_TYPE:
+						protocol_pump_s100_interface(&slave_motorCommand.CommandPowerStep1.pump_s100_command);
+						break;
 			default:
 					printf("no found this cmd ! \r\n");
 		}
@@ -428,6 +480,65 @@ u8 test_actuator(void){
 	printf("\r\n");
 	return ret;
 }
+/*
+	S100_testCommand.S100_STX=0x21;
+	S100_testCommand.S100_ETX=0x0a;
+	S100_testCommand.S100_ID[1]='1'; //ID gu ding
+	S100_testCommand.S100_ID[0]='0';
+	S100_testCommand.S100_AI='1';//A B Beng
+	S100_testCommand.S100_PFC[1]='0';//Command
+	S100_testCommand.S100_PFC[0]='9';
+	
+	S100_testCommand.S100_VALUE[5]=0x20;
+	S100_testCommand.S100_VALUE[4]=0x20;
+	S100_testCommand.S100_VALUE[3]='0';
+	S100_testCommand.S100_VALUE[2]='0';
+	S100_testCommand.S100_VALUE[1]='0';
+	S100_testCommand.S100_VALUE[0]='0';
 
 
+*/
+void test_pump_s100(void){
+	u8 ret=0,i;
+	pump_s100_command_type_t data;
+	
+	data.request.timeout=1000;
+	
+	data.request.para.S100_STX=0x21;
+	data.request.para.S100_ETX=0x0a;
+	
+	data.request.para.S100_ID[1]='1'; 
+	data.request.para.S100_ID[0]='0';
+	
+	data.request.para.S100_AI='0';
+	
+	data.request.para.S100_PFC[1]='0';
+	data.request.para.S100_PFC[0]='1';
+	
+
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]='0';
+	data.request.para.S100_VALUE[2]='0';
+	data.request.para.S100_VALUE[1]='0';
+	data.request.para.S100_VALUE[0]='9';
+	
+	protocol_pump_s100_interface(&data);
+	
+	printf("ret:%d \r\n",data.response.ret);
+	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
+	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
+			printf("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
+			//printf("Value%d \r\n",data.response.s100_reply.NormalAnswer.S100_VALUE[6]);
+			for(i=0;i<6;i++){
+					printf("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
+			}
+			printf("\r\n");
+	}else if(SPECIAL_ACK_S100==data.response.PUMP_S100_REPLY_type){
+			printf("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
+	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
+			printf("unkown answer! \r\n");
+	}
+	
+}
 

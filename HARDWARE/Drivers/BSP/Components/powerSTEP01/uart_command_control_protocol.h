@@ -10,6 +10,7 @@
 #include "x_nucleo_ihmxx.h"	 
 #include "stdio.h"	 
 #include "sys.h"
+#include "pump_s100.h"	 
 uint8_t motorInit(void);	 
 
 #define OVER_UART_VALUE0 0x0d
@@ -32,7 +33,8 @@ typedef enum Command_type{
 		SElECT_STEP_MODE_TYPE,
 	
 		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
-		CHEMINERT_C52_C55_TYPE,
+		CHEMINERT_C52_C55_TYPE,//actuator
+		PUMP_S100_TYPE,//beng 10ml
 }Command_type_t;
 
 
@@ -245,7 +247,10 @@ typedef struct{
 			
 				get_light_sensor_level_t get_light_sensor_level;
 				cheminert_c52_c55_type_t cheminert_c52_c55;
-		}CommandPowerStep1;
+				
+				pump_s100_command_type_t pump_s100_command;
+			
+ 		}CommandPowerStep1;
 		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;
 

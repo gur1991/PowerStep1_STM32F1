@@ -290,13 +290,13 @@ uint8_t test_protocl(void){
 		RS485_Receive_Data(RX_CMD_BUF,&len);
 		printf("master receive len: %d, result: %d \r\n",len,RX_CMD_BUF[0]);
 		
-		RS485_Send_Data(&motor_master.request,sizeof(motor_master.request));
+		RS485_Send_Data((u8*)(&motor_master.request),sizeof(motor_master.request));
 		printf("master send request \r\n");
 						
 		switch(RX_CMD_BUF_SLAVE[0]){
 			case MOVE_TYPE:
 					
-									UART3_Receive_Data(&motor_slave.request,&len);
+									UART3_Receive_Data((u8*)(&motor_slave.request),&len);
 									printf("slave receive request \r\n");
 									printf("devices:%d \r\n",motor_slave.request.devices);
 									printf("steps:%d \r\n",motor_slave.request.steps);
@@ -308,7 +308,7 @@ uint8_t test_protocl(void){
 									motor_slave.response.ret=100;
 									UART3_Send_Data(&motor_slave.response,sizeof(motor_slave.response));
 									printf("slave send response \r\n");
-					RS485_Receive_Data(&motor_master.response,&len);
+					RS485_Receive_Data((u8*)(&motor_master.response),&len);
 					printf("master receive len: %d, result: %d \r\n",len,motor_master.response.ret);
 					printf("\r\n\r\n");
 					break;
@@ -341,7 +341,7 @@ uint8_t master_powerStep01_move(move_type_t tx_move){
 		master_motorCommand.type = MOVE_TYPE;
 		master_motorCommand.CommandPowerStep1.move=tx_move;
 		
-		RS485_Send_Data(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t));
+		RS485_Send_Data((u8*)(&master_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 		UART3_Receive_Data(&slave_motorCommand,&len);
 		
 		switch(slave_motorCommand.type){

@@ -336,3 +336,49 @@ uint8_t master_cheminert_c52_c55(cheminert_c52_c55_type_t data,uint8_t*buf,uint8
 		printf("end master_cheminert_c52_c55 ,ret:%d \r\n",ret);
 		return ret;
 }
+
+
+uint8_t master_pump_s100_interface(pump_s100_command_type_t data,pump_s100_reply_type_t* reply,PUMP_S100_REPLY_type_t* type){
+		uint8_t ret =0;
+		u8 len =0;
+		u8 size=0;
+		u8 times =100;
+		Powerstep1_contorl_motor_command_t master_motorCommand;
+		master_motorCommand.type = PUMP_S100_TYPE;
+		master_motorCommand.CommandPowerStep1.pump_s100_command=data;
+		printf("start master_pump_s100_interface \r\n");	
+		
+		ret=Master_PowerStep01_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
+		printf("wait out \r\n");
+		//len值为0的时候，从设备没有反馈
+		if(!ret){
+				if(len!=0){
+						ret = master_motorCommand.CommandPowerStep1.pump_s100_command.response.ret;
+				}else{
+						ret = 1;//fail
+				}
+				*type=master_motorCommand.CommandPowerStep1.pump_s100_command.response.PUMP_S100_REPLY_type;
+				
+				//two way  output result to extern
+				//memcpy(reply,&(master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply),sizeof(pump_s100_reply_type_t));
+				if(*type==NORMAL_ANSWER_S100){
+							reply->NormalAnswer.S100_AI=master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.NormalAnswer.S100_AI;
+							memcpy(reply->NormalAnswer.S100_VALUE,master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.NormalAnswer.S100_VALUE,sizeof(reply->NormalAnswer.S100_VALUE));
+				}else if(*type==SPECIAL_ACK_S100){
+							reply->SpecialACK.S100_RESULT=master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.SpecialACK.S100_RESULT;
+				}else if(*type==ACTIVE_EVENT_S100){
+							reply->ActiveEvent.S100_AI=master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_AI;
+							memcpy(reply->ActiveEvent.S100_PFC,master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_PFC,sizeof(reply->ActiveEvent.S100_PFC));
+							memcpy(reply->ActiveEvent.S100_VALUE,master_motorCommand.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_VALUE,sizeof(reply->ActiveEvent.S100_VALUE));
+				}else if(*type==UNKNOWN_ANSWER){
+							ret=1;//fuck result!
+							printf("master_pump_s100, what a fuck result!\r\n");
+				}
+		}
+	
+		printf("end master_pump_s100_interface ,ret:%d \r\n",ret);
+		return ret;
+}
+
+
+

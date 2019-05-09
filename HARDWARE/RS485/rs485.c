@@ -23,6 +23,7 @@ u8 RS485_RX_BUF[64];  	//接收缓冲,最大64个字节.
 //接收到的数据长度
 u8 RS485_RX_CNT=0;  
 u8 FLAG_UART_MASTER =0;
+u8 FLAG_RECEIVE_ACK =0;
 void USART2_IRQHandler(void)
 {
     u8 res;	  
@@ -38,7 +39,14 @@ void USART2_IRQHandler(void)
 		if(RS485_RX_CNT>=2&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
 					//printf("master uart over \r\n");
 					FLAG_UART_MASTER=1;	
-		}	
+		}
+		//beng 
+		if(RS485_RX_CNT==16&&RS485_RX_BUF[RS485_RX_CNT-1]==0x0a&&RS485_RX_BUF[0]==0x21){
+					FLAG_UART_MASTER=1;
+		}
+		if(RS485_RX_CNT==1&&(RS485_RX_BUF[0]==0x23||RS485_RX_BUF[0]==0x24||RS485_RX_BUF[0]==0x25)){
+					FLAG_RECEIVE_ACK=1;
+		}			
 	} 
 }    
 #endif

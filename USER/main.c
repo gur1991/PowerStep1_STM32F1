@@ -105,7 +105,8 @@ while(1){
 				len=0;
 				if(key==KEY0_PRES)//KEY0按下,发送一次数据
 				{
-					test_actuator();
+					//test_actuator();
+					test_pump_s100();
 				
 				}
 }
