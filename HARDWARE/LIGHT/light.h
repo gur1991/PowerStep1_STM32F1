@@ -16,4 +16,16 @@ u8 Light_Sensor_Get(u8 number);
 
 //参考资料 中文资料STM32F101xCDE_DS_CH_V5.pdf找5V耐压管
 
+
+//light sensor
+typedef union{ 
+struct{
+		uint8_t number;//0,1,2...
+}request;
+struct{
+		uint8_t ret;
+		uint8_t value;
+}response;
+}get_light_sensor_level_t;
+
 #endif
