@@ -19,26 +19,26 @@ UART_HandleTypeDef USART2_RS485Handler;  //USART2句柄(用于RS485)
 
 #if EN_USART2_RX   		//如果使能了接收   	  
 //接收缓存区 	
-u8 RS485_RX_BUF[64];  	//接收缓冲,最大64个字节.
+u8 RS485_RX_BUF[MAX_LENGTH];  	//接收缓冲,最大64个字节.
 //接收到的数据长度
 u8 RS485_RX_CNT=0;  
 u8 FLAG_UART_MASTER =0;
 u8 FLAG_RECEIVE_ACK =0;
+u8 FLAG_UART_RK3188=0;
 void USART2_IRQHandler(void)
 {
     u8 res;	  
     if((__HAL_UART_GET_FLAG(&USART2_RS485Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	
 		HAL_UART_Receive(&USART2_RS485Handler,&res,1,1000);
-		if(RS485_RX_CNT<64)
+		if(RS485_RX_CNT<MAX_LENGTH)
 		{
 			RS485_RX_BUF[RS485_RX_CNT]=res;		//记录接收到的值
 			RS485_RX_CNT++;						//接收数据增加1 
-			
 		}
+		//receive RK3188 send data
 		if(RS485_RX_CNT>=2&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
-					//printf("master uart over \r\n");
-					FLAG_UART_MASTER=1;	
+					FLAG_UART_RK3188=1;	
 		}
 		//beng 
 		if(RS485_RX_CNT==16&&RS485_RX_BUF[RS485_RX_CNT-1]==0x0a&&RS485_RX_BUF[0]==0x21){
@@ -104,6 +104,7 @@ void RS485_Init(u32 bound)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void RS485_Send_Data(u8 *buf,u8 len)
 {
+	u8 i;
 	RS485_TX_EN=1;			//设置为发送模式
 	HAL_UART_Transmit(&USART2_RS485Handler,buf,len,1000);//串口2发送数据
 	RS485_RX_CNT=0;	  

@@ -3,7 +3,7 @@
 
 uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t* master,u8 length_data,u8* len){
 		uint8_t ret=0;
-		u8 times =100;
+		u8 times =1000;
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
 	
@@ -308,6 +308,7 @@ uint8_t master_get_light_sensor_level(get_light_sensor_level_t data,uint8_t*valu
 		printf("end master_get_light_sensor_level ,ret:%d \r\n",ret);
 		return ret;
 }
+
 //cheminert_c52_type_t
 uint8_t master_cheminert_c52_c55(cheminert_c52_c55_type_t data,uint8_t*buf,uint8_t*buf_size){
 		uint8_t ret =0;

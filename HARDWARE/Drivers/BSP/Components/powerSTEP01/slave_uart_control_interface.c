@@ -184,11 +184,10 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			u8 rx_buf[64];
 			u8 tx_size=0;
 			u8 tx_buf[10];
-			bool wait_flag=true;
-			
-			cheminert_c52_c55_type_t performer;
 			u8 ret,rx_size,i;
 			u16 timeout;
+			cheminert_c52_c55_type_t performer;
+			bool wait_flag=true;
 			timeout=data->request.timeout;
 			performer.request.para=data->request.para;
 			switch(performer.request.para){
@@ -413,8 +412,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		u8 len=0;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		printf("start slave uart\r\n");
-		
-		UART3_Receive_Data(&slave_motorCommand,&len);
+		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
+		RS485_Receive_Data((u8*)(&slave_motorCommand),&len);
 		switch(slave_motorCommand.type){
 			case MOVE_TYPE:
 						protocol_powerstep01_move(&slave_motorCommand.CommandPowerStep1.move);
@@ -459,9 +458,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						protocol_pump_s100_interface(&slave_motorCommand.CommandPowerStep1.pump_s100_command);
 						break;
 			default:
-					printf("no found this cmd ! \r\n");
+					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}
-		UART3_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
+		RS485_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 		printf("end slave uart\r\n");
 }
 
