@@ -25,7 +25,11 @@ STM32---SLVAE设备的协议和这个不同
 #include "light.h"	 
 	 
 uint8_t motorInit(void);	 
-
+void MyFlagInterruptHandler(void);
+void MyBusyInterruptHandler(void);	 
+void MyErrorHandler(uint16_t error);	 
+	 
+	 
 #define OVER_UART_VALUE0 0x0d
 #define OVER_UART_VALUE1 0x0a
 	 

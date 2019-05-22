@@ -26,8 +26,10 @@ int main(void)
 {	
 	get_light_sensor_level_t data;
 	uint8_t value;
-	
-  HAL_Init();                    	 	//初始化HAL库    
+	int32_t pos;
+  uint32_t readData;
+  
+	HAL_Init();                    	 	//初始化HAL库    
   Stm32_Clock_Init(RCC_PLL_MUL9);   	//设置时钟,72M
 	delay_init(72);               		//初始化延时函数
 	uart_init(115200);					//初始化串口
@@ -42,9 +44,34 @@ int main(void)
 	data.request.number=1;
 	data.response.ret=1;
 	data.response.value=3;
-	master_get_light_sensor_level(data,&value);
+	//master_get_light_sensor_level(data,&value);
 	
-	printf("ggg size %d",sizeof(Powerstep1_contorl_motor_command_t));
+	//printf("ggg size %d",sizeof(Powerstep1_contorl_motor_command_t));
+	
+#if 0
+  BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
+  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);
+
+  BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
+
+  BSP_MotorControl_AttachBusyInterrupt(MyBusyInterruptHandler);
+  
+  BSP_MotorControl_AttachErrorHandler(MyErrorHandler);
+while(1){
+
+  BSP_MotorControl_Move(0, FORWARD, 16000);
+
+  BSP_MotorControl_WaitWhileActive(0);
+
+  HAL_Delay(2000);  
+  
+  BSP_MotorControl_Move(0, BACKWARD, 16000);
+
+  BSP_MotorControl_WaitWhileActive(0);
+
+  BSP_MotorControl_CmdResetPos(0);
+}	
+#endif
 	while(1){
 			if(FLAG_UART_RK3188){
 					printf("receive all \r\n");
