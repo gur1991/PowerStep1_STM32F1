@@ -36,6 +36,9 @@ void USART2_IRQHandler(void)
 			RS485_RX_BUF[RS485_RX_CNT]=res;		//记录接收到的值
 			RS485_RX_CNT++;						//接收数据增加1 
 		}
+		if(FLAG_UART_RK3188==0&&RS485_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t)){
+				FLAG_UART_RK3188=1;	
+		}
 		//receive RK3188 send data
 		if(RS485_RX_CNT>=2&&RS485_RX_BUF[RS485_RX_CNT-1]==OVER_UART_VALUE1&&RS485_RX_BUF[RS485_RX_CNT-2]==OVER_UART_VALUE0){
 					FLAG_UART_RK3188=1;	

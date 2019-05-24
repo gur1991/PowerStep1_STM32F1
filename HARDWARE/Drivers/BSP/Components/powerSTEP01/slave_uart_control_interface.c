@@ -414,6 +414,11 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		printf("start slave uart\r\n");
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		RS485_Receive_Data((u8*)(&slave_motorCommand),&len);
+		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
+					printf("check flag error!\r\n");
+					goto OVER;
+		}
+			
 		switch(slave_motorCommand.type){
 			case MOVE_TYPE:
 						protocol_powerstep01_move(&slave_motorCommand.CommandPowerStep1.move);
@@ -460,6 +465,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}
+OVER:		
 		RS485_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 		printf("end slave uart\r\n");
 }
