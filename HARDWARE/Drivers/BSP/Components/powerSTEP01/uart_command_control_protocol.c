@@ -14,6 +14,7 @@ void MyFlagInterruptHandler(void)
   /* Get the value of the status register via the command GET_STATUS */
   uint16_t statusRegister = BSP_MotorControl_CmdGetStatus(0);
 
+	printf("MyFlagInterruptHandler\r\n");
   /* Check HIZ flag: if set, power brigdes are disabled */
   if ((statusRegister & POWERSTEP01_STATUS_HIZ) == POWERSTEP01_STATUS_HIZ)
   {
@@ -126,7 +127,7 @@ void MyFlagInterruptHandler(void)
   */
 void MyBusyInterruptHandler(void)
 {
-
+		printf("MyBusyInterruptHandler\r\n");
    if (BSP_MotorControl_CheckBusyHw())
    {
       /* Busy pin is low, so at list one Powerstep01 chip is busy */
@@ -149,9 +150,11 @@ void MyErrorHandler(uint16_t error)
   /* Backup error number */
   gLastError = error;
   
+	printf("MyErrorHandler\r\n");
   /* Infinite loop */
   while(1)
   {
+		break ;
   }
 }
 
@@ -233,15 +236,13 @@ void master_device_receive(void){
 		RS485_Send_Data(&types,sizeof(Command_type_t));
 		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
     
-
-
 }
 void slave_device_send(void){
 		uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
-		u8 len=0;
+		int len=0;
 		
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
@@ -252,7 +253,7 @@ void slave_device_receive(void){
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
-		u8 len=0;
+		int len=0;
 		
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
@@ -269,7 +270,7 @@ uint8_t test_protocl(void){
 		u8 RX_CMD_BUF_SLAVE[5];
 			
 		u8 RX_PARA_BUF[100];
-		u8 len=0;
+		int len=0;
 		move_type_t motor_slave;
 		move_type_t motor_master;
 	
@@ -306,7 +307,7 @@ uint8_t test_protocl(void){
 											slave motor run cmd
 									*/
 									motor_slave.response.ret=100;
-									UART3_Send_Data(&motor_slave.response,sizeof(motor_slave.response));
+									UART3_Send_Data((u8*)&motor_slave.response,sizeof(motor_slave.response));
 									printf("slave send response \r\n");
 					RS485_Receive_Data((u8*)(&motor_master.response),&len);
 					printf("master receive len: %d, result: %d \r\n",len,motor_master.response.ret);
@@ -334,7 +335,7 @@ uint8_t test_protocl_new(Command_type_t types){
 
 uint8_t master_powerStep01_move(move_type_t tx_move){
 		uint8_t ret =0;
-		u8 len=0;
+		int len=0;
 		move_type_t rx_move;
 	
 		Powerstep1_contorl_motor_command_t master_motorCommand,slave_motorCommand;
@@ -342,7 +343,7 @@ uint8_t master_powerStep01_move(move_type_t tx_move){
 		master_motorCommand.CommandPowerStep1.move=tx_move;
 		
 		RS485_Send_Data((u8*)(&master_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
-		UART3_Receive_Data(&slave_motorCommand,&len);
+		UART3_Receive_Data((u8*)&slave_motorCommand,&len);
 		
 		switch(slave_motorCommand.type){
 			case MOVE_TYPE:

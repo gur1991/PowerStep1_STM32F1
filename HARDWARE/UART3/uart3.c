@@ -21,9 +21,9 @@ UART_HandleTypeDef USART3_Handler;  //USART2句柄(用于RS485)
 
 #if EN_USART3_RX   		//如果使能了接收   	  
 //接收缓存区 	
-u8 UART3_RX_BUF[64];  	//接收缓冲,最大64个字节.
+u8 UART3_RX_BUF[2048];  	//接收缓冲,最大64个字节.
 //接收到的数据长度
-u8 UART3_RX_CNT=0;  
+int UART3_RX_CNT=0;  
 u8 FLAG_UART_SLAVE =0;
 
 void USART3_IRQHandler(void)
@@ -32,7 +32,7 @@ void USART3_IRQHandler(void)
     if((__HAL_UART_GET_FLAG(&USART3_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	 	
 		HAL_UART_Receive(&USART3_Handler,&res,1,1000);
-		if(UART3_RX_CNT<64)
+		if(UART3_RX_CNT<2048)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
 			//printf("slave uart %d  UART3_RX_BUF:%d\r\n",UART3_RX_BUF[UART3_RX_CNT],UART3_RX_CNT);
@@ -150,7 +150,7 @@ void UART3_Init(u32 bound)
 //RS485发送len个字节.
 //buf:发送区首地址
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
-void UART3_Send_Data(u8 *buf,u8 len)
+void UART3_Send_Data(u8 *buf,int len)
 {
 //	UART3_TX_EN=1;			//设置为发送模式
 	HAL_UART_Transmit(&USART3_Handler,buf,len,1000);//串口2发送数据
@@ -160,10 +160,10 @@ void UART3_Send_Data(u8 *buf,u8 len)
 //RS485查询接收到的数据
 //buf:接收缓存首地址
 //len:读到的数据长度
-void UART3_Receive_Data(u8 *buf,u8 *len)
+void UART3_Receive_Data(u8 *buf,int *len)
 {
-	u8 rxlen=UART3_RX_CNT;
-	u8 i=0;
+	int rxlen=UART3_RX_CNT;
+	int i=0;
 	*len=0;				//默认为0
 	//delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==UART3_RX_CNT&&rxlen)//接收到了数据,且接收完成了

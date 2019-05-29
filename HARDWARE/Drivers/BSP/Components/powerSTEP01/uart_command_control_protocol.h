@@ -23,6 +23,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "pump_s100.h"
 #include "Cheminert_c52.h"	
 #include "light.h"	 
+#include "printpaper.h"
 	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -52,6 +53,11 @@ typedef enum Command_type{
 		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
 		CHEMINERT_C52_C55_TYPE,//actuator
 		PUMP_S100_TYPE,//beng 10ml
+	
+		PRINTER_F37C_INFO_TYPE,//打印信息
+		PRINTER_F37C_BMP_TYPE,//打印機圖像
+	  PRINTER_F37C_OUTCOME_TYPE,//打印機結果
+		
 }Command_type_t;
 
 
@@ -195,7 +201,15 @@ typedef struct{
 				cheminert_c52_c55_type_t cheminert_c52_c55;
 				
 				pump_s100_command_type_t pump_s100_command;
-			
+				
+/*
+*print move rk3188
+*/
+/*
+				print_info_type_t print_info;
+				print_bmp_type_t print_bmp; 
+				print_outcome_type_t  print_outcome;
+*/			
  		}CommandPowerStep1;
 		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;

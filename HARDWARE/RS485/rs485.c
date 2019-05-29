@@ -17,11 +17,38 @@
 
 UART_HandleTypeDef USART2_RS485Handler;  //USART2句柄(用于RS485)
 
+#if 0
+#pragma import(__use_no_semihosting)             
+//标准库需要的支持函数                 
+struct __FILE 
+{ 
+	int handle; 
+
+}; 
+
+FILE __stdout;       
+//定义_sys_exit()以避免使用半主机模式    
+void _sys_exit(int x) 
+{ 
+	x = x; 
+} 
+//重定义fputc函数 
+int fputc(int ch, FILE *f)
+{      
+	while((USART2->SR&0X40)==0);//循环发送,直到发送完毕   
+    USART2->DR = (u8) ch;      
+	return ch;
+}
+#endif 
+
+
+
+
 #if EN_USART2_RX   		//如果使能了接收   	  
 //接收缓存区 	
-u8 RS485_RX_BUF[MAX_LENGTH];  	//接收缓冲,最大64个字节.
+u8 RS485_RX_BUF[MAX_LENGTH];  	
 //接收到的数据长度
-u8 RS485_RX_CNT=0;  
+int RS485_RX_CNT=0;  
 u8 FLAG_UART_MASTER =0;
 u8 FLAG_RECEIVE_ACK =0;
 u8 FLAG_UART_RK3188=0;
@@ -105,9 +132,9 @@ void RS485_Init(u32 bound)
 //RS485发送len个字节.
 //buf:发送区首地址
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
-void RS485_Send_Data(u8 *buf,u8 len)
+void RS485_Send_Data(u8 *buf,int len)
 {
-	u8 i;
+	int i;
 	RS485_TX_EN=1;			//设置为发送模式
 	HAL_UART_Transmit(&USART2_RS485Handler,buf,len,1000);//串口2发送数据
 	RS485_RX_CNT=0;	  
@@ -116,10 +143,10 @@ void RS485_Send_Data(u8 *buf,u8 len)
 //RS485查询接收到的数据
 //buf:接收缓存首地址
 //len:读到的数据长度
-void RS485_Receive_Data(u8 *buf,u8 *len)
+void RS485_Receive_Data(u8 *buf,int *len)
 {
-	u8 rxlen=RS485_RX_CNT;
-	u8 i=0;
+	int rxlen=RS485_RX_CNT;
+	int i=0;
 	*len=0;				//默认为0
 	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==RS485_RX_CNT&&rxlen)//接收到了数据,且接收完成了

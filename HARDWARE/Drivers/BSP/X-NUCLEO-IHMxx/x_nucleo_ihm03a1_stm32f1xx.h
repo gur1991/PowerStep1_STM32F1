@@ -47,7 +47,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_nucleo.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h" 
-#define BSP_MOTOR_CONTROL_BOARD_USE_SPI2	 
+//#define BSP_MOTOR_CONTROL_BOARD_USE_SPI2	 
 
 	 
 	 /** @addtogroup BSP
@@ -124,17 +124,17 @@
 #define BSP_MOTOR_CONTROL_BOARD_BUSY_PORT   (GPIOB)
 
 /// GPIO Pin used for the Powerstep01 flag pin
-#define BSP_MOTOR_CONTROL_BOARD_FLAG_PIN   (GPIO_PIN_12)
+#define BSP_MOTOR_CONTROL_BOARD_FLAG_PIN   (GPIO_PIN_10)
 /// GPIO port used for the Powerstep01 flag pin
 #define BSP_MOTOR_CONTROL_BOARD_FLAG_PORT   (GPIOA)
 
 /// GPIO Pin used for the Powerstep01 step clock pin
-#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PIN  (GPIO_PIN_7)
+#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PIN  (GPIO_PIN_3)
 /// GPIO Port used for the Powerstep01 step clock
-#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PORT  (GPIOC)
+#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PORT  (GPIOB)
 
 /// GPIO Pin used for the Powerstep01 reset pin
-#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN  (GPIO_PIN_6)
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN  (GPIO_PIN_9)
 /// GPIO port used for the Powerstep01 reset pin
 #define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT (GPIOA)
 

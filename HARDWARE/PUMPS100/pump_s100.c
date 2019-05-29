@@ -47,7 +47,7 @@ typedef struct{
 uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pump_s100_reply_type_t* reply,u16 timeout){
 		uint8_t ret=0;
 		u8 result;
-    u8 len, i;
+    int len, i;
 		s100_command_t S100_receive;
 		u8 rs485buf[16];
 	
@@ -163,7 +163,7 @@ static void* Wait_slave_msg_thread(void*p){
 void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 		uint8_t ret=0;
 		u8 result;
-    u8 len, i;
+    int len, i;
 		s100_command_t S100_receive;
 		Powerstep1_contorl_motor_command_t CommandData;
 			

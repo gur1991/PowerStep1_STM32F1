@@ -1,7 +1,8 @@
 #include "Cheminert_c52.h"
 
 u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_t timeout,bool wait_flag){
-	 u8 ret=0,i,len;
+	 u8 ret=0,i;
+		int len;
 	 u8 rx_buf_tmp[64];
 	
 	 RS485_Send_Data(tx_buf,tx_size);

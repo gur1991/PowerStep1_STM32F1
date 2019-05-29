@@ -404,12 +404,28 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 						memcpy(data->response.s100_reply.ActiveEvent.S100_PFC,s100_reply.ActiveEvent.S100_PFC,sizeof(s100_reply.ActiveEvent.S100_PFC));
 			}
 }
+/*
+static void protocol_print_outcome_interface(print_outcome_type_t *data){
+			print_outcome_type_t performer;
+			HBA1C_DATA_type hba1c;
+	
+			hba1c.All_Area=data->request.DATA.All_Area;
+			hba1c.Peak_Area=data->request.DATA.Peak_Area;
+			hba1c.Percentage=data->request.DATA.Percentage;
+			hba1c.eAg=data->request.DATA.eAg;
+			Printer_outcome(hba1c);
+}
+*/
+
+
+
+
 
 
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
-		u8 len=0;
+		int len=0;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		printf("start slave uart\r\n");
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
@@ -462,6 +478,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case PUMP_S100_TYPE:
 						protocol_pump_s100_interface(&slave_motorCommand.CommandPowerStep1.pump_s100_command);
 						break;
+		//	case PRINTER_F37C_OUTCOME_TYPE:
+		//				protocol_print_outcome_interface(&slave_motorCommand.CommandPowerStep1.print_outcome);
+		//				break;
+						
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}

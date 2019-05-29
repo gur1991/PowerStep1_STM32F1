@@ -319,6 +319,7 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
     {
       break;
     }
+		printf("tx:0x%x  rx:0x%x \r\n",*pByteToTransmit,*pReceivedByte);
     pByteToTransmit++;
     pReceivedByte++;
   }

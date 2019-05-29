@@ -17,8 +17,8 @@
 
 extern u8 FLAG_UART_SLAVE;
 extern UART_HandleTypeDef USART3_Handler;
-extern u8 UART3_RX_BUF[64]; 		//接收缓冲,最大64个字节
-extern u8 UART3_RX_CNT;   			//接收到的数据长度
+extern u8 UART3_RX_BUF[2048]; 		//接收缓冲,最大64个字节
+extern int UART3_RX_CNT;   			//接收到的数据长度
 
 //模式控制
 #define UART3_TX_EN		1 //PDout(7)	//485模式控制.0,接收;1,发送.
@@ -26,6 +26,6 @@ extern u8 UART3_RX_CNT;   			//接收到的数据长度
 #define EN_USART3_RX 	1			//0,不接收;1,接收.
 
 void UART3_Init(u32 bound);
-void UART3_Send_Data(u8 *buf,u8 len);
-void UART3_Receive_Data(u8 *buf,u8 *len);	
+void UART3_Send_Data(u8 *buf,int len);
+void UART3_Receive_Data(u8 *buf,int *len);	
 #endif
