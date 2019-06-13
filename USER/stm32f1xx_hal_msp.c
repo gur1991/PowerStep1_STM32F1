@@ -114,7 +114,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
       
     HAL_GPIO_Init(SPIx_MOSI_GPIO_PORT, &GPIO_InitStruct);   
   }
-
+	HAL_SPI_MspInit_Extern(hspi);
 }
 #endif
 /**
@@ -178,6 +178,7 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
     HAL_NVIC_EnableIRQ(BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_IRQn);  
   }
 #endif
+		HAL_TIM_PWM_MspInit_Extern(htim_pwm);
 }
 
 /**

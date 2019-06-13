@@ -238,7 +238,6 @@ void Powerstep01_Board_StartStepClock(uint16_t newFreq)
 {
   uint32_t sysFreq = HAL_RCC_GetSysClockFreq();
   uint32_t period = (sysFreq/ (TIMER_PRESCALER * newFreq)) - 1;
-  
   __HAL_TIM_SetAutoreload(&hTimStepClock, period);
   __HAL_TIM_SetCompare(&hTimStepClock, BSP_MOTOR_CONTROL_BOARD_CHAN_TIMER_STEP_CLOCK, period >> 1);
   HAL_TIM_PWM_Start_IT(&hTimStepClock, BSP_MOTOR_CONTROL_BOARD_CHAN_TIMER_STEP_CLOCK);  

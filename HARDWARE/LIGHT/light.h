@@ -10,9 +10,15 @@
 
 //下面的方式是通过直接操作HAL库函数方式读取IO
 #define LIGHT_VALUE0        HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_5)  //PE5
+//#define LIGHT_VALUE0        HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_5)  //PE5
+
+
+extern u8 gStatusLight[3];
 
 void Light_Sensor_Init(void);
 u8 Light_Sensor_Get(u8 number);
+
+void Light_Sensor_Get_All(void);
 
 //参考资料 中文资料STM32F101xCDE_DS_CH_V5.pdf找5V耐压管
 
@@ -27,5 +33,16 @@ struct{
 		uint8_t value;
 }response;
 }get_light_sensor_level_t;
+
+typedef union{ 
+struct{
+		uint8_t nor;//0,1,2...
+}request;
+struct{
+		uint8_t ret;
+		uint8_t value[3];
+}response;
+}get_all_light_sensor_level_t;
+
 
 #endif

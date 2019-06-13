@@ -20,6 +20,8 @@ typedef enum Baby18Call{
 		MODEL_READ,
 		FIRMWARE_VERSION_READ,
 		SERIAL_NUMBER_READ,
+	
+	
 		STATUS_OF_DETECTOR_READ,
 		STATUS_OF_DETECTOR_READ_WITH_CHECKSUM,
 		BREAK_ERROR_WRITE,
@@ -94,7 +96,7 @@ typedef enum Baby18Call{
 		STORE_ABS_CALIB_VALUE_TO_MEMORY,
 		
 		NEW_LAMP_WRITE,
-		UNIT_REPORT_READ,
+		UNIT_REPORT_READ,//need long time and log buf
 		
 }Baby18Call_type_t;
 

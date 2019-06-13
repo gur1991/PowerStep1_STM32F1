@@ -139,6 +139,19 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			data->response.ret=0;
 }
 
+static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*data){
+			get_all_light_sensor_level_t performer;
+			//performer.request.number=data->request.number;
+			//printf("slave devices %d \r\n",performer.request.number);
+			Light_Sensor_Get_All();
+			memcpy(data->response.value,gStatusLight,sizeof(gStatusLight));		
+	
+			data->response.ret=0;
+}
+
+
+
+
 static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			static const u8 tx_buf_cp[]={'C','P',0x0d,0x0a};//41 0D 0A
 			static const u8 tx_buf_cca[]={'C','C','A',0x0d,0x0a};//41 0D 0A 
@@ -417,9 +430,57 @@ static void protocol_print_outcome_interface(print_outcome_type_t *data){
 }
 */
 
+static void protocol_set_weight_warning_line_interface(set_weight_warning_line_type_t *data){
+			set_weight_warning_line_type_t performer;
+	
+			performer.request.weight=data->request.weight;
+			performer.request.gram=data->request.gram;
+			
+			Set_Weight_Sensor_Warnning_Line(performer.request.weight,performer.request.gram);
+			
+			data->response.ret=0;
+
+}
+static void protocol_get_single_weight_warning_result_interface(get_single_weight_warning_result_type_t *data)
+{
+			get_single_weight_warning_result_type_t performer;
+	
+			performer.request.weight=data->request.weight;
+	
+			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
+			
+			data->response.ret=0;
+}
 
 
+static void protocol_get_all_weight_warning_result_interface(get_all_weight_warning_result_type_t *data)
+{
+			get_all_weight_warning_result_type_t  performer;
 
+			data->response.result = Get_All_Weight_Sensor_Warnning_Result();	
+			data->response.ret=0;
+}
+
+static void protocol_get_single_temperature_degree_interface(get_single_temperature_degree_type_t *data)
+{
+			get_single_temperature_degree_type_t  performer;
+			
+			performer.request.devices=data->request.devices;
+			
+			data->response.degree = Get_Single_Temperature_Degree(performer.request.devices);
+			data->response.ret = 0;
+}
+
+static void protocol_set_single_temperature_degree_interface(set_single_temperature_degree_type_t *data)
+{
+			set_single_temperature_degree_type_t  performer;
+		
+			performer.request.devices=data->request.devices;
+			performer.request.degree=data->request.degree;
+	
+			Set_Single_Temperature_Degree(performer.request.degree, performer.request.devices);
+			data->response.ret=0;
+}
 
 
 //
@@ -472,6 +533,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case GET_LIGHT_LEVEL_TYPE:
 						protocol_get_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_light_sensor_level);
 						break;
+			case GET_ALL_LIGHT_LEVEL_TYPE:
+						protocol_get_all_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_all_light_sensor_level);	
+						break;	
 			case CHEMINERT_C52_C55_TYPE:
 						protocol_cheminert_c52_c55(&slave_motorCommand.CommandPowerStep1.cheminert_c52_c55);
 						break;
@@ -481,7 +545,22 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		//	case PRINTER_F37C_OUTCOME_TYPE:
 		//				protocol_print_outcome_interface(&slave_motorCommand.CommandPowerStep1.print_outcome);
 		//				break;
-						
+			case WEIGHT_SENSOR_SET_LINE_TYPE:
+						protocol_set_weight_warning_line_interface(&slave_motorCommand.CommandPowerStep1.set_weight_warning_line);
+						break;				
+			case WEIGHT_SENSOR_GET_SINGLE_RESULT_TYPE:
+						protocol_get_single_weight_warning_result_interface(&slave_motorCommand.CommandPowerStep1.get_single_weight_warning_result);
+						break;	
+			case WEIGHT_SENSOR_GET_ALL_RESULT_TYPE:
+						protocol_get_all_weight_warning_result_interface(&slave_motorCommand.CommandPowerStep1.get_all_weight_warning_result);						
+						break;	
+			case TEMPERATURE_SENSOR_GET_TYPE:
+						protocol_get_single_temperature_degree_interface(&slave_motorCommand.CommandPowerStep1.get_single_temperature_degree);
+						break;
+			case TEMPERATURE_SENSOR_SET_TYPE:
+						protocol_set_single_temperature_degree_interface(&slave_motorCommand.CommandPowerStep1.set_single_temperature_degree);
+						break;
+			
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}

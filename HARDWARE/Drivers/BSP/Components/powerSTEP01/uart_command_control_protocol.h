@@ -24,6 +24,8 @@ STM32---SLVAE设备的协议和这个不同
 #include "Cheminert_c52.h"	
 #include "light.h"	 
 #include "printpaper.h"
+#include "weight.h"	 
+#include "temperature.h"		 
 	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -51,12 +53,20 @@ typedef enum Command_type{
 		SElECT_STEP_MODE_TYPE,
 	
 		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
+		GET_ALL_LIGHT_LEVEL_TYPE,
 		CHEMINERT_C52_C55_TYPE,//actuator
 		PUMP_S100_TYPE,//beng 10ml
 	
-		PRINTER_F37C_INFO_TYPE,//打印信息
-		PRINTER_F37C_BMP_TYPE,//打印機圖像
-	  PRINTER_F37C_OUTCOME_TYPE,//打印機結果
+		//PRINTER_F37C_INFO_TYPE,//打印信息
+		//PRINTER_F37C_BMP_TYPE,//打印機圖像
+	  //PRINTER_F37C_OUTCOME_TYPE,//打印機結果
+		
+		WEIGHT_SENSOR_SET_LINE_TYPE,//重力传感器
+		WEIGHT_SENSOR_GET_SINGLE_RESULT_TYPE,
+		WEIGHT_SENSOR_GET_ALL_RESULT_TYPE,
+		
+		TEMPERATURE_SENSOR_GET_TYPE,
+		TEMPERATURE_SENSOR_SET_TYPE
 		
 }Command_type_t;
 
@@ -198,10 +208,19 @@ typedef struct{
 				select_step_mode_t  select_step_mode;
 			
 				get_light_sensor_level_t get_light_sensor_level;
+				get_all_light_sensor_level_t get_all_light_sensor_level;
+				
 				cheminert_c52_c55_type_t cheminert_c52_c55;
 				
 				pump_s100_command_type_t pump_s100_command;
+
+
+				set_weight_warning_line_type_t	set_weight_warning_line;
+				get_single_weight_warning_result_type_t get_single_weight_warning_result;
+				get_all_weight_warning_result_type_t get_all_weight_warning_result;
 				
+				set_single_temperature_degree_type_t set_single_temperature_degree;
+				get_single_temperature_degree_type_t get_single_temperature_degree;
 /*
 *print move rk3188
 */

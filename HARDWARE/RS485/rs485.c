@@ -76,7 +76,10 @@ void USART2_IRQHandler(void)
 		}
 		if(RS485_RX_CNT==1&&(RS485_RX_BUF[0]==0x23||RS485_RX_BUF[0]==0x24||RS485_RX_BUF[0]==0x25)){
 					FLAG_RECEIVE_ACK=1;
-		}			
+		}
+		if(RS485_RX_CNT>5&&(RS485_RX_BUF[RS485_RX_CNT-1]==0x0a||RS485_RX_BUF[RS485_RX_CNT-1]==0x0d)){
+					FLAG_UART_MASTER=1;
+		}		
 	} 
 }    
 #endif

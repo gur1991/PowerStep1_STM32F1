@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\RS485;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\RS485;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18;..\HARDWARE\TIMER;..\HARDWARE\AD_SPI;..\HARDWARE\Temperature;..\HARDWARE\Weight</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -658,6 +658,26 @@
               <FileName>baby18dad400.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\BABY18\baby18dad400.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\TIMER\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>spi1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\AD_SPI\spi1.c</FilePath>
+            </File>
+            <File>
+              <FileName>temperature.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Temperature\temperature.c</FilePath>
+            </File>
+            <File>
+              <FileName>weight.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Weight\weight.c</FilePath>
             </File>
           </Files>
         </Group>
