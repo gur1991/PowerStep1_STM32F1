@@ -360,8 +360,10 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 								printf("no found this cmd ! \r\n");
 			
 			}
+			
+			//cs=0
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout,wait_flag);
-		
+			//cs=1
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
