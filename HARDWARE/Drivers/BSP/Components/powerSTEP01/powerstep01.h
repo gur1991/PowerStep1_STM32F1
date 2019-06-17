@@ -47,7 +47,7 @@
 #include "powerstep01_target_config.h"
 #include "stdint.h"
 #include "motor.h"   
- 
+#include "x_nucleo_ihmxx.h"
 
 
 #define inline __inline	 
@@ -993,6 +993,9 @@ extern void Powerstep01_Board_ReleaseReset(uint8_t deviceId);   //Reset the powe
 extern void Powerstep01_Board_Reset(uint8_t deviceId);          //Set the powerSTEP01 reset pin
 extern uint8_t Powerstep01_Board_SpiInit(void);   //Initialise the SPI used for powerSTEP01s
 extern uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte, uint8_t nbDevices); //Write bytes to the powerSTEP01s via SPI
+extern uint8_t Powerstep01_Board_SpiWriteBytes_My(uint8_t *pByteToTransmit, uint8_t *pReceivedByte, uint8_t nbDevices); //Write bytes to the powerSTEP01s via SPI
+
+
 extern uint32_t Powerstep01_Board_BUSY_PIN_GetState(void); //Returns the BUSY pin state
 extern uint32_t Powerstep01_Board_FLAG_PIN_GetState(void); //Returns the FLAG pin state
 /**

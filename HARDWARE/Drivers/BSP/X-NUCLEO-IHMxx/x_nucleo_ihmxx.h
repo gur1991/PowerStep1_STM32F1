@@ -218,6 +218,20 @@ bool BSP_MotorControl_GetTorqueBoostEnable(uint8_t deviceId);
 void BSP_MotorControl_SetTorqueBoostThreshold(uint8_t deviceId, uint16_t speedThreshold);
 uint16_t BSP_MotorControl_GetTorqueBoostThreshold(uint8_t deviceId);
 uint8_t BSP_MotorControl_GetDualFullBridgeConfig(void);
+
+
+
+/*
+*array 表示数组序号
+*select在每次换电机操作后都要切换
+原理是：初始化时，会选择cs把所有powerstep01进行配置
+为了避免每次操作都要初始化，来获得权柄，那就需要把所有权柄保存下来，每次操作再去选择select 指针即可
+*/
+bool BSP_MotorControl_SetNbDevices_My(uint16_t id, uint8_t nbDevices, uint8_t array);
+void BSP_MotorControl_Init_My(uint16_t id, void* initDeviceParameters, uint8_t array);
+void BSP_MotorControl_Select_Handle(uint8_t array);
+extern uint8_t gMotorArray;
+
 /**
   * @}
   */

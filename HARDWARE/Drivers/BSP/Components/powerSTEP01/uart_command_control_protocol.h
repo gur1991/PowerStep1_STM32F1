@@ -26,6 +26,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "printpaper.h"
 #include "weight.h"	 
 #include "temperature.h"		 
+#include "step01.h"
 	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -51,6 +52,9 @@ typedef enum Command_type{
 		GET_PARAM_TYPE,
 		SET_PARAM_TYPE,
 		SElECT_STEP_MODE_TYPE,
+		INIT_MOTOR_SPEED_TENSION_TYPE,
+		MOVE_MANY_MOTOR,
+		WAIT_MANY_MOTOR,
 	
 		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
 		GET_ALL_LIGHT_LEVEL_TYPE,
@@ -206,6 +210,9 @@ typedef struct{
 				get_para_type_t  get_para;
 				set_para_type_t  set_para;
 				select_step_mode_t  select_step_mode;
+				init_motor_speed_tension_type_t init_motor_speed_tension;
+				move_many_motor_type_t move_many_motor;
+				wait_many_motor_type_t wait_many_motor;
 			
 				get_light_sensor_level_t get_light_sensor_level;
 				get_all_light_sensor_level_t get_all_light_sensor_level;

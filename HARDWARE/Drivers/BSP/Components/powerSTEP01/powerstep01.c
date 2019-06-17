@@ -36,7 +36,6 @@
   */
 
 #include "powerstep01.h"
-
 /** @addtogroup BSP
   * @{
   */   
@@ -2019,11 +2018,17 @@ void Powerstep01_SetDeviceParamsToGivenValues(uint8_t deviceId,
  *********************************************************/
 void Powerstep01_WriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte)
 {
+	uint8_t ret;
+	if(gMotorArray==0xff){
+			ret=Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices);
+	}else{
+			ret=Powerstep01_Board_SpiWriteBytes_My(pByteToTransmit, pReceivedByte, numberOfDevices);
+	}	
   if (Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices) != 0)
   {
     Powerstep01_ErrorHandler(POWERSTEP01_ERROR_1);
   }
-  
+	
   if (isrFlag)
   {
     spiPreemtionByIsr = TRUE;

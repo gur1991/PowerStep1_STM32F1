@@ -38,6 +38,8 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
+#include "x_nucleo_ihmxx.h"
+
 
 /** @addtogroup BSP
   * @{
@@ -258,8 +260,11 @@ void Powerstep01_Board_StopStepClock(void)
  * @retval None
  **********************************************************/
 void Powerstep01_Board_ReleaseReset(uint8_t deviceId)
-{ 
-  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_SET); 
+{ if(gMotorArray==0xff){
+		HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_SET); 
+	}else{
+	
+	}
 }
 
 /******************************************************//**
@@ -269,7 +274,11 @@ void Powerstep01_Board_ReleaseReset(uint8_t deviceId)
  **********************************************************/
 void Powerstep01_Board_Reset(uint8_t deviceId)
 {
-  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_RESET); 
+	if(gMotorArray==0xff){
+		HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_RESET); 
+	}else{
+		//xxxxx
+	}
 }
 
 /******************************************************//**
@@ -318,7 +327,6 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
     {
       break;
     }
-		printf("tx:0x%x  rx:0x%x \r\n",*pByteToTransmit,*pReceivedByte);
     pByteToTransmit++;
     pReceivedByte++;
   }
@@ -327,13 +335,53 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
   return (uint8_t) status;  
 }
 
+void set_PowerStep01_cs(uint8_t array, uint8_t level)
+{
+		switch(array){
+			case 0:
+				HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, level); 
+				break;
+			case 1:
+				//HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, level); 
+				break;
+		}
+}
+
+uint8_t Powerstep01_Board_SpiWriteBytes_My(uint8_t *pByteToTransmit, uint8_t *pReceivedByte, uint8_t nbDevices)
+{
+  HAL_StatusTypeDef status;
+  uint32_t i;
+	uint8_t array=gMotorArray;
+  
+	//HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET); 
+  set_PowerStep01_cs(array,GPIO_PIN_RESET);
+	for (i = 0; i < nbDevices; i++)
+  {
+    status = HAL_SPI_TransmitReceive(&SpiHandle, pByteToTransmit, pReceivedByte, 1, SPIx_TIMEOUT_MAX);
+    if (status != HAL_OK)
+    {
+      break;
+    }
+    pByteToTransmit++;
+    pReceivedByte++;
+  }
+	set_PowerStep01_cs(array,GPIO_PIN_SET);
+  //HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_SET); 
+  
+  return (uint8_t) status;  
+}
 /******************************************************//**
  * @brief  Returns the BUSY pin state.
  * @retval The BUSY pin value.
  **********************************************************/
 uint32_t Powerstep01_Board_BUSY_PIN_GetState(void)
 {
-  return HAL_GPIO_ReadPin(BSP_MOTOR_CONTROL_BOARD_BUSY_PORT, BSP_MOTOR_CONTROL_BOARD_BUSY_PIN);
+	if(gMotorArray==0xff){
+		return HAL_GPIO_ReadPin(BSP_MOTOR_CONTROL_BOARD_BUSY_PORT, BSP_MOTOR_CONTROL_BOARD_BUSY_PIN);
+	}else{
+		//xxx
+	}
+	
 }
 
 /******************************************************//**
@@ -342,7 +390,11 @@ uint32_t Powerstep01_Board_BUSY_PIN_GetState(void)
  **********************************************************/
 uint32_t Powerstep01_Board_FLAG_PIN_GetState(void)
 {
-  return HAL_GPIO_ReadPin(BSP_MOTOR_CONTROL_BOARD_FLAG_PORT, BSP_MOTOR_CONTROL_BOARD_FLAG_PIN);
+	if(gMotorArray==0xff){
+		return HAL_GPIO_ReadPin(BSP_MOTOR_CONTROL_BOARD_FLAG_PORT, BSP_MOTOR_CONTROL_BOARD_FLAG_PIN);
+	}else{
+		//xxx
+	}
 }
 
 

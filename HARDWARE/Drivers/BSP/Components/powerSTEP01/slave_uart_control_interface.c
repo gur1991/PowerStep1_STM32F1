@@ -130,6 +130,28 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			data->response.ret=0;
 }
 
+static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*data){
+			init_motor_speed_tension_type_t performer;
+
+			memcpy(&performer, data,sizeof(performer));
+			data->response.ret=init_motor_device(performer);
+}	
+
+static void protocol_move_many_motor(move_many_motor_type_t*data){
+			move_many_motor_type_t performer;
+			
+			memcpy(&performer, data,sizeof(performer));
+			move_many_motor(performer);
+			data->response.ret=0;
+}	
+static void protocol_wait_many_motor(wait_many_motor_type_t*data){
+			wait_many_motor_type_t performer;
+			
+			memcpy(&performer, data,sizeof(performer));
+			wait_many_motor(performer);
+			data->response.ret=0;
+}
+
 static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
@@ -531,6 +553,15 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;	
 			case SElECT_STEP_MODE_TYPE:
 						protocol_powerstep01_select_step_mode(&slave_motorCommand.CommandPowerStep1.select_step_mode);
+						break;
+			case INIT_MOTOR_SPEED_TENSION_TYPE:
+						protocol_init_motor_speed_tension(&slave_motorCommand.CommandPowerStep1.init_motor_speed_tension);
+						break;
+			case MOVE_MANY_MOTOR:
+						protocol_move_many_motor(&slave_motorCommand.CommandPowerStep1.move_many_motor);
+						break;
+			case WAIT_MANY_MOTOR:
+						protocol_wait_many_motor(&slave_motorCommand.CommandPowerStep1.wait_many_motor);
 						break;
 			case GET_LIGHT_LEVEL_TYPE:
 						protocol_get_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_light_sensor_level);

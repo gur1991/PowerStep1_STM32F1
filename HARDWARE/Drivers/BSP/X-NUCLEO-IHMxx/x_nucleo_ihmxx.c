@@ -85,7 +85,12 @@
  */
 
 static motorDrv_t *motorDrvHandle = 0;
+
+static motorDrv_t* motorDrvHandleMy[16] = 0;
+
 static uint16_t MotorControlBoardId;
+
+uint8_t gMotorArray=0xff;
 
 /**
  * @}
@@ -158,6 +163,8 @@ void BSP_MotorControl_AttachFlagInterrupt(void (*callback)(void))
   }  
 }
 
+
+
 /******************************************************//**
  * @brief  Attaches a user callback to the Busy interrupt Handler.
  * The call back will be then called each time the library 
@@ -216,6 +223,21 @@ void BSP_MotorControl_Init(uint16_t id, void* initDeviceParameters)
   {
     MOTOR_CONTROL_ERROR_UNDEFINED_FUNCTION(0);
   }  
+}
+
+void BSP_MotorControl_Init_My(uint16_t id, void* initDeviceParameters, uint8_t array)
+{
+    //motorDrvHandle->Init(initDeviceParameters);
+		motorDrvHandleMy[array]->Init(initDeviceParameters);
+}
+
+
+
+
+void BSP_MotorControl_Select_Handle(uint8_t array)
+{
+		motorDrvHandle=motorDrvHandleMy[array];
+		gMotorArray=array;
 }
 
 /******************************************************//**
@@ -1788,7 +1810,20 @@ bool BSP_MotorControl_SetNbDevices(uint16_t id, uint8_t nbDevices)
   }
   return (status);
 }
+bool BSP_MotorControl_SetNbDevices_My(uint16_t id, uint8_t nbDevices, uint8_t array)
+{
+	 bool status = FALSE;
 
+ if (id == BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01)
+  {
+    //motorDrvHandle = Powerstep01_GetMotorHandle();
+		//status = motorDrvHandle->SetNbDevices(nbDevices);
+		motorDrvHandleMy[array]=Powerstep01_GetMotorHandle();
+		status = motorDrvHandleMy[array]->SetNbDevices(nbDevices);
+	}
+		
+  return (status);
+}
 /******************************************************//**
  * @brief Set the parameter param in the motor driver of the specified device
  * @param[in] deviceId (from 0 to MAX_NUMBER_OF_DEVICES - 1)
