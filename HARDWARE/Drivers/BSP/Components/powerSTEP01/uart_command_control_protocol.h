@@ -56,7 +56,7 @@ typedef enum Command_type{
 		MOVE_MANY_MOTOR,
 		WAIT_MANY_MOTOR,
 	
-		GET_LIGHT_LEVEL_TYPE=21,//light sensor level
+		GET_LIGHT_LEVEL_TYPE=50,//light sensor level
 		GET_ALL_LIGHT_LEVEL_TYPE,
 		CHEMINERT_C52_C55_TYPE,//actuator
 		PUMP_S100_TYPE,//beng 10ml
