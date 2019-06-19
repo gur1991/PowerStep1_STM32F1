@@ -19,8 +19,8 @@ static uint8_t DATA_BABY18[16];
 static int baby18_transfer(uint8_t *key,uint8_t *data,int data_length,int*rx_len,int TIMEOUT_MS){
 		int tlen=0,rlen=0;
 	
-		memset(baby18_request,0,sizeof(baby18_request));
-		memset(baby18_reponse,0,sizeof(baby18_reponse));
+		memset(baby18_request,0,sizeof(*baby18_request));
+		memset(baby18_reponse,0,sizeof(*baby18_reponse));
 		baby18_request[0]='#';
 		memcpy(baby18_request+1,key,3);//len 3
 		if(data_length>0){
