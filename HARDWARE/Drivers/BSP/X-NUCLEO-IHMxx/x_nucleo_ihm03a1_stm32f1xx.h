@@ -70,12 +70,50 @@
 
  /** @defgroup Constants_For_STM32F4XX_NUCLEO Constants For STM32F4XX_NUCLEO
 * @{
-*/   
+*/  
+
+typedef struct{
+	GPIO_TypeDef* GPIOx;
+	uint16_t GPIO_Pin;
+}GPIO_VALUE_type;
+
+typedef struct {
+		GPIO_VALUE_type rst;
+		GPIO_VALUE_type cs;
+}powerStep01_select_type_t;
+
+void select_motor_baby(int chip);
+
+extern GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
+extern uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
+
+extern GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT;
+extern uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
+
+
 /// Interrupt line used for Powerstep01 Busy
-#define BUSY_EXTI_LINE_IRQn           (EXTI9_5_IRQn)
+//#define BUSY_EXTI_LINE_IRQn           (EXTI3_IRQn)
 
 /// Interrupt line used for Powerstep01 Flag
-#define FLAG_EXTI_LINE_IRQn           (EXTI15_10_IRQn)//此处务必和GPIO一致，否则导致卡死
+//#define FLAG_EXTI_LINE_IRQn           (EXTI2_IRQn)//此处务必和GPIO一致，否则导致卡死
+/// Interrupt line used for Powerstep01 Busy
+
+#define BUSY_EXTI_LINE_IRQn1           (EXTI3_IRQn)
+
+/// Interrupt line used for Powerstep01 Flag
+#define FLAG_EXTI_LINE_IRQn1           (EXTI2_IRQn)//此处务必和GPIO一致，否则导致卡死
+/// Interrupt line used for Powerstep01 Busy
+#define BUSY_EXTI_LINE_IRQn2           (EXTI9_5_IRQn)
+
+/// Interrupt line used for Powerstep01 Flag
+#define FLAG_EXTI_LINE_IRQn2           (EXTI9_5_IRQn)//此处务必和GPIO一致，否则导致卡死
+
+
+
+
+
+
+//**************************************no-useful start**********************************/
 
 /// Timer used for the step clock
 #define BSP_MOTOR_CONTROL_BOARD_TIMER_STEP_CLOCK      (TIM3)
@@ -97,6 +135,11 @@
 
 /// Step Clock GPIO alternate function 
 #define BSP_MOTOR_CONTROL_BOARD_AFx_TIMx_STEP_CLOCK  (GPIO_AF2_TIM3)
+//**************************************no-useful end**********************************/
+
+
+
+
 
 #ifndef BSP_MOTOR_CONTROL_BOARD_USE_SPI2
 /// SPI SCK AF
@@ -119,29 +162,115 @@
 */   
 
 /// GPIO Pin used for the Powerstep01 busy pin
-#define BSP_MOTOR_CONTROL_BOARD_BUSY_PIN   (GPIO_PIN_5)
+#define BSP_MOTOR_CONTROL_BOARD_BUSY_PIN   (GPIO_PIN_3)
 /// GPIO port used for the Powerstep01 busy pin
-#define BSP_MOTOR_CONTROL_BOARD_BUSY_PORT   (GPIOB)
+#define BSP_MOTOR_CONTROL_BOARD_BUSY_PORT   (GPIOD)
+/// GPIO Pin used for the Powerstep01 busy pin
+#define BSP_MOTOR_CONTROL_BOARD_BUSY_PIN2   (GPIO_PIN_7)
+/// GPIO port used for the Powerstep01 busy pin
+#define BSP_MOTOR_CONTROL_BOARD_BUSY_PORT2   (GPIOD)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /// GPIO Pin used for the Powerstep01 flag pin
-#define BSP_MOTOR_CONTROL_BOARD_FLAG_PIN   (GPIO_PIN_10)
+#define BSP_MOTOR_CONTROL_BOARD_FLAG_PIN   (GPIO_PIN_2)
 /// GPIO port used for the Powerstep01 flag pin
-#define BSP_MOTOR_CONTROL_BOARD_FLAG_PORT   (GPIOA)
+#define BSP_MOTOR_CONTROL_BOARD_FLAG_PORT   (GPIOD)
+/// GPIO Pin used for the Powerstep01 flag pin
+#define BSP_MOTOR_CONTROL_BOARD_FLAG_PIN2   (GPIO_PIN_6)
+/// GPIO port used for the Powerstep01 flag pin
+#define BSP_MOTOR_CONTROL_BOARD_FLAG_PORT2   (GPIOD)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+*discard for step clk
+*/
 /// GPIO Pin used for the Powerstep01 step clock pin
-#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PIN  (GPIO_PIN_3)
+#define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PIN  (GPIO_PIN_5)
 /// GPIO Port used for the Powerstep01 step clock
 #define BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PORT  (GPIOB)
 
+
+
+
 /// GPIO Pin used for the Powerstep01 reset pin
-#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN  (GPIO_PIN_9)
+//#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN  (GPIO_PIN_1)
 /// GPIO port used for the Powerstep01 reset pin
-#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT (GPIOA)
+//#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT (GPIOD)
+
+// GPIO Pin used for the Powerstep01 reset pin
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1  (GPIO_PIN_1)
+/// GPIO port used for the Powerstep01 reset pin
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1 (GPIOD)
+/// GPIO Pin used for the Powerstep01 reset pin
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2  (GPIO_PIN_5)
+/// GPIO port used for the Powerstep01 reset pin
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2 (GPIOD)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /// GPIO Pin used for the Powerstep01 SPI chip select pin
-#define BSP_MOTOR_CONTROL_BOARD_CS_PIN  (GPIO_PIN_6)
+//#define BSP_MOTOR_CONTROL_BOARD_CS_PIN  (GPIO_PIN_4)
 /// GPIO port used for the Powerstep01 SPI chip select  pin
-#define BSP_MOTOR_CONTROL_BOARD_CS_PORT (GPIOB)
+//#define BSP_MOTOR_CONTROL_BOARD_CS_PORT (GPIOD)
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN1  (GPIO_PIN_4)
+/// GPIO port used for the Powerstep01 SPI chip select  pin
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT1 (GPIOD)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN2  (GPIO_PIN_9)
+/// GPIO port used for the Powerstep01 SPI chip select  pin
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT2 (GPIOG)
+
+
+
+
+
 
 /* Definition for SPIx clock resources */
 #ifndef BSP_MOTOR_CONTROL_BOARD_USE_SPI2

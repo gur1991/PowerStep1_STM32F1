@@ -143,7 +143,7 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 		if(data.request.devices>=SIZE_MOTOR_ARRAY)return ret=-1;
 	
 			//cs=0 ---devices
-		isok=BSP_MotorControl_SetNbDevices_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 0, data.request.devices);
+	//	isok=BSP_MotorControl_SetNbDevices_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 0, data.request.devices);
 		if(isok)return -1;
 		
 		if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_CURRENT)
@@ -159,7 +159,7 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 				init_current.cm.tvalRun=data.request.init_motor.motor_config.current.current_value;
 				
 			
-				BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_current, data.request.devices);
+		//		BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_current, data.request.devices);
 
 		}else if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_VOLTAGE)
 		{
@@ -174,7 +174,7 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 				init_voltage.vm.kvalRun=data.request.init_motor.motor_config.voltage.duty_cycle;
 				
 			
-				BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_voltage, data.request.devices);
+	//			BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_voltage, data.request.devices);
 
 		}else {
 				return -1;
@@ -233,7 +233,7 @@ void move_many_motor(move_many_motor_type_t data)
 		{		
 				//如果无效，则检测下一个
 				if(data.request.move_motor_data[i].array==0xff)continue;
-				BSP_MotorControl_Select_Handle(data.request.move_motor_data[i].array);	
+		//		BSP_MotorControl_Select_Handle(data.request.move_motor_data[i].array);	
 				BSP_MotorControl_Move(0,data.request.move_motor_data[i].direction,data.request.move_motor_data[i].stepCount);
 		}
 }
@@ -248,7 +248,7 @@ void wait_many_motor(wait_many_motor_type_t data)
 		{		
 				//如果无效，则检测下一个
 				if(data.request.wait_motor_data[i].array==0xff)continue;
-				BSP_MotorControl_Select_Handle(data.request.wait_motor_data[i].array);
+	//			BSP_MotorControl_Select_Handle(data.request.wait_motor_data[i].array);
 				BSP_MotorControl_WaitWhileActive(0);
 		}
 }

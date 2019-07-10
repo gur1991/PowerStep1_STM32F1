@@ -40,15 +40,15 @@
 #define __POWERSTEP01_TARGET_CONFIG_H
 
 /// The maximum number of devices in the daisy chain
-#define MAX_NUMBER_OF_DEVICES                 (3)
+#define MAX_NUMBER_OF_DEVICES                 (1)
 
-#define MOTION_SPEED_ACC_VALUE_device0 50//(582)
-#define MOTION_SPEED_DEC_VALUE_device0 50//(582)
+#define MOTION_SPEED_ACC_VALUE_device0 200//(582)
+#define MOTION_SPEED_DEC_VALUE_device0 200//(582)
 #define MOTION_SPEED_VALUE_device0 200 //(244.16)
 #define MOTION_CURRENT_VALUE_device0 120 //(328.12)
 #define MOTION_STEP_DIV_device0  STEP_MODE_1_16
 #define MOTION_DRIVER_MODE_device0  (POWERSTEP01_CM_VM_VOLTAGE) //(POWERSTEP01_CM_VM_CURRENT)
-#define MOTION_DUTY_CYCLE_PERCENTTAGE_device0 16.02//(16.02)
+#define MOTION_DUTY_CYCLE_PERCENTTAGE_device0 40//(16.02)
 
 
 #define MOTION_SPEED_ACC_VALUE_device1 250//(582)

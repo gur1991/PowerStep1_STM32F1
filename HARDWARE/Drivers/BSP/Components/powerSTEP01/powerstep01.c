@@ -310,23 +310,27 @@ uint16_t Powerstep01_ReadId(void)
 void Powerstep01_Init(void* pInit)
 { 
   /* Initialise the GPIOs of the just added device */
+	printf("Powerstep01_Init 1\r\n");
   Powerstep01_Board_GpioInit(powerstep01DriverInstance);
-
+  printf("Powerstep01_Init 2\r\n");
+	
   if(Powerstep01_Board_SpiInit() != 0)
   {
-
+		printf("spi init error \r\n");
     /* Initialization Error */
-    Powerstep01_ErrorHandler(POWERSTEP01_ERROR_0);
+   // Powerstep01_ErrorHandler(POWERSTEP01_ERROR_0);
   } 
-
+  printf("spi init ok \r\n");
   /* configure the step clock */
-  Powerstep01_Board_StepClockInit();
+  //Powerstep01_Board_StepClockInit();
 
   /* Standby-reset deactivation */
   Powerstep01_Board_ReleaseReset(powerstep01DriverInstance);
+  printf("spi rest ok \r\n");
 
   /* Let a delay after reset */
   Powerstep01_Board_Delay(1);
+  printf("spi delay ok \r\n");
 
   if (pInit == 0)
   {
@@ -2019,14 +2023,10 @@ void Powerstep01_SetDeviceParamsToGivenValues(uint8_t deviceId,
 void Powerstep01_WriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte)
 {
 	uint8_t ret;
-	if(gMotorArray==0xff){
-			ret=Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices);
-	}else{
-			ret=Powerstep01_Board_SpiWriteBytes_My(pByteToTransmit, pReceivedByte, numberOfDevices);
-	}	
+
   if (Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices) != 0)
   {
-    Powerstep01_ErrorHandler(POWERSTEP01_ERROR_1);
+    //Powerstep01_ErrorHandler(POWERSTEP01_ERROR_1);
   }
 	
   if (isrFlag)
