@@ -49,7 +49,7 @@ uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 	
 powerStep01_select_type_t MotorBaby;
 
-void select_motor_baby(int chip)
+void PowerStep_Select_Motor_Baby(int chip)
 {
 	switch(chip)
 	{
@@ -151,7 +151,6 @@ uint32_t Powerstep01_Board_FLAG_PIN_GetState(void); //Returns the FLAG pin state
 void Powerstep01_Board_Delay(uint32_t delay)
 {
   HAL_Delay(delay);
-	//delay_ms(delay);
 }
 
 /******************************************************//**
@@ -298,9 +297,9 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
 		
 		
     /* Reset Powerstep0*/
-    Powerstep01_Board_Reset(deviceId);
-    //HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_SET); 
-    //HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2, GPIO_PIN_RESET); 
+    //Powerstep01_Board_Reset(deviceId);
+		Powerstep01_Board_Reset_All();
+		//此處需要全部rst
 
 		
 		
@@ -374,6 +373,12 @@ void Powerstep01_Board_ReleaseReset(uint8_t deviceId)
 { 
   HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_SET); 
 }
+void Powerstep01_Board_ReleaseReset_All(void)
+{ 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1, GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2, GPIO_PIN_SET); 
+
+}
 
 /******************************************************//**
  * @brief  Resets the powerSTEP01 (reset pin set to low) of all devices
@@ -385,6 +390,12 @@ void Powerstep01_Board_Reset(uint8_t deviceId)
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN, GPIO_PIN_RESET); 
 }
 
+void Powerstep01_Board_Reset_All(void)
+{
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1, GPIO_PIN_RESET); 
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2, GPIO_PIN_RESET); 
+
+}
 /******************************************************//**
  * @brief  Initialise the SPI used by powerSTEP01
  * @retval HAL_OK if SPI transaction is OK, HAL_KO else

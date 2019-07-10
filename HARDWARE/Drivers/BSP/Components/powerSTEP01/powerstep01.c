@@ -307,12 +307,31 @@ uint16_t Powerstep01_ReadId(void)
  * @param[in] pInit pointer to the initialization data
  * @retval None
  **********************************************************/
+
+
+void Powerstep01_Init_Register(void* pInit)
+{
+ if (pInit == 0)
+  {
+    // Set all registers to their predefined values from powerstep01_target_config.h 
+    Powerstep01_SetRegisterToPredefinedValues(0);
+  }
+  else
+  {
+    Powerstep01_SetDeviceParamsToGivenValues(0, pInit);
+  }
+
+  // Put the Powerstep01 in HiZ state
+  Powerstep01_CmdHardHiZ(0);
+
+  Powerstep01_FetchAndClearAllStatus();
+}	
+
+
 void Powerstep01_Init(void* pInit)
 { 
   /* Initialise the GPIOs of the just added device */
-	printf("Powerstep01_Init 1\r\n");
   Powerstep01_Board_GpioInit(powerstep01DriverInstance);
-  printf("Powerstep01_Init 2\r\n");
 	
   if(Powerstep01_Board_SpiInit() != 0)
   {
@@ -325,29 +344,16 @@ void Powerstep01_Init(void* pInit)
   //Powerstep01_Board_StepClockInit();
 
   /* Standby-reset deactivation */
-  Powerstep01_Board_ReleaseReset(powerstep01DriverInstance);
-  printf("spi rest ok \r\n");
+  //Powerstep01_Board_ReleaseReset(powerstep01DriverInstance);//此处全部置高
+  Powerstep01_Board_ReleaseReset_All();
+	printf("spi rest ok \r\n");
 
   /* Let a delay after reset */
-  Powerstep01_Board_Delay(1);
+  Powerstep01_Board_Delay(20);
   printf("spi delay ok \r\n");
 
-  if (pInit == 0)
-  {
-    // Set all registers to their predefined values from powerstep01_target_config.h 
-    Powerstep01_SetRegisterToPredefinedValues(powerstep01DriverInstance);
-  }
-  else
-  {
-    Powerstep01_SetDeviceParamsToGivenValues(powerstep01DriverInstance, pInit);
-  }
-
-  // Put the Powerstep01 in HiZ state
-  Powerstep01_CmdHardHiZ(powerstep01DriverInstance);
-
-  Powerstep01_FetchAndClearAllStatus();
-
-  powerstep01DriverInstance++;
+	//Powerstep01_Init_Register(pInit);
+ // powerstep01DriverInstance++;
 }
 
 /******************************************************//**

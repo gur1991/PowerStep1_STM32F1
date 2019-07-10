@@ -998,6 +998,10 @@ extern uint8_t Powerstep01_Board_SpiWriteBytes_My(uint8_t *pByteToTransmit, uint
 
 extern uint32_t Powerstep01_Board_BUSY_PIN_GetState(void); //Returns the BUSY pin state
 extern uint32_t Powerstep01_Board_FLAG_PIN_GetState(void); //Returns the FLAG pin state
+
+
+
+void Powerstep01_Init_Register(void* pInit);//add by gur
 /**
   * @}
   */

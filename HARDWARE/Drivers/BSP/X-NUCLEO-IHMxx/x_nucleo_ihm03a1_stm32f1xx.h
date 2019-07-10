@@ -71,6 +71,8 @@
  /** @defgroup Constants_For_STM32F4XX_NUCLEO Constants For STM32F4XX_NUCLEO
 * @{
 */  
+void Powerstep01_Board_Reset_All(void);
+void Powerstep01_Board_ReleaseReset_All(void);
 
 typedef struct{
 	GPIO_TypeDef* GPIOx;
@@ -82,7 +84,7 @@ typedef struct {
 		GPIO_VALUE_type cs;
 }powerStep01_select_type_t;
 
-void select_motor_baby(int chip);
+void PowerStep_Select_Motor_Baby(int chip);
 
 extern GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
 extern uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;

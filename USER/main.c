@@ -47,28 +47,47 @@ int main(void)
 
 
   BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-	
-	
-	select_motor_baby(1);
   BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);
+	
+	
+	//遍历初始化所有powerStep01
+	for(i=1;i<3;i++){
+			PowerStep_Select_Motor_Baby(i);
+			Powerstep01_Init_Register(NULL);
+	}
+	//解决一次统一的申请资源，遍历初始化
+	//之后可以直接调用
+	//调用之前必须PowerStep_Select_Motor_Baby(int chip);先选择具体马达
+	
+	
   //BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
   //BSP_MotorControl_AttachBusyInterrupt(MyBusyInterruptHandler);
   //BSP_MotorControl_AttachErrorHandler(MyErrorHandler);
  
 	while(1){
-		printf("move FORWARD...\r\n");
+		
+		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_Move(0, FORWARD, 6000);
-		printf("move wait...\r\n");
+		PowerStep_Select_Motor_Baby(2);
+		BSP_MotorControl_Move(0, FORWARD, 6000);
+
 		BSP_MotorControl_WaitWhileActive(0);
-		//delay_ms(10*1000);
-		printf("move BACKWARD...\r\n");
+		
+		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_Move(0, BACKWARD, 6000);
-		printf("move wait...\r\n");
+		PowerStep_Select_Motor_Baby(2);
+		BSP_MotorControl_Move(0, BACKWARD, 6000);
+		
 		BSP_MotorControl_WaitWhileActive(0);
-		//delay_ms(10*1000);
-		printf("reset pos...\r\n");
+		
+		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_CmdResetPos(0);
-#if 0
+		
+		PowerStep_Select_Motor_Baby(2);
+		BSP_MotorControl_CmdResetPos(0);
+		
+		
+		#if 0
 				if(FLAG_UART_MASTER){
 						printf("start receive !\r\n");
 						delay_ms(10);
