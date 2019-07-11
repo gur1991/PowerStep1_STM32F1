@@ -51,7 +51,7 @@ int main(void)
 	
 	
 	//遍历初始化所有powerStep01
-	for(i=1;i<3;i++){
+	for(i=1;i<15;i++){
 			PowerStep_Select_Motor_Baby(i);
 			Powerstep01_Init_Register(NULL);
 	}
@@ -63,31 +63,48 @@ int main(void)
   //BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
   //BSP_MotorControl_AttachBusyInterrupt(MyBusyInterruptHandler);
   //BSP_MotorControl_AttachErrorHandler(MyErrorHandler);
- 
+ 	  PowerStep_Select_Motor_Baby(14);
+
 	while(1){
-		
-		PowerStep_Select_Motor_Baby(1);
+#if 1		
 		BSP_MotorControl_Move(0, FORWARD, 6000);
-		PowerStep_Select_Motor_Baby(2);
+		BSP_MotorControl_WaitWhileActive(0);
+		BSP_MotorControl_Move(0, BACKWARD, 6000);
+		BSP_MotorControl_WaitWhileActive(0);
+#endif
+#if 0	
+		PowerStep_Select_Motor_Baby(4);
+		BSP_MotorControl_Move(0, FORWARD, 6000);
+		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_Move(0, FORWARD, 6000);
 
 		BSP_MotorControl_WaitWhileActive(0);
 		
-		PowerStep_Select_Motor_Baby(1);
+		PowerStep_Select_Motor_Baby(4);
 		BSP_MotorControl_Move(0, BACKWARD, 6000);
-		PowerStep_Select_Motor_Baby(2);
+		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_Move(0, BACKWARD, 6000);
 		
 		BSP_MotorControl_WaitWhileActive(0);
 		
+		PowerStep_Select_Motor_Baby(4);
+		BSP_MotorControl_CmdResetPos(0);
+		
 		PowerStep_Select_Motor_Baby(1);
 		BSP_MotorControl_CmdResetPos(0);
+		#endif
 		
-		PowerStep_Select_Motor_Baby(2);
-		BSP_MotorControl_CmdResetPos(0);
-		
-		
-		#if 0
+#if 0
+		printf(" rst start\r\n");
+		Powerstep01_Board_ReleaseReset(0);
+		delay_ms(10);
+		Powerstep01_Board_Reset(0);
+		delay_ms(10);
+#endif
+
+
+
+#if 0
 				if(FLAG_UART_MASTER){
 						printf("start receive !\r\n");
 						delay_ms(10);

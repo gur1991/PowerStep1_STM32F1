@@ -68,8 +68,103 @@ void PowerStep_Select_Motor_Baby(int chip)
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2;
 				printf("motor -- 2\r\n");
-
 				break;
+	  case 3:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT3;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN3;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3;
+				printf("motor -- 3\r\n");
+				break;
+		case 4:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT4;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN4;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4;
+				printf("motor -- 4\r\n");
+				break;
+		case 5:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT5;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN5;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5;
+				printf("motor -- 5\r\n");
+				break;
+		case 6:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT6;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN6;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6;
+				printf("motor -- 6\r\n");
+				break;
+		case 7:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT7;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN7;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7;
+				printf("motor -- 7\r\n");
+				break;
+		case 8:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT8;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN8;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT8;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN8;
+				printf("motor -- 8\r\n");
+				break;
+		case 9:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT9;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN9;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT9;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN9;
+				printf("motor -- 9\r\n");
+				break;
+		case 10:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT10;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN10;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT10;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN10;
+				printf("motor -- 10\r\n");
+				break;
+		case 11:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT11;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN11;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11;
+				printf("motor -- 11\r\n");
+				break;
+		case 12:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT12;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN12;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT12;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN12;
+				printf("motor -- 12\r\n");
+				break;
+		case 13:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT13;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN13;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT13;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN13;
+				printf("motor -- 13\r\n");
+				break;
+		case 14:
+				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT14;
+				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN14;
+
+				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT14;
+				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN14;
+				printf("motor -- 14\r\n");
+				break;			
 	}
 	BSP_MOTOR_CONTROL_BOARD_CS_PORT=MotorBaby.cs.GPIOx;
 	BSP_MOTOR_CONTROL_BOARD_CS_PIN=MotorBaby.cs.GPIO_Pin;
@@ -183,7 +278,10 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
   if (deviceId==0)
   {
     /* GPIO Ports Clock Enable */
+		//__HAL_RCC_AFIO_CLK_ENABLE();
 		__GPIOG_CLK_ENABLE();
+		__GPIOF_CLK_ENABLE();
+		__GPIOE_CLK_ENABLE();
 		__GPIOD_CLK_ENABLE();
 		__GPIOC_CLK_ENABLE();
     __GPIOA_CLK_ENABLE();
@@ -260,7 +358,7 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
 
 
 
-/* Configure Powerstep01 - CS pin ----------------------------------------*/
+/* Configure Powerstep01 - CS pin1 ----------------------------------------*/
     GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN1;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -275,13 +373,115 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
     GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
     HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT2, &GPIO_InitStruct);
     HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT2, BSP_MOTOR_CONTROL_BOARD_CS_PIN2, GPIO_PIN_SET); 
+    /* Configure Powerstep01 - CS pin3 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN3;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT3, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT3, BSP_MOTOR_CONTROL_BOARD_CS_PIN3, GPIO_PIN_SET); 
+    /* Configure Powerstep01 - CS pin4 ----------------------------------------*/
+
+		//__HAL_AFIO_REMAP_SWJ_DISABLE();           //½ûÓÃJTAG SWD
+    __HAL_AFIO_REMAP_SWJ_NOJTAG();              //½ûÓÃJTAG
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN4;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT4, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT4, BSP_MOTOR_CONTROL_BOARD_CS_PIN4, GPIO_PIN_SET); 
+
+    /* Configure Powerstep01 - CS pin5 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT5, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT5, BSP_MOTOR_CONTROL_BOARD_CS_PIN5, GPIO_PIN_SET); 
+     /* Configure Powerstep01 - CS pin6 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN6;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT6, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT6, BSP_MOTOR_CONTROL_BOARD_CS_PIN6, GPIO_PIN_SET); 
+ 
+     /* Configure Powerstep01 - CS pin7 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN7;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT7, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT7, BSP_MOTOR_CONTROL_BOARD_CS_PIN7, GPIO_PIN_SET); 
+     /* Configure Powerstep01 - CS pin8 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN8;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT8, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT8, BSP_MOTOR_CONTROL_BOARD_CS_PIN8, GPIO_PIN_SET); 
+      /* Configure Powerstep01 - CS pin9 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN9;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT9, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT9, BSP_MOTOR_CONTROL_BOARD_CS_PIN9, GPIO_PIN_SET); 
+     /* Configure Powerstep01 - CS pin10 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN10;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT10, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT10, BSP_MOTOR_CONTROL_BOARD_CS_PIN10, GPIO_PIN_SET); 
+       /* Configure Powerstep01 - CS pin11 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN11;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT11, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT11, BSP_MOTOR_CONTROL_BOARD_CS_PIN11, GPIO_PIN_SET); 
+     /* Configure Powerstep01 - CS pin12 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN12;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT12, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT12, BSP_MOTOR_CONTROL_BOARD_CS_PIN12, GPIO_PIN_SET); 
+ 
+       /* Configure Powerstep01 - CS pin13 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN13;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT13, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT13, BSP_MOTOR_CONTROL_BOARD_CS_PIN13, GPIO_PIN_SET); 
+     /* Configure Powerstep01 - CS pin14 ----------------------------------------*/
+
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN14;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_CS_PORT14, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT14, BSP_MOTOR_CONTROL_BOARD_CS_PIN14, GPIO_PIN_SET); 
+ 
+ 
+ 
 
 
 
 
-
-
-    /* Configure Powerstep01 - STBY/RESET pin --------------------------------*/
+    /* Configure Powerstep01 - STBY/RESET pin1 --------------------------------*/
     GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -293,7 +493,82 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
     HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, &GPIO_InitStruct);
+        /* Configure Powerstep01 - STBY/RESET pin3 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin4 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4, &GPIO_InitStruct);
     
+		/* Configure Powerstep01 - STBY/RESET pin5 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin6 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6, &GPIO_InitStruct);
+    
+			/* Configure Powerstep01 - STBY/RESET pin7 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin8 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN8;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT8, &GPIO_InitStruct);
+    
+				/* Configure Powerstep01 - STBY/RESET pin9 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN9;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT9, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin10 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN10;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT10, &GPIO_InitStruct);
+   			/* Configure Powerstep01 - STBY/RESET pin11 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin12 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN12;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT12, &GPIO_InitStruct);
+   			/* Configure Powerstep01 - STBY/RESET pin13 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN13;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT13, &GPIO_InitStruct);
+    /* Configure Powerstep01 - STBY/RESET pin14 --------------------------------*/
+    GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN14;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT14, &GPIO_InitStruct);
+   
 		
 		
     /* Reset Powerstep0*/
@@ -377,6 +652,19 @@ void Powerstep01_Board_ReleaseReset_All(void)
 { 
   HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1, GPIO_PIN_SET); 
   HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2, GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3, GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4, GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5, GPIO_PIN_SET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6, GPIO_PIN_SET); 
+
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT8, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN8, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT9, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN9, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT10, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN10, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT12, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN12, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT13, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN13, GPIO_PIN_SET); 
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT14, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN14, GPIO_PIN_SET); 
 
 }
 
@@ -394,6 +682,10 @@ void Powerstep01_Board_Reset_All(void)
 {
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1, GPIO_PIN_RESET); 
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2, GPIO_PIN_RESET); 
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3, GPIO_PIN_RESET); 
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4, GPIO_PIN_RESET); 
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5, GPIO_PIN_RESET); 
+			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6, GPIO_PIN_RESET); 
 
 }
 /******************************************************//**

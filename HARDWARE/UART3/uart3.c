@@ -94,7 +94,7 @@ void UART3_Init(u32 bound)
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 	__HAL_RCC_USART3_CLK_ENABLE();			//使能USART3时钟
 	//RCC_APB2PeriphClockCmd();
-//	GPIO_PinRemapConfig();
+	//GPIO_PinRemapConfig();
 //	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO, ENABLE);	//使能USART1，GPIOA时钟
  // RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	//GPIO_PinRemapConfig(GPIO_PartialRemap_USART3,ENABLE);

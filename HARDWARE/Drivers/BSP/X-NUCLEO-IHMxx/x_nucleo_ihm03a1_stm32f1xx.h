@@ -70,7 +70,7 @@
 
  /** @defgroup Constants_For_STM32F4XX_NUCLEO Constants For STM32F4XX_NUCLEO
 * @{
-*/  
+*/ 
 void Powerstep01_Board_Reset_All(void);
 void Powerstep01_Board_ReleaseReset_All(void);
 
@@ -223,25 +223,69 @@ extern uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 /// GPIO port used for the Powerstep01 reset pin
 //#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT (GPIOD)
 
-// GPIO Pin used for the Powerstep01 reset pin
+// GPIO Pin used for the Powerstep01 reset pin1
 #define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1  (GPIO_PIN_1)
-/// GPIO port used for the Powerstep01 reset pin
+/// GPIO port used for the Powerstep01 reset pin1
 #define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1 (GPIOD)
-/// GPIO Pin used for the Powerstep01 reset pin
+/// GPIO Pin used for the Powerstep01 reset pin2
 #define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2  (GPIO_PIN_5)
-/// GPIO port used for the Powerstep01 reset pin
+/// GPIO port used for the Powerstep01 reset pin2
 #define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2 (GPIOD)
 
+/// GPIO Pin used for the Powerstep01 reset pin3
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3  (GPIO_PIN_10)
+/// GPIO port used for the Powerstep01 reset pin3
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3 (GPIOG)
+/// GPIO Pin used for the Powerstep01 reset pin4
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4  (GPIO_PIN_14)
+/// GPIO port used for the Powerstep01 reset pin4
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4 (GPIOG)
 
 
+/// GPIO Pin used for the Powerstep01 reset pin5
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5  (GPIO_PIN_2)
+/// GPIO port used for the Powerstep01 reset pin5
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5 (GPIOE)
+/// GPIO Pin used for the Powerstep01 reset pin6
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6  (GPIO_PIN_6)
+/// GPIO port used for the Powerstep01 reset pin6
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6 (GPIOE)
 
+/// GPIO Pin used for the Powerstep01 reset pin7
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7  (GPIO_PIN_15)
+/// GPIO port used for the Powerstep01 reset pin7
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7 (GPIOC)
+/// GPIO Pin used for the Powerstep01 reset pin8
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN8  (GPIO_PIN_6)
+/// GPIO port used for the Powerstep01 reset pin8
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT8 (GPIOC)
 
+/// GPIO Pin used for the Powerstep01 reset pin9
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN9  (GPIO_PIN_5)
+/// GPIO port used for the Powerstep01 reset pin9
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT9 (GPIOG)
+/// GPIO Pin used for the Powerstep01 reset pin10
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN10  (GPIO_PIN_15)
+/// GPIO port used for the Powerstep01 reset pin10
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT10 (GPIOD)
 
+/// GPIO Pin used for the Powerstep01 reset pin11
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11  (GPIO_PIN_11)
+/// GPIO port used for the Powerstep01 reset pin11
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11 (GPIOD)
+/// GPIO Pin used for the Powerstep01 reset pin12
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN12  (GPIO_PIN_15)
+/// GPIO port used for the Powerstep01 reset pin12
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT12 (GPIOB)
 
-
-
-
-
+/// GPIO Pin used for the Powerstep01 reset pin13
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN13  (GPIO_PIN_11)
+/// GPIO port used for the Powerstep01 reset pin13
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT13 (GPIOB)
+/// GPIO Pin used for the Powerstep01 reset pin14
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN14  (GPIO_PIN_13)
+/// GPIO port used for the Powerstep01 reset pin14
+#define BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT14 (GPIOE)
 
 
 
@@ -260,14 +304,72 @@ extern uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 /// GPIO port used for the Powerstep01 SPI chip select  pin
 //#define BSP_MOTOR_CONTROL_BOARD_CS_PORT (GPIOD)
 
-/// GPIO Pin used for the Powerstep01 SPI chip select pin
+/// GPIO Pin used for the Powerstep01 SPI chip select pin1
 #define BSP_MOTOR_CONTROL_BOARD_CS_PIN1  (GPIO_PIN_4)
-/// GPIO port used for the Powerstep01 SPI chip select  pin
+/// GPIO port used for the Powerstep01 SPI chip select  pin1
 #define BSP_MOTOR_CONTROL_BOARD_CS_PORT1 (GPIOD)
-/// GPIO Pin used for the Powerstep01 SPI chip select pin
+/// GPIO Pin used for the Powerstep01 SPI chip select pin2
 #define BSP_MOTOR_CONTROL_BOARD_CS_PIN2  (GPIO_PIN_9)
-/// GPIO port used for the Powerstep01 SPI chip select  pin
+/// GPIO port used for the Powerstep01 SPI chip select  pin2
 #define BSP_MOTOR_CONTROL_BOARD_CS_PORT2 (GPIOG)
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin3
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN3  (GPIO_PIN_13)
+/// GPIO port used for the Powerstep01 SPI chip select  pin3
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT3 (GPIOG)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin4
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN4  (GPIO_PIN_4)
+/// GPIO port used for the Powerstep01 SPI chip select  pin4
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT4 (GPIOB)
+
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin5
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN5  (GPIO_PIN_5)
+/// GPIO port used for the Powerstep01 SPI chip select  pin5
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT5 (GPIOE)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin6
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN6  (GPIO_PIN_14)
+/// GPIO port used for the Powerstep01 SPI chip select  pin6
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT6 (GPIOC)
+
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin7
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN7  (GPIO_PIN_2)
+/// GPIO port used for the Powerstep01 SPI chip select  pin7
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT7 (GPIOF)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin8
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN8  (GPIO_PIN_9)
+/// GPIO port used for the Powerstep01 SPI chip select  pin8
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT8 (GPIOC)
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin9
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN9  (GPIO_PIN_8)
+/// GPIO port used for the Powerstep01 SPI chip select  pin9
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT9 (GPIOG)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin10
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN10  (GPIO_PIN_4)
+/// GPIO port used for the Powerstep01 SPI chip select  pin10
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT10 (GPIOG)
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin11
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN11  (GPIO_PIN_14)
+/// GPIO port used for the Powerstep01 SPI chip select  pin11
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT11 (GPIOD)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin12
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN12  (GPIO_PIN_10)
+/// GPIO port used for the Powerstep01 SPI chip select  pin12
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT12 (GPIOD)
+
+/// GPIO Pin used for the Powerstep01 SPI chip select pin13
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN13  (GPIO_PIN_14)
+/// GPIO port used for the Powerstep01 SPI chip select  pin13
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT13 (GPIOB)
+/// GPIO Pin used for the Powerstep01 SPI chip select pin14
+#define BSP_MOTOR_CONTROL_BOARD_CS_PIN14  (GPIO_PIN_10)
+/// GPIO port used for the Powerstep01 SPI chip select  pin14
+#define BSP_MOTOR_CONTROL_BOARD_CS_PORT14 (GPIOB)
+
+
 
 
 
