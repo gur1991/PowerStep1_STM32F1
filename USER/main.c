@@ -15,10 +15,109 @@
 #include "printpaper.h"
 #include "baby18dad400.h"
 
+init_motor_speed_tension_type_t TempMotor;
+
+
+int ConfigMotorAllDevice(int chip)
+{
+	int ret=0;
+	switch(chip)
+	{
+		case 1:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 2:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=30;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 3:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 4:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 5:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;	
+		case 13:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 14:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=20;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		default:
+			ret=-1;
+	}	
+	return ret;
+}
+
 
 
 int main(void)
 {	
+	int result;
 	get_light_sensor_level_t data;
 	uint8_t value;
 	int32_t pos;
@@ -47,27 +146,46 @@ int main(void)
 
 
   BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);
+  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
 	
 	
-	//遍历初始化所有powerStep01
-	for(i=1;i<15;i++){
+		
+	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
+			result=ConfigMotorAllDevice(i);//配置电机参数
+			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);
-			Powerstep01_Init_Register(NULL);
-	}
-	//解决一次统一的申请资源，遍历初始化
-	//之后可以直接调用
-	//调用之前必须PowerStep_Select_Motor_Baby(int chip);先选择具体马达
-	
+			
+			if(!result){
+				Powerstep01_Init_Register(&motor_config_array[i]);//后续再需要初始化，无需上位机填写
+			}
+			else
+			{	
+				Powerstep01_Init_Register(NULL);
+			}
+			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
+  }	
 	
   //BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
   //BSP_MotorControl_AttachBusyInterrupt(MyBusyInterruptHandler);
   //BSP_MotorControl_AttachErrorHandler(MyErrorHandler);
- 	  PowerStep_Select_Motor_Baby(14);
-
+	
+	PowerStep_Select_Motor_Baby(2);
+	BSP_MotorControl_Move(0, BACKWARD, 40000);
+	PowerStep_Select_Motor_Baby(13);
+	BSP_MotorControl_Move(0, FORWARD, 600000);
 	while(1){
+#if 1		
+	//BSP_MotorControl_WaitWhileActive(0);
+	if(!Light_Sensor_Get(24)||!Light_Sensor_Get(1)){
+			printf("check to stop\r\n");
+			PowerStep_Select_Motor_Baby(2);
+		  BSP_MotorControl_HardStop(0);
+		  //BSP_MotorControl_CmdSoftStop(0);
+	}
+#endif
+	
 		
-#if 1
+#if 0
 		for(i=1;i<=24;i++)
 		{
 				value=Light_Sensor_Get(i);
@@ -77,42 +195,15 @@ int main(void)
 		Light_Sensor_Get_All();
 		printf("light --> 0x%X \r\n", gStatusLight[0]&0x40);
 
-#endif		
-#if 0		
-		BSP_MotorControl_Move(0, FORWARD, 6000);
-		BSP_MotorControl_WaitWhileActive(0);
-		BSP_MotorControl_Move(0, BACKWARD, 6000);
-		BSP_MotorControl_WaitWhileActive(0);
-
 #endif
-#if 0	
-		PowerStep_Select_Motor_Baby(4);
-		BSP_MotorControl_Move(0, FORWARD, 6000);
-		PowerStep_Select_Motor_Baby(1);
-		BSP_MotorControl_Move(0, FORWARD, 6000);
-
+		
+#if 0		
+		BSP_MotorControl_Move(0, FORWARD, 12000);
 		BSP_MotorControl_WaitWhileActive(0);
-		
-		PowerStep_Select_Motor_Baby(4);
-		BSP_MotorControl_Move(0, BACKWARD, 6000);
-		PowerStep_Select_Motor_Baby(1);
-		BSP_MotorControl_Move(0, BACKWARD, 6000);
-		
+		//BSP_MotorControl_CmdResetPos(0);
+		BSP_MotorControl_Move(0, BACKWARD, 12000);
 		BSP_MotorControl_WaitWhileActive(0);
-		
-		PowerStep_Select_Motor_Baby(4);
-		BSP_MotorControl_CmdResetPos(0);
-		
-		PowerStep_Select_Motor_Baby(1);
-		BSP_MotorControl_CmdResetPos(0);
-		#endif
-		
-#if 0
-		printf(" rst start\r\n");
-		Powerstep01_Board_ReleaseReset(0);
-		delay_ms(10);
-		Powerstep01_Board_Reset(0);
-		delay_ms(10);
+		//BSP_MotorControl_CmdResetPos(0);
 #endif
 
 

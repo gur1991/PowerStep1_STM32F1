@@ -9,6 +9,9 @@
 #include "powerstep01_target_config.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
 #include "powerstep01.h" 
+//Êý×é0·ÏÆú ÓÃ[1]---[14]
+#define SIZE_MOTOR_ARRAY 15
+extern powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
 
 typedef struct
 {

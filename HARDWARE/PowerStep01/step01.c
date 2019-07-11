@@ -1,16 +1,7 @@
 #include "step01.h"
 
-//#define CURRENT_MODE //to use initialization parameters for current mode
-//#define VOLTAGE_MODE //to use initialization parameters for voltage mode
 
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
- //static volatile uint16_t gLastError;
-
-#define SIZE_MOTOR_ARRAY 16
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
-
-
 
 //#ifdef CURRENT_MODE
 /* Initialization parameters for current mode */
@@ -120,9 +111,6 @@ union powerstep01_Init_u init_voltage =
 //flag busy 要处理在此
 int init_motor_bsp(int device)
 {
-
-
-
   /* Attach the function MyFlagInterruptHandler (defined below) to the flag interrupt */
   //BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
 
@@ -140,49 +128,7 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 {	
 		int ret=0;
 		bool isok;
-		if(data.request.devices>=SIZE_MOTOR_ARRAY)return ret=-1;
 	
-			//cs=0 ---devices
-	//	isok=BSP_MotorControl_SetNbDevices_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 0, data.request.devices);
-		if(isok)return -1;
-		
-		if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_CURRENT)
-		{
-				init_current.cm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
-				init_current.cm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
-				init_current.cm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
-				init_current.cm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;
-				
-				init_current.cm.tvalAcc=data.request.init_motor.motor_config.current.current_value;
-				init_current.cm.tvalDec=data.request.init_motor.motor_config.current.current_value;
-				init_current.cm.tvalHold=data.request.init_motor.motor_config.current.current_value;
-				init_current.cm.tvalRun=data.request.init_motor.motor_config.current.current_value;
-				
-			
-		//		BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_current, data.request.devices);
-
-		}else if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_VOLTAGE)
-		{
-				init_voltage.vm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
-				init_voltage.vm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
-				init_voltage.vm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
-				init_voltage.vm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;
-			
-				init_voltage.vm.kvalAcc=data.request.init_motor.motor_config.voltage.duty_cycle;
-				init_voltage.vm.kvalDec=data.request.init_motor.motor_config.voltage.duty_cycle;
-				init_voltage.vm.kvalHold=data.request.init_motor.motor_config.voltage.duty_cycle;
-				init_voltage.vm.kvalRun=data.request.init_motor.motor_config.voltage.duty_cycle;
-				
-			
-	//			BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&init_voltage, data.request.devices);
-
-		}else {
-				return -1;
-		}	
-	
-	return 0;
-	
-	/*
 		if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_CURRENT)
 		{
 				memcpy(&motor_config_array[data.request.devices], &init_current,sizeof(init_current));
@@ -213,17 +159,24 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 				motor_config_array[data.request.devices].vm.kvalRun=data.request.init_motor.motor_config.voltage.duty_cycle;
 			
 		}else {
-		
 				return -1;
 		}	
 
-		BSP_MotorControl_Init_My(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01,&motor_config_array[data.request.devices], data.request.devices);
-		*/	
-	//cs=1 ---devices
-		//return ret;
+		return ret;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+//************************below no-useful************************
 //array==0xff 代表为无效
 //只下发指令给powerstep 不去等待执行结束
 void move_many_motor(move_many_motor_type_t data)
