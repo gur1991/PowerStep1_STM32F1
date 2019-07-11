@@ -34,7 +34,7 @@ int main(void)
 	uart_init(115200);					//初始化串口
 	usmart_dev.init(84); 		   		//初始化USMART	
 //	KEY_Init();							//初始化按键
-//	Light_Sensor_Init();
+	Light_Sensor_Init();
 //	TIM3_PWM_Init(500-1,72-1);       	//72M/72=1M的计数频率，自动重装载为500，那么PWM频率为1M/500=2kHZ
 //	AD_SENSOR_init();
 	
@@ -66,11 +66,24 @@ int main(void)
  	  PowerStep_Select_Motor_Baby(14);
 
 	while(1){
-#if 1		
+		
+#if 1
+		for(i=1;i<=24;i++)
+		{
+				value=Light_Sensor_Get(i);
+				printf("light[%d]:%d\r\n",i,value);
+				delay_ms(100);
+		}
+		Light_Sensor_Get_All();
+		printf("light --> 0x%X \r\n", gStatusLight[0]&0x40);
+
+#endif		
+#if 0		
 		BSP_MotorControl_Move(0, FORWARD, 6000);
 		BSP_MotorControl_WaitWhileActive(0);
 		BSP_MotorControl_Move(0, BACKWARD, 6000);
 		BSP_MotorControl_WaitWhileActive(0);
+
 #endif
 #if 0	
 		PowerStep_Select_Motor_Baby(4);
