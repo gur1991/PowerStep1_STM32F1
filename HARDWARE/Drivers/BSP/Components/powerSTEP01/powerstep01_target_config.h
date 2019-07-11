@@ -42,32 +42,32 @@
 /// The maximum number of devices in the daisy chain
 #define MAX_NUMBER_OF_DEVICES                 (1)
 
-#define MOTION_SPEED_ACC_VALUE_device0 200//(582)
-#define MOTION_SPEED_DEC_VALUE_device0 200//(582)
-#define MOTION_SPEED_VALUE_device0 200 //(244.16)
-#define MOTION_CURRENT_VALUE_device0 120 //(328.12)
+#define MOTION_SPEED_ACC_VALUE_device0 582//(582)
+#define MOTION_SPEED_DEC_VALUE_device0 582//(582)
+#define MOTION_SPEED_VALUE_device0 400//(244.16)
+#define MOTION_CURRENT_VALUE_device0 150 //(328.12)
 #define MOTION_STEP_DIV_device0  STEP_MODE_1_16
 #define MOTION_DRIVER_MODE_device0  (POWERSTEP01_CM_VM_VOLTAGE) //(POWERSTEP01_CM_VM_CURRENT)
-#define MOTION_DUTY_CYCLE_PERCENTTAGE_device0 40//(16.02)
+#define MOTION_DUTY_CYCLE_PERCENTTAGE_device0 10//(16.02)
+#define MAX_SPEED_DEVICE_0 800
 
-
-#define MOTION_SPEED_ACC_VALUE_device1 250//(582)
-#define MOTION_SPEED_DEC_VALUE_device1 50//(582)
-#define MOTION_SPEED_VALUE_device1 200 //(244.16)
-#define MOTION_CURRENT_VALUE_device1 120 //(328.12)
+#define MOTION_SPEED_ACC_VALUE_device1 582//(582)
+#define MOTION_SPEED_DEC_VALUE_device1 582//(582)
+#define MOTION_SPEED_VALUE_device1 400 //(244.16)
+#define MOTION_CURRENT_VALUE_device1 150 //(328.12)
 #define MOTION_STEP_DIV_device1  STEP_MODE_1_16
 #define MOTION_DRIVER_MODE_device1  (POWERSTEP01_CM_VM_VOLTAGE) //(POWERSTEP01_CM_VM_CURRENT)
-#define MOTION_DUTY_CYCLE_PERCENTTAGE_device1 16.02//(16.02)
+#define MOTION_DUTY_CYCLE_PERCENTTAGE_device1 10//(16.02)
+#define MAX_SPEED_DEVICE_1 800
 
-
-#define MOTION_SPEED_ACC_VALUE_device2 50//(582)
-#define MOTION_SPEED_DEC_VALUE_device2 50//(582)
-#define MOTION_SPEED_VALUE_device2 200 //(244.16)
-#define MOTION_CURRENT_VALUE_device2 120 //(328.12)
+#define MOTION_SPEED_ACC_VALUE_device2 582//(582)
+#define MOTION_SPEED_DEC_VALUE_device2 582//(582)
+#define MOTION_SPEED_VALUE_device2 400 //(244.16)
+#define MOTION_CURRENT_VALUE_device2 150 //(328.12)//¦Ì?¨¢¡Â?¡ê¨º?¨¤-¨¢|
 #define MOTION_STEP_DIV_device2  STEP_MODE_1_16
-#define MOTION_DRIVER_MODE_device2  (POWERSTEP01_CM_VM_VOLTAGE)//(POWERSTEP01_CM_VM_CURRENT)
-#define MOTION_DUTY_CYCLE_PERCENTTAGE_device2 16.02//(16.02)
-
+#define MOTION_DRIVER_MODE_device2  (POWERSTEP01_CM_VM_VOLTAGE)//(POWERSTEP01_CM_VM_CURRENT)POWERSTEP01_CM_VM_VOLTAGE
+#define MOTION_DUTY_CYCLE_PERCENTTAGE_device2 10//16.02//(16.02)¦Ì??1?¡ê¨º?¨¤-¨¢|
+#define MAX_SPEED_DEVICE_2 800//-----¦Ì??¨²?¨´?¨¨¦Ì¡Â¨º?
 
 /****************************************************************************/
 /* Device 0                                                                 */
@@ -84,7 +84,7 @@
 
 ///Register : MAX_SPEED
 /// Maximum speed in step/s, range 15.25 to 15610 steps/s
-#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_0 (488)  //(488)
+#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_0 (MAX_SPEED_DEVICE_0)  //(488)
 
 /// Register : MIN_SPEED 
 /// Minimum speed in step/s, range 0 to 976.3 steps/s
@@ -290,7 +290,7 @@
 
 ///Register : MAX_SPEED
 /// Maximum speed in step/s, range 15.25 to 15610 steps/s
-#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_1 (488)//(991.82)
+#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_1 (MAX_SPEED_DEVICE_1)//(991.82)
 
 /// Register : MIN_SPEED 
 /// Minimum speed in step/s, range 0 to 976.3 steps/s
@@ -496,7 +496,7 @@
 
 ///Register : MAX_SPEED
 /// Maximum speed in step/s, range 15.25 to 15610 steps/s
-#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_2 (488)//(991.82)
+#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_2 (MAX_SPEED_DEVICE_2)//(991.82)------------fuck  ggggggg
 
 /// Register : MIN_SPEED 
 /// Minimum speed in step/s, range 0 to 976.3 steps/s
