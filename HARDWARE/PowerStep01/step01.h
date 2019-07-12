@@ -9,9 +9,36 @@
 #include "powerstep01_target_config.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
 #include "powerstep01.h" 
+#include "light.h"
 //数组0废弃 用[1]---[14]
 #define SIZE_MOTOR_ARRAY 15
 extern powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
+
+
+//停止所有电机运动
+void StopALLMotorMotion(void);
+
+//此函数调用后会按照设定的速度和step走
+//完成后，速度会恢复之前的
+void ChangeSpeedMotorRun(int motorNum ,uint32_t steps ,uint32_t setSpeed, motorDir_t motorDir);
+
+//motor 编号
+//light 编号
+//复位时用的速度
+//复位时的电机方向
+
+void RestSelectMotorPosition(int motorNum,int lightNum,uint32_t rstSpeed, motorDir_t motorDir);
+
+void RestAllMotorPosition2(void);
+
+//开机自检
+void FirstOpenMotorCheckPosition(void);
+
+//同步复位---discard
+void RestAllMotorPosition(void);
+
+
+void FactoryMotorTestMode(void);
 
 typedef struct
 {
@@ -111,4 +138,10 @@ struct{
 
 void wait_many_motor(wait_many_motor_type_t data);
 
+
+
+
+
+
+extern init_motor_speed_tension_type_t TempMotor;
 #endif

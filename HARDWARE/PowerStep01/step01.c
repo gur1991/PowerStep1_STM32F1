@@ -2,6 +2,8 @@
 
 
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
+init_motor_speed_tension_type_t TempMotor;
+
 
 //#ifdef CURRENT_MODE
 /* Initialization parameters for current mode */
@@ -167,8 +169,341 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 
 
 
+int ConfigMotorAllDevice(int chip)
+{
+	int ret=0;
+	switch(chip)
+	{
+		case 1:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 2:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 3:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 4:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 5:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;	
+		case 13:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		case 14:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=20;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		
+   		break;
+		default:
+			ret=-1;
+	}	
+	return ret;
+}
 
 
+void StopALLMotorMotion(void)
+{	
+	int i;
+	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
+			PowerStep_Select_Motor_Baby(i);
+			BSP_MotorControl_HardStop(0);
+	}		
+}
+
+
+//此函数调用后会按照设定的速度和step走
+//完成后，速度会恢复之前的
+void ChangeSpeedMotorRun(int motorNum ,uint32_t steps ,uint32_t setSpeed, motorDir_t motorDir)
+{
+	uint32_t myMaxSpeed;
+	int status=0;
+
+	PowerStep_Select_Motor_Baby(motorNum);		
+	myMaxSpeed= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_MAX_SPEED);
+	BSP_MotorControl_CmdSetParam(0, POWERSTEP01_MAX_SPEED, setSpeed);
+	BSP_MotorControl_Move(0, motorDir, steps);
+	BSP_MotorControl_WaitWhileActive(0);		
+	BSP_MotorControl_CmdSetParam(0, POWERSTEP01_MAX_SPEED, myMaxSpeed);
+}
+
+
+//motor 编号
+//light 编号
+//复位时用的速度
+//复位时的电机方向
+
+void RestSelectMotorPosition(int motorNum,int lightNum,uint32_t rstSpeed, motorDir_t motorDir)
+{
+	uint32_t myMaxSpeed;
+	int status=0;
+	
+		if(Light_Sensor_Get(lightNum)){
+					PowerStep_Select_Motor_Baby(motorNum);
+			
+					myMaxSpeed= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_MAX_SPEED);
+					BSP_MotorControl_CmdSetParam(0, POWERSTEP01_MAX_SPEED, rstSpeed);
+			
+					BSP_MotorControl_Move(0, motorDir, 600000);
+					status=1;
+		}
+		while(status){
+				if(!Light_Sensor_Get(lightNum)){
+							PowerStep_Select_Motor_Baby(motorNum);
+							BSP_MotorControl_HardStop(0);
+							BSP_MotorControl_CmdSetParam(0, POWERSTEP01_MAX_SPEED, myMaxSpeed);
+							status=0;
+				}
+		}				
+}
+
+void RestAllMotorPosition2(void)
+{
+	StopALLMotorMotion();
+	RestSelectMotorPosition(4,3,150,BACKWARD);
+	RestSelectMotorPosition(1,6,150,BACKWARD);
+}	
+
+
+//开机自检
+void FirstOpenMotorCheckPosition(void)
+{
+		//第一次复位
+		//推履带
+		RestAllMotorPosition2();
+		PowerStep_Select_Motor_Baby(2);
+		BSP_MotorControl_Move(0, BACKWARD, 5000);
+		//BSP_MotorControl_WaitWhileActive(0);
+		PowerStep_Select_Motor_Baby(3);
+		BSP_MotorControl_Move(0, BACKWARD, 5000);
+		BSP_MotorControl_WaitWhileActive(0);
+	
+		//第二次复位
+		//拉杆
+		RestAllMotorPosition2();
+		PowerStep_Select_Motor_Baby(1);
+		BSP_MotorControl_Move(0, FORWARD, 20700);
+		//BSP_MotorControl_WaitWhileActive(0);
+		PowerStep_Select_Motor_Baby(4);
+		BSP_MotorControl_Move(0, FORWARD, 20700);
+		BSP_MotorControl_WaitWhileActive(0);
+
+		//第三次复位
+		RestAllMotorPosition2();
+}
+
+
+void RestAllMotorPosition(void)
+{	
+		int status1=0,status2=0;
+	
+		
+		StopALLMotorMotion();
+		if(Light_Sensor_Get(6)){
+					PowerStep_Select_Motor_Baby(1);
+					BSP_MotorControl_Move(0, BACKWARD, 600000);
+					status1=1;
+
+		}
+		if(Light_Sensor_Get(3)){
+					PowerStep_Select_Motor_Baby(4);
+					BSP_MotorControl_Move(0, BACKWARD, 600000);
+				  status2=1;
+		}
+		
+		while(status2||status1){
+					if(!Light_Sensor_Get(6)){
+							PowerStep_Select_Motor_Baby(1);
+							BSP_MotorControl_HardStop(0);
+							status1=0;
+					}	
+					if(!Light_Sensor_Get(3)){
+							PowerStep_Select_Motor_Baby(4);
+							BSP_MotorControl_HardStop(0);
+							status2=0;
+					}	
+		}
+		
+		StopALLMotorMotion();
+		
+}
+
+void FactoryMotorTestMode(void)
+{
+	int i,result,value;
+	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
+  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
+	
+	
+		
+	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
+			result=ConfigMotorAllDevice(i);//配置电机参数
+			init_motor_device(TempMotor);//把电机参数保存在数组里
+			PowerStep_Select_Motor_Baby(i);
+			
+			if(!result){
+				Powerstep01_Init_Register(&motor_config_array[i]);//后续再需要初始化，无需上位机填写
+			}
+			else
+			{	
+				Powerstep01_Init_Register(NULL);
+			}
+			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
+  }	
+	
+  //BSP_MotorControl_AttachFlagInterrupt(MyFlagInterruptHandler);
+  //BSP_MotorControl_AttachBusyInterrupt(MyBusyInterruptHandler);
+  //BSP_MotorControl_AttachErrorHandler(MyErrorHandler);
+	
+	
+	FirstOpenMotorCheckPosition();
+
+while(1){
+	
+	
+#if 1		
+	
+	if(!Light_Sensor_Get(1)){
+			printf("check to stop motor 1\r\n");
+			PowerStep_Select_Motor_Baby(1);
+			BSP_MotorControl_HardStop(0);
+			RestSelectMotorPosition(1,6,120,BACKWARD);
+		
+			printf("check to BACKWARD motor 2\r\n");
+			PowerStep_Select_Motor_Baby(2);
+			
+			BSP_MotorControl_Move(0, BACKWARD, 15000);
+	}
+
+	if(!Light_Sensor_Get(2)){
+			printf("check to stop motor 2\r\n");
+			PowerStep_Select_Motor_Baby(2);
+			delay_ms(2*1000);
+			BSP_MotorControl_HardStop(0);
+			
+			delay_ms(1000);
+			printf("check to FORWARD motor 4\r\n");
+			PowerStep_Select_Motor_Baby(4);
+			ChangeSpeedMotorRun(4 ,20000 ,120, FORWARD);
+			BSP_MotorControl_Move(0, FORWARD, 4000);
+	}
+	
+	if(!Light_Sensor_Get(4)){
+			PowerStep_Select_Motor_Baby(4);
+			BSP_MotorControl_HardStop(0);
+		
+			RestSelectMotorPosition(4,3,120,BACKWARD);
+		
+			printf("check to FORWARD motor 3\r\n");
+			PowerStep_Select_Motor_Baby(3);
+			BSP_MotorControl_Move(0, BACKWARD, 15000);
+	}
+	if(!Light_Sensor_Get(5)){
+			printf("check to stop motor 3\r\n");
+			PowerStep_Select_Motor_Baby(3);
+			delay_ms(2*1000);
+			BSP_MotorControl_HardStop(0);
+		
+			delay_ms(1000);
+			printf("check to FORWARD motor 1\r\n");
+			PowerStep_Select_Motor_Baby(1);
+			ChangeSpeedMotorRun(1 ,20000 ,120, FORWARD);
+			BSP_MotorControl_Move(0, FORWARD, 4000);
+	}
+	
+	delay_ms(1);
+#endif
+	
+	
+	
+		//紧急停止所有电机运动
+	if(!Light_Sensor_Get(24)){
+			printf("check to stop all motor motion\r\n");
+			StopALLMotorMotion();
+	}
+		
+#if 0
+		for(i=1;i<=6;i++)
+		{
+				value=Light_Sensor_Get(i);
+				printf("light[%d]:%d\r\n",i,value);
+				delay_ms(100);
+		}
+		//Light_Sensor_Get_All();
+		//printf("light --> 0x%X \r\n", gStatusLight[0]&0x40);
+#endif
+				
+			delay_ms(300);
+	}
+
+
+
+
+
+}	
 
 
 

@@ -59,7 +59,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT1;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN1;
-				printf("motor -- 1\r\n");
+			//	printf("motor -- 1\r\n");
 				break;
 		case 2:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT2;
@@ -67,7 +67,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT2;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN2;
-				printf("motor -- 2\r\n");
+				//printf("motor -- 2\r\n");
 				break;
 	  case 3:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT3;
@@ -75,7 +75,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT3;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN3;
-				printf("motor -- 3\r\n");
+				//printf("motor -- 3\r\n");
 				break;
 		case 4:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT4;
@@ -83,7 +83,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4;
-				printf("motor -- 4\r\n");
+				//printf("motor -- 4\r\n");
 				break;
 		case 5:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT5;
@@ -91,7 +91,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5;
-				printf("motor -- 5\r\n");
+				//printf("motor -- 5\r\n");
 				break;
 		case 6:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT6;
@@ -99,7 +99,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6;
-				printf("motor -- 6\r\n");
+				//printf("motor -- 6\r\n");
 				break;
 		case 7:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT7;
@@ -107,7 +107,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7;
-				printf("motor -- 7\r\n");
+				//printf("motor -- 7\r\n");
 				break;
 		case 8:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT8;
@@ -115,7 +115,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT8;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN8;
-				printf("motor -- 8\r\n");
+				//printf("motor -- 8\r\n");
 				break;
 		case 9:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT9;
@@ -123,7 +123,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT9;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN9;
-				printf("motor -- 9\r\n");
+				//printf("motor -- 9\r\n");
 				break;
 		case 10:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT10;
@@ -131,7 +131,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT10;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN10;
-				printf("motor -- 10\r\n");
+				//printf("motor -- 10\r\n");
 				break;
 		case 11:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT11;
@@ -139,7 +139,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11;
-				printf("motor -- 11\r\n");
+				//printf("motor -- 11\r\n");
 				break;
 		case 12:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT12;
@@ -147,7 +147,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT12;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN12;
-				printf("motor -- 12\r\n");
+				//printf("motor -- 12\r\n");
 				break;
 		case 13:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT13;
@@ -155,7 +155,7 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT13;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN13;
-				printf("motor -- 13\r\n");
+				//printf("motor -- 13\r\n");
 				break;
 		case 14:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT14;
@@ -163,14 +163,13 @@ void PowerStep_Select_Motor_Baby(int chip)
 
 				MotorBaby.rst.GPIOx=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT14;
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN14;
-				printf("motor -- 14\r\n");
+				//printf("motor -- 14\r\n");
 				break;			
 	}
 	BSP_MOTOR_CONTROL_BOARD_CS_PORT=MotorBaby.cs.GPIOx;
 	BSP_MOTOR_CONTROL_BOARD_CS_PIN=MotorBaby.cs.GPIO_Pin;
 	BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT=MotorBaby.rst.GPIOx;
 	BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN=MotorBaby.rst.GPIO_Pin;
-	
 }
 
 
