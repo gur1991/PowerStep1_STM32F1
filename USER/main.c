@@ -50,10 +50,10 @@ int main(void)
 
 
 	//FactoryMotorTestMode_single();
-	FactoryMotorTestMode_many2();
+	FactoryMotorTestMode_many();
 while(1){
 	
-			for(i=1;i<=6;i++)
+			for(i=23;i<=23;i++)
 		{
 				value=Light_Sensor_Get(i);
 				printf("light[%d]:%d\r\n",i,value);

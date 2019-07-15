@@ -5,7 +5,6 @@
 
 void FactoryMotorTestMode_many(void);
 
-void FactoryMotorTestMode_many2(void);
-
+void  CollectSampleTask(void);
 
 #endif

@@ -1,6 +1,8 @@
 
 #include "factory_many.h"
 
+
+
 //右下角第一位为blank position 位
 //第一步一定要确保此为没有试管
 //转动后保证
@@ -106,9 +108,28 @@ int NextMoveTowardBlankPosition(void)
 			int i;
 			printf("next to blank\r\n");
 			PowerStep_Select_Motor_Baby(4);
-			ChangeSpeedMotorRun(4 ,20000 ,120, FORWARD);
-			BSP_MotorControl_Move(0, FORWARD, 4000);
+			BSP_MotorControl_Move(0, FORWARD, 20000);
+
+			//ChangeSpeedMotorRun(4 ,20000 ,120, FORWARD);
+			//ChangeSpeedMotorRun(4 ,10000 ,120, FORWARD);
+			
+			//ChangeSpeedMotorRun(4 ,10000 ,120, FORWARD);
+			
+			//BSP_MotorControl_Move(0, FORWARD, 4000);
 			while(1){
+					i=Light_Sensor_Get(23);
+				  printf("check exsit:%d\r\n",i);
+					if(i)
+					{
+							PowerStep_Select_Motor_Baby(4);
+							BSP_MotorControl_HardStop(0);
+							CollectSampleTask();
+							
+							PowerStep_Select_Motor_Baby(4);
+							BSP_MotorControl_Move(0, FORWARD, 600);
+							BSP_MotorControl_WaitWhileActive(0);//走过一个试管的长度，避免重复检测一个
+							BSP_MotorControl_Move(0, FORWARD, 20000);//再继续前行
+					}
 					if(!Light_Sensor_Get(4)){
 							delay_ms(300);
 							BSP_MotorControl_HardStop(0);
@@ -153,13 +174,181 @@ int LeftMoveTowardWaitPosition(void)
 		RestSelectMotorPosition(1,6,120,BACKWARD);
 		return Light_Sensor_Get(1);
 }	
+/****************************sample collect start************************************/
+void RestCollectHorizontalPosition(void)
+{
+		PowerStep_Select_Motor_Baby(5);
+		BSP_MotorControl_Move(0, FORWARD, 7000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(7))
+					{
+								//printf("stop H\r\n");
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+		//BSP_MotorControl_CmdResetPos(0);
+}
+void RestCollectVerticalPosition(void)
+{
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, BACKWARD, 400000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(8))
+					{
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+		//BSP_MotorControl_CmdResetPos(0);
+		
+}
+void RestCollectAllPosition(void)
+{
+		RestCollectVerticalPosition();
+		RestCollectHorizontalPosition();
+}	
+
+
+
+void  CollectSampleTask(void)
+{
+	  RestCollectAllPosition();
+		
+	  //水平向外5500
+		PowerStep_Select_Motor_Baby(5);
+		BSP_MotorControl_Move(0, BACKWARD, 5500);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		//垂直向下170000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, FORWARD, 170000);
+		BSP_MotorControl_WaitWhileActive(0);
+#if 1	
+		//垂直向上70000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, BACKWARD, 70000);
+		BSP_MotorControl_WaitWhileActive(0);
+	
+		//水平向内1000
+		PowerStep_Select_Motor_Baby(5);
+		BSP_MotorControl_Move(0, FORWARD, 1000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+	  //垂直向下70000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, FORWARD, 70000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		//垂直向上35000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, BACKWARD, 35000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		//水平向内500
+		PowerStep_Select_Motor_Baby(5);
+		BSP_MotorControl_Move(0, FORWARD, 500);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		//垂直向下70000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, FORWARD, 50000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		//垂直向上100000
+		PowerStep_Select_Motor_Baby(6);
+		BSP_MotorControl_Move(0, BACKWARD, 10000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+#endif
+		RestCollectAllPosition();
+}
+/****************************sample collect end************************************/
+
+
+
+/****************************sample  inject start************************************/
+
+void RestInjectBigPosition(void)
+{
+		PowerStep_Select_Motor_Baby(7);
+		BSP_MotorControl_Move(0, FORWARD, 200000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(9))
+					{
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+}
+void RestInjectLittlePosition(void)
+{
+		PowerStep_Select_Motor_Baby(8);
+		BSP_MotorControl_Move(0, FORWARD, 200000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(10))
+					{
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+}
+
+void RestInjectAllPosition(void)
+{
+		RestInjectBigPosition();
+		RestInjectLittlePosition();
+}	
+
+
+void InjectLittleWork(uint32_t steps)
+{
+		PowerStep_Select_Motor_Baby(8);
+		BSP_MotorControl_Move(0, BACKWARD, steps);
+		BSP_MotorControl_WaitWhileActive(0);
+}
+
+
+void InjectBigWork(uint32_t steps)
+{
+		PowerStep_Select_Motor_Baby(7);
+		BSP_MotorControl_Move(0, BACKWARD, steps);
+		BSP_MotorControl_WaitWhileActive(0);
+}
+
+void  InjectLiquidTask(void)
+{
+		RestInjectAllPosition();
+		InjectBigWork(50000);
+		InjectLittleWork(50000);
+}	
+
+
+
+
+/****************************sample inject end************************************/
+
+
+
+
+
+
+
 
 
 
 
 void FactoryMotorTestMode_many(void)
 {
-int i,result,value;
+	int i,result,value;
 	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
   BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
 	
@@ -180,6 +369,12 @@ int i,result,value;
 			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
   }		
 	
+	
+	
+	
+			//InjectLiquidTask();
+		//CollectSampleTask();
+	//return ;
 	//开机自检
 	FirstOpenMotorCheckPosition();
 
@@ -204,114 +399,7 @@ int i,result,value;
 							//step 2：准备next position
 							if(ReadyAndCheckNextPosition()){
 									printf("ready next position fail \r\n");
-									break;
-							}else{
-									printf("ready next position successful \r\n");
-									//step 3  移动next ->blank position 电机会自动复位
-									if(NextMoveTowardBlankPosition()){
-												printf("next->balnk position fail \r\n");
-												break;
-									}else{
-												printf("next->balnk position successful \r\n");
-												//step 4：清空wait position
-												if(!ClearAndCheckWaitPosition()){
-														printf("clear wait position fail \r\n");
-														break;
-												}else{
-														printf("clear wait position successful \r\n");
-														//step 5：准备left position
-														if(ReadyAndCheckLeftPosition()){
-																	printf("ready left position fail \r\n");
-																	break;
-														}else{
-																	printf("ready left position successful \r\n");
-																	//step 6：移动 left->wait 电机会自动复位
-																	if(LeftMoveTowardWaitPosition()){
-																				printf("left -> move position fail \r\n");
-																	}else{
-																				printf("left -> move position successful \r\n");
-																	}
-																	printf("circle over \r\n");
-																	break;
-														}
-												}
-									}
-							}
-				}
-			}
-		}
-	delay_ms(500);	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void FactoryMotorTestMode_many2(void)
-{
-int i,result,value;
-	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
-	
-	
-		
-	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
-			result=ConfigMotorAllDevice(i);//配置电机参数
-			init_motor_device(TempMotor);//把电机参数保存在数组里
-			PowerStep_Select_Motor_Baby(i);
-			
-			if(!result){
-				Powerstep01_Init_Register(&motor_config_array[i]);//后续再需要初始化，无需上位机填写
-			}
-			else
-			{	
-				Powerstep01_Init_Register(NULL);
-			}
-			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
-  }		
-	
-	//开机自检
-	FirstOpenMotorCheckPosition();
-
-
-	
-	while(1){
-#if 0			
-		//等待试管架放置完毕
-			//刷下信号 就可以启动
-			while(!Light_Sensor_Get(24)){
-			//StopALLMotorMotion();
-				delay_ms(10);
-			}
-#endif			
-			while(1){
-				//step 1：清空blank position
-					if(!ClearAndCheckBlankPosition()){
-						printf("clear blank position fail \r\n");
-						break;
-					}else{
-							printf("clear blank position successful \r\n");
-							//step 2：准备next position
-							if(ReadyAndCheckNextPosition()){
-									printf("ready next position fail \r\n");
-									break;
+									//break;
 							}else{
 									printf("ready next position successful \r\n");
 								

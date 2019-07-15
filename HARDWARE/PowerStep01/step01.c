@@ -69,8 +69,9 @@ union powerstep01_Init_u init_voltage =
   244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
   POWERSTEP01_BOOST_MODE_OFF, // Boost of the amplitude square wave, enum powerstep01_BoostMode_t
   281.25, // Overcurrent threshold settings via enum powerstep01_OcdTh_t
-  STEP_MODE_1_16, // Step mode settings via enum motorStepMode_t
-  POWERSTEP01_SYNC_SEL_DISABLED, // Synch. Mode settings via enum powerstep01_SyncSel_t
+ // STEP_MODE_1_16, // Step mode settings via enum motorStepMode_t
+  STEP_MODE_1_16,
+	POWERSTEP01_SYNC_SEL_DISABLED, // Synch. Mode settings via enum powerstep01_SyncSel_t
   (POWERSTEP01_ALARM_EN_OVERCURRENT|
    POWERSTEP01_ALARM_EN_THERMAL_SHUTDOWN|
    POWERSTEP01_ALARM_EN_THERMAL_WARNING|
@@ -224,16 +225,55 @@ int ConfigMotorAllDevice(int chip)
    		break;
 		case 5:
 			TempMotor.request.devices=chip;
-			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=120;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
+		  TempMotor.request.init_motor.motor_config.current.current_value=150;
+   		break;
+		case 6:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=25;
+			TempMotor.request.init_motor.motor_config.current.current_value=150;
+		
+   		break;	
+		case 7:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.current.current_value=150;
+		
+   		break;			
+		case 8:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		  TempMotor.request.init_motor.motor_config.current.current_value=150;
 		
-   		break;	
+   		break;		
 		case 13:
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
