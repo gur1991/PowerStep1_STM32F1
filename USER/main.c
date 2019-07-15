@@ -14,7 +14,8 @@
 #include "master_uart_control_interface.h"
 #include "printpaper.h"
 #include "baby18dad400.h"
-
+#include "factory_single.h"
+#include "factory_many.h"
 
 
 int main(void)
@@ -48,10 +49,16 @@ int main(void)
 
 
 
-	FactoryMotorTestMode();
+	//FactoryMotorTestMode_single();
+	FactoryMotorTestMode_many2();
 while(1){
 	
-	
+			for(i=1;i<=6;i++)
+		{
+				value=Light_Sensor_Get(i);
+				printf("light[%d]:%d\r\n",i,value);
+				delay_ms(100);
+		}
 
 #if 0
 				if(FLAG_UART_MASTER){

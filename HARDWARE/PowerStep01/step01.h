@@ -38,7 +38,6 @@ void FirstOpenMotorCheckPosition(void);
 void RestAllMotorPosition(void);
 
 
-void FactoryMotorTestMode(void);
 
 typedef struct
 {

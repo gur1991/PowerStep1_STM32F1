@@ -684,6 +684,16 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PowerStep01\step01.c</FilePath>
             </File>
+            <File>
+              <FileName>factory_many.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PowerStep01\factory_many.c</FilePath>
+            </File>
+            <File>
+              <FileName>factory_single.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PowerStep01\factory_single.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

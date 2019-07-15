@@ -183,7 +183,7 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
 		
    		break;
 		case 2:
@@ -195,7 +195,7 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
 		
    		break;
 		case 3:
@@ -207,7 +207,7 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
 		
    		break;
 		case 4:
@@ -219,7 +219,7 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
 		
    		break;
 		case 5:
@@ -390,8 +390,8 @@ void RestAllMotorPosition(void)
 		StopALLMotorMotion();
 		
 }
-
-void FactoryMotorTestMode(void)
+/*
+void FactoryMotorTestMode_single(void)
 {
 	int i,result,value;
 	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
@@ -429,6 +429,7 @@ while(1){
 	if(!Light_Sensor_Get(1)){
 			printf("check to stop motor 1\r\n");
 			PowerStep_Select_Motor_Baby(1);
+			//delay_ms(300);
 			BSP_MotorControl_HardStop(0);
 			RestSelectMotorPosition(1,6,120,BACKWARD);
 		
@@ -453,6 +454,7 @@ while(1){
 	
 	if(!Light_Sensor_Get(4)){
 			PowerStep_Select_Motor_Baby(4);
+			delay_ms(300);
 			BSP_MotorControl_HardStop(0);
 		
 			RestSelectMotorPosition(4,3,120,BACKWARD);
@@ -500,12 +502,9 @@ while(1){
 	}
 
 
-
-
-
 }	
 
-
+*/
 
 
 
