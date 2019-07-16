@@ -55,7 +55,10 @@ int ReadyAndCheckNextPosition(void)
 				  i++;
 					if(!Light_Sensor_Get(2))
 					{
-								delay_ms(2*1000);
+								BSP_MotorControl_HardStop(0);
+							//光感检测到后，多跑一会，让试管摆正
+								BSP_MotorControl_Move(0, BACKWARD, 5000);
+								BSP_MotorControl_WaitWhileActive(0);
 								BSP_MotorControl_HardStop(0);
 								break;
 					}else if(i>=1000)
@@ -83,8 +86,11 @@ int ReadyAndCheckLeftPosition(void)
 		{
 				  i++;
 					if(!Light_Sensor_Get(12))
-					{
-								delay_ms(2*1000);
+					{			
+								BSP_MotorControl_HardStop(0);
+								//光感检测到后，多跑一会，让试管摆正
+								BSP_MotorControl_Move(0, BACKWARD, 5000);
+								BSP_MotorControl_WaitWhileActive(0);
 								BSP_MotorControl_HardStop(0);
 								break;
 					}else if(i>=1000)
@@ -105,7 +111,8 @@ int ReadyAndCheckLeftPosition(void)
 //无 1   有 0
 int NextMoveTowardBlankPosition(void)
 {
-			int i;
+			int i=0,times=2500;
+	
 			printf("next -> blank\r\n");
 			PowerStep_Select_Motor_Baby(4);
 			BSP_MotorControl_Move(0, FORWARD, 20000);
@@ -117,6 +124,7 @@ int NextMoveTowardBlankPosition(void)
 			
 			//BSP_MotorControl_Move(0, FORWARD, 4000);
 			while(1){
+					i++;
 					if(Light_Sensor_Get(23))
 					{
 							PowerStep_Select_Motor_Baby(4);
@@ -127,12 +135,14 @@ int NextMoveTowardBlankPosition(void)
 							BSP_MotorControl_Move(0, FORWARD, 600);
 							BSP_MotorControl_WaitWhileActive(0);//走过一个试管的长度，避免重复检测一个
 							BSP_MotorControl_Move(0, FORWARD, 20000);//再继续前行
+							times-=80;
 					}
 					if(!Light_Sensor_Get(4)){
-							delay_ms(300);
 							BSP_MotorControl_HardStop(0);
 							break;
-					}else if(i>=200){
+					}else if(i>=times){
+							//此处添加的目的是，防止传感器每检测到试管，也要停止
+							//停止计算的方法是预设跑一次25s，每检测到一个试管减少0.8s，最多减少10s
 							BSP_MotorControl_HardStop(0);
 							break;	
 					}
@@ -159,7 +169,6 @@ int LeftMoveTowardWaitPosition(void)
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(1)){
-						//delay_ms(300);
 						BSP_MotorControl_HardStop(0);
 						break;
 				}else if(i>=200){
