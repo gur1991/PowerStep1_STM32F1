@@ -82,7 +82,7 @@ int ReadyAndCheckLeftPosition(void)
 		while(1)
 		{
 				  i++;
-					if(!Light_Sensor_Get(24))
+					if(!Light_Sensor_Get(12))
 					{
 								delay_ms(2*1000);
 								BSP_MotorControl_HardStop(0);
@@ -95,7 +95,7 @@ int ReadyAndCheckLeftPosition(void)
 					delay_ms(10);
 		}
 	
-		return Light_Sensor_Get(24);
+		return Light_Sensor_Get(12);
 }
 
 
@@ -106,7 +106,7 @@ int ReadyAndCheckLeftPosition(void)
 int NextMoveTowardBlankPosition(void)
 {
 			int i;
-			printf("next to blank\r\n");
+			printf("next -> blank\r\n");
 			PowerStep_Select_Motor_Baby(4);
 			BSP_MotorControl_Move(0, FORWARD, 20000);
 
@@ -117,9 +117,7 @@ int NextMoveTowardBlankPosition(void)
 			
 			//BSP_MotorControl_Move(0, FORWARD, 4000);
 			while(1){
-					i=Light_Sensor_Get(23);
-				  printf("check exsit:%d\r\n",i);
-					if(i)
+					if(Light_Sensor_Get(23))
 					{
 							PowerStep_Select_Motor_Baby(4);
 							BSP_MotorControl_HardStop(0);
@@ -161,7 +159,6 @@ int LeftMoveTowardWaitPosition(void)
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(1)){
-						printf("check to stop motor 1\r\n");
 						//delay_ms(300);
 						BSP_MotorControl_HardStop(0);
 						break;
@@ -189,7 +186,6 @@ void RestCollectHorizontalPosition(void)
 					}
 					delay_ms(1);
 		}
-		//BSP_MotorControl_CmdResetPos(0);
 }
 void RestCollectVerticalPosition(void)
 {
@@ -204,7 +200,6 @@ void RestCollectVerticalPosition(void)
 					}
 					delay_ms(1);
 		}
-		//BSP_MotorControl_CmdResetPos(0);
 		
 }
 void RestCollectAllPosition(void)
@@ -228,6 +223,7 @@ void  CollectSampleTask(void)
 		PowerStep_Select_Motor_Baby(6);
 		BSP_MotorControl_Move(0, FORWARD, 170000);
 		BSP_MotorControl_WaitWhileActive(0);
+		InjectLiquidTask();
 #if 1	
 		//垂直向上70000
 		PowerStep_Select_Motor_Baby(6);
@@ -243,6 +239,7 @@ void  CollectSampleTask(void)
 		PowerStep_Select_Motor_Baby(6);
 		BSP_MotorControl_Move(0, FORWARD, 70000);
 		BSP_MotorControl_WaitWhileActive(0);
+		RestInjectAllPosition();
 		
 		//垂直向上35000
 		PowerStep_Select_Motor_Baby(6);
@@ -276,7 +273,7 @@ void  CollectSampleTask(void)
 void RestInjectBigPosition(void)
 {
 		PowerStep_Select_Motor_Baby(7);
-		BSP_MotorControl_Move(0, FORWARD, 200000);
+		BSP_MotorControl_Move(0, BACKWARD, 200000);
 		while(1)
 		{
 					if(!Light_Sensor_Get(9))
@@ -290,7 +287,7 @@ void RestInjectBigPosition(void)
 void RestInjectLittlePosition(void)
 {
 		PowerStep_Select_Motor_Baby(8);
-		BSP_MotorControl_Move(0, FORWARD, 200000);
+		BSP_MotorControl_Move(0, BACKWARD, 200000);
 		while(1)
 		{
 					if(!Light_Sensor_Get(10))
@@ -312,7 +309,7 @@ void RestInjectAllPosition(void)
 void InjectLittleWork(uint32_t steps)
 {
 		PowerStep_Select_Motor_Baby(8);
-		BSP_MotorControl_Move(0, BACKWARD, steps);
+		BSP_MotorControl_Move(0, FORWARD, steps);
 		BSP_MotorControl_WaitWhileActive(0);
 }
 
@@ -320,28 +317,17 @@ void InjectLittleWork(uint32_t steps)
 void InjectBigWork(uint32_t steps)
 {
 		PowerStep_Select_Motor_Baby(7);
-		BSP_MotorControl_Move(0, BACKWARD, steps);
+		BSP_MotorControl_Move(0, FORWARD, steps);
 		BSP_MotorControl_WaitWhileActive(0);
 }
 
 void  InjectLiquidTask(void)
 {
-		RestInjectAllPosition();
-		InjectBigWork(50000);
-		InjectLittleWork(50000);
+		InjectBigWork(30000);
+		InjectLittleWork(30000);
 }	
 
-
-
-
 /****************************sample inject end************************************/
-
-
-
-
-
-
-
 
 
 
@@ -372,12 +358,12 @@ void FactoryMotorTestMode_many(void)
 	
 	
 	
-			//InjectLiquidTask();
+//			InjectLiquidTask();
 		//CollectSampleTask();
-	//return ;
+//	return ;
 	//开机自检
 	FirstOpenMotorCheckPosition();
-
+	RestInjectAllPosition();
 
 	
 	while(1){

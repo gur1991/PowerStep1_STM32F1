@@ -7,4 +7,7 @@ void FactoryMotorTestMode_many(void);
 
 void  CollectSampleTask(void);
 
+void InjectLiquidTask(void);
+
+void RestInjectAllPosition(void);
 #endif

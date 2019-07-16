@@ -690,7 +690,7 @@
       <GroupNumber>5</GroupNumber>
       <FileNumber>39</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.c</PathWithFileName>
@@ -918,7 +918,7 @@
       <GroupNumber>5</GroupNumber>
       <FileNumber>58</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\PowerStep01\factory_many.c</PathWithFileName>
