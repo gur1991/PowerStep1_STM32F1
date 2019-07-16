@@ -10,4 +10,6 @@ void  CollectSampleTask(void);
 void InjectLiquidTask(void);
 
 void RestInjectAllPosition(void);
+
+void MixingLiquidTask(void);
 #endif

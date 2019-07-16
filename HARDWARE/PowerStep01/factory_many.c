@@ -129,6 +129,7 @@ int NextMoveTowardBlankPosition(void)
 					{
 							PowerStep_Select_Motor_Baby(4);
 							BSP_MotorControl_HardStop(0);
+						  MixingLiquidTask();
 							CollectSampleTask();
 							
 							PowerStep_Select_Motor_Baby(4);
@@ -337,8 +338,65 @@ void  InjectLiquidTask(void)
 }	
 
 /****************************sample inject end************************************/
+/****************************sample mixing start************************************/
+
+void RestMixingAltitudeOriginPosition(void)
+{
+		PowerStep_Select_Motor_Baby(10);
+		BSP_MotorControl_Move(0, BACKWARD, 200000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(13))
+					{
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+}
 
 
+void MoveMixingAltitudeWorkPosition(void)
+{
+		PowerStep_Select_Motor_Baby(10);
+		BSP_MotorControl_Move(0, FORWARD, 200000);
+		while(1)
+		{
+					if(!Light_Sensor_Get(14))
+					{
+								BSP_MotorControl_HardStop(0);
+								break;
+					}
+					delay_ms(1);
+		}
+}
+//扫码
+void MixingExecutorScan(uint32_t Speed,uint32_t Steps)
+{
+		ChangeSpeedMotorRun(9, Steps, Speed, BACKWARD);
+}
+//先慢转，再快转
+void MixingExecutorWork(uint32_t lowSpeed,uint32_t lowSteps, uint32_t highSpeed,uint32_t highSteps )
+{
+		ChangeSpeedMotorRun(9, lowSteps, lowSpeed, BACKWARD);
+		ChangeSpeedMotorRun(9, lowSteps, lowSpeed, FORWARD);
+	
+		ChangeSpeedMotorRun(9, highSteps, highSpeed, BACKWARD);
+		ChangeSpeedMotorRun(9, highSteps, highSpeed, FORWARD);
+}
+
+void MixingLiquidTask(void)
+{
+		MoveMixingAltitudeWorkPosition();
+	
+		MixingExecutorScan(3,1800);
+		delay_ms(1*1000);
+	
+		MixingExecutorWork(700,10000,3000,100000);
+	  RestMixingAltitudeOriginPosition();
+}
+
+/****************************sample mixing end************************************/
 
 
 void FactoryMotorTestMode_many(void)
@@ -366,13 +424,14 @@ void FactoryMotorTestMode_many(void)
 	
 	
 	
-	
+	//			MixingLiquidTask();
 //			InjectLiquidTask();
 		//CollectSampleTask();
 //	return ;
 	//开机自检
 	FirstOpenMotorCheckPosition();
 	RestInjectAllPosition();
+	RestMixingAltitudeOriginPosition();
 
 	
 	while(1){

@@ -274,6 +274,32 @@ int ConfigMotorAllDevice(int chip)
 		  TempMotor.request.init_motor.motor_config.current.current_value=150;
 		
    		break;		
+	case 9:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=30000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=30000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=15000;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		  TempMotor.request.init_motor.motor_config.current.current_value=50;
+		
+   		break;		
+	case 10:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		  TempMotor.request.init_motor.motor_config.current.current_value=150;
+		
+   		break;		
 		case 13:
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
