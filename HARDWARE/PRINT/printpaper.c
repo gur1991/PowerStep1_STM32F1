@@ -1520,6 +1520,7 @@ u8 Printer_Formart_Bmp(void){
 		Printer_Nv_BMP();
 		Printer_Control_Blank_Space(80);//µ÷ÕûÇÐµ¶Î»ÖÃ
 		//Printer_Control_CutPaper(0,0);
+		return 0;
 }
 static u8 txbufNbmberValue[10]="HA0001";
 static u8 txbufSoftVersionValue[10]="v1.00";

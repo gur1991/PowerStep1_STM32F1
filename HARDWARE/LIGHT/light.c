@@ -1,6 +1,6 @@
 #include "light.h"
 #include "delay.h"
-
+#include <string.h>
 //按键初始化函数
 void Light_Sensor_Init(void)
 {

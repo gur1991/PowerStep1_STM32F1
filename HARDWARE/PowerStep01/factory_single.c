@@ -1,5 +1,6 @@
 #include "factory_single.h"
-
+#include "delay.h"
+#include "delay.h"
 void FactoryMotorTestMode_single(void)
 {
 	int i,result,value;

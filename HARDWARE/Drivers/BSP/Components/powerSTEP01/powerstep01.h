@@ -48,7 +48,7 @@
 #include "stdint.h"
 #include "motor.h"   
 #include "x_nucleo_ihmxx.h"
-
+#include "x_nucleo_ihm03a1_stm32f1xx.h"
 
 #define inline __inline	 
 	

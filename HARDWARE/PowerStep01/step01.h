@@ -37,7 +37,8 @@ void FirstOpenMotorCheckPosition(void);
 //同步复位---discard
 void RestAllMotorPosition(void);
 
-
+//配置motor参数
+int ConfigMotorAllDevice(int chip);
 
 typedef struct
 {

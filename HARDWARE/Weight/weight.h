@@ -43,7 +43,11 @@ struct{
 
 
 uint8_t Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_type weight);
+
 uint8_t Get_All_Weight_Sensor_Warnning_Result(void);
+
+void Set_Weight_Sensor_Warnning_Line(WEIGHT_type weight,int gram);
+
 #endif
 
 

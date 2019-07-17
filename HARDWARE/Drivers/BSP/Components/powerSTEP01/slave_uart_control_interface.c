@@ -103,7 +103,7 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 			
 			printf("slave devices %d \r\n",performer.request.devices);
 			//此函数不连接硬件阻塞
-			data->response.result_para=BSP_MotorControl_CmdGetParam(performer.request.devices, performer.request.para);
+//			data->response.result_para=BSP_MotorControl_CmdGetParam(performer.request.devices, performer.request.para);
 			printf("slave para %d \r\n",performer.request.para);
 			data->response.ret=0;
 }

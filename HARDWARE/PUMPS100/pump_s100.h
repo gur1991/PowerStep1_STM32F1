@@ -56,5 +56,7 @@ struct{
 }pump_s100_command_type_t;
 
 
+uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pump_s100_reply_type_t* reply,u16 timeout);
 
 #endif
+

@@ -1,6 +1,6 @@
 
 #include "factory_many.h"
-
+#include "delay.h"
 
 
 //右下角第一位为blank position 位

@@ -1,5 +1,5 @@
 #include "step01.h"
-
+#include <string.h>
 
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
 init_motor_speed_tension_type_t TempMotor;

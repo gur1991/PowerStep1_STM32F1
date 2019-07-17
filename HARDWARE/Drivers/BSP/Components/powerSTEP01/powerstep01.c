@@ -335,18 +335,15 @@ void Powerstep01_Init(void* pInit)
 	
   if(Powerstep01_Board_SpiInit() != 0)
   {
-		printf("spi init error \r\n");
     /* Initialization Error */
    // Powerstep01_ErrorHandler(POWERSTEP01_ERROR_0);
   } 
-  printf("spi init ok \r\n");
   /* configure the step clock */
   //Powerstep01_Board_StepClockInit();
 
   /* Standby-reset deactivation */
   //Powerstep01_Board_ReleaseReset(powerstep01DriverInstance);//此处全部置高
   Powerstep01_Board_ReleaseReset_All();
-	printf("spi rest ok \r\n");
 
   /* Let a delay after reset */
   Powerstep01_Board_Delay(20);

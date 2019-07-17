@@ -278,6 +278,7 @@ static BabyCall GetOperationFunction(Baby18Call_type_t TYPE){
 			case HARDWARE_VERSION_READ:return baby18_hardware_version_read_protocol;
 			case MODEL_READ:return baby18_model_read_protocol;
 		}
+	return NULL;
 }
 /***********************new world*******************************/
 					//KEY_BABY18[0]='D';
