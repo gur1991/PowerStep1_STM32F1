@@ -148,7 +148,7 @@ struct{
 typedef union{ 
 struct{
 		uint8_t devices;//1,2
-		uint8_t dir;
+		motorDir_t dir;
 		uint32_t steps;//+forward -backward
 }request;
 struct{
@@ -191,7 +191,7 @@ typedef union{
 //获得参数----4
 struct{
 		uint8_t devices;//1,2
-		uint8_t para;
+		powerstep01_Registers_t para;
 }request;
 struct{
 		uint32_t result_para;
@@ -202,7 +202,7 @@ struct{
 typedef union{
 struct{
 		uint8_t devices;//1,2
-		uint8_t para;
+		powerstep01_Registers_t para;
 		uint32_t value;
 }request;
 struct{

@@ -84,7 +84,7 @@ typedef struct {
 		GPIO_VALUE_type cs;
 }powerStep01_select_type_t;
 
-void PowerStep_Select_Motor_Baby(int chip);
+void PowerStep_Select_Motor_Baby(uint8_t chip);
 
 extern GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
 extern uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;

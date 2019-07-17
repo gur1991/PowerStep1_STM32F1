@@ -1,5 +1,6 @@
 #include "slave_uart_control_interface.h"
 
+//discard 
 static void protocol_powerstep01_move(move_type_t* data){
 		
 		move_type_t performer;
@@ -7,91 +8,92 @@ static void protocol_powerstep01_move(move_type_t* data){
 		performer.request.steps=data->request.steps;
 		performer.request.types=data->request.types;
 		
-		printf("slave devices %d \r\n",performer.request.devices);
-		printf("slave steps %d \r\n",performer.request.steps);
-		printf("slave types %d \r\n",performer.request.types);
-	
-		Powerstep01_QueueCommands(performer.request.devices,performer.request.types,performer.request.steps);
+
+		//Powerstep01_QueueCommands(performer.request.devices,performer.request.types,performer.request.steps);
 		data->response.ret=0;	
 		
 }
 
+//Ö¸ÁîÖØÐÂ½âÊÍÎªÍ£Ö¹stop 
 static void protocol_powerstep01_power(power_type_t* data){
 			
 		power_type_t performer;
 		performer.request.devices=data->request.devices;
 		performer.request.power=data->request.power;
-		
-		printf("slave devices %d \r\n",performer.request.devices);
-		if(performer.request.power==0)BSP_MotorControl_CmdSoftStop(performer.request.devices);
-		printf("slave power %d \r\n",performer.request.power);
+	printf("stop value:%d\r\n",performer.request.devices);	
+		//0xffÎªÍ£Ö¹ËùÓÐµç»ú
+		if(performer.request.devices==0xff)
+		{
+				StopALLMotorMotion();
+		}else{
+					PowerStep_Select_Motor_Baby(performer.request.devices);
+					BSP_MotorControl_HardStop(0);
+		}
+	
 		data->response.ret=0;
 	
 }
-
+//¸´Î»Ô­µã
 static void protocol_powerstep01_rest_pos(rest_pos_type_t* data){
 		rest_pos_type_t performer;
 		performer.request.devices=data->request.devices;
-		
-		printf("slave devices %d \r\n",performer.request.devices);
+	
+		PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_CmdResetPos(performer.request.devices);//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-		printf("slave devices2 %d \r\n",performer.request.devices);
 		data->response.ret=0;
 }
-
+//discard 
 static void protocol_powerstep01_send_command_and_wait_no_busy(send_command_and_wait_no_busy_type_t* data){
 		send_command_and_wait_no_busy_type_t performer;
 		
-		printf("slave wait  \r\n"); 
-		BSP_MotorControl_SendQueuedCommands();
+		//BSP_MotorControl_SendQueuedCommands();
     /* Wait for all device ends moving */ 
-    BSP_MotorControl_WaitForAllDevicesNotBusy();//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-		printf("slave busy  \r\n");
+    //BSP_MotorControl_WaitForAllDevicesNotBusy();//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
 		data->response.ret=0;	
 }
 
+//µ¥¸öµç»úÔË¶
+//·½Ïò²»ÄÜÓÃÃ¶Åe£¬·ñÔòÊý¾Ý»ìÂÒ
 static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		one_device_move_type_t performer;
 		
 		performer.request.devices = data->request.devices;
+		performer.request.dir=data->request.dir;
 		performer.request.steps = data->request.steps;
 	
-		printf("slave devices %d \r\n",performer.request.devices);
+		PowerStep_Select_Motor_Baby(performer.request.devices);
+		BSP_MotorControl_Move(0, performer.request.dir, performer.request.steps);
 
-		//´Ëº¯Êý²»Á¬½Óµç»ú»á×èÈû
-		//BSP_MotorControl_GoTo(performer.request.devices,performer.request.steps);
-		printf("slave steps %d \r\n",performer.request.steps);	
-		data->response.ret=0;
+	  data->response.ret=0;
 		
 }
-
+//µÈ´ýµ¥¸öµç»úÔË¶¯Í£Ö¹
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
 		one_device_wait_type_t performer;
 		performer.request.devices=data->request.devices;
-		printf("slave devices %d \r\n",performer.request.devices);
-		BSP_MotorControl_WaitWhileActive(performer.request.devices);//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-		printf("slave devices2 %d \r\n",performer.request.devices);
+	printf("wait stop \r\n");
+		PowerStep_Select_Motor_Baby(performer.request.devices);
+		BSP_MotorControl_WaitWhileActive(0);	
 		data->response.ret=0;
 }
 
+//»ñÈ¡µ±Ç°Î»ÖÃ
 static void protocol_powerstep01_one_device_get_pos(one_device_get_pos_type_t*data){
 			one_device_get_pos_type_t performer;
 			performer.request.devices=data->request.devices;
-			printf("slave devices %d \r\n",performer.request.devices);
+	
+			PowerStep_Select_Motor_Baby(performer.request.devices);
 			data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
 	
-			data->response.pos=876;
-			printf("slave devices2 %d \r\n",performer.request.devices);
 		  data->response.ret=0;
 }
 static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*data){
 			one_device_set_mark_type_t performer;
 			performer.request.devices=data->request.devices;
 			performer.request.pos=data->request.pos;
-	
-			printf("slave devices %d \r\n",performer.request.devices);
-			BSP_MotorControl_SetMark(performer.request.devices, performer.request.pos);//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-			printf("slave pos %d \r\n",performer.request.pos);
+		
+			PowerStep_Select_Motor_Baby(performer.request.devices);
+			BSP_MotorControl_SetMark(0, performer.request.pos);//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
 			data->response.ret=0;
 }
 
@@ -101,10 +103,9 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.para=data->request.para;
 			
-			printf("slave devices %d \r\n",performer.request.devices);
-			//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-//			data->response.result_para=BSP_MotorControl_CmdGetParam(performer.request.devices, performer.request.para);
-			printf("slave para %d \r\n",performer.request.para);
+			PowerStep_Select_Motor_Baby(performer.request.devices);
+			data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.para);
+
 			data->response.ret=0;
 }
 static void protocol_powerstep01_set_para(set_para_type_t*data){
@@ -112,10 +113,9 @@ static void protocol_powerstep01_set_para(set_para_type_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.para=data->request.para;
 			performer.request.value=data->request.value;
-			printf("slave devices %d \r\n",performer.request.devices);
-	//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-			BSP_MotorControl_CmdSetParam(performer.request.devices,performer.request.para,performer.request.value);
-			printf("slave para %d \r\n",performer.request.para);
+	
+			PowerStep_Select_Motor_Baby(performer.request.devices);
+			BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.value);
 			data->response.ret=0;
 }
 static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
@@ -123,27 +123,27 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.StepMode=data->request.StepMode;
 			
-			printf("slave devices %d \r\n",performer.request.devices);
-	//´Ëº¯Êý²»Á¬½ÓÓ²¼þ×èÈû
-			BSP_MotorControl_SelectStepMode(performer.request.devices, performer.request.StepMode);
-			printf("slave StepMode %d \r\n",performer.request.StepMode);
+			PowerStep_Select_Motor_Baby(performer.request.devices);
+			BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
 			data->response.ret=0;
 }
 
+//discard
 static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*data){
 			init_motor_speed_tension_type_t performer;
 
-			memcpy(&performer, data,sizeof(performer));
-			data->response.ret=init_motor_device(performer);
+			//memcpy(&performer, data,sizeof(performer));
+			//data->response.ret=init_motor_device(performer);
 }	
-
+//discard
 static void protocol_move_many_motor(move_many_motor_type_t*data){
 			move_many_motor_type_t performer;
 			
 			memcpy(&performer, data,sizeof(performer));
 			move_many_motor(performer);
 			data->response.ret=0;
-}	
+}
+//discard
 static void protocol_wait_many_motor(wait_many_motor_type_t*data){
 			wait_many_motor_type_t performer;
 			
@@ -152,10 +152,22 @@ static void protocol_wait_many_motor(wait_many_motor_type_t*data){
 			data->response.ret=0;
 }
 
+static void protocol_command_package_motor(motor_command_package_type_t*data)
+{
+		motor_command_package_type_t performer;
+		performer.request.command = data->request.command;
+		process_motor_command_receive(performer.request.command);
+		data->response.ret=0;
+}	
+
+
+
+
+
+
 static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
-			
 			printf("gggg slave devices %d \r\n",performer.request.number);
 			data->response.value=Light_Sensor_Get(performer.request.number);
 			data->response.ret=0;
@@ -163,11 +175,10 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 
 static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*data){
 			get_all_light_sensor_level_t performer;
-		//	performer.request.number=data->request.number;
-			//printf("slave devices %d \r\n",performer.request.number);
-			//Light_Sensor_Get_All();
-			//memcpy(data->response.value,gStatusLight,sizeof(gStatusLight));		
-			printf("l");
+			
+			Light_Sensor_Get_All();
+			memcpy(data->response.value, gStatusLight, sizeof(gStatusLight));		
+			printf("all light\r\n ");
 			data->response.ret=0;
 }
 
@@ -515,6 +526,14 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		printf("start slave uart\r\n");
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
+		
+	
+		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
+		{
+				printf("receive data len error !\r\n");
+				goto OVER;
+		}
+		
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
 					printf("check flag error!\r\n");
 					goto OVER;
@@ -562,6 +581,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;
 			case WAIT_MANY_MOTOR:
 						protocol_wait_many_motor(&slave_motorCommand.CommandPowerStep1.wait_many_motor);
+						break;
+			case COMMAND_PACKAGE_MOTOR:
+					  protocol_command_package_motor(&slave_motorCommand.CommandPowerStep1.motor_command_package);
 						break;
 			case GET_LIGHT_LEVEL_TYPE:
 						protocol_get_light_sensor_level(&slave_motorCommand.CommandPowerStep1.get_light_sensor_level);

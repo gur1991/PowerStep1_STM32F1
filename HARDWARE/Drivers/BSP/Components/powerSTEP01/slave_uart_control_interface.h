@@ -5,6 +5,7 @@
 #include "uart4.h"
 #include "pump_s100.h"
 #include "weight.h"
+#include "factory_many.h"
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void);
 
 #endif

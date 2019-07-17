@@ -214,7 +214,7 @@ uint8_t master_powerStep01_one_device_set_mark(one_device_set_mark_type_t data){
 }
 
 
-uint8_t master_powerStep01_get_para(get_para_type_t data,powerstep01_Registers_t*para){
+uint8_t master_powerStep01_get_para(get_para_type_t data,uint8_t*para){
 		uint8_t ret =0;
 		int len =0;
 		int times =100;

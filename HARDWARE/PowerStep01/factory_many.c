@@ -398,10 +398,10 @@ void MixingLiquidTask(void)
 
 /****************************sample mixing end************************************/
 
-
-void FactoryMotorTestMode_many(void)
+//初始化
+void BSP_Motor_Control_Init(void)
 {
-	int i,result,value;
+int i,result,value;
 	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
   BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
 	
@@ -421,28 +421,15 @@ void FactoryMotorTestMode_many(void)
 			}
 			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
   }		
-	
-	
-	
-	//			MixingLiquidTask();
-//			InjectLiquidTask();
-		//CollectSampleTask();
-//	return ;
-	//开机自检
-	FirstOpenMotorCheckPosition();
-	RestInjectAllPosition();
-	RestMixingAltitudeOriginPosition();
 
+}	
+
+void FactoryMotorTestMode_many(void)
+{
+			FirstOpenMotorCheckPosition();
+			RestInjectAllPosition();
+			RestMixingAltitudeOriginPosition();
 	
-	while(1){
-#if 0			
-		//等待试管架放置完毕
-			//刷下信号 就可以启动
-			while(!Light_Sensor_Get(24)){
-			//StopALLMotorMotion();
-				delay_ms(10);
-			}
-#endif			
 			while(1){
 				//step 1：清空blank position
 					if(!ClearAndCheckBlankPosition()){
@@ -491,6 +478,25 @@ void FactoryMotorTestMode_many(void)
 							
 				}
 			}
-		}
+		
 	delay_ms(500);	
 }
+
+
+
+void process_motor_command_receive(Command_Package_t command)
+{
+	
+		switch(command)
+		{
+			case SLEF_TEST:	
+					printf("here \r\n");
+					FactoryMotorTestMode_many();
+					break;
+			default:
+					break;
+		}	
+
+}
+
+

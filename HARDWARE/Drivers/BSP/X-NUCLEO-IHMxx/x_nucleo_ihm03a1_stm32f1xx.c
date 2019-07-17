@@ -39,7 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
 #include "x_nucleo_ihmxx.h"
-
+#include "stdint.h"	 
 
 GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
 uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
@@ -49,7 +49,7 @@ uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 	
 powerStep01_select_type_t MotorBaby;
 
-void PowerStep_Select_Motor_Baby(int chip)
+void PowerStep_Select_Motor_Baby(uint8_t chip)
 {
 	switch(chip)
 	{

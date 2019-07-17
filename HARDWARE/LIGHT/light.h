@@ -2,11 +2,6 @@
 #define _LIGHT_H
 #include "sys.h"
 
-//下面的方式是通过位带操作方式读取IO
-//#define KEY0        PEin(4) 	//KEY0按键PE4
-//#define KEY1        PEin(3) 	//KEY1按键PE3
-//#define WK_UP       PAin(0) 	//WKUP按键PA0
-
 
 //下面的方式是通过直接操作HAL库函数方式读取IO
 #define LIGHT_VALUE1        HAL_GPIO_ReadPin(GPIOF,GPIO_PIN_4)  //PF4
