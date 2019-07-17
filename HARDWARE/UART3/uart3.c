@@ -35,14 +35,10 @@ void USART3_IRQHandler(void)
 		if(UART3_RX_CNT<2048)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
-			//printf("slave uart %d  UART3_RX_BUF:%d\r\n",UART3_RX_BUF[UART3_RX_CNT],UART3_RX_CNT);
-			//printf(" rx_buf[%d] %d \r\n",UART3_RX_CNT,UART3_RX_BUF[UART3_RX_CNT]);
 			UART3_RX_CNT++;						//接收数据增加1	
 		} 
 		
 		if(UART3_RX_CNT>=3&&UART3_RX_BUF[UART3_RX_CNT-1]==OVER_UART_VALUE1&&UART3_RX_BUF[UART3_RX_CNT-2]==OVER_UART_VALUE0){
-					//printf(" slave over \r\n");
-					//protocol_handle_uart_powerstep01_plain_slave_cmd();
 					FLAG_UART_SLAVE=1;
 		}
 

@@ -156,18 +156,18 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
 			
-			printf("slave devices %d \r\n",performer.request.number);
+			printf("gggg slave devices %d \r\n",performer.request.number);
 			data->response.value=Light_Sensor_Get(performer.request.number);
 			data->response.ret=0;
 }
 
 static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*data){
 			get_all_light_sensor_level_t performer;
-			//performer.request.number=data->request.number;
+		//	performer.request.number=data->request.number;
 			//printf("slave devices %d \r\n",performer.request.number);
-			Light_Sensor_Get_All();
-			memcpy(data->response.value,gStatusLight,sizeof(gStatusLight));		
-	
+			//Light_Sensor_Get_All();
+			//memcpy(data->response.value,gStatusLight,sizeof(gStatusLight));		
+			printf("l");
 			data->response.ret=0;
 }
 
@@ -514,7 +514,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		printf("start slave uart\r\n");
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
-		RS485_Receive_Data((u8*)(&slave_motorCommand),&len);
+		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
 					printf("check flag error!\r\n");
 					goto OVER;
@@ -598,7 +598,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}
 OVER:		
-		RS485_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
+		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 		printf("end slave uart\r\n");
 }
 
