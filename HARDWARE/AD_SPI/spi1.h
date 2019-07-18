@@ -36,7 +36,7 @@ typedef enum{
 //void SPI1_SetSpeed(u8 SPI_BaudRatePrescaler);
 //u8 SPI1_ReadWriteByte(u8 TxData);
 
-void AD_SENSOR_init(void);
+u8 AD_SENSOR_init(void);
 int AD_SENSOR_GET_DATA(AD_type cs);
 
 #define	SPI1_AD1_CS 		PCout(4)  		//AD1_CS

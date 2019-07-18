@@ -143,7 +143,7 @@ void SPI1_Transfer(u8* txData,u8*rxData,int len,AD_type cs){
 		Set_AD_CS(cs,CS_HIGH);
 }
 
-void AD_SENSOR_init(void){
+u8 AD_SENSOR_init(void){
 		SPI1_Init();		   			        //初始化SPI
 		SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
 		
@@ -154,6 +154,7 @@ void AD_SENSOR_init(void){
 		SPI1_AD4_CS=1;
 		SPI1_AD5_CS=1;
 		SPI1_AD6_CS=1;
+		return 0;
 }
 int AD_SENSOR_GET_DATA(AD_type cs){
 		u8 txbuf[3]={0xaa,0xaa,0xaa};

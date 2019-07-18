@@ -238,7 +238,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			performer.request.para=data->request.para;
 			switch(performer.request.para){
 					case CHEMINERT_C52_CP:
-					case CHEMINERT_C55_CP:	
+					case CHEMINERT_C55_CP:
 								tx_size=sizeof(tx_buf_cp);	
 								memcpy(tx_buf,tx_buf_cp,tx_size);
 								break;
@@ -421,7 +421,7 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			
 			printf("size:%d \r\n",sizeof(data->request.para.S100_VALUE));	
 			for(i=0;i<sizeof(data->request.para.S100_VALUE);i++){
-					printf("value gggg:%d\r\n",data->request.para.S100_VALUE[i]);
+					printf("value gggg:0x%x\r\n",data->request.para.S100_VALUE[i]);
 			}	
 	
 			performer.request.para.S100_STX=data->request.para.S100_STX;
@@ -435,7 +435,6 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			performer.request.timeout=data->request.timeout;
 			
 
-			
 			ret=pump_s100_transfer(&(performer.request.para), &type, &s100_reply,performer.request.timeout);
 			
 			data->response.ret=ret;	
@@ -481,9 +480,8 @@ static void protocol_get_single_weight_warning_result_interface(get_single_weigh
 			get_single_weight_warning_result_type_t performer;
 	
 			performer.request.weight=data->request.weight;
-	
+
 			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
-			
 			data->response.ret=0;
 }
 
@@ -502,7 +500,7 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			
 			performer.request.devices=data->request.devices;
 			
-			data->response.degree = Get_Single_Temperature_Degree(performer.request.devices);
+			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
 }
 
@@ -512,8 +510,8 @@ static void protocol_set_single_temperature_degree_interface(set_single_temperat
 		
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
-	
-			Set_Single_Temperature_Degree(performer.request.degree, performer.request.devices);
+		
+			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
 }
 

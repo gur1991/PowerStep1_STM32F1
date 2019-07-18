@@ -1,8 +1,24 @@
 #include "temperature.h"
-
 static int TMP_TEMPERATURE_VALUE_ONE=0; 
 static int TMP_TEMPERATURE_VALUE_TWO=0;
 static int TMP_TEMPERATURE_VALUE=0;
+
+
+Thermometer_t pt1000=
+{
+	AD_SENSOR_init,
+	Get_Single_Temperature_Degree,
+	Set_Single_Temperature_Degree,
+	Main_Keep_Temperature_Degree
+};
+
+
+Thermometer_t* PT1000_GetHandle(void)
+{
+  return (&pt1000);
+}
+
+
 
 static  int temperature_change_to_value(int temperature)
 {

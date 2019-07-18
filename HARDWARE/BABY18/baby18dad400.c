@@ -32,7 +32,7 @@ static int baby18_transfer(uint8_t *key,uint8_t *data,int data_length,int*rx_len
 		delay_ms(TIMEOUT_MS);
 		RS485_Receive_Data(baby18_reponse,&rlen);
 		if(rlen>=5&&(baby18_reponse[rlen-1]==0x0d||baby18_reponse[rlen-1]==0x0a)){
-				if(strncmp(baby18_reponse,baby18_request+1,3)){
+				if(strncmp((const char*)baby18_reponse,(const char*)(baby18_request+1),3)){
 						return -1;
 				}else{
 						*rx_len=rlen;
@@ -266,6 +266,7 @@ int baby18_wavelength_on_channels_write_protocol(uint8_t*data,int length,int tim
 
 
 /******************************this no use******************************************/
+/*
 static BabyCall GetOperationFunction(Baby18Call_type_t TYPE){
 		
 		switch(TYPE){
@@ -280,6 +281,7 @@ static BabyCall GetOperationFunction(Baby18Call_type_t TYPE){
 		}
 	return NULL;
 }
+*/
 /***********************new world*******************************/
 					//KEY_BABY18[0]='D';
 					//KEY_BABY18[1]='T';
@@ -466,7 +468,7 @@ static int Baby_Choose_Key(Baby18Call_type_t TYPE){
 
 static int Baby_Run(uint8_t*tx_buf,int tx_len,int*rx_len,int timeout){
 		int ret=0;
-		int len,i;
+		int len;
 		memcpy(DATA_BABY18,tx_buf,tx_len);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,tx_len,&len,timeout);
 		*rx_len=len;

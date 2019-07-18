@@ -17,7 +17,8 @@
 #include "baby18dad400.h"
 #include "factory_single.h"
 #include "factory_many.h"
-
+#include "keep_temperature.h"
+#include "temperature.h"
 
 int main(void)
 {	
@@ -30,8 +31,14 @@ int main(void)
 	BSP_Motor_Control_Init();
 	UART4_Init(115200);
 	
-//	TIM3_PWM_Init(500-1,72-1);       	//72M/72=1M的计数频率，自动重装载为500，那么PWM频率为1M/500=2kHZ
-//	AD_SENSOR_init();
+	//TIM3_PWM_Init(500-1,72-1);       	//72M/72=1M的计数频率，自动重装载为500，那么PWM频率为1M/500=2kHZ
+	//TIM_SetTIM3Compare4(500);	//修改比较值，修改占空比
+	//温度传感器选择DS18B20，并初始化
+	ThermometerChooseHandle(DS18B20);
+	ThermometerHandle->init();
+	
+	
+	
 	
 //	RS485_Init(115200);//with rk3188 rs232 exchange info
 //	UART3_Init(115200);//with slave rs232 exchange info
@@ -40,9 +47,12 @@ int main(void)
 
 
 		
-//	TIM_SetTIM3Compare4(500);	//修改比较值，修改占空比
+
 
 while(1){
+			//此处延时和内部十分有关系
+		//ThermometerHandle->keep_degree();
+	
 		if(ARM_RS232_ASK){
 						printf("start receive !\r\n");
 						protocol_handle_uart_powerstep01_plain_slave_cmd();
