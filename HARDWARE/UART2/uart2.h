@@ -1,7 +1,6 @@
-#ifndef __UART4_H
-#define __UART4_H
+#ifndef __UART2_H
+#define __UART2_H
 #include "sys.h"
-
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32F103开发板
@@ -15,20 +14,15 @@
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 	
 
+#define MAX_LENGTH 128
 
-#define LEN_MAX_UART4 128
-extern u8 ARM_RS232_ASK;
-extern UART_HandleTypeDef UART4_Handler;
-extern u8 UART4_RX_BUF[LEN_MAX_UART4]; 		
-extern int UART4_RX_CNT;   			
+extern u8 USART2_RX_BUF[MAX_LENGTH]; 	
+extern int USART2_RX_CNT;   			
 
-//模式控制
-#define UART4_TX_EN		1 
-#define EN_USART4_RX 	1		
+extern int FLAG_UART_MASTER;
+extern int FLAG_RECEIVE_ACK;
 
-void UART4_Init(u32 bound);
-void UART4_Send_Data(u8 *buf,int len);
-void UART4_Receive_Data(u8 *buf,int *len);
-
-void HAL_UART_RxCpltCallback_Uart4(void);
+void UART2_Init(u32 bound);
+void UART2_Send_Data(u8 *buf,int len);
+void UART2_Receive_Data(u8 *buf,int *len);	
 #endif

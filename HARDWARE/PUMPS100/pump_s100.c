@@ -73,7 +73,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 		}
 		*/
 									
-		RS485_Send_Data((u8*)data,sizeof(s100_command_t));
+		UART2_Send_Data((u8*)data,sizeof(s100_command_t));
 		while(1){
 			 		if(!timeout){
 						ret=1;
@@ -89,7 +89,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 					}
 					*/
 					if(FLAG_RECEIVE_ACK){
-									RS485_Receive_Data(&result,&len);
+									UART2_Receive_Data(&result,&len);
 						
 									*type=SPECIAL_ACK_S100;
 									reply->SpecialACK.S100_RESULT=result;
@@ -98,7 +98,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 									break;
 					}
 					if(FLAG_UART_MASTER){	
-									RS485_Receive_Data((u8*)(&S100_receive),&len);
+									UART2_Receive_Data((u8*)(&S100_receive),&len);
 									Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 									Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 									
@@ -172,7 +172,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 		CommandData.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		
 		if(FLAG_UART_MASTER){
-					RS485_Receive_Data((u8*)(&S100_receive),&len);
+					UART2_Receive_Data((u8*)(&S100_receive),&len);
 					Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 					Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 									
@@ -186,7 +186,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_PFC,S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_VALUE,S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 								
-								RS485_Send_Data((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
+								UART2_Send_Data((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
 					}
 					
 					FLAG_UART_MASTER=0;//其他事件不去处理

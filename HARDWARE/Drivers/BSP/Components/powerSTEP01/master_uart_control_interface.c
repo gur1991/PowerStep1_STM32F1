@@ -7,10 +7,10 @@ uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
 	
-		RS485_Send_Data((u8*)(master),length_data);
+		UART2_Send_Data((u8*)(master),length_data);
 		while(1){
 			if(FLAG_UART_MASTER){
-					RS485_Receive_Data((u8*)(master),len);
+					UART2_Receive_Data((u8*)(master),len);
 					FLAG_UART_MASTER=0;
 					printf("master receive data ok\r\n");
 					break;		

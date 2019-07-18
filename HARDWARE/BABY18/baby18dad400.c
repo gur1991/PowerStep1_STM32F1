@@ -28,9 +28,9 @@ static int baby18_transfer(uint8_t *key,uint8_t *data,int data_length,int*rx_len
 		}
 		baby18_request[4+data_length]=0x0d;
 		tlen=5+data_length;
-		RS485_Send_Data(baby18_request,tlen);
+		UART2_Send_Data(baby18_request,tlen);
 		delay_ms(TIMEOUT_MS);
-		RS485_Receive_Data(baby18_reponse,&rlen);
+		UART2_Receive_Data(baby18_reponse,&rlen);
 		if(rlen>=5&&(baby18_reponse[rlen-1]==0x0d||baby18_reponse[rlen-1]==0x0a)){
 				if(strncmp((const char*)baby18_reponse,(const char*)(baby18_request+1),3)){
 						return -1;

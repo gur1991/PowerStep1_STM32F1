@@ -9,7 +9,7 @@
 #include "light.h"
 #include "uart3.h"
 #include "uart4.h"
-#include "rs485.h"
+#include "uart2.h"
 #include "light.h"
 //#include "uart_command_control_protocol.h"
 #include "slave_uart_control_interface.h"
@@ -36,10 +36,7 @@ int main(void)
 	//温度传感器选择DS18B20，并初始化
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
-	
-	
-	
-	
+
 //	RS485_Init(115200);//with rk3188 rs232 exchange info
 //	UART3_Init(115200);//with slave rs232 exchange info
 		

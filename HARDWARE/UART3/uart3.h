@@ -14,16 +14,17 @@
 //Copyright(C) 广州市星翼电子科技有限公司 2014-2024
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 	
+#define LEN_MAX_UART3 128
 
-extern u8 FLAG_UART_SLAVE;
+extern u8 FLAG_UART_SLAVE3;
 extern UART_HandleTypeDef USART3_Handler;
-extern u8 UART3_RX_BUF[2048]; 		//接收缓冲,最大64个字节
+extern u8 UART3_RX_BUF[LEN_MAX_UART3]; 		//接收缓冲,最大64个字节
 extern int UART3_RX_CNT;   			//接收到的数据长度
 
-//模式控制
-#define UART3_TX_EN		1 //PDout(7)	//485模式控制.0,接收;1,发送.
-//如果想串口中断接收，设置EN_USART2_RX为1，否则设置为0
-#define EN_USART3_RX 	1			//0,不接收;1,接收.
+
+#define UART3_TX_EN		1
+
+#define EN_USART3_RX 	1		
 
 void UART3_Init(u32 bound);
 void UART3_Send_Data(u8 *buf,int len);
