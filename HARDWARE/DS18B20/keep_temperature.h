@@ -3,12 +3,14 @@
 #include "ds18b20.h"
 #include "temperature.h"
 
+#define MAIN_DELAY 1
+
 //设定温度
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices);
 
 
 //保持温度
-void KeepTemperatureDegree2(void);
+void KeepTemperatureDegree(void);
 
 
 //获得温度
