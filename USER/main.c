@@ -15,10 +15,9 @@
 #include "keep_temperature.h"
 #include "temperature.h"
 #include "uart_choose.h"
+#include "config.h"
+#include "electromagnetic.h"
 
-/*sensor board 和 main board 选择，两块板子选择不同的硬件资源但是协议是一样的*/
-
-#define USE_SENSOR_BOARD 1
 
 int main(void)
 {	
@@ -39,7 +38,12 @@ int main(void)
 
 	UART2_Init(115200);
 	UART3_Init(115200);
-  uart_cs_init();
+  Uart_cs_init();
+	
+	AD_Sensor_Init();//四个重力传感器初始化
+	DS18B20_Init();//初始化溫度傳感器
+	Electromagnetic_init();//电磁阀
+	
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #else
 	Light_Sensor_Init();

@@ -23,7 +23,7 @@ typedef enum{
 }UART_CS_TYPE; 
 
 
-void uart_cs_init(void);
+void Uart_cs_init(void);
 
 int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs);
 

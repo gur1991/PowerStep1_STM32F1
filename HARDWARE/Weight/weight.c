@@ -13,17 +13,17 @@ static void __set_weight_sensor_warnning_line(WEIGHT_type weight,int degree)
 		if(weight==WEIGHT_FOUR)		WARNNIG_VALUE_FOUR= degree;
 }
 /*
-cs3----cs6
+cs1----cs4
 weight1--weight4
 */
 int get_weight_sensor_value(WEIGHT_type weight)
 {
 		int value=0; 
 	
-		if(weight==WEIGHT_ONE)		value = AD_SENSOR_GET_DATA(AD3_CS);
-		if(weight==WEIGHT_TWO)		value = AD_SENSOR_GET_DATA(AD4_CS);
-		if(weight==WEIGHT_THREE)	value = AD_SENSOR_GET_DATA(AD5_CS);
-		if(weight==WEIGHT_FOUR)		value = AD_SENSOR_GET_DATA(AD6_CS);
+		if(weight==WEIGHT_ONE)		value = AD_Sensor_Get_Data(AD1_CS);
+		if(weight==WEIGHT_TWO)		value = AD_Sensor_Get_Data(AD2_CS);
+		if(weight==WEIGHT_THREE)	value = AD_Sensor_Get_Data(AD3_CS);
+		if(weight==WEIGHT_FOUR)		value = AD_Sensor_Get_Data(AD4_CS);
 
 		return value;
 }	

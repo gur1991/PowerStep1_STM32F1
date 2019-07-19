@@ -1,26 +1,25 @@
 #include "ds18b20.h"
 #include "delay.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32F407开发板
-//DS18B20驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2017/4/15
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
+
+static int CHOOSE_DS18B20=1;
 
 //复位DS18B20
 void DS18B20_Rst(void)	   
-{                 
+{ 
+if(CHOOSE_DS18B20==1){	
 	DS18B20_IO_OUT();   //设置为输出
 	DS18B20_DQ_OUT=0;  	//拉低DQ
 	delay_us(750);      //拉低750us
 	DS18B20_DQ_OUT=1;  	//DQ=1 
 	delay_us(15);       //15US
+}else{
+	DS18B20_IO_OUT_T2();   //设置为输出
+	DS18B20_DQ_OUT_T2=0;  	//拉低DQ
+	delay_us(750);      //拉低750us
+	DS18B20_DQ_OUT_T2=1;  	//DQ=1 
+	delay_us(15);       //15US
+
+}	
 }
 
 //等待DS18B20的回应
@@ -29,19 +28,37 @@ void DS18B20_Rst(void)
 u8 DS18B20_Check(void) 	   
 {   
 	u8 retry=0;
+if(CHOOSE_DS18B20==1){		
 	DS18B20_IO_IN();    //设置为输入
     while (DS18B20_DQ_IN&&retry<200)
 	{
 		retry++;
 		delay_us(1);
-	};	 
+	};
+}else
+{
+	DS18B20_IO_IN_T2();    //设置为输入
+    while (DS18B20_DQ_IN_T2&&retry<200)
+	{
+		retry++;
+		delay_us(1);
+	};
+}	
 	if(retry>=200)return 1;
 	else retry=0;
+if(CHOOSE_DS18B20==1){	
     while (!DS18B20_DQ_IN&&retry<240)
 	{
 		retry++;
 		delay_us(1);
 	};
+}else{
+    while (!DS18B20_DQ_IN_T2&&retry<240)
+	{
+		retry++;
+		delay_us(1);
+	};
+}	
 	if(retry>=240)return 1;	    
 	return 0;
 }
@@ -51,6 +68,7 @@ u8 DS18B20_Check(void)
 u8 DS18B20_Read_Bit(void) 
 {
 	u8 data;
+if(CHOOSE_DS18B20==1){	
 	DS18B20_IO_OUT();   //设置为输出
 	DS18B20_DQ_OUT=0; 
 	delay_us(2);
@@ -59,7 +77,18 @@ u8 DS18B20_Read_Bit(void)
 	delay_us(12);
 	if(DS18B20_DQ_IN)data=1;
 	else data=0;	 
-	delay_us(50);           
+	delay_us(50);
+}else{
+	DS18B20_IO_OUT_T2();   //设置为输出
+	DS18B20_DQ_OUT_T2=0; 
+	delay_us(2);
+	DS18B20_DQ_OUT_T2=1; 
+	DS18B20_IO_IN_T2();    //设置为输入
+	delay_us(12);
+	if(DS18B20_DQ_IN_T2)data=1;
+	else data=0;	 
+	delay_us(50);
+}	
 	return data;
 }
 
@@ -83,24 +112,42 @@ void DS18B20_Write_Byte(u8 dat)
  {             
     u8 j;
     u8 testb;
+if(CHOOSE_DS18B20==1){		 
     DS18B20_IO_OUT();     //设置为输出
+}else{
+		DS18B20_IO_OUT_T2();     //设置为输出
+}	
     for (j=1;j<=8;j++) 
 	{
         testb=dat&0x01;
         dat=dat>>1;
         if(testb)       // 写1
         {
-            DS18B20_DQ_OUT=0;
-            delay_us(2);                            
-            DS18B20_DQ_OUT=1;
-            delay_us(60);             
+						if(CHOOSE_DS18B20==1){
+								DS18B20_DQ_OUT=0;
+								delay_us(2);                            
+								DS18B20_DQ_OUT=1;
+								delay_us(60); 
+						}else{
+								DS18B20_DQ_OUT_T2=0;
+								delay_us(2);                            
+								DS18B20_DQ_OUT_T2=1;
+								delay_us(60); 
+						}			
         }
         else            //写0
         {
-            DS18B20_DQ_OUT=0;
-            delay_us(60);             
-            DS18B20_DQ_OUT=1;
-            delay_us(2);                          
+						if(CHOOSE_DS18B20==1){
+								DS18B20_DQ_OUT=0;
+								delay_us(60);             
+								DS18B20_DQ_OUT=1;
+								delay_us(2);         
+						}else{
+								DS18B20_DQ_OUT_T2=0;
+								delay_us(60);             
+								DS18B20_DQ_OUT_T2=1;
+								delay_us(2);  
+						}			
         }
     }
 }
@@ -120,13 +167,13 @@ void DS18B20_Start(void)
 u8 DS18B20_Init(void)
 {
 	GPIO_InitTypeDef GPIO_Initure;
-    __HAL_RCC_GPIOB_CLK_ENABLE();			//开启GPIOG时钟
+  __HAL_RCC_GPIOG_CLK_ENABLE();			//开启GPIOG时钟
 	
-    GPIO_Initure.Pin=GPIO_PIN_12;           //PG11
-    GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
-    GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOB,&GPIO_Initure);     //初始化
+  GPIO_Initure.Pin=GPIO_PIN_6|GPIO_PIN_7;           //PG6 7
+  GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
+  GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
+  GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+  HAL_GPIO_Init(GPIOG,&GPIO_Initure);     //初始化
  
 	DS18B20_Rst();
 	return DS18B20_Check();
@@ -135,11 +182,14 @@ u8 DS18B20_Init(void)
 //从ds18b20得到温度值
 //精度：0.1C
 //返回值：温度值 （-550~1250） 
-short DS18B20_Get_Temp(void)
+short DS18B20_Get_Temp(int chip)
 {
     u8 temp;
     u8 TL,TH;
     short tem;
+	
+		CHOOSE_DS18B20=chip;
+	
     DS18B20_Start ();           //开始转换
     DS18B20_Rst();
     DS18B20_Check();	 
@@ -160,3 +210,9 @@ short DS18B20_Get_Temp(void)
 	if(temp)return tem; //返回温度值
 	else return -tem;    
 }
+
+
+
+
+
+

@@ -6,7 +6,7 @@ static int TMP_TEMPERATURE_VALUE=0;
 
 Thermometer_t pt1000=
 {
-	AD_SENSOR_init,
+	AD_Sensor_Init,
 	Get_Single_Temperature_Degree,
 	Set_Single_Temperature_Degree,
 	Main_Keep_Temperature_Degree
@@ -123,7 +123,7 @@ static int value_change_to_temperature(int value)
 }
 int get_temperature_degree(AD_type AD_CS){
 		int value=0,temperature=0;
-		value=AD_SENSOR_GET_DATA(AD_CS);
+		value=AD_Sensor_Get_Data(AD_CS);
 		temperature=value_change_to_temperature(value);
 		//printf("get_temperature_degree:%d  %d\r\n",value,temperature);
 		return temperature;
@@ -151,8 +151,8 @@ static  void __keep_temperature_degree(void)
 		int duty_cycle=0;
 		int last_duty_cycle=0;
 
-		value1=AD_SENSOR_GET_DATA(AD1_CS);
-		value2=AD_SENSOR_GET_DATA(AD2_CS);
+		value1=AD_Sensor_Get_Data(AD5_CS);
+		value2=AD_Sensor_Get_Data(AD6_CS);
 		value=value1+value2;
 	
 		//设定值与查表值对比

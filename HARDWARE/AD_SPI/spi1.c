@@ -1,4 +1,5 @@
 #include "spi1.h"
+#include "config.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32F103开发板
@@ -36,10 +37,10 @@ void SPI1_Init(void)
     HAL_SPI_Init(&SPI1_Handler);//初始化
     
     __HAL_SPI_ENABLE(&SPI1_Handler);                    //使能SPI1
-	  // SPI1_ReadWriteByte(0Xff);                           //启动传输
 }
 
-void SPI1_AD_CS_init(void){
+void SPI1_AD_CS_init(void)
+{
     GPIO_InitTypeDef GPIO_Initure;
     
     __HAL_RCC_GPIOC_CLK_ENABLE();           //使能GPIOC时钟
@@ -69,10 +70,11 @@ void SPI1_AD_CS_init(void){
     HAL_GPIO_Init(GPIOF,&GPIO_Initure);     //初始化
 }
 
+#if USE_SENSOR_BOARD
 //SPI1底层驱动，时钟使能，引脚配置
 //此函数会被HAL_SPI_Init()调用
 //hspi:SPI句柄
-void HAL_SPI_MspInit_Extern(SPI_HandleTypeDef *hspi)
+void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 {
 	
     GPIO_InitTypeDef GPIO_Initure;
@@ -91,6 +93,7 @@ void HAL_SPI_MspInit_Extern(SPI_HandleTypeDef *hspi)
 	}
 
 }
+#endif
 
 
 //SPI速度设置函数
@@ -143,7 +146,7 @@ void SPI1_Transfer(u8* txData,u8*rxData,int len,AD_type cs){
 		Set_AD_CS(cs,CS_HIGH);
 }
 
-u8 AD_SENSOR_init(void){
+u8 AD_Sensor_Init(void){
 		SPI1_Init();		   			        //初始化SPI
 		SPI1_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
 		
@@ -156,7 +159,7 @@ u8 AD_SENSOR_init(void){
 		SPI1_AD6_CS=1;
 		return 0;
 }
-int AD_SENSOR_GET_DATA(AD_type cs){
+int AD_Sensor_Get_Data(AD_type cs){
 		u8 txbuf[3]={0xaa,0xaa,0xaa};
 		u8 rxbuf[3]={0,0,0};
 		u8 bit_low=0;

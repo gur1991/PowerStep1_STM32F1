@@ -2,8 +2,8 @@
 #define __DS18B20_KEEP_H
 #include "ds18b20.h"
 #include "temperature.h"
+#include "config.h"
 
-#define MAIN_DELAY 1
 
 //Éè¶¨ÎÂ¶È
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices);

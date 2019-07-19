@@ -7,7 +7,7 @@ static int current_value=0,last_value=0;//当前温度值，上次的温度值，用于判断设定
 static int last_duty_cycle=0, duty_cycle=0; //当前占空比和上次占空比，用于判断是否重新设定pwm
 static int last_value_diff=0, value_diff=0;//当前温度差值和上次温度差值，用于判断温度变化趋势的预期
 	
-static int negative_feedback=0,positive_feedback=0,max_positive_feedback=0;	//正负补偿
+static int negative_feedback=0,max_positive_feedback=0,positive_feedback=0;	//正负补偿
 static int negative_flag=0,positive_flag=0;//反馈的计数标志
 
 
@@ -78,8 +78,7 @@ void KeepTemperatureDegree(void)
 					}	
 			}
 	
-	
-			current_value =DS18B20_Get_Temp();
+			current_value =DS18B20_Get_Temp(1);
 			
 			if(current_value>=SET_VALUE){
 					duty_cycle=500;

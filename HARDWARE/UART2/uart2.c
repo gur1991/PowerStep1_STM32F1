@@ -21,8 +21,8 @@ UART_HandleTypeDef USART2_Handler;
 u8 USART2_RX_BUF[MAX_LENGTH];  	
 //接收到的数据长度
 int USART2_RX_CNT=0;  
-
-int FLAG_UART_MASTER=0;
+ int FLAG_UART_MASTER;
+int FLAG_UART_CHEMINERT=0;
 int FLAG_RECEIVE_ACK=0;
 
 void USART2_IRQHandler(void)
@@ -35,6 +35,11 @@ void USART2_IRQHandler(void)
 		{
 			USART2_RX_BUF[USART2_RX_CNT]=res;		//记录接收到的值
 			USART2_RX_CNT++;						//接收数据增加1 
+		}
+		//具体根据CHEMINERT实际
+		if(USART2_RX_CNT>=3&&USART2_RX_BUF[USART2_RX_CNT-1]==0x0d)
+		{
+				FLAG_UART_CHEMINERT=1;
 		}
 
 	} 

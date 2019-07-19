@@ -17,7 +17,6 @@
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 	
 TIM_HandleTypeDef 	TIM3_Handler;      	//定时器句柄 
-TIM_OC_InitTypeDef 	TIM3_CH2Handler;		//定时器3通道2句柄
 TIM_OC_InitTypeDef 	TIM3_CH4Handler;
 
 
@@ -65,7 +64,7 @@ void TIM3_PWM_Init(u16 arr,u16 psc)
 	 	HAL_TIM_PWM_ConfigChannel(&TIM3_Handler,&TIM3_CH4Handler,TIM_CHANNEL_4);//配置TIM3通道4
     HAL_TIM_PWM_Start(&TIM3_Handler,TIM_CHANNEL_4);//开启PWM通道4
 }
-
+#if USE_SENSOR_BOARD
 //定时器底册驱动，开启时钟，设置中断优先级
 //此函数会被HAL_TIM_Base_Init()函数调用
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
@@ -77,11 +76,11 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 		HAL_NVIC_EnableIRQ(TIM3_IRQn);          //开启ITM3中断   
 	}
 }
-//HAL_TIM_PWM_MspInit_Extern->stm32f1xx_hal_msp.c
+
 //定时器底层驱动，时钟使能，引脚配置
 //此函数会被HAL_TIM_PWM_Init()调用
 //htim:定时器句柄
-void HAL_TIM_PWM_MspInit_Extern(TIM_HandleTypeDef *htim)
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
 {
 	GPIO_InitTypeDef GPIO_Initure;
 	
@@ -102,7 +101,7 @@ void HAL_TIM_PWM_MspInit_Extern(TIM_HandleTypeDef *htim)
 		HAL_GPIO_Init(GPIOC,&GPIO_Initure); 	
 	}
 }
-
+#endif
 //设置TIM通道2的占空比
 //compare:比较值
 void TIM_SetTIM3Compare2(u32 compare)

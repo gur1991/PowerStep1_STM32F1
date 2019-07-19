@@ -38,6 +38,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
+#include "config.h"
 
 /** @addtogroup STM32F1xx_HAL_Examples
   * @{
@@ -68,7 +69,7 @@ extern void BSP_MotorControl_FlagInterruptHandler(void);
 void HAL_MspInit(void)
 {
 }
-#if 1
+#if USE_MAIN_BOARD
 /**
   * @brief SPI MSP Initialization 
   *        This function configures the hardware resources used in this example: 
@@ -114,13 +115,12 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
       
     HAL_GPIO_Init(SPIx_MOSI_GPIO_PORT, &GPIO_InitStruct);   
   }
-	//HAL_SPI_MspInit_Extern(hspi);
 }
-#endif
+
 /**
   * @brief  DeInitializes the Global MSP.
 */
-	#if 1
+
 void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
 {
 
@@ -140,7 +140,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
   }
 
 }
-	#endif
+#endif
 /*
   * @param  None  
   * @retval None
@@ -156,7 +156,6 @@ void HAL_MspDeInit(void)
   */
 void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
 {
-	#if 1
   GPIO_InitTypeDef GPIO_InitStruct;
   if(htim_pwm->Instance == BSP_MOTOR_CONTROL_BOARD_TIMER_STEP_CLOCK)
   {
@@ -177,8 +176,6 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
     /* Enable the timer global Interrupt */
     HAL_NVIC_EnableIRQ(BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_IRQn);  
   }
-#endif
-	//	HAL_TIM_PWM_MspInit_Extern(htim_pwm);
 }
 
 /**
@@ -188,7 +185,6 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
   */
 void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
 {
-	#if 1
   if(htim_pwm->Instance == BSP_MOTOR_CONTROL_BOARD_TIMER_STEP_CLOCK)
   {
     /* Peripheral clock disable */
@@ -198,7 +194,6 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
     HAL_GPIO_DeInit(BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PORT, BSP_MOTOR_CONTROL_BOARD_STEP_CLOCK_PIN);
 
   }
-	#endif
 }
 
 /**
@@ -208,7 +203,6 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
   */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	#if 1
   if (GPIO_Pin == BSP_MOTOR_CONTROL_BOARD_BUSY_PIN)
   {
     BSP_MotorControl_BusyInterruptHandler();
@@ -218,7 +212,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   {
     BSP_MotorControl_FlagInterruptHandler();
   }
-	#endif
  }
 /**
   * @}

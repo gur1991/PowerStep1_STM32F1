@@ -20,6 +20,7 @@ extern u8 USART2_RX_BUF[MAX_LENGTH];
 extern int USART2_RX_CNT;   			
 
 extern int FLAG_UART_MASTER;
+extern int FLAG_UART_CHEMINERT;
 extern int FLAG_RECEIVE_ACK;
 
 void UART2_Init(u32 bound);

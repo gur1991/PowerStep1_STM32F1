@@ -1,32 +1,28 @@
 #ifndef __DS18B20_H
 #define __DS18B20_H
 #include "sys.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32F407开发板
-//DS18B20驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2017/4/15
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
 
+//G6 G7
 //IO方向设置
-#define DS18B20_IO_IN()  {GPIOB->CRH&=0XFFF0FFFF;GPIOB->CRH|=8<<16;}
-#define DS18B20_IO_OUT() {GPIOB->CRH&=0XFFF0FFFF;GPIOB->CRH|=3<<16;}
+#define DS18B20_IO_IN()  {GPIOG->CRH&=0XF0FFFFFF;GPIOG->CRL|=8<<24;}
+#define DS18B20_IO_OUT() {GPIOG->CRH&=0XF0FFFFFF;GPIOG->CRL|=3<<24;}
+
+#define DS18B20_IO_IN_T2()  {GPIOG->CRH&=0X0FFFFFFF;GPIOG->CRL|=8<<28;}
+#define DS18B20_IO_OUT_T2() {GPIOG->CRH&=0X0FFFFFFF;GPIOG->CRL|=3<<28;}
+
 //IO操作函数											   
-#define	DS18B20_DQ_OUT PBout(12) //数据端口	PG11
-#define	DS18B20_DQ_IN  PBin(12)  //数据端口	PG11
+#define	DS18B20_DQ_OUT PGout(6) 
+#define	DS18B20_DQ_IN  PGin(6)  
+
+#define	DS18B20_DQ_OUT_T2 PGout(7) 
+#define	DS18B20_DQ_IN_T2  PGin(7)  
    	
 u8 DS18B20_Init(void);			//初始化DS18B20
-short DS18B20_Get_Temp(void);	//获取温度
-void DS18B20_Start(void);		//开始温度转换
-void DS18B20_Write_Byte(u8 dat);//写入一个字节
-u8 DS18B20_Read_Byte(void);		//读出一个字节
-u8 DS18B20_Read_Bit(void);		//读出一个位
-u8 DS18B20_Check(void);			//检测是否存在DS18B20
-void DS18B20_Rst(void);			//复位DS18B20 
+
+//chip 1 2
+short DS18B20_Get_Temp(int chip);	//获取温度
+
+
+
+
 #endif

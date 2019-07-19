@@ -8,6 +8,7 @@
 #include "factory_many.h"
 #include "keep_temperature.h"
 #include "temperature.h"
+#include "uart_choose.h"
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void);
 
 #endif

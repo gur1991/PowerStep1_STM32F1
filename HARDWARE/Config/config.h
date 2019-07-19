@@ -1,0 +1,20 @@
+#ifndef __CONFIG_H
+#define __CONFIG_H
+
+#define USE_SENSOR_BOARD 1
+
+#define USE_MAIN_BOARD 0
+
+#define MAIN_DELAY 1
+
+
+#define  C52_UART_PORT UART2_RS232
+#define  C52_UART_CS CS_ZERO
+
+#define  C55_UART_PORT UART2_RS232
+#define  C55_UART_CS CS_ONE
+
+#define  PUMP_UART_PORT UART3_RS232
+#define  PUMP_UART_CS CS_ZERO
+
+#endif
