@@ -169,13 +169,15 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
     int len, i;
 		s100_command_t S100_receive;
 		Powerstep1_contorl_motor_command_t CommandData;
-			
+		Uart_Receive_Data R232_Read = GetUartReceive( PUMP_UART_PORT, PUMP_UART_CS);
+		Uart_Send_Data R232_Write = GetUartSend( PUMP_UART_PORT, PUMP_UART_CS);
+	
 		CommandData.type = PUMP_S100_TYPE;
 		CommandData.OverReceiveFlag[0]=OVER_UART_VALUE0;
 		CommandData.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		
 		if(FLAG_UART_MASTER){
-					UART2_Receive_Data((u8*)(&S100_receive),&len);
+					R232_Read((u8*)(&S100_receive),&len);
 					Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 					Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 									
@@ -189,7 +191,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_PFC,S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_VALUE,S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 								
-								UART2_Send_Data((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
+								R232_Write((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
 					}
 					
 					FLAG_UART_MASTER=0;//其他事件不去处理
