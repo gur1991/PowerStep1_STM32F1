@@ -62,7 +62,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.steps = data->request.steps;
 	
 		PowerStep_Select_Motor_Baby(performer.request.devices);
-		BSP_MotorControl_Move(0, performer.request.dir, performer.request.steps);
+		BSP_MotorControl_Move(0, (motorDir_t)performer.request.dir, performer.request.steps);
 
 	  data->response.ret=0;
 		
@@ -159,10 +159,6 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 		process_motor_command_receive(performer.request.command);
 		data->response.ret=0;
 }	
-
-
-
-
 
 
 static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
