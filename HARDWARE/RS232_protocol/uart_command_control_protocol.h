@@ -193,7 +193,7 @@ typedef union{
 //获得参数----4
 struct{
 		uint8_t devices;//1,2
-		uint8_t para;
+		uint8_t registe;
 }request;
 struct{
 		uint32_t result_para;
@@ -204,8 +204,8 @@ struct{
 typedef union{
 struct{
 		uint8_t devices;//1,2
-		uint8_t para;
-		uint32_t value;
+		uint8_t registe;
+		uint32_t para;
 }request;
 struct{
 		uint8_t ret;

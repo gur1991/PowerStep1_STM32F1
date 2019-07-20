@@ -101,21 +101,21 @@ static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*
 static void protocol_powerstep01_get_para(get_para_type_t*data){
 			get_para_type_t performer;
 			performer.request.devices=data->request.devices;
-			performer.request.para=data->request.para;
+			performer.request.registe=data->request.registe;
 			
 			PowerStep_Select_Motor_Baby(performer.request.devices);
-			data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.para);
+			data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.registe);
 
 			data->response.ret=0;
 }
 static void protocol_powerstep01_set_para(set_para_type_t*data){
 			set_para_type_t performer;
 			performer.request.devices=data->request.devices;
+			performer.request.registe=data->request.registe;
 			performer.request.para=data->request.para;
-			performer.request.value=data->request.value;
 	
 			PowerStep_Select_Motor_Baby(performer.request.devices);
-			BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.value);
+			BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.para);
 			data->response.ret=0;
 }
 static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){

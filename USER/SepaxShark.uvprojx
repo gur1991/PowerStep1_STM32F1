@@ -335,7 +335,7 @@
               <MiscControls>--c99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18;..\HARDWARE\TIMER;..\HARDWARE\AD_SPI;..\HARDWARE\Temperature;..\HARDWARE\Weight;..\HARDWARE\PowerStep01;..\HARDWARE\UART4;..\HARDWARE\DS18B20;..\HARDWARE\UART2;..\HARDWARE\UART_CHOOSE;..\HARDWARE\Config;..\HARDWARE\Electromagnetic</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18;..\HARDWARE\TIMER;..\HARDWARE\AD_SPI;..\HARDWARE\Temperature;..\HARDWARE\Weight;..\HARDWARE\PowerStep01;..\HARDWARE\UART4;..\HARDWARE\DS18B20;..\HARDWARE\UART2;..\HARDWARE\UART_CHOOSE;..\HARDWARE\Config;..\HARDWARE\Electromagnetic;..\HARDWARE\RS232_protocol</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -595,11 +595,6 @@
               <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.c</FilePath>
             </File>
             <File>
-              <FileName>uart_command_control_protocol.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\uart_command_control_protocol.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f1xx_nucleo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.c</FilePath>
@@ -618,16 +613,6 @@
               <FileName>uart3.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\UART3\uart3.c</FilePath>
-            </File>
-            <File>
-              <FileName>master_uart_control_interface.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\master_uart_control_interface.c</FilePath>
-            </File>
-            <File>
-              <FileName>slave_uart_control_interface.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Drivers\BSP\Components\powerSTEP01\slave_uart_control_interface.c</FilePath>
             </File>
             <File>
               <FileName>light.c</FileName>
@@ -718,6 +703,21 @@
               <FileName>electromagnetic.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Electromagnetic\electromagnetic.c</FilePath>
+            </File>
+            <File>
+              <FileName>master_uart_control_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\RS232_protocol\master_uart_control_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>slave_uart_control_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\RS232_protocol\slave_uart_control_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_command_control_protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\RS232_protocol\uart_command_control_protocol.c</FilePath>
             </File>
           </Files>
         </Group>
