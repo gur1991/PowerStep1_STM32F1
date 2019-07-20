@@ -193,10 +193,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 /**************************************************************************/
-	if(huart->Instance==UART4)    
-	{    
-		HAL_UART_RxCpltCallback_Uart4();
-	}
+
 }
  
 //串口1中断服务程序

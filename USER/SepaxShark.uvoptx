@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>SPI</TargetName>
+    <TargetName>SepaxShark</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -966,7 +966,7 @@
       <GroupNumber>5</GroupNumber>
       <FileNumber>62</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\HARDWARE\UART2\uart2.c</PathWithFileName>

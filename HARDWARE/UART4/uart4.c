@@ -30,7 +30,6 @@ void UART4_IRQHandler(void)
 	}
 } 
 
-void HAL_UART_RxCpltCallback_Uart4(void){  }
 /*
 u16 USART_RX_STA4=0;       //接收状态标记	  
 u16 USART_RX_STA_UART4=0; 
