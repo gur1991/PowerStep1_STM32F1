@@ -3,16 +3,18 @@
 #include "delay.h"
 #include "uart_command_control_protocol.h"
 
-UART_HandleTypeDef USART3_Handler;  //USART2句柄(用于RS485)
-//#define  RXBUFFERSIZE_UART3 1
-//u8 aRxBuffer_uart3[RXBUFFERSIZE_UART3];//HAL库使用的串口接收缓冲
+UART_HandleTypeDef USART3_Handler; 
+
 
 #if EN_USART3_RX   		//如果使能了接收   	  
 //接收缓存区 	
-u8 UART3_RX_BUF[LEN_MAX_UART3];  	//接收缓冲,最大64个字节.
+u8 UART3_RX_BUF[LEN_MAX_UART3];  
 //接收到的数据长度
 int UART3_RX_CNT=0;  
-u8 FLAG_UART_SLAVE3 =0;
+
+
+u8 FLAG_RECEIVE_ACK_PUMP100=0;
+u8 FLAG_RECEIVE_ANSOWER_PUMP100=0;
 
 void USART3_IRQHandler(void)
 {
@@ -26,9 +28,12 @@ void USART3_IRQHandler(void)
 			UART3_RX_CNT++;						//接收数据增加1	
 		} 
 		
-		if(UART3_RX_CNT>=3&&UART3_RX_BUF[UART3_RX_CNT-1]==OVER_UART_VALUE1&&UART3_RX_BUF[UART3_RX_CNT-2]==OVER_UART_VALUE0){
-					FLAG_UART_SLAVE3=1;
+		if(UART3_RX_CNT==1&&(UART3_RX_BUF[0]==0x23||UART3_RX_BUF[0]==0x24||UART3_RX_BUF[0]==0x25)){
+					FLAG_RECEIVE_ACK_PUMP100=1;
 		}
+		if(UART3_RX_CNT>5&&(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a||UART3_RX_BUF[UART3_RX_CNT-1]==0x0d)){
+					FLAG_RECEIVE_ANSOWER_PUMP100=1;
+		}	
 
 	} 
 } 

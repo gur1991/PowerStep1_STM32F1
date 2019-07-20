@@ -7,6 +7,7 @@
 #include "uart4.h"
 #include "uart2.h"
 #include "light.h"
+#include "weight.h"
 #include "slave_uart_control_interface.h"
 #include "printpaper.h"
 #include "baby18dad400.h"

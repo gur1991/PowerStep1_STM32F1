@@ -1,5 +1,5 @@
 #include "master_uart_control_interface.h"
-
+#include "uart4.h"
 
 uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t* master,int length_data,int* len){
 		uint8_t ret=0;
@@ -9,9 +9,9 @@ uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t
 	
 		UART2_Send_Data((u8*)(master),length_data);
 		while(1){
-			if(FLAG_UART_MASTER){
+			if(ARM_RS232_ASK){
 					UART2_Receive_Data((u8*)(master),len);
-					FLAG_UART_MASTER=0;
+					ARM_RS232_ASK=0;
 					printf("master receive data ok\r\n");
 					break;		
 			}

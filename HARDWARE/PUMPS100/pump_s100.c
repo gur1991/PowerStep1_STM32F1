@@ -91,16 +91,16 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 							printf("%c",rs485buf[i]);
 					}
 					*/
-					if(FLAG_RECEIVE_ACK){
+					if(FLAG_RECEIVE_ACK_PUMP100){
 									R232_Read(&result,&len);
 						
 									*type=SPECIAL_ACK_S100;
 									reply->SpecialACK.S100_RESULT=result;
 						
-									FLAG_RECEIVE_ACK=0;
+									FLAG_RECEIVE_ACK_PUMP100=0;
 									break;
 					}
-					if(FLAG_UART_MASTER){	
+					if(FLAG_RECEIVE_ANSOWER_PUMP100){	
 									R232_Read((u8*)(&S100_receive),&len);
 									Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 									Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
@@ -118,7 +118,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 											reply->NormalAnswer.S100_AI=S100_receive.S100_AI;
 											memcpy(reply->NormalAnswer.S100_VALUE,S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 									}
-									FLAG_UART_MASTER=0;
+									FLAG_RECEIVE_ANSOWER_PUMP100=0;
 									break;
 								}
 								timeout--;
@@ -176,7 +176,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 		CommandData.OverReceiveFlag[0]=OVER_UART_VALUE0;
 		CommandData.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		
-		if(FLAG_UART_MASTER){
+		if(FLAG_RECEIVE_ANSOWER_PUMP100){
 					R232_Read((u8*)(&S100_receive),&len);
 					Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 					Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
@@ -194,7 +194,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 								R232_Write((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
 					}
 					
-					FLAG_UART_MASTER=0;//其他事件不去处理
+					FLAG_RECEIVE_ANSOWER_PUMP100=0;//其他事件不去处理
 				}
 		
 }
