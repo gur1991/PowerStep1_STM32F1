@@ -27,6 +27,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "weight.h"	 
 #include "temperature.h"		 
 #include "step01.h"
+#include "electromagnetic.h"
 	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -71,7 +72,8 @@ typedef enum Command_type{
 		WEIGHT_SENSOR_GET_ALL_RESULT_TYPE,
 		
 		TEMPERATURE_SENSOR_GET_TYPE,
-		TEMPERATURE_SENSOR_SET_TYPE
+		TEMPERATURE_SENSOR_SET_TYPE,
+		ELECTROMAGNETIC_TYPE,
 		
 }Command_type_t;
 
@@ -255,6 +257,8 @@ typedef struct{
 				
 				set_single_temperature_degree_type_t set_single_temperature_degree;
 				get_single_temperature_degree_type_t get_single_temperature_degree;
+				
+				electromagnetic_type_t electromagnetic;
 /*
 *print move rk3188
 */

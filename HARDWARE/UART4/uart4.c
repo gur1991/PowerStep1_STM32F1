@@ -21,6 +21,7 @@ void UART4_IRQHandler(void)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
 			UART4_RX_CNT++;						//接收数据增加1	
+		//	printf("dddd\r\n");
 		} 
 		if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
 		{
@@ -29,7 +30,6 @@ void UART4_IRQHandler(void)
 
 	}
 } 
-
 /*
 u16 USART_RX_STA4=0;       //接收状态标记	  
 u16 USART_RX_STA_UART4=0; 

@@ -2025,7 +2025,6 @@ void Powerstep01_SetDeviceParamsToGivenValues(uint8_t deviceId,
  *********************************************************/
 void Powerstep01_WriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte)
 {
-	uint8_t ret;
 
   if (Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices) != 0)
   {

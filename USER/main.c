@@ -46,7 +46,9 @@ int main(void)
 	Electromagnetic_init();//µç´Å·§
 	
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
-#else
+#endif
+
+#if USE_MOTOR_BOARD
 	Light_Sensor_Init();
 	BSP_Motor_Control_Init();
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
@@ -61,6 +63,8 @@ while(1){
 						ARM_RS232_ASK=0;
 		}	
 		delay_ms(MAIN_DELAY);
+		
+		
 		#if USE_SENSOR_BOARD	
 			ThermometerHandle->keep_degree();
 		#endif

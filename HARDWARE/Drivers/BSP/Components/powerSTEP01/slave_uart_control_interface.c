@@ -525,7 +525,16 @@ static void protocol_set_single_temperature_degree_interface(set_single_temperat
 			data->response.ret=0;
 }
 
-
+static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
+{
+			electromagnetic_type_t  performer;
+	
+			performer.request.devices=data->request.devices;
+			performer.request.status=data->request.status;
+	
+			electromagnetic_control(performer.request.devices, performer.request.status);
+			data->response.ret=0;
+}	
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -622,6 +631,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;
 			case TEMPERATURE_SENSOR_SET_TYPE:
 						protocol_set_single_temperature_degree_interface(&slave_motorCommand.CommandPowerStep1.set_single_temperature_degree);
+						break;
+			case ELECTROMAGNETIC_TYPE:
+						protocol_electromagnetic_interface(&slave_motorCommand.CommandPowerStep1.electromagnetic);
 						break;
 			
 			default:

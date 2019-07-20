@@ -1,9 +1,9 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#define USE_SENSOR_BOARD 1
+#define USE_SENSOR_BOARD 0
 
-#define USE_MAIN_BOARD 0
+#define USE_MOTOR_BOARD 1
 
 #define MAIN_DELAY 1
 

@@ -15,4 +15,17 @@
 #define	FET9 		PDout(1)
 
 void Electromagnetic_init(void);
+
+void electromagnetic_control(uint8_t devices, uint8_t status);
+
+typedef union{ 
+	struct{
+		uint8_t devices;//0-9
+		uint8_t status;//1 open ---0 close
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}electromagnetic_type_t;
+
 #endif

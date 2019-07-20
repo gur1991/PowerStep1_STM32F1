@@ -30,3 +30,23 @@ void Electromagnetic_init(void)
 /*example*/
 //FET0=1;
 //FET0=0;
+
+
+
+void electromagnetic_control(uint8_t devices, uint8_t status)
+{
+		switch(devices)
+		{
+			case 0:	FET0=status;break;
+			case 1:	FET1=status;break;
+			case 2:	FET2=status;break;
+		  case 3:	FET3=status;break;
+		  case 4:	FET4=status;break;
+		  case 5:	FET5=status;break;
+		  case 6:	FET6=status;break;
+		  case 7:	FET7=status;break;
+		  case 8:	FET8=status;break;
+		  case 9:	FET9=status;break;
+			default:break;
+		}
+}

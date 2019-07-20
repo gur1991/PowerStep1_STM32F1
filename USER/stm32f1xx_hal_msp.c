@@ -69,7 +69,7 @@ extern void BSP_MotorControl_FlagInterruptHandler(void);
 void HAL_MspInit(void)
 {
 }
-#if USE_MAIN_BOARD
+#if USE_MOTOR_BOARD
 /**
   * @brief SPI MSP Initialization 
   *        This function configures the hardware resources used in this example: 
