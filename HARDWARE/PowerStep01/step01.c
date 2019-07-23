@@ -267,11 +267,11 @@ int ConfigMotorAllDevice(int chip)
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=32;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
-		  TempMotor.request.init_motor.motor_config.current.current_value=150;
+		  TempMotor.request.init_motor.motor_config.current.current_value=24;
 		
    		break;		
 	case 9:
@@ -318,10 +318,10 @@ int ConfigMotorAllDevice(int chip)
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=32;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=30;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=50;
 		
    		break;
 		default:

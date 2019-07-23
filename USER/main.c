@@ -56,6 +56,23 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
+/*
+	PowerStep_Select_Motor_Baby(8);		
+	uint32_t myMaxSpeed= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_MAX_SPEED);
+	printf("speed:%d \r\n",myMaxSpeed);
+	uint32_t value_current= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_KVAL_RUN);
+	printf("value_current:%d \r\n",value_current);
+*/
+
+/*
+voltate
+speed      get_value :set_value =1:16
+duty_cycle get_value :set_value =2.56:1
+
+current
+speed      get_value :set_value =1:16
+current_value get_value :set_value =1:12 此值不固定
+*/
 
 while(1){
 
