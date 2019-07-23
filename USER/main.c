@@ -18,7 +18,7 @@
 #include "uart_choose.h"
 #include "config.h"
 #include "electromagnetic.h"
-
+#include "wdg.h"
 
 int main(void)
 {	
@@ -28,7 +28,8 @@ int main(void)
 	uart_init(115200);					
 	usmart_dev.init(84); 		   	
 	UART4_Init(115200);
-	
+	IWDG_Init(4,625*5); //5s   
+  IWDG_Start();
 		
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
@@ -51,6 +52,7 @@ int main(void)
 #if USE_MOTOR_BOARD
 	Light_Sensor_Init();
 	BSP_Motor_Control_Init();
+	
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
@@ -68,6 +70,8 @@ while(1){
 		#if USE_SENSOR_BOARD	
 			ThermometerHandle->keep_degree();
 		#endif
+		IWDG_Feed();
 	}
+
 	return 0;
 }

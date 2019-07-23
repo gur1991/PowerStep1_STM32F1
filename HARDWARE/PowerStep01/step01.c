@@ -316,12 +316,12 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=200;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=200;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=20;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=30;
 		
    		break;
 		default:
