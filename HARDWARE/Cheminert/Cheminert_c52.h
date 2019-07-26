@@ -6,6 +6,7 @@
 #include "uart2.h"
 #include "delay.h"
 #include <stdbool.h>
+#include "config.h"
 #include "uart_choose.h"
 u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_t timeout,bool wait_flag, int type_flag);
 
@@ -64,7 +65,7 @@ struct{
 struct{
 		uint8_t ret;
 		uint8_t size;
-		uint8_t buf[64];
+		uint8_t buf[32];
 }response;
 }cheminert_c52_c55_type_t;
 

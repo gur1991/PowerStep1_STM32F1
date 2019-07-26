@@ -645,11 +645,11 @@ OVER:
 }
 
 
-u8 test_actuator(void){
+u8 test_actuator(Command_Cheminert_type_t type){
 	u8 ret=0,i;
 	cheminert_c52_c55_type_t cheminert_c52_c55;
-	cheminert_c52_c55.request.para=	CHEMINERT_C55_MN;
-	cheminert_c52_c55.request.timeout=200;
+	cheminert_c52_c55.request.para=	type;
+	cheminert_c52_c55.request.timeout=1000;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	printf("ret:%d \r\n",cheminert_c52_c55.response.ret);
 	printf("size:%d \r\n",cheminert_c52_c55.response.size);

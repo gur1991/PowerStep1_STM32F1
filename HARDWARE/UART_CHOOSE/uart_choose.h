@@ -37,4 +37,5 @@ Uart_Receive_Data GetUartReceive(UART_TYPE uart, UART_CS_TYPE cs);
 
 Uart_Send_Data GetUartSend(UART_TYPE uart, UART_CS_TYPE cs);
 
+void example(void);
 #endif

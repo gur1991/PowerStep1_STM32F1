@@ -31,19 +31,18 @@ int main(void)
 	IWDG_Init(4,625*5); //5s   
   IWDG_Start();
 	
-	int value1,value2,value3,value4;
 		
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
 	TIM_SetTIM3Compare4(500);	
 	//温度传感器选择DS18B20，并初始化
-	ThermometerChooseHandle(DS18B20);
-	ThermometerHandle->init();
+	//ThermometerChooseHandle(DS18B20);
+	//ThermometerHandle->init();
 	
 	
-	//UART2_Init(115200);
-	//UART3_Init(115200);
-  //Uart_cs_init();
+	UART2_Init(9600);
+	UART3_Init(115200);
+  Uart_cs_init();
 	
 	//AD_Sensor_Init();//四个重力传感器初始化
 	
@@ -59,14 +58,31 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
-ThermometerHandle->set_degree(355,TMEPERATURE_ONE);
+		//Uart_Select_Baby(UART2_RS232,CS_ONE);
+
+
 
 while(1){
-
+//	printf("dddd\r\n");
+	test_actuator(CHEMINERT_C52_VR);
+	test_actuator(CHEMINERT_C52_CCA);
+		delay_ms(500);
+	test_actuator(CHEMINERT_C52_CCB);
+		delay_ms(500);
+	test_actuator(CHEMINERT_C55_VR);
+	test_actuator(CHEMINERT_C55_GO1);
+		delay_ms(500);
+	test_actuator(CHEMINERT_C55_GO4);
+		delay_ms(500);
+//example();
+/*	
 	TIM_SetTIM3Compare4(500);
-	delay_ms(300);
+	delay_ms(20);
+	TIM_SetTIM3Compare4(375);
+	delay_ms(100);
 	TIM_SetTIM3Compare4(0);
-	delay_ms(300);
+	delay_ms(100);
+*/	
 	#if 0	
 
 		if(ARM_RS232_ASK){
@@ -77,7 +93,7 @@ while(1){
 		delay_ms(MAIN_DELAY);
 		
 		
-		#if USE_SENSOR_BOARD	
+		#if 0//USE_SENSOR_BOARD	
 			ThermometerHandle->keep_degree();
 			printf("tmp1:%d\r\n",DS18B20_Get_Temp(1));
 			printf("tmp2:%d\r\n",DS18B20_Get_Temp(2));

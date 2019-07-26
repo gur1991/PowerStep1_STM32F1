@@ -21,11 +21,13 @@ void USART2_IRQHandler(void)
 		HAL_UART_Receive(&USART2_Handler,&res,1,1000);
 		if(USART2_RX_CNT<MAX_LENGTH)
 		{
+			
 			USART2_RX_BUF[USART2_RX_CNT]=res;		//记录接收到的值
+			//printf("zzzz%d\r\n",res);
 			USART2_RX_CNT++;						//接收数据增加1 
 		}
 		//具体根据CHEMINERT实际
-		if(USART2_RX_CNT>=3&&USART2_RX_BUF[USART2_RX_CNT-1]==0x0d)
+		if(USART2_RX_BUF[USART2_RX_CNT-1]==0x0d||USART2_RX_BUF[USART2_RX_CNT-1]==0x0a)
 		{
 				FLAG_UART_CHEMINERT=1;
 		}
@@ -92,7 +94,7 @@ void UART2_Receive_Data(u8 *buf,int *len)
 	int rxlen=USART2_RX_CNT;
 	int i=0;
 	*len=0;				//默认为0
-	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
+	//delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==USART2_RX_CNT&&rxlen)//接收到了数据,且接收完成了
 	{
 		for(i=0;i<rxlen;i++)
