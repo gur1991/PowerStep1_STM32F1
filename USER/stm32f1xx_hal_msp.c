@@ -148,7 +148,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
 void HAL_MspDeInit(void)
 {
 }
-
+#if USE_MOTOR_BOARD
 /**
   * @brief PWM MSP Initialization 
   * @param[in] htim_pwm PWM handle pointer
@@ -195,7 +195,7 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
 
   }
 }
-
+#endif
 /**
   * @brief External Line Callback 
   * @param[in] GPIO_Pin pin number

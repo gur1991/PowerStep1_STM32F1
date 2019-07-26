@@ -63,8 +63,11 @@ ThermometerHandle->set_degree(355,TMEPERATURE_ONE);
 
 while(1){
 
-	
-#if 1	
+	TIM_SetTIM3Compare4(500);
+	delay_ms(300);
+	TIM_SetTIM3Compare4(0);
+	delay_ms(300);
+	#if 0	
 
 		if(ARM_RS232_ASK){
 						printf("start receive !\r\n");

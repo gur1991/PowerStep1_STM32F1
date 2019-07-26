@@ -41,6 +41,7 @@
 #include "main.h"
 #include "stm32f1xx_it.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
+#include "config.h"
 /** @addtogroup STM32F1xx_HAL_Examples
   * @{
   */
@@ -195,10 +196,12 @@ void EXTI15_10_IRQHandler(void)
   * @param  None
   * @retval None
   */
+#if USE_MOTOR_BOARD
 void TIM3_IRQHandler(void)
 {
   HAL_TIM_IRQHandler(&hTimStepClock);
 }
+#endif
 
 /**
   * @brief  This function handles PPP interrupt request.
