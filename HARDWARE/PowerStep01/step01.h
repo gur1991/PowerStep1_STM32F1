@@ -10,6 +10,20 @@
 #include "x_nucleo_ihm03a1_stm32f1xx.h"
 #include "powerstep01.h" 
 #include "light.h"
+
+
+/*
+voltate
+speed      get_value :set_value =1:16
+duty_cycle get_value :set_value =2.56:1
+
+current
+speed      get_value :set_value =1:16
+current_value get_value :set_value =1:12 此值不固定
+*/
+
+
+
 //数组0废弃 用[1]---[14]
 #define SIZE_MOTOR_ARRAY 15
 extern powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];

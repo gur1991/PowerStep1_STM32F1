@@ -4,7 +4,7 @@
 #include "spi1.h"
 
 typedef enum{
-	TMEPERATURE_ONE=30,
+	TMEPERATURE_ONE=1,
 	TMEPERATURE_TWO,
 	
 }TMEPERATURE_type;

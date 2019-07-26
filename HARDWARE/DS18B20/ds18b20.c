@@ -187,7 +187,6 @@ short DS18B20_Get_Temp(int chip)
     u8 temp;
     u8 TL,TH;
     short tem;
-	
 		CHOOSE_DS18B20=chip;
 	
     DS18B20_Start ();           //¿ªÊ¼×ª»»

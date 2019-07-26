@@ -52,16 +52,16 @@ uint8_t Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_type weight)
 		switch(weight)
 		{
 			case WEIGHT_ONE:
-					if(value<=WARNNIG_VALUE_ONE)ret=1;
+					if(value>=WARNNIG_VALUE_ONE)ret=1;
 					break;
 			case WEIGHT_TWO:
-					if(value<=WARNNIG_VALUE_TWO)ret=1;
+					if(value>=WARNNIG_VALUE_TWO)ret=1;
 					break;		
 			case WEIGHT_THREE:
-					if(value<=WARNNIG_VALUE_THREE)ret=1;
+					if(value>=WARNNIG_VALUE_THREE)ret=1;
 					break;		
 			case WEIGHT_FOUR:
-					if(value<=WARNNIG_VALUE_FOUR)ret=1;
+					if(value>=WARNNIG_VALUE_FOUR)ret=1;
 					break;		
 			
 			default:

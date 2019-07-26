@@ -1,11 +1,11 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#define USE_SENSOR_BOARD 0
+#define USE_SENSOR_BOARD 1
 
-#define USE_MOTOR_BOARD 1
+#define USE_MOTOR_BOARD 0
 
-#define MAIN_DELAY 1
+#define MAIN_DELAY 100
 
 
 #define  C52_UART_PORT UART2_RS232

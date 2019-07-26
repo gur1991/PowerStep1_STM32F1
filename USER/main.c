@@ -30,6 +30,8 @@ int main(void)
 	UART4_Init(115200);
 	IWDG_Init(4,625*5); //5s   
   IWDG_Start();
+	
+	int value1,value2,value3,value4;
 		
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
@@ -37,14 +39,15 @@ int main(void)
 	//温度传感器选择DS18B20，并初始化
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
-
-	UART2_Init(115200);
-	UART3_Init(115200);
-  Uart_cs_init();
 	
-	AD_Sensor_Init();//四个重力传感器初始化
-	DS18B20_Init();//初始化溫度傳感器
-	Electromagnetic_init();//电磁阀
+	
+	//UART2_Init(115200);
+	//UART3_Init(115200);
+  //Uart_cs_init();
+	
+	//AD_Sensor_Init();//四个重力传感器初始化
+	
+	//Electromagnetic_init();//电磁阀
 	
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -56,25 +59,12 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
-/*
-	PowerStep_Select_Motor_Baby(8);		
-	uint32_t myMaxSpeed= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_MAX_SPEED);
-	printf("speed:%d \r\n",myMaxSpeed);
-	uint32_t value_current= BSP_MotorControl_CmdGetParam(0, POWERSTEP01_KVAL_RUN);
-	printf("value_current:%d \r\n",value_current);
-*/
-
-/*
-voltate
-speed      get_value :set_value =1:16
-duty_cycle get_value :set_value =2.56:1
-
-current
-speed      get_value :set_value =1:16
-current_value get_value :set_value =1:12 此值不固定
-*/
+ThermometerHandle->set_degree(355,TMEPERATURE_ONE);
 
 while(1){
+
+	
+#if 1	
 
 		if(ARM_RS232_ASK){
 						printf("start receive !\r\n");
@@ -86,7 +76,10 @@ while(1){
 		
 		#if USE_SENSOR_BOARD	
 			ThermometerHandle->keep_degree();
+			printf("tmp1:%d\r\n",DS18B20_Get_Temp(1));
+			printf("tmp2:%d\r\n",DS18B20_Get_Temp(2));
 		#endif
+#endif		
 		IWDG_Feed();
 	}
 

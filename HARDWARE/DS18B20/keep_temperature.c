@@ -41,12 +41,12 @@ void ThermometerChooseHandle(THERMOMETER_type id)
 
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 {
-			SET_VALUE=degree;
+					SET_VALUE=degree;
 }
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
-			return current_value;
+			return DS18B20_Get_Temp(devices);
 }
 
 
@@ -78,13 +78,13 @@ void KeepTemperatureDegree(void)
 					}	
 			}
 	
-			current_value =DS18B20_Get_Temp(1);
+			current_value =(int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
 			
 			if(current_value>=SET_VALUE){
 					duty_cycle=500;
 			}else{
 					//每一个等级更换，就要重设校准值
-					if(SET_VALUE-current_value<10&&SET_VALUE<450){duty_cycle=465;}
+					if(SET_VALUE-current_value<0&&SET_VALUE<450){duty_cycle=465;}
 					else if(SET_VALUE-current_value<15&&SET_VALUE<450){duty_cycle=420;negative_feedback=0;}//设定温度过高，此占空比不用
 					else if(SET_VALUE-current_value<20){duty_cycle=350;if(SET_VALUE<450){negative_feedback=0;}}
 					else if(SET_VALUE-current_value<35){duty_cycle=300;negative_feedback=0;}
