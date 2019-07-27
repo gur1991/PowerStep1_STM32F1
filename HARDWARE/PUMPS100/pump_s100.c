@@ -92,6 +92,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 					}
 					*/
 					if(FLAG_RECEIVE_ACK_PUMP100){
+									delay_ms(10);
 									R232_Read(&result,&len);
 						
 									*type=SPECIAL_ACK_S100;
@@ -101,6 +102,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 									break;
 					}
 					if(FLAG_RECEIVE_ANSOWER_PUMP100){	
+									delay_ms(10);
 									R232_Read((u8*)(&S100_receive),&len);
 									Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
 									Big_Little_Endian_Convert(S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));

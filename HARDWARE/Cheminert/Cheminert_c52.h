@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include "config.h"
 #include "uart_choose.h"
-u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_t timeout,bool wait_flag, int type_flag);
+u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int timeout,bool wait_flag, int type_flag);
 
 typedef enum Command_Cheminert_type{ 
 		CHEMINERT_C52_CP=25,//actuator 
@@ -60,12 +60,12 @@ typedef enum Command_Cheminert_type{
 typedef union{ 
 struct{
 		Command_Cheminert_type_t para;
-	  uint16_t timeout;
+	  int timeout;
 }request;
 struct{
 		uint8_t ret;
 		uint8_t size;
-		uint8_t buf[32];
+		uint8_t buf[64];
 }response;
 }cheminert_c52_c55_type_t;
 

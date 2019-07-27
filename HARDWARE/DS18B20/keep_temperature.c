@@ -46,7 +46,10 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
-			return DS18B20_Get_Temp(devices);
+			if(TMEPERATURE_CURRENT==devices)
+				return (int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
+			else	
+				return DS18B20_Get_Temp(devices);
 }
 
 
@@ -120,7 +123,7 @@ void KeepTemperatureDegree(void)
 			if(duty_cycle!=500)
 					duty_cycle-=negative_feedback;
 						
-			printf("duty_cycle:%d negative:%d ---SET_VALUE:%d  current_value:%d\r\n",duty_cycle,negative_feedback,SET_VALUE,current_value);
+			//printf("duty_cycle:%d negative:%d ---SET_VALUE:%d  current_value:%d\r\n",duty_cycle,negative_feedback,SET_VALUE,current_value);
 			
 			
 			//如果这次计算的占空比和之前一样，就不去重新设定

@@ -21,7 +21,7 @@ void USART3_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&USART3_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	 	
-		HAL_UART_Receive(&USART3_Handler,&res,1,1000);
+		HAL_UART_Receive(&USART3_Handler,&res,1,100);
 		if(UART3_RX_CNT<LEN_MAX_UART3)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值

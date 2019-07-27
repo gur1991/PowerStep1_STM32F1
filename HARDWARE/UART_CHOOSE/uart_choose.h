@@ -22,6 +22,11 @@ typedef enum{
 		CS_THREE
 }UART_CS_TYPE; 
 
+typedef struct UART_STAUS{
+		UART_TYPE uart;
+		UART_CS_TYPE cs;
+}UART_STAUS_TYPE;
+
 
 void Uart_cs_init(void);
 

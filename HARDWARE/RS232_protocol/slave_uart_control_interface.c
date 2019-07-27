@@ -229,10 +229,11 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			u8 tx_size=0;
 			u8 tx_buf[10];
 			u8 ret,rx_size,i;
-			u16 timeout;
+			int timeout;
 			cheminert_c52_c55_type_t performer;
 			bool wait_flag=true;
 			timeout=data->request.timeout;
+			if(timeout<1000)timeout=1000;
 			performer.request.para=data->request.para;
 			switch(performer.request.para){
 					case CHEMINERT_C52_CP:
@@ -410,6 +411,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
 			}
+			//printf("%c\r\n",rx_buf[0]);
 			
 			data->response.ret=ret;		
 }
@@ -480,6 +482,7 @@ static void protocol_set_weight_warning_line_interface(set_weight_warning_line_t
 			performer.request.weight=data->request.weight;
 			performer.request.gram=data->request.gram;
 			
+	printf("set warnig weight£º%d gram:%d\r\n",performer.request.weight,performer.request.gram);
 			Set_Weight_Sensor_Warnning_Line(performer.request.weight,performer.request.gram);
 			
 			data->response.ret=0;
@@ -491,6 +494,7 @@ static void protocol_get_single_weight_warning_result_interface(get_single_weigh
 	
 			performer.request.weight=data->request.weight;
 
+			printf("get warnig weight£º%d\r\n",performer.request.weight);
 			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
 			data->response.ret=0;
 }
@@ -499,6 +503,7 @@ static void protocol_get_single_weight_warning_result_interface(get_single_weigh
 static void protocol_get_all_weight_warning_result_interface(get_all_weight_warning_result_type_t *data)
 {
 			get_all_weight_warning_result_type_t  performer;
+			printf("get all warnig\r\n");
 
 			data->response.result = Get_All_Weight_Sensor_Warnning_Result();	
 			data->response.ret=0;
@@ -510,6 +515,8 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			
 			performer.request.devices=data->request.devices;
 			
+			printf("get tmp devices:%d \r\n",performer.request.devices);
+
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
 }
@@ -520,7 +527,9 @@ static void protocol_set_single_temperature_degree_interface(set_single_temperat
 		
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
-		
+			
+			printf("set tmp devices:%d degree:%d \r\n",performer.request.devices,performer.request.degree);
+
 			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
 }
@@ -531,6 +540,8 @@ static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
 	
 			performer.request.devices=data->request.devices;
 			performer.request.status=data->request.status;
+	
+			printf("electromagnetic devices:%d status:%d \r\n",performer.request.devices,performer.request.status);
 	
 			electromagnetic_control(performer.request.devices, performer.request.status);
 			data->response.ret=0;

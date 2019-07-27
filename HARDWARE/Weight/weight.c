@@ -32,7 +32,7 @@ int get_weight_sensor_value(WEIGHT_type weight)
 static __inline int weight_unit_change_to_AD_value(int gram)
 {
 	//0.58---  µº ≤‚¡øπ¿À„
-	return (int)(gram*0.58);
+	return (int)(gram*0.625);//0.58
 }	
 /**************************interface for extern******************************************/
 void Set_Weight_Sensor_Warnning_Line(WEIGHT_type weight,int gram)

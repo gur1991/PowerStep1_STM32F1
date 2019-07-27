@@ -85,7 +85,7 @@ void UART2_Init(u32 bound)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART2_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&USART2_Handler,buf,len,1000);//串口2发送数据
+	HAL_UART_Transmit(&USART2_Handler,buf,len,100);//串口2发送数据
 }
 //buf:接收缓存首地址
 //len:读到的数据长度

@@ -1,6 +1,7 @@
 #include "uart_choose.h"
+#include "delay.h"
 
-
+static  UART_CS_TYPE UART2_STAUS_LAST,UART3_STAUS_LAST;
 
 void Uart_cs_init(void)
 {
@@ -34,17 +35,27 @@ void Uart_cs_init(void)
 int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 {
 		int ret=0;
+		static int FLAG_UART2_CHOOSE=0;
+		static int FLAG_UART3_CHOOSE=0;
+
+	
+	
 		if(uart==UART2_RS232){
+				if(!FLAG_UART2_CHOOSE){UART2_STAUS_LAST=cs;}
+				else{
+						FLAG_UART2_CHOOSE=1;
+						if(UART2_STAUS_LAST==cs) return 0;
+						else UART2_STAUS_LAST=cs;
+				}
+			
+			
 				switch(cs)
 				{
 					case CS_ZERO:
-						//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
 						UART2_L_CS=0;
 						UART2_H_CS=0;
 						break;
 					case CS_ONE:
-						//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
-						//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 						UART2_L_CS=1;
 						UART2_H_CS=0;
 						break;
@@ -62,6 +73,12 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 				}
 		}else if(uart==UART3_RS232)
 		{
+				if(!FLAG_UART3_CHOOSE){UART3_STAUS_LAST=cs;}
+				else{
+						FLAG_UART3_CHOOSE=1;
+						if(UART3_STAUS_LAST==cs) return 0;
+						else UART3_STAUS_LAST=cs;
+				}
 				switch(cs)
 				{
 					case CS_ZERO:
@@ -87,6 +104,12 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 		}else{
 				ret=-1;
 		}
+		
+		
+		
+		//此处一定要延时，两个作用，模拟电路电平发出需要时间切换
+		//rs232接收数据需要等待
+		delay_ms(15);
 		return ret;
 }	
 

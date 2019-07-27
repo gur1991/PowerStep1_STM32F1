@@ -3,7 +3,7 @@
 #include "uart_choose.h" 
 #include "config.h"
 
-u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_t timeout,bool wait_flag,int type_flag)
+u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int timeout,bool wait_flag,int type_flag)
 {
 	 u8 ret=0;
 		int len;
@@ -11,6 +11,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_
 	 Uart_Receive_Data R232_Read;
 	 Uart_Send_Data R232_Write;
 	
+	printf("timeout %d \r\n",timeout);
 	if(type_flag){
 			printf("c52\r\n");
 			R232_Read = GetUartReceive(C52_UART_PORT, C52_UART_CS);
@@ -40,8 +41,6 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,uint16_
 				}
 				if(FLAG_UART_CHEMINERT)
 				{
-							//此处一定要延时，两个作用，模拟电路电平发出需要时间切换
-							//rs232接收数据需要等待
 							delay_ms(10);
 							R232_Read(rx_buf_tmp,&len);
 							//rm in the end 0d 0a from buf array
