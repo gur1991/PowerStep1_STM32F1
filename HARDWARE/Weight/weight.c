@@ -28,6 +28,28 @@ int get_weight_sensor_value(WEIGHT_type weight)
 		return value;
 }	
 
+
+//value->gram
+static __inline int weight_AD_value_change_to_unit(int value)
+{
+	//0.58--- 实际测量估算
+	return (int)(value/0.625);//0.58
+}	
+
+/*获得指定重力传感器的gram值
+*/
+int Get_weight_current_gram(WEIGHT_type weight)
+{
+	int value=0;
+	int gram=0;
+	value = get_weight_sensor_value(weight);
+	gram=weight_AD_value_change_to_unit(value);
+	
+	return gram;
+}
+
+
+
 //克->value
 static __inline int weight_unit_change_to_AD_value(int gram)
 {

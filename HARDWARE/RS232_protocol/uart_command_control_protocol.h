@@ -77,6 +77,7 @@ typedef enum Command_type{
 		
 		
 		CONNECT_TEST_TYPE,
+		GET_WEIGHT_CURRENT_GRAM,
 		
 }Command_type_t;
 
@@ -271,6 +272,8 @@ typedef struct{
 				
 				electromagnetic_type_t electromagnetic;
 				connect_test_type_t connect_test;
+				
+				get_weight_current_gram_type_t get_weight_current_gram;
 /*
 *print move rk3188
 */

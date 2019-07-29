@@ -14,6 +14,16 @@ typedef enum{
 typedef union{
 struct{
 		WEIGHT_type weight;
+}request;
+struct{
+		int gram;
+		uint8_t ret;
+}response;
+}get_weight_current_gram_type_t;
+
+typedef union{
+struct{
+		WEIGHT_type weight;
 		int gram;
 }request;
 struct{
@@ -53,6 +63,9 @@ uint8_t Get_All_Weight_Sensor_Warnning_Result(void);
 /*设定传感器超重 警告线*/
 void Set_Weight_Sensor_Warnning_Line(WEIGHT_type weight,int gram);
 
+/*获得指定重力传感器的gram值
+*/
+int Get_weight_current_gram(WEIGHT_type weight);
 #endif
 
 

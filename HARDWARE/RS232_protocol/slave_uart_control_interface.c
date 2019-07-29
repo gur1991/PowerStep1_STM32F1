@@ -553,15 +553,18 @@ static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
 static void protocol_connect_test(connect_test_type_t* data)
 {
 	
-	#if USE_MOTOR_BOARD
-			data->response.ret='M';
-	#endif
-	
-	#if USE_SENSOR_BOARD
-			data->response.ret='S';
-	#endif
+	data->response.ret =0;
+
 }	
 
+static void protocol_get_weight_current_gram(get_weight_current_gram_type_t* data)
+{
+	get_weight_current_gram_type_t  performer;
+	
+	performer.request.weight=data->request.weight;
+	data->response.gram=Get_weight_current_gram(performer.request.weight);
+	data->response.ret=0;
+}	
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -664,6 +667,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;
 			case CONNECT_TEST_TYPE:
 						protocol_connect_test(&slave_motorCommand.CommandPowerStep1.connect_test);
+						break;
+			case GET_WEIGHT_CURRENT_GRAM:
+						protocol_get_weight_current_gram(&slave_motorCommand.CommandPowerStep1.get_weight_current_gram);
 						break;
 					
 			default:

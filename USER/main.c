@@ -59,7 +59,7 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
-test_pump_s100();
+//test_pump_s100();
 while(1){
 
 
@@ -80,7 +80,7 @@ while(1){
 		#endif
 		
 		#if USE_SENSOR_BOARD	
-			//ThermometerHandle->keep_degree();
+			ThermometerHandle->keep_degree();
 			//printf("tmp1:%d\r\n",DS18B20_Get_Temp(1));
 			//printf("tmp2:%d\r\n",DS18B20_Get_Temp(2));
 		#endif
