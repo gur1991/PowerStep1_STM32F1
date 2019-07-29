@@ -75,8 +75,19 @@ typedef enum Command_type{
 		TEMPERATURE_SENSOR_SET_TYPE,
 		ELECTROMAGNETIC_TYPE,
 		
+		
+		CONNECT_TEST_TYPE,
+		
 }Command_type_t;
 
+typedef union{ 
+	struct{
+		uint8_t nor;
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}connect_test_type_t;
 
 typedef enum Command_Package_type{ 
 			SLEF_TEST=0,
@@ -259,6 +270,7 @@ typedef struct{
 				get_single_temperature_degree_type_t get_single_temperature_degree;
 				
 				electromagnetic_type_t electromagnetic;
+				connect_test_type_t connect_test;
 /*
 *print move rk3188
 */

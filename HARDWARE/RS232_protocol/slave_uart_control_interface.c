@@ -550,6 +550,18 @@ static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
 			electromagnetic_control(performer.request.devices, performer.request.status);
 			data->response.ret=0;
 }	
+static void protocol_connect_test(connect_test_type_t* data)
+{
+	
+	#if USE_MOTOR_BOARD
+			data->response.ret='M';
+	#endif
+	
+	#if USE_SENSOR_BOARD
+			data->response.ret='S';
+	#endif
+}	
+
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -650,7 +662,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case ELECTROMAGNETIC_TYPE:
 						protocol_electromagnetic_interface(&slave_motorCommand.CommandPowerStep1.electromagnetic);
 						break;
-			
+			case CONNECT_TEST_TYPE:
+						protocol_connect_test(&slave_motorCommand.CommandPowerStep1.connect_test);
+						break;
+					
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}

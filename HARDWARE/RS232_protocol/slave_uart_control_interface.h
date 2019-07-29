@@ -10,6 +10,7 @@
 #include "temperature.h"
 #include "uart_choose.h"
 #include "Cheminert_c52.h"
+#include "config.h"
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void);
 
