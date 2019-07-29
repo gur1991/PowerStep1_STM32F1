@@ -457,6 +457,19 @@ void RestAllMotorPosition(void)
 		
 }
 
+
+/*
+*HAL 层用于设置电机参数的接口
+*/
+
+void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
+{
+	int ret;
+	init_motor_device(TempMotor);//把电机参数保存在数组里
+	PowerStep_Select_Motor_Baby(TempMotor.request.devices);
+	Powerstep01_Init_Register(&motor_config_array[TempMotor.request.devices]);
+}
+
 //************************below no-useful************************
 //array==0xff 代表为无效
 //只下发指令给powerstep 不去等待执行结束

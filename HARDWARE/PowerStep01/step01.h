@@ -115,6 +115,11 @@ struct{
 
 int init_motor_device(init_motor_speed_tension_type_t data);
 
+/*
+*HAL 层用于设置电机参数的接口
+*/
+
+void Set_Single_Motor_Config(init_motor_speed_tension_type_t data);
 
 /*********************************************************************/
 

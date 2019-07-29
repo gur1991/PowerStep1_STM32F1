@@ -128,12 +128,12 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			data->response.ret=0;
 }
 
-//discard
 static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*data){
 			init_motor_speed_tension_type_t performer;
-
-			//memcpy(&performer, data,sizeof(performer));
-			//data->response.ret=init_motor_device(performer);
+	
+			memcpy(&performer, data,sizeof(performer));
+			Set_Single_Motor_Config(performer);
+			data->response.ret=0;	
 }	
 //discard
 static void protocol_move_many_motor(move_many_motor_type_t*data){
