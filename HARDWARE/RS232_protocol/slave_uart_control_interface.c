@@ -452,11 +452,15 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			data->response.ret=ret;	
 			data->response.PUMP_S100_REPLY_type=type;
 	
+			printf("pump type:%d \r\n",data->response.PUMP_S100_REPLY_type);
 			if(type==SPECIAL_ACK_S100){
 						data->response.s100_reply.SpecialACK.S100_RESULT=s100_reply.SpecialACK.S100_RESULT;
 			}else if(type==NORMAL_ANSWER_S100){
 						data->response.s100_reply.NormalAnswer.S100_AI=s100_reply.NormalAnswer.S100_AI;
 						memcpy(data->response.s100_reply.NormalAnswer.S100_VALUE,s100_reply.NormalAnswer.S100_VALUE,sizeof(s100_reply.NormalAnswer.S100_VALUE));
+						for(i=0;i<sizeof(data->request.para.S100_VALUE);i++){
+							printf("value zzz:%c\r\n",data->response.s100_reply.NormalAnswer.S100_VALUE[i]);
+			}	
 			}else if(type==ACTIVE_EVENT_S100){
 						data->response.s100_reply.ActiveEvent.S100_AI=s100_reply.ActiveEvent.S100_AI;
 						memcpy(data->response.s100_reply.ActiveEvent.S100_VALUE,s100_reply.ActiveEvent.S100_VALUE,sizeof(s100_reply.ActiveEvent.S100_VALUE));
@@ -688,7 +692,8 @@ u8 test_actuator(Command_Cheminert_type_t type){
 
 
 */
-void test_pump_s100(void){
+void test_pump_s100(void)
+{
 	u8 ret=0,i;
 	pump_s100_command_type_t data;
 	
@@ -719,7 +724,6 @@ void test_pump_s100(void){
 	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
 	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
 			printf("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
-			//printf("Value%d \r\n",data.response.s100_reply.NormalAnswer.S100_VALUE[6]);
 			for(i=0;i<6;i++){
 					printf("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
 			}

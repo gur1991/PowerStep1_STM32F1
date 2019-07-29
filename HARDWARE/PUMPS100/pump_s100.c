@@ -54,6 +54,8 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 		Uart_Send_Data R232_Write = GetUartSend( PUMP_UART_PORT, PUMP_UART_CS);
 
 	
+	printf("timeout:%d \r\n",timeout);
+	
 		CRC_Digital_Convert_Get(data);
 		Big_Little_Endian_Convert(data->S100_CRC,sizeof(data->S100_CRC));
 		Big_Little_Endian_Convert(data->S100_PFC,sizeof(data->S100_PFC));

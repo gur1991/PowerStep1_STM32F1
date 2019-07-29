@@ -20,6 +20,7 @@
 #include "electromagnetic.h"
 #include "wdg.h"
 
+
 int main(void)
 {	
 	HAL_Init();                    	 	
@@ -34,6 +35,7 @@ int main(void)
 		
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
+	//TIM3_PWM_Init(CLK_COUNT-1,72-1);
 	TIM_SetTIM3Compare4(500);	
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
@@ -57,40 +59,12 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
-
+test_pump_s100();
 while(1){
 
-	//printf("while start\r\n");
-/*	
-	test_actuator(CHEMINERT_C52_VR);	
-	test_actuator(CHEMINERT_C52_CCA);
-//		delay_ms(500);
-	test_actuator(CHEMINERT_C52_CCB);
-//		delay_ms(500);
+
 	
-	test_actuator(CHEMINERT_C55_VR);
-	test_actuator(CHEMINERT_C55_GO1);
-	test_actuator(CHEMINERT_C55_GO2);
-	test_actuator(CHEMINERT_C55_GO3);
-	test_actuator(CHEMINERT_C55_GO4);
-	test_actuator(CHEMINERT_C55_GO5);
-	test_actuator(CHEMINERT_C55_GO6);
-*/	
-	/*
-	delay_ms(500);
-	test_actuator(CHEMINERT_C55_GO4);
-		delay_ms(500);
-*/
-	//example();
-/*	
-	TIM_SetTIM3Compare4(500);
-	delay_ms(20);
-	TIM_SetTIM3Compare4(375);
-	delay_ms(100);
-	TIM_SetTIM3Compare4(0);
-	delay_ms(100);
-*/	
-	#if 1	
+#if 1	
 
 		if(ARM_RS232_ASK){
 						printf("start receive !\r\n");
@@ -106,7 +80,7 @@ while(1){
 		#endif
 		
 		#if USE_SENSOR_BOARD	
-			ThermometerHandle->keep_degree();
+			//ThermometerHandle->keep_degree();
 			//printf("tmp1:%d\r\n",DS18B20_Get_Temp(1));
 			//printf("tmp2:%d\r\n",DS18B20_Get_Temp(2));
 		#endif

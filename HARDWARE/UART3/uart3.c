@@ -5,8 +5,6 @@
 
 UART_HandleTypeDef USART3_Handler; 
 
-
-#if EN_USART3_RX   		//如果使能了接收   	  
 //接收缓存区 	
 u8 UART3_RX_BUF[LEN_MAX_UART3];  
 //接收到的数据长度
@@ -31,7 +29,7 @@ void USART3_IRQHandler(void)
 		if(UART3_RX_CNT==1&&(UART3_RX_BUF[0]==0x23||UART3_RX_BUF[0]==0x24||UART3_RX_BUF[0]==0x25)){
 					FLAG_RECEIVE_ACK_PUMP100=1;
 		}
-		if(UART3_RX_CNT>5&&(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a||UART3_RX_BUF[UART3_RX_CNT-1]==0x0d)){
+		if(UART3_RX_CNT>2&&(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a||UART3_RX_BUF[UART3_RX_CNT-1]==0x0d)){
 					FLAG_RECEIVE_ANSOWER_PUMP100=1;
 		}	
 
@@ -66,7 +64,7 @@ void USART3_IRQHandler(void)
 #endif
 } 
 */
-#endif
+
 
 //初始化IO 串口2
 //bound:波特率

@@ -14,4 +14,6 @@
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void);
 
 u8 test_actuator(Command_Cheminert_type_t type);
+
+void test_pump_s100(void);
 #endif
