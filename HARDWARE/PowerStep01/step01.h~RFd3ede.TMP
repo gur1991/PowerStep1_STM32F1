@@ -165,19 +165,6 @@ void wait_many_motor(wait_many_motor_type_t data);
 extern init_motor_speed_tension_type_t TempMotor;
 
 
-typedef union{ 
-struct{
-		int motorNum;
-		int lightNum;
-		uint8_t motorDir;
-		uint32_t steps;
-		int flag_wait;
-}request;
-struct{
-		uint8_t ret;
-}response;
-}rest_select_motor_orgin_type_t;
-
 //motor ±àºÅ
 //light ±àºÅ
 //¸´Î»Ê±²½·¥

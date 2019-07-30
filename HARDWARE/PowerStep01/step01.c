@@ -265,13 +265,13 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=32;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2500;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
-		  TempMotor.request.init_motor.motor_config.current.current_value=24;
+		  TempMotor.request.init_motor.motor_config.current.current_value=30;
 		
    		break;		
 	case 9:
@@ -381,6 +381,38 @@ void RestSelectMotorPosition(int motorNum,int lightNum,uint32_t rstSpeed, motorD
 							PowerStep_Select_Motor_Baby(motorNum);
 							BSP_MotorControl_HardStop(0);
 							BSP_MotorControl_CmdSetParam(0, POWERSTEP01_MAX_SPEED, myMaxSpeed);
+							status=0;
+				}
+		}				
+}
+
+
+//motor 编号
+//light 编号
+//复位时步伐
+//复位时的电机方向
+//是否先wait steps
+void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,int flag_wait)
+{
+	int status=0;
+	
+		if(Light_Sensor_Get(lightNum)){
+					PowerStep_Select_Motor_Baby(motorNum);
+					BSP_MotorControl_Move(0, motorDir, (int)(steps*1.15));
+					/*
+					if(flag_wait)
+					{
+							BSP_MotorControl_WaitWhileActive(0);
+					}
+					BSP_MotorControl_Move(0, motorDir, (int)(steps*0.15));	
+			*/	
+			status=1;
+		}
+		while(status){
+				if(!Light_Sensor_Get(lightNum))
+					{
+							PowerStep_Select_Motor_Baby(motorNum);
+							BSP_MotorControl_HardStop(0);
 							status=0;
 				}
 		}				

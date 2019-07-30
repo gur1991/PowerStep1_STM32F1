@@ -564,6 +564,18 @@ static void protocol_get_weight_current_gram(get_weight_current_gram_type_t* dat
 	performer.request.weight=data->request.weight;
 	data->response.gram=Get_weight_current_gram(performer.request.weight);
 	data->response.ret=0;
+}
+
+static void protocol_rest_select_motor_orgin(rest_select_motor_orgin_type_t* data)
+{
+	rest_select_motor_orgin_type_t  performer;
+	performer.request.motorNum = data->request.motorNum;
+	performer.request.lightNum = data->request.lightNum;
+	performer.request.motorDir = data->request.motorDir;
+	performer.request.steps = data->request.steps;
+	performer.request.flag_wait = data->request.flag_wait;
+	RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, performer.request.motorDir,performer.request.steps, performer.request.flag_wait);
+	data->response.ret=0;
 }	
 //
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
@@ -671,7 +683,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case GET_WEIGHT_CURRENT_GRAM:
 						protocol_get_weight_current_gram(&slave_motorCommand.CommandPowerStep1.get_weight_current_gram);
 						break;
-					
+			case REST_MOTOR_ORGIN:
+						protocol_rest_select_motor_orgin(&slave_motorCommand.CommandPowerStep1.rest_select_motor_orgin);
+						break;
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}

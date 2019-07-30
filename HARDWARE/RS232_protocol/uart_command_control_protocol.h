@@ -78,6 +78,7 @@ typedef enum Command_type{
 		
 		CONNECT_TEST_TYPE,
 		GET_WEIGHT_CURRENT_GRAM,
+		REST_MOTOR_ORGIN,
 		
 }Command_type_t;
 
@@ -274,6 +275,7 @@ typedef struct{
 				connect_test_type_t connect_test;
 				
 				get_weight_current_gram_type_t get_weight_current_gram;
+				rest_select_motor_orgin_type_t rest_select_motor_orgin;
 /*
 *print move rk3188
 */

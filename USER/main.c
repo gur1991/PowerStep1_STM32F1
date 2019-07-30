@@ -1,3 +1,4 @@
+
 #include "sys.h"
 #include "delay.h"
 #include "usart.h"
@@ -59,7 +60,9 @@ int main(void)
 	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 	
-//test_pump_s100();
+
+		//PowerStep_Select_Motor_Baby(7);
+		//BSP_MotorControl_Move(0, BACKWARD, 10000);
 while(1){
 
 

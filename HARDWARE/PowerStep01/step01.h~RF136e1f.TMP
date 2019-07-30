@@ -172,6 +172,7 @@ struct{
 		uint8_t motorDir;
 		uint32_t steps;
 		int flag_wait;
+	
 }request;
 struct{
 		uint8_t ret;
