@@ -398,14 +398,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 	
 		if(Light_Sensor_Get(lightNum)){
 					PowerStep_Select_Motor_Baby(motorNum);
-					BSP_MotorControl_Move(0, motorDir, (int)(steps*1.15));
-					/*
-					if(flag_wait)
-					{
-							BSP_MotorControl_WaitWhileActive(0);
-					}
-					BSP_MotorControl_Move(0, motorDir, (int)(steps*0.15));	
-			*/	
+					BSP_MotorControl_Move(0, motorDir, (int)(steps*1.2));
 			status=1;
 		}
 		while(status){
@@ -497,9 +490,16 @@ void RestAllMotorPosition(void)
 void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
 {
 	int ret;
-	init_motor_device(TempMotor);//把电机参数保存在数组里
-	PowerStep_Select_Motor_Baby(TempMotor.request.devices);
-	Powerstep01_Init_Register(&motor_config_array[TempMotor.request.devices]);
+	init_motor_device(data);//把电机参数保存在数组里
+	PowerStep_Select_Motor_Baby(data.request.devices);
+	Powerstep01_Init_Register(&motor_config_array[data.request.devices]);
+	printf("devices:%d\r\n",data.request.devices);
+	printf("mode:%d\r\n",data.request.init_motor.ModeSelection);
+	
+	printf("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
+	printf("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
+	printf("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
+	printf("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
 }
 
 //************************below no-useful************************

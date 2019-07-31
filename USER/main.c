@@ -20,6 +20,7 @@
 #include "config.h"
 #include "electromagnetic.h"
 #include "wdg.h"
+#include "step01.h"
 
 
 int main(void)
@@ -57,16 +58,14 @@ int main(void)
 	Light_Sensor_Init();
 	BSP_Motor_Control_Init();
 	
-	printf("main board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
-	
 
-		//PowerStep_Select_Motor_Baby(7);
-		//BSP_MotorControl_Move(0, BACKWARD, 10000);
+
+
 while(1){
 
 
-	
 #if 1	
 
 		if(ARM_RS232_ASK){

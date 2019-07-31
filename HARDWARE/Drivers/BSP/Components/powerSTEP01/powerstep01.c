@@ -347,7 +347,7 @@ void Powerstep01_Init(void* pInit)
 
   /* Let a delay after reset */
   Powerstep01_Board_Delay(20);
-  printf("spi delay ok \r\n");
+//  printf("spi delay ok \r\n");
 
 	//Powerstep01_Init_Register(pInit);
  // powerstep01DriverInstance++;

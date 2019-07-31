@@ -132,7 +132,8 @@ static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*da
 			init_motor_speed_tension_type_t performer;
 	
 			memcpy(&performer, data,sizeof(performer));
-			Set_Single_Motor_Config(performer);
+	
+			Set_Single_Motor_Config(*data);
 			data->response.ret=0;	
 }	
 //discard
