@@ -20,7 +20,6 @@ static void protocol_powerstep01_power(power_type_t* data){
 		power_type_t performer;
 		performer.request.devices=data->request.devices;
 		performer.request.power=data->request.power;
-	printf("stop value:%d\r\n",performer.request.devices);	
 		//0xff为停止所有电机
 		if(performer.request.devices==0xff)
 		{
@@ -71,7 +70,6 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
 		one_device_wait_type_t performer;
 		performer.request.devices=data->request.devices;
-	printf("wait stop \r\n");
 		PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_WaitWhileActive(0);	
 		data->response.ret=0;
@@ -165,7 +163,6 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
-			printf("gggg slave devices %d \r\n",performer.request.number);
 			data->response.value=Light_Sensor_Get(performer.request.number);
 			data->response.ret=0;
 }
@@ -175,7 +172,6 @@ static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*dat
 			
 			Light_Sensor_Get_All();
 			memcpy(data->response.value, gStatusLight, sizeof(gStatusLight));		
-			printf("all light\r\n ");
 			data->response.ret=0;
 }
 
@@ -487,7 +483,6 @@ static void protocol_set_weight_warning_line_interface(set_weight_warning_line_t
 			performer.request.weight=data->request.weight;
 			performer.request.gram=data->request.gram;
 			
-	printf("set warnig weight：%d gram:%d\r\n",performer.request.weight,performer.request.gram);
 			Set_Weight_Sensor_Warnning_Line(performer.request.weight,performer.request.gram);
 			
 			data->response.ret=0;
@@ -499,7 +494,6 @@ static void protocol_get_single_weight_warning_result_interface(get_single_weigh
 	
 			performer.request.weight=data->request.weight;
 
-			printf("get warnig weight：%d\r\n",performer.request.weight);
 			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
 			data->response.ret=0;
 }
@@ -508,7 +502,6 @@ static void protocol_get_single_weight_warning_result_interface(get_single_weigh
 static void protocol_get_all_weight_warning_result_interface(get_all_weight_warning_result_type_t *data)
 {
 			get_all_weight_warning_result_type_t  performer;
-			printf("get all warnig\r\n");
 
 			data->response.result = Get_All_Weight_Sensor_Warnning_Result();	
 			data->response.ret=0;
@@ -520,7 +513,6 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			
 			performer.request.devices=data->request.devices;
 			
-			printf("get tmp devices:%d \r\n",performer.request.devices);
 
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
@@ -533,7 +525,6 @@ static void protocol_set_single_temperature_degree_interface(set_single_temperat
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
 			
-			printf("set tmp devices:%d degree:%d \r\n",performer.request.devices,performer.request.degree);
 
 			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
@@ -546,7 +537,6 @@ static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
 			performer.request.devices=data->request.devices;
 			performer.request.status=data->request.status;
 	
-			printf("electromagnetic devices:%d status:%d \r\n",performer.request.devices,performer.request.status);
 	
 			electromagnetic_control(performer.request.devices, performer.request.status);
 			data->response.ret=0;
@@ -583,7 +573,6 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
-		printf("start slave uart\r\n");
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
 		
@@ -692,7 +681,6 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		}
 OVER:		
 		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
-		printf("end slave uart\r\n");
 }
 
 

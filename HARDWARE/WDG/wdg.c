@@ -2,7 +2,7 @@
 //#include "stm32f1xx_hal_iwdg.h"
 IWDG_HandleTypeDef hiwdg;
 //Óë·ÖÆµÊýÎª64,ÖØÔØÖµÎª625,Òç³öÊ±¼äÎª1s	    Tout=64×625/40=1000ms
-void IWDG_Init(u8 prer,u16 rlr) 
+void IWDG_Init(uint32_t prer,uint32_t rlr) 
 {	
   hiwdg.Instance = IWDG;
   hiwdg.Init.Prescaler = prer;

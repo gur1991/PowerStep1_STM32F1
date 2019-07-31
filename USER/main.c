@@ -31,7 +31,7 @@ int main(void)
 	uart_init(115200);					
 	usmart_dev.init(84); 		   	
 	UART4_Init(115200);
-	IWDG_Init(4,625*5); //5s   
+	IWDG_Init(4,625*6); //6s   	MAX
   IWDG_Start();
 	
 		
@@ -61,11 +61,15 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 
+   // RestSelectMotorOrgin(1,6, BACKWARD ,25000,0);
 
+		//PowerStep_Select_Motor_Baby(4);
+		//BSP_MotorControl_Move(0, FORWARD, 20000);
 
 while(1){
 
-
+	//printf("light:%d \r\n",Light_Sensor_Get(7));
+	//delay_ms(100);
 #if 1	
 
 		if(ARM_RS232_ASK){

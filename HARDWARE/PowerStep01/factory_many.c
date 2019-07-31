@@ -11,8 +11,8 @@ int ClearAndCheckBlankPosition(void)
 {
 		int i;
 		printf("clear blank position \r\n");
-		PowerStep_Select_Motor_Baby(3);
-		BSP_MotorControl_Move(0, BACKWARD, 5000);
+		PowerStep_Select_Motor_Baby(1);
+		BSP_MotorControl_Move(0, BACKWARD, 1500);
 		BSP_MotorControl_WaitWhileActive(0);	
 	
 		return Light_Sensor_Get(4);

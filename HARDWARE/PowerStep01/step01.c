@@ -1,6 +1,6 @@
 #include "step01.h"
 #include <string.h>
-
+#include "delay.h"
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
 init_motor_speed_tension_type_t TempMotor;
 
@@ -179,21 +179,21 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=25;
 		
    		break;
 		case 2:
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
@@ -203,9 +203,9 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=200;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
@@ -215,14 +215,13 @@ int ConfigMotorAllDevice(int chip)
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=582;
-			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=60;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=16;
-		
-   		break;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=25;
+	   		break;
 		case 5:
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
@@ -298,6 +297,19 @@ int ConfigMotorAllDevice(int chip)
 		
 			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
 		  TempMotor.request.init_motor.motor_config.current.current_value=150;
+		
+   		break;		
+		case 11:
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=10;
+		  TempMotor.request.init_motor.motor_config.current.current_value=20;
 		
    		break;		
 		case 13:
@@ -395,19 +407,24 @@ void RestSelectMotorPosition(int motorNum,int lightNum,uint32_t rstSpeed, motorD
 void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,int flag_wait)
 {
 	int status=0;
-	
+	int i=0;
 		if(Light_Sensor_Get(lightNum)){
 					PowerStep_Select_Motor_Baby(motorNum);
 					BSP_MotorControl_Move(0, motorDir, (int)(steps*1.2));
 			status=1;
 		}
 		while(status){
+				i++;
 				if(!Light_Sensor_Get(lightNum))
-					{
-							PowerStep_Select_Motor_Baby(motorNum);
-							BSP_MotorControl_HardStop(0);
+					{						
+							BSP_MotorControl_HardStop(0);	
 							status=0;
 				}
+				if(i==3*1000){
+							BSP_MotorControl_HardStop(0);
+							break;	
+				}
+				delay_ms(1);	
 		}				
 }
 
