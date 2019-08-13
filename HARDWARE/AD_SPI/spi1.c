@@ -83,13 +83,29 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
     __HAL_RCC_GPIOA_CLK_ENABLE();       //使能GPIOA时钟
     __HAL_RCC_SPI1_CLK_ENABLE();        //使能SPI1时钟
    // __HAL_RCC_AFIO_CLK_ENABLE();
-	
+	/*
 	  GPIO_Initure.Pin=GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
     GPIO_Initure.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;                  //上拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;             //快速            
     HAL_GPIO_Init(GPIOA,&GPIO_Initure);
-	
+	*/
+		
+		  /* Configure SPI SCK */
+  GPIO_Initure.Pin = GPIO_PIN_5;
+  GPIO_Initure.Mode = GPIO_MODE_AF_PP;
+  GPIO_Initure.Pull  = GPIO_PULLUP;
+  GPIO_Initure.Speed = GPIO_SPEED_HIGH;
+  HAL_GPIO_Init(GPIOA, &GPIO_Initure);
+
+  GPIO_Initure.Pin = GPIO_PIN_6;
+  GPIO_Initure.Pull  = GPIO_PULLDOWN;
+	GPIO_Initure.Mode=GPIO_MODE_INPUT;  
+  HAL_GPIO_Init(GPIOA, &GPIO_Initure);
+  
+  GPIO_Initure.Pin = GPIO_PIN_7;
+  GPIO_Initure.Pull  = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOA, &GPIO_Initure);
 	}
 
 }
@@ -160,7 +176,7 @@ u8 AD_Sensor_Init(void){
 		return 0;
 }
 int AD_Sensor_Get_Data(AD_type cs){
-		u8 txbuf[3]={0xaa,0xaa,0xaa};
+		u8 txbuf[3]={0x00,0x00,0x00};
 		u8 rxbuf[3]={0,0,0};
 		u8 bit_low=0;
 		u8 bit_high=0;

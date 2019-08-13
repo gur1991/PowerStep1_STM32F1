@@ -58,7 +58,6 @@ struct{
 
 //泵主动向STM32发送数据,STM32对数据进行储存，等待ARM读取，不要主动向ARM发送
 //此主动行为，不需要回应泵
-
 void Wait_Ack_Pump_S100_Event_And_Send_Master(void);
 
 uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pump_s100_reply_type_t* reply,u16 timeout);

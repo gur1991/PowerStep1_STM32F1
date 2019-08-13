@@ -54,29 +54,12 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 		Uart_Send_Data R232_Write = GetUartSend( PUMP_UART_PORT, PUMP_UART_CS);
 
 	
-	printf("timeout:%d \r\n",timeout);
 	
 		CRC_Digital_Convert_Get(data);
 		Big_Little_Endian_Convert(data->S100_CRC,sizeof(data->S100_CRC));
 		Big_Little_Endian_Convert(data->S100_PFC,sizeof(data->S100_PFC));
 		Big_Little_Endian_Convert(data->S100_ID,sizeof(data->S100_ID));
 		Big_Little_Endian_Convert(data->S100_VALUE,sizeof(data->S100_VALUE));
-	/*
-		printf("S100_STX: %x\r\n",data->S100_STX);
-		printf("S100_ETX: %x\r\n",data->S100_ETX);
-		printf("ID[1]: %c\r\n",data->S100_ID[1]);
-		printf("ID[0]: %c\r\n",data->S100_ID[0]);	
-		printf("AI: %c\r\n",data->S100_AI);
-		printf("PFC[1]: %c\r\n",data->S100_PFC[1]);
-		printf("PFC[0]: %c\r\n",data->S100_PFC[0]);
-		printf("CRC[2]: %c\r\n",data->S100_CRC[2]);	
-		printf("CRC[1]: %c\r\n",data->S100_CRC[1]);	
-		printf("CRC[0]: %c\r\n",data->S100_CRC[0]);
-									
-		for(i=0;i<6;i++){
-			printf("value:%x\r\n",data->S100_VALUE[i]);
-		}
-		*/
 									
 		R232_Write((u8*)data,sizeof(s100_command_t));
 		while(1){
@@ -86,13 +69,6 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 						printf(" pump_s100_transfer fuck timeout! \r\n");
 						break;
 					}
-					/*
-					delay_ms(200);
-					RS485_Receive_Data(rs485buf,&len);
-					for(i=0;i<len;i++){
-							printf("%c",rs485buf[i]);
-					}
-					*/
 					if(FLAG_RECEIVE_ACK_PUMP100){
 									delay_ms(10);
 									R232_Read(&result,&len);
@@ -165,9 +141,10 @@ static void* Wait_slave_msg_thread(void*p){
 
 
 */
-//泵主动向STM32发送数据，STM32进行提取必要数据发送给ARM；ARM收到数据进行对应处理
+//泵主动向STM32发送数据,STM32对数据进行储存，等待ARM读取，不要主动向ARM发送
 //此主动行为，不需要回应泵
-void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
+void Wait_Ack_Pump_S100_Event_And_Send_Master(void)
+{
 		uint8_t ret=0;
 		u8 result;
     int len, i;
@@ -180,6 +157,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 		CommandData.OverReceiveFlag[0]=OVER_UART_VALUE0;
 		CommandData.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		
+		//printf("start .\r\n");
 		if(FLAG_RECEIVE_ANSOWER_PUMP100){
 					R232_Read((u8*)(&S100_receive),&len);
 					Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
@@ -195,10 +173,11 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void){
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_PFC,S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));
 								memcpy(CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_VALUE,S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
 								
-								R232_Write((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
+								//R232_Write((u8*)(&CommandData),sizeof(Powerstep1_contorl_motor_command_t));
 					}
 					
 					FLAG_RECEIVE_ANSOWER_PUMP100=0;//其他事件不去处理
 				}
+				//printf("end .\r\n");
 		
 }

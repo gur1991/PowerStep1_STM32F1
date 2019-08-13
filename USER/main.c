@@ -21,7 +21,7 @@
 #include "electromagnetic.h"
 #include "wdg.h"
 #include "step01.h"
-
+#include "pump_s100.h"
 
 int main(void)
 {	
@@ -41,7 +41,7 @@ int main(void)
 	TIM_SetTIM3Compare4(500);	
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
-	
+	ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
 	
 	UART2_Init(9600);
 	UART3_Init(9600);
@@ -61,15 +61,18 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 
-   // RestSelectMotorOrgin(1,6, BACKWARD ,25000,0);
 
-		//PowerStep_Select_Motor_Baby(4);
-		//BSP_MotorControl_Move(0, FORWARD, 20000);
-
+//test_pump_s100();
 while(1){
+	//Wait_Ack_Pump_S100_Event_And_Send_Master();
 
-	//printf("light:%d \r\n",Light_Sensor_Get(7));
-	//delay_ms(100);
+	
+	printf("TMEPERATURE_ONE:%d \r\n",ThermometerHandle->get_degree(TMEPERATURE_ONE));
+	printf("TMEPERATURE_TWO:%d \r\n",ThermometerHandle->get_degree(TMEPERATURE_TWO));
+	printf("weight 1:%d \r\n",Get_weight_current_gram(WEIGHT_ONE));
+	printf("weight 2:%d \r\n",Get_weight_current_gram(WEIGHT_TWO));
+	printf("weight 3:%d \r\n",Get_weight_current_gram(WEIGHT_THREE));
+	printf("weight 4:%d \r\n",Get_weight_current_gram(WEIGHT_FOUR));
 #if 1	
 
 		if(ARM_RS232_ASK){

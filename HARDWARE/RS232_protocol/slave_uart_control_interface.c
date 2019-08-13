@@ -731,16 +731,24 @@ void test_pump_s100(void)
 	
 	data.request.para.S100_AI='0';
 	
-	data.request.para.S100_PFC[1]='0';
-	data.request.para.S100_PFC[0]='1';
+	data.request.para.S100_PFC[1]='1';
+	data.request.para.S100_PFC[0]='5';
 	
-
+/*
 	data.request.para.S100_VALUE[5]=0x20;//0x20
 	data.request.para.S100_VALUE[4]=0x20;//0x20
 	data.request.para.S100_VALUE[3]='0';
 	data.request.para.S100_VALUE[2]='0';
 	data.request.para.S100_VALUE[1]='0';
-	data.request.para.S100_VALUE[0]='9';
+	data.request.para.S100_VALUE[0]='1';
+*/
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]=0x20;
+	data.request.para.S100_VALUE[2]='0';
+	data.request.para.S100_VALUE[1]='1';
+	data.request.para.S100_VALUE[0]='0';
+	
 	
 	protocol_pump_s100_interface(&data);
 	
