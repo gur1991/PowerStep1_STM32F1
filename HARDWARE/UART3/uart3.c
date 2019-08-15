@@ -24,7 +24,7 @@ void USART3_IRQHandler(void)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
 			UART3_RX_CNT++;						//接收数据增加1	
-			printf("zzzzzzzzz%c \r\n",res);
+			//printf("zzzzzzzzz%c \r\n",res);
 		} 
 		
 		

@@ -26,43 +26,15 @@ current_value get_value :set_value =1:12 此值不固定
 
 //数组0废弃 用[1]---[14]
 #define SIZE_MOTOR_ARRAY 15
+
+
 extern powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
-
-
-//停止所有电机运动
-void StopALLMotorMotion(void);
-
-//此函数调用后会按照设定的速度和step走
-//完成后，速度会恢复之前的
-void ChangeSpeedMotorRun(int motorNum ,uint32_t steps ,uint32_t setSpeed, motorDir_t motorDir);
-
-//motor 编号
-//light 编号
-//复位时用的速度
-//复位时的电机方向
-
-void RestSelectMotorPosition(int motorNum,int lightNum,uint32_t rstSpeed, motorDir_t motorDir);
-
-void RestAllMotorPosition2(void);
-
-//开机自检
-void FirstOpenMotorCheckPosition(void);
-
-//同步复位---discard
-void RestAllMotorPosition(void);
-
-//配置motor参数
-int ConfigMotorAllDevice(int chip);
 
 typedef struct
 {
-  ///Acceleration 
   float acceleration;
-  ///Deceleration
   float deceleration;
-  ///Maximum speed
   float maxSpeed;//-----电机速度调试
-  ///Minimum speed
   float minSpeed;//电机idle 速度
 }motor_commonSpeed_type_t;	
 
@@ -70,27 +42,9 @@ typedef struct
 //电流是ma
 typedef union{
 struct{
-/*	
-	float tvalHold;
-  ///Torque regulation DAC reference voltage when motor is runnig at constant speed
-  float tvalRun;
-  ///Torque regulation DAC reference voltage during motor acceleration
-  float tvalAcc;
-  ///Torque regulation DAC reference voltage during motor deceleration
-  float tvalDec;
-*/	
 	float current_value;//CURRENT_VALUE;
 }current;	
 struct{
-/*
-	float kvalHold;
-  ///Voltage amplitude regulation when the motor is running at constant speed
-  float kvalRun;
-  ///Voltage amplitude regulation during motor acceleration
-  float kvalAcc;
-  ///Voltage amplitude regulation during motor deceleration
-  float kvalDec;
-*/
 	float duty_cycle;
 }voltage;	
 }motor_config_type_t;
@@ -102,7 +56,6 @@ typedef struct {
 		motor_config_type_t motor_config;	
 }init_motor_type_t;
 
-
 typedef union{ 
 struct{
 		uint8_t devices;//0,1,2
@@ -113,56 +66,23 @@ struct{
 }response;
 }init_motor_speed_tension_type_t;
 
+extern init_motor_speed_tension_type_t TempMotor;
+
 int init_motor_device(init_motor_speed_tension_type_t data);
 
-/*
-*HAL 层用于设置电机参数的接口
-*/
+typedef enum MOTOR_SPEED_type
+{
+		LOW_SPEED=0,
+		NORMAL_SPEED,	
+		HIGH_SPEED,	
+}MOTOR_SPEED_type_t;
+
+//配置motor参数
+int ConfigMotorAllDevice(int chip,MOTOR_SPEED_type_t speed_type);
 
 void Set_Single_Motor_Config(init_motor_speed_tension_type_t data);
 
-/*********************************************************************/
-
-#define ALLOW_MANY_MOTOR 6//最多允许6个电机同时控制
-typedef struct{
-			uint8_t array;//哪个电机
-			uint32_t stepCount;	//大小
-			motorDir_t direction;//方向
-}move_motor_data_type_t;
-
-typedef union{ 
-struct{
-		move_motor_data_type_t move_motor_data[ALLOW_MANY_MOTOR];
-}request;
-struct{
-		uint8_t ret;
-}response;
-}move_many_motor_type_t;
-void move_many_motor(move_many_motor_type_t data);
-
-
-//等待多个电机执行完毕
-typedef struct{
-			uint8_t array;//哪个电机
-}wait_motor_data_type_t;
-
-typedef union{ 
-struct{
-		wait_motor_data_type_t wait_motor_data[ALLOW_MANY_MOTOR];
-}request;
-struct{
-		uint8_t ret;
-}response;
-}wait_many_motor_type_t;
-
-void wait_many_motor(wait_many_motor_type_t data);
-
-
-
-
-
-
-extern init_motor_speed_tension_type_t TempMotor;
+void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_type);
 
 
 typedef union{ 
@@ -183,6 +103,54 @@ struct{
 //复位时步伐
 //复位时的电机方向
 
-void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps, int flag_wait);
+void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
 	
+void StopALLMotorMotion(void);
+
+void BSP_Motor_Control_Init(void);
+
+/*********************************************************************/
+#define ALLOW_MANY_MOTOR 6//最多允许6个电机同时控制
+typedef struct{
+			uint8_t array;//哪个电机
+			uint32_t stepCount;	//大小
+			motorDir_t direction;//方向
+}move_motor_data_type_t;
+
+
+typedef union{ 
+struct{
+		move_motor_data_type_t data;
+}request;
+struct{
+		uint8_t ret;
+}response;
+}move_wait_motor_type_t;
+
+
+
+typedef union{ 
+struct{
+		move_motor_data_type_t move_motor_data[ALLOW_MANY_MOTOR];
+}request;
+struct{
+		uint8_t ret;
+}response;
+}move_many_motor_type_t;
+
+
+//等待多个电机执行完毕
+typedef struct{
+			uint8_t array;//哪个电机
+}wait_motor_data_type_t;
+
+typedef union{ 
+struct{
+		wait_motor_data_type_t wait_motor_data[ALLOW_MANY_MOTOR];
+}request;
+struct{
+		uint8_t ret;
+}response;
+}wait_many_motor_type_t;
+
 #endif

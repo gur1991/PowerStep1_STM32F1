@@ -30,6 +30,8 @@ void Uart_cs_init(void)
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 }
 
+
+
 //uart 2»ò 3
 //chip 0-3
 int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
@@ -37,10 +39,17 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 		int ret=0;
 		static int FLAG_UART2_CHOOSE=0;
 		static int FLAG_UART3_CHOOSE=0;
-
+		static int flag_first_uart2=1;
+		static int flag_first_uart3=1;
 	
 	
 		if(uart==UART2_RS232){
+				if(flag_first_uart2)
+				{
+					delay_ms(300);
+					flag_first_uart2=0;
+				}
+			
 				if(!FLAG_UART2_CHOOSE){UART2_STAUS_LAST=cs;}
 				else{
 						FLAG_UART2_CHOOSE=1;
@@ -73,6 +82,12 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 				}
 		}else if(uart==UART3_RS232)
 		{
+				if(flag_first_uart3)
+				{
+					delay_ms(300);
+					flag_first_uart3=0;
+				}
+				
 				if(!FLAG_UART3_CHOOSE){UART3_STAUS_LAST=cs;}
 				else{
 						FLAG_UART3_CHOOSE=1;

@@ -139,7 +139,7 @@ static void protocol_move_many_motor(move_many_motor_type_t*data){
 			move_many_motor_type_t performer;
 			
 			memcpy(&performer, data,sizeof(performer));
-			move_many_motor(performer);
+			//move_many_motor(performer);
 			data->response.ret=0;
 }
 //discard
@@ -147,7 +147,7 @@ static void protocol_wait_many_motor(wait_many_motor_type_t*data){
 			wait_many_motor_type_t performer;
 			
 			memcpy(&performer, data,sizeof(performer));
-			wait_many_motor(performer);
+			//wait_many_motor(performer);
 			data->response.ret=0;
 }
 
@@ -155,7 +155,7 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 {
 		motor_command_package_type_t performer;
 		performer.request.command = data->request.command;
-		process_motor_command_receive(performer.request.command);
+		data->response.value=process_motor_command_receive(performer.request.command);
 		data->response.ret=0;
 }	
 
@@ -565,10 +565,77 @@ static void protocol_rest_select_motor_orgin(rest_select_motor_orgin_type_t* dat
 	performer.request.motorDir = data->request.motorDir;
 	performer.request.steps = data->request.steps;
 	performer.request.flag_wait = data->request.flag_wait;
-	RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, performer.request.motorDir,performer.request.steps, performer.request.flag_wait);
+	RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps);
 	data->response.ret=0;
 }	
-//
+
+static void protocol_move_wait_motor(move_wait_motor_type_t* data)
+{
+	move_wait_motor_type_t performer;
+	performer.request.data.array = data->request.data.array;
+	performer.request.data.stepCount = data->request.data.stepCount;
+	performer.request.data.direction = data->request.data.direction;
+	Motor_Move_And_Wait(performer.request.data.array, performer.request.data.direction , performer.request.data.stepCount);
+	data->response.ret=0;
+}	
+
+static void protocol_set_pumps100_press(Set_Pumps100_Press_type_t* data)
+{
+	Set_Pumps100_Press_type_t performer;	
+	
+	performer.request.MaxPress=data->request.MaxPress;
+	performer.request.MinPress=data->request.MinPress;
+	
+	data->response.ret=Set_Pumps100_Press(performer.request.MaxPress, performer.request.MinPress);
+}	
+
+static void protocol_balance_chromatographic_column(Balance_Chromatographic_Column_type_t* data)
+{
+	Balance_Chromatographic_Column_type_t performer;	
+	
+	performer.request.IdleFlowSpeed=data->request.IdleFlowSpeed;
+	
+	data->response.ret=Balance_Chromatographic_Column(performer.request.IdleFlowSpeed);
+}	
+
+static void protocol_gradient_control_buffer(Gradient_control_buffer_type_t* data)
+{
+	Gradient_control_buffer_type_t performer;	
+	
+	performer.request.Work_Flow_Speed=data->request.Work_Flow_Speed;
+	performer.request.A_timeS=data->request.A_timeS;
+	performer.request.B_timeS=data->request.B_timeS;
+	performer.request.C_timeS=data->request.C_timeS;
+	performer.request.A2_timeS=data->request.A2_timeS;
+	
+	data->response.ret=Gradient_control_buffer(performer.request.Work_Flow_Speed, performer.request.A_timeS, performer.request.B_timeS,performer.request.C_timeS,performer.request.A2_timeS);
+}
+
+static void protocol_gravity_sensor_setting(Gravity_Sensor_Setting_type_t* data)
+{
+	Gravity_Sensor_Setting_type_t performer;
+	
+	performer.request.weightA=data->request.weightA;
+	performer.request.weightB=data->request.weightB;
+	performer.request.weightC=data->request.weightC;
+	performer.request.weightD=data->request.weightD;
+	
+	Gravity_Sensor_Setting(performer.request.weightA,performer.request.weightB,performer.request.weightC,performer.request.weightD);
+	
+	data->response.ret=0;
+}
+
+static void protocol_gravity_sensor_getting(Gravity_Sensor_Getting_type_t* data)
+{
+		data->response.weightA=Get_weight_current_gram(WEIGHT_ONE);
+		data->response.weightB=Get_weight_current_gram(WEIGHT_TWO);	
+		data->response.weightC=Get_weight_current_gram(WEIGHT_THREE);
+		data->response.weightD=Get_weight_current_gram(WEIGHT_FOUR);
+		
+		data->response.ret=0;
+}
+
+
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
@@ -576,6 +643,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
 		
+	  printf("*******%d \r\n",len);
 	
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
@@ -676,6 +744,25 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case REST_MOTOR_ORGIN:
 						protocol_rest_select_motor_orgin(&slave_motorCommand.CommandPowerStep1.rest_select_motor_orgin);
 						break;
+			case MOTOR_MOVE_AND_WAIT:
+						protocol_move_wait_motor(&slave_motorCommand.CommandPowerStep1.move_wait_motor);
+						break;
+			case SET_PUMPS100_PRESS:
+						protocol_set_pumps100_press(&slave_motorCommand.CommandPowerStep1.Set_Pumps100_Press);
+						break;
+			case BALANCE_CHROMATOGRAPHIC_COLUMN:
+						protocol_balance_chromatographic_column(&slave_motorCommand.CommandPowerStep1.Balance_Chromatographic_Column);
+						break;
+			case GRADIENT_CONTROL_BUFFER:
+						protocol_gradient_control_buffer(&slave_motorCommand.CommandPowerStep1.Gradient_control_buffer);
+						break;
+			case GRAVITY_SENSOR_SETTING:
+						protocol_gravity_sensor_setting(&slave_motorCommand.CommandPowerStep1.Gravity_Sensor_Setting);
+						break;	
+			case GRAVITY_SENSOR_GETTING:
+						protocol_gravity_sensor_getting(&slave_motorCommand.CommandPowerStep1.Gravity_Sensor_Getting);
+						break;	
+						
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}
@@ -684,6 +771,211 @@ OVER:
 }
 
 
+
+uint8_t Set_Pumps100_FlowSpeed(int speed)
+{
+	uint8_t ret=0;
+	pump_s100_command_type_t data;
+	
+	uint8_t ge = speed%10;
+	speed=speed/10;
+	uint8_t shi = speed%10;
+	speed=speed/10;
+	uint8_t bai = speed%10;
+	speed=speed/10;
+	uint8_t qian = speed%10;
+
+	data.request.timeout=1000;
+	data.request.para.S100_STX=0x21;
+	data.request.para.S100_ETX=0x0a;
+	data.request.para.S100_ID[1]='1'; 
+	data.request.para.S100_ID[0]='0';
+	data.request.para.S100_AI='0';
+	
+	data.request.para.S100_PFC[1]='1';
+	data.request.para.S100_PFC[0]='0';
+	
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]=0x30+qian;
+	data.request.para.S100_VALUE[2]=0x30+bai;
+	data.request.para.S100_VALUE[1]=0x30+shi;
+	data.request.para.S100_VALUE[0]=0x30+ge;
+	
+	protocol_pump_s100_interface(&data);
+
+	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
+
+	return ret;
+}
+
+
+uint8_t Set_Pumps100_MaxPress(int press)
+{
+	uint8_t ret=0;
+	pump_s100_command_type_t data;
+
+	uint8_t ge = press%10;
+	press=press/10;
+	uint8_t shi = press%10;
+	press=press/10;
+	uint8_t bai = press%10;
+	press=press/10;
+	uint8_t qian = press%10;
+	
+	data.request.timeout=1000;
+	data.request.para.S100_STX=0x21;
+	data.request.para.S100_ETX=0x0a;
+	data.request.para.S100_ID[1]='1'; 
+	data.request.para.S100_ID[0]='0';
+	data.request.para.S100_AI='0';
+	
+	data.request.para.S100_PFC[1]='1';
+	data.request.para.S100_PFC[0]='3';
+	
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]=0x30+qian;
+	data.request.para.S100_VALUE[2]=0x30+bai;
+	data.request.para.S100_VALUE[1]=0x30+shi;
+	data.request.para.S100_VALUE[0]=0x30+ge;
+	
+	protocol_pump_s100_interface(&data);
+	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
+
+	return ret;
+}
+
+
+uint8_t Set_Pumps100_MinPress(int press)
+{
+	uint8_t ret=0;
+	pump_s100_command_type_t data;
+
+	uint8_t ge = press%10;
+	press=press/10;
+	uint8_t shi = press%10;
+	press=press/10;
+	uint8_t bai = press%10;
+	press=press/10;
+	uint8_t qian = press%10;
+	
+	data.request.timeout=1000;
+	data.request.para.S100_STX=0x21;
+	data.request.para.S100_ETX=0x0a;
+	data.request.para.S100_ID[1]='1'; 
+	data.request.para.S100_ID[0]='0';
+	data.request.para.S100_AI='0';
+	
+	data.request.para.S100_PFC[1]='1';
+	data.request.para.S100_PFC[0]='4';
+	
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]=0x30+qian;
+	data.request.para.S100_VALUE[2]=0x30+bai;
+	data.request.para.S100_VALUE[1]=0x30+shi;
+	data.request.para.S100_VALUE[0]=0x30+ge;
+	
+	protocol_pump_s100_interface(&data);
+	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
+
+	return ret;
+}
+
+
+uint8_t Set_Pumps100_Press(int MaxPress,int MinPress)
+{
+	uint8_t ret=0;
+	if(Set_Pumps100_MinPress(MinPress))return 1;
+	if(Set_Pumps100_MaxPress(MaxPress))return 1;
+	return ret;
+}
+
+
+uint8_t Balance_Chromatographic_Column(int IdleFlowSpeed)
+{
+	uint8_t ret=0;
+	
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
+	cheminert_c52_c55.request.timeout=1000;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	
+	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
+
+	ret=Set_Pumps100_FlowSpeed(IdleFlowSpeed);
+	
+	return ret;
+}
+
+
+uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int C_timeS,int A2_timeS)
+{
+	uint8_t ret=0;
+	
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
+	cheminert_c52_c55.request.timeout=1000;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	
+	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
+
+	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
+
+	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
+	delay_ms(1000*A_timeS);
+	electromagnetic_control(ELECTROMAGNETIC_A, CLOSE_FT);
+	
+	electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);
+	delay_ms(1000*B_timeS);
+	electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
+	
+	electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
+	delay_ms(1000*C_timeS);
+	electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
+	
+	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
+	delay_ms(1000*A2_timeS);
+	electromagnetic_control(ELECTROMAGNETIC_A, CLOSE_FT);
+	
+	return ret;
+}
+
+
+uint8_t Rest_C55_C52_Position(void)
+{
+	uint8_t ret=0;
+
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.timeout=1000;
+	
+	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
+
+	cheminert_c52_c55.request.para=	CHEMINERT_C55_CC2;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(cheminert_c52_c55.response.buf[0]!='2')return 1;
+	
+	return ret;
+}	
+
+void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD)
+{
+	Set_Weight_Sensor_Warnning_Line(WEIGHT_ONE , weightA);
+	Set_Weight_Sensor_Warnning_Line(WEIGHT_TWO , weightB);
+	Set_Weight_Sensor_Warnning_Line(WEIGHT_THREE , weightC);
+	Set_Weight_Sensor_Warnning_Line(WEIGHT_FOUR , weightD);
+}
+
+
+
+
+
+
+
+/*************************************************************************************/
 u8 test_actuator(Command_Cheminert_type_t type){
 	u8 ret=0,i;
 	cheminert_c52_c55_type_t cheminert_c52_c55;
@@ -698,6 +990,7 @@ u8 test_actuator(Command_Cheminert_type_t type){
 	printf("\r\n");
 	return ret;
 }
+
 /*
 	S100_testCommand.S100_STX=0x21;
 	S100_testCommand.S100_ETX=0x0a;

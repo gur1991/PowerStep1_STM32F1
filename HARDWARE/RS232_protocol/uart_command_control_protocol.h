@@ -28,7 +28,9 @@ STM32---SLVAE设备的协议和这个不同
 #include "temperature.h"		 
 #include "step01.h"
 #include "electromagnetic.h"
-	 
+//#include "factory_many.h"
+#include "execute.h"	 
+
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
@@ -80,6 +82,13 @@ typedef enum Command_type{
 		GET_WEIGHT_CURRENT_GRAM,
 		REST_MOTOR_ORGIN,
 		
+		MOTOR_MOVE_AND_WAIT,
+		SET_PUMPS100_PRESS,
+		BALANCE_CHROMATOGRAPHIC_COLUMN,
+		GRADIENT_CONTROL_BUFFER,
+		GRAVITY_SENSOR_SETTING,
+		GRAVITY_SENSOR_GETTING,
+		
 }Command_type_t;
 
 typedef union{ 
@@ -93,8 +102,18 @@ typedef union{
 
 typedef enum Command_Package_type{ 
 			SLEF_TEST=0,
-			FIRST_START_CHECK_MOTOR,
-			REST_ALL_MOTOR,
+	
+			FIRST_START_CHECK_MOTOR,//开机自检
+			REST_ALL_MOTOR,//电机复位
+			
+			CLEAR_BLANK,
+			CLEARL_WAIT,
+			READY_NEXT,
+			READY_LEFT,
+			LEFT_MOVE_TO_WAIT,
+	
+			REST_C55_C52,
+			
 	
 }Command_Package_t;
 
@@ -103,6 +122,7 @@ typedef union{
 		Command_Package_t command;
 	}request;
 	struct{
+		uint8_t value;
 		uint8_t ret;
 	}response;
 }motor_command_package_type_t;
@@ -276,6 +296,14 @@ typedef struct{
 				
 				get_weight_current_gram_type_t get_weight_current_gram;
 				rest_select_motor_orgin_type_t rest_select_motor_orgin;
+				
+				
+				move_wait_motor_type_t move_wait_motor;
+				Set_Pumps100_Press_type_t Set_Pumps100_Press;
+				Balance_Chromatographic_Column_type_t Balance_Chromatographic_Column;
+				Gradient_control_buffer_type_t Gradient_control_buffer;
+				Gravity_Sensor_Setting_type_t Gravity_Sensor_Setting;
+				Gravity_Sensor_Getting_type_t Gravity_Sensor_Getting;
 /*
 *print move rk3188
 */

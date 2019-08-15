@@ -62,17 +62,9 @@ int main(void)
 #endif	
 
 
-//test_pump_s100();
 while(1){
-	//Wait_Ack_Pump_S100_Event_And_Send_Master();
-
-	
-	printf("TMEPERATURE_ONE:%d \r\n",ThermometerHandle->get_degree(TMEPERATURE_ONE));
-	printf("TMEPERATURE_TWO:%d \r\n",ThermometerHandle->get_degree(TMEPERATURE_TWO));
-	printf("weight 1:%d \r\n",Get_weight_current_gram(WEIGHT_ONE));
-	printf("weight 2:%d \r\n",Get_weight_current_gram(WEIGHT_TWO));
-	printf("weight 3:%d \r\n",Get_weight_current_gram(WEIGHT_THREE));
-	printf("weight 4:%d \r\n",Get_weight_current_gram(WEIGHT_FOUR));
+		//PowerStep_Select_Motor_Baby(2);
+		//BSP_MotorControl_Move(0, BACKWARD, 200000);
 #if 1	
 
 		if(ARM_RS232_ASK){

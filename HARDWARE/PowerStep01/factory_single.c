@@ -10,7 +10,7 @@ void FactoryMotorTestMode_single(void)
 	
 		
 	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
-			result=ConfigMotorAllDevice(i);//配置电机参数
+			//result=ConfigMotorAllDevice(i);//配置电机参数
 			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);
 			
