@@ -113,7 +113,9 @@ typedef enum Command_Package_type{
 			LEFT_MOVE_TO_WAIT,
 	
 			REST_C55_C52,
-			
+			REST_HIGH_WHEEL,
+			REST_TRANSPORTER_BELT,
+			REST_DRAIN_AND_WASH_MOTOR,
 	
 }Command_Package_t;
 

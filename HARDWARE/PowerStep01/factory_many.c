@@ -267,6 +267,15 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case REST_C55_C52:
 					value=Rest_C55_C52_Position();
 				break;
+			case REST_HIGH_WHEEL:
+				Rest_high_wheel();
+				break;
+			case REST_TRANSPORTER_BELT:
+				Rest_Transporter_Belt();
+				break;
+			case REST_DRAIN_AND_WASH_MOTOR:
+				Rest_Drain_And_Wash_Motor_Orgin();
+				break;
 			
 			default:
 					break;
