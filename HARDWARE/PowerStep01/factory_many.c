@@ -73,7 +73,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 				BSP_MotorControl_Move(0, M3_WAIT_TO_NEXT, 5000);
 				BSP_MotorControl_HardStop(0);
 				break;
-		}else if(i>=1000)
+		}else if(i>=250)
 		{
 				BSP_MotorControl_HardStop(0);
 				break;
@@ -91,8 +91,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 //无 1   有 0
 uint8_t ReadyAndCheckLeftPosition(void)
 {
-		int i;
-		printf("ready left position \r\n");
+		int i=0;
 		PowerStep_Select_Motor_Baby(M2_BLANK_LEFT);
 		BSP_MotorControl_Move(0, M2_BLANK_TO_LEFT, 11000);
 		while(1)
@@ -105,14 +104,13 @@ uint8_t ReadyAndCheckLeftPosition(void)
 								BSP_MotorControl_WaitWhileActive(0);
 								BSP_MotorControl_HardStop(0);
 								break;
-					}else if(i>=1000)
+					}else if(i>=250)
 					{
 								BSP_MotorControl_HardStop(0);
 								break;
 					}
 					delay_ms(10);
 		}
-	
 		return Light_Sensor_Get(LEFT_LIGHT);
 }
 
@@ -123,15 +121,11 @@ uint8_t ReadyAndCheckLeftPosition(void)
 //无 1   有 0
 uint8_t LeftMoveTowardWaitPosition(void)
 {
-		int i;
-		printf("left ->wait\r\n");
-		PowerStep_Select_Motor_Baby(M4_LEFT_WAIT);		
+		int i=0;
+		
+		PowerStep_Select_Motor_Baby( M4_LEFT_WAIT);		
+		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
 	
-		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 20000);
-		BSP_MotorControl_WaitWhileActive(0);
-	
-		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT, LOW_SPEED);
-		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 600);
 		while(1)
 		{
 				i++;
@@ -139,16 +133,15 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
-				}else if(i>=200)
+				}else if(i>=250)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
 				}
 				delay_ms(10);
 		}
-		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT, HIGH_SPEED);
-		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 20600);
-		
+		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,HIGH_SPEED);
+		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 23000);
 		return Light_Sensor_Get(M4_LIGHT);
 }	
 /**********************************************************/
@@ -203,21 +196,21 @@ void First_Open_Motor_AutoCheck(void)
 	Motor_Move_And_Wait(M3_WAIT_NEXT, M3_WAIT_TO_NEXT,11000);
 	
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR,5000);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM,5000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM,65000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 5000);
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 5000);
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 65000);
 
 	
-	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 5000);
+	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 65000);
 	Motor_Move_And_Wait(M8_MIX, M8_MIX_LEFT,15000);
 	Motor_Move_And_Wait(M8_MIX, M8_MIX_RIGHT,15000);
-	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_UP, 5000);
+	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 65000);
 
 
-	Motor_Move_And_Wait(M9_IN_OUT, M9_IN,6000);
-	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN,6000);
-	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 6000);
-	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 6000);
+	Motor_Move_And_Wait(M9_IN_OUT, M9_IN,36000);
+	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN,36000);
+	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 36000);
+	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 36000);
 
 	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN,6000);
 	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 6000);

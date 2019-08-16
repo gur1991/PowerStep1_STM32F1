@@ -10,6 +10,25 @@ uint8_t process_motor_command_receive(Command_Package_t command);
 
 void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
 
+uint8_t ClearAndCheckBlankPosition(void);
+
+uint8_t ClearAndCheckWaitPosition(void);
+
+uint8_t ReadyAndCheckNextPosition(void);
+
+uint8_t ReadyAndCheckLeftPosition(void);
+
+uint8_t LeftMoveTowardWaitPosition(void);
+
+void Rest_Drain_And_Wash_Motor_Orgin(void);
+
+void Rest_Transporter_Belt(void);
+
+void Rest_high_wheel(void);
+
+void RestAllMotorOrgin(void);
+
+void First_Open_Motor_AutoCheck(void);
 
 /***********************************************/
 /*

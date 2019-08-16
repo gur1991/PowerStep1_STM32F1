@@ -11,7 +11,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 	 Uart_Receive_Data R232_Read;
 	 Uart_Send_Data R232_Write;
 	
-	printf("timeout %d \r\n",timeout);
+	//printf("timeout %d \r\n",timeout);
 	if(type_flag){
 			printf("c52\r\n");
 			R232_Read = GetUartReceive(C52_UART_PORT, C52_UART_CS);

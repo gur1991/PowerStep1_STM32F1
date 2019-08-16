@@ -63,10 +63,10 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 
+First_Open_Motor_AutoCheck();
 
 while(1){
-		//PowerStep_Select_Motor_Baby(2);
-		//BSP_MotorControl_Move(0, BACKWARD, 200000);
+
 #if 1	
 
 		if(ARM_RS232_ASK){
@@ -76,10 +76,11 @@ while(1){
 						ARM_RS232_ASK=0;
 		}	
 		
-		delay_ms(5);
+		delay_ms(10);
 		
 		
-#endif		
+#endif	
+delay_ms(10);		
 		//IWDG_Feed();
 	}
 

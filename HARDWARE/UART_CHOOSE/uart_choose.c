@@ -1,7 +1,7 @@
 #include "uart_choose.h"
 #include "delay.h"
 
-static  UART_CS_TYPE UART2_STAUS_LAST,UART3_STAUS_LAST;
+static  UART_CS_TYPE UART2_STAUS_LAST=4,UART3_STAUS_LAST=4;
 
 void Uart_cs_init(void)
 {
@@ -37,26 +37,14 @@ void Uart_cs_init(void)
 int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 {
 		int ret=0;
-		static int FLAG_UART2_CHOOSE=0;
-		static int FLAG_UART3_CHOOSE=0;
 		static int flag_first_uart2=1;
 		static int flag_first_uart3=1;
 	
 	
 		if(uart==UART2_RS232){
-				if(flag_first_uart2)
-				{
-					delay_ms(300);
-					flag_first_uart2=0;
-				}
-			
-				if(!FLAG_UART2_CHOOSE){UART2_STAUS_LAST=cs;}
-				else{
-						FLAG_UART2_CHOOSE=1;
-						if(UART2_STAUS_LAST==cs) return 0;
-						else UART2_STAUS_LAST=cs;
-				}
-			
+
+			if(UART2_STAUS_LAST==cs) return 0;
+			else UART2_STAUS_LAST=cs;
 			
 				switch(cs)
 				{
@@ -79,21 +67,19 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 					default:
 						ret=-1;
 						break;
+				}
+				if(flag_first_uart2)
+				{
+					delay_ms(20);
+					flag_first_uart2=0;
 				}
 		}else if(uart==UART3_RS232)
 		{
-				if(flag_first_uart3)
-				{
-					delay_ms(300);
-					flag_first_uart3=0;
-				}
+
 				
-				if(!FLAG_UART3_CHOOSE){UART3_STAUS_LAST=cs;}
-				else{
-						FLAG_UART3_CHOOSE=1;
-						if(UART3_STAUS_LAST==cs) return 0;
-						else UART3_STAUS_LAST=cs;
-				}
+				if(UART3_STAUS_LAST==cs) return 0;
+				else UART3_STAUS_LAST=cs;
+			
 				switch(cs)
 				{
 					case CS_ZERO:
@@ -115,6 +101,11 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 					default:
 						ret=-1;
 						break;
+				}
+				if(flag_first_uart3)
+				{
+					delay_ms(100);
+					flag_first_uart3=0;
 				}
 		}else{
 				ret=-1;

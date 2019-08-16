@@ -63,7 +63,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
     if(htim->Instance==TIM5)
 	{
 		__HAL_RCC_TIM5_CLK_ENABLE();            //使能TIM5时钟
-		HAL_NVIC_SetPriority(TIM5_IRQn,1,3);    //设置中断优先级，抢占优先级1，子优先级3
+		HAL_NVIC_SetPriority(TIM5_IRQn,4,0);    //设置中断优先级，抢占优先级1，子优先级3
 		HAL_NVIC_EnableIRQ(TIM5_IRQn);          //开启ITM5中断   
 	}
 }

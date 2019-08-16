@@ -916,12 +916,12 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 	
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
-	cheminert_c52_c55.request.timeout=1000;
+	cheminert_c52_c55.request.timeout=2000;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
+//	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
 
 	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
 	delay_ms(1000*A_timeS);
