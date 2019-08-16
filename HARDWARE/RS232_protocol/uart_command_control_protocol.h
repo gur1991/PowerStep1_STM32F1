@@ -117,6 +117,8 @@ typedef enum Command_Package_type{
 			REST_TRANSPORTER_BELT,
 			REST_DRAIN_AND_WASH_MOTOR,
 	
+			REACH_DEGREE_WAIT,
+	
 }Command_Package_t;
 
 typedef union{ 

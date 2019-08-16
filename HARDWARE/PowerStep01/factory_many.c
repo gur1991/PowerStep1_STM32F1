@@ -269,6 +269,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case REST_DRAIN_AND_WASH_MOTOR:
 				Rest_Drain_And_Wash_Motor_Orgin();
 				break;
+			case REACH_DEGREE_WAIT:
+				value=Rearch_Degree_Wait();
+				break;
 			
 			default:
 					break;

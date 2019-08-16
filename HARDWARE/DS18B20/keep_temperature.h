@@ -4,6 +4,8 @@
 #include "temperature.h"
 #include "config.h"
 
+//五分钟之内等待，否则退出
+uint8_t Rearch_Degree_Wait(void);
 
 //设定温度
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices);

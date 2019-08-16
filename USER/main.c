@@ -63,8 +63,6 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif	
 
-First_Open_Motor_AutoCheck();
-
 while(1){
 
 #if 1	
@@ -80,7 +78,6 @@ while(1){
 		
 		
 #endif	
-delay_ms(10);		
 		//IWDG_Feed();
 	}
 

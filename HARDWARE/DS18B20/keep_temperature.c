@@ -1,5 +1,5 @@
 #include "keep_temperature.h"
-
+#include "delay.h"
 
 static int SET_VALUE=0;
 
@@ -52,6 +52,30 @@ int GetTemperatureDegree(TMEPERATURE_type devices)
 				return DS18B20_Get_Temp(devices);
 }
 
+//五分钟之内等待，否则退出
+uint8_t Rearch_Degree_Wait(void)
+{
+	uint8_t ret=0;
+	int i=0;
+	while(1)
+	{
+		if(i>=300)
+		{
+				ret=1;
+				break;
+		}
+		i++;
+		if(SET_VALUE-GetTemperatureDegree(TMEPERATURE_CURRENT)<=3&&SET_VALUE-GetTemperatureDegree(TMEPERATURE_CURRENT)>=0)
+				break;
+
+		if(GetTemperatureDegree(TMEPERATURE_CURRENT)-SET_VALUE<=3&&GetTemperatureDegree(TMEPERATURE_CURRENT)-SET_VALUE>=0)
+				break;
+		
+		delay_ms(1000);
+		
+	}
+	return ret;
+}	
 
 
 //在预设值的1.5伏进行过冲补偿计算---解决加热过多

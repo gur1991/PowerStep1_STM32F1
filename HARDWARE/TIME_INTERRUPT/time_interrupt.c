@@ -6,3 +6,5 @@ void keep_thermometer_degree(void)
 {
 	ThermometerHandle->keep_degree();
 }
+
+
