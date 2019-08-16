@@ -31,8 +31,8 @@ int main(void)
 	uart_init(115200);					
 	usmart_dev.init(84); 		   	
 	UART4_Init(115200);
-	IWDG_Init(4,625*6); //6s   	MAX
-  IWDG_Start();
+	//IWDG_Init(4,625*6); //6s   	MAX
+  //IWDG_Start();
 	
 		
 #if USE_SENSOR_BOARD	
@@ -42,6 +42,8 @@ int main(void)
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
 	ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
+	
+	TIM5_Init(COUNT_TIME, 7999);//10Khz ÆµÂÊ 5000¼ÆÊý  500ms 
 	
 	UART2_Init(9600);
 	UART3_Init(9600);
@@ -74,20 +76,11 @@ while(1){
 						ARM_RS232_ASK=0;
 		}	
 		
-		#if USE_SENSOR_BOARD
-			delay_ms(MAIN_DELAY);
-		#else
-			delay_ms(5);
-		#endif
+		delay_ms(5);
 		
-		#if USE_SENSOR_BOARD	
-			ThermometerHandle->keep_degree();
-			//printf("tmp1:%d\r\n",DS18B20_Get_Temp(1));
-			//printf("tmp2:%d\r\n",DS18B20_Get_Temp(2));
-		#endif
 		
 #endif		
-		IWDG_Feed();
+		//IWDG_Feed();
 	}
 
 	return 0;

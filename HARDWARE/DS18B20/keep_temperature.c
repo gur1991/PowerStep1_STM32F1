@@ -59,7 +59,7 @@ int GetTemperatureDegree(TMEPERATURE_type devices)
 void KeepTemperatureDegree(void)
 {
 		//Ã¿ËÄÃë·´À¡¼ÆËãÒ»´Î
-		static int time_count = 4000/MAIN_DELAY;
+		//static int time_count = 4000/MAIN_DELAY;
 
 			//Èç¹ûÎÂ¶ÈÖØÉè£¬ËùÓÐ²ÎÊýÐèÒªÖØÐÂÐ£×¼
 			if(SET_VALUE!=last_value){
@@ -99,7 +99,7 @@ void KeepTemperatureDegree(void)
 					negative_flag++;
 					//Èç¹û5sÖÓÎÂ¶ÈÃ»ÓÐ±ä»¯£¬ÇÒÃ»ÓÐ´ïµ½Ô¤ÉèÖµ£¬Ò²Òª²¹³
 				//¼ÓÈÈ4s ÀäÈ´40s
-					if(negative_flag>=time_count){
+					if(negative_flag){
 							
 							positive_flag++;
 							value_diff = SET_VALUE - current_value;

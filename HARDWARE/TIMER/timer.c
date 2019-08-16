@@ -4,39 +4,29 @@
 #include "delay.h"
 #include "usart.h"
 #include "config.h"
-
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32F103开发板
-//定时器中断驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2017/5/25
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
+	
 TIM_HandleTypeDef 	TIM3_Handler;      	//定时器句柄 
+TIM_HandleTypeDef 	TIM5_Handler;      	//定时器句柄 
+
 TIM_OC_InitTypeDef 	TIM3_CH4Handler;
 
 
-//通用定时器3中断初始化
+//通用定时器5中断初始化
 //arr：自动重装值。
 //psc：时钟预分频数
 //定时器溢出时间计算方法:Tout=((arr+1)*(psc+1))/Ft us.
 //Ft=定时器工作频率,单位:Mhz
 //这里使用的是定时器3!
-void TIM3_Init(u16 arr,u16 psc)
+void TIM5_Init(u16 arr,u16 psc)
 {  
-    TIM3_Handler.Instance=TIM3;                          //通用定时器3
-    TIM3_Handler.Init.Prescaler=psc;                     //分频系数
-    TIM3_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;    //向上计数器
-    TIM3_Handler.Init.Period=arr;                        //自动装载值
-    TIM3_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1;//时钟分频因子
-    HAL_TIM_Base_Init(&TIM3_Handler);
+    TIM5_Handler.Instance=TIM5;                          //通用定时器4
+    TIM5_Handler.Init.Prescaler=psc;                     //分频系数
+    TIM5_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;    //向上计数器
+    TIM5_Handler.Init.Period=arr;                        //自动装载值
+    TIM5_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1;//时钟分频因子
+    HAL_TIM_Base_Init(&TIM5_Handler);
     
-    HAL_TIM_Base_Start_IT(&TIM3_Handler); //使能定时器3和定时器3更新中断：TIM_IT_UPDATE   
+    HAL_TIM_Base_Start_IT(&TIM5_Handler); //使能定时器5和定时器5更新中断：TIM_IT_UPDATE   
 }
 
 //TIM3 PWM部分初始化 
@@ -70,11 +60,11 @@ void TIM3_PWM_Init(u16 arr,u16 psc)
 //此函数会被HAL_TIM_Base_Init()函数调用
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
 {
-    if(htim->Instance==TIM3)
+    if(htim->Instance==TIM5)
 	{
-		__HAL_RCC_TIM3_CLK_ENABLE();            //使能TIM3时钟
-		HAL_NVIC_SetPriority(TIM3_IRQn,1,3);    //设置中断优先级，抢占优先级1，子优先级3
-		HAL_NVIC_EnableIRQ(TIM3_IRQn);          //开启ITM3中断   
+		__HAL_RCC_TIM5_CLK_ENABLE();            //使能TIM5时钟
+		HAL_NVIC_SetPriority(TIM5_IRQn,1,3);    //设置中断优先级，抢占优先级1，子优先级3
+		HAL_NVIC_EnableIRQ(TIM5_IRQn);          //开启ITM5中断   
 	}
 }
 
@@ -93,12 +83,10 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
 		__HAL_AFIO_REMAP_TIM3_ENABLE();//TIM3通道引脚重映射使能
 		__HAL_RCC_GPIOC_CLK_ENABLE();			//开启GPIOC时钟
 		
-		//GPIO_Initure.Pin=GPIO_PIN_5;           	//PB5
 		GPIO_Initure.Pin=GPIO_PIN_9;           	//PC9
 		GPIO_Initure.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
 		GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
 		GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-		//HAL_GPIO_Init(GPIOB,&GPIO_Initure); 	
 		HAL_GPIO_Init(GPIOC,&GPIO_Initure); 	
 	}
 }
@@ -117,11 +105,23 @@ void TIM_SetTIM3Compare4(u32 compare)
 	TIM3->CCR4=compare; 
 }
 
+void TIM5_IRQHandler(void)
+{ 		    		  			       
+    if(__HAL_TIM_GET_IT_SOURCE(&TIM5_Handler,TIM_IT_UPDATE)==SET)//溢出中断
+    {
+				keep_thermometer_degree();
+        __HAL_TIM_SET_COUNTER(&TIM5_Handler,0);;    //清空定时器的CNT
+        __HAL_TIM_SET_AUTORELOAD(&TIM5_Handler,COUNT_TIME);//恢复原来的设置
+    }
+    __HAL_TIM_CLEAR_IT(&TIM5_Handler, TIM_IT_UPDATE);//清除中断标志位
+}
+
+
 /*
-//定时器3中断服务函数
-void TIM3_IRQHandler(void)
+//定时器4中断服务函数
+void TIM4_IRQHandler(void)
 {
-	HAL_TIM_IRQHandler(&TIM3_Handler);
+	HAL_TIM_IRQHandler(&TIM4_Handler);
 }
 
 //回调函数，定时器中断服务函数调用
