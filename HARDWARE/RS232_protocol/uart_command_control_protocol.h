@@ -118,6 +118,7 @@ typedef enum Command_Package_type{
 			REST_DRAIN_AND_WASH_MOTOR,
 	
 			REACH_DEGREE_WAIT,
+		  MIX_SCAN_SLOW,
 	
 }Command_Package_t;
 

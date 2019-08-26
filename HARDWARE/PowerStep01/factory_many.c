@@ -66,7 +66,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 	while(1)
 	{
 		i++;
-		value=Light_Sensor_Get(WAIT_LIGHT);
+		value=Light_Sensor_Get(NEXT_LIGHT);
 		if(!value)
 		{
 				BSP_MotorControl_HardStop(0);
@@ -140,7 +140,7 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				}
 				delay_ms(10);
 		}
-		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,HIGH_SPEED);
+	//	Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,HIGH_SPEED);
 		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 23000);
 		return Light_Sensor_Get(M4_LIGHT);
 }	
@@ -197,9 +197,9 @@ void First_Open_Motor_AutoCheck(void)
 	
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR,5000);
 	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM,65000);
-	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 5000);
 	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 65000);
-
+	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 5000);
+	
 	
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 65000);
 	Motor_Move_And_Wait(M8_MIX, M8_MIX_LEFT,15000);
@@ -215,6 +215,17 @@ void First_Open_Motor_AutoCheck(void)
 	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN,6000);
 	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 6000);
 
+}
+
+
+
+void Scan_Motor_Slow_Spin(void)
+{
+	Choose_Single_Motor_Speed_Config(M8_MIX,LOW_SPEED);
+	PowerStep_Select_Motor_Baby(M8_MIX);	
+	BSP_MotorControl_Move(0, M8_MIX_LEFT, 6000);
+	BSP_MotorControl_WaitWhileActive(0);
+	Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
 }
 /***********************************************************/
 
@@ -271,6 +282,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			case REACH_DEGREE_WAIT:
 				value=Rearch_Degree_Wait();
+				break;
+			case MIX_SCAN_SLOW:
+				Scan_Motor_Slow_Spin();
 				break;
 			
 			default:
