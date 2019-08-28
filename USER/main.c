@@ -38,6 +38,7 @@ int main(void)
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
 	//TIM3_PWM_Init(CLK_COUNT-1,72-1);
+	Pid_init();
 	TIM_SetTIM3Compare4(500);	
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();

@@ -28,21 +28,14 @@ extern Thermometer_t *ThermometerHandle;
 
 
 typedef struct pid_type{
-	int setValue;
-	int actualValue;
-	
-	int differ;
-	int differ_last;
-	int differ_pre;
-
+	float setValue;
+	float actualValue;
+	float differ;
+	float differ_last;
+	float differ_prev;
 	float Kp,Ki,Kd;
-	float Up,Ui,Ud,Upid;
-	
-	float  balance;
-	float duty_pwm;
-	float duty_pwm_last;
 }pid_type_t;
 
 
-void Pid_init(void);
+
 #endif 
