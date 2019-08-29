@@ -119,6 +119,7 @@ typedef enum Command_Package_type{
 	
 			REACH_DEGREE_WAIT,
 		  MIX_SCAN_SLOW,
+			MIX_BLOOD_HIGH,
 	
 }Command_Package_t;
 
