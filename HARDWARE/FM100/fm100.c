@@ -334,7 +334,8 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		}
 		delay_ms(10);
 	}
-	memcpy(string, buf, len); 
+	memcpy(string, buf, len);
+	if(len>2)len=len-2;	
 	*length=len;
 	
 	printf("stop scan. \r\n");
