@@ -9,6 +9,8 @@ extern int USART2_RX_CNT;
 
 extern u8 FLAG_UART_CHEMINERT;
 
+
+
 void UART2_Init(u32 bound);
 void UART2_Send_Data(u8 *buf,int len);
 void UART2_Receive_Data(u8 *buf,int *len);	

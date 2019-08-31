@@ -11,6 +11,7 @@ u8 USART2_RX_BUF[MAX_LENGTH];
 int USART2_RX_CNT=0;  
 
 
+
 u8 FLAG_UART_CHEMINERT=0;
 
 void USART2_IRQHandler(void)
@@ -18,7 +19,7 @@ void USART2_IRQHandler(void)
     u8 res;	  
     if((__HAL_UART_GET_FLAG(&USART2_Handler,UART_FLAG_RXNE)!=RESET))  //Ω” ’÷–∂œ
 	{	
-		HAL_UART_Receive(&USART2_Handler,&res,1,1000);
+		HAL_UART_Receive(&USART2_Handler,&res,1,100);
 		if(USART2_RX_CNT<MAX_LENGTH)
 		{
 			

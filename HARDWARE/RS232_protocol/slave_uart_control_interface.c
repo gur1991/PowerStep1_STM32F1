@@ -635,6 +635,14 @@ static void protocol_gravity_sensor_getting(Gravity_Sensor_Getting_type_t* data)
 		data->response.ret=0;
 }
 
+static void protocol_scan_barcode(scan_barcode_t* data)
+{
+		scan_barcode_t performer;
+		performer.request.timeout = data->request.timeout;	
+		Obtain_Barcode_String(data->response.string, &(data->response.length), performer.request.timeout,true);
+		data->response.ret=0;
+}
+
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -762,6 +770,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case GRAVITY_SENSOR_GETTING:
 						protocol_gravity_sensor_getting(&slave_motorCommand.CommandPowerStep1.Gravity_Sensor_Getting);
 						break;	
+			case SCAN_BARCODE:
+						protocol_scan_barcode(&slave_motorCommand.CommandPowerStep1.scan);
+						break;
 						
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
@@ -1060,4 +1071,21 @@ void test_pump_s100(void)
 	}
 	
 }
+
+
+void scan_test(void)
+{
+	int i;
+	scan_barcode_t scan;
+	scan.request.timeout=6;
+	protocol_scan_barcode(&scan);
+	
+	printf("obtain len :%d \r\n",scan.response.length);
+	for(i=0;i<scan.response.length;i++)
+	{
+		printf("%c",scan.response.string[i]);
+	}
+	printf("\r\n");
+
+}	
 

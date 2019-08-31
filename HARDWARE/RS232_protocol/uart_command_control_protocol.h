@@ -29,7 +29,8 @@ STM32---SLVAE设备的协议和这个不同
 #include "step01.h"
 #include "electromagnetic.h"
 //#include "factory_many.h"
-#include "execute.h"	 
+#include "execute.h"	
+#include "fm100.h"	 
 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -88,6 +89,8 @@ typedef enum Command_type{
 		GRADIENT_CONTROL_BUFFER,
 		GRAVITY_SENSOR_SETTING,
 		GRAVITY_SENSOR_GETTING,
+		
+		SCAN_BARCODE,
 		
 }Command_type_t;
 
@@ -310,6 +313,8 @@ typedef struct{
 				Gradient_control_buffer_type_t Gradient_control_buffer;
 				Gravity_Sensor_Setting_type_t Gravity_Sensor_Setting;
 				Gravity_Sensor_Getting_type_t Gravity_Sensor_Getting;
+				
+				scan_barcode_t scan;
 /*
 *print move rk3188
 */

@@ -17,7 +17,8 @@
 #define  PUMP_UART_PORT UART3_RS232
 #define  PUMP_UART_CS CS_ZERO
 
-
+#define  FM100_UART_PORT UART3_RS232
+#define  FM100_UART_CS CS_ONE
 /*
 #define CLK_COUNT 50
 #define DUTY_CYCLE 0.25

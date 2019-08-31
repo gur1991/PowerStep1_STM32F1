@@ -1,4 +1,4 @@
-
+#include "key.h"
 #include "sys.h"
 #include "delay.h"
 #include "usart.h"
@@ -22,6 +22,7 @@
 #include "wdg.h"
 #include "step01.h"
 #include "pump_s100.h"
+#include "fm100.h"
 
 int main(void)
 {	
@@ -33,11 +34,9 @@ int main(void)
 	UART4_Init(115200);
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
-	
-		
+			
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
-	//TIM3_PWM_Init(CLK_COUNT-1,72-1);
 	Pid_init();
 	TIM_SetTIM3Compare4(500);	
 	ThermometerChooseHandle(DS18B20);
@@ -49,11 +48,10 @@ int main(void)
 	UART2_Init(9600);
 	UART3_Init(9600);
   Uart_cs_init();
-	
 	AD_Sensor_Init();//四个重力传感器初始化
 	
 	Electromagnetic_init();//电磁阀
-	
+	Init_Scan_FM100(true);
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -62,10 +60,9 @@ int main(void)
 	BSP_Motor_Control_Init();
 	
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
-#endif	
-
+#endif
+//scan_test();
 while(1){
-
 
 #if 1	
 

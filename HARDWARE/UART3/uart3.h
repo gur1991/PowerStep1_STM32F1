@@ -9,6 +9,7 @@ extern int UART3_RX_CNT;   			//接收到的数据长度
 
 extern u8 FLAG_RECEIVE_ACK_PUMP100;
 extern u8 FLAG_RECEIVE_ANSOWER_PUMP100;
+extern u8 FLAG_UART_FM100;
 
 #define UART3_TX_EN		1
 
