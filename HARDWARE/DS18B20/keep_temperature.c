@@ -40,7 +40,7 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 {
 					SET_VALUE=degree;
 					FLAG_START_PID=1;
-					pid.balance=460.0-0.33*(degree-355);
+					pid.balance=400.0-0.98*(degree-355);
 }
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
@@ -85,9 +85,9 @@ void Pid_init(void)
 	pid.differ_last =0;
 	pid.differ_pre=0;
 	
-	pid.Kp=0.4;
-	pid.Ki=0.4;
-	pid.Kd=0.2;
+	pid.Kp=0.8;
+	pid.Ki=0.8;
+	pid.Kd=0.4;
 	pid.Up=0.0,
 	pid.Ui=0.0;
 	pid.Ud=0.0;
@@ -107,16 +107,16 @@ int PID_Control(int temperature)
 	
 	pid.differ =pid.setValue - pid.actualValue;
 	
-	//printf("set:%d get:%d ",pid.setValue,pid.actualValue);
-	if(pid.differ>=35){pid.duty_pwm=0;}
-	else if(pid.differ>=10){pid.duty_pwm=400;}
+	printf("set:%d get:%d ",pid.setValue,pid.actualValue);
+	if(pid.differ>=5){pid.duty_pwm=0;}
+	//else if(pid.differ>=5){pid.duty_pwm=400;}
 	else if(pid.differ<0){
 			pid.duty_pwm=500;
 			pid.duty_pwm_last+=pid.Ud;
 	}
 	else if(pid.differ==0){
 			pid.duty_pwm=500;
-			pid.duty_pwm_last+=0.8*pid.Ud;
+			pid.duty_pwm_last+=0.4*pid.Ud;
 	}
 	else {
 
@@ -150,7 +150,7 @@ void KeepTemperatureDegree(void)
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-	//	printf(" duty:%d\r\n",duty_cycle);
+		printf(" duty:%d\r\n",duty_cycle);
 		
 		TIM_SetTIM3Compare4(duty_cycle);	
 }	

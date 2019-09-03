@@ -284,6 +284,7 @@ int Start_Scan_FM100(void)
 		FM100_Scan_Short_Intervel();
 		FM100_Scan_Read_Barcode_Time();
 		ret=FM100_Scan_Exit_Configuration_State();
+		FLAG_UART_FM100=0;
 	return ret;
 }	
 

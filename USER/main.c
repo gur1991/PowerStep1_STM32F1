@@ -61,7 +61,8 @@ int main(void)
 	
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
-scan_test();
+//scan_test();
+//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
 while(1){
 
 #if 1	
