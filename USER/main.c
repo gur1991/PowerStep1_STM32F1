@@ -30,10 +30,11 @@ int main(void)
   Stm32_Clock_Init(RCC_PLL_MUL9);   	
 	delay_init(72);               		
 	uart_init(115200);					
-	usmart_dev.init(84); 		   	
+	//usmart_dev.init(84); 		   	
 	UART4_Init(115200);
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
+	
 			
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
@@ -43,7 +44,7 @@ int main(void)
 	ThermometerHandle->init();
 	ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
 	
-	TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
+	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
 	UART2_Init(9600);
 	UART3_Init(9600);
@@ -52,6 +53,7 @@ int main(void)
 	
 	Electromagnetic_init();//电磁阀
 	Init_Scan_FM100(true);
+	int i=0;
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -61,21 +63,34 @@ int main(void)
 	
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
-//scan_test();
-//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
+
+ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
+	scan_test();
 while(1){
+	
+#if 1
 
-#if 1	
-
-		if(ARM_RS232_ASK){
+		if(ARM_RS232_ASK)
+		{
 						printf("start receive !\r\n");
-						delay_ms(5);
-						protocol_handle_uart_powerstep01_plain_slave_cmd();
+						//delay_ms(5);
+#if USE_SENSOR_BOARD						
+						KeepTemperatureDegree_Duty();
+#endif			
+						scan_test();
+						//protocol_handle_uart_powerstep01_plain_slave_cmd();
 						ARM_RS232_ASK=0;
 		}	
 		
 		delay_ms(10);
-		
+		i++;
+#if USE_SENSOR_BOARD
+		if(i==100)
+		{
+			i=0;	
+			keep_thermometer_degree();
+		}		
+#endif
 		
 #endif	
 		//IWDG_Feed();

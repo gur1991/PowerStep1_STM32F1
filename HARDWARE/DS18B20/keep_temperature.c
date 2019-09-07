@@ -43,6 +43,12 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 					pid.balance=400.0-0.98*(degree-355);
 }
 
+void KeepTemperatureDegree_Duty(void)
+{
+TIM_SetTIM3Compare4(495);
+
+}	
+
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
 			if(TMEPERATURE_CURRENT==devices)

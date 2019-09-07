@@ -19,7 +19,8 @@ typedef enum{
 		CS_ZERO=0,
 		CS_ONE,
 		CS_TWO,
-		CS_THREE
+		CS_THREE,
+		CS_FOUR,
 }UART_CS_TYPE; 
 
 typedef struct UART_STAUS{

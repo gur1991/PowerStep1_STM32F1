@@ -639,7 +639,7 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 {
 		scan_barcode_t performer;
 		performer.request.timeout = data->request.timeout;	
-		Obtain_Barcode_String(data->response.string, &(data->response.length), performer.request.timeout,true);
+		Obtain_Barcode_String(data->response.string, &(data->response.length), performer.request.timeout,false);
 		data->response.ret=0;
 }
 
@@ -1077,7 +1077,7 @@ void scan_test(void)
 {
 	int i;
 	scan_barcode_t scan;
-	scan.request.timeout=6;
+	scan.request.timeout=7;
 	protocol_scan_barcode(&scan);
 	
 	printf("obtain len :%d \r\n",scan.response.length);

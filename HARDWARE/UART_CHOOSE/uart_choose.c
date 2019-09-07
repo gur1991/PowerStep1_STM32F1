@@ -1,7 +1,7 @@
 #include "uart_choose.h"
 #include "delay.h"
 
-static  UART_CS_TYPE UART2_STAUS_LAST=4,UART3_STAUS_LAST=4;
+static  UART_CS_TYPE UART2_STAUS_LAST=CS_FOUR,UART3_STAUS_LAST=CS_FOUR;
 
 void Uart_cs_init(void)
 {
@@ -40,9 +40,7 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 		static int flag_first_uart2=1;
 		static int flag_first_uart3=1;
 	
-	
 		if(uart==UART2_RS232){
-
 			if(UART2_STAUS_LAST==cs) return 0;
 			else UART2_STAUS_LAST=cs;
 			
@@ -70,13 +68,12 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 				}
 				if(flag_first_uart2)
 				{
-					delay_ms(20);
+					delay_ms(100);
 					flag_first_uart2=0;
 				}
 		}else if(uart==UART3_RS232)
 		{
 
-				
 				if(UART3_STAUS_LAST==cs) return 0;
 				else UART3_STAUS_LAST=cs;
 			
@@ -104,7 +101,7 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 				}
 				if(flag_first_uart3)
 				{
-					delay_ms(100);
+					delay_ms(10);
 					flag_first_uart3=0;
 				}
 		}else{
@@ -112,10 +109,9 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 		}
 		
 		
-		
 		//此处一定要延时，两个作用，模拟电路电平发出需要时间切换
 		//rs232接收数据需要等待
-		delay_ms(15);
+		delay_ms(5);
 		return ret;
 }	
 

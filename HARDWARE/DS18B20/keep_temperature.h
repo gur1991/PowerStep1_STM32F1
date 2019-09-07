@@ -14,6 +14,7 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices);
 //保持温度
 void KeepTemperatureDegree(void);
 
+void KeepTemperatureDegree_Duty(void);
 
 //获得温度
 int GetTemperatureDegree(TMEPERATURE_type devices);

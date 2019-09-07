@@ -1,19 +1,24 @@
 #include "fm100.h"
 
-Uart_Receive_Data FM100_Read ;
-Uart_Send_Data FM100_Write ;
+Uart_Receive_Data FM100_Read=NULL ;
+Uart_Send_Data FM100_Write=NULL ;
 
 int FM100_Scan_Into_Configuration_State(void)
 {
-	u8 tx_buf[]="$$$$";
-	u8 tmp_buf[]="@@@@";
+	u8 tx_buf[4]="$$$$";
+	u8 tmp_buf[4]="@@@@";
 	u8 rx_buf[10];
 	int len=0;
 	int i;
+	int time =500;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_INTO)break;
+		delay_ms(1);
+	}
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_INTO=0;
 	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
 	{
 			return 0;
@@ -23,16 +28,21 @@ int FM100_Scan_Into_Configuration_State(void)
 
 int FM100_Scan_Exit_Configuration_State(void)
 {
-	u8 tx_buf[]="%%%%";
-	u8 tmp_buf[]="^^^^";
+	u8 tx_buf[4]="%%%%";
+	u8 tmp_buf[4]="^^^^";
 	u8 rx_buf[10];
 	int len=0;
 	int i;
-	
+	int time=500;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_EXIT)break;
+		delay_ms(1);
+	}
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_EXIT=0;
+	
 	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
 	{
 			return 0;
@@ -43,41 +53,55 @@ int FM100_Scan_Exit_Configuration_State(void)
 
 int FM100_Scan_Continuous_Mode(void)
 {
-		u8 tx_buf[]="#99900112;";
+		u8 tx_buf[10]="#99900112;";
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
+		int i;
+		int j=0;
+		int time=500;
 	
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
 	
 	if(len==sizeof(tx_buf)&&rx_buf[0]==tmp_buf[0])
 	{
-			return 0;
+			 return 0;
 	}
 	return -1;
-
 }	
 
 int FM100_Scan_Command_Mode(void)
 {
-		u8 tx_buf[]="#99900116;";
+		u8 tx_buf[10]="#99900116;";
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
+		int i;
+		int ret;
+		int j=0;
+		int time=500;
 	
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}
 	FM100_Read(rx_buf,&len);
-	
+	FLAG_UART_FM100_ACK=0;
+
 	if(len==sizeof(tx_buf)&&rx_buf[0]==tmp_buf[0])
 	{
-			return 0;
+			 return 0;
 	}
 	return -1;
 
@@ -85,16 +109,21 @@ int FM100_Scan_Command_Mode(void)
 
 int FM100_Scan_Command_Mode_Start(void)
 {
-		u8 tx_buf[]="#99900035;";
+		u8 tx_buf[10]="#99900035;";
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-	
+		int i;
+		int time=500;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}	
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
 	
 	if(len==sizeof(tx_buf)&&rx_buf[0]==tmp_buf[0])
 	{
@@ -105,17 +134,21 @@ int FM100_Scan_Command_Mode_Start(void)
 }	
 int FM100_Scan_Command_Mode_Stop(void)
 {
-		u8 tx_buf[]="#99900006;";
+		u8 tx_buf[10]="#99900036;";
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-	
+		int i;
+		int time =500;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}	
 	FM100_Read(rx_buf,&len);
-	
+	FLAG_UART_FM100_ACK=0;
 	if(len==sizeof(tx_buf)&&rx_buf[0]==tmp_buf[0])
 	{
 			return 0;
@@ -126,7 +159,7 @@ int FM100_Scan_Command_Mode_Stop(void)
 
 int FM100_Scan_Security(int level)
 {
-		u8 tx_buf[]="#99900120;";
+		u8 tx_buf[10]="#99900120;";
 	u8 rx_buf[128];
 	int len=0;
 	switch(level)
@@ -147,34 +180,43 @@ int FM100_Scan_Security(int level)
 	}	
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
+
 	return 0;
 }	
 
 
 int FM100_Scan_Close_Beeper(void)
 {
-	u8 tx_buf[]="#99900040;";
+	u8 tx_buf[10]="#99900040;";
 	u8 tmp_buf[]="!";
 	u8 rx_buf[128];
 	int len=0;
+	int time=500;
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}	
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
 
 	return 0;
 }	
 
 int FM100_Scan_Open_Beeper(void)
 {
-	u8 tx_buf[]="#99900041;";
+	u8 tx_buf[10]="#99900041;";
 	u8 rx_buf[128];
 	int len=0;
+	int time=500;
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}	
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
 	return 0;
 }	
 
@@ -197,67 +239,61 @@ int FM100_Scan_Video_Reverse(bool status)
 	u8 tx_buf[]="#99900171;";
 	u8 rx_buf[128];
 	int len=0;
-	
+	int time=500;
 	if(!status)memcpy(tx_buf, "#99900170;",sizeof(tx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}	
 	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
 	return 0;
 }	
 
 //Ä¬ÈÏÉ¨Âë±à³Ì£¬false ÇÐ»»³É´úÂë±à³Ì
 int FM100_Scan_Code_Programming(bool status)
 {
-	u8 tx_buf[]="#99900032;";	
+	u8 tx_buf[10]="#99900032;";	
 	u8 rx_buf[128];
 	int len=0;
+	int i;
 	
 	if(!status)memcpy(tx_buf, "#99900031;",sizeof(tx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(50);
-	FM100_Read(rx_buf,&len);
+	
 	return 0;
-
 }	
 
 
 
 int FM100_Scan_Short_Intervel(void)
 {
-	u8 tx_buf[]="#99900151;";
-	u8 tx_buf0[]="#99900000;";
-	u8 tx_buf1[]="#99900001;";
+	u8 tx_buf[10]="#99900151;";
+	u8 tx_buf0[10]="#99900000;";
+	u8 tx_buf1[10]="#99900001;";
 	u8 rx_buf[128];
 	int len=0;
+	int i;
 	FM100_Write(tx_buf,sizeof(tx_buf));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
 	FM100_Write(tx_buf0,sizeof(tx_buf0));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
 	FM100_Write(tx_buf1,sizeof(tx_buf1));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
+
 	return 0;
 
 }	
 int FM100_Scan_Read_Barcode_Time(void)
 {
-	u8 tx_buf[]="#99900150;";
-	u8 tx_buf0[]="#99900001;";
-	u8 tx_buf1[]="#99900005;";
+	u8 tx_buf[10]="#99900150;";
+	u8 tx_buf0[10]="#99900001;";
+	u8 tx_buf1[10]="#99900005;";
 	u8 rx_buf[128];
 	int len=0;
+	int i;
 	FM100_Write(tx_buf,sizeof(tx_buf));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
 	FM100_Write(tx_buf0,sizeof(tx_buf0));
-		delay_ms(50);
-	FM100_Read(rx_buf,&len);
 	FM100_Write(tx_buf1,sizeof(tx_buf1));
-	delay_ms(50);
-	FM100_Read(rx_buf,&len);
-	
+
 	return 0;
 
 }	
@@ -279,12 +315,11 @@ void Control_Scan_FM100_Beeper(bool status)
 int Start_Scan_FM100(void)
 {
 	int ret=0;
+
 		ret=FM100_Scan_Into_Configuration_State();
 		FM100_Scan_Continuous_Mode();
-		FM100_Scan_Short_Intervel();
-		FM100_Scan_Read_Barcode_Time();
+
 		ret=FM100_Scan_Exit_Configuration_State();
-		FLAG_UART_FM100=0;
 	return ret;
 }	
 
@@ -302,9 +337,15 @@ void Init_Scan_FM100(bool status)
 {
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	FM100_Scan_Code_Programming(0);
+	
+	FM100_Scan_Code_Programming(false);
+	
+	FM100_Scan_Short_Intervel();
+	FM100_Scan_Read_Barcode_Time();
+	
 	Stop_Scan_FM100();
 	Control_Scan_FM100_Beeper(status);
+	
 }	
 
 int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
@@ -316,14 +357,16 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	static int len=0;
 	int len_cmp=0;
 	int i;
-	printf("start scan. \r\n");
+	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
+	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
+	//printf("start scan. \r\n");
 	Start_Scan_FM100();
 	memset(buf, 0 ,sizeof(buf));
 	memset(buf_cmp, 0 ,sizeof(buf_cmp));
 	while(timeout--){
 		if(FLAG_UART_FM100)
 		{
-				printf("scanning ... \r\n");	
+				//printf("scanning ... \r\n");	
 				FM100_Read( (u8*)buf ,&len);
 				FLAG_UART_FM100=0;
 				if(check)
@@ -339,7 +382,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	if(len>2)len=len-2;	
 	*length=len;
 	
-	printf("stop scan. \r\n");
+	//printf("stop scan. \r\n");
 	Stop_Scan_FM100();
 	return ret;
 }

@@ -4,7 +4,8 @@
 #include "delay.h"
 #include "usart.h"
 #include "config.h"
-	
+#include "uart4.h"
+
 TIM_HandleTypeDef 	TIM3_Handler;      	//定时器句柄 
 TIM_HandleTypeDef 	TIM5_Handler;      	//定时器句柄 
 
@@ -109,7 +110,9 @@ void TIM5_IRQHandler(void)
 { 		    		  			       
     if(__HAL_TIM_GET_IT_SOURCE(&TIM5_Handler,TIM_IT_UPDATE)==SET)//溢出中断
     {
-				keep_thermometer_degree();
+	
+			//	keep_thermometer_degree();
+		
         __HAL_TIM_SET_COUNTER(&TIM5_Handler,0);;    //清空定时器的CNT
         __HAL_TIM_SET_AUTORELOAD(&TIM5_Handler,COUNT_TIME);//恢复原来的设置
     }

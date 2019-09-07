@@ -10,16 +10,22 @@ u8 UART3_RX_BUF[LEN_MAX_UART3];
 //接收到的数据长度
 int UART3_RX_CNT=0;  
 
-u8 FLAG_UART_FM100=0;
+
 u8 FLAG_RECEIVE_ACK_PUMP100=0;
 u8 FLAG_RECEIVE_ANSOWER_PUMP100=0;
+
+
+u8 FLAG_UART_FM100=0;
+u8 FLAG_UART_FM100_INTO=0;
+u8 FLAG_UART_FM100_EXIT=0;
+u8 FLAG_UART_FM100_ACK=0;
 
 void USART3_IRQHandler(void)
 {
     u8 res;
     if((__HAL_UART_GET_FLAG(&USART3_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	 	
-		HAL_UART_Receive(&USART3_Handler,&res,1,100);
+		HAL_UART_Receive(&USART3_Handler,&res,1,1);
 		if(UART3_RX_CNT<LEN_MAX_UART3)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
@@ -35,12 +41,24 @@ void USART3_IRQHandler(void)
 		if(UART3_RX_CNT>2&&(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a||UART3_RX_BUF[UART3_RX_CNT-1]==0x0d)){
 					FLAG_RECEIVE_ANSOWER_PUMP100=1;
 		}	
-		if(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a&&UART3_RX_BUF[UART3_RX_CNT-2]==0x0d)
+		if(UART3_RX_CNT>4&&UART3_RX_BUF[UART3_RX_CNT-1]==0x0a&&UART3_RX_BUF[UART3_RX_CNT-2]==0x0d)
 		{
 				FLAG_UART_FM100=1;
 		}
+		if(UART3_RX_CNT==4&&(UART3_RX_BUF[UART3_RX_CNT-1]=='@')&&(UART3_RX_BUF[UART3_RX_CNT-2]=='@'))
+		{
+				FLAG_UART_FM100_INTO=1;
+		}
+		if(UART3_RX_CNT==4&&(UART3_RX_BUF[UART3_RX_CNT-1]=='^')&&(UART3_RX_BUF[UART3_RX_CNT-2]=='^'))
+		{
+				FLAG_UART_FM100_EXIT=1;
+		}
+		if(UART3_RX_CNT==10&&(UART3_RX_BUF[UART3_RX_CNT-1]==';'))
+		{
+				FLAG_UART_FM100_ACK=1;
+		}
 
-	} 
+	}
 } 
 /*
 
@@ -79,10 +97,10 @@ void UART3_Init(u32 bound)
 {
     //GPIO端口设置
 	GPIO_InitTypeDef GPIO_Initure;
-	__HAL_RCC_AFIO_CLK_ENABLE();
+	
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 	__HAL_RCC_USART3_CLK_ENABLE();			//使能USART3时钟
-
+	__HAL_RCC_AFIO_CLK_ENABLE();
 #if 1  
     /**USART3 GPIO Configuration    
     PB10     ------> USART3_TX
@@ -90,7 +108,8 @@ void UART3_Init(u32 bound)
     */
     GPIO_Initure.Pin = GPIO_PIN_10;
     GPIO_Initure.Mode = GPIO_MODE_AF_PP;
-    GPIO_Initure.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_Initure.Speed = GPIO_SPEED_FREQ_MEDIUM;
+		GPIO_Initure.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOB, &GPIO_Initure);
 
     GPIO_Initure.Pin = GPIO_PIN_11;
@@ -126,7 +145,7 @@ void UART3_Init(u32 bound)
 #if EN_USART3_RX
 	__HAL_UART_ENABLE_IT(&USART3_Handler,UART_IT_RXNE);//开启接收中断
 	HAL_NVIC_EnableIRQ(USART3_IRQn);				        //使能USART1中断
-	HAL_NVIC_SetPriority(USART3_IRQn,3,3);			        //抢占优先级3，子优先级3
+	HAL_NVIC_SetPriority(USART3_IRQn,2,3);			        //抢占优先级3，子优先级3
 #endif	
 }
 
@@ -134,8 +153,8 @@ void UART3_Init(u32 bound)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART3_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&USART3_Handler,buf,len,1000);//串口2发送数据
-	UART3_RX_CNT=0;
+	HAL_UART_Transmit(&USART3_Handler,buf,len,100);
+	//UART3_RX_CNT=0;
 }
 //buf:接收缓存首地址
 //len:读到的数据长度
