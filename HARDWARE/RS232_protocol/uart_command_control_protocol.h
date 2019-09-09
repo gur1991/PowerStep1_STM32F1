@@ -124,6 +124,8 @@ typedef enum Command_Package_type{
 		  MIX_SCAN_SLOW,
 			MIX_BLOOD_HIGH,
 	
+			BELT_MOVE_SAMETIME,
+	
 }Command_Package_t;
 
 typedef union{ 

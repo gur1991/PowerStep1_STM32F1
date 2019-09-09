@@ -2,7 +2,7 @@
 #include "factory_many.h"
 #include "delay.h"
 #include "slave_uart_control_interface.h"
-
+//**********************************************plan A**********************************************
 
 /*
 //右下角第一位为blank position 位
@@ -143,7 +143,31 @@ uint8_t LeftMoveTowardWaitPosition(void)
 	//	Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,HIGH_SPEED);
 		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 23000);
 		return Light_Sensor_Get(M4_LIGHT);
-}	
+}
+
+//**********************************************plan B**********************************************
+
+uint8_t Belt_Move_At_SameTime(void)
+{
+	uint8_t status=0x00;
+	
+	PowerStep_Select_Motor_Baby(M3_WAIT_NEXT);
+	BSP_MotorControl_Move(0, M3_WAIT_TO_NEXT, 11000);
+	PowerStep_Select_Motor_Baby(M2_BLANK_LEFT);
+	BSP_MotorControl_Move(0, M2_BLANK_TO_LEFT, 11000);
+	BSP_MotorControl_WaitWhileActive(0);
+	
+	if(Light_Sensor_Get(LEFT_LIGHT)==0)status|=0x01;
+	if(Light_Sensor_Get(NEXT_LIGHT)==0)status|=0x02;
+	
+	return status;
+}
+
+
+
+
+
+
 /**********************************************************/
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
@@ -300,6 +324,10 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case MIX_BLOOD_HIGH:
 				Mix_Blood_High_Speed();
 				break;
+			case BELT_MOVE_SAMETIME:
+				value = Belt_Move_At_SameTime();
+				break;
+			
 			default:
 					break;
 		}	
