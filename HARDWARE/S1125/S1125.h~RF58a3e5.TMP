@@ -1,0 +1,20 @@
+#ifndef _S1125_H
+#define _S1125_H
+#include "stdint.h"	 
+#include "sys.h"
+
+typedef struct S1125_protocl
+{
+	u8 start;
+	u8 device;
+	u8 fuction;
+	u8 address[2];
+	u8 value[2];
+	u8 check[2];
+	u8 end[2];
+}S1125_protocl_type;
+
+
+
+#endif
+

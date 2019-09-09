@@ -23,6 +23,7 @@
 #include "step01.h"
 #include "pump_s100.h"
 #include "fm100.h"
+#include "S1125.h"
 
 int main(void)
 {	
@@ -46,13 +47,14 @@ int main(void)
 	
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
-	UART2_Init(9600);
-	UART3_Init(9600);
+	UART2_Init(115200);
+	UART3_Init(115200);
   Uart_cs_init();
 	AD_Sensor_Init();//四个重力传感器初始化
+	//S1125_Init();
 	
 	Electromagnetic_init();//电磁阀
-	Init_Scan_FM100(true);
+//	Init_Scan_FM100(true);
 	int i=0;
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -64,11 +66,15 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
-ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
-	scan_test();
+//ThermometerHandle->set_degree(372,TMEPERATURE_CURRENT);
+//	scan_test();
+	//
+	//Run_S1125_Pump();
+	//Stop_S1125_Pump();
+	//Read_Press_S1125_Pump();
 while(1){
 	
-#if 1
+#if 0
 
 		if(ARM_RS232_ASK)
 		{
@@ -77,17 +83,19 @@ while(1){
 #if USE_SENSOR_BOARD						
 						KeepTemperatureDegree_Duty();
 #endif			
-						scan_test();
-						//protocol_handle_uart_powerstep01_plain_slave_cmd();
+						protocol_handle_uart_powerstep01_plain_slave_cmd();
 						ARM_RS232_ASK=0;
 		}	
 		
 		delay_ms(10);
 		i++;
+		
+		
 #if USE_SENSOR_BOARD
 		if(i==100)
 		{
 			i=0;	
+			
 			keep_thermometer_degree();
 		}		
 #endif

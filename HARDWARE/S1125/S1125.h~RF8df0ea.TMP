@@ -1,0 +1,29 @@
+#ifndef _S1125_H
+#define _S1125_H
+#include "stdint.h"	 
+#include "sys.h"
+#include <stdio.h>
+#include <string.h>
+#include "uart2.h"
+#include "delay.h"
+#include <stdbool.h>
+#include "uart_choose.h"
+#include "config.h"
+typedef struct S1125_protocl
+{
+	u8 start;
+	u8 device;
+	u8 fuction;
+	u8 address[2];
+	u8 value[2];
+	u8 check[2];
+	u8 end[2];
+}S1125_protocl_type;
+
+int run_s1125_pump(void);
+
+int stop_s1125_pump(void);
+
+
+#endif
+

@@ -45,15 +45,16 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 
 void KeepTemperatureDegree_Duty(void)
 {
-TIM_SetTIM3Compare4(495);
-
+	float keep_duty=435-(SET_VALUE-375)*0.6;
+	TIM_SetTIM3Compare4((int)keep_duty);
 }	
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
-			if(TMEPERATURE_CURRENT==devices)
+			if(TMEPERATURE_CURRENT==devices){
+				printf("%d  %d \r\n",DS18B20_Get_Temp(TMEPERATURE_ONE),DS18B20_Get_Temp(TMEPERATURE_TWO));	
 				return (int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
-			else	
+			}else	
 				return DS18B20_Get_Temp(devices);
 }
 
