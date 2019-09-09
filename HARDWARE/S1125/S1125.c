@@ -186,3 +186,41 @@ int Write_MaxPress_s1125_pump(int MaxPress)
 	return len;
 	
 }	
+
+
+
+
+int pump_s1125_process_cmd(pump_s1125_type_t pump_s1125)
+{
+	int value=0;
+	switch(pump_s1125.request.type)
+	{
+		case RUN_S1125:
+			Run_S1125_Pump();
+			break;
+	
+		case STOP_S1125:
+			Stop_S1125_Pump();
+			break;
+		
+		case READ_PRESS:
+			value=Read_Press_S1125_Pump();
+			break;
+		
+		case WRITE_MAX_PRESS:
+			Write_MaxPress_s1125_pump(pump_s1125.request.para);
+			break;
+		
+		case WRITE_MIN_PRESS:
+			Write_MinPress_s1125_pump(pump_s1125.request.para);
+			break;
+		
+		case WRITE_FLOW_SPEED:
+			Write_FlowSpeed_s1125_pump(pump_s1125.request.para);
+			break;
+		default:
+			break;
+	}	
+
+	return value;
+}	

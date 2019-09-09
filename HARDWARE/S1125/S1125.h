@@ -34,5 +34,27 @@ int Write_MinPress_s1125_pump(int MinPress);
 
 int Write_FlowSpeed_s1125_pump(int SpeedFlow);
 
+enum {
+	RUN_S1125=0,
+	STOP_S1125,
+	READ_PRESS,
+	WRITE_MAX_PRESS,
+	WRITE_MIN_PRESS,
+	WRITE_FLOW_SPEED,
+};
+
+
+typedef union{ 
+struct{
+		uint8_t type;
+		int  para;
+}request;
+struct{
+		uint8_t ret;
+		int value;	
+}response;
+}pump_s1125_type_t;
+
+int pump_s1125_process_cmd(pump_s1125_type_t pump_s1125);
 #endif
 

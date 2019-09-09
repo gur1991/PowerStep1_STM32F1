@@ -642,6 +642,14 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 		Obtain_Barcode_String(data->response.string, &(data->response.length), performer.request.timeout,false);
 		data->response.ret=0;
 }
+static void protocol_pump_s1125(pump_s1125_type_t* data)
+{
+		pump_s1125_type_t performer;
+		performer.request.type = data->request.type;
+		performer.request.para = data->request.para;
+		data->response.value=pump_s1125_process_cmd(performer);
+		data->response.ret=0;
+}
 
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
@@ -772,6 +780,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;	
 			case SCAN_BARCODE:
 						protocol_scan_barcode(&slave_motorCommand.CommandPowerStep1.scan);
+						break;
+			case PUMP_S1125:
+					protocol_pump_s1125(&slave_motorCommand.CommandPowerStep1.pump_s1125);
 						break;
 						
 			default:

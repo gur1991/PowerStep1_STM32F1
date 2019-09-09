@@ -31,7 +31,7 @@ STM32---SLVAE设备的协议和这个不同
 //#include "factory_many.h"
 #include "execute.h"	
 #include "fm100.h"	 
-
+#include "S1125.h"
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
@@ -91,6 +91,7 @@ typedef enum Command_type{
 		GRAVITY_SENSOR_GETTING,
 		
 		SCAN_BARCODE,
+		PUMP_S1125,
 		
 }Command_type_t;
 
@@ -317,6 +318,8 @@ typedef struct{
 				Gravity_Sensor_Getting_type_t Gravity_Sensor_Getting;
 				
 				scan_barcode_t scan;
+				
+				pump_s1125_type_t pump_s1125; 
 /*
 *print move rk3188
 */
