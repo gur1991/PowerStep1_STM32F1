@@ -41,6 +41,7 @@ enum {
 	WRITE_MAX_PRESS,
 	WRITE_MIN_PRESS,
 	WRITE_FLOW_SPEED,
+	WRITE_PRESS,
 };
 
 
@@ -48,6 +49,7 @@ typedef union{
 struct{
 		uint8_t type;
 		int  para;
+		int  para_nor;
 }request;
 struct{
 		uint8_t ret;

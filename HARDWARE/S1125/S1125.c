@@ -218,6 +218,12 @@ int pump_s1125_process_cmd(pump_s1125_type_t pump_s1125)
 		case WRITE_FLOW_SPEED:
 			Write_FlowSpeed_s1125_pump(pump_s1125.request.para);
 			break;
+		
+		case WRITE_PRESS:
+			Write_MinPress_s1125_pump(pump_s1125.request.para);
+			Write_MaxPress_s1125_pump(pump_s1125.request.para_nor);
+			break;
+		
 		default:
 			break;
 	}	
