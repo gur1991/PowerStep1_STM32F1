@@ -169,6 +169,12 @@ uint8_t Belt_Move_At_SameTime(void)
 
 
 /**********************************************************/
+void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
+{
+	PowerStep_Select_Motor_Baby(deviceId);	
+	BSP_MotorControl_Move(0, direction, stepCount);
+	BSP_MotorControl_WaitWhileActive(0);
+}
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
@@ -179,34 +185,55 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }
 
+void March_Drain_And_Wash_Motor_Orgin(void)
+{
+	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 10*1000);
+	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10*1000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10*1000);
+	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 10*1000);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10*1000);
+}	
+
+
 void Rest_Transporter_Belt(void)
 {
 	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 60*1000);
 	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 60*1000);
 }
 
+void March_Transporter_Belt(void)
+{
+	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 10*1000);
+	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 10*1000);
+	
+}	
 void Rest_high_wheel(void)
 {
 	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 60*1000);
 }
+void March_high_wheel(void)
+{
+		Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 100);
 
+}	
 void RestAllMotorOrgin(void)
 {
 	Rest_Drain_And_Wash_Motor_Orgin();
 	Rest_Transporter_Belt();
 	Rest_high_wheel();
 }
-
-void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
+void MarchAllMotorOrgin(void)
 {
-	PowerStep_Select_Motor_Baby(deviceId);	
-	BSP_MotorControl_Move(0, direction, stepCount);
-	BSP_MotorControl_WaitWhileActive(0);
+	March_Drain_And_Wash_Motor_Orgin();
+	March_Transporter_Belt();
+	March_high_wheel();
 }
+
 
 
 void First_Open_Motor_AutoCheck(void)
 {
+	MarchAllMotorOrgin();
 	RestAllMotorOrgin();
 	
 	
