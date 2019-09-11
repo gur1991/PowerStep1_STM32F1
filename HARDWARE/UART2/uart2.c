@@ -19,16 +19,16 @@ void USART2_IRQHandler(void)
     u8 res;	  
     if((__HAL_UART_GET_FLAG(&USART2_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	
-		HAL_UART_Receive(&USART2_Handler,&res,1,100);
+		HAL_UART_Receive(&USART2_Handler,&res,1,1);
 		if(USART2_RX_CNT<MAX_LENGTH)
 		{
 			
 			USART2_RX_BUF[USART2_RX_CNT]=res;		//记录接收到的值
-			//printf("zzzz%d\r\n",res);
+			//printf("zzzz%c\r\n",res);
 			USART2_RX_CNT++;						//接收数据增加1 
 		}
 		//具体根据CHEMINERT实际
-		if(USART2_RX_BUF[USART2_RX_CNT-1]==0x0d||USART2_RX_BUF[USART2_RX_CNT-1]==0x0a)
+		if(USART2_RX_CNT>=3&&(USART2_RX_BUF[USART2_RX_CNT-2]==0x0d&&USART2_RX_BUF[USART2_RX_CNT-1]==0x0a))
 		{
 				FLAG_UART_CHEMINERT=1;
 		}
@@ -87,6 +87,7 @@ void UART2_Init(u32 bound)
 void UART2_Send_Data(u8 *buf,int len)
 {
 	HAL_UART_Transmit(&USART2_Handler,buf,len,100);//串口2发送数据
+	USART2_RX_CNT=0;
 }
 //buf:接收缓存首地址
 //len:读到的数据长度

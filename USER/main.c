@@ -47,14 +47,14 @@ int main(void)
 	
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
-	UART2_Init(115200);
-	UART3_Init(115200);
+	UART2_Init(9600);
+	UART3_Init(9600);
   Uart_cs_init();
 	AD_Sensor_Init();//四个重力传感器初始化
-	//S1125_Init();
+	//S1125_Init();//德国泵
 	
 	Electromagnetic_init();//电磁阀
-//	Init_Scan_FM100(true);
+	Init_Scan_FM100(true);
 	int i=0;
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -72,9 +72,12 @@ int main(void)
 	//Run_S1125_Pump();
 	//Stop_S1125_Pump();
 	//Read_Press_S1125_Pump();
+	int ret;
+	weight_test();
+	printf("fff1 .\r\n");
 while(1){
 	
-#if 0
+#if 1
 
 		if(ARM_RS232_ASK)
 		{

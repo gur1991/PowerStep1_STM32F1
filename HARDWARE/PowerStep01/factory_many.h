@@ -46,8 +46,8 @@ void First_Open_Motor_AutoCheck(void);
  */
 #define M6_LIGHT 11
 #define M6_UP_DOWM 6
-#define M6_UP BACKWARD//?
-#define M6_DOWM FORWARD//?
+#define M6_UP FORWARD//?
+#define M6_DOWM BACKWARD//?
 
 /*
  *??3.5cm
@@ -55,16 +55,16 @@ void First_Open_Motor_AutoCheck(void);
  */
 #define M10_LIGHT 16
 #define M10_BIG_IN_OUT 10
-#define M10_BIG_IN FORWARD//?
-#define M10_BIG_OUT BACKWARD//?
+#define M10_BIG_IN BACKWARD//?
+#define M10_BIG_OUT FORWARD//?
 /*
  * ??3.5cm
  * 3w =1
  */
 #define M9_LIGHT 15
 #define M9_IN_OUT 9
-#define M9_IN FORWARD//?
-#define M9_OUT BACKWARD//?
+#define M9_IN BACKWARD//?
+#define M9_OUT FORWARD//?
 
 
 
@@ -72,8 +72,8 @@ void First_Open_Motor_AutoCheck(void);
  * ??6cm
  * 1w =0.5
  */
-#define M7_LIGHT 14
-#define M7_LIGHT_WORK 13
+#define M7_LIGHT_WORK 14
+#define M7_LIGHT 13
 #define M7_MIX_V 7
 #define M7_MIX_V_UP  BACKWARD
 #define M7_MIX_V_DOWN FORWARD
@@ -100,12 +100,12 @@ left---------------------wait
 
 
 #define M2_BLANK_LEFT 2
-#define M2_BLANK_TO_LEFT BACKWARD
-#define M2_LEFT_TO_BLANK FORWARD
+#define M2_BLANK_TO_LEFT FORWARD
+#define M2_LEFT_TO_BLANK BACKWARD
 
 #define M3_WAIT_NEXT 3
-#define M3_WAIT_TO_NEXT BACKWARD
-#define M3_NEXT_TO_WAIT FORWARD
+#define M3_WAIT_TO_NEXT FORWARD
+#define M3_NEXT_TO_WAIT BACKWARD
 
 #define M4_LIGHT 3
 #define M4_LEFT_WAIT 4

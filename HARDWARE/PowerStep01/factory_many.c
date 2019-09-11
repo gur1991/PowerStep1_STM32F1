@@ -180,36 +180,38 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
 	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 60*1000);
 	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 60*1000);
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 60*1000);
-	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 60*1000);
+	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
+	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 80*1000);
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }
 
 void March_Drain_And_Wash_Motor_Orgin(void)
 {
-	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 10*1000);
-	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10*1000);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10*1000);
-	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 10*1000);
-	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10*1000);
+	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 25000);
+	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 25000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
+	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
+	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 25000);
 }	
 
 
 void Rest_Transporter_Belt(void)
 {
-	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 60*1000);
-	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 60*1000);
+	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30*1000);
+	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 30*1000);
 }
 
 void March_Transporter_Belt(void)
 {
-	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 10*1000);
-	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 10*1000);
+	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
+	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 2000);
 	
 }	
 void Rest_high_wheel(void)
 {
-	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 60*1000);
+	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 1500);
 }
 void March_high_wheel(void)
 {
@@ -236,7 +238,6 @@ void First_Open_Motor_AutoCheck(void)
 	MarchAllMotorOrgin();
 	RestAllMotorOrgin();
 	
-	
 	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,20600);
 	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 20600);
 	Motor_Move_And_Wait(M2_BLANK_LEFT, M2_BLANK_TO_LEFT,11000);
@@ -245,13 +246,14 @@ void First_Open_Motor_AutoCheck(void)
 	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 20600);
 	
 	Motor_Move_And_Wait(M3_WAIT_NEXT, M3_WAIT_TO_NEXT,11000);
-	
+
+/*		
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR,5000);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM,65000);
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 65000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM,60000);
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 60000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 5000);
 	
-	
+
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 65000);
 	Motor_Move_And_Wait(M8_MIX, M8_MIX_LEFT,15000);
 	Motor_Move_And_Wait(M8_MIX, M8_MIX_RIGHT,15000);
@@ -265,7 +267,7 @@ void First_Open_Motor_AutoCheck(void)
 
 	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN,6000);
 	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 6000);
-
+*/
 }
 
 

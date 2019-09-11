@@ -179,53 +179,53 @@ static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*dat
 
 
 static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
-			static const u8 tx_buf_cp[]={'C','P',0x0d,0x0a};//41 0D 0A
-			static const u8 tx_buf_cca[]={'C','C','A',0x0d,0x0a};//41 0D 0A 
-			static const u8 tx_buf_ccb[]={'C','C','B',0x0d,0x0a};//42 0D 0A 
-			static const u8 tx_buf_cwa[]={'C','W','A',0x0d,0x0a};//41 0D 0A 
-			static const u8 tx_buf_cwb[]={'C','W','B',0x0d,0x0a};//42 0D 0A 
-			static const u8 tx_buf_dt[]={'D','T','1',0x0d,0x0a};//4F 4B 0D 0A 
-			static const u8 tx_buf_goa[]={'G','O','A',0x0d,0x0a};//41 0D 0A 
-			static const u8 tx_buf_gob[]={'G','O','B',0x0d,0x0a};//42 0D 0A 
-			static const u8 tx_buf_md[]={'M','D',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
+			static const u8 tx_buf_cp[4]={'C','P',0x0d,0x0a};//41 0D 0A
+			static const u8 tx_buf_cca[5]={'C','C','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_ccb[5]={'C','C','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_cwa[5]={'C','W','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_cwb[5]={'C','W','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_dt[5]={'D','T','1',0x0d,0x0a};//4F 4B 0D 0A 
+			static const u8 tx_buf_goa[5]={'G','O','A',0x0d,0x0a};//41 0D 0A 
+			static const u8 tx_buf_gob[5]={'G','O','B',0x0d,0x0a};//42 0D 0A 
+			static const u8 tx_buf_md[4]={'M','D',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
 			//u8 tx_buf_rc[]={'R','C',0x0d,0x0a};
-			static const u8 tx_buf_sb[]={'S','B',0x0d,0x0a};
+			static const u8 tx_buf_sb[4]={'S','B',0x0d,0x0a};
 			//u8 tx_buf_sb4K80[]={'S','B','4','K','8','0',0x0d,0x0a};
-			static const u8 tx_buf_sn[]={'S','N',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
-			static const u8 tx_buf_to[]={'T','O',0x0d,0x0a};//42 0D 0A 41 0D 0A 
+			static const u8 tx_buf_sn[4]={'S','N',0x0d,0x0a};//4E 6F 6E 65 0D 0A 
+			static const u8 tx_buf_to[4]={'T','O',0x0d,0x0a};//42 0D 0A 41 0D 0A 
 			//u8 tx_buf_tt[]={'T','T',0x0d,0x0a};
-			static const u8 tx_buf_vr[]={'V','R',0x0d,0x0a};//43 35 78 5F 20 43 36 78 5F 20 32 36 30 20 46 65 62 20 30 39 20 32 30 31 36 0D 0A 
+			static const u8 tx_buf_vr[4]={'V','R',0x0d,0x0a};//43 35 78 5F 20 43 36 78 5F 20 32 36 30 20 46 65 62 20 30 39 20 32 30 31 36 0D 0A 
 			
-			static const u8 tx_buf_cc1[]={'C','C','1',0x0d,0x0a};
-			static const u8 tx_buf_cc2[]={'C','C','2',0x0d,0x0a};
-			static const u8 tx_buf_cc3[]={'C','C','3',0x0d,0x0a};
-      static const u8 tx_buf_cc4[]={'C','C','4',0x0d,0x0a};
-      static const u8 tx_buf_cc5[]={'C','C','5',0x0d,0x0a};
-      static const u8 tx_buf_cc6[]={'C','C','6',0x0d,0x0a};
-      static const u8 tx_buf_cw1[]={'C','W','1',0x0d,0x0a};
-			static const u8 tx_buf_cw2[]={'C','W','2',0x0d,0x0a};
-			static const u8 tx_buf_cw3[]={'C','W','3',0x0d,0x0a};
-			static const u8 tx_buf_cw4[]={'C','W','4',0x0d,0x0a};
-			static const u8 tx_buf_cw5[]={'C','W','5',0x0d,0x0a};
-      static const u8 tx_buf_cw6[]={'C','W','6',0x0d,0x0a};
-			static const u8 tx_buf_gh[]={'G','H',0x0d,0x0a};
-			static const u8 tx_buf_go1[]={'G','O','1',0x0d,0x0a};
-			static const u8 tx_buf_go2[]={'G','O','2',0x0d,0x0a};
-			static const u8 tx_buf_go3[]={'G','O','3',0x0d,0x0a};
-			static const u8 tx_buf_go4[]={'G','O','4',0x0d,0x0a};
-		  static const u8 tx_buf_go5[]={'G','O','5',0x0d,0x0a};
-			static const u8 tx_buf_go6[]={'G','O','6',0x0d,0x0a};
-			static const u8 tx_buf_mn[]={'M','N',0x0d,0x0a};
-			static const u8 tx_buf_sd[]={'S','D',0x0d,0x0a};
-			static const u8 tx_buf_sdcc[]={'S','D','C','C',0x0d,0x0a};
-			static const u8 tx_buf_sdcw[]={'S','D','C','W',0x0d,0x0a};
+			static const u8 tx_buf_cc1[5]={'C','C','1',0x0d,0x0a};
+			static const u8 tx_buf_cc2[5]={'C','C','2',0x0d,0x0a};
+			static const u8 tx_buf_cc3[5]={'C','C','3',0x0d,0x0a};
+      static const u8 tx_buf_cc4[5]={'C','C','4',0x0d,0x0a};
+      static const u8 tx_buf_cc5[5]={'C','C','5',0x0d,0x0a};
+      static const u8 tx_buf_cc6[5]={'C','C','6',0x0d,0x0a};
+      static const u8 tx_buf_cw1[5]={'C','W','1',0x0d,0x0a};
+			static const u8 tx_buf_cw2[5]={'C','W','2',0x0d,0x0a};
+			static const u8 tx_buf_cw3[5]={'C','W','3',0x0d,0x0a};
+			static const u8 tx_buf_cw4[5]={'C','W','4',0x0d,0x0a};
+			static const u8 tx_buf_cw5[5]={'C','W','5',0x0d,0x0a};
+      static const u8 tx_buf_cw6[5]={'C','W','6',0x0d,0x0a};
+			static const u8 tx_buf_gh[4]={'G','H',0x0d,0x0a};
+			static const u8 tx_buf_go1[5]={'G','O','1',0x0d,0x0a};
+			static const u8 tx_buf_go2[5]={'G','O','2',0x0d,0x0a};
+			static const u8 tx_buf_go3[5]={'G','O','3',0x0d,0x0a};
+			static const u8 tx_buf_go4[5]={'G','O','4',0x0d,0x0a};
+		  static const u8 tx_buf_go5[5]={'G','O','5',0x0d,0x0a};
+			static const u8 tx_buf_go6[5]={'G','O','6',0x0d,0x0a};
+			static const u8 tx_buf_mn[5]={'M','N',0x0d,0x0a};
+			static const u8 tx_buf_sd[5]={'S','D',0x0d,0x0a};
+			static const u8 tx_buf_sdcc[6]={'S','D','C','C',0x0d,0x0a};
+			static const u8 tx_buf_sdcw[6]={'S','D','C','W',0x0d,0x0a};
 	
 			int type_flag=0;//type_flag =1 c52    type_flag=0 c55
 			
 			u8 rx_buf[64];
 			u8 tx_size=0;
 			u8 tx_buf[10];
-			u8 ret,rx_size,i;
+			u8 ret,rx_size,i,j=3;
 			int timeout;
 			cheminert_c52_c55_type_t performer;
 			bool wait_flag=true;
@@ -402,14 +402,14 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 								printf("no found this cmd ! \r\n");
 			
 			}
-			
+while(j--){
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout,wait_flag, type_flag);
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
+						break;
 			}
-			//printf("%c\r\n",rx_buf[0]);
-			
+}			
 			data->response.ret=ret;		
 }
 /*
@@ -938,12 +938,12 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 	
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
-	cheminert_c52_c55.request.timeout=2000;
+	cheminert_c52_c55.request.timeout=1000;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-//	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
+	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
 
 	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
 	delay_ms(1000*A_timeS);
@@ -1100,3 +1100,12 @@ void scan_test(void)
 
 }	
 
+void weight_test()
+{
+	Gravity_Sensor_Getting_type_t data;
+	protocol_gravity_sensor_getting(&data);
+	printf("A:%d /gram .\r\n",data.response.weightA);
+	printf("B:%d /gram .\r\n",data.response.weightB);
+	printf("C:%d /gram .\r\n",data.response.weightC);
+	printf("D:%d /gram .\r\n",data.response.weightD);
+}	

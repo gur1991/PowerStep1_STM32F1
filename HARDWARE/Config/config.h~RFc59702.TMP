@@ -9,7 +9,7 @@
 #define COUNT_TIME (10*1000-1) //4s
 
 #define  C52_UART_PORT UART2_RS232
-#define  C52_UART_CS  CS_ZERO  
+#define  C52_UART_CS   CS_ZERO
 
 #define  C55_UART_PORT UART2_RS232
 #define  C55_UART_CS CS_TWO
