@@ -69,12 +69,21 @@ int main(void)
 //ThermometerHandle->set_degree(372,TMEPERATURE_CURRENT);
 //	scan_test();
 	//
-	//Run_S1125_Pump();
-	//Stop_S1125_Pump();
-	//Read_Press_S1125_Pump();
-	int ret;
-	weight_test();
-	printf("fff1 .\r\n");
+	printf("start. \r\n");
+	//March_Drain_And_Wash_Motor_Orgin();
+	Rest_Drain_And_Wash_Motor_Orgin();
+/*	
+	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 2300);
+	delay_ms(2*1000);
+	//Rest_Drain_And_Wash_Motor_Orgin();
+	Scan_Motor_Slow_Spin();
+	delay_ms(2*1000);
+	Mix_Blood_High_Speed();
+	*/
+	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR,700);
+
+	printf("end. \r\n");
 while(1){
 	
 #if 1
@@ -91,10 +100,11 @@ while(1){
 		}	
 		
 		delay_ms(10);
-		i++;
+
 		
 		
 #if USE_SENSOR_BOARD
+				i++;
 		if(i==100)
 		{
 			i=0;	

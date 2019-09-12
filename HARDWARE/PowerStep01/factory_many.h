@@ -82,8 +82,8 @@ void First_Open_Motor_AutoCheck(void);
  * 15w
  */
 #define M8_MIX 8
-#define M8_MIX_LEFT FORWARD
-#define M8_MIX_RIGHT BACKWARD
+#define M8_MIX_LEFT BACKWARD
+#define M8_MIX_RIGHT FORWARD
 
 /*************************************************************/
 /*
@@ -117,10 +117,10 @@ left---------------------wait
 #define WAIT_LIGHT 4
 #define NEXT_LIGHT 5
 
-#define NORMAL_CHECK_LIGHT 7//??????????
+#define NORMAL_CHECK_LIGHT 23//??????????
+#define NORMAL_CHECK_LAST 24//金属开关最后一个，和其他传感器电平反向
 
-
-#define HIGH_CHECK_LIGHT 9//??????????
+#define HIGH_CHECK_LIGHT 22//??????????
 
 #define M11_LIGHT 10
 #define M11_HIGH_TURN 11

@@ -211,11 +211,11 @@ void March_Transporter_Belt(void)
 }	
 void Rest_high_wheel(void)
 {
-	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 1500);
+	RestSelectMotorOrgin(M11_HIGH_TURN,M11_LIGHT,M11_RIGHT_TURN, 13500);
 }
 void March_high_wheel(void)
 {
-		Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 100);
+		//Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 100);
 
 }	
 void RestAllMotorOrgin(void)
@@ -284,9 +284,9 @@ void Mix_Blood_High_Speed(void)
 {
 	Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M8_MIX);	
-	BSP_MotorControl_Move(0, M8_MIX_LEFT, 36000);
+	BSP_MotorControl_Move(0, M8_MIX_LEFT, 46000);
 	BSP_MotorControl_WaitWhileActive(0);
-	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 36000);
+	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 66000);
 	BSP_MotorControl_WaitWhileActive(0);
 }	
 
@@ -294,10 +294,17 @@ void Mix_Blood_High_Speed(void)
 /***********************************************************/
 
 
+/*
+//high
+	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 990);
+	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 355);
+	Motor_Move_And_Wait(M11_HIGH_TURN, M11_LEFT_TURN, 335);
 
+//normal
+Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2300);
+Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 1320);
 
-
-
+*/
 
 
 
