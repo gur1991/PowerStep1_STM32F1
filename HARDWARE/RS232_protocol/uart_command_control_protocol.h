@@ -126,6 +126,8 @@ typedef enum Command_Package_type{
 			MIX_BLOOD_HIGH,
 	
 			BELT_MOVE_SAMETIME,
+			
+			MIX_WORK_GOTO,
 	
 }Command_Package_t;
 

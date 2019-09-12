@@ -289,7 +289,11 @@ void Mix_Blood_High_Speed(void)
 	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 66000);
 	BSP_MotorControl_WaitWhileActive(0);
 }	
-
+void Mix_Work_Goto_Postion(void)
+{
+	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 2300);
+}
 
 /***********************************************************/
 
@@ -362,6 +366,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			case BELT_MOVE_SAMETIME:
 				value = Belt_Move_At_SameTime();
+				break;
+			case MIX_WORK_GOTO:
+				Mix_Work_Goto_Postion();
 				break;
 			
 			default:
