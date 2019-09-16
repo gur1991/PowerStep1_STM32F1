@@ -127,8 +127,8 @@ left---------------------wait
 #define M11_LEFT_TURN  FORWARD
 #define M11_RIGHT_TURN  BACKWARD
 
-#define PITCH_VALUE 1330
-#define HIGH_PITCH_VALUE 1000
+//#define PITCH_VALUE 1320
+//#define HIGH_PITCH_VALUE 1000
 /*****************************************************************/
 
 #endif

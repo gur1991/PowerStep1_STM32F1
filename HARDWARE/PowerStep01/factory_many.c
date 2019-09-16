@@ -190,7 +190,7 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 {
 	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 25000);
 	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 25000);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 40000);
 	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
 	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 25000);
@@ -239,11 +239,11 @@ void First_Open_Motor_AutoCheck(void)
 	RestAllMotorOrgin();
 	
 	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,20600);
-	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 20600);
+	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 50*1000);
 	Motor_Move_And_Wait(M2_BLANK_LEFT, M2_BLANK_TO_LEFT,11000);
 	
 	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT,20600);
-	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 20600);
+	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 50*1000);
 	
 	Motor_Move_And_Wait(M3_WAIT_NEXT, M3_WAIT_TO_NEXT,11000);
 
@@ -276,7 +276,7 @@ void Scan_Motor_Slow_Spin(void)
 {
 	Choose_Single_Motor_Speed_Config(M8_MIX,LOW_SPEED);
 	PowerStep_Select_Motor_Baby(M8_MIX);	
-	BSP_MotorControl_Move(0, M8_MIX_LEFT, 16000);
+	BSP_MotorControl_Move(0, M8_MIX_LEFT, 86000);
 	
 }
 
@@ -288,11 +288,12 @@ void Mix_Blood_High_Speed(void)
 	BSP_MotorControl_WaitWhileActive(0);
 	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 66000);
 	BSP_MotorControl_WaitWhileActive(0);
+	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }	
 void Mix_Work_Goto_Postion(void)
 {
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
-	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 2300);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
 }
 
 /***********************************************************/
