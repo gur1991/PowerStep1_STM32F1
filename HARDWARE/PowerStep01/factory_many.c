@@ -3,7 +3,12 @@
 #include "delay.h"
 #include "slave_uart_control_interface.h"
 //**********************************************plan A**********************************************
-
+void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
+{
+	PowerStep_Select_Motor_Baby(deviceId);	
+	BSP_MotorControl_Move(0, direction, stepCount);
+	BSP_MotorControl_WaitWhileActive(0);
+}
 /*
 //右下角第一位为blank position 位
 //第一步一定要确保此为没有试管
@@ -122,10 +127,10 @@ uint8_t ReadyAndCheckLeftPosition(void)
 uint8_t LeftMoveTowardWaitPosition(void)
 {
 		int i=0;
-		
-		PowerStep_Select_Motor_Baby( M4_LEFT_WAIT);		
-		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
-	
+
+		Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 20000);
+		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,LOW_SPEED);
+		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 5000);
 		while(1)
 		{
 				i++;
@@ -133,15 +138,15 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
-				}else if(i>=250)
+				}else if(i>=100)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
 				}
 				delay_ms(10);
 		}
-	//	Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,HIGH_SPEED);
-		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 23000);
+		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,	NORMAL_SPEED);
+		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 80*000);
 		return Light_Sensor_Get(M4_LIGHT);
 }
 
@@ -169,12 +174,7 @@ uint8_t Belt_Move_At_SameTime(void)
 
 
 /**********************************************************/
-void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
-{
-	PowerStep_Select_Motor_Baby(deviceId);	
-	BSP_MotorControl_Move(0, direction, stepCount);
-	BSP_MotorControl_WaitWhileActive(0);
-}
+
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
@@ -321,6 +321,12 @@ void Normal_Pitch_Move_Next(void)
 
 }
 
+void Normal_Blank_Rest(void)
+{
+		Choose_Single_Motor_Speed_Config(M1_BLANK_NEXT,LOW_SPEED);
+		RestSelectMotorOrgin(M1_BLANK_NEXT,BLANK_LIGHT,M1_NEXT_TO_BLANK, 8000);
+	  Choose_Single_Motor_Speed_Config(M1_BLANK_NEXT,NORMAL_SPEED);
+}	
 
 /***********************************************************/
 
@@ -400,6 +406,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case NORMAL_PITCH_MOVE_NEXT:
 				Normal_Pitch_Move_Next();
 				break;
+			case NORMAL_BLANK_REST:
+				Normal_Blank_Rest();
+			break;
 			
 			default:
 					break;

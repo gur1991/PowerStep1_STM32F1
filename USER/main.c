@@ -89,9 +89,10 @@ RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 60*1000);
 while(1){
 		
 	{
-		//printf("light[%d] %d\r\n",1,Light_Sensor_Get(1));
+		//printf("light[%d] %d\r\n",5,Light_Sensor_Get(5));
+		//delay_ms(200);
 	}
-	//delay_ms(200);
+	
 
 #if 1
 
