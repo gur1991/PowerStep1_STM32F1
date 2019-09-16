@@ -188,19 +188,19 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 
 void March_Drain_And_Wash_Motor_Orgin(void)
 {
-	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 25000);
-	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 25000);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 40000);
+	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 10000);
+	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
 	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
-	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 25000);
+	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10000);
 }	
 
 
 void Rest_Transporter_Belt(void)
 {
-	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30*1000);
-	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 30*1000);
+	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 40*1000);
+	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 40*1000);
 }
 
 void March_Transporter_Belt(void)
@@ -240,12 +240,12 @@ void First_Open_Motor_AutoCheck(void)
 	
 	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,20600);
 	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 50*1000);
-	Motor_Move_And_Wait(M2_BLANK_LEFT, M2_BLANK_TO_LEFT,11000);
-	
+	//Motor_Move_And_Wait(M2_BLANK_LEFT, M2_BLANK_TO_LEFT,11000);
+	Belt_Move_At_SameTime();
 	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT,20600);
 	RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 50*1000);
 	
-	Motor_Move_And_Wait(M3_WAIT_NEXT, M3_WAIT_TO_NEXT,11000);
+	//Motor_Move_And_Wait(M3_WAIT_NEXT, M3_WAIT_TO_NEXT,11000);
 
 /*		
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR,5000);
@@ -299,7 +299,7 @@ void Mix_Work_Goto_Postion(void)
 void Normal_Pitch_Move_Next(void)
 {
 	int i=1000;
-	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,1800);
+	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,800);
 	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==1)
 	{
 			RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 20000);
@@ -397,7 +397,7 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case MIX_WORK_GOTO:
 				Mix_Work_Goto_Postion();
 				break;
-			case PITCH_NEXT:
+			case NORMAL_PITCH_MOVE_NEXT:
 				Normal_Pitch_Move_Next();
 				break;
 			

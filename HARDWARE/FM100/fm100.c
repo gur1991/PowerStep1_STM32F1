@@ -344,6 +344,7 @@ void Init_Scan_FM100(bool status)
 	FM100_Scan_Read_Barcode_Time();
 	
 	Stop_Scan_FM100();
+	//Start_Scan_FM100();
 	Control_Scan_FM100_Beeper(status);
 	
 }	
