@@ -295,6 +295,32 @@ void Mix_Work_Goto_Postion(void)
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
 	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
 }
+//сп->нч-сп
+void Normal_Pitch_Move_Next(void)
+{
+	int i=1000;
+	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,1800);
+	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==1)
+	{
+			RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 20000);
+			return;
+	}else{
+			PowerStep_Select_Motor_Baby(M1_BLANK_NEXT);
+			BSP_MotorControl_Move(0, M1_NEXT_TO_BLANK, 20000);
+			while(i--){
+					if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==1){
+						BSP_MotorControl_HardStop(0);
+						RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 20000);
+						return;
+					}	
+					delay_ms(10);
+			}
+			BSP_MotorControl_HardStop(0);
+			return ;
+	}
+
+}
+
 
 /***********************************************************/
 
@@ -370,6 +396,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			case MIX_WORK_GOTO:
 				Mix_Work_Goto_Postion();
+				break;
+			case PITCH_NEXT:
+				Normal_Pitch_Move_Next();
 				break;
 			
 			default:

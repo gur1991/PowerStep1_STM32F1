@@ -117,6 +117,8 @@ left---------------------wait
 #define WAIT_LIGHT 4
 #define NEXT_LIGHT 5
 
+
+#define NORMAL_NEXT_LIGHT 7
 #define NORMAL_CHECK_LIGHT 23//??????????
 #define NORMAL_CHECK_LAST 24//金属开关最后一个，和其他传感器电平反向
 

@@ -128,6 +128,7 @@ typedef enum Command_Package_type{
 			BELT_MOVE_SAMETIME,
 			
 			MIX_WORK_GOTO,
+			PITCH_NEXT,
 	
 }Command_Package_t;
 

@@ -68,11 +68,22 @@ int main(void)
 
 //ThermometerHandle->set_degree(372,TMEPERATURE_CURRENT);
 //	scan_test();
+	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30*1000);
 
+	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
+	for(i=0;i<9;i++){
+		delay_ms(5000);
+		Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 1320);
+	}
+	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30*1000);
+	//Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
+	//delay_ms(1000);
+	//RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 60*1000);
+	//RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 60*1000);
 while(1){
 /*		
 	{
-		printf("light[%d] %d\r\n",1,Light_Sensor_Get(1));
+		printf("light[%d] %d\r\n",2,Light_Sensor_Get(2));
 	}
 	delay_ms(200);
 */
