@@ -68,7 +68,37 @@ int main(void)
 //ThermometerHandle->set_degree(372,TMEPERATURE_CURRENT);
 //	scan_test();
 #if 0
-RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 60*1000);
+printf("zz1\r\n");
+Rest_Transporter_Belt();
+printf("zz2\r\n");
+LeftMoveTowardWaitPosition();
+printf("zz3\r\n");
+#endif
+
+#if 0
+	Rest_Transporter_Belt();
+delay_ms(3000);
+//RestSelectMotorOrgin(M1_BLANK_NEXT,BLANK_LIGHT,M1_NEXT_TO_BLANK, 23000);
+Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
+Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 1320);
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Pitch_Move_Next();
+Normal_Blank_Rest();
+Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 600);
+RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30000);
+Belt_Move_At_SameTime();
+LeftMoveTowardWaitPosition();
+
+Rest_Transporter_Belt();
+Belt_Move_At_SameTime();
 
 	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
 	delay_ms(3000);
@@ -92,7 +122,7 @@ while(1){
 		//printf("light[%d] %d\r\n",5,Light_Sensor_Get(5));
 		//delay_ms(200);
 	}
-	
+
 
 #if 1
 

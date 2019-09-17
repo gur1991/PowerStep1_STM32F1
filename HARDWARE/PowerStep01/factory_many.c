@@ -127,10 +127,8 @@ uint8_t ReadyAndCheckLeftPosition(void)
 uint8_t LeftMoveTowardWaitPosition(void)
 {
 		int i=0;
-
-		Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 20000);
-		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,LOW_SPEED);
-		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 5000);
+		PowerStep_Select_Motor_Baby(M4_LEFT_WAIT);
+		BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
 		while(1)
 		{
 				i++;
@@ -138,16 +136,15 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
-				}else if(i>=100)
+				}else if(i>=1000)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
 				}
 				delay_ms(10);
 		}
-		Choose_Single_Motor_Speed_Config(M4_LEFT_WAIT,	NORMAL_SPEED);
-		RestSelectMotorOrgin(M4_LEFT_WAIT, M4_LIGHT, M4_WAIT_TO_LEFT, 80*000);
-		return Light_Sensor_Get(M4_LIGHT);
+		//RestSelectMotorOrgin(M4_LEFT_WAIT,M4_LIGHT,M4_WAIT_TO_LEFT, 40*1000);
+		return Light_Sensor_Get(WAIT_LIGHT);
 }
 
 //**********************************************plan B**********************************************
@@ -163,7 +160,7 @@ uint8_t Belt_Move_At_SameTime(void)
 	BSP_MotorControl_WaitWhileActive(0);
 	
 	if(Light_Sensor_Get(LEFT_LIGHT)==0)status|=0x01;
-	if(Light_Sensor_Get(NEXT_LIGHT)==0)status|=0x02;
+	if(Light_Sensor_Get(NEXT_LIGHT)==0)status|=0x10;
 	
 	return status;
 }
@@ -293,7 +290,7 @@ void Mix_Blood_High_Speed(void)
 void Mix_Work_Goto_Postion(void)
 {
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
-	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
+	//Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
 }
 //сп->нч-сп
 void Normal_Pitch_Move_Next(void)
@@ -374,6 +371,7 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 					value=ReadyAndCheckLeftPosition();
 				break;
 			case LEFT_MOVE_TO_WAIT:
+				printf("left to wait \r\n");
 					value=LeftMoveTowardWaitPosition();
 				break;
 			case REST_C55_C52:
@@ -398,6 +396,7 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				Mix_Blood_High_Speed();
 				break;
 			case BELT_MOVE_SAMETIME:
+				printf("same time move \r\n");
 				value = Belt_Move_At_SameTime();
 				break;
 			case MIX_WORK_GOTO:
