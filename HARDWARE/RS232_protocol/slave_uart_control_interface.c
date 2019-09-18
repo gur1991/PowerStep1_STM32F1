@@ -639,8 +639,12 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 {
 		scan_barcode_t performer;
 		performer.request.timeout = data->request.timeout;	
-		Obtain_Barcode_String(data->response.string, &(data->response.length), performer.request.timeout,false);
+		int length=0;
+		Obtain_Barcode_String(data->response.string, &length, performer.request.timeout,false);
+	
 		data->response.ret=0;
+	  data->response.length=length;
+		//printf("length:%d\r\n",data->response.length);
 }
 static void protocol_pump_s1125(pump_s1125_type_t* data)
 {

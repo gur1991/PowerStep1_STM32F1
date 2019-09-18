@@ -2,9 +2,9 @@
 #define __CONFIG_H
 
 //UART4 ----- ARM 
-#define USE_SENSOR_BOARD 1
+#define USE_SENSOR_BOARD 0
 
-#define USE_MOTOR_BOARD 0
+#define USE_MOTOR_BOARD 1
 
 #define COUNT_TIME (10*1000-1) //4s
 

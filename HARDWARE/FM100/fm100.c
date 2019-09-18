@@ -355,7 +355,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	static u8 buf[30];
 	u8 buf_cmp[30];
 	int timeout=TimeOut_S*100;
-	static int len=0;
+	int len=0;
 	int len_cmp=0;
 	int i;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
@@ -379,8 +379,12 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		}
 		delay_ms(10);
 	}
-	memcpy(string, buf, len);
-	if(len>2)len=len-2;	
+	if(len>5){
+		len=len-2;
+		memcpy(string, buf, len);
+	}else{
+	  len=0;
+	}
 	*length=len;
 	
 	//printf("stop scan. \r\n");

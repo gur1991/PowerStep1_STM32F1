@@ -273,7 +273,7 @@ void Scan_Motor_Slow_Spin(void)
 {
 	Choose_Single_Motor_Speed_Config(M8_MIX,LOW_SPEED);
 	PowerStep_Select_Motor_Baby(M8_MIX);	
-	BSP_MotorControl_Move(0, M8_MIX_LEFT, 86000);
+	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 86000);
 	
 }
 
@@ -281,7 +281,9 @@ void Mix_Blood_High_Speed(void)
 {
 	Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M8_MIX);	
-	BSP_MotorControl_Move(0, M8_MIX_LEFT, 46000);
+	//BSP_MotorControl_Move(0, M8_MIX_LEFT, 46000);
+	//BSP_MotorControl_WaitWhileActive(0);
+	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 46000);
 	BSP_MotorControl_WaitWhileActive(0);
 	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 66000);
 	BSP_MotorControl_WaitWhileActive(0);
