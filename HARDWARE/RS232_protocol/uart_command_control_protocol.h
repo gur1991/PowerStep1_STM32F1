@@ -32,6 +32,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "execute.h"	
 #include "fm100.h"	 
 #include "S1125.h"
+	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
@@ -92,8 +93,20 @@ typedef enum Command_type{
 		
 		SCAN_BARCODE,
 		PUMP_S1125,
+		REST_INJECTION_MODLUE_MOTOR,
 		
 }Command_type_t;
+
+typedef union{ 
+	struct{
+		uint32_t up_Steps;
+		uint32_t big_Steps;
+		int time;
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}rest_injection_module_motor_type_t;
 
 typedef union{ 
 	struct{
@@ -324,6 +337,7 @@ typedef struct{
 				scan_barcode_t scan;
 				
 				pump_s1125_type_t pump_s1125; 
+				rest_injection_module_motor_type_t rest_injection_module_motor;
 /*
 *print move rk3188
 */

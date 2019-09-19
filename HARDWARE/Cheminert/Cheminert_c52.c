@@ -45,6 +45,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 							R232_Read(rx_buf_tmp,&len);
 							//rm in the end 0d 0a from buf array
 							memcpy(rx_buf,rx_buf_tmp,len-2);
+							printf("c55 c52 :%c \r\n",rx_buf[0]);
 							*rx_size=len-2;
 							FLAG_UART_CHEMINERT=0;
 							break;

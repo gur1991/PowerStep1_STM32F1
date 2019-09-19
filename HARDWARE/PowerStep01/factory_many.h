@@ -133,4 +133,8 @@ left---------------------wait
 //#define HIGH_PITCH_VALUE 1000
 /*****************************************************************/
 
+void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time);
+
+
+
 #endif

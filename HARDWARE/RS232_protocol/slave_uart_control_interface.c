@@ -655,6 +655,17 @@ static void protocol_pump_s1125(pump_s1125_type_t* data)
 		data->response.ret=0;
 }
 
+static void  protocol_rest_injection_module_motor(rest_injection_module_motor_type_t* data)
+{
+	rest_injection_module_motor_type_t performer;
+	performer.request.up_Steps=data->request.up_Steps;
+	performer.request.big_Steps=data->request.big_Steps;
+	performer.request.time=data->request.time;
+	
+	Rest_Injection_Module_Motor(performer.request.up_Steps,performer.request.big_Steps,performer.request.time);
+	data->response.ret=0;
+}
+
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -788,6 +799,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case PUMP_S1125:
 					protocol_pump_s1125(&slave_motorCommand.CommandPowerStep1.pump_s1125);
 						break;
+			case REST_INJECTION_MODLUE_MOTOR:
+				protocol_rest_injection_module_motor(&slave_motorCommand.CommandPowerStep1.rest_injection_module_motor);
+				break;
 						
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
