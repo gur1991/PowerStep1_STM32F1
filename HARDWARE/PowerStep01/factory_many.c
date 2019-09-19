@@ -311,21 +311,22 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 {
 			int i=0;
 			int flag1=0,flag2=0;
-			PowerStep_Select_Motor_Baby(M6_UP_DOWM);
-			BSP_MotorControl_Move(0, M6_UP, up_Steps);
-			delay_ms(time);
 
 			PowerStep_Select_Motor_Baby(M10_BIG_IN_OUT);
 			BSP_MotorControl_Move(0, M10_BIG_OUT, big_Steps);
-	
-			while(1){
+		
+			delay_ms(time);
+			PowerStep_Select_Motor_Baby(M6_UP_DOWM);
+			BSP_MotorControl_Move(0, M6_UP, up_Steps);
+			
+		while(1){
 				i++;
-				if(!Light_Sensor_Get(M10_LIGHT))
+				if(!Light_Sensor_Get(M10_LIGHT)&&!flag1)
 				{		PowerStep_Select_Motor_Baby(M10_BIG_IN_OUT);				
 						BSP_MotorControl_HardStop(0);	
 						flag1=1;
 				}
-				if(!Light_Sensor_Get(M6_LIGHT))
+				if(!Light_Sensor_Get(M6_LIGHT)&&!flag2)
 				{		PowerStep_Select_Motor_Baby(M6_UP_DOWM);			
 						BSP_MotorControl_HardStop(0);
 						flag2=1;					
