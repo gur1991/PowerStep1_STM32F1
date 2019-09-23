@@ -175,10 +175,10 @@ uint8_t Belt_Move_At_SameTime(void)
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
-	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 60*1000);
-	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 60*1000);
+	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 200*1000);
+	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 200*1000);
 	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 80*1000);
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }

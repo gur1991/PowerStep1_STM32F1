@@ -32,6 +32,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "execute.h"	
 #include "fm100.h"	 
 #include "S1125.h"
+#include "liquid_sensor.h"
 	 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -94,6 +95,7 @@ typedef enum Command_type{
 		SCAN_BARCODE,
 		PUMP_S1125,
 		REST_INJECTION_MODLUE_MOTOR,
+		LIQUID_SENSOR,
 		
 }Command_type_t;
 
@@ -338,6 +340,7 @@ typedef struct{
 				
 				pump_s1125_type_t pump_s1125; 
 				rest_injection_module_motor_type_t rest_injection_module_motor;
+				get_liquid_sensor_level_t get_liquid_sensor;
 /*
 *print move rk3188
 */

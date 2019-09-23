@@ -666,6 +666,13 @@ static void  protocol_rest_injection_module_motor(rest_injection_module_motor_ty
 	data->response.ret=0;
 }
 
+static void  protocol_get_liquid_sensor_level(get_liquid_sensor_level_t* data)
+{
+	get_liquid_sensor_level_t performer;
+	data->response.value=Liquid_Sensor_Get();
+	performer.response.ret=0;
+}
+
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -801,6 +808,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						break;
 			case REST_INJECTION_MODLUE_MOTOR:
 				protocol_rest_injection_module_motor(&slave_motorCommand.CommandPowerStep1.rest_injection_module_motor);
+				break;
+			case LIQUID_SENSOR:
+				protocol_get_liquid_sensor_level(&slave_motorCommand.CommandPowerStep1.get_liquid_sensor);
 				break;
 						
 			default:

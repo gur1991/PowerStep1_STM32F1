@@ -24,7 +24,7 @@
 #include "pump_s100.h"
 #include "fm100.h"
 #include "S1125.h"
-
+#include "liquid_sensor.h"
 int main(void)
 {	
 	HAL_Init();                    	 	
@@ -44,7 +44,7 @@ int main(void)
 	ThermometerChooseHandle(DS18B20);
 	ThermometerHandle->init();
 	ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
-	
+	Liquid_Sensor_Init();
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz ÆµÂÊ 5000¼ÆÊý  500ms 
 	
 	UART2_Init(9600);
@@ -65,61 +65,16 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
-//ThermometerHandle->set_degree(372,TMEPERATURE_CURRENT);
-//	scan_test();
-#if 0
-printf("zz1\r\n");
-Rest_Transporter_Belt();
-printf("zz2\r\n");
-LeftMoveTowardWaitPosition();
-printf("zz3\r\n");
-#endif
-
-#if 0
-	Rest_Transporter_Belt();
-delay_ms(3000);
-//RestSelectMotorOrgin(M1_BLANK_NEXT,BLANK_LIGHT,M1_NEXT_TO_BLANK, 23000);
-Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
-Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 1320);
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Pitch_Move_Next();
-Normal_Blank_Rest();
-Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 600);
-RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 30000);
-Belt_Move_At_SameTime();
-LeftMoveTowardWaitPosition();
-
-Rest_Transporter_Belt();
-Belt_Move_At_SameTime();
-
-	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
-	delay_ms(3000);
-	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 1320);
-	delay_ms(3000);
-	for(i=0;i<10;i++){
-		delay_ms(3000);
-		Normal_Pitch_Move_Next();
-	}
-	RestSelectMotorOrgin(M1_BLANK_NEXT,BLANK_LIGHT,M1_NEXT_TO_BLANK, 10*1000);
-	
-	RestSelectMotorOrgin(M1_BLANK_NEXT,M1_LIGHT,M1_BLANK_TO_NEXT, 60*1000);
-#endif	
-	//Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
-	//delay_ms(1000);
-	//RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 60*1000);
-	//RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 60*1000);
+/*
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
+	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 7700);
+	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
+*/
 while(1){
 		
 	{
-		//printf("light[%d] %d\r\n",5,Light_Sensor_Get(5));
+		//printf("liquid %d\r\n",Liquid_Sensor_Get());
 		//delay_ms(200);
 	}
 
