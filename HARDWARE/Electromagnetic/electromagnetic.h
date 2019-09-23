@@ -34,9 +34,12 @@ typedef enum FT_Device_type
 	ELECTROMAGNETIC_E,
 	ELECTROMAGNETIC_F,
 	
-	ELECTROMAGNETIC_G
+	ELECTROMAGNETIC_G,
+	DEGASSER_CONTORL,//一直在用
+	DIAPHRAM_PUMP_CONTORL,//液路传感器检测到信号
 }FT_Device_type_t;
-
+// 7 --脱气机
+// 8 --隔膜泵
 
 
 typedef union{ 

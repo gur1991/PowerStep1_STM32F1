@@ -35,7 +35,7 @@ int main(void)
 	UART4_Init(115200);
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
-	int i;
+	int i=0;
 			
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
@@ -68,8 +68,21 @@ int main(void)
 /*
 	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
-	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 7700);
+	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
 	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
+*/
+/*
+ test_pump_s100_open();
+ Gradient_control_buffer(1700, 0,0,0,0);
+ electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);
+ //electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
+ //electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
+  //electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
+ electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
+ //test_pump_s100_close();
+ electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
+ 
+  electromagnetic_control(DEGASSER_CONTORL, OPEN_FT);
 */
 while(1){
 		

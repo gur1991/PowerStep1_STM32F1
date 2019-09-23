@@ -670,7 +670,7 @@ static void  protocol_get_liquid_sensor_level(get_liquid_sensor_level_t* data)
 {
 	get_liquid_sensor_level_t performer;
 	data->response.value=Liquid_Sensor_Get();
-	performer.response.ret=0;
+	data->response.ret=0;
 }
 
 
@@ -964,6 +964,7 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 {
 	uint8_t ret=0;
 	
+	
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
 	cheminert_c52_c55.request.timeout=1000;
@@ -1059,7 +1060,7 @@ u8 test_actuator(Command_Cheminert_type_t type){
 
 
 */
-void test_pump_s100(void)
+void test_pump_s100_open(void)
 {
 	u8 ret=0,i;
 	pump_s100_command_type_t data;
@@ -1092,8 +1093,8 @@ void test_pump_s100(void)
 	data.request.para.S100_VALUE[1]='1';
 	data.request.para.S100_VALUE[0]='0';
 	
-	
 	protocol_pump_s100_interface(&data);
+	
 	
 	printf("ret:%d \r\n",data.response.ret);
 	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
@@ -1111,7 +1112,57 @@ void test_pump_s100(void)
 	
 }
 
-
+void test_pump_s100_close(void)
+{
+	u8 ret=0,i;
+	pump_s100_command_type_t data;
+	
+	data.request.timeout=1000;
+	
+	data.request.para.S100_STX=0x21;
+	data.request.para.S100_ETX=0x0a;
+	
+	data.request.para.S100_ID[1]='1'; 
+	data.request.para.S100_ID[0]='0';
+	
+	data.request.para.S100_AI='0';
+	
+	data.request.para.S100_PFC[1]='1';
+	data.request.para.S100_PFC[0]='6';
+	
+/*
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]='0';
+	data.request.para.S100_VALUE[2]='0';
+	data.request.para.S100_VALUE[1]='0';
+	data.request.para.S100_VALUE[0]='1';
+*/
+	data.request.para.S100_VALUE[5]=0x20;//0x20
+	data.request.para.S100_VALUE[4]=0x20;//0x20
+	data.request.para.S100_VALUE[3]=0x20;
+	data.request.para.S100_VALUE[2]='0';
+	data.request.para.S100_VALUE[1]='1';
+	data.request.para.S100_VALUE[0]='0';
+	
+	protocol_pump_s100_interface(&data);
+	
+	
+	printf("ret:%d \r\n",data.response.ret);
+	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
+	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
+			printf("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
+			for(i=0;i<6;i++){
+					printf("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
+			}
+			printf("\r\n");
+	}else if(SPECIAL_ACK_S100==data.response.PUMP_S100_REPLY_type){
+			printf("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
+	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
+			printf("unkown answer! \r\n");
+	}
+	
+}
 void scan_test(void)
 {
 	int i;
