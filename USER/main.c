@@ -65,12 +65,12 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
-/*
+
 	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
-	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
-*/
+	//Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
+	//Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
+
 /*
  test_pump_s100_open();
  Gradient_control_buffer(1700, 0,0,0,0);
