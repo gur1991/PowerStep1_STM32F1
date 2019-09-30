@@ -22,7 +22,7 @@ void S1125_Init(void)
 
 
 
-void init_s1125_pump(void)
+void config_s1125_pump(void)
 {
 	S1125_Read = GetUartReceive(PUMP_UART_PORT,PUMP_UART_CS);
 	S1125_Write = GetUartSend(PUMP_UART_PORT,PUMP_UART_CS);
@@ -48,7 +48,7 @@ int transfer_s1125(void)
 int Run_S1125_Pump(void)
 {
 	int len=0;
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	
 	memcpy(pump.address,"00CC", 4);
@@ -68,7 +68,7 @@ int Stop_S1125_Pump(void)
 {
 	
 	int len=0;
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"012D", 4);
 	memcpy(pump.value,"0001", 4);
@@ -82,7 +82,7 @@ int Read_Press_S1125_Pump(void)
 	int len=0;
 	int press=0;
 	int i=0;
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F04", 4);
 	memcpy(pump.address,"0065", 4);
 	memcpy(pump.value,"0001", 4);
@@ -121,7 +121,7 @@ int Write_FlowSpeed_s1125_pump(int SpeedFlow)
 			if(pump.value[i]<10)pump.value[i]+='0';
 			else pump.value[i]+=55;
 	}
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"00C8", 4);
 	memcpy(pump.value,"07D0", 4);
@@ -150,7 +150,7 @@ int Write_MinPress_s1125_pump(int MinPress)
 			else pump.value[i]+=55;
 	}
 	
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"00C9", 4);
 	memcpy(pump.value,"0000", 4);
@@ -178,7 +178,7 @@ int Write_MaxPress_s1125_pump(int MaxPress)
 			else pump.value[i]+=55;
 	}
 	
-	init_s1125_pump();
+	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"00CA", 4);
 	memcpy(pump.value,"0000", 4);

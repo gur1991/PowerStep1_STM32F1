@@ -1,5 +1,4 @@
 #include "fm100.h"
-
 Uart_Receive_Data FM100_Read=NULL ;
 Uart_Send_Data FM100_Write=NULL ;
 

@@ -11,6 +11,7 @@
 #include "uart_choose.h"
 #include "Cheminert_c52.h"
 #include "config.h"
+#include "bl180.h"
 
 uint8_t Rest_C55_C52_Position(void);
 
@@ -22,6 +23,7 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 
 void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD);
 
+uint8_t Set_Pumps100_FlowSpeed(int speed);
 
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void);

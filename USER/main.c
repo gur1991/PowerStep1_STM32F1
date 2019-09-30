@@ -25,6 +25,7 @@
 #include "fm100.h"
 #include "S1125.h"
 #include "liquid_sensor.h"
+#include "bl180.h"
 int main(void)
 {	
 	HAL_Init();                    	 	
@@ -36,7 +37,6 @@ int main(void)
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
 	int i=0;
-			
 #if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
 	Pid_init();
@@ -53,9 +53,14 @@ int main(void)
 	AD_Sensor_Init();//四个重力传感器初始化
 	//S1125_Init();//德国泵
 	
+	
 	Electromagnetic_init();//电磁阀
-	Init_Scan_FM100(true);
+	
+	ScanChooseHandle(BL180);
+	ScanHandle->init(true);
+	
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
 #endif
 
 #if USE_MOTOR_BOARD
@@ -66,24 +71,40 @@ int main(void)
 #endif
 
 
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
-	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
+	//RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 	//Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
 	//Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
-
-/*
- test_pump_s100_open();
- Gradient_control_buffer(1700, 0,0,0,0);
- electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);
+#if 0
+//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
+printf("zzz1\r\n");
+ //test_pump_s100_open();
+ //Gradient_control_buffer(1700, 0,0,0,0);
+ electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
  //electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
  //electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
   //electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
  electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
  //test_pump_s100_close();
- electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
+ electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
  
-  electromagnetic_control(DEGASSER_CONTORL, OPEN_FT);
-*/
+ electromagnetic_control(DEGASSER_CONTORL, OPEN_FT);
+printf("zzz2\r\n");
+
+#endif
+//test_pump_s100_close();
+int len=0;
+char string[30];
+memset(string,0,sizeof(string));
+Scan_Bar_Action(string,&len, 10,true);
+	for(i=0;i<len;i++)
+	{
+		printf("%c",string[i]);
+	
+	}
+	printf("*len:%d \r\n",len);
+
+
 while(1){
 		
 	{

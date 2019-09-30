@@ -640,11 +640,11 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 		scan_barcode_t performer;
 		performer.request.timeout = data->request.timeout;	
 		int length=0;
-		Obtain_Barcode_String(data->response.string, &length, performer.request.timeout,false);
-	
+		//Obtain_Barcode_String(data->response.string, &length, performer.request.timeout,false);
+		//Scan_Bar_Action(data->response.string, &length, performer.request.timeout,false);
+		ScanHandle->scan(data->response.string, &length, performer.request.timeout,false);
 		data->response.ret=0;
 	  data->response.length=length;
-		//printf("length:%d\r\n",data->response.length);
 }
 static void protocol_pump_s1125(pump_s1125_type_t* data)
 {
@@ -672,7 +672,12 @@ static void  protocol_get_liquid_sensor_level(get_liquid_sensor_level_t* data)
 	data->response.value=Liquid_Sensor_Get();
 	data->response.ret=0;
 }
-
+static void  protocol_pump_s100_set_flowSpeed(pump_s100_set_flowSpeed_type_t* data)
+{
+	pump_s100_set_flowSpeed_type_t performer;
+	Set_Pumps100_FlowSpeed(data->request.flowSpeed);
+	data->response.ret=0;
+}
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
@@ -807,12 +812,14 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					protocol_pump_s1125(&slave_motorCommand.CommandPowerStep1.pump_s1125);
 						break;
 			case REST_INJECTION_MODLUE_MOTOR:
-				protocol_rest_injection_module_motor(&slave_motorCommand.CommandPowerStep1.rest_injection_module_motor);
+					protocol_rest_injection_module_motor(&slave_motorCommand.CommandPowerStep1.rest_injection_module_motor);
 				break;
 			case LIQUID_SENSOR:
-				protocol_get_liquid_sensor_level(&slave_motorCommand.CommandPowerStep1.get_liquid_sensor);
+					protocol_get_liquid_sensor_level(&slave_motorCommand.CommandPowerStep1.get_liquid_sensor);
 				break;
-						
+			case PUMPS100_SET_FLOWSPEED:
+					protocol_pump_s100_set_flowSpeed(&slave_motorCommand.CommandPowerStep1.pump_s100_set_flowSpeed);
+				break;
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}

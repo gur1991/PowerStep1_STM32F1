@@ -13,6 +13,7 @@ extern u8 FLAG_UART_FM100;
 extern u8 FLAG_UART_FM100_INTO;
 extern u8 FLAG_UART_FM100_EXIT;
 extern u8 FLAG_UART_FM100_ACK;
+extern u8 FLAG_UART_BL180_ACK;
 
 #define UART3_TX_EN		1
 

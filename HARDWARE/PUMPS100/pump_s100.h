@@ -56,6 +56,17 @@ struct{
 }pump_s100_command_type_t;
 
 
+typedef union{ 
+struct{
+	  int flowSpeed;
+}request;
+struct{
+		uint8_t ret;	
+}response;
+}pump_s100_set_flowSpeed_type_t;
+
+
+
 //泵主动向STM32发送数据,STM32对数据进行储存，等待ARM读取，不要主动向ARM发送
 //此主动行为，不需要回应泵
 

@@ -97,6 +97,8 @@ typedef enum Command_type{
 		REST_INJECTION_MODLUE_MOTOR,
 		LIQUID_SENSOR,
 		
+		PUMPS100_SET_FLOWSPEED,
+		
 }Command_type_t;
 
 typedef union{ 
@@ -341,6 +343,8 @@ typedef struct{
 				pump_s1125_type_t pump_s1125; 
 				rest_injection_module_motor_type_t rest_injection_module_motor;
 				get_liquid_sensor_level_t get_liquid_sensor;
+				
+				pump_s100_set_flowSpeed_type_t pump_s100_set_flowSpeed;
 /*
 *print move rk3188
 */

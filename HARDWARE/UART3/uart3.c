@@ -19,6 +19,8 @@ u8 FLAG_UART_FM100=0;
 u8 FLAG_UART_FM100_INTO=0;
 u8 FLAG_UART_FM100_EXIT=0;
 u8 FLAG_UART_FM100_ACK=0;
+u8 FLAG_UART_BL180_ACK=0;
+
 
 void USART3_IRQHandler(void)
 {
@@ -56,6 +58,10 @@ void USART3_IRQHandler(void)
 		if(UART3_RX_CNT==10&&(UART3_RX_BUF[UART3_RX_CNT-1]==';'))
 		{
 				FLAG_UART_FM100_ACK=1;
+		}
+		if(UART3_RX_CNT==3&&(UART3_RX_BUF[UART3_RX_CNT-2]=='K')&&(UART3_RX_BUF[UART3_RX_CNT-3]=='O'))
+		{
+				FLAG_UART_BL180_ACK=1;
 		}
 
 	}
@@ -135,7 +141,7 @@ void UART3_Init(u32 bound)
 	USART3_Handler.Init.BaudRate=bound;		        //波特率
 	USART3_Handler.Init.WordLength=UART_WORDLENGTH_8B;	//字长为8位数据格式
 	USART3_Handler.Init.StopBits=UART_STOPBITS_1;		//一个停止位
-	USART3_Handler.Init.Parity=UART_PARITY_NONE;		//无奇偶校验位
+	USART3_Handler.Init.Parity= UART_PARITY_NONE;//UART_PARITY_NONE;		//无奇偶校验位
 	USART3_Handler.Init.HwFlowCtl=UART_HWCONTROL_NONE;	//无硬件流控
 	USART3_Handler.Init.Mode=UART_MODE_TX_RX;		    //收发模式
 	USART3_Handler.Init.OverSampling = UART_OVERSAMPLING_16;

@@ -343,7 +343,7 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 				}	
 				if(flag1&&flag2) break;
 				
-				if(i>=1000){
+				if(i>=1500){
 							PowerStep_Select_Motor_Baby(M10_BIG_IN_OUT);
 							BSP_MotorControl_HardStop(0);
 							PowerStep_Select_Motor_Baby(M6_UP_DOWM);
