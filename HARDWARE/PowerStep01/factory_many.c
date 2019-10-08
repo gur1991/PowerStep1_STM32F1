@@ -172,6 +172,12 @@ uint8_t Belt_Move_At_SameTime(void)
 
 /**********************************************************/
 
+void Rest_Sample_Motor_Orgin(void)
+{
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
+	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+}
+
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
@@ -424,7 +430,10 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			case NORMAL_BLANK_REST:
 				Normal_Blank_Rest();
-			break;
+				break;
+			case REST_SAMPLE_MOTOR:
+				Rest_Sample_Motor_Orgin();
+				break;
 			
 			default:
 					break;

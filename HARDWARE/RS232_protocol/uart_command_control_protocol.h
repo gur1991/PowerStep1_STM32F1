@@ -147,7 +147,7 @@ typedef enum Command_Package_type{
 			MIX_WORK_GOTO,
 			NORMAL_PITCH_MOVE_NEXT,
 			NORMAL_BLANK_REST,
-	
+			REST_SAMPLE_MOTOR,
 }Command_Package_t;
 
 typedef union{ 
