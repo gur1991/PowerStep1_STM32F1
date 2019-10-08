@@ -6,3 +6,4 @@ uint8_t master_powerStep01_move_command(move_type_t data);
 
 uint8_t master_get_light_sensor_level(get_light_sensor_level_t data,uint8_t*value);
 #endif
+

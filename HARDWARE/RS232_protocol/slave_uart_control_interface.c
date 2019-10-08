@@ -587,6 +587,7 @@ static void protocol_set_pumps100_press(Set_Pumps100_Press_type_t* data)
 	performer.request.MinPress=data->request.MinPress;
 	
 	data->response.ret=Set_Pumps100_Press(performer.request.MaxPress, performer.request.MinPress);
+	//data->response.ret=PumpHandle->setPress(performer.request.MaxPress, performer.request.MinPress);
 }	
 
 static void protocol_balance_chromatographic_column(Balance_Chromatographic_Column_type_t* data)
@@ -646,12 +647,13 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 		data->response.ret=0;
 	  data->response.length=length;
 }
-static void protocol_pump_s1125(pump_s1125_type_t* data)
+static void protocol_pump_interface(pump_type_t* data)
 {
-		pump_s1125_type_t performer;
+		pump_type_t performer;
 		performer.request.type = data->request.type;
 		performer.request.para = data->request.para;
-		data->response.value=pump_s1125_process_cmd(performer);
+		performer.request.para_nor = data->request.para_nor;
+		data->response.value=pump_process_cmd(performer);
 		data->response.ret=0;
 }
 
@@ -808,8 +810,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case SCAN_BARCODE:
 						protocol_scan_barcode(&slave_motorCommand.CommandPowerStep1.scan);
 						break;
-			case PUMP_S1125:
-					protocol_pump_s1125(&slave_motorCommand.CommandPowerStep1.pump_s1125);
+			case PUMP_INTERFACE:
+					protocol_pump_interface(&slave_motorCommand.CommandPowerStep1.pump);
 						break;
 			case REST_INJECTION_MODLUE_MOTOR:
 					protocol_rest_injection_module_motor(&slave_motorCommand.CommandPowerStep1.rest_injection_module_motor);
@@ -941,7 +943,7 @@ uint8_t Set_Pumps100_MinPress(int press)
 }
 
 
-uint8_t Set_Pumps100_Press(int MaxPress,int MinPress)
+uint8_t Set_Pumps100_Press(int MinPress,int MaxPress)
 {
 	uint8_t ret=0;
 	if(Set_Pumps100_MinPress(MinPress))return 1;
@@ -961,8 +963,8 @@ uint8_t Balance_Chromatographic_Column(int IdleFlowSpeed)
 	
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-	ret=Set_Pumps100_FlowSpeed(IdleFlowSpeed);
-	
+	//ret=Set_Pumps100_FlowSpeed(IdleFlowSpeed);
+	ret=PumpHandle->setFlowSpeed(IdleFlowSpeed);
 	return ret;
 }
 
@@ -979,7 +981,7 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 	
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-	Set_Pumps100_FlowSpeed(Work_Flow_Speed);
+	ret=PumpHandle->setFlowSpeed(Work_Flow_Speed);
 
 	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
 	delay_ms(1000*A_timeS);
@@ -1067,7 +1069,13 @@ u8 test_actuator(Command_Cheminert_type_t type){
 
 
 */
-void test_pump_s100_open(void)
+
+
+
+
+
+
+uint8_t Run_S100_Pump(void)
 {
 	u8 ret=0,i;
 	pump_s100_command_type_t data;
@@ -1085,14 +1093,6 @@ void test_pump_s100_open(void)
 	data.request.para.S100_PFC[1]='1';
 	data.request.para.S100_PFC[0]='5';
 	
-/*
-	data.request.para.S100_VALUE[5]=0x20;//0x20
-	data.request.para.S100_VALUE[4]=0x20;//0x20
-	data.request.para.S100_VALUE[3]='0';
-	data.request.para.S100_VALUE[2]='0';
-	data.request.para.S100_VALUE[1]='0';
-	data.request.para.S100_VALUE[0]='1';
-*/
 	data.request.para.S100_VALUE[5]=0x20;//0x20
 	data.request.para.S100_VALUE[4]=0x20;//0x20
 	data.request.para.S100_VALUE[3]=0x20;
@@ -1102,7 +1102,7 @@ void test_pump_s100_open(void)
 	
 	protocol_pump_s100_interface(&data);
 	
-	
+/*
 	printf("ret:%d \r\n",data.response.ret);
 	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
 	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
@@ -1115,11 +1115,16 @@ void test_pump_s100_open(void)
 			printf("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
 	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
 			printf("unkown answer! \r\n");
-	}
 	
+	}
+*/	
+	return data.response.ret;
 }
 
-void test_pump_s100_close(void)
+
+
+
+uint8_t Stop_S100_Pump(void)
 {
 	u8 ret=0,i;
 	pump_s100_command_type_t data;
@@ -1137,14 +1142,6 @@ void test_pump_s100_close(void)
 	data.request.para.S100_PFC[1]='1';
 	data.request.para.S100_PFC[0]='6';
 	
-/*
-	data.request.para.S100_VALUE[5]=0x20;//0x20
-	data.request.para.S100_VALUE[4]=0x20;//0x20
-	data.request.para.S100_VALUE[3]='0';
-	data.request.para.S100_VALUE[2]='0';
-	data.request.para.S100_VALUE[1]='0';
-	data.request.para.S100_VALUE[0]='1';
-*/
 	data.request.para.S100_VALUE[5]=0x20;//0x20
 	data.request.para.S100_VALUE[4]=0x20;//0x20
 	data.request.para.S100_VALUE[3]=0x20;
@@ -1154,7 +1151,7 @@ void test_pump_s100_close(void)
 	
 	protocol_pump_s100_interface(&data);
 	
-	
+	/*
 	printf("ret:%d \r\n",data.response.ret);
 	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
 	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
@@ -1168,8 +1165,17 @@ void test_pump_s100_close(void)
 	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
 			printf("unkown answer! \r\n");
 	}
-	
+	*/
+	return data.response.ret;
 }
+
+
+void Init_S100_Pump(void){}
+int Read_S100_Pump_press(void){return 0;}	
+
+
+
+
 void scan_test(void)
 {
 	int i;
@@ -1195,3 +1201,98 @@ void weight_test()
 	printf("C:%d /gram .\r\n",data.response.weightC);
 	printf("D:%d /gram .\r\n",data.response.weightD);
 }	
+/**************************PUMP start************************************/
+
+Pump_t* PumpHandle=0;
+
+Pump_t s100=
+{
+	Init_S100_Pump,
+	Run_S100_Pump,
+	Stop_S100_Pump,
+	Set_Pumps100_Press,
+	Set_Pumps100_FlowSpeed,
+	Read_S100_Pump_press,
+	Set_Pumps100_MaxPress,
+	Set_Pumps100_MinPress,
+};
+
+Pump_t s1125=
+{
+	S1125_Init,
+	Run_S1125_Pump,
+	Stop_S1125_Pump,
+	Write_Press_s1125_pump,
+	Write_FlowSpeed_s1125_pump,
+	Read_Press_S1125_Pump,
+	Write_MaxPress_s1125_pump,
+	Write_MinPress_s1125_pump,
+};
+
+Pump_t* S100_GetHandle(void)
+{
+  return (&s100);
+}
+
+Pump_t* S1125_GetHandle(void)
+{
+  return (&s1125);
+}
+
+void PumpChooseHandle(PUMP_type id)
+{
+
+  if (id == S100)
+  {
+    PumpHandle = S100_GetHandle();
+	}else if(id == S1125)
+	{
+		PumpHandle = S1125_GetHandle();
+	}	
+}
+
+
+
+int pump_process_cmd(pump_type_t pump)
+{
+	int value=0;
+	switch(pump.request.type)
+	{
+		case RUN_PUMP:
+			PumpHandle->run();
+			break;
+	
+		case STOP_PUMP:
+			PumpHandle->stop();
+			break;
+		
+		case READ_PRESS:
+			value=PumpHandle->readPress();
+			break;
+		
+		case WRITE_MAX_PRESS:
+			PumpHandle->setMaxPress(pump.request.para);
+			break;
+		
+		case WRITE_MIN_PRESS:
+			PumpHandle->setMinPress(pump.request.para);
+			break;
+		
+		case WRITE_FLOW_SPEED:
+			PumpHandle->setFlowSpeed(pump.request.para);
+			break;
+		
+		case WRITE_PRESS:
+			PumpHandle->setPress(pump.request.para,pump.request.para_nor);
+			break;
+		
+		default:
+			break;
+	}	
+
+	return value;
+}	
+/**************************PUMP end************************************/
+
+
+

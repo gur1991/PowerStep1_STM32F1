@@ -1,25 +1,44 @@
 #include "S1125.h"
-
+#include "electromagnetic.h"
 Uart_Receive_Data S1125_Read=NULL ;
 Uart_Send_Data S1125_Write=NULL ;
 static S1125_protocl_type pump;
 static u8 S1125_rx_buf [30];
 
+#define GROUP_X GPIOD
+#define NUMBER_X 1
+#define CLK_HAL_ENABLE __HAL_RCC_GPIOD_CLK_ENABLE
+
 void S1125_Init(void)
 {
-    GPIO_InitTypeDef GPIO_Initure;
+/*  
+  GPIO_InitTypeDef GPIO_Initure;
 
-		__HAL_RCC_GPIOB_CLK_ENABLE();         
+		CLK_HAL_ENABLE();         
 	
-    GPIO_Initure.Pin=GPIO_PIN_9; 			
+    GPIO_Initure.Pin=NUMBER_X; 			
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  	//推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          	//上拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;    	 	//高速
-    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+    HAL_GPIO_Init(GROUP_X,&GPIO_Initure);
 	
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_9,GPIO_PIN_SET);	
+    HAL_GPIO_WritePin(GROUP_X,NUMBER_X,GPIO_PIN_SET);	
+*/
+	electromagnetic_control(9,1);
+	printf("init pump\r\n");
 }
 
+
+
+void test_gpio(void)
+{
+	while(1){
+		electromagnetic_control(9,1);
+		delay_ms(100);
+		electromagnetic_control(9,0);
+		delay_ms(100);
+	}
+}	
 
 
 void config_s1125_pump(void)
@@ -37,15 +56,16 @@ int transfer_s1125(void)
 	int len=0;
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_9,GPIO_PIN_RESET);	
+	electromagnetic_control(9,0);
 	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_9,GPIO_PIN_SET);	
+	electromagnetic_control(9,1);	
 	delay_ms(100);
 	S1125_Read(S1125_rx_buf,&len);
+	
 	return len;
 }
 
-int Run_S1125_Pump(void)
+uint8_t Run_S1125_Pump(void)
 {
 	int len=0;
 	config_s1125_pump();
@@ -60,11 +80,11 @@ int Run_S1125_Pump(void)
 	len=transfer_s1125();
 	
 	
-	return len;
+	return 0;
 }	
 
 
-int Stop_S1125_Pump(void)
+uint8_t Stop_S1125_Pump(void)
 {
 	
 	int len=0;
@@ -73,7 +93,7 @@ int Stop_S1125_Pump(void)
 	memcpy(pump.address,"012D", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
-	return len;
+	return 0;
 }
 
 int Read_Press_S1125_Pump(void)
@@ -104,7 +124,7 @@ int Read_Press_S1125_Pump(void)
 	return press;
 }	
 
-int Write_FlowSpeed_s1125_pump(int SpeedFlow)
+uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 {
 	int len=0;
 	int i=0;
@@ -126,12 +146,12 @@ int Write_FlowSpeed_s1125_pump(int SpeedFlow)
 	memcpy(pump.address,"00C8", 4);
 	memcpy(pump.value,"07D0", 4);
 	len=transfer_s1125();
-	return len;
+	return 0;
 }	
 
 
 
-int Write_MinPress_s1125_pump(int MinPress)
+uint8_t Write_MinPress_s1125_pump(int MinPress)
 {
 	
 		int len=0;
@@ -155,14 +175,14 @@ int Write_MinPress_s1125_pump(int MinPress)
 	memcpy(pump.address,"00C9", 4);
 	memcpy(pump.value,"0000", 4);
 	len=transfer_s1125();
-	return len;
+	return 0;
 	
 }	
 
 
-int Write_MaxPress_s1125_pump(int MaxPress)
+uint8_t Write_MaxPress_s1125_pump(int MaxPress)
 {
-	int len=0;
+	uint8_t len=0;
 	int i=0;
 	pump.value[3]=MaxPress%16;
 	MaxPress/=16;
@@ -183,50 +203,18 @@ int Write_MaxPress_s1125_pump(int MaxPress)
 	memcpy(pump.address,"00CA", 4);
 	memcpy(pump.value,"0000", 4);
 	len=transfer_s1125();
-	return len;
+	return 0;
 	
 }	
-
-
-
-
-int pump_s1125_process_cmd(pump_s1125_type_t pump_s1125)
+uint8_t Write_Press_s1125_pump(int MinPress, int MaxPress)
 {
-	int value=0;
-	switch(pump_s1125.request.type)
-	{
-		case RUN_S1125:
-			Run_S1125_Pump();
-			break;
-	
-		case STOP_S1125:
-			Stop_S1125_Pump();
-			break;
+	 uint8_t ret=0;
 		
-		case READ_PRESS:
-			value=Read_Press_S1125_Pump();
-			break;
-		
-		case WRITE_MAX_PRESS:
-			Write_MaxPress_s1125_pump(pump_s1125.request.para);
-			break;
-		
-		case WRITE_MIN_PRESS:
-			Write_MinPress_s1125_pump(pump_s1125.request.para);
-			break;
-		
-		case WRITE_FLOW_SPEED:
-			Write_FlowSpeed_s1125_pump(pump_s1125.request.para);
-			break;
-		
-		case WRITE_PRESS:
-			Write_MinPress_s1125_pump(pump_s1125.request.para);
-			Write_MaxPress_s1125_pump(pump_s1125.request.para_nor);
-			break;
-		
-		default:
-			break;
-	}	
+	ret=Write_MaxPress_s1125_pump(MaxPress);	
+	ret=Write_MinPress_s1125_pump(MinPress);
 
-	return value;
+	return 0;
 }	
+
+
+

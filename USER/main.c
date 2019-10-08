@@ -48,17 +48,19 @@ int main(void)
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
 	UART2_Init(9600);
-	UART3_Init(9600);
+	UART3_Init(115200);
   Uart_cs_init();
 	AD_Sensor_Init();//四个重力传感器初始化
-	//S1125_Init();//德国泵
 	
+
 	
 	Electromagnetic_init();//电磁阀
 	
 	ScanChooseHandle(BL180);
 	ScanHandle->init(true);
 	
+	PumpChooseHandle(S1125);
+	PumpHandle->init();
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 	//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
 #endif
@@ -92,7 +94,7 @@ printf("zzz1\r\n");
 printf("zzz2\r\n");
 
 #endif
-//test_pump_s100_close();
+/*
 int len=0;
 char string[30];
 memset(string,0,sizeof(string));
@@ -103,8 +105,14 @@ Scan_Bar_Action(string,&len, 10,true);
 	
 	}
 	printf("*len:%d \r\n",len);
+*/
 
 
+/*
+printf("zzz1\r\n");
+PumpHandle->stop();
+printf("zzz2  %d\r\n",PumpHandle->readPress());
+*/
 while(1){
 		
 	{

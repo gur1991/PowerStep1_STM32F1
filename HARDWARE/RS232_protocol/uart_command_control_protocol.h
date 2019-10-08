@@ -93,7 +93,7 @@ typedef enum Command_type{
 		GRAVITY_SENSOR_GETTING,
 		
 		SCAN_BARCODE,
-		PUMP_S1125,
+		PUMP_INTERFACE,
 		REST_INJECTION_MODLUE_MOTOR,
 		LIQUID_SENSOR,
 		
@@ -340,7 +340,7 @@ typedef struct{
 				
 				scan_barcode_t scan;
 				
-				pump_s1125_type_t pump_s1125; 
+				pump_type_t pump; 
 				rest_injection_module_motor_type_t rest_injection_module_motor;
 				get_liquid_sensor_level_t get_liquid_sensor;
 				
