@@ -148,6 +148,7 @@ typedef enum Command_Package_type{
 			NORMAL_PITCH_MOVE_NEXT,
 			NORMAL_BLANK_REST,
 			REST_SAMPLE_MOTOR,
+			NORMAL_FIRST_POSITION,
 }Command_Package_t;
 
 typedef union{ 

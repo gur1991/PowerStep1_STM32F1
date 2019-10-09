@@ -1,6 +1,6 @@
 #include "bl180.h"
 
-#define SCAN_DEBUG 0
+#define SCAN_DEBUG 1
 
 Uart_Receive_Data BL180_Read=NULL ;
 Uart_Send_Data BL180_Write=NULL ;
@@ -55,12 +55,16 @@ void Config_BL80_Transfer(void)
 }	
 void Wait_Ack(void)
 {
+	/*
 	int i=100;
 	while(i--){
 		if(FLAG_UART_BL180_ACK)break;
 		delay_ms(1);
 	}
 	FLAG_UART_BL180_ACK=0;
+	*/
+	delay_ms(100);
+	
 }	
 
 
@@ -166,7 +170,7 @@ void Init_BL180(bool status)
 	Goto_Setting_Mode();
 	
 	Set_Data_Bit();
-	Set_Check_Bit();
+//	Set_Check_Bit();
 
 	Save_Setting_Commond();
 	
@@ -176,19 +180,28 @@ void Init_BL180(bool status)
 
 void Start_BL180(void)
 {
-	u8 tx_buf[5]="LON\r\n";
-	u8 rx_buf[128];
-	int len=0;	
-	int i;
+	u8 tx_buf[5];
+	tx_buf[0]='L';
+	tx_buf[1]='O';
+	tx_buf[2]='N';
+	tx_buf[3]=0x0d;
+	tx_buf[4]=0x0a;
+	BL180_Write(tx_buf,5);
 	
-	BL180_Write(tx_buf,sizeof(tx_buf));
+	printf("SCAN START\r\n");
 	
 }	
 
 
 void End_BL180(void)
 {
-	u8 tx_buf[6]="LOFF\r\n";
+	u8 tx_buf[6];
+	tx_buf[0]='L';
+	tx_buf[1]='O';
+	tx_buf[2]='F';
+	tx_buf[3]='F';
+	tx_buf[4]=0x0d;
+	tx_buf[5]=0x0a;
 	u8 rx_buf[128];
 	int len=0;	
 	int i;
@@ -204,31 +217,31 @@ void End_BL180(void)
 	}
 	printf("\r\n");
 
-	
+	printf("SCAN END\r\n");
 }	
 
 
 int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 {
-	int i= TimeOut_S*1000;
+	int i= TimeOut_S*100;
 	int ret=0;
 	u8 rx_buf[128];
 	int len=0;
 #if(SCAN_DEBUG)		
 	printf("start scan \r\n");
 #endif
-	FLAG_RECEIVE_ANSOWER_PUMP100=0;
-	UART3_RX_CNT=0;
+	FLAG_RECEIVE_ANSOWER_BL180=0;
+	USART2_RX_CNT=0;
 	
 	Config_BL80_Transfer();
 	Start_BL180();
 	while(i--){
-			if(FLAG_RECEIVE_ANSOWER_PUMP100){
-					FLAG_RECEIVE_ANSOWER_PUMP100=0;
+			if(FLAG_RECEIVE_ANSOWER_BL180){
+					FLAG_RECEIVE_ANSOWER_BL180=0;
 					BL180_Read(rx_buf,&len);
 					break;
 			}	
-			delay_ms(1);
+			delay_ms(10);
 	}
 	
 	if(len)
@@ -239,8 +252,8 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 		*length=0;
 		ret=-1;
 		End_BL180();
-		FLAG_RECEIVE_ANSOWER_PUMP100=0;
-		UART3_RX_CNT=0;
+		FLAG_RECEIVE_ANSOWER_BL180=0;
+		USART2_RX_CNT=0;
 	}
 #if(SCAN_DEBUG)		
 	printf("end scan \r\n");

@@ -25,7 +25,7 @@ void S1125_Init(void)
     HAL_GPIO_WritePin(GROUP_X,NUMBER_X,GPIO_PIN_SET);	
 */
 	electromagnetic_control(9,1);
-	printf("init pump\r\n");
+	//printf("init pump\r\n");
 }
 
 

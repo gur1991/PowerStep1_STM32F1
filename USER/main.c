@@ -52,12 +52,10 @@ int main(void)
   Uart_cs_init();
 	AD_Sensor_Init();//四个重力传感器初始化
 	
-
-	
 	Electromagnetic_init();//电磁阀
 	
 	ScanChooseHandle(BL180);
-	ScanHandle->init(true);
+	
 	
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
@@ -82,7 +80,7 @@ int main(void)
 printf("zzz1\r\n");
  //test_pump_s100_open();
  //Gradient_control_buffer(1700, 0,0,0,0);
- electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
+ electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);
  //electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
  //electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
   //electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
@@ -90,36 +88,46 @@ printf("zzz1\r\n");
  //test_pump_s100_close();
  electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
  
- electromagnetic_control(DEGASSER_CONTORL, OPEN_FT);
+ electromagnetic_control(DEGASSER_CONTORL, CLOSE_FT);
 printf("zzz2\r\n");
 
 #endif
-/*
+
 int len=0;
 char string[30];
-memset(string,0,sizeof(string));
-Scan_Bar_Action(string,&len, 10,true);
-	for(i=0;i<len;i++)
-	{
-		printf("%c",string[i]);
-	
-	}
-	printf("*len:%d \r\n",len);
-*/
+
+
 
 
 /*
 printf("zzz1\r\n");
-PumpHandle->stop();
+PumpHandle->setFlowSpeed(1700);
+PumpHandle->run();
 printf("zzz2  %d\r\n",PumpHandle->readPress());
 */
+#if USE_MOTOR_BOARD	
+//RestAllMotorOrgin();
+#endif
+	//Config_BL80_Transfer();
+	//Start_BL180();
+//delay_ms(10000);
+//ScanHandle->init(true);
 while(1){
-		
+/*		
 	{
-		//printf("liquid %d\r\n",Liquid_Sensor_Get());
-		//delay_ms(200);
+		memset(string,0,sizeof(string));
+		Scan_Bar_Action(string,&len, 5,true);
+		if(len){
+				for(i=0;i<len;i++)
+				{
+						printf("%c",string[i]);
+	
+				}
+				printf("\r\n");
+		}
+		//delay_ms(1000);
 	}
-
+*/
 
 #if 1
 

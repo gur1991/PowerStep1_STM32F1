@@ -184,25 +184,35 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 200*1000);
 	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 200*1000);
 	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
-//	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
+	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }
 
 void March_Drain_And_Wash_Motor_Orgin(void)
 {
-	Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 10000);
-	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
-	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
-	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
-	//Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 3*10000);
-	Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10000);
+	if(Light_Sensor_Get(M10_LIGHT)==0)
+		Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_IN, 10000);
+	
+	if(Light_Sensor_Get(M9_LIGHT)==0)
+		Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
+	
+	if(Light_Sensor_Get(M5_LIGHT)==0){
+		Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
+		Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
+	}
+//	if(Light_Sensor_Get(M6_LIGHT)==0)
+//		Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 3*10000);
+	
+	if(Light_Sensor_Get(M7_LIGHT)==0)
+		Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10000);
 }	
 
 void Rest_And_March_Up_Down(void)
 {
 	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
-	Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 3*10000);
+	if(Light_Sensor_Get(M6_LIGHT)==0)
+		Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
 	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 }	
@@ -216,8 +226,11 @@ void Rest_Transporter_Belt(void)
 
 void March_Transporter_Belt(void)
 {
-	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
-	Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 2000);
+	if(Light_Sensor_Get(M1_LIGHT)==0)
+			Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK, 2000);
+	
+	if(Light_Sensor_Get(M4_LIGHT)==0)
+			Motor_Move_And_Wait(M4_LEFT_WAIT, M4_LEFT_TO_WAIT, 2000);
 	
 }	
 void Rest_high_wheel(void)
@@ -286,11 +299,15 @@ void Mix_Work_Goto_Postion(void)
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT_WORK,M7_MIX_V_DOWN, 40*1000);
 	//Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
 }
+
+	
+
 //сп->нч-сп
 void Normal_Pitch_Move_Next(void)
 {
-	int i=1000;
 	Motor_Move_And_Wait(M1_BLANK_NEXT, M1_NEXT_TO_BLANK,800);
+	RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 5000);
+/*	
 	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==1)
 	{
 			RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 20000);
@@ -309,7 +326,13 @@ void Normal_Pitch_Move_Next(void)
 			BSP_MotorControl_HardStop(0);
 			return ;
 	}
+*/
+}
 
+void Normal_Goto_First_Position(void)
+{
+	RestSelectMotorOrgin(M1_BLANK_NEXT,NORMAL_NEXT_LIGHT,M1_NEXT_TO_BLANK, 5000);
+	Normal_Pitch_Move_Next();
 }
 
 void Normal_Blank_Rest(void)
@@ -434,7 +457,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case REST_SAMPLE_MOTOR:
 				Rest_Sample_Motor_Orgin();
 				break;
-			
+			case NORMAL_FIRST_POSITION:
+				Normal_Goto_First_Position();
+				break;
 			default:
 					break;
 		}	

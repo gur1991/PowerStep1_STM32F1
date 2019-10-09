@@ -9,8 +9,8 @@ UART_HandleTypeDef USART2_Handler;
 u8 USART2_RX_BUF[MAX_LENGTH];  	
 //接收到的数据长度
 int USART2_RX_CNT=0;  
-
-
+u8 FLAG_UART_BL180_ACK=0;
+u8 FLAG_RECEIVE_ANSOWER_BL180=0;
 
 u8 FLAG_UART_CHEMINERT=0;
 
@@ -32,7 +32,13 @@ void USART2_IRQHandler(void)
 		{
 				FLAG_UART_CHEMINERT=1;
 		}
-
+		if((USART2_RX_BUF[1]=='K')&&(USART2_RX_BUF[0]=='O'))
+		{
+				FLAG_UART_BL180_ACK=1;
+		}
+		if(USART2_RX_CNT>5&&(USART2_RX_BUF[USART2_RX_CNT-1]==0x0a||USART2_RX_BUF[USART2_RX_CNT-1]==0x0d)){
+					FLAG_RECEIVE_ANSOWER_BL180=1;
+		}
 	} 
 }    
 
@@ -96,7 +102,7 @@ void UART2_Receive_Data(u8 *buf,int *len)
 	int rxlen=USART2_RX_CNT;
 	int i=0;
 	*len=0;				//默认为0
-	//delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
+	delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
 	if(rxlen==USART2_RX_CNT&&rxlen)//接收到了数据,且接收完成了
 	{
 		for(i=0;i<rxlen;i++)

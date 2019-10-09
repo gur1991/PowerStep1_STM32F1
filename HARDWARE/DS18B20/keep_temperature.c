@@ -77,6 +77,8 @@ uint8_t Rearch_Degree_Wait(void)
 		if(GetTemperatureDegree(TMEPERATURE_CURRENT)-SET_VALUE<=3&&GetTemperatureDegree(TMEPERATURE_CURRENT)-SET_VALUE>=0)
 				break;
 		
+		KeepTemperatureDegree();
+		
 		delay_ms(1000);
 		
 	}
@@ -114,7 +116,7 @@ int PID_Control(int temperature)
 	
 	pid.differ =pid.setValue - pid.actualValue;
 	
-	//printf("set:%d get:%d ",pid.setValue,pid.actualValue);
+	printf("set:%d get:%d ",pid.setValue,pid.actualValue);
 	if(pid.differ>=5){pid.duty_pwm=0;}
 	else if(pid.differ<0){
 			pid.duty_pwm=500;
@@ -156,7 +158,7 @@ void KeepTemperatureDegree(void)
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-		//printf(" duty:%d\r\n",duty_cycle);
+		printf(" duty:%d\r\n",duty_cycle);
 		
 		TIM_SetTIM3Compare4(duty_cycle);	
 }	
