@@ -52,20 +52,28 @@ void Config_BL80_Transfer(void)
 {
 	BL180_Read = GetUartReceive(BL180_UART_PORT,BL180_UART_CS);
 	BL180_Write = GetUartSend(BL180_UART_PORT,BL180_UART_CS);
+	
 }	
 void Wait_Ack(void)
 {
-	/*
-	int i=100;
-	while(i--){
-		if(FLAG_UART_BL180_ACK)break;
-		delay_ms(1);
-	}
-	FLAG_UART_BL180_ACK=0;
-	*/
 	delay_ms(100);
-	
 }	
+
+
+void Goto_Rest_Set(void)
+{
+	u8 tx_buf[6]="DELT\r\n";
+	u8 rx_buf[128];
+	int len=0;	
+	int i=100;
+	
+	BL180_Write(tx_buf,sizeof(tx_buf));
+	Wait_Ack();
+	BL180_Read(rx_buf,&len);
+}	
+
+
+
 
 
 void Goto_Setting_Mode(void)
@@ -87,6 +95,12 @@ void Goto_Setting_Mode(void)
 #endif
 }	
 
+void Goto_Rest_Mode(void)
+{
+	Config_BL80_Transfer();
+	//Goto_Setting_Mode();
+	Goto_Rest_Set();
+}	
 
 void Exit_Setting_Mode(void)
 {
@@ -128,7 +142,7 @@ void Save_Setting_Commond(void)
 
 void Set_Data_Bit(void)
 {
-	u8 tx_buf[7]="WP301\r\n";
+	u8 tx_buf[7]="WP300\r\n";
 	u8 rx_buf[128];
 	int len=0;	
 	int i;
@@ -166,15 +180,18 @@ void Set_Check_Bit(void)
 
 void Init_BL180(bool status)
 {
+	
 	Config_BL80_Transfer();
+	
 	Goto_Setting_Mode();
 	
 	Set_Data_Bit();
-//	Set_Check_Bit();
+	Set_Check_Bit();
 
 	Save_Setting_Commond();
 	
 	Exit_Setting_Mode();
+
 }	
 
 
@@ -184,12 +201,14 @@ void Start_BL180(void)
 	tx_buf[0]='L';
 	tx_buf[1]='O';
 	tx_buf[2]='N';
-	tx_buf[3]=0x0d;
-	tx_buf[4]=0x0a;
+	tx_buf[3]='\r';
+	tx_buf[4]='\n';
+	Config_BL80_Transfer();
 	BL180_Write(tx_buf,5);
-	
-	printf("SCAN START\r\n");
-	
+	Wait_Ack();
+#if(SCAN_DEBUG)		
+	printf("SCAN START\r\n");	
+#endif
 }	
 
 
@@ -200,16 +219,18 @@ void End_BL180(void)
 	tx_buf[1]='O';
 	tx_buf[2]='F';
 	tx_buf[3]='F';
-	tx_buf[4]=0x0d;
-	tx_buf[5]=0x0a;
+	tx_buf[4]='\r';
+	tx_buf[5]='\n';
 	u8 rx_buf[128];
 	int len=0;	
 	int i;
-	
-	BL180_Write(tx_buf,sizeof(tx_buf));
-	delay_ms(100);
 
-	BL180_Read(rx_buf,&len);	
+	Config_BL80_Transfer();
+	BL180_Write(tx_buf,sizeof(tx_buf));
+	Wait_Ack();
+	BL180_Read(rx_buf,&len);
+		
+#if(SCAN_DEBUG)	
 	for(i=0;i<len;i++)
 	{
 		printf("%c",rx_buf[i]);
@@ -218,6 +239,7 @@ void End_BL180(void)
 	printf("\r\n");
 
 	printf("SCAN END\r\n");
+#endif
 }	
 
 
@@ -232,8 +254,9 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 #endif
 	FLAG_RECEIVE_ANSOWER_BL180=0;
 	USART2_RX_CNT=0;
+	//UART2_Init_Check(9600);
+	//Wait_Ack();
 	
-	Config_BL80_Transfer();
 	Start_BL180();
 	while(i--){
 			if(FLAG_RECEIVE_ANSOWER_BL180){
@@ -257,7 +280,10 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 	}
 #if(SCAN_DEBUG)		
 	printf("end scan \r\n");
-#endif	
+#endif
+
+//	UART2_Init(9600);	
+//	Wait_Ack();
 	return ret;
 }
 

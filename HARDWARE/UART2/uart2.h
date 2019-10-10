@@ -12,6 +12,8 @@ extern u8 FLAG_UART_BL180_ACK;
 extern u8 FLAG_RECEIVE_ANSOWER_BL180;
 
 void UART2_Init(u32 bound);
+void UART2_Init_Check(u32 bound);
+
 void UART2_Send_Data(u8 *buf,int len);
 void UART2_Receive_Data(u8 *buf,int *len);	
 #endif

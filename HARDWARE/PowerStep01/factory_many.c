@@ -184,8 +184,8 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 200*1000);
 	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 200*1000);
 	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
-	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
-	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
+	//RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }
 
@@ -196,13 +196,14 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 	
 	if(Light_Sensor_Get(M9_LIGHT)==0)
 		Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
-	
+/*	
 	if(Light_Sensor_Get(M5_LIGHT)==0){
 		Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
 		Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 2500);
 	}
-//	if(Light_Sensor_Get(M6_LIGHT)==0)
-//		Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 3*10000);
+*/	
+	if(Light_Sensor_Get(M6_LIGHT)==0)
+		Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
 	
 	if(Light_Sensor_Get(M7_LIGHT)==0)
 		Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 10000);
@@ -210,10 +211,10 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 
 void Rest_And_March_Up_Down(void)
 {
-	Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
-	if(Light_Sensor_Get(M6_LIGHT)==0)
-		Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 10000);
-	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
+	if(Light_Sensor_Get(M5_LIGHT)==0)
+		Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 1000);
+	
+	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
 	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 }	
 

@@ -47,6 +47,7 @@ int main(void)
 	Liquid_Sensor_Init();
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
+	//UART2_Init_Check(9600);
 	UART2_Init(9600);
 	UART3_Init(115200);
   Uart_cs_init();
@@ -55,12 +56,12 @@ int main(void)
 	Electromagnetic_init();//电磁阀
 	
 	ScanChooseHandle(BL180);
-	
+	//ScanHandle->init(true);
+	//Goto_Rest_Mode();
 	
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
-	//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
 #endif
 
 #if USE_MOTOR_BOARD
@@ -108,12 +109,13 @@ printf("zzz2  %d\r\n",PumpHandle->readPress());
 #if USE_MOTOR_BOARD	
 //RestAllMotorOrgin();
 #endif
-	//Config_BL80_Transfer();
-	//Start_BL180();
+	Config_BL80_Transfer();
+	Start_BL180();
 //delay_ms(10000);
-//ScanHandle->init(true);
+
 while(1){
-/*		
+	
+		/*
 	{
 		memset(string,0,sizeof(string));
 		Scan_Bar_Action(string,&len, 5,true);
@@ -125,7 +127,7 @@ while(1){
 				}
 				printf("\r\n");
 		}
-		//delay_ms(1000);
+		delay_ms(1000);
 	}
 */
 
@@ -134,7 +136,6 @@ while(1){
 		if(ARM_RS232_ASK)
 		{
 						printf("start receive !\r\n");
-						//delay_ms(5);
 #if USE_SENSOR_BOARD						
 						KeepTemperatureDegree_Duty();
 #endif			

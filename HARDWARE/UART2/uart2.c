@@ -51,7 +51,6 @@ void UART2_Init(u32 bound)
 	GPIO_InitTypeDef GPIO_Initure;
 	
 	__HAL_RCC_GPIOA_CLK_ENABLE();			//使能GPIOA时钟
-	__HAL_RCC_GPIOD_CLK_ENABLE();			//使能GPIOD时钟
 	__HAL_RCC_USART2_CLK_ENABLE();			//使能USART2时钟
 	
 	GPIO_Initure.Pin=GPIO_PIN_2; 			//PA2
@@ -63,14 +62,14 @@ void UART2_Init(u32 bound)
 	GPIO_Initure.Pin=GPIO_PIN_3; 			//PA3
 	GPIO_Initure.Mode=GPIO_MODE_AF_INPUT;	//复用输入
 	HAL_GPIO_Init(GPIOA,&GPIO_Initure);	   	//初始化PA3
-	
+/*	
 	//PD7推挽输出，485模式控制  
     GPIO_Initure.Pin=GPIO_PIN_7; 			//PD7
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
     HAL_GPIO_Init(GPIOD,&GPIO_Initure);
-    
+  */  
     //USART 初始化设置
 	USART2_Handler.Instance=USART2;			        //USART2
 	USART2_Handler.Init.BaudRate=bound;		        //波特率
@@ -88,10 +87,52 @@ void UART2_Init(u32 bound)
 	HAL_NVIC_SetPriority(USART2_IRQn,3,3);			        //抢占优先级3，子优先级3
 }
 
+
+//初始化IO 串口2
+//bound:波特率
+void UART2_Init_Check(u32 bound)
+{
+    //GPIO端口设置
+	GPIO_InitTypeDef GPIO_Initure;
+	
+	__HAL_RCC_GPIOA_CLK_ENABLE();			//使能GPIOA时钟
+	__HAL_RCC_USART2_CLK_ENABLE();			//使能USART2时钟
+	
+	GPIO_Initure.Pin=GPIO_PIN_2; 			//PA2
+	GPIO_Initure.Mode=GPIO_MODE_AF_PP;		//复用推挽输出
+	GPIO_Initure.Pull=GPIO_PULLUP;			//上拉
+	GPIO_Initure.Speed=GPIO_SPEED_HIGH;		//高速
+	HAL_GPIO_Init(GPIOA,&GPIO_Initure);	   	//初始化PA2
+	
+	GPIO_Initure.Pin=GPIO_PIN_3; 			//PA3
+	GPIO_Initure.Mode=GPIO_MODE_AF_INPUT;	//复用输入
+	HAL_GPIO_Init(GPIOA,&GPIO_Initure);	   	//初始化PA3
+	
+
+    //USART 初始化设置
+	USART2_Handler.Instance=USART2;			        //USART2
+	USART2_Handler.Init.BaudRate=bound;		        //波特率
+	USART2_Handler.Init.WordLength=UART_WORDLENGTH_8B;	//字长为8位数据格式
+	USART2_Handler.Init.StopBits=UART_STOPBITS_1;		//一个停止位
+	USART2_Handler.Init.Parity=UART_PARITY_EVEN;		//无奇偶校验位
+	USART2_Handler.Init.HwFlowCtl=UART_HWCONTROL_NONE;	//无硬件流控
+	USART2_Handler.Init.Mode=UART_MODE_TX_RX;		    //收发模式
+	USART2_Handler.Init.OverSampling = UART_OVERSAMPLING_16;
+	HAL_UART_Init(&USART2_Handler);			        //HAL_UART_Init()会使能USART2
+    
+  __HAL_UART_DISABLE_IT(&USART2_Handler,UART_IT_TC);
+	__HAL_UART_ENABLE_IT(&USART2_Handler,UART_IT_RXNE);//开启接收中断
+	HAL_NVIC_EnableIRQ(USART2_IRQn);				        //使能USART1中断
+	HAL_NVIC_SetPriority(USART2_IRQn,3,3);			        //抢占优先级3，子优先级3
+}
+
+
+
 //buf:发送区首地址
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART2_Send_Data(u8 *buf,int len)
 {
+	//printf("uart2 send\r\n");
 	HAL_UART_Transmit(&USART2_Handler,buf,len,100);//串口2发送数据
 	USART2_RX_CNT=0;
 }
