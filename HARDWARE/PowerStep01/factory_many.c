@@ -212,10 +212,11 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 void Rest_And_March_Up_Down(void)
 {
 	if(Light_Sensor_Get(M5_LIGHT)==0)
-		Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 1000);
+		Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 200);
 	
-	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
-	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
+	RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 10000);
+	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,NORMAL_SPEED);
 }	
 
 
