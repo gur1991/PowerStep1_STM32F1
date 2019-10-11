@@ -252,8 +252,8 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 #if(SCAN_DEBUG)		
 	printf("start scan \r\n");
 #endif
-	FLAG_RECEIVE_ANSOWER_BL180=0;
-	USART2_RX_CNT=0;
+	//FLAG_RECEIVE_ANSOWER_BL180=0;
+	//USART2_RX_CNT=0;
 	//UART2_Init_Check(9600);
 	//Wait_Ack();
 	

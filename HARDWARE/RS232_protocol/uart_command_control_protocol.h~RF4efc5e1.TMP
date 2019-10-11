@@ -98,6 +98,7 @@ typedef enum Command_type{
 		LIQUID_SENSOR,
 		
 		PUMPS100_SET_FLOWSPEED,
+		MIX_AND_REACH_POSITION,
 		
 }Command_type_t;
 
@@ -149,10 +150,6 @@ typedef enum Command_Package_type{
 			NORMAL_BLANK_REST,
 			REST_SAMPLE_MOTOR,
 			NORMAL_FIRST_POSITION,
-			MIX_AND_REACH_POSITION,
-			M10_SLOW,
-			M10_NORMAL,
-
 }Command_Package_t;
 
 typedef union{ 

@@ -137,6 +137,6 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 
 
 
-void mix_and_reach_position(void);
+void mix_and_reach_position(uint8_t up_down_steps,uint8_t far_near_steps);
 
 #endif

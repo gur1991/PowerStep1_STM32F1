@@ -153,4 +153,14 @@ struct{
 }response;
 }wait_many_motor_type_t;
 
+
+typedef union{ 
+	struct{
+		uint8_t up_down_steps;
+		uint8_t far_near_steps;
+	}request;
+	struct{
+		uint8_t ret;
+	}response;	
+}mix_and_reach_type_t;
 #endif

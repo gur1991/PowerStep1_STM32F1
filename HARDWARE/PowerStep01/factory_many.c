@@ -183,7 +183,7 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
 	RestSelectMotorOrgin(M10_BIG_IN_OUT,M10_LIGHT,M10_BIG_OUT, 200*1000);
 	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 200*1000);
-	Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
+	//Choose_Single_Motor_Speed_Config(M5_FAR_NEAR,LOW_SPEED);
 	RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
 	//RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
@@ -285,14 +285,16 @@ void Scan_Motor_Slow_Spin(void)
 
 void Mix_Blood_High_Speed(void)
 {
+	int i=0;
 	Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M8_MIX);	
-	//BSP_MotorControl_Move(0, M8_MIX_LEFT, 46000);
-	//BSP_MotorControl_WaitWhileActive(0);
-	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 46000);
-	BSP_MotorControl_WaitWhileActive(0);
-	BSP_MotorControl_Move(0, M8_MIX_RIGHT, 66000);
-	BSP_MotorControl_WaitWhileActive(0);
+	
+	for(i=0;i<4;i++){
+		BSP_MotorControl_Move(0, M8_MIX_RIGHT, 80000);
+		BSP_MotorControl_WaitWhileActive(0);
+		BSP_MotorControl_Move(0, M8_MIX_LEFT, 80000);
+		BSP_MotorControl_WaitWhileActive(0);
+	}
 	RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 }	
 void Mix_Work_Goto_Postion(void)
@@ -385,7 +387,38 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 				delay_ms(10);	
 		}		
 }	
+	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 300*1000);
+	//RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
+	
+	//Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
+	//PowerStep_Select_Motor_Baby(M8_MIX);	
+	//BSP_MotorControl_Move(0, M8_MIX_RIGHT, 46000);
+	//BSP_MotorControl_WaitWhileActive(0);
+	//BSP_MotorControl_Move(0, M8_MIX_LEFT, 66000);
+	//BSP_MotorControl_WaitWhileActive(0);
+	//RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
 
+void mix_and_reach_position(void)	
+{
+
+		//下发混匀动作
+		Choose_Single_Motor_Speed_Config(M8_MIX,NORMAL_SPEED);
+		PowerStep_Select_Motor_Baby(M8_MIX);
+		BSP_MotorControl_Move(0, M8_MIX_RIGHT, 120000);
+	
+		//复位电机
+		Rest_Sample_Motor_Orgin();
+
+	  //执行混匀剩余动作
+		PowerStep_Select_Motor_Baby(M8_MIX_LEFT);
+		BSP_MotorControl_HardStop(0);
+		
+		PowerStep_Select_Motor_Baby(M8_MIX_LEFT);
+		BSP_MotorControl_Move(0, M8_MIX_LEFT, 66000);
+		BSP_MotorControl_WaitWhileActive(0);
+		
+		RestSelectMotorOrgin(M7_MIX_V,M7_LIGHT,M7_MIX_V_UP, 60*1000);
+}	
 
 
 
@@ -418,7 +451,6 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 					value=ReadyAndCheckLeftPosition();
 				break;
 			case LEFT_MOVE_TO_WAIT:
-				printf("left to wait \r\n");
 					value=LeftMoveTowardWaitPosition();
 				break;
 			case REST_C55_C52:
@@ -443,7 +475,6 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				Mix_Blood_High_Speed();
 				break;
 			case BELT_MOVE_SAMETIME:
-				printf("same time move \r\n");
 				value = Belt_Move_At_SameTime();
 				break;
 			case MIX_WORK_GOTO:
@@ -461,6 +492,16 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case NORMAL_FIRST_POSITION:
 				Normal_Goto_First_Position();
 				break;
+			case MIX_AND_REACH_POSITION:
+				mix_and_reach_position();
+				break;
+			case M10_SLOW:
+				Choose_Single_Motor_Speed_Config(M10_BIG_IN_OUT,LOW_SPEED);
+				break;
+			case M10_NORMAL:
+				Choose_Single_Motor_Speed_Config(M10_BIG_IN_OUT,NORMAL_SPEED);
+				break;
+			
 			default:
 					break;
 		}	

@@ -109,13 +109,13 @@ printf("zzz2  %d\r\n",PumpHandle->readPress());
 #if USE_MOTOR_BOARD	
 //RestAllMotorOrgin();
 #endif
-	Config_BL80_Transfer();
-	Start_BL180();
+	//Config_BL80_Transfer();
+	//Start_BL180();
 //delay_ms(10000);
 
 while(1){
 	
-		/*
+	/*	
 	{
 		memset(string,0,sizeof(string));
 		Scan_Bar_Action(string,&len, 5,true);
@@ -129,8 +129,8 @@ while(1){
 		}
 		delay_ms(1000);
 	}
-*/
 
+*/
 #if 1
 
 		if(ARM_RS232_ASK)
