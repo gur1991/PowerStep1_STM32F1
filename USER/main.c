@@ -47,7 +47,7 @@ int main(void)
 	Liquid_Sensor_Init();
 	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
 	
-	//UART2_Init_Check(9600);
+	
 	UART2_Init(9600);
 	UART3_Init(115200);
   Uart_cs_init();
@@ -56,8 +56,7 @@ int main(void)
 	Electromagnetic_init();//电磁阀
 	
 	ScanChooseHandle(BL180);
-	//ScanHandle->init(true);
-	//Goto_Rest_Mode();
+	ScanHandle->init(true);
 	
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
@@ -115,7 +114,7 @@ printf("zzz2  %d\r\n",PumpHandle->readPress());
 
 while(1){
 	
-	/*	
+/*		
 	{
 		memset(string,0,sizeof(string));
 		Scan_Bar_Action(string,&len, 5,true);
@@ -129,8 +128,8 @@ while(1){
 		}
 		delay_ms(1000);
 	}
-
 */
+
 #if 1
 
 		if(ARM_RS232_ASK)
@@ -156,8 +155,9 @@ while(1){
 			keep_thermometer_degree();
 		}		
 #endif
+	
+#endif
 		
-#endif	
 		//IWDG_Feed();
 	}
 
