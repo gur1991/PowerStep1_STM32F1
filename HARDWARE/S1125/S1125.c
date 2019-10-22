@@ -140,11 +140,12 @@ uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 	{
 			if(pump.value[i]<10)pump.value[i]+='0';
 			else pump.value[i]+=55;
+			//printf("[%d]%c\r\n",i,pump.value[i]);
 	}
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"00C8", 4);
-	memcpy(pump.value,"07D0", 4);
+	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
 	
 	return 0;
@@ -202,7 +203,7 @@ uint8_t Write_MaxPress_s1125_pump(int MaxPress)
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"00CA", 4);
-	memcpy(pump.value,"0000", 4);
+	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
 	return 0;
 	

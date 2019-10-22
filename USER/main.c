@@ -70,17 +70,12 @@ int main(void)
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
-
-	//RestSelectMotorOrgin(M6_UP_DOWM,M6_LIGHT,M6_UP, 200*1000);
-	//RestSelectMotorOrgin(M5_FAR_NEAR,M5_LIGHT,M5_NEAR, 15*1000);
-	//Motor_Move_And_Wait(M5_FAR_NEAR, M5_FAR, 5600);
-	//Motor_Move_And_Wait(M6_UP_DOWM, M6_DOWM, 120000);
 #if 0
 //ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
 printf("zzz1\r\n");
  //test_pump_s100_open();
  //Gradient_control_buffer(1700, 0,0,0,0);
- electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);
+ electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
  //electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
  //electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
   //electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
@@ -96,21 +91,11 @@ printf("zzz2\r\n");
 int len=0;
 char string[30];
 
+//Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_OUT, 10000);
 
-
-
-/*
-printf("zzz1\r\n");
-PumpHandle->setFlowSpeed(1700);
-PumpHandle->run();
-printf("zzz2  %d\r\n",PumpHandle->readPress());
-*/
-#if USE_MOTOR_BOARD	
-//RestAllMotorOrgin();
-#endif
-	//Config_BL80_Transfer();
-	//Start_BL180();
-//delay_ms(10000);
+//Run_S1125_Pump();
+//Write_FlowSpeed_s1125_pump(1700);
+//Stop_S1125_Pump();
 
 while(1){
 	

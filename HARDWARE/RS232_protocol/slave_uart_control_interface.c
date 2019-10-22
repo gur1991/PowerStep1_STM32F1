@@ -1021,7 +1021,7 @@ uint8_t Rest_C55_C52_Position(void)
 
 	cheminert_c52_c55.request.para=	CHEMINERT_C55_CC2;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	if(cheminert_c52_c55.response.buf[0]!='2')return 1;
+	if(cheminert_c52_c55.response.buf[0]!='4')return 1;
 	
 	return ret;
 }	
