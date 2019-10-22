@@ -5,6 +5,21 @@
 #include <string.h>
 //#include "STM32F10x.h"
 #include "delay.h"
+#include "uart_choose.h"
+#include "config.h"
+
+#define RFID_DEBUG 1
+
+Uart_Receive_Data M6E_Read=NULL ;
+Uart_Send_Data M6E_Write=NULL ;
+
+
+void Config_M6e_Transfer(void)
+{
+	M6E_Read = GetUartReceive(RFID_UART_PORT,RFID_UART_CS);
+	M6E_Write = GetUartSend(RFID_UART_PORT,RFID_UART_CS);
+}	
+
 
 typedef struct MessageBuf {
 	u8 gMessage[260];
@@ -29,11 +44,15 @@ s_sendBytes(TMR_SR_SerialTransport *this, uint32_t length,
                 uint8_t* message, const uint32_t timeoutMs)
 {
 	
-		int i=0;
-	UART3_Send_Data(message,length);
+	Config_M6e_Transfer();
+	M6E_Write(message,length);
+
 	
+	#if (RFID_DEBUG) 	
 	printf("send length . \r\n");
+#endif	
 	/*
+	int i;
 	for(i=0;i<length;i++)
 	{
 		printf("0x%x ",message[i]);
@@ -58,9 +77,10 @@ uint32_t* messageLength, uint8_t* message, const uint32_t timeoutMs)
 	u8  tmp_buf[260];
 		int i=0;
 	memset(tmp_buf,0,sizeof(tmp_buf));
-	
+	Config_M6e_Transfer();
+#if (RFID_DEBUG) 	
 	 printf("s_receiveBytes start.\r\n");
-
+#endif
 				while(1)
 				{	
 
@@ -76,8 +96,8 @@ uint32_t* messageLength, uint8_t* message, const uint32_t timeoutMs)
 						}
 						delay_ms(5);
 					}
-				
-					UART3_Receive_Data(tmp_buf,&index);
+					
+					M6E_Read(tmp_buf,&index);
 					if(index){
 							memcpy(Msg.gMessage+Msg.length, tmp_buf, index);		
 							Msg.length+=index;
@@ -99,7 +119,9 @@ uint32_t* messageLength, uint8_t* message, const uint32_t timeoutMs)
 		message+=length;
 		*messageLength=length;
 		
+#if (RFID_DEBUG) 			
 		printf("s_receiveBytes end. \r\n");
+#endif
 	return TMR_SUCCESS;
 		
 }

@@ -162,7 +162,7 @@ void UART3_Init(u32 bound)
 void UART3_Send_Data(u8 *buf,int len)
 {
 	HAL_UART_Transmit(&USART3_Handler,buf,len,100);
-	//UART3_RX_CNT=0;
+	UART3_RX_CNT=0;
 }
 //buf:接收缓存首地址
 //len:读到的数据长度

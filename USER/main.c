@@ -42,21 +42,21 @@ int main(void)
 	KEY_Init();
 
 	#if USE_SENSOR_BOARD	
-	//TIM3_PWM_Init(500-1,72-1);
-	//Pid_init();
-	//TIM_SetTIM3Compare4(500);	
-	//ThermometerChooseHandle(DS18B20);
-	//ThermometerHandle->init();
-	//ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
-	//Liquid_Sensor_Init();
+	TIM3_PWM_Init(500-1,72-1);
+	Pid_init();
+	TIM_SetTIM3Compare4(500);	
+	ThermometerChooseHandle(DS18B20);
+	ThermometerHandle->init();
+  ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
+	Liquid_Sensor_Init();
 	
 	//UART2_Init_Check(9600);
-	//UART2_Init(9600);
+	UART2_Init(9600);
 	UART3_Init(115200);
-  //Uart_cs_init();
-	//AD_Sensor_Init();//四个重力传感器初始化
+  Uart_cs_init();
+	AD_Sensor_Init();//四个重力传感器初始化
 	
-	//Electromagnetic_init();//电磁阀
+	Electromagnetic_init();//电磁阀
 	
 	//ScanChooseHandle(BL180);
 	//ScanHandle->init(true);
@@ -91,6 +91,11 @@ printf("zzz2\r\n");
 
 #endif
 
+
+/*
+int len=0;
+static	char string[128];
+
 u8 key=0;
 
 while(1)
@@ -109,8 +114,7 @@ while(1)
 				break;
 			case KEY1_PRES:
 					printf("zz2 \r\n");
-					int len=0;
-					char string[128];
+	
 					memset(string,0,128);
 					Get_EPC_String(&len, string);
 					printf("str:%s\r\n",string);
@@ -128,12 +132,12 @@ while(1)
 	}
 
 }
-
+*/
 
 while(1){
 
 
-#if 0
+#if 1
 
 		if(ARM_RS232_ASK)
 		{
