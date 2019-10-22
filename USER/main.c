@@ -58,8 +58,8 @@ int main(void)
 	
 	Electromagnetic_init();//µç´Å·§
 	
-	//ScanChooseHandle(BL180);
-	//ScanHandle->init(true);
+	ScanChooseHandle(FM100);
+	ScanHandle->init(true);
 	
 	//PumpChooseHandle(S1125);
 	//PumpHandle->init();
@@ -90,7 +90,25 @@ printf("zzz1\r\n");
 printf("zzz2\r\n");
 
 #endif
-
+/*
+static u8 string[30];
+int length=0;
+printf("start scan\r\n");
+while(1){
+	
+	ScanHandle->scan(string, &length, 7, false);
+	if(length)
+	{
+		for(i=0;i<length;i++)
+	  {
+			printf("%c",string[i]);
+		}
+		printf("\r\n");
+	
+	}
+	//delay_ms(1000);
+}
+*/
 
 /*
 int len=0;

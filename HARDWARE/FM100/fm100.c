@@ -50,6 +50,39 @@ int FM100_Scan_Exit_Configuration_State(void)
 }	
 
 
+int FM100_Scan_Control_Status(bool status)
+{
+		u8 tx_buf[10]="#99900035;";
+	  u8 tx_buf2[10]="#99900036;";
+	
+		u8 tmp_buf[]="!";
+		u8 rx_buf[128];
+		int len=0;
+		int i;
+		int j=0;
+		int time=500;
+	
+	memset(rx_buf, 0 ,sizeof(rx_buf));
+	if(status)
+			FM100_Write(tx_buf,sizeof(tx_buf));
+	else
+			FM100_Write(tx_buf2,sizeof(tx_buf2));
+	
+	while(time--){
+		if(FLAG_UART_FM100_ACK)break;
+		delay_ms(1);
+	}
+	FM100_Read(rx_buf,&len);
+	FLAG_UART_FM100_ACK=0;
+	
+	if(len==sizeof(tx_buf)&&rx_buf[0]==tmp_buf[0])
+	{
+			 return 0;
+	}
+	return -1;
+}	
+
+
 int FM100_Scan_Continuous_Mode(void)
 {
 		u8 tx_buf[10]="#99900112;";
@@ -309,26 +342,35 @@ void Control_Scan_FM100_Beeper(bool status)
 }	
 
 
-
+void FM100_Scan_Goto_Command_Mode(void)
+{
+		FM100_Scan_Into_Configuration_State();
+		FM100_Scan_Command_Mode();
+	  FM100_Scan_Exit_Configuration_State();
+}
 
 int Start_Scan_FM100(void)
 {
 	int ret=0;
 
 		ret=FM100_Scan_Into_Configuration_State();
-		FM100_Scan_Continuous_Mode();
-
+	  FM100_Scan_Control_Status(true);
 		ret=FM100_Scan_Exit_Configuration_State();
+
+		
 	return ret;
 }	
 
 int Stop_Scan_FM100(void)
 {
 	int ret=0;
+	
+
 		ret=FM100_Scan_Into_Configuration_State();
-		FM100_Scan_Command_Mode();
-		FM100_Scan_Command_Mode_Stop();
-		FM100_Scan_Exit_Configuration_State();
+		FM100_Scan_Control_Status(false);
+	  FM100_Scan_Exit_Configuration_State();
+
+	
 	return ret;
 }	
 
@@ -342,6 +384,7 @@ void Init_Scan_FM100(bool status)
 	FM100_Scan_Short_Intervel();
 	FM100_Scan_Read_Barcode_Time();
 	
+  FM100_Scan_Goto_Command_Mode();
 	Stop_Scan_FM100();
 	//Start_Scan_FM100();
 	Control_Scan_FM100_Beeper(status);
@@ -359,14 +402,14 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	int i;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	//printf("start scan. \r\n");
+	printf("start scan. \r\n");
 	Start_Scan_FM100();
 	memset(buf, 0 ,sizeof(buf));
 	memset(buf_cmp, 0 ,sizeof(buf_cmp));
 	while(timeout--){
 		if(FLAG_UART_FM100)
 		{
-				//printf("scanning ... \r\n");	
+				printf("scanning ... \r\n");	
 				FM100_Read( (u8*)buf ,&len);
 				FLAG_UART_FM100=0;
 				if(check)
@@ -383,11 +426,12 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		memcpy(string, buf, len);
 	}else{
 	  len=0;
+		Stop_Scan_FM100();
 	}
 	*length=len;
 	
-	//printf("stop scan. \r\n");
-	Stop_Scan_FM100();
+	printf("stop scan. \r\n");
+	
 	return ret;
 }
 
