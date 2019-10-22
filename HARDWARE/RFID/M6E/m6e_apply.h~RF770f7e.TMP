@@ -1,0 +1,19 @@
+#ifndef __M6E_APPLY_H
+#define __M6E_APPLY_H
+
+#include <tm_reader.h>
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <inttypes.h>
+
+int Init_M6e_Config(TMR_Region region, int powerdbm);
+
+int M6e_Read_Epc(void);
+
+#endif
+
+
+

@@ -13,6 +13,7 @@
 #include "config.h"
 #include "bl180.h"
 #include "S1125.h"
+#include "m6e_apply.h"
 
 uint8_t Rest_C55_C52_Position(void);
 

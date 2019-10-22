@@ -33,7 +33,8 @@ STM32---SLVAE设备的协议和这个不同
 #include "fm100.h"	 
 #include "S1125.h"
 #include "liquid_sensor.h"
-	 
+#include "m6e_apply.h"
+
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
@@ -98,6 +99,14 @@ typedef enum Command_type{
 		LIQUID_SENSOR,
 		
 		PUMPS100_SET_FLOWSPEED,
+		
+		RFID_INIT,
+		RFID_DESTORY,
+		RFID_SEND_READ_COMMAND,
+		RFID_RECEIVE_INDEX_TAG,
+		RFID_GET_EPC_STRING,
+		RFID_WRITE_EPC,
+		RFID_WRITE_BLANK,
 		
 }Command_type_t;
 
@@ -351,6 +360,15 @@ typedef struct{
 				
 				pump_s100_set_flowSpeed_type_t pump_s100_set_flowSpeed;
 				mix_and_reach_type_t mix_and_reach;
+				
+				rfid_init_config_type_t rfid_init_config;
+				rfid_destory_config_type_t rfid_destory_config;
+				rfid_send_read_command_type_t rfid_send_read_command;
+				rfid_receive_index_tag_type_t rfid_receive_index_tag;
+				rfid_get_epc_string_type_t rfid_get_epc_string;
+				rfid_write_epc_type_t rfid_write_epc;
+				rfid_write_blank_type_t rfid_write_blank;
+				
 /*
 *print move rk3188
 */

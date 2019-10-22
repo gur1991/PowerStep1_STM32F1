@@ -1,4 +1,3 @@
-#include "key.h"
 #include "sys.h"
 #include "delay.h"
 #include "usart.h"
@@ -26,6 +25,9 @@
 #include "S1125.h"
 #include "liquid_sensor.h"
 #include "bl180.h"
+#include "m6e_apply.h"
+#include "key.h"
+
 int main(void)
 {	
 	HAL_Init();                    	 	
@@ -37,29 +39,30 @@ int main(void)
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
 	int i=0;
-#if USE_SENSOR_BOARD	
-	TIM3_PWM_Init(500-1,72-1);
-	Pid_init();
-	TIM_SetTIM3Compare4(500);	
-	ThermometerChooseHandle(DS18B20);
-	ThermometerHandle->init();
-	ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
-	Liquid_Sensor_Init();
-	//TIM5_Init(COUNT_TIME, 7999);//10Khz 频率 5000计数  500ms 
+	KEY_Init();
+
+	#if USE_SENSOR_BOARD	
+	//TIM3_PWM_Init(500-1,72-1);
+	//Pid_init();
+	//TIM_SetTIM3Compare4(500);	
+	//ThermometerChooseHandle(DS18B20);
+	//ThermometerHandle->init();
+	//ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
+	//Liquid_Sensor_Init();
 	
-	
-	UART2_Init(9600);
+	//UART2_Init_Check(9600);
+	//UART2_Init(9600);
 	UART3_Init(115200);
-  Uart_cs_init();
-	AD_Sensor_Init();//四个重力传感器初始化
+  //Uart_cs_init();
+	//AD_Sensor_Init();//四个重力传感器初始化
 	
-	Electromagnetic_init();//电磁阀
+	//Electromagnetic_init();//电磁阀
 	
-	ScanChooseHandle(BL180);
-	ScanHandle->init(true);
+	//ScanChooseHandle(BL180);
+	//ScanHandle->init(true);
 	
-	PumpChooseHandle(S1125);
-	PumpHandle->init();
+	//PumpChooseHandle(S1125);
+	//PumpHandle->init();
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -88,34 +91,49 @@ printf("zzz2\r\n");
 
 #endif
 
-int len=0;
-char string[30];
+u8 key=0;
 
-//Motor_Move_And_Wait(M10_BIG_IN_OUT, M10_BIG_OUT, 10000);
+while(1)
+{
+	key=KEY_Scan(0);
+	if(key)
+	{
+		switch(key)
+		{
+			case KEY0_PRES:
+					printf("test start .\r\n");
+					Init_M6e_Config(TMR_REGION_PRC,2500,3000);
 
-//Run_S1125_Pump();
-//Write_FlowSpeed_s1125_pump(1700);
-//Stop_S1125_Pump();
+					
+					printf("test end .\r\n");
+				break;
+			case KEY1_PRES:
+					printf("zz2 \r\n");
+					int len=0;
+					char string[128];
+					memset(string,0,128);
+					Get_EPC_String(&len, string);
+					printf("str:%s\r\n",string);
+				break;
+			case KEY2_PRES:
+					printf("zz3 \r\n");
+			
+				break;
+			case WKUP_PRES:
+					printf("zz4 \r\n");
+					Destory_M6e_Config();
+					
+				break;
+		}	
+	}
+
+}
+
 
 while(1){
-	
-/*		
-	{
-		memset(string,0,sizeof(string));
-		Scan_Bar_Action(string,&len, 5,true);
-		if(len){
-				for(i=0;i<len;i++)
-				{
-						printf("%c",string[i]);
-	
-				}
-				printf("\r\n");
-		}
-		delay_ms(1000);
-	}
-*/
 
-#if 1
+
+#if 0
 
 		if(ARM_RS232_ASK)
 		{

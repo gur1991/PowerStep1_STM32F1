@@ -681,7 +681,66 @@ static void  protocol_pump_s100_set_flowSpeed(pump_s100_set_flowSpeed_type_t* da
 	data->response.ret=0;
 }
 
+static void  protocol_rfid_init_config(rfid_init_config_type_t* data)
+{
+	rfid_init_config_type_t performer;
+	performer.request.region=data->request.region;
+	performer.request.ReadPowerdbm=data->request.ReadPowerdbm;
+	performer.request.WritePowerdbm=data->request.WritePowerdbm;
+	
+	data->response.ret=Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+}
 
+static void  protocol_rfid_destory_config(rfid_destory_config_type_t* data)
+{
+	rfid_destory_config_type_t performer;
+	Destory_M6e_Config();
+	data->response.ret=0;
+}
+
+static void  protocol_rfid_send_read_command(rfid_send_read_command_type_t* data)
+{
+	rfid_send_read_command_type_t performer;
+	data->response.ret=M6e_Magic_Read_Rfid_Info(&performer.response.length);
+	data->response.length=performer.response.length;
+}
+
+static void  protocol_rfid_receive_index_tag(rfid_receive_index_tag_type_t* data)
+{
+	rfid_receive_index_tag_type_t performer;
+	performer.request.index=data->request.index;
+	
+	if(performer.request.index>=10)data->response.ret=1;
+	else {
+		data->response.ret=0;
+		data->response.tag=M6e_Magic_Get_One_Rfid_Info(performer.request.index);
+	}
+}
+
+static void  protocol_rfid_get_epc_string(rfid_get_epc_string_type_t* data)
+{
+	  rfid_get_epc_string_type_t performer;
+	
+		data->response.ret=Get_EPC_String(&performer.response.length, performer.response.epc);
+	  memcpy(data->response.epc, performer.response.epc, performer.response.length);
+		data->response.length=performer.response.length;
+}
+
+static void  protocol_rfid_write_epc(rfid_write_epc_type_t* data)
+{
+	  rfid_write_epc_type_t performer;
+	
+		performer.response.ret=M6e_Magic_Write_Rfid_EPC(data->request.epcData,data->request.epcByteCount);
+		data->response.ret=performer.response.ret;
+}
+
+static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
+{
+	  rfid_write_blank_type_t performer;
+	
+		performer.response.ret=M6e_Magic_Write_Rfid_Blank(data->request.wordCount,data->request.writeData);
+		data->response.ret=performer.response.ret;
+}
 
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
@@ -824,6 +883,27 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 				break;
 			case PUMPS100_SET_FLOWSPEED:
 					protocol_pump_s100_set_flowSpeed(&slave_motorCommand.CommandPowerStep1.pump_s100_set_flowSpeed);
+				break;
+			case RFID_INIT:
+					protocol_rfid_init_config(&slave_motorCommand.CommandPowerStep1.rfid_init_config);
+					break;
+			case RFID_DESTORY:
+					protocol_rfid_destory_config(&slave_motorCommand.CommandPowerStep1.rfid_destory_config);
+					break;
+			case RFID_SEND_READ_COMMAND:
+					protocol_rfid_send_read_command(&slave_motorCommand.CommandPowerStep1.rfid_send_read_command);
+				break;
+			case RFID_RECEIVE_INDEX_TAG:
+					protocol_rfid_receive_index_tag(&slave_motorCommand.CommandPowerStep1.rfid_receive_index_tag);
+				break;
+			case RFID_GET_EPC_STRING:
+					protocol_rfid_get_epc_string(&slave_motorCommand.CommandPowerStep1.rfid_get_epc_string);
+				break;
+			case RFID_WRITE_EPC:
+					protocol_rfid_write_epc(&slave_motorCommand.CommandPowerStep1.rfid_write_epc);
+				break;
+			case RFID_WRITE_BLANK:
+					protocol_rfid_write_blank(&slave_motorCommand.CommandPowerStep1.rfid_write_blank);
 				break;
 
 			

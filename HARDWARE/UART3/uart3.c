@@ -13,7 +13,7 @@ int UART3_RX_CNT=0;
 
 u8 FLAG_RECEIVE_ACK_PUMP100=0;
 u8 FLAG_RECEIVE_ANSOWER_PUMP100=0;
-
+u8 FLAG_RECEIVE_RFID=0;
 
 u8 FLAG_UART_FM100=0;
 u8 FLAG_UART_FM100_INTO=0;
@@ -35,6 +35,11 @@ void USART3_IRQHandler(void)
 			//printf("zzzzzzzzz%c \r\n",res);
 		} 
 		
+		if(UART3_RX_CNT>=7 && UART3_RX_BUF[0]==0xff)
+		{
+				if(UART3_RX_CNT == UART3_RX_BUF[1]+7)FLAG_RECEIVE_RFID=1;
+			
+		}
 		
 		if(UART3_RX_CNT==1&&(UART3_RX_BUF[0]==0x23||UART3_RX_BUF[0]==0x24||UART3_RX_BUF[0]==0x25)){
 					FLAG_RECEIVE_ACK_PUMP100=1;
