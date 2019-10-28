@@ -381,8 +381,8 @@ void Init_Scan_FM100(bool status)
 	
 	FM100_Scan_Code_Programming(false);
 	
-	FM100_Scan_Short_Intervel();
-	FM100_Scan_Read_Barcode_Time();
+	//FM100_Scan_Short_Intervel();
+	//FM100_Scan_Read_Barcode_Time();
 	
   FM100_Scan_Goto_Command_Mode();
 	Stop_Scan_FM100();

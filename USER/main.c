@@ -39,8 +39,10 @@ int main(void)
 	//IWDG_Init(4,625*6); //6s   	MAX
   //IWDG_Start();
 	int i=0;
-	KEY_Init();
-
+	//KEY_Init();
+	
+	printf("start init. \r\n");
+	
 	#if USE_SENSOR_BOARD	
 	TIM3_PWM_Init(500-1,72-1);
 	Pid_init();
@@ -58,11 +60,13 @@ int main(void)
 	
 	Electromagnetic_init();//µç´Å·§
 	
+	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
 	
-	//PumpChooseHandle(S1125);
-	//PumpHandle->init();
+	printf("init pump. \r\n");
+	PumpChooseHandle(S1125);
+	PumpHandle->init();
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -108,8 +112,8 @@ while(1){
 	}
 	//delay_ms(1000);
 }
-*/
 
+*/
 /*
 int len=0;
 static	char string[128];

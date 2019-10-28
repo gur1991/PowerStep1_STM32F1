@@ -150,7 +150,28 @@ void KeepTemperatureDegree(void)
 {	
 		int current_value=0;
 		int duty_cycle=0;
-		current_value =(int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
+		int temp1=0,temp2=0;
+		static int i=0;
+		
+		temp1=DS18B20_Get_Temp(TMEPERATURE_ONE);
+		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
+	  printf("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
+	
+		if(temp1<100&&temp2>100)current_value = temp2;//温度计1坏了 
+	  else if(temp1>100&&temp2<100)current_value = temp1;//温度计2坏了
+    else if(temp1>100||temp2>100)current_value = (int)((temp1+temp2)/2);//温度都可以 
+	
+		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
+		if(temp1>450||temp2>450){
+				i++;
+				if(i>=5)SetTemperatureDegree(0,TMEPERATURE_CURRENT);//温度异常，设置为0
+		}else{
+			i=0;
+		}
+		
+		//current_value =(int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
+		
+		
 		duty_cycle= PID_Control(current_value);
 		
 		
