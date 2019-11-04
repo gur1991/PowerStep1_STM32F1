@@ -1,18 +1,15 @@
 #include "electromagnetic.h"
 
-
+/*
 void Electromagnetic_init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStruct;
 
-  /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_7, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOG, GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_RESET);
 
   GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_7;
@@ -26,27 +23,85 @@ void Electromagnetic_init(void)
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
 }
+*/
+
+
+void Electromagnetic_init(void)
+{
+#if USE_GRADIENT_CONTROL_BOARD	
+	GPIO_InitTypeDef GPIO_InitStruct;
+
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_RESET);
+
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
+
+	
+  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	
+#endif
+
+#if USE_CLEANING_DILUTION_BOARD	
+		GPIO_InitTypeDef GPIO_InitStruct;
+
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+
+  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_0, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+	
+#endif	
+	
+}
 
 /*example*/
 //FET0=1;
 //FET0=0;
-
-
-
 void electromagnetic_control(uint8_t devices, uint8_t status)
 {
 		switch(devices)
 		{
-			case 0:	FET0=status;break;
+			//ÔL…»
 			case 1:	FET1=status;break;
 			case 2:	FET2=status;break;
 		  case 3:	FET3=status;break;
 		  case 4:	FET4=status;break;
 		  case 5:	FET5=status;break;
 		  case 6:	FET6=status;break;
-		  case 7:	FET7=status;break;
-		  case 8:	FET8=status;break;
-		  case 9:	FET9=status;break;
+			//A B C
+			case 7:	  VALUE_A=status;break;
+			case 8:	  VALUE_B=status;break;
+			case 9:	  VALUE_C=status;break;
+			case 10:	VALUE_D=status;break;
+			case 11:	VALUE_E=status;break;
+			case 12:	VALUE_F=status;break;
+			case 13:	VALUE_G=status;break;
+			//ÓA¡Ù
+			case 14:	VALUE_0=status;break;
+			case 15:	VALUE_1=status;break;
+			case 16:	VALUE_2=status;break;
+			
 			default:break;
 		}
 }

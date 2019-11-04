@@ -2,6 +2,8 @@
 #include "delay.h"
 #include <string.h>
 //按键初始化函数
+
+/*
 void Light_Sensor_Init(void)
 {
     GPIO_InitTypeDef GPIO_Initure;
@@ -58,6 +60,74 @@ void Light_Sensor_Init(void)
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
     HAL_GPIO_Init(GPIOE,&GPIO_Initure);
 }
+*/
+void Light_Sensor_Init(void)
+{
+#if USE_AUTOMATIC_INJECTION_BOARD	
+    GPIO_InitTypeDef GPIO_Initure;
+    
+	  __HAL_RCC_GPIOG_CLK_ENABLE();           
+		__HAL_RCC_GPIOE_CLK_ENABLE();           
+	  __HAL_RCC_GPIOF_CLK_ENABLE();          
+	  __HAL_RCC_GPIOC_CLK_ENABLE();         
+	  __HAL_RCC_GPIOB_CLK_ENABLE();           
+
+		
+	  GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+	
+		GPIO_Initure.Pin=GPIO_PIN_5;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOC,&GPIO_Initure);
+	
+		GPIO_Initure.Pin=GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOE,&GPIO_Initure);
+		
+		GPIO_Initure.Pin=GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOF,&GPIO_Initure);
+		
+		GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOG,&GPIO_Initure);
+#endif
+
+#if USE_CLEANING_DILUTION_BOARD
+   GPIO_InitTypeDef GPIO_Initure;
+    
+		__HAL_RCC_GPIOE_CLK_ENABLE();           
+	  __HAL_RCC_GPIOB_CLK_ENABLE();           
+
+		
+	  GPIO_Initure.Pin=GPIO_PIN_10;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+	
+		GPIO_Initure.Pin=GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOC,&GPIO_Initure);
+	
+#endif
+
+
+}
+
 
 //光感处理函数
 //返回信号值

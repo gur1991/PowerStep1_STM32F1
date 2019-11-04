@@ -1,18 +1,30 @@
 #ifndef __ELECTROMAGNETIC_H
 #define __ELECTROMAGNETIC_H
 #include "sys.h"
+#include "config.h"
 
-#define	FET0 		PGout(13)  		
-#define	FET1 		PGout(12)  		
-#define	FET2 		PGout(11) 
-#define	FET3 		PGout(10)
-#define	FET4 		PGout(9) 
+#define	FET1 		PBout(4)  		
+#define	FET2 		PBout(5) 
+#define	FET3 		PBout(6)
+#define	FET4 		PBout(7) 
 
-#define	FET5 		PDout(7)
-#define	FET6 		PDout(4)
-#define	FET7 		PDout(3)
-#define	FET8 		PDout(2)
-#define	FET9 		PDout(1)
+#define	FET5 		PBout(8)
+#define	FET6 		PBout(9)
+
+#define	VALUE_A 	PEout(2)//预留给电磁阀
+#define	VALUE_B   PEout(3)//VALUE0---VALUE4
+#define	VALUE_C 	PEout(4)
+#define	VALUE_0 	PEout(5)
+
+#define	VALUE_D 		PEout(2)  		
+#define	VALUE_E     PEout(3) 
+#define	VALUE_F 		PEout(4)
+#define	VALUE_G 		PEout(5) 
+
+#define	VALUE_1 		PEout(6)
+#define	VALUE_2 		PFout(0)
+
+
 
 void Electromagnetic_init(void);
 
@@ -24,9 +36,10 @@ typedef enum FT_status_type
 	CLOSE_FT=0,
 }FT_status_type_t;
 
+//此处电磁阀对应的设备要重新定义
 typedef enum FT_Device_type
 {
-	ELECTROMAGNETIC_A=0,
+	ELECTROMAGNETIC_A=1,
 	ELECTROMAGNETIC_B,
 	ELECTROMAGNETIC_C,
 	
@@ -38,10 +51,9 @@ typedef enum FT_Device_type
 	DEGASSER_CONTORL,//一直在用
 	DIAPHRAM_PUMP_CONTORL,//液路传感器检测到信号
 }FT_Device_type_t;
+
 // 7 --脱气机
 // 8 --隔膜泵
-
-
 typedef union{ 
 	struct{
 		uint8_t devices;//0-9
