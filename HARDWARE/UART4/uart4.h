@@ -2,8 +2,6 @@
 #define __UART4_H
 #include "sys.h"
 
-
-
 #define LEN_MAX_UART4 128
 extern u8 ARM_RS232_ASK;
 

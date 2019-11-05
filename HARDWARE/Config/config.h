@@ -10,6 +10,7 @@
 
 #define USE_AUTOMATIC_INJECTION_BOARD 0 //Camel---其他温度重力等模块
 
+#define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 
 
 

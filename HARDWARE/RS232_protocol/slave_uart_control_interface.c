@@ -512,10 +512,9 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			get_single_temperature_degree_type_t  performer;
 			
 			performer.request.devices=data->request.devices;
-			
+	
+			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&data->response.degree);
 
-			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
-			data->response.ret = 0;
 }
 
 static void protocol_set_single_temperature_degree_interface(set_single_temperature_degree_type_t *data)
@@ -525,9 +524,8 @@ static void protocol_set_single_temperature_degree_interface(set_single_temperat
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
 			
+			data->response.ret = STM32_Change_Protocol_Control_Mini_Board_Set_Degree(performer);
 
-			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
-			data->response.ret=0;
 }
 
 static void protocol_electromagnetic_interface(electromagnetic_type_t* data)
@@ -743,6 +741,33 @@ static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
 }
 
 
+static void  protocol_mini_board_set_degree(mini_set_single_temperature_degree_type_t* data)
+{
+			mini_set_single_temperature_degree_type_t  performer;
+		
+			performer.request.devices=data->request.devices;
+			performer.request.degree=data->request.degree;
+			
+
+			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
+			data->response.ret=0;
+
+}	
+
+static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_type_t* data)
+{
+			mini_get_single_temperature_degree_type_t  performer;
+			
+			performer.request.devices=data->request.devices;
+
+			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
+			data->response.ret = 0;
+}	
+
+
+
+
+
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
@@ -905,7 +930,12 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case RFID_WRITE_BLANK:
 					protocol_rfid_write_blank(&slave_motorCommand.CommandPowerStep1.rfid_write_blank);
 				break;
-
+			case MINI_TEMPERATURE_SENSOR_GET_TYPE:
+					protocol_mini_board_get_degree(&slave_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree);
+				break;
+			case MINI_TEMPERATURE_SENSOR_SET_TYPE:
+					protocol_mini_board_set_degree(&slave_motorCommand.CommandPowerStep1.mini_set_single_temperature_degree);
+				break;
 			
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);

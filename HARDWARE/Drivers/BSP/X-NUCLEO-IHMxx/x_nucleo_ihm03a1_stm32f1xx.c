@@ -54,6 +54,7 @@ void PowerStep_Select_Motor_Baby(uint8_t chip)
 {
 	switch(chip)
 	{
+#if USE_AUTOMATIC_INJECTION_BOARD		
 		case 1:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT1;
 				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN1;
@@ -110,6 +111,8 @@ void PowerStep_Select_Motor_Baby(uint8_t chip)
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7;
 				//printf("motor -- 7\r\n");
 				break;
+#endif
+#if USE_CLEANING_DILUTION_BOARD		
 		case 8:
 				MotorBaby.cs.GPIOx=BSP_MOTOR_CONTROL_BOARD_CS_PORT8;
 				MotorBaby.cs.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_CS_PIN8;
@@ -142,6 +145,7 @@ void PowerStep_Select_Motor_Baby(uint8_t chip)
 				MotorBaby.rst.GPIO_Pin=BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN11;
 				//printf("motor -- 11\r\n");
 				break;
+#endif		
 
 	}
 	BSP_MOTOR_CONTROL_BOARD_CS_PORT=MotorBaby.cs.GPIOx;

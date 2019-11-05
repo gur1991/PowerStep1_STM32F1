@@ -34,6 +34,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "S1125.h"
 #include "liquid_sensor.h"
 #include "m6e_apply.h"
+#include "rs232_change_protocol.h"
 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -107,6 +108,9 @@ typedef enum Command_type{
 		RFID_GET_EPC_STRING,
 		RFID_WRITE_EPC,
 		RFID_WRITE_BLANK,
+		
+		MINI_TEMPERATURE_SENSOR_GET_TYPE,
+		MINI_TEMPERATURE_SENSOR_SET_TYPE,
 		
 }Command_type_t;
 
@@ -368,6 +372,8 @@ typedef struct{
 				rfid_get_epc_string_type_t rfid_get_epc_string;
 				rfid_write_epc_type_t rfid_write_epc;
 				rfid_write_blank_type_t rfid_write_blank;
+				mini_set_single_temperature_degree_type_t mini_set_single_temperature_degree;
+				mini_get_single_temperature_degree_type_t mini_get_single_temperature_degree;
 				
 /*
 *print move rk3188

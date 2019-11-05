@@ -78,6 +78,7 @@ u8 Light_Sensor_Get(u8 number)
 	u8 status=2;
 	switch(number)
 	{
+#if USE_AUTOMATIC_INJECTION_BOARD		
 		case 1:status=LIGHT_VALUE1;break;
 		case 2:status=LIGHT_VALUE2;break;
 		case 3:status=LIGHT_VALUE3;break;
@@ -96,6 +97,8 @@ u8 Light_Sensor_Get(u8 number)
 		case 14:status=LIGHT_VALUE14;break;
 		case 15:status=LIGHT_VALUE15;break;
 		case 16:status=LIGHT_VALUE16;break;
+#endif	
+#if USE_CLEANING_DILUTION_BOARD			
 		case 17:status=LIGHT_VALUE17;break;
 		case 18:status=LIGHT_VALUE18;break;
 		
@@ -105,6 +108,7 @@ u8 Light_Sensor_Get(u8 number)
 		case 22:status=LIGHT_VALUE22;break;
 		case 23:status=LIGHT_VALUE23;break;
 		case 24:status=LIGHT_VALUE24;break;
+#endif		
 		default:
 				break;
 	}	
@@ -115,7 +119,7 @@ u8 gStatusLight[3];
 void Light_Sensor_Get_All(void)
 {	
 	memset(gStatusLight,0,sizeof(gStatusLight));
-
+#if USE_AUTOMATIC_INJECTION_BOARD
 	gStatusLight[0]|=LIGHT_VALUE1<<0;
 	gStatusLight[0]|=LIGHT_VALUE2<<1;
 	gStatusLight[0]|=LIGHT_VALUE3<<2;
@@ -133,7 +137,9 @@ void Light_Sensor_Get_All(void)
 	gStatusLight[1]|=LIGHT_VALUE14<<5;
 	gStatusLight[1]|=LIGHT_VALUE15<<6;
 	gStatusLight[1]|=LIGHT_VALUE16<<7;
+#endif
 	
+#if USE_CLEANING_DILUTION_BOARD	
 	gStatusLight[2]|=LIGHT_VALUE17<<0;
 	gStatusLight[2]|=LIGHT_VALUE18<<1;
 	gStatusLight[2]|=LIGHT_VALUE19<<2;
@@ -142,7 +148,7 @@ void Light_Sensor_Get_All(void)
 	gStatusLight[2]|=LIGHT_VALUE22<<5;
 	gStatusLight[2]|=LIGHT_VALUE23<<6;
 	gStatusLight[2]|=LIGHT_VALUE24<<7;
-
+#endif	
 }
 
 
