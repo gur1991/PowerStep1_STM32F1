@@ -114,3 +114,70 @@ uint8_t Get_All_Weight_Sensor_Warnning_Result(void)
 
 /**************************weight interface for RS232******************************************/
 
+u8 Weight_Sensor_Init(void)
+{
+    GPIO_InitTypeDef GPIO_Initure;
+    __HAL_RCC_GPIOG_CLK_ENABLE();           
+    
+		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_SET);
+	
+    GPIO_Initure.Pin=GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13; 
+    GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
+    GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
+    HAL_GPIO_Init(GPIOG,&GPIO_Initure);     //初始化
+	
+
+		SPI3_Init();		   			        //初始化SPI
+		SPI3_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
+	return 0;
+}
+
+
+
+
+
+static __inline void Set_AD_CS(AD_type cs,AD_LEVEL_type level)
+{
+		switch(cs){
+			case AD1_CS:WEIGHT_AD1_CS=level;break;
+			case AD2_CS:WEIGHT_AD2_CS=level;break;
+			case AD3_CS:WEIGHT_AD3_CS=level;break;
+			case AD4_CS:WEIGHT_AD4_CS=level;break;
+		}
+}	
+
+
+void SPI3_Transfer(u8* txData,u8*rxData,int len,AD_type cs){
+		int i;
+		Set_AD_CS(cs,CS_LOW);
+		for(i=0;i<len;i++){
+				rxData[i]=SPI3_ReadWriteByte(txData[i]);
+		}
+		Set_AD_CS(cs,CS_HIGH);
+}
+
+int AD_Sensor_Get_Data(AD_type cs){
+		u8 txbuf[3]={0x00,0x00,0x00};
+		u8 rxbuf[3]={0,0,0};
+		u8 bit_low=0;
+		u8 bit_high=0;
+		u16 value=0;
+		
+		SPI3_Transfer(txbuf,rxbuf,sizeof(txbuf),cs);
+				
+		bit_high|=rxbuf[0]<<6;//取低2bit
+		bit_high|=rxbuf[1]>>2;//取高6bit
+		bit_low|=rxbuf[1]<<6;
+		bit_low|=rxbuf[2]>>2;
+		
+		value=bit_high;
+		value<<=8;
+		value|=bit_low;
+		
+		return value;
+}
+
+
+
+

@@ -6,7 +6,7 @@ static int TMP_TEMPERATURE_VALUE=0;
 
 Thermometer_t pt1000=
 {
-	AD_Sensor_Init,
+	Weight_Sensor_Init,
 	Get_Single_Temperature_Degree,
 	Set_Single_Temperature_Degree,
 	Main_Keep_Temperature_Degree
@@ -151,8 +151,8 @@ static  void __keep_temperature_degree(void)
 		int duty_cycle=0;
 		int last_duty_cycle=0;
 
-		value1=AD_Sensor_Get_Data(AD5_CS);
-		value2=AD_Sensor_Get_Data(AD6_CS);
+		//value1=AD_Sensor_Get_Data(AD5_CS);
+		//value2=AD_Sensor_Get_Data(AD6_CS);
 		value=value1+value2;
 	
 		//设定值与查表值对比
@@ -207,8 +207,8 @@ int Get_Single_Temperature_Degree(TMEPERATURE_type devices)
 {
 		int temperature=0;
 	
-		if(TMEPERATURE_ONE==devices)temperature=get_temperature_degree(AD1_CS);
-		if(TMEPERATURE_TWO==devices)temperature=get_temperature_degree(AD2_CS);
+		//if(TMEPERATURE_ONE==devices)temperature=get_temperature_degree(AD1_CS);
+		//if(TMEPERATURE_TWO==devices)temperature=get_temperature_degree(AD2_CS);
 	
 		return temperature;
 }	

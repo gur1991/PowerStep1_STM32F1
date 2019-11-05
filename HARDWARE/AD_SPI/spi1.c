@@ -1,17 +1,5 @@
 #include "spi1.h"
 #include "config.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32F103开发板
-//SPI驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2017/5/30
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
 
 SPI_HandleTypeDef SPI1_Handler;  //SPI1句柄
 
@@ -70,7 +58,7 @@ void SPI1_AD_CS_init(void)
     HAL_GPIO_Init(GPIOF,&GPIO_Initure);     //初始化
 }
 
-#if USE_SENSOR_BOARD
+#if 0
 //SPI1底层驱动，时钟使能，引脚配置
 //此函数会被HAL_SPI_Init()调用
 //hspi:SPI句柄
@@ -136,7 +124,7 @@ u8 SPI1_ReadWriteByte(u8 TxData)
  	return Rxdata;          		    //返回收到的数据		
 }
 
-
+/*
 
 static __inline void Set_AD_CS(AD_type cs,AD_LEVEL_type level)
 {
@@ -195,3 +183,4 @@ int AD_Sensor_Get_Data(AD_type cs){
 		
 		return value;
 }
+*/

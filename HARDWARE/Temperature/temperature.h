@@ -2,7 +2,7 @@
 #define __TEMPERATURE_H
 #include "timer.h"
 #include "spi1.h"
-
+#include "weight.h"
 typedef enum{
 	TMEPERATURE_ONE=1,
 	TMEPERATURE_TWO,

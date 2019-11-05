@@ -1,6 +1,35 @@
 #ifndef _WEIGHT_H
 #define _WEIGHT_H
 #include "spi1.h"
+#include "spi3.h"
+#include "config.h"
+#include "sys.h"
+
+typedef enum{
+	AD1_CS=10,
+	AD2_CS,
+	AD3_CS,
+	AD4_CS,
+}AD_type;
+
+typedef enum{
+	CS_LOW=0,
+	CS_HIGH=1,
+}AD_LEVEL_type;
+
+//只有两个接口---
+//获取数据的接口被被weight 的模块重新包装
+
+extern u8 Weight_Sensor_Init(void);
+
+extern int AD_Sensor_Get_Data(AD_type cs);
+
+#define	WEIGHT_AD1_CS 		PGout(10)  		//AD1_CS
+#define	WEIGHT_AD2_CS 		PGout(11)  		//AD2_CS
+#define	WEIGHT_AD3_CS 		PGout(12)  		//AD3_CS
+#define	WEIGHT_AD4_CS 		PGout(13)  		//AD4_CS
+
+
 
 typedef enum{
 	WEIGHT_ONE=15,

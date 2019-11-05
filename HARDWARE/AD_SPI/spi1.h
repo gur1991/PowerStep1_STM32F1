@@ -1,7 +1,7 @@
 #ifndef __SPI1_H
 #define __SPI1_H
 #include "sys.h"
-
+/*
 typedef enum{
 	AD1_CS=10,
 	AD2_CS,
@@ -19,10 +19,8 @@ typedef enum{
 //只有两个接口---
 //获取数据的接口被被weight 的模块重新包装
 
-/*初始化*/
 extern u8 AD_Sensor_Init(void);
 
-/*获取重力传感器原始数据*/
 extern int AD_Sensor_Get_Data(AD_type cs);
 
 #define	SPI1_AD1_CS 		PCout(4)  		//AD1_CS
@@ -33,5 +31,5 @@ extern int AD_Sensor_Get_Data(AD_type cs);
 #define	SPI1_AD5_CS 		PBout(2)  		//AD5_CS
 #define	SPI1_AD6_CS 		PFout(11)  		//AD6_CS
 
-
+*/
 #endif

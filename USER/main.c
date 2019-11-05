@@ -54,11 +54,11 @@ int main(void)
   ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
 	Liquid_Sensor_Init();
 	
-  Uart2_Config_Init();//串口2配置
+  Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Uart_Rts_Control_Init;//硬件流控初始化
 	Uart_cs_init();//串口片选信号的初始化
 	
-	AD_Sensor_Init();//四个重力传感器初始化
+	Weight_Sensor_Init();//四个重力传感器初始化
 	
 	Electromagnetic_init();//电磁阀
 	
