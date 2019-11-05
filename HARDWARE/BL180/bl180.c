@@ -240,7 +240,7 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 #endif
 	FLAG_RECEIVE_ANSOWER_BL180=0;
 	USART2_RX_CNT=0;
-	UART2_Init_Check(9600);
+	Load_BL180_Uart_Config();
 	//Wait_Ack();
 	
 	Start_BL180();
@@ -268,17 +268,17 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 	printf("end scan \r\n");
 #endif
 
-	UART2_Init(9600);	
+	Exit_BL180_Uart_Config();
 //	Wait_Ack();
 	return ret;
 }
 void Init_BL180(bool status)
 {
 	
-	UART2_Init_Check(9600);
+	Load_BL180_Uart_Config();
 	Config_BL80_Transfer();
 	End_BL180();
-	UART2_Init(9600);	
+	Exit_BL180_Uart_Config();
 /*	
 	Goto_Setting_Mode();
 	

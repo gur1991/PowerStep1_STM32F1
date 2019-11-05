@@ -10,6 +10,9 @@
 #include "uart_choose.h"
 #include "config.h"
 #include "spi1.h"
+#include "uart_rts_control.h"
+
+
 typedef struct S1125_protocl
 {
 	u8 start;

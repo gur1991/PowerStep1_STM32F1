@@ -1,5 +1,5 @@
 #include "m6e_apply.h"
-
+#include "uart_config.h"
 
 static TMR_Reader r, *rp=NULL;
 static TMR_ReadPlan plan;
@@ -31,6 +31,9 @@ void Destory_M6e_Config(void)
 
 }	
 
+
+
+
 uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 {
  
@@ -38,7 +41,7 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
    int powerdbm; 
   TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
 
-	
+	Load_RFID_Uart_Config();	
   
   rp = &r;
 	printf("start. \r\n");
@@ -82,7 +85,7 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 
 	
 
-	
+	Exit_RFID_Uart_Config();	
 	return ret;		
 
 }
@@ -93,6 +96,7 @@ int M6e_Read_Info(void)
 {
   TMR_Status ret;
 	int i=0;
+	Load_RFID_Uart_Config();	
 	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
   printf("****read plan:ret:0x%x\r\n",ret);
@@ -131,7 +135,7 @@ int M6e_Read_Info(void)
 		i++;	
 	}
 	index_get=i;
-
+  Exit_RFID_Uart_Config();	
 	return ret;
 }
 
@@ -198,7 +202,8 @@ uint8_t Get_EPC_String(int*length, char* epc)
 	uint8_t ret;
 	TMR_TagReadData trd;
 	memset(epcStr, 0, sizeof(epcStr));
-
+  Load_RFID_Uart_Config();	
+	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
 	ret = TMR_read(rp, 1000, NULL);
 	if(!TMR_hasMoreTags(rp))
@@ -209,6 +214,7 @@ uint8_t Get_EPC_String(int*length, char* epc)
 		    memcpy(epc, epcStr, *length);
 	}
 
+	Exit_RFID_Uart_Config();	
 	return ret;
 }
 
@@ -218,12 +224,13 @@ uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
 	  TMR_Status ret;
     TMR_TagData epc;
     TMR_TagOp tagop;
-
+		Load_RFID_Uart_Config();	
     epc.epcByteCount = epcByteCount;
     memcpy(epc.epc, epcData, epc.epcByteCount * sizeof(uint8_t));
     ret = TMR_TagOp_init_GEN2_WriteTag(&tagop, &epc);
     ret = TMR_executeTagOp(rp, &tagop, NULL, NULL);
-    return ret;
+    Exit_RFID_Uart_Config();	
+	  return ret;
 }
 
 uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
@@ -238,7 +245,9 @@ uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
     uint8_t responseData[16];
     TMR_uint16List writeArgs;
 	  TMR_Status ret;
-
+		
+		Load_RFID_Uart_Config();	
+	
     pfilter = NULL;
     {
       writeArgs.list = writeData;
@@ -265,7 +274,8 @@ uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
       //TMR_bytesToHex(response.list, response.len, dataStr);
     }
     tagopList.list = NULL;
-    return ret;
+    Exit_RFID_Uart_Config();	
+		return ret;
 }
 
 

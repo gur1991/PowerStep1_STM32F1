@@ -27,6 +27,8 @@
 #include "bl180.h"
 #include "m6e_apply.h"
 #include "key.h"
+#include "uart_config.h"
+#include "uart_rts_control.h"
 
 int main(void)
 {	
@@ -52,10 +54,10 @@ int main(void)
   ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
 	Liquid_Sensor_Init();
 	
-	//UART2_Init_Check(9600);
-	UART2_Init(9600);
-	UART3_Init(115200);
-  Uart_cs_init();
+  Uart2_Config_Init();//串口2配置
+	Uart_Rts_Control_Init;//硬件流控初始化
+	Uart_cs_init();//串口片选信号的初始化
+	
 	AD_Sensor_Init();//四个重力传感器初始化
 	
 	Electromagnetic_init();//电磁阀
@@ -76,85 +78,6 @@ int main(void)
 	
 	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
-
-#if 0
-//ThermometerHandle->set_degree(375,TMEPERATURE_CURRENT);
-printf("zzz1\r\n");
- //test_pump_s100_open();
- //Gradient_control_buffer(1700, 0,0,0,0);
- electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
- //electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
- //electromagnetic_control(ELECTROMAGNETIC_B, CLOSE_FT);
-  //electromagnetic_control(ELECTROMAGNETIC_C, OPEN_FT);
- electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
- //test_pump_s100_close();
- electromagnetic_control(ELECTROMAGNETIC_C, CLOSE_FT);
- 
- electromagnetic_control(DEGASSER_CONTORL, CLOSE_FT);
-printf("zzz2\r\n");
-
-#endif
-/*
-static u8 string[30];
-int length=0;
-printf("start scan\r\n");
-while(1){
-	
-	ScanHandle->scan(string, &length, 7, false);
-	if(length)
-	{
-		for(i=0;i<length;i++)
-	  {
-			printf("%c",string[i]);
-		}
-		printf("\r\n");
-	
-	}
-	//delay_ms(1000);
-}
-
-*/
-/*
-int len=0;
-static	char string[128];
-
-u8 key=0;
-
-while(1)
-{
-	key=KEY_Scan(0);
-	if(key)
-	{
-		switch(key)
-		{
-			case KEY0_PRES:
-					printf("test start .\r\n");
-					Init_M6e_Config(TMR_REGION_PRC,2500,3000);
-
-					
-					printf("test end .\r\n");
-				break;
-			case KEY1_PRES:
-					printf("zz2 \r\n");
-	
-					memset(string,0,128);
-					Get_EPC_String(&len, string);
-					printf("str:%s\r\n",string);
-				break;
-			case KEY2_PRES:
-					printf("zz3 \r\n");
-			
-				break;
-			case WKUP_PRES:
-					printf("zz4 \r\n");
-					Destory_M6e_Config();
-					
-				break;
-		}	
-	}
-
-}
-*/
 
 while(1){
 

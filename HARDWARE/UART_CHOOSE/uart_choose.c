@@ -5,29 +5,50 @@ static  UART_CS_TYPE UART2_STAUS_LAST=CS_FOUR,UART3_STAUS_LAST=CS_FOUR;
 
 void Uart_cs_init(void)
 {
+
+//PA5--1  PA6--0
+#if USE_GRADIENT_CONTROL_BOARD	
   GPIO_InitTypeDef GPIO_InitStruct;
 
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_RESET);
-
-  /*Configure GPIO pins : PD14 PD15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_14|GPIO_PIN_15;
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+  
+	GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+#endif
 
-  /*Configure GPIO pins : PG12 PG13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3;
+//PF5--1  PF6--0
+#if USE_CLEANING_DILUTION_BOARD	
+  GPIO_InitTypeDef GPIO_InitStruct;
+
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  
+  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+  
+	GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+#endif
+
+
+//PA1--1  PA4--0
+#if USE_AUTOMATIC_INJECTION_BOARD	
+  GPIO_InitTypeDef GPIO_InitStruct;
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_4, GPIO_PIN_RESET);
+  
+	GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+#endif
+
 }
 
 

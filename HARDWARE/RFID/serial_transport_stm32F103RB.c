@@ -7,6 +7,7 @@
 #include "delay.h"
 #include "uart_choose.h"
 #include "config.h"
+#include "uart2.h"
 
 #define RFID_DEBUG 1
 
@@ -19,7 +20,6 @@ void Config_M6e_Transfer(void)
 	M6E_Read = GetUartReceive(RFID_UART_PORT,RFID_UART_CS);
 	M6E_Write = GetUartSend(RFID_UART_PORT,RFID_UART_CS);
 }	
-
 
 typedef struct MessageBuf {
 	u8 gMessage[260];

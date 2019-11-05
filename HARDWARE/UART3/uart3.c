@@ -3,6 +3,9 @@
 #include "delay.h"
 #include "uart_command_control_protocol.h"
 
+//串口3只编译，没有使用；串口2会使用串口3定义的变量
+
+
 UART_HandleTypeDef USART3_Handler; 
 
 //接收缓存区 	
@@ -68,36 +71,6 @@ void USART3_IRQHandler(void)
 
 	}
 } 
-/*
-
-//串口1中断服务程序
-void USART3_IRQHandler(void)                	
-{ 
-	u32 timeout=0;
-#if SYSTEM_SUPPORT_OS	 	//使用OS
-	OSIntEnter();    
-#endif
-
-	HAL_UART_IRQHandler(&USART3_Handler);	//调用HAL库中断处理公用函数
-	timeout=0;
-   while (HAL_UART_GetState(&USART3_Handler) != HAL_UART_STATE_READY)//等待就绪
-	{
-	 timeout++;////超时处理
-     if(timeout>HAL_MAX_DELAY) break;		
-	}
-     
-	timeout=0;
-	while(HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3) != HAL_OK)//一次处理完成之后，重新开启中断并设置RxXferCount为1
-	{
-	 timeout++; //超时处理
-	 if(timeout>HAL_MAX_DELAY) break;	
-	}
-#if SYSTEM_SUPPORT_OS	 	//使用OS
-	OSIntExit();  											 
-#endif
-} 
-*/
-
 
 //初始化IO 串口2
 //bound:波特率

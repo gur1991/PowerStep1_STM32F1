@@ -4,7 +4,7 @@
 
 //new start for dev branch
 
-#define USE_GRADIENT_CONTROL_BOARD 0 //Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
+#define USE_GRADIENT_CONTROL_BOARD 1 //Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
 
 #define USE_CLEANING_DILUTION_BOARD 0 //Pecker----C55 C52 两个注射器 控制上下和控制远近的电机
 
@@ -15,9 +15,9 @@
 
 /*****************************************************/
 //UART4 ----- ARM 
-#define USE_SENSOR_BOARD 1
+//#define USE_SENSOR_BOARD 1
 
-#define USE_MOTOR_BOARD 0
+//#define USE_MOTOR_BOARD 0
 
 #define COUNT_TIME (10*1000-1) //4s
 
@@ -27,14 +27,11 @@
 #define  C55_UART_PORT UART2_RS232
 #define  C55_UART_CS CS_TWO
 
-
-
 #define  FM100_UART_PORT UART2_RS232
 #define  FM100_UART_CS CS_THREE
 
 #define  BL180_UART_PORT UART2_RS232
 #define  BL180_UART_CS CS_THREE
-
 
 
 #define  PUMP_UART_PORT UART3_RS232

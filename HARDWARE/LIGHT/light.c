@@ -1,66 +1,7 @@
 #include "light.h"
 #include "delay.h"
 #include <string.h>
-//按键初始化函数
 
-/*
-void Light_Sensor_Init(void)
-{
-    GPIO_InitTypeDef GPIO_Initure;
-    
-	  __HAL_RCC_GPIOG_CLK_ENABLE();           
-		__HAL_RCC_GPIOE_CLK_ENABLE();           
-	  __HAL_RCC_GPIOF_CLK_ENABLE();          
-	  __HAL_RCC_GPIOA_CLK_ENABLE();           
-	  __HAL_RCC_GPIOC_CLK_ENABLE();         
-	  __HAL_RCC_GPIOB_CLK_ENABLE();           
-
-
-     //light 1 2 3 4 5   15 16 17 18 19
-	  GPIO_Initure.Pin=GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;       
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOF,&GPIO_Initure);
-	
-	  //light 6 7 10 11
-	  GPIO_Initure.Pin=GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;            
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOC,&GPIO_Initure);
-	
-	  //light 8 9  
-	  GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;            
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOA,&GPIO_Initure);
-		
-		
-     //light 12 13 14  
-	  GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;            
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
-
-
-     //light 20 21  
-	  GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;            
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOG,&GPIO_Initure);
-		
-		     //light 22 23 24  
-	  GPIO_Initure.Pin=GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;            
-    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
-    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
-    HAL_GPIO_Init(GPIOE,&GPIO_Initure);
-}
-*/
 void Light_Sensor_Init(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	

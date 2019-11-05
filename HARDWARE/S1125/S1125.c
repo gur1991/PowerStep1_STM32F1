@@ -5,39 +5,16 @@ Uart_Send_Data S1125_Write=NULL ;
 static S1125_protocl_type pump;
 static u8 S1125_rx_buf [30];
 
-#define GROUP_X GPIOD
-#define NUMBER_X 1
-#define CLK_HAL_ENABLE __HAL_RCC_GPIOD_CLK_ENABLE
 
 void S1125_Init(void)
 {
-/*  
-  GPIO_InitTypeDef GPIO_Initure;
-
-		CLK_HAL_ENABLE();         
-	
-    GPIO_Initure.Pin=NUMBER_X; 			
-    GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  	//推挽输出
-    GPIO_Initure.Pull=GPIO_PULLUP;          	//上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;    	 	//高速
-    HAL_GPIO_Init(GROUP_X,&GPIO_Initure);
-	
-    HAL_GPIO_WritePin(GROUP_X,NUMBER_X,GPIO_PIN_SET);	
-*/
-	electromagnetic_control(9,1);
-	//printf("init pump\r\n");
+	printf("init S1125 pump\r\n");
 }
 
 
 
 void test_gpio(void)
 {
-	while(1){
-		electromagnetic_control(9,1);
-		delay_ms(100);
-		electromagnetic_control(9,0);
-		delay_ms(100);
-	}
 }	
 
 
@@ -56,9 +33,9 @@ int transfer_s1125(void)
 	int len=0;
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
-	electromagnetic_control(9,0);
+	uart_rts_control(PUMP_UART_CS, 0);
 	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
-	electromagnetic_control(9,1);	
+	uart_rts_control(PUMP_UART_CS, 1);
 	delay_ms(100);
 	S1125_Read(S1125_rx_buf,&len);
 	

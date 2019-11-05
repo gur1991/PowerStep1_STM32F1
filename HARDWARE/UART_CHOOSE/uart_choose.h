@@ -2,9 +2,28 @@
 #define __UART_CHOOSE_H
 #include "uart3.h"
 #include "uart2.h"
+#include "config.h"
 
-#define	UART2_H_CS 		PDout(14)  		
-#define	UART2_L_CS 		PDout(15)  	
+
+ //PA5--1  PA6--0
+#if USE_GRADIENT_CONTROL_BOARD	
+#define	UART2_H_CS 		PAout(5)  		
+#define	UART2_L_CS 		PAout(6) 
+#endif
+
+
+//PF5--1  PF6--0
+#if USE_CLEANING_DILUTION_BOARD	
+#define	UART2_H_CS 		PFout(5)  		
+#define	UART2_L_CS 		PFout(6) 
+#endif
+
+//PA1--1  PA4--0
+#if USE_AUTOMATIC_INJECTION_BOARD	
+#define	UART2_H_CS 		PAout(1)  		
+#define	UART2_L_CS 		PAout(4) 
+#endif
+	
 
 #define	UART3_H_CS 		PGout(3)  		
 #define	UART3_L_CS 		PGout(2)  		
@@ -12,7 +31,7 @@
 
 typedef enum{
 		UART2_RS232=2,
-		UART3_RS232
+		UART3_RS232  //串口3，硬件并未使用，所以程序不可使用
 }UART_TYPE; 
 
 typedef enum{
