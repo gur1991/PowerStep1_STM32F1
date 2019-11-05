@@ -30,6 +30,8 @@
 #include "key.h"
 #include "uart_config.h"
 #include "uart_rts_control.h"
+#include "real_time_polling.h"
+
 
 
 int Check_Board_Define_Config(void)
@@ -136,7 +138,15 @@ int main(void)
 			IWDG_Feed();
 		}		
 #endif
-	
+
+#if USE_AUTOMATIC_INJECTION_BOARD
+		i++;
+		if(i==50)
+		{		
+				i=0;
+				Real_Time_Polling_Current_Index();
+		}
+#endif		
 	}
 
 	return 0;
