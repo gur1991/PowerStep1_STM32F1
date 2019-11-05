@@ -47,6 +47,6 @@ void uart_rts_control(uint8_t devices, uint8_t status)
 		  case 3:	RTS3=status;break;
 			default:break;
 		}	
-	}
+}
 
 	

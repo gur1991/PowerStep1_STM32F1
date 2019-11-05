@@ -3,6 +3,7 @@
 #include "usart.h"
 #include "usmart.h"
 #include "light.h"
+#include "uart5.h"
 #include "uart3.h"
 #include "uart4.h"
 #include "uart2.h"
@@ -30,37 +31,48 @@
 #include "uart_config.h"
 #include "uart_rts_control.h"
 
-int main(void)
+
+int Check_Board_Define_Config(void)
+{
+	int value=0;
+	value=USE_GRADIENT_CONTROL_BOARD;
+	value+=USE_CLEANING_DILUTION_BOARD;
+  value+=USE_AUTOMATIC_INJECTION_BOARD;
+	value+=USE_KEEP_TEMPERATURE_BOARD;
+	if(!value)printf("you have not choose Define Board in [config.h]. \r\n");
+	else if(value==1)printf("you have choose Define Board OK in [config.h]. \r\n");
+	else printf("you have choose Define Board too many in [config.h]. \r\n");
+
+	return value-1;
+}	
+
+void Init_Board_Config(void)
 {	
-	HAL_Init();                    	 	
-  Stm32_Clock_Init(RCC_PLL_MUL9);   	
-	delay_init(72);               		
-	uart_init(115200);					
-	//usmart_dev.init(84); 		   	
-	UART4_Init(115200);
-	//IWDG_Init(4,625*6); //6s   	MAX
-  //IWDG_Start();
-	int i=0;
-	//KEY_Init();
-	
-	printf("start init. \r\n");
-	
-	#if USE_SENSOR_BOARD	
-	TIM3_PWM_Init(500-1,72-1);
-	Pid_init();
-	TIM_SetTIM3Compare4(500);	
-	ThermometerChooseHandle(DS18B20);
-	ThermometerHandle->init();
-  ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
-	Liquid_Sensor_Init();
-	
+	printf("start Init_Board_Config. \r\n");
+//串口2 电磁阀	CS片选信号 硬件流信号
+#if USE_GRADIENT_CONTROL_BOARD	
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Uart_Rts_Control_Init;//硬件流控初始化
-	Uart_cs_init();//串口片选信号的初始化
-	
-	Weight_Sensor_Init();//四个重力传感器初始化
-	
 	Electromagnetic_init();//电磁阀
+	printf("gradient board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+#endif
+
+
+#if USE_CLEANING_DILUTION_BOARD
+  Uart2_Config_Init();//串口2配置及各串口设备的不同配置
+	Light_Sensor_Init();
+	BSP_Motor_Control_Init();
+	Electromagnetic_init();//电磁阀
+	printf("cleaning dilution board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+#endif
+
+#if USE_AUTOMATIC_INJECTION_BOARD
+  Uart2_Config_Init();
+	Liquid_Sensor_Init();
+	Weight_Sensor_Init();
+	Light_Sensor_Init();
+	BSP_Motor_Control_Init();
+	UART5_Init(115200);
 	
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
@@ -69,48 +81,62 @@ int main(void)
 	printf("init pump. \r\n");
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
-	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
-#endif
-
-#if USE_MOTOR_BOARD
-	Light_Sensor_Init();
-	BSP_Motor_Control_Init();
 	
-	printf("motor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	printf("automatic inject board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
-while(1){
+//1:加热的定时器方波heating 2：PID算法  3：温度传感器 4:初始化并设置初始温度为0	
+//看门狗
+#if  USE_KEEP_TEMPERATURE_BOARD
+	  
+		TIM3_PWM_Init(500-1,72-1);
+		Pid_init();
+		TIM_SetTIM3Compare4(500);	
+		ThermometerChooseHandle(DS18B20);
+		ThermometerHandle->init();
+		ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
+	  
+	  IWDG_Init(4,625*4); //4s   	MAX
+    IWDG_Start();
+		printf("keep temperature board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+
+#endif
+
+}	
 
 
-#if 1
-
+int main(void)
+{	
+	HAL_Init();                    	 	
+  Stm32_Clock_Init(RCC_PLL_MUL9);   	
+	delay_init(72);               		
+	uart_init(115200);					
+	UART4_Init(115200);
+	int i=0;
+	//KEY_Init();
+	if(Check_Board_Define_Config())return 0;
+	Init_Board_Config();
+	
+	while(1)
+	{
 		if(ARM_RS232_ASK)
 		{
 						printf("start receive !\r\n");
-#if USE_SENSOR_BOARD						
-						KeepTemperatureDegree_Duty();
-#endif			
 						protocol_handle_uart_powerstep01_plain_slave_cmd();
 						ARM_RS232_ASK=0;
 		}	
-		
 		delay_ms(10);
 
-		
-		
-#if USE_SENSOR_BOARD
-				i++;
+#if USE_KEEP_TEMPERATURE_BOARD
+		i++;
 		if(i==100)
 		{
-			i=0;	
-			
+			i=0;		
 			keep_thermometer_degree();
+			IWDG_Feed();
 		}		
 #endif
 	
-#endif
-		
-		//IWDG_Feed();
 	}
 
 	return 0;

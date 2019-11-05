@@ -1,5 +1,5 @@
 #include "uart_config.h"
-
+#include "uart_choose.h"
 
 
 
@@ -17,7 +17,7 @@ void Uart2_Config_Init(void)
 #if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init(9600);
 #endif	
-
+	Uart_cs_init();
 }
 
 

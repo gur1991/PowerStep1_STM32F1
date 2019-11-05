@@ -55,7 +55,7 @@ TMR_Status restart_reading(struct TMR_Reader *reader);
  * structure containing the transport scheme name  and the
  * pointer to the factory init function.
  **/
-static void TMR_initSerialTransportTable();
+static void TMR_initSerialTransportTable(void);
 
 void* do_background_receiveAutonomousReading(void * arg);
 

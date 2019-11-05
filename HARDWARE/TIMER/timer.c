@@ -55,7 +55,7 @@ void TIM3_PWM_Init(u16 arr,u16 psc)
 	 	HAL_TIM_PWM_ConfigChannel(&TIM3_Handler,&TIM3_CH4Handler,TIM_CHANNEL_4);//配置TIM3通道4
     HAL_TIM_PWM_Start(&TIM3_Handler,TIM_CHANNEL_4);//开启PWM通道4
 }
-#if USE_SENSOR_BOARD
+#if USE_KEEP_TEMPERATURE_BOARD
 //定时器底册驱动，开启时钟，设置中断优先级
 //此函数会被HAL_TIM_Base_Init()函数调用
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
@@ -136,3 +136,4 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     }
 }
 */
+

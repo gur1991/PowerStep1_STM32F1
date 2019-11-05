@@ -69,7 +69,7 @@ extern void BSP_MotorControl_FlagInterruptHandler(void);
 void HAL_MspInit(void)
 {
 }
-#if USE_AUTOMATIC_INJECTION_BOARD
+#if (USE_AUTOMATIC_INJECTION_BOARD|USE_CLEANING_DILUTION_BOARD)
 /**
   * @brief SPI MSP Initialization 
   *        This function configures the hardware resources used in this example: 
@@ -119,11 +119,11 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
     __HAL_RCC_SPI3_CLK_ENABLE();        //使能SPI3时钟
     
     //PB13,14,15
-    GPIO_Initure.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
-    GPIO_Initure.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
-    GPIO_Initure.Pull=GPIO_PULLUP;                  //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;             //快速            
-    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+    GPIO_InitStruct.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
+    GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
+    GPIO_InitStruct.Pull=GPIO_PULLUP;                  //上拉
+    GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;             //快速            
+    HAL_GPIO_Init(GPIOB,&GPIO_InitStruct);
 	
 	}
 	

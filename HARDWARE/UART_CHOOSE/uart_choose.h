@@ -23,7 +23,15 @@
 #define	UART2_H_CS 		PAout(1)  		
 #define	UART2_L_CS 		PAout(4) 
 #endif
-	
+
+//not use
+#ifndef UART2_H_CS	
+#define	UART2_H_CS 		PGout(13)
+#endif
+
+#ifndef UART2_L_CS
+#define	UART2_L_CS 		PGout(14) 
+#endif
 
 #define	UART3_H_CS 		PGout(3)  		
 #define	UART3_L_CS 		PGout(2)  		
