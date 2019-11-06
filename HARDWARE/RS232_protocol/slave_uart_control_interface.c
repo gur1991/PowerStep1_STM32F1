@@ -1,5 +1,5 @@
 #include "slave_uart_control_interface.h"
-
+#include "real_time_polling.h"
 //discard 
 static void protocol_powerstep01_move(move_type_t* data){
 		
@@ -765,7 +765,28 @@ static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_t
 }	
 
 
+static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
+{
+			Real_Time_Polling_Press_t  performer;
+			
+			data->response.polling_press.pumpPress = PollingPressData.pumpPress;
+			data->response.ret = 0;
+}	
 
+static void  protocol_real_time_polling(Real_Time_Polling_t* data)
+{
+			Real_Time_Polling_t  performer;
+
+			data->response.polling.degree=PollingData.degree;
+			data->response.polling.liquid=PollingData.liquid;
+			
+			data->response.polling.weightOne=PollingData.weightOne;
+		  data->response.polling.weightTwo=PollingData.weightTwo;
+			data->response.polling.weightThree=PollingData.weightThree;
+			data->response.polling.weightFour=PollingData.weightFour;
+	
+			data->response.ret = 0;
+}	
 
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
@@ -936,6 +957,12 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case MINI_TEMPERATURE_SENSOR_SET_TYPE:
 					protocol_mini_board_set_degree(&slave_motorCommand.CommandPowerStep1.mini_set_single_temperature_degree);
 				break;
+			case POLLING_DATA:
+					protocol_real_time_polling(&slave_motorCommand.CommandPowerStep1.Real_Time_Polling);
+				break;
+			case POLLING_PRESS:
+				 protocol_real_time_polling_press(&slave_motorCommand.CommandPowerStep1.Real_Time_Polling_Press);
+			  break;
 			
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);

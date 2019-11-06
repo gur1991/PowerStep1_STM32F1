@@ -35,6 +35,7 @@ STM32---SLVAE设备的协议和这个不同
 #include "liquid_sensor.h"
 #include "m6e_apply.h"
 #include "rs232_change_protocol.h"
+#include "real_time_polling.h"
 
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
@@ -111,6 +112,9 @@ typedef enum Command_type{
 		
 		MINI_TEMPERATURE_SENSOR_GET_TYPE,
 		MINI_TEMPERATURE_SENSOR_SET_TYPE,
+		
+		POLLING_DATA,
+		POLLING_PRESS,
 		
 }Command_type_t;
 
@@ -372,8 +376,12 @@ typedef struct{
 				rfid_get_epc_string_type_t rfid_get_epc_string;
 				rfid_write_epc_type_t rfid_write_epc;
 				rfid_write_blank_type_t rfid_write_blank;
+				
 				mini_set_single_temperature_degree_type_t mini_set_single_temperature_degree;
 				mini_get_single_temperature_degree_type_t mini_get_single_temperature_degree;
+				
+				Real_Time_Polling_t Real_Time_Polling;
+				Real_Time_Polling_Press_t Real_Time_Polling_Press;
 				
 /*
 *print move rk3188

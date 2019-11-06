@@ -107,6 +107,7 @@ void Init_Board_Config(void)
 }	
 
 
+
 int main(void)
 {	
 	HAL_Init();                    	 	
@@ -118,6 +119,8 @@ int main(void)
 	//KEY_Init();
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+		
+	
 	
 	while(1)
 	{
@@ -129,6 +132,8 @@ int main(void)
 		}	
 		delay_ms(10);
 
+		
+		
 #if USE_KEEP_TEMPERATURE_BOARD
 		i++;
 		if(i==100)
@@ -137,9 +142,7 @@ int main(void)
 			keep_thermometer_degree();
 			IWDG_Feed();
 		}		
-#endif
-
-#if USE_AUTOMATIC_INJECTION_BOARD
+#elif (USE_AUTOMATIC_INJECTION_BOARD|USE_GRADIENT_CONTROL_BOARD)
 		i++;
 		if(i==50)
 		{		

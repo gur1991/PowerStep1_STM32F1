@@ -2,11 +2,10 @@
 #include "delay.h"
 
 static int SET_VALUE=0;
-static int FLAG_SET_VALUE=0;
+//static int FLAG_SET_VALUE=0;
 static int FLAG_START_PID=0;
-
+static int current_value=0;
 pid_type_t pid;
-
 
 
 Thermometer_t *ThermometerHandle = 0;
@@ -51,12 +50,15 @@ void KeepTemperatureDegree_Duty(void)
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
+	return current_value;
+	/*
 			if(TMEPERATURE_CURRENT==devices){
 				//printf("%d  %d \r\n",DS18B20_Get_Temp(TMEPERATURE_ONE),DS18B20_Get_Temp(TMEPERATURE_TWO));	
 				return (int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
 			}else	
 				return DS18B20_Get_Temp(devices);
-}
+*/
+	}
 
 //五分钟之内等待，否则退出
 uint8_t Rearch_Degree_Wait(void)
@@ -148,7 +150,7 @@ int PID_Control(int temperature)
 
 void KeepTemperatureDegree(void)
 {	
-		int current_value=0;
+	
 		int duty_cycle=0;
 		int temp1=0,temp2=0;
 		static int i=0;
