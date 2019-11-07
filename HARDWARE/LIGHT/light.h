@@ -2,6 +2,7 @@
 #define _LIGHT_H
 #include "sys.h"
 #include "config.h"
+#include "real_time_polling.h"
 
 //下面的方式是通过直接操作HAL库函数方式读取IO
 #define LIGHT_VALUE1        HAL_GPIO_ReadPin(GPIOF,GPIO_PIN_15)  //PF4
@@ -52,6 +53,7 @@ struct{
 struct{
 		uint8_t ret;
 		uint8_t value;
+		real_time_polling_type_t polling;
 }response;
 }get_light_sensor_level_t;
 

@@ -141,34 +141,34 @@ typedef union{
 typedef enum Command_Package_type{ 
 			SLEF_TEST=0,
 	
-			FIRST_START_CHECK_MOTOR,//开机自检
-			REST_ALL_MOTOR,//电机复位
+			FIRST_START_CHECK_MOTOR,//sensor motor
+			REST_ALL_MOTOR,//sensor motor
 			
 			CLEAR_BLANK,
-			CLEARL_WAIT,
-			READY_NEXT,
-			READY_LEFT,
-			LEFT_MOVE_TO_WAIT,
+			CLEARL_WAIT,//sensor
+			READY_NEXT,//sensor
+			READY_LEFT,//sensor
+			LEFT_MOVE_TO_WAIT,//sensor
 	
-			REST_C55_C52,
-			REST_HIGH_WHEEL,
-			REST_TRANSPORTER_BELT,
-			REST_DRAIN_AND_WASH_MOTOR,
+			REST_C55_C52,//motor
+			REST_HIGH_WHEEL,//sensor
+			REST_TRANSPORTER_BELT,//sensor
+			REST_DRAIN_AND_WASH_MOTOR,//motor
 	
-			REACH_DEGREE_WAIT,
-		  MIX_SCAN_SLOW,
-			MIX_BLOOD_HIGH,
+			REACH_DEGREE_WAIT,//sensor
+		  MIX_SCAN_SLOW,//sensor
+			MIX_BLOOD_HIGH,//sensor
 	
-			BELT_MOVE_SAMETIME,
+			BELT_MOVE_SAMETIME,//sensor
 			
-			MIX_WORK_GOTO,
-			NORMAL_PITCH_MOVE_NEXT,
-			NORMAL_BLANK_REST,
-			REST_SAMPLE_MOTOR,
-			NORMAL_FIRST_POSITION,
-			MIX_AND_REACH_POSITION,
-			M10_SLOW,
-			M10_NORMAL,
+			MIX_WORK_GOTO,//sensor
+			NORMAL_PITCH_MOVE_NEXT,//sensor
+			NORMAL_BLANK_REST,//sensor
+			REST_SAMPLE_MOTOR,//motor
+			NORMAL_FIRST_POSITION,//sensor
+			MIX_AND_REACH_POSITION,//sensor
+			M10_SLOW,//motor
+			M10_NORMAL,//motor
 
 }Command_Package_t;
 
@@ -179,6 +179,7 @@ typedef union{
 	struct{
 		uint8_t value;
 		uint8_t ret;
+		real_time_polling_type_t polling;
 	}response;
 }motor_command_package_type_t;
 
@@ -192,6 +193,7 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		real_time_polling_type_t polling;
 	}response;
 }move_type_t;
 
@@ -202,6 +204,7 @@ typedef union{
 		uint8_t power;//废弃
 	}request;
 	struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }power_type_t;
@@ -211,6 +214,7 @@ typedef union{
 		uint8_t devices;//0,1,2
 	}request;
 	struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }rest_pos_type_t;
@@ -220,6 +224,7 @@ typedef union{
 		uint8_t Nor;//保留位
 	}request;
 	struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }	send_command_and_wait_no_busy_type_t;
@@ -229,6 +234,7 @@ struct{
 		uint16_t time_ms;
 }request;
 struct{
+	  real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }delay_time_type_t;
@@ -242,6 +248,7 @@ struct{
 		uint32_t steps;//+forward -backward
 }request;
 struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_move_type_t;
@@ -252,6 +259,7 @@ struct{
 		uint8_t devices;//0,1,2
 }request;
 struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_wait_type_t;
@@ -261,6 +269,7 @@ typedef union{
 		uint8_t devices;//0,1,2
 }request;
 struct{
+		real_time_polling_type_t polling;
 		int32_t pos;
 		uint8_t ret;	
 }response;
@@ -272,6 +281,7 @@ struct{
 		int32_t pos;
 }request;
 struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_set_mark_type_t;
@@ -284,6 +294,7 @@ struct{
 		uint8_t registe;
 }request;
 struct{
+		real_time_polling_type_t polling;
 		uint32_t result_para;
 		uint8_t ret;
 }response;
@@ -296,6 +307,7 @@ struct{
 		uint32_t para;
 }request;
 struct{
+		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }set_para_type_t;
@@ -306,6 +318,7 @@ struct{
 		motorStepMode_t StepMode;
 }request;
 struct{
+		real_time_polling_type_t polling;	
 		uint8_t ret;
 }response;
 }select_step_mode_t;

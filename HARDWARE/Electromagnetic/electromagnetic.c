@@ -68,25 +68,16 @@ void electromagnetic_control(uint8_t devices, uint8_t status)
 			case 7:	  VALUE_A=status;break;
 			case 8:	  VALUE_B=status;break;
 			case 9:	  VALUE_C=status;break;
-#endif	
-			
-#if	USE_CLEANING_DILUTION_BOARD				
-			case 10:	VALUE_D=status;break;
-			case 11:	VALUE_E=status;break;
-			case 12:	VALUE_F=status;break;
-			case 13:	VALUE_G=status;break;
-#endif
-			
-#if USE_GRADIENT_CONTROL_BOARD				
-			//ÓA¡Ù
-			case 14:	VALUE_0=status;break;
-#endif
-
-#if USE_CLEANING_DILUTION_BOARD	
+			case 10:	VALUE_0=status;break;
+#elif	USE_CLEANING_DILUTION_BOARD				
+			case 11:	VALUE_D=status;break;
+			case 12:	VALUE_E=status;break;
+			case 13:	VALUE_F=status;break;
+			case 14:	VALUE_G=status;break;
 			case 15:	VALUE_1=status;break;
 			case 16:	VALUE_2=status;break;
 #endif
-
+			
 			default:break;
 		}
 }
