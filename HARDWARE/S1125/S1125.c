@@ -47,11 +47,9 @@ uint8_t Run_S1125_Pump(void)
 	int len=0;
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
-	
 	memcpy(pump.address,"00CC", 4);
 	memcpy(pump.value,"0011", 4);
 	len=transfer_s1125();
-	
 	memcpy(pump.address,"012C", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
@@ -59,7 +57,6 @@ uint8_t Run_S1125_Pump(void)
 	
 	return 0;
 }	
-
 
 uint8_t Stop_S1125_Pump(void)
 {
@@ -72,6 +69,20 @@ uint8_t Stop_S1125_Pump(void)
 	len=transfer_s1125();
 	return 0;
 }
+//test connect
+uint8_t Connect_S1125_Pump(void)
+{
+	int len=0;
+	config_s1125_pump();
+	memcpy(pump.device,"0F06", 4);
+	memcpy(pump.address,"006F", 4);
+	memcpy(pump.value,"0001", 4);
+	len=transfer_s1125();
+	return 0;
+}
+
+
+
 
 int Read_Press_S1125_Pump(void)
 {
