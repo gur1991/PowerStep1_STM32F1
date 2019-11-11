@@ -6,6 +6,7 @@
 #include "temperature.h"
 
 void  Real_Time_Polling_Current_Index(void);
+void  Real_Time_Polling_Init(void);
 
 typedef struct{ 
 		int degree;
@@ -21,8 +22,8 @@ typedef struct{
 }real_time_polling_press_type_t;
 
 
-extern real_time_polling_type_t PollingData;
-extern real_time_polling_press_type_t PollingPressData;
+extern real_time_polling_type_t POLLING_data;
+extern real_time_polling_press_type_t POLLING_press;
 
 
 typedef union{ 

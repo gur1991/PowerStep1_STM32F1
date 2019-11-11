@@ -30,6 +30,8 @@ void Electromagnetic_init(void);
 
 void electromagnetic_control(uint8_t devices, uint8_t status);
 
+
+
 typedef enum FT_status_type
 {
 	OPEN_FT=1,
@@ -64,4 +66,22 @@ typedef union{
 	}response;
 }electromagnetic_type_t;
 
+typedef union{
+	struct{
+		uint8_t device_1;
+		uint8_t status_1;
+
+		uint8_t device_2;
+		uint8_t status_2;
+
+		uint8_t device_3;
+		uint8_t status_3;
+
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}electromagnetic_package_type_t;
+
+void electromagnetic_control_package(electromagnetic_package_type_t data);
 #endif

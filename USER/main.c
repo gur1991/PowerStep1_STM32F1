@@ -115,8 +115,9 @@ int main(void)
 	delay_init(72);               		
 	uart_init(115200);					
 	UART4_Init(115200);
+	Real_Time_Polling_Init();
 	int i=0;
-	//KEY_Init();
+	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 		

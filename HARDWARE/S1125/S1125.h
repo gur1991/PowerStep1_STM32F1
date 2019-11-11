@@ -11,7 +11,7 @@
 #include "config.h"
 #include "spi1.h"
 #include "uart_rts_control.h"
-
+#include "real_time_polling.h"
 
 typedef struct S1125_protocl
 {
@@ -47,7 +47,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		int value;	
+		int value;
 }response;
 }pump_type_t;
 

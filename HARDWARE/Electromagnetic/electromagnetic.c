@@ -81,3 +81,12 @@ void electromagnetic_control(uint8_t devices, uint8_t status)
 			default:break;
 		}
 }
+
+void electromagnetic_control_package(electromagnetic_package_type_t data)
+{
+		electromagnetic_control(data.request.device_1, data.request.status_1);
+		electromagnetic_control(data.request.device_2, data.request.status_2);
+	  electromagnetic_control(data.request.device_3, data.request.status_3);	
+}	
+
+

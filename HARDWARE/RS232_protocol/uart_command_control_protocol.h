@@ -116,6 +116,8 @@ typedef enum Command_type{
 		POLLING_DATA,
 		POLLING_PRESS,
 		
+		ELECTROMAGNETIC_PACKAGE_TYPE,
+
 }Command_type_t;
 
 typedef union{ 
@@ -139,36 +141,41 @@ typedef union{
 }connect_test_type_t;
 
 typedef enum Command_Package_type{ 
-			SLEF_TEST=0,
+			SLEF_TEST=0,//not use
 	
-			FIRST_START_CHECK_MOTOR,//sensor motor
-			REST_ALL_MOTOR,//sensor motor
-			
-			CLEAR_BLANK,
+			FIRST_START_CHECK_SENSOR_BOARD,//sensor
+			REST_SENSOR_BOARD_MOTOR,//sensor
+			FIRST_START_CHECK_MOTOR_BOARD,//motor
+			REST_MOTOR_BOARD_MOTOR,//motor
+
+			REST_C55_C52,//motor
+			REST_DRAIN_AND_WASH_MOTOR,//motor
+			REST_SAMPLE_MOTOR,//motor
+
+			CLEAR_BLANK,//sensor
 			CLEARL_WAIT,//sensor
 			READY_NEXT,//sensor
 			READY_LEFT,//sensor
 			LEFT_MOVE_TO_WAIT,//sensor
 	
-			REST_C55_C52,//motor
+
 			REST_HIGH_WHEEL,//sensor
 			REST_TRANSPORTER_BELT,//sensor
-			REST_DRAIN_AND_WASH_MOTOR,//motor
-	
+
 			REACH_DEGREE_WAIT,//sensor
-		  MIX_SCAN_SLOW,//sensor
+			MIX_SCAN_SLOW,//sensor
 			MIX_BLOOD_HIGH,//sensor
-	
+
 			BELT_MOVE_SAMETIME,//sensor
-			
 			MIX_WORK_GOTO,//sensor
 			NORMAL_PITCH_MOVE_NEXT,//sensor
 			NORMAL_BLANK_REST,//sensor
-			REST_SAMPLE_MOTOR,//motor
-			NORMAL_FIRST_POSITION,//sensor
+			NORMAL_FIRST_POSITON,//sensor
 			MIX_AND_REACH_POSITION,//sensor
-			M10_SLOW,//motor
-			M10_NORMAL,//motor
+			M10_SLOW,//sensor
+			M10_NORMAL,//sensor
+
+
 
 }Command_Package_t;
 
@@ -396,6 +403,8 @@ typedef struct{
 				Real_Time_Polling_t Real_Time_Polling;
 				Real_Time_Polling_Press_t Real_Time_Polling_Press;
 				
+				electromagnetic_package_type_t electromagnetic_package;
+
 /*
 *print move rk3188
 */
