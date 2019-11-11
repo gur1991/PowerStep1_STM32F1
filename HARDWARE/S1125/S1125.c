@@ -69,7 +69,7 @@ uint8_t Stop_S1125_Pump(void)
 	len=transfer_s1125();
 	return 0;
 }
-//test connect
+//test connect :0F06006F00  --6F00
 uint8_t Connect_S1125_Pump(void)
 {
 	int len=0;
@@ -78,7 +78,9 @@ uint8_t Connect_S1125_Pump(void)
 	memcpy(pump.address,"006F", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
-	return 0;
+	if(S1125_rx_buf[7]=='6')
+		return 0;
+	else return 1;
 }
 
 

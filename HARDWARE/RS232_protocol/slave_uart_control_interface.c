@@ -1113,6 +1113,10 @@ uint8_t Set_Pumps100_MinPress(int press)
 }
 
 
+uint8_t Set_Pumps100_connect(void)
+{
+return 0;
+}	
 uint8_t Set_Pumps100_Press(int MinPress,int MaxPress)
 {
 	uint8_t ret=0;
@@ -1368,6 +1372,7 @@ Pump_t s100=
 	Read_S100_Pump_press,
 	Set_Pumps100_MaxPress,
 	Set_Pumps100_MinPress,
+	Set_Pumps100_connect,
 };
 
 Pump_t s1125=
@@ -1380,6 +1385,8 @@ Pump_t s1125=
 	Read_Press_S1125_Pump,
 	Write_MaxPress_s1125_pump,
 	Write_MinPress_s1125_pump,
+	Connect_S1125_Pump,
+	
 };
 
 Pump_t* S100_GetHandle(void)
@@ -1437,6 +1444,9 @@ int pump_process_cmd(pump_type_t pump)
 		
 		case WRITE_PRESS:
 			PumpHandle->setPress(pump.request.para,pump.request.para_nor);
+			break;
+		case CONNECT_TEST:
+			value=PumpHandle->connect();
 			break;
 		
 		default:

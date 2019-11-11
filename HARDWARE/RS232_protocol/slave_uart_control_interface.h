@@ -55,6 +55,7 @@ typedef struct
 	int (*readPress)(void);
 	uint8_t (*setMaxPress)(int max);
 	uint8_t (*setMinPress)(int min);
+	uint8_t (*connect)(void);
 }Pump_t;
 
 typedef enum{
@@ -76,6 +77,7 @@ enum {
 	WRITE_MIN_PRESS,
 	WRITE_FLOW_SPEED,
 	WRITE_PRESS,
+	CONNECT_TEST,
 };
 
 

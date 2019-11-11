@@ -38,7 +38,8 @@ uint8_t Write_MinPress_s1125_pump(int MinPress);
 uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow);
 
 uint8_t Write_Press_s1125_pump(int MinPress, int MaxPress);
-	
+
+uint8_t Connect_S1125_Pump(void);
 typedef union{ 
 struct{
 		uint8_t type;
