@@ -688,7 +688,9 @@ static void  protocol_rfid_init_config(rfid_init_config_type_t* data)
 	performer.request.ReadPowerdbm=data->request.ReadPowerdbm;
 	performer.request.WritePowerdbm=data->request.WritePowerdbm;
 	
-	data->response.ret=Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+	data->response.ret=Init_M6e_Config( performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+
+	//data->response.ret=0;
 }
 
 static void  protocol_rfid_destory_config(rfid_destory_config_type_t* data)
@@ -721,17 +723,25 @@ static void  protocol_rfid_get_epc_string(rfid_get_epc_string_type_t* data)
 {
 	  rfid_get_epc_string_type_t performer;
 	
-		data->response.ret=Get_EPC_String(&performer.response.length, performer.response.epc);
-	  memcpy(data->response.epc, performer.response.epc, performer.response.length);
-		data->response.length=performer.response.length;
+		static	char stringEPC[128];
+		 int lengthEPC=0;
+		Get_EPC_String(&lengthEPC, stringEPC);
+		data->response.ret=0;
+   	printf("str:%s\r\n",stringEPC);
+	  memcpy(data->response.epc, stringEPC, lengthEPC);
+		data->response.length=lengthEPC;
 }
 
 static void  protocol_rfid_write_epc(rfid_write_epc_type_t* data)
 {
 	  rfid_write_epc_type_t performer;
-	
-		performer.response.ret=M6e_Magic_Write_Rfid_EPC(data->request.epcData,data->request.epcByteCount);
-		data->response.ret=performer.response.ret;
+		printf("1111\r\n");
+		performer.request.epcByteCount=data->request.epcByteCount;
+		memcpy(performer.request.epcData, data->request.epcData, performer.request.epcByteCount);
+		printf("1112\r\n");
+	  data->response.ret=0;
+		M6e_Magic_Write_Rfid_EPC(performer.request.epcData, performer.request.epcByteCount);
+		printf("11113\r\n");
 }
 
 static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)

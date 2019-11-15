@@ -8,7 +8,7 @@
 #include "uart_choose.h"
 #include "config.h"
 
-#define RFID_DEBUG 1
+#define RFID_DEBUG 0
 
 Uart_Receive_Data M6E_Read=NULL ;
 Uart_Send_Data M6E_Write=NULL ;
@@ -22,7 +22,7 @@ void Config_M6e_Transfer(void)
 
 
 typedef struct MessageBuf {
-	u8 gMessage[260];
+	u8 gMessage[1024];
 	int length;
 	int currentPos;
 }MessageBuf_t;
@@ -48,7 +48,7 @@ s_sendBytes(TMR_SR_SerialTransport *this, uint32_t length,
 	M6E_Write(message,length);
 
 	
-	#if (RFID_DEBUG) 	
+#if (RFID_DEBUG) 	
 	printf("send length . \r\n");
 #endif	
 	/*
@@ -88,7 +88,7 @@ uint32_t* messageLength, uint8_t* message, const uint32_t timeoutMs)
 					if(length<=Msg.length)break;
 			
 					while(1){
-						//if(UART3_RX_CNT>=length)break;
+						if(UART3_RX_CNT>=length)break;
 						if(FLAG_RECEIVE_RFID)
 						{
 							FLAG_RECEIVE_RFID=0;

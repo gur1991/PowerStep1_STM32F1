@@ -63,10 +63,46 @@ int main(void)
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
-	
+/*
 	printf("init pump. \r\n");
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
+*/
+
+#if 0
+	printf("init RFID. \r\n");
+	Init_M6e_Config(TMR_REGION_PRC,2500,3000);
+	
+	uint8_t tx_buf[]={
+	 0xB2,0xA1,0xB1,0x20
+	,0x20,0x11,0x14,0x20
+	,0x25,0x08,0x15,0x46
+	,0xF7,0x07,0x49,0xF9
+		
+	,0x24,0x21,0xF0,0xAA
+	,0x23,0x21,0xF0,0xAB	
+	,0x22,0x21,0xF0,0xAC
+	,0x21,0x21,0xF0,0xAD
+
+	,0x14,0x21,0xF0,0xBA
+	,0x13,0x21,0xF0,0xBB	
+	,0x12,0x21,0xF0,0xBC
+	,0x11,0x21,0xF0,0xBD		
+	};
+	M6e_Magic_Write_Rfid_EPC(tx_buf,24);
+
+	int len=0;
+	static	char string[128];
+	//while(1)
+	{
+		Get_EPC_String(&len, string);
+		printf("str:%s\r\n",string);
+		delay_ms(100);
+	}
+	
+	Destory_M6e_Config();
+#endif
+
 	printf("sensor board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -94,67 +130,10 @@ printf("zzz1\r\n");
 printf("zzz2\r\n");
 
 #endif
-/*
-static u8 string[30];
-int length=0;
-printf("start scan\r\n");
-while(1){
-	
-	ScanHandle->scan(string, &length, 7, false);
-	if(length)
-	{
-		for(i=0;i<length;i++)
-	  {
-			printf("%c",string[i]);
-		}
-		printf("\r\n");
-	
-	}
-	//delay_ms(1000);
-}
 
-*/
-/*
-int len=0;
-static	char string[128];
 
-u8 key=0;
 
-while(1)
-{
-	key=KEY_Scan(0);
-	if(key)
-	{
-		switch(key)
-		{
-			case KEY0_PRES:
-					printf("test start .\r\n");
-					Init_M6e_Config(TMR_REGION_PRC,2500,3000);
 
-					
-					printf("test end .\r\n");
-				break;
-			case KEY1_PRES:
-					printf("zz2 \r\n");
-	
-					memset(string,0,128);
-					Get_EPC_String(&len, string);
-					printf("str:%s\r\n",string);
-				break;
-			case KEY2_PRES:
-					printf("zz3 \r\n");
-			
-				break;
-			case WKUP_PRES:
-					printf("zz4 \r\n");
-					Destory_M6e_Config();
-					
-				break;
-		}	
-	}
-
-}
-*/
 
 while(1){
 

@@ -28,7 +28,7 @@
 #define  PUMP_UART_CS CS_ONE
 
 #define  RFID_UART_PORT UART3_RS232
-#define  RFID_UART_CS CS_ZERO
+#define  RFID_UART_CS CS_ONE
 
 
 /*

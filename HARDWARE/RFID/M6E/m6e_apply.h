@@ -65,7 +65,7 @@ typedef struct Chemical_reagent_EPC{
 	Chemical_Produce_Info_type Info;
 	uint8_t validity_period[8];
 	uint8_t random_sequence[6];
-	uint8_t check_sequence[4];
+	uint8_t check_sequence[2];
 	uint8_t used;
 }Chemical_reagent_EPC_type;
 
@@ -177,13 +177,13 @@ struct{
 struct{
 		uint8_t ret;
 		int  length; 
-		char epc[60];
+		char epc[64];
 }response;
 }rfid_get_epc_string_type_t;
 
 typedef union{
 struct{
-	  uint8_t* epcData;
+	  uint8_t epcData[64];
 	  uint8_t epcByteCount;
 }request;
 struct{
@@ -194,7 +194,7 @@ struct{
 typedef union{
 struct{
 		uint8_t wordCount;
-		uint16_t* writeData;
+		uint16_t writeData[32];
 }request;
 struct{
 		uint8_t ret;

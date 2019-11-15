@@ -68,35 +68,7 @@ void USART3_IRQHandler(void)
 
 	}
 } 
-/*
 
-//串口1中断服务程序
-void USART3_IRQHandler(void)                	
-{ 
-	u32 timeout=0;
-#if SYSTEM_SUPPORT_OS	 	//使用OS
-	OSIntEnter();    
-#endif
-
-	HAL_UART_IRQHandler(&USART3_Handler);	//调用HAL库中断处理公用函数
-	timeout=0;
-   while (HAL_UART_GetState(&USART3_Handler) != HAL_UART_STATE_READY)//等待就绪
-	{
-	 timeout++;////超时处理
-     if(timeout>HAL_MAX_DELAY) break;		
-	}
-     
-	timeout=0;
-	while(HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3) != HAL_OK)//一次处理完成之后，重新开启中断并设置RxXferCount为1
-	{
-	 timeout++; //超时处理
-	 if(timeout>HAL_MAX_DELAY) break;	
-	}
-#if SYSTEM_SUPPORT_OS	 	//使用OS
-	OSIntExit();  											 
-#endif
-} 
-*/
 
 
 //初始化IO 串口2
@@ -161,8 +133,10 @@ void UART3_Init(u32 bound)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART3_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&USART3_Handler,buf,len,100);
-	UART3_RX_CNT=0;
+	int i=0;
+	HAL_UART_Transmit(&USART3_Handler,buf,len,1000);
+	
+  UART3_RX_CNT=0;
 }
 //buf:接收缓存首地址
 //len:读到的数据长度

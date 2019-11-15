@@ -1,15 +1,18 @@
 #include "m6e_apply.h"
 
 
-static TMR_Reader r, *rp=NULL;
+static TMR_Reader r;
+static TMR_Reader *rp=NULL;
 static TMR_ReadPlan plan;
 static uint8_t *gantennaList=NULL;
 static uint8_t gantennaCount=0x0;
 static uint8_t gbuffer[20];
-
+static TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
+ 
+ 
 static TMR_TagReadData trd;
-char epcStr[128];
-char dataStr[128];
+static char epcStr[128];
+static char dataStr[128];
 
 
 static Chemical_reagent_Info_type RfidReadInfo[10];
@@ -35,11 +38,8 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 {
  
   TMR_Status ret;
-   int powerdbm; 
-  TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
-
-	
-  
+  static int powerdbm; 
+ 
   rp = &r;
 	printf("start. \r\n");
   ret = TMR_create(rp, "tmr:///com1");
@@ -72,16 +72,14 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 	ret = isAntDetectEnabled(rp, gantennaList);
 	printf("******* gantennaList:%d \r\n",ret);
 	
-	printf("read type:%d \r\n",rp->readerType);
 
+	printf("read type:%d \r\n",rp->readerType);
   if (rp->readerType == TMR_READER_TYPE_SERIAL)
   {
 			ret = TMR_paramSet(rp, TMR_PARAM_METADATAFLAG, &metadata);
 	}
+		
   ret = TMR_RP_init_simple(&plan, gantennaCount, gantennaList, TMR_TAG_PROTOCOL_GEN2, 1000);
-
-	
-
 	
 	return ret;		
 
@@ -93,7 +91,6 @@ int M6e_Read_Info(void)
 {
   TMR_Status ret;
 	int i=0;
-	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
   printf("****read plan:ret:0x%x\r\n",ret);
 	
@@ -196,34 +193,53 @@ Chemical_reagent_Info_type M6e_Magic_Get_One_Rfid_Info(uint8_t index)
 uint8_t Get_EPC_String(int*length, char* epc)
 {
 	uint8_t ret;
-	TMR_TagReadData trd;
 	memset(epcStr, 0, sizeof(epcStr));
+	
 
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
-	ret = TMR_read(rp, 1000, NULL);
+	printf("zzzzz 2\r\n");
+	ret = TMR_read(rp, 200, NULL);
+	
+	printf("zzzzz 3\r\n");
+	
 	if(!TMR_hasMoreTags(rp))
+	//	while (TMR_SUCCESS == TMR_hasMoreTags(rp))
 	 {
 		    ret = TMR_getNextTag(rp, &trd);
 		    TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
 		    *length=2*trd.tag.epcByteCount;
 		    memcpy(epc, epcStr, *length);
+		 
+			//	printf("str:%s\r\n",epc);
 	}
 
 	return ret;
 }
 
 
-uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
+uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* EPC_Data,uint8_t epcByteCount)
 {
 	  TMR_Status ret;
     TMR_TagData epc;
     TMR_TagOp tagop;
 
+		printf("M6e_Magic_Write_Rfid_EPC start.\r\n");
+		int i=0;
+		
+		for(i=0;i<epcByteCount;i++)
+		{
+			printf("%X",EPC_Data[i]);
+		}
+		printf("\r\n");
+	  printf("len:%d\r\n",epcByteCount);
+		
     epc.epcByteCount = epcByteCount;
-    memcpy(epc.epc, epcData, epc.epcByteCount * sizeof(uint8_t));
+    memcpy(epc.epc, EPC_Data, epcByteCount);
+			
     ret = TMR_TagOp_init_GEN2_WriteTag(&tagop, &epc);
     ret = TMR_executeTagOp(rp, &tagop, NULL, NULL);
-    return ret;
+		printf("M6e_Magic_Write_Rfid_EPC end.\r\n");  
+	return ret;
 }
 
 uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)

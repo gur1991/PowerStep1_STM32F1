@@ -2,7 +2,7 @@
 #define __UART3_H
 #include "sys.h"
 
-#define LEN_MAX_UART3 260
+#define LEN_MAX_UART3 1024
 
 extern u8 UART3_RX_BUF[LEN_MAX_UART3]; 		
 extern int UART3_RX_CNT;   			//接收到的数据长度
