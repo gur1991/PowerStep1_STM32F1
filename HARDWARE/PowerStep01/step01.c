@@ -385,7 +385,6 @@ void StopALLMotorMotion(void)
 //是否先wait steps
 void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
 {
-	int status=0;
 	int i=0;
 	int count_delay=0;
 	
@@ -450,7 +449,7 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 //初始化
 void BSP_Motor_Control_Init(void)
 {
-int i,result,value;
+int i,result;
 	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
   BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
 	

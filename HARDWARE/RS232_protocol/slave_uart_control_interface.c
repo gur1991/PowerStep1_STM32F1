@@ -688,7 +688,7 @@ static void  protocol_rfid_init_config(rfid_init_config_type_t* data)
 	performer.request.ReadPowerdbm=data->request.ReadPowerdbm;
 	performer.request.WritePowerdbm=data->request.WritePowerdbm;
 	
-	data->response.ret=Init_M6e_Config( performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+	data->response.ret=Init_M6e_Config( (TMR_Region)(performer.request.region), performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
 
 	//data->response.ret=0;
 }

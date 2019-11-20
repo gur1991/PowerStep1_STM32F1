@@ -31,7 +31,6 @@ uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t
 uint8_t master_powerStep01_move_command(move_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MOVE_TYPE;
 		master_motorCommand.CommandPowerStep1.move=data;
@@ -55,7 +54,6 @@ uint8_t master_powerStep01_move_command(move_type_t data){
 uint8_t master_powerStep01_power_command(power_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = POWER_TYPE;
 		master_motorCommand.CommandPowerStep1.power=data;
@@ -78,7 +76,6 @@ uint8_t master_powerStep01_power_command(power_type_t data){
 uint8_t master_powerStep01_rest_pos_command(rest_pos_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = REST_TYPE;
 		master_motorCommand.CommandPowerStep1.rest_post=data;
@@ -102,7 +99,6 @@ uint8_t master_powerStep01_rest_pos_command(rest_pos_type_t data){
 uint8_t master_powerStep01_send_command_and_wait_no_busy(send_command_and_wait_no_busy_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = SEND_COMMAND_AND_WAIT_NOTBUSY_TYPE;
 		master_motorCommand.CommandPowerStep1.send_and_wait=data;
@@ -124,7 +120,6 @@ uint8_t master_powerStep01_send_command_and_wait_no_busy(send_command_and_wait_n
 uint8_t master_powerStep01_one_device_move(one_device_move_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = ONE_DEVICE_MOVE_TYPE;
 		master_motorCommand.CommandPowerStep1.one_device_move=data;
@@ -147,7 +142,6 @@ uint8_t master_powerStep01_one_device_move(one_device_move_type_t data){
 uint8_t master_powerStep01_one_device_wait(one_device_wait_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = ONE_DEVICE_WAIT_TYPE;
 		master_motorCommand.CommandPowerStep1.one_device_wait=data;
@@ -169,7 +163,6 @@ uint8_t master_powerStep01_one_device_wait(one_device_wait_type_t data){
 uint8_t master_powerStep01_one_device_get_pos(one_device_get_pos_type_t data,int32_t*pos){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = ONE_DEVICE_GET_POS_TYPE;
 		master_motorCommand.CommandPowerStep1.one_device_get_pos=data;
@@ -193,7 +186,6 @@ uint8_t master_powerStep01_one_device_get_pos(one_device_get_pos_type_t data,int
 uint8_t master_powerStep01_one_device_set_mark(one_device_set_mark_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = ONE_DEVICE_SET_MARK_TYPE;
 		master_motorCommand.CommandPowerStep1.one_device_set_mark=data;
@@ -217,7 +209,6 @@ uint8_t master_powerStep01_one_device_set_mark(one_device_set_mark_type_t data){
 uint8_t master_powerStep01_get_para(get_para_type_t data,uint8_t*para){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = GET_PARAM_TYPE;
 		master_motorCommand.CommandPowerStep1.get_para=data;
@@ -241,7 +232,6 @@ uint8_t master_powerStep01_get_para(get_para_type_t data,uint8_t*para){
 uint8_t master_powerStep01_set_para(set_para_type_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = SET_PARAM_TYPE;
 		master_motorCommand.CommandPowerStep1.set_para=data;
@@ -264,7 +254,6 @@ uint8_t master_powerStep01_set_para(set_para_type_t data){
 uint8_t master_powerStep01_select_step_mode(select_step_mode_t data){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = SElECT_STEP_MODE_TYPE;
 		master_motorCommand.CommandPowerStep1.select_step_mode=data;
@@ -287,7 +276,6 @@ uint8_t master_powerStep01_select_step_mode(select_step_mode_t data){
 uint8_t master_get_light_sensor_level(get_light_sensor_level_t data,uint8_t*value){
 		uint8_t ret =0;
 		int len =0;
-		int times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = GET_LIGHT_LEVEL_TYPE;
 		master_motorCommand.CommandPowerStep1.get_light_sensor_level=data;
@@ -314,7 +302,6 @@ uint8_t master_cheminert_c52_c55(cheminert_c52_c55_type_t data,uint8_t*buf,uint8
 		uint8_t ret =0;
 		int len =0;
 		u8 size=0;
-		u8 times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = CHEMINERT_C52_C55_TYPE;
 		master_motorCommand.CommandPowerStep1.cheminert_c52_c55=data;
@@ -342,8 +329,6 @@ uint8_t master_cheminert_c52_c55(cheminert_c52_c55_type_t data,uint8_t*buf,uint8
 uint8_t master_pump_s100_interface(pump_s100_command_type_t data,pump_s100_reply_type_t* reply,PUMP_S100_REPLY_type_t* type){
 		uint8_t ret =0;
 		int len =0;
-		u8 size=0;
-		u8 times =100;
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = PUMP_S100_TYPE;
 		master_motorCommand.CommandPowerStep1.pump_s100_command=data;

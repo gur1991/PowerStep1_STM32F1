@@ -38,7 +38,7 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 {
  
   TMR_Status ret;
-  static int powerdbm; 
+   int powerdbm; 
  
   rp = &r;
 	printf("start. \r\n");

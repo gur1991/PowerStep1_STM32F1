@@ -161,10 +161,7 @@ void MyErrorHandler(uint16_t error)
 
 uint8_t motorInit(void){
 		uint8_t ret =0;
-  uint32_t myMaxSpeed;
-  uint32_t myMinSpeed;
-  uint16_t myAcceleration;
-  uint16_t myDeceleration;
+
   uint32_t readData;
 
   BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 3);
@@ -218,9 +215,7 @@ uint8_t motorInit(void){
 void master_device_send(void){
 		uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
-		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-		u8 RX_CMD_BUF[5];
-		u8 len=0;
+
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
 		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
@@ -229,9 +224,7 @@ void master_device_send(void){
 void master_device_receive(void){
 		uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
-		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-		u8 RX_CMD_BUF[5];
-		u8 len=0;
+
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
 		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);

@@ -2,7 +2,6 @@
 #include "delay.h"
 
 static int SET_VALUE=0;
-static int FLAG_SET_VALUE=0;
 static int FLAG_START_PID=0;
 
 pid_type_t pid;
