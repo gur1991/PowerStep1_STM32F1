@@ -1,6 +1,8 @@
 #include "step01.h"
 #include <string.h>
 #include "delay.h"
+#include "config.h"
+
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
 init_motor_speed_tension_type_t TempMotor;
 
@@ -451,12 +453,22 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 void BSP_Motor_Control_Init(void)
 {
 int i,result,value;
+	
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
   BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
-	
-	
-		
-	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
+
+	for(i=1;i<=7;i++){
+#elif USE_CLEANING_DILUTION_BOARD
+	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
+  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
+
+	for(i=8;i<=11;i++){
+#else
+	for(i=12;i<13;i++){
+		return;
+#endif		
 			result=ConfigMotorAllDevice(i,NORMAL_SPEED);//配置电机参数
 			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);

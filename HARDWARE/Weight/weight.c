@@ -175,6 +175,7 @@ int AD_Sensor_Get_Data(AD_type cs){
 		value<<=8;
 		value|=bit_low;
 		
+		printf("here value:%d \r\n",value);
 		return value;
 }
 

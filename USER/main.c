@@ -54,7 +54,7 @@ void Init_Board_Config(void)
 //串口2 电磁阀	CS片选信号 硬件流信号
 #if USE_GRADIENT_CONTROL_BOARD	
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
-	Uart_Rts_Control_Init;//硬件流控初始化
+	Uart_Rts_Control_Init();//硬件流控初始化
 	Electromagnetic_init();//电磁阀
 	printf("gradient board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -63,7 +63,7 @@ void Init_Board_Config(void)
 #if USE_CLEANING_DILUTION_BOARD
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Light_Sensor_Init();
-	BSP_Motor_Control_Init();
+	BSP_Motor_Control_Init();//没设备连接会卡住
 	Electromagnetic_init();//电磁阀
 	printf("cleaning dilution board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -73,16 +73,16 @@ void Init_Board_Config(void)
 	Liquid_Sensor_Init();
 	Weight_Sensor_Init();
 	Light_Sensor_Init();
-	BSP_Motor_Control_Init();
+	BSP_Motor_Control_Init();//没设备连接会卡住
 	UART5_Init(115200);
 	
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
-	ScanHandle->init(true);
+	//ScanHandle->init(true);
 	
 	printf("init pump. \r\n");
 	PumpChooseHandle(S1125);
-	PumpHandle->init();
+	//PumpHandle->init();
 	
 	printf("automatic inject board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -121,6 +121,50 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 		
+	
+	/*
+
+u8 txbuf[20]={"asdfghjkl"};
+	
+	Uart_Select_Baby(UART2_RS232,3);
+	
+	PowerStep_Select_Motor_Baby(2);
+	BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
+	BSP_MotorControl_WaitWhileActive(0);
+	BSP_MotorControl_Move(0, M4_WAIT_TO_LEFT, 23000);
+	BSP_MotorControl_WaitWhileActive(0);
+*/
+
+	while(1)
+	{
+
+		//UART4_Send_Data(txbuf,sizeof(txbuf));
+		
+		//printf("%d %d\r\n",Light_Sensor_Get(15),Light_Sensor_Get(16));
+		delay_ms(500);
+	
+	//	for(i=15;i<=18;i++)
+		{
+			//printf("%d\r\n",Get_weight_current_gram(WEIGHT_FOUR));
+		}
+		
+		/*
+		for(i=11;i<=16;i++)
+		{
+			electromagnetic_control(i,0);
+		}
+		  delay_ms(200);
+			for(i=11;i<=16;i++)
+		{
+		
+			electromagnetic_control(i,1);
+			
+		}
+	  delay_ms(200);
+		*/
+	
+	}	
+	
 	
 	
 	while(1)

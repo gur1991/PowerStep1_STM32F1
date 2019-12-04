@@ -1,10 +1,15 @@
 #include "electromagnetic.h"
+#include "config.h"
+
 
 void Electromagnetic_init(void)
 {
 #if USE_GRADIENT_CONTROL_BOARD	
 	GPIO_InitTypeDef GPIO_InitStruct;
 
+	
+	__HAL_RCC_AFIO_CLK_ENABLE();
+  __HAL_AFIO_REMAP_SWJ_NOJTAG();
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -69,7 +74,9 @@ void electromagnetic_control(uint8_t devices, uint8_t status)
 			case 8:	  VALUE_B=status;break;
 			case 9:	  VALUE_C=status;break;
 			case 10:	VALUE_0=status;break;
-#elif	USE_CLEANING_DILUTION_BOARD				
+#endif
+			
+#if	USE_CLEANING_DILUTION_BOARD				
 			case 11:	VALUE_D=status;break;
 			case 12:	VALUE_E=status;break;
 			case 13:	VALUE_F=status;break;
