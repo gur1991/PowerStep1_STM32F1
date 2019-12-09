@@ -1,6 +1,8 @@
 #include "electromagnetic.h"
 #include "config.h"
-
+/*
+*stm32f1xx_hal_gpio_ex.h 文件里面有关于管教复用很多资源。如果遇到资源不好使或者冲突，应该考虑到这个情况。
+*/
 
 void Electromagnetic_init(void)
 {

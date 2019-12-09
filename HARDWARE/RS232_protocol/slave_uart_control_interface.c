@@ -1210,7 +1210,8 @@ void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD)
 
 
 /*************************************************************************************/
-u8 test_actuator(Command_Cheminert_type_t type){
+u8 test_actuator(Command_Cheminert_type_t type)
+{
 	u8 ret=0,i;
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	type;

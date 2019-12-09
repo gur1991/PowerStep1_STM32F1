@@ -120,20 +120,20 @@ int main(void)
 	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-		
 	
-	/*
+
+
 
 u8 txbuf[20]={"asdfghjkl"};
 	
 	Uart_Select_Baby(UART2_RS232,3);
 	
-	PowerStep_Select_Motor_Baby(2);
+	PowerStep_Select_Motor_Baby(1);
 	BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
 	BSP_MotorControl_WaitWhileActive(0);
 	BSP_MotorControl_Move(0, M4_WAIT_TO_LEFT, 23000);
 	BSP_MotorControl_WaitWhileActive(0);
-*/
+
 
 	while(1)
 	{
