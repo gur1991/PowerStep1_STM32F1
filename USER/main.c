@@ -56,6 +56,11 @@ void Init_Board_Config(void)
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Uart_Rts_Control_Init();//硬件流控初始化
 	Electromagnetic_init();//电磁阀
+	
+	printf("init pump. \r\n");
+	PumpChooseHandle(S1125);
+	PumpHandle->init();
+	
 	printf("gradient board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -79,10 +84,6 @@ void Init_Board_Config(void)
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	//ScanHandle->init(true);
-	
-	printf("init pump. \r\n");
-	PumpChooseHandle(S1125);
-	//PumpHandle->init();
 	
 	printf("automatic inject board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -121,9 +122,9 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+	//PumpHandle->run();
 
-
-
+/*
 u8 txbuf[20]={"asdfghjkl"};
 	
 	Uart_Select_Baby(UART2_RS232,3);
@@ -133,7 +134,7 @@ u8 txbuf[20]={"asdfghjkl"};
 	BSP_MotorControl_WaitWhileActive(0);
 	BSP_MotorControl_Move(0, M4_WAIT_TO_LEFT, 23000);
 	BSP_MotorControl_WaitWhileActive(0);
-
+*/
 
 	while(1)
 	{
