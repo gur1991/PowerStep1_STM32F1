@@ -30,13 +30,65 @@ void RestAllMotorOrgin(void);
 
 void First_Open_Motor_AutoCheck(void);
 
-/***********************************************/
+/****************new start*******************************/
+
+/*
+ * ??6cm
+ * 1w =0.5
+ */
+#define M1_LIGHT_WORK 20
+#define M1_LIGHT 19
+#define M1_MIX_V 10
+#define M1_MIX_V_UP  BACKWARD
+#define M1_MIX_V_DOWN FORWARD
+
+/*
+ * 15w
+ */
+#define M11_MIX 11
+#define M11_MIX_LEFT BACKWARD
+#define M11_MIX_RIGHT FORWARD
+
+
+/*
+ *??3.5cm
+ *1w =0.5
+ */
+#define M8_LIGHT 17
+#define M8_BIG_IN_OUT 8
+#define M8_BIG_IN BACKWARD//?
+#define M8_BIG_OUT FORWARD//?
+/*
+ * ??3.5cm
+ * 3w =1
+ */
+#define M9_LIGHT 18
+#define M9_IN_OUT 9
+#define M9_IN BACKWARD//?
+#define M9_OUT FORWARD//?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************new end**********************************/
 /*
  *????18CM
  *1000s = 3cm
  */
-#define M5_LIGHT 12
-#define M5_FAR_NEAR 5
+#define M5_LIGHT 15
+#define M5_FAR_NEAR 1
 #define M5_FAR BACKWARD//?
 #define M5_NEAR FORWARD//?
 
@@ -44,8 +96,8 @@ void First_Open_Motor_AutoCheck(void);
  *????8CM
  *17w s = 7cm
  */
-#define M6_LIGHT 11
-#define M6_UP_DOWM 6
+#define M6_LIGHT 16
+#define M6_UP_DOWM 2
 #define M6_UP FORWARD//?
 #define M6_DOWM BACKWARD//?
 
@@ -72,16 +124,16 @@ void First_Open_Motor_AutoCheck(void);
  * ??6cm
  * 1w =0.5
  */
-#define M7_LIGHT_WORK 14
-#define M7_LIGHT 13
-#define M7_MIX_V 7
+#define M7_LIGHT_WORK 20
+#define M7_LIGHT 19
+#define M7_MIX_V 10
 #define M7_MIX_V_UP  BACKWARD
 #define M7_MIX_V_DOWN FORWARD
 
 /*
  * 15w
  */
-#define M8_MIX 8
+#define M8_MIX 11
 #define M8_MIX_LEFT BACKWARD
 #define M8_MIX_RIGHT FORWARD
 

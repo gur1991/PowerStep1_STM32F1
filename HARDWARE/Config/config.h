@@ -6,9 +6,9 @@
 
 #define USE_GRADIENT_CONTROL_BOARD 0 //Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
 
-#define USE_CLEANING_DILUTION_BOARD 1 //Pecker----C55 C52 两个注射器 控制上下和控制远近的电机
+#define USE_CLEANING_DILUTION_BOARD 1 //Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
-#define USE_AUTOMATIC_INJECTION_BOARD 0 //Camel---其他温度重力等模块
+#define USE_AUTOMATIC_INJECTION_BOARD 0//Camel---其他温度重力等模块    旋转混匀 
 
 #define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 
@@ -23,10 +23,10 @@
 #define COUNT_TIME (10*1000-1) //4s
 
 #define  C52_UART_PORT UART2_RS232
-#define  C52_UART_CS  CS_ZERO  
+#define  C52_UART_CS  CS_ONE  
 
 #define  C55_UART_PORT UART2_RS232
-#define  C55_UART_CS CS_TWO
+#define  C55_UART_CS CS_ZERO
 
 
 #define  FM100_UART_PORT UART2_RS232

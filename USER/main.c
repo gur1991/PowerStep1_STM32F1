@@ -122,7 +122,8 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	//PumpHandle->run();
+
+
 
 /*
 u8 txbuf[20]={"asdfghjkl"};

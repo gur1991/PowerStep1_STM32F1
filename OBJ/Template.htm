@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Dec 23 18:40:37 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Dec 23 20:19:18 2019
 <BR><P>
 <H3>Maximum Stack Usage =        364 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -583,8 +583,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[93]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 
@@ -593,8 +593,8 @@ Global Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
 <P><STRONG><a name="[9c]"></a>__aeabi_d2ulz</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dfixul.o(.text), UNUSED)
@@ -647,14 +647,14 @@ Global Symbols
 <P><STRONG><a name="[a2]"></a>BSP_MotorControl_SetNbDevices</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, x_nucleo_ihmxx.o(i.BSP_MotorControl_SetNbDevices))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = BSP_MotorControl_SetNbDevices
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetMotorHandle
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l648x_GetMotorHandle
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l648x_GetMotorHandle
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l647x_GetMotorHandle
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stspin240_250_GetMotorHandle
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stspin220_GetMotorHandle
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6474_GetMotorHandle
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6208_GetMotorHandle
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6206_GetMotorHandle
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetMotorHandle
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
@@ -662,13 +662,13 @@ Global Symbols
 <P><STRONG><a name="[ab]"></a>BSP_Motor_Control_Init</STRONG> (Thumb, 122 bytes, Stack size 32 bytes, step01.o(i.BSP_Motor_Control_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = BSP_Motor_Control_Init &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Init
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
@@ -689,7 +689,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ac]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 444 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
+<P><STRONG><a name="[ac]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 420 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = ConfigMotorAllDevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
@@ -762,14 +762,14 @@ Global Symbols
 <P><STRONG><a name="[b6]"></a>HAL_GPIO_Init</STRONG> (Thumb, 450 bytes, Stack size 40 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Init
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Electromagnetic_init
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 </UL>
 
 <P><STRONG><a name="[e4]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
@@ -778,14 +778,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b5]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
+<BR><BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Electromagnetic_init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Electromagnetic_init
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
 </UL>
 
 <P><STRONG><a name="[b8]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
@@ -826,9 +826,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d7]"></a>HAL_NVIC_EnableIRQ</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<BR><BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
@@ -838,9 +838,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
@@ -980,9 +980,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 </UL>
 
 <P><STRONG><a name="[d5]"></a>HAL_UART_MspInit</STRONG> (Thumb, 126 bytes, Stack size 32 bytes, usart.o(i.HAL_UART_MspInit))
@@ -1000,9 +1000,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_IRQHandler
 </UL>
 
@@ -2341,9 +2341,9 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[11c]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<BR><BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
