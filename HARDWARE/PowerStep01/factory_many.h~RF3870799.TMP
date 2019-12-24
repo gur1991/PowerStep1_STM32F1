@@ -67,41 +67,11 @@ void First_Open_Motor_AutoCheck(void);
 #define M2_MIX_LEFT BACKWARD
 #define M2_MIX_RIGHT FORWARD
 
-#define M4_LIGHT 2
-#define M4_BLANK_NEXT 4
-#define M4_BLANK_TO_NEXT  FORWARD
-#define M4_NEXT_TO_BLANK BACKWARD
-
-
-#define M6_BLANK_LEFT 6
-#define M6_BLANK_TO_LEFT BACKWARD
-#define M6_LEFT_TO_BLANK FORWARD
-
-#define M5_WAIT_NEXT 5
-#define M5_WAIT_TO_NEXT BACKWARD
-#define M5_NEXT_TO_WAIT FORWARD
-
-#define M3_LIGHT 1
-#define M3_LEFT_WAIT 3
-#define M3_LEFT_TO_WAIT  BACKWARD
-#define M3_WAIT_TO_LEFT  FORWARD
-
-#define BLANK_LIGHT 5
-#define LEFT_LIGHT 6
-#define WAIT_LIGHT 3
-#define NEXT_LIGHT 4
-
-
-#define HIGH_CHECK_LIGHT 10
-#define M7_LIGHT 7
-#define M7_HIGH_TURN 7
-#define M7_FRONT_TURN  FORWARD
-#define M7_BACK_TURN  BACKWARD
 
 
 
-#define M5_LIGHT 5
-#define M6_LIGHT 6
+
+
 
 
 
@@ -110,6 +80,7 @@ void First_Open_Motor_AutoCheck(void);
  *????18CM
  *1000s = 3cm
  */
+#define M5_LIGHT 15
 #define M5_FAR_NEAR 1
 #define M5_FAR BACKWARD//?
 #define M5_NEAR FORWARD//?
@@ -118,6 +89,7 @@ void First_Open_Motor_AutoCheck(void);
  *????8CM
  *17w s = 7cm
  */
+#define M6_LIGHT 16
 #define M6_UP_DOWM 2
 #define M6_UP FORWARD//?
 #define M6_DOWM BACKWARD//?
@@ -136,6 +108,7 @@ void First_Open_Motor_AutoCheck(void);
  * 1w =0.5
  */
 #define M7_LIGHT_WORK 20
+#define M7_LIGHT 19
 #define M7_MIX_V 10
 #define M7_MIX_V_UP  BACKWARD
 #define M7_MIX_V_DOWN FORWARD
@@ -155,6 +128,7 @@ blank  ------check-------next
 -							-
 left---------------------wait
 */
+#define M1_LIGHT_ 6
 #define M1_BLANK_NEXT 1
 #define M1_BLANK_TO_NEXT BACKWARD
 #define M1_NEXT_TO_BLANK FORWARD
@@ -168,15 +142,22 @@ left---------------------wait
 #define M3_WAIT_TO_NEXT FORWARD
 #define M3_NEXT_TO_WAIT BACKWARD
 
+#define M4_LIGHT 3
 #define M4_LEFT_WAIT 4
 #define M4_LEFT_TO_WAIT  FORWARD
 #define M4_WAIT_TO_LEFT  BACKWARD
+
+#define BLANK_LIGHT 1
+#define LEFT_LIGHT 2
+#define WAIT_LIGHT 4
+#define NEXT_LIGHT 5
 
 
 #define NORMAL_NEXT_LIGHT 7
 #define NORMAL_CHECK_LIGHT 23//??????????
 #define NORMAL_CHECK_LAST 24//金属开关最后一个，和其他传感器电平反向
 
+#define HIGH_CHECK_LIGHT 22//??????????
 
 #define M11_HIGH_TURN 11
 #define M11_LEFT_TURN  FORWARD

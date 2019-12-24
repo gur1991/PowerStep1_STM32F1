@@ -123,8 +123,8 @@ int main(void)
 	Init_Board_Config();
 	
 
-	//PowerStep_Select_Motor_Baby(M10_UP_DOWM);
-	//BSP_MotorControl_Move(0, M10_DOWM, 5000);
+	//PowerStep_Select_Motor_Baby(M7_HIGH_TURN);
+	//BSP_MotorControl_Move(0, M7_BACK_TURN, 500);
 	//BSP_MotorControl_WaitWhileActive(0);
 	//BSP_MotorControl_Move(0, M2_MIX_RIGHT, 5000);
 	//BSP_MotorControl_WaitWhileActive(0);
@@ -132,10 +132,15 @@ int main(void)
 	
 	while(1)
 	{
-	
-			printf("M9 %d \r\n",Light_Sensor_Get(M9_LIGHT));
-			printf("M8 %d \r\n",Light_Sensor_Get(M8_LIGHT));
-			delay_ms(500);
+
+			printf("HIGH_CHECK_LIGHT %d \r\n",Light_Sensor_Get(10));
+			printf("M7_LIGHT %d \r\n",Light_Sensor_Get(7));
+		
+		  printf("M8_LIGHT %d \r\n",Light_Sensor_Get(8));
+		  printf("M9_LIGHT %d \r\n",Light_Sensor_Get(9));
+		  printf("M11_LIGHT %d \r\n",Light_Sensor_Get(11));
+			
+		  delay_ms(500);
 	}	
 	
 	
