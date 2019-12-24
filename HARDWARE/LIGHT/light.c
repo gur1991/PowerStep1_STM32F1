@@ -12,7 +12,9 @@ void Light_Sensor_Init(void)
 	  __HAL_RCC_GPIOF_CLK_ENABLE();          
 	  __HAL_RCC_GPIOC_CLK_ENABLE();         
 	  __HAL_RCC_GPIOB_CLK_ENABLE();           
-
+		//__HAL_RCC_AFIO_CLK_ENABLE();
+	
+	
 		
 	  GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;            
     GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
@@ -32,12 +34,20 @@ void Light_Sensor_Init(void)
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
     HAL_GPIO_Init(GPIOE,&GPIO_Initure);
 		
-		GPIO_Initure.Pin=GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;            
+		GPIO_Initure.Pin=GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_15;            
     GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
     GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
     HAL_GPIO_Init(GPIOF,&GPIO_Initure);
 		
+		GPIO_Initure.Pin=GPIO_PIN_14;            
+    GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
+    GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
+    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
+    HAL_GPIO_Init(GPIOF,&GPIO_Initure);
+
+
+
 		GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;            
     GPIO_Initure.Mode=GPIO_MODE_INPUT;      //输入
     GPIO_Initure.Pull=GPIO_PULLDOWN;        //下拉
