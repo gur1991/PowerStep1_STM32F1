@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Tue Dec 24 14:20:55 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Tue Dec 24 15:20:54 2019
 <BR><P>
 <H3>Maximum Stack Usage =        384 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -16,9 +16,9 @@ Mutually Recursive functions
  <LI><a href="#[41]">HardFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[41]">HardFault_Handler</a><BR>
  <LI><a href="#[42]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[42]">MemManage_Handler</a><BR>
  <LI><a href="#[44]">UsageFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[44]">UsageFault_Handler</a><BR>
- <LI><a href="#[14b]">usmart_strcmp</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[14b]">usmart_strcmp</a><BR>
- <LI><a href="#[154]">usmart_strcopy</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[154]">usmart_strcopy</a><BR>
- <LI><a href="#[150]">usmart_search_nextc</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[150]">usmart_search_nextc</a><BR>
+ <LI><a href="#[14a]">usmart_strcmp</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[14a]">usmart_strcmp</a><BR>
+ <LI><a href="#[153]">usmart_strcopy</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[153]">usmart_strcopy</a><BR>
+ <LI><a href="#[14f]">usmart_search_nextc</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[14f]">usmart_search_nextc</a><BR>
 </UL>
 <P>
 <H3>
@@ -173,7 +173,7 @@ Global Symbols
 <P><STRONG><a name="[87]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(.text)
 </UL>
-<P><STRONG><a name="[158]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[157]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[8d]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -183,15 +183,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[159]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[158]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[15a]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[159]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[15b]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[15a]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[15c]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[15b]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[15d]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[15c]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[3f]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f103xe.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
@@ -354,37 +354,37 @@ Global Symbols
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[15e]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
+<P><STRONG><a name="[15d]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
 
-<P><STRONG><a name="[15f]"></a>___aeabi_memcpy8$move</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
+<P><STRONG><a name="[15e]"></a>___aeabi_memcpy8$move</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
 
-<P><STRONG><a name="[100]"></a>__aeabi_memcpy</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, memmovea.o(.text))
+<P><STRONG><a name="[fe]"></a>__aeabi_memcpy</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, memmovea.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Bar_Action
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Obtain_Barcode_String
 </UL>
 
-<P><STRONG><a name="[148]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text))
+<P><STRONG><a name="[147]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
 </UL>
 
-<P><STRONG><a name="[160]"></a>__aeabi_memmove</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
+<P><STRONG><a name="[15f]"></a>__aeabi_memmove</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
 
-<P><STRONG><a name="[161]"></a>__aeabi_memmove4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
+<P><STRONG><a name="[160]"></a>__aeabi_memmove4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
 
-<P><STRONG><a name="[162]"></a>__aeabi_memmove8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
+<P><STRONG><a name="[161]"></a>__aeabi_memmove8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
 
 <P><STRONG><a name="[90]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
-<P><STRONG><a name="[163]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[162]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[164]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[163]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[8f]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -393,13 +393,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c8]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
+<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Obtain_Barcode_String
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Control_Status
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Command_Mode
 </UL>
 
-<P><STRONG><a name="[165]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[164]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[91]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -420,18 +420,18 @@ Global Symbols
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
 </UL>
 
@@ -440,48 +440,48 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<BR>[Called By]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
 </UL>
 
 <P><STRONG><a name="[96]"></a>__aeabi_frsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[102]"></a>__aeabi_fmul</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, fmul.o(.text))
+<P><STRONG><a name="[100]"></a>__aeabi_fmul</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, fmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
-<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
 </UL>
 
-<P><STRONG><a name="[128]"></a>__ARM_scalbnf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, fscalb.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<P><STRONG><a name="[127]"></a>__ARM_scalbnf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, fscalb.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
 </UL>
 
-<P><STRONG><a name="[166]"></a>scalbnf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fscalb.o(.text), UNUSED)
+<P><STRONG><a name="[165]"></a>scalbnf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fscalb.o(.text), UNUSED)
 
 <P><STRONG><a name="[97]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
@@ -491,7 +491,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[9c]"></a>__aeabi_dsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text), UNUSED)
@@ -505,13 +505,13 @@ Global Symbols
 <P><STRONG><a name="[9e]"></a>__aeabi_dmul</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, dmul.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[9f]"></a>__aeabi_ddiv</STRONG> (Thumb, 222 bytes, Stack size 32 bytes, ddiv.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[a0]"></a>__aeabi_i2f</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fflti.o(.text))
@@ -528,56 +528,56 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
-<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
 </UL>
 
-<P><STRONG><a name="[104]"></a>__aeabi_f2uiz</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, ffixui.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<P><STRONG><a name="[102]"></a>__aeabi_f2uiz</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, ffixui.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
 </UL>
 
 <P><STRONG><a name="[b8]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
 
-<P><STRONG><a name="[12c]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, cfrcmple.o(.text))
+<P><STRONG><a name="[12b]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, cfrcmple.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[167]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[166]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
-<P><STRONG><a name="[145]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[144]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
 <P><STRONG><a name="[a2]"></a>__aeabi_uldivmod</STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[a3]"></a>__aeabi_llsr</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
@@ -586,15 +586,15 @@ Global Symbols
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[168]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[167]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
 
 <P><STRONG><a name="[99]"></a>__aeabi_lasr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
-<P><STRONG><a name="[169]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
+<P><STRONG><a name="[168]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
 
-<P><STRONG><a name="[16a]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
+<P><STRONG><a name="[169]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[94]"></a>_float_round</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fepilogue.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
@@ -609,8 +609,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9b]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<BR><BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 
@@ -619,19 +619,19 @@ Global Symbols
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
 <P><STRONG><a name="[a4]"></a>__aeabi_d2ulz</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dfixul.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[142]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<P><STRONG><a name="[141]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[8e]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
@@ -640,11 +640,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[16b]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[16a]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[16c]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[16b]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[16d]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[16c]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
 <P><STRONG><a name="[a6]"></a>BSP_MotorControl_BusyInterruptHandler</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, x_nucleo_ihmxx.o(i.BSP_MotorControl_BusyInterruptHandler))
 <BR><BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_ErrorHandler
@@ -673,14 +673,14 @@ Global Symbols
 <P><STRONG><a name="[aa]"></a>BSP_MotorControl_SetNbDevices</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, x_nucleo_ihmxx.o(i.BSP_MotorControl_SetNbDevices))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = BSP_MotorControl_SetNbDevices
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetMotorHandle
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l648x_GetMotorHandle
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l648x_GetMotorHandle
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;l647x_GetMotorHandle
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stspin240_250_GetMotorHandle
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stspin220_GetMotorHandle
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6474_GetMotorHandle
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6208_GetMotorHandle
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L6206_GetMotorHandle
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetMotorHandle
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
@@ -688,13 +688,13 @@ Global Symbols
 <P><STRONG><a name="[b3]"></a>BSP_Motor_Control_Init</STRONG> (Thumb, 122 bytes, Stack size 32 bytes, step01.o(i.BSP_Motor_Control_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = BSP_Motor_Control_Init &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
+<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Init
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
@@ -715,7 +715,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b4]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 420 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
+<P><STRONG><a name="[b4]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 442 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = ConfigMotorAllDevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
@@ -727,7 +727,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartSend
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartReceive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
+<BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_BL180
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_BL180
 </UL>
@@ -821,7 +821,7 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Scan_FM100
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
 </UL>
 
 <P><STRONG><a name="[c1]"></a>FM100_Scan_Exit_Configuration_State</STRONG> (Thumb, 96 bytes, Stack size 48 bytes, fm100.o(i.FM100_Scan_Exit_Configuration_State))
@@ -831,7 +831,7 @@ Global Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Scan_FM100
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Goto_Command_Mode
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Control_Scan_FM100_Beeper
 </UL>
@@ -853,7 +853,7 @@ Global Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Scan_FM100
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Goto_Command_Mode
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Control_Scan_FM100_Beeper
 </UL>
@@ -892,8 +892,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Delay
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Delay
 </UL>
 
 <P><STRONG><a name="[cf]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f1xx_hal_msp.o(i.HAL_GPIO_EXTI_Callback))
@@ -916,34 +916,33 @@ Global Symbols
 <P><STRONG><a name="[dd]"></a>HAL_GPIO_Init</STRONG> (Thumb, 450 bytes, Stack size 40 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Weight_Sensor_Init
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Liquid_Sensor_Init
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Init
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 </UL>
 
-<P><STRONG><a name="[fd]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
-<BR><BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_FLAG_PIN_GetState
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_BUSY_PIN_GetState
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Liquid_Sensor_Get
+<P><STRONG><a name="[106]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
+<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_FLAG_PIN_GetState
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_BUSY_PIN_GetState
 </UL>
 
-<P><STRONG><a name="[10b]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Weight_Sensor_Init
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
+<P><STRONG><a name="[10a]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
+<BR><BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Weight_Sensor_Init
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
 </UL>
 
 <P><STRONG><a name="[ce]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
@@ -954,7 +953,7 @@ Global Symbols
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitOnFlagUntilTimeout
 </UL>
 
-<P><STRONG><a name="[134]"></a>HAL_IncTick</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_IncTick))
+<P><STRONG><a name="[133]"></a>HAL_IncTick</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_IncTick))
 <BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -984,12 +983,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ee]"></a>HAL_NVIC_EnableIRQ</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
 <P><STRONG><a name="[d6]"></a>HAL_NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriority))
@@ -998,12 +997,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
 <P><STRONG><a name="[d1]"></a>HAL_NVIC_SetPriorityGrouping</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriorityGrouping))
@@ -1017,18 +1016,18 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
+<BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
 </UL>
 
 <P><STRONG><a name="[d4]"></a>HAL_RCC_GetHCLKFreq</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
-<P><STRONG><a name="[13a]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
+<P><STRONG><a name="[139]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
 <BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 </UL>
 
-<P><STRONG><a name="[139]"></a>HAL_RCC_GetPCLK2Freq</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq))
+<P><STRONG><a name="[138]"></a>HAL_RCC_GetPCLK2Freq</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq))
 <BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 </UL>
 
@@ -1036,7 +1035,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_RCC_GetSysClockFreq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
 </UL>
 
 <P><STRONG><a name="[da]"></a>HAL_RCC_OscConfig</STRONG> (Thumb, 1402 bytes, Stack size 40 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig))
@@ -1045,7 +1044,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
+<BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
 </UL>
 
 <P><STRONG><a name="[db]"></a>HAL_SPI_Init</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, stm32f1xx_hal_spi_ex.o(i.HAL_SPI_Init))
@@ -1053,8 +1052,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_Init
+<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_Init
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
 </UL>
 
 <P><STRONG><a name="[dc]"></a>HAL_SPI_MspInit</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, stm32f1xx_hal_msp.o(i.HAL_SPI_MspInit))
@@ -1070,11 +1069,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
+<BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
 </UL>
 
-<P><STRONG><a name="[147]"></a>HAL_SYSTICK_CLKSourceConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
+<P><STRONG><a name="[146]"></a>HAL_SYSTICK_CLKSourceConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_SYSTICK_CLKSourceConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
 </UL>
 
 <P><STRONG><a name="[d5]"></a>HAL_SYSTICK_Config</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, stm32f1xx_hal_cortex.o(i.HAL_SYSTICK_Config))
@@ -1091,15 +1090,15 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
+<BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
 <P><STRONG><a name="[e1]"></a>HAL_TIM_Base_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_tim.o(i.HAL_TIM_Base_MspInit))
 <BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
 </UL>
 
-<P><STRONG><a name="[136]"></a>HAL_TIM_Base_Start_IT</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f1xx_hal_tim.o(i.HAL_TIM_Base_Start_IT))
-<BR><BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
+<P><STRONG><a name="[135]"></a>HAL_TIM_Base_Start_IT</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f1xx_hal_tim.o(i.HAL_TIM_Base_Start_IT))
+<BR><BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 
 <P><STRONG><a name="[e3]"></a>HAL_TIM_PWM_Start_IT</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, stm32f1xx_hal_tim.o(i.HAL_TIM_PWM_Start_IT))
@@ -1107,7 +1106,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_CCxChannelCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
+<BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
 </UL>
 
 <P><STRONG><a name="[e5]"></a>HAL_TIM_PWM_Stop_IT</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, stm32f1xx_hal_tim.o(i.HAL_TIM_PWM_Stop_IT))
@@ -1115,14 +1114,14 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_CCxChannelCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StopStepClock
+<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StopStepClock
 </UL>
 
 <P><STRONG><a name="[ea]"></a>HAL_UART_ErrorCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_ErrorCallback))
 <BR><BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
 </UL>
 
-<P><STRONG><a name="[13b]"></a>HAL_UART_GetState</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_GetState))
+<P><STRONG><a name="[13a]"></a>HAL_UART_GetState</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_GetState))
 <BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
@@ -1143,11 +1142,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_Init
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 </UL>
 
 <P><STRONG><a name="[ec]"></a>HAL_UART_MspInit</STRONG> (Thumb, 126 bytes, Stack size 32 bytes, usart.o(i.HAL_UART_MspInit))
@@ -1165,18 +1164,18 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_IRQHandler
 </UL>
 
-<P><STRONG><a name="[13c]"></a>HAL_UART_Receive_IT</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_Receive_IT))
-<BR><BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<P><STRONG><a name="[13b]"></a>HAL_UART_Receive_IT</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_Receive_IT))
+<BR><BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[138]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 76 bytes, Stack size 12 bytes, usart.o(i.HAL_UART_RxCpltCallback))
+<P><STRONG><a name="[137]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 76 bytes, Stack size 12 bytes, usart.o(i.HAL_UART_RxCpltCallback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = HAL_UART_RxCpltCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Receive_IT
@@ -1259,14 +1258,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 </UL>
 
-<P><STRONG><a name="[fc]"></a>Liquid_Sensor_Get</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, liquid_sensor.o(i.Liquid_Sensor_Get))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Liquid_Sensor_Get
-</UL>
-<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
-</UL>
-<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
 <P><STRONG><a name="[f5]"></a>Liquid_Sensor_Init</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, liquid_sensor.o(i.Liquid_Sensor_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Liquid_Sensor_Init &rArr; HAL_GPIO_Init
 </UL>
@@ -1278,7 +1269,7 @@ Global Symbols
 <P><STRONG><a name="[f2]"></a>Load_BL180_Uart_Config</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, uart_config.o(i.Load_BL180_Uart_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Load_BL180_Uart_Config &rArr; UART2_Init_Check &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init_Check
 </UL>
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Bar_Action
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_BL180
@@ -1300,12 +1291,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartSend
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartReceive
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Scan_FM100
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Scan_FM100
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Scan_FM100
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bl180.o(.data)
@@ -1319,24 +1310,24 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
 
-<P><STRONG><a name="[101]"></a>Powerstep01_AccDec_RegVal_to_Steps_s2</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_AccDec_RegVal_to_Steps_s2))
+<P><STRONG><a name="[ff]"></a>Powerstep01_AccDec_RegVal_to_Steps_s2</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_AccDec_RegVal_to_Steps_s2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_AccDec_RegVal_to_Steps_s2 &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[103]"></a>Powerstep01_AccDec_Steps_s2_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_AccDec_Steps_s2_to_RegVal))
+<P><STRONG><a name="[101]"></a>Powerstep01_AccDec_Steps_s2_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_AccDec_Steps_s2_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_AccDec_Steps_s2_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
@@ -1349,34 +1340,34 @@ Global Symbols
 <P><STRONG><a name="[3]"></a>Powerstep01_AttachFlagInterrupt</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_AttachFlagInterrupt))
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[105]"></a>Powerstep01_BEMFslope_Perc_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_BEMFslope_Perc_to_RegVal))
+<P><STRONG><a name="[103]"></a>Powerstep01_BEMFslope_Perc_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_BEMFslope_Perc_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_BEMFslope_Perc_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[106]"></a>Powerstep01_BEMFslope_RegVal_to_Perc</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_BEMFslope_RegVal_to_Perc))
+<P><STRONG><a name="[104]"></a>Powerstep01_BEMFslope_RegVal_to_Perc</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_BEMFslope_RegVal_to_Perc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_BEMFslope_RegVal_to_Perc &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[107]"></a>Powerstep01_Board_BUSY_PIN_GetState</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_BUSY_PIN_GetState))
-<BR><BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<P><STRONG><a name="[105]"></a>Powerstep01_Board_BUSY_PIN_GetState</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_BUSY_PIN_GetState))
+<BR><BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CheckBusyHw
 </UL>
 
-<P><STRONG><a name="[108]"></a>Powerstep01_Board_Delay</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Delay))
+<P><STRONG><a name="[107]"></a>Powerstep01_Board_Delay</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Board_Delay &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -1384,66 +1375,66 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
 </UL>
 
-<P><STRONG><a name="[115]"></a>Powerstep01_Board_DisableIrq</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_DisableIrq))
-<BR><BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<P><STRONG><a name="[114]"></a>Powerstep01_Board_DisableIrq</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_DisableIrq))
+<BR><BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetStatus
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 
-<P><STRONG><a name="[114]"></a>Powerstep01_Board_EnableIrq</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_EnableIrq))
-<BR><BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<P><STRONG><a name="[113]"></a>Powerstep01_Board_EnableIrq</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_EnableIrq))
+<BR><BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetStatus
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 
-<P><STRONG><a name="[109]"></a>Powerstep01_Board_FLAG_PIN_GetState</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_FLAG_PIN_GetState))
-<BR><BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<P><STRONG><a name="[108]"></a>Powerstep01_Board_FLAG_PIN_GetState</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_FLAG_PIN_GetState))
+<BR><BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CheckStatusHw
 </UL>
 
-<P><STRONG><a name="[10a]"></a>Powerstep01_Board_GpioInit</STRONG> (Thumb, 494 bytes, Stack size 56 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_GpioInit))
+<P><STRONG><a name="[109]"></a>Powerstep01_Board_GpioInit</STRONG> (Thumb, 494 bytes, Stack size 56 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_GpioInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Powerstep01_Board_GpioInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
 </UL>
 
-<P><STRONG><a name="[10d]"></a>Powerstep01_Board_ReleaseReset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_ReleaseReset))
-<BR><BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[10c]"></a>Powerstep01_Board_ReleaseReset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_ReleaseReset))
+<BR><BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ReleaseReset
 </UL>
 
-<P><STRONG><a name="[10e]"></a>Powerstep01_Board_ReleaseReset_All</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_ReleaseReset_All))
+<P><STRONG><a name="[10d]"></a>Powerstep01_Board_ReleaseReset_All</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_ReleaseReset_All))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Board_ReleaseReset_All
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
 </UL>
 
-<P><STRONG><a name="[10f]"></a>Powerstep01_Board_Reset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Reset))
-<BR><BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[10e]"></a>Powerstep01_Board_Reset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Reset))
+<BR><BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Reset
 </UL>
 
-<P><STRONG><a name="[10c]"></a>Powerstep01_Board_Reset_All</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Reset_All))
+<P><STRONG><a name="[10b]"></a>Powerstep01_Board_Reset_All</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_Reset_All))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Board_Reset_All
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
 </UL>
 
-<P><STRONG><a name="[110]"></a>Powerstep01_Board_SpiInit</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_SpiInit))
+<P><STRONG><a name="[10f]"></a>Powerstep01_Board_SpiInit</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_SpiInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Powerstep01_Board_SpiInit &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Init
@@ -1451,16 +1442,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
 </UL>
 
-<P><STRONG><a name="[111]"></a>Powerstep01_Board_SpiWriteBytes</STRONG> (Thumb, 86 bytes, Stack size 40 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_SpiWriteBytes))
+<P><STRONG><a name="[110]"></a>Powerstep01_Board_SpiWriteBytes</STRONG> (Thumb, 86 bytes, Stack size 40 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_SpiWriteBytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_TransmitReceive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 
-<P><STRONG><a name="[112]"></a>Powerstep01_Board_StartStepClock</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_StartStepClock))
+<P><STRONG><a name="[111]"></a>Powerstep01_Board_StartStepClock</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_StartStepClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Powerstep01_Board_StartStepClock &rArr; HAL_RCC_GetSysClockFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
@@ -1469,7 +1460,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StartStepClock
 </UL>
 
-<P><STRONG><a name="[113]"></a>Powerstep01_Board_StopStepClock</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_StopStepClock))
+<P><STRONG><a name="[112]"></a>Powerstep01_Board_StopStepClock</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_StopStepClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Board_StopStepClock &rArr; HAL_TIM_PWM_Stop_IT &rArr; TIM_CCxChannelCmd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop_IT
@@ -1485,23 +1476,23 @@ Global Symbols
 <P><STRONG><a name="[1a]"></a>Powerstep01_CheckBusyHw</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_CheckBusyHw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Powerstep01_CheckBusyHw
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_BUSY_PIN_GetState
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_BUSY_PIN_GetState
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[1b]"></a>Powerstep01_CheckStatusHw</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_CheckStatusHw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Powerstep01_CheckStatusHw
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_FLAG_PIN_GetState
+<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_FLAG_PIN_GetState
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[11]"></a>Powerstep01_CmdGetParam</STRONG> (Thumb, 246 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_CmdGetParam))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetHome
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
@@ -1516,9 +1507,9 @@ Global Symbols
 <P><STRONG><a name="[12]"></a>Powerstep01_CmdGetStatus</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, powerstep01.o(i.Powerstep01_CmdGetStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Powerstep01_CmdGetStatus &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IsDeviceBusy
 </UL>
@@ -1527,42 +1518,42 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>Powerstep01_CmdGoHome</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdGoHome))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGoHome &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[a]"></a>Powerstep01_CmdGoMark</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdGoMark))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGoMark &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[b]"></a>Powerstep01_CmdGoTo</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdGoTo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGoTo &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[19]"></a>Powerstep01_CmdGoToDir</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdGoToDir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGoToDir &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[1c]"></a>Powerstep01_CmdGoUntil</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdGoUntil))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdGoUntil &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[1d]"></a>Powerstep01_CmdHardHiZ</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdHardHiZ))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdHardHiZ &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SelectStepMode
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
@@ -1572,42 +1563,42 @@ Global Symbols
 <P><STRONG><a name="[c]"></a>Powerstep01_CmdHardStop</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdHardStop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdHardStop &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[d]"></a>Powerstep01_CmdMove</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdMove))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdMove &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[13]"></a>Powerstep01_CmdNop</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdNop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdNop &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[1e]"></a>Powerstep01_CmdReleaseSw</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdReleaseSw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdReleaseSw &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[1f]"></a>Powerstep01_CmdResetDevice</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdResetDevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdResetDevice &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[20]"></a>Powerstep01_CmdResetPos</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdResetPos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdResetPos &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SelectStepMode
 </UL>
@@ -1616,21 +1607,21 @@ Global Symbols
 <P><STRONG><a name="[21]"></a>Powerstep01_CmdRun</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdRun))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdRun &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[14]"></a>Powerstep01_CmdSetParam</STRONG> (Thumb, 230 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_CmdSetParam))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
 <LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetMark
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetHome
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SelectStepMode
 </UL>
@@ -1639,25 +1630,25 @@ Global Symbols
 <P><STRONG><a name="[22]"></a>Powerstep01_CmdSoftHiZ</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdSoftHiZ))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdSoftHiZ &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[2d]"></a>Powerstep01_CmdSoftStop</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdSoftStop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdSoftStop &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[23]"></a>Powerstep01_CmdStepClock</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_CmdStepClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_CmdStepClock &rArr; Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[11a]"></a>Powerstep01_ConvertPosition</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_ConvertPosition))
+<P><STRONG><a name="[119]"></a>Powerstep01_ConvertPosition</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_ConvertPosition))
 <BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetPosition
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetMark
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
@@ -1666,31 +1657,31 @@ Global Symbols
 <P><STRONG><a name="[2b]"></a>Powerstep01_ErrorHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_ErrorHandler))
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[118]"></a>Powerstep01_FSSpd_RegVal_to_Steps_s</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_FSSpd_RegVal_to_Steps_s))
+<P><STRONG><a name="[117]"></a>Powerstep01_FSSpd_RegVal_to_Steps_s</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_FSSpd_RegVal_to_Steps_s))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_FSSpd_RegVal_to_Steps_s &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[119]"></a>Powerstep01_FSSpd_Steps_s_to_RegVal</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_FSSpd_Steps_s_to_RegVal))
+<P><STRONG><a name="[118]"></a>Powerstep01_FSSpd_Steps_s_to_RegVal</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_FSSpd_Steps_s_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_FSSpd_Steps_s_to_RegVal &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
 <P><STRONG><a name="[24]"></a>Powerstep01_FetchAndClearAllStatus</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, powerstep01.o(i.Powerstep01_FetchAndClearAllStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Powerstep01_FetchAndClearAllStatus &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 </UL>
@@ -1706,20 +1697,20 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
-<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RegVal_to_RefVoltage
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_RegVal_to_Time
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_RegVal_to_Th
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Speed_RegVal_to_Steps_s
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_RegVal_to_Steps_s
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_RegVal_to_Steps_s
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_RegVal_to_Perc
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_RegVal_to_Comp
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_RegVal_to_Steps_s
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_RegVal_to_Steps_s
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_RegVal_to_Perc
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_RegVal_to_Steps_s2
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
@@ -1732,7 +1723,7 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>Powerstep01_GetMark</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_GetMark))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Powerstep01_GetMark &rArr; Powerstep01_CmdGetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
+<BR>[Calls]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
@@ -1747,7 +1738,7 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>Powerstep01_GetPosition</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_GetPosition))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Powerstep01_GetPosition &rArr; Powerstep01_CmdGetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
+<BR>[Calls]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_ConvertPosition
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
@@ -1755,42 +1746,42 @@ Global Symbols
 <P><STRONG><a name="[0]"></a>Powerstep01_Init</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = Powerstep01_Init &rArr; Powerstep01_Board_SpiInit &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Delay
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Delay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[b7]"></a>Powerstep01_Init_Register</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Init_Register))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Calls]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FetchAndClearAllStatus
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdHardHiZ
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
 
-<P><STRONG><a name="[11e]"></a>Powerstep01_IntSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_IntSpd_RegVal_to_Steps_s))
+<P><STRONG><a name="[11d]"></a>Powerstep01_IntSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_IntSpd_RegVal_to_Steps_s))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_IntSpd_RegVal_to_Steps_s &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[126]"></a>Powerstep01_IntSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_IntSpd_Steps_s_to_RegVal))
+<P><STRONG><a name="[125]"></a>Powerstep01_IntSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_IntSpd_Steps_s_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_IntSpd_Steps_s_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
@@ -1804,88 +1795,88 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[127]"></a>Powerstep01_KTherm_Comp_to_RegVal</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_KTherm_Comp_to_RegVal))
+<P><STRONG><a name="[126]"></a>Powerstep01_KTherm_Comp_to_RegVal</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_KTherm_Comp_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_KTherm_Comp_to_RegVal &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[11f]"></a>Powerstep01_KTherm_RegVal_to_Comp</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_KTherm_RegVal_to_Comp))
+<P><STRONG><a name="[11e]"></a>Powerstep01_KTherm_RegVal_to_Comp</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_KTherm_RegVal_to_Comp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_KTherm_RegVal_to_Comp &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[129]"></a>Powerstep01_Kval_Perc_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Kval_Perc_to_RegVal))
+<P><STRONG><a name="[128]"></a>Powerstep01_Kval_Perc_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Kval_Perc_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_Kval_Perc_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[121]"></a>Powerstep01_Kval_RegVal_to_Perc</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Kval_RegVal_to_Perc))
+<P><STRONG><a name="[120]"></a>Powerstep01_Kval_RegVal_to_Perc</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Kval_RegVal_to_Perc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Kval_RegVal_to_Perc &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[11c]"></a>Powerstep01_MaxSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MaxSpd_RegVal_to_Steps_s))
+<P><STRONG><a name="[11b]"></a>Powerstep01_MaxSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MaxSpd_RegVal_to_Steps_s))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_MaxSpd_RegVal_to_Steps_s &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[12a]"></a>Powerstep01_MaxSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MaxSpd_Steps_s_to_RegVal))
+<P><STRONG><a name="[129]"></a>Powerstep01_MaxSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MaxSpd_Steps_s_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_MaxSpd_Steps_s_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[11d]"></a>Powerstep01_MinSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MinSpd_RegVal_to_Steps_s))
+<P><STRONG><a name="[11c]"></a>Powerstep01_MinSpd_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MinSpd_RegVal_to_Steps_s))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_MinSpd_RegVal_to_Steps_s &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[12b]"></a>Powerstep01_MinSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MinSpd_Steps_s_to_RegVal))
+<P><STRONG><a name="[12a]"></a>Powerstep01_MinSpd_Steps_s_to_RegVal</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_MinSpd_Steps_s_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_MinSpd_Steps_s_to_RegVal &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
@@ -1905,12 +1896,12 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[16]"></a>Powerstep01_ReleaseReset</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_ReleaseReset))
-<BR><BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
+<BR><BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[17]"></a>Powerstep01_Reset</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_Reset))
-<BR><BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
+<BR><BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
@@ -1924,12 +1915,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[117]"></a>Powerstep01_SendCommand</STRONG> (Thumb, 198 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_SendCommand))
+<P><STRONG><a name="[116]"></a>Powerstep01_SendCommand</STRONG> (Thumb, 198 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_SendCommand))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Powerstep01_SendCommand &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_EnableIrq
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_DisableIrq
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdStepClock
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSoftStop
@@ -1952,7 +1943,7 @@ Global Symbols
 <P><STRONG><a name="[28]"></a>Powerstep01_SendQueuedCommands</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, powerstep01.o(i.Powerstep01_SendQueuedCommands))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Powerstep01_SendQueuedCommands &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
@@ -1960,38 +1951,38 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = Powerstep01_SetAnalogValue &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[124]"></a>Powerstep01_SetDeviceParamsToGivenValues</STRONG> (Thumb, 570 bytes, Stack size 16 bytes, powerstep01.o(i.Powerstep01_SetDeviceParamsToGivenValues))
+<P><STRONG><a name="[123]"></a>Powerstep01_SetDeviceParamsToGivenValues</STRONG> (Thumb, 570 bytes, Stack size 16 bytes, powerstep01.o(i.Powerstep01_SetDeviceParamsToGivenValues))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Powerstep01_SetDeviceParamsToGivenValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
+<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tval_RefVoltage_to_RegVal
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Tmin_Time_to_RegVal
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 </UL>
@@ -2014,106 +2005,106 @@ Global Symbols
 <P><STRONG><a name="[30]"></a>Powerstep01_SetNbDevices</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_SetNbDevices))
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[125]"></a>Powerstep01_SetRegisterToPredefinedValues</STRONG> (Thumb, 384 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_SetRegisterToPredefinedValues))
+<P><STRONG><a name="[124]"></a>Powerstep01_SetRegisterToPredefinedValues</STRONG> (Thumb, 384 bytes, Stack size 40 bytes, powerstep01.o(i.Powerstep01_SetRegisterToPredefinedValues))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
+<BR>[Calls]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_StallOcd_Th_to_RegVal
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MinSpd_Steps_s_to_RegVal
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_MaxSpd_Steps_s_to_RegVal
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Kval_Perc_to_RegVal
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_KTherm_Comp_to_RegVal
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_IntSpd_Steps_s_to_RegVal
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FSSpd_Steps_s_to_RegVal
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_BEMFslope_Perc_to_RegVal
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_AccDec_Steps_s2_to_RegVal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 </UL>
 
-<P><STRONG><a name="[11b]"></a>Powerstep01_Speed_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Speed_RegVal_to_Steps_s))
+<P><STRONG><a name="[11a]"></a>Powerstep01_Speed_RegVal_to_Steps_s</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Speed_RegVal_to_Steps_s))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Speed_RegVal_to_Steps_s &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[120]"></a>Powerstep01_StallOcd_RegVal_to_Th</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_StallOcd_RegVal_to_Th))
+<P><STRONG><a name="[11f]"></a>Powerstep01_StallOcd_RegVal_to_Th</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_StallOcd_RegVal_to_Th))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_StallOcd_RegVal_to_Th &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[12d]"></a>Powerstep01_StallOcd_Th_to_RegVal</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_StallOcd_Th_to_RegVal))
+<P><STRONG><a name="[12c]"></a>Powerstep01_StallOcd_Th_to_RegVal</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_StallOcd_Th_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_StallOcd_Th_to_RegVal &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetRegisterToPredefinedValues
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
 <P><STRONG><a name="[2e]"></a>Powerstep01_StartStepClock</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_StartStepClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Powerstep01_StartStepClock &rArr; Powerstep01_Board_StartStepClock &rArr; HAL_RCC_GetSysClockFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StartStepClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
 <P><STRONG><a name="[2f]"></a>Powerstep01_StopStepClock</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, powerstep01.o(i.Powerstep01_StopStepClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_StopStepClock &rArr; Powerstep01_Board_StopStepClock &rArr; HAL_TIM_PWM_Stop_IT &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StopStepClock
+<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_StopStepClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[123]"></a>Powerstep01_Tmin_RegVal_to_Time</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tmin_RegVal_to_Time))
+<P><STRONG><a name="[122]"></a>Powerstep01_Tmin_RegVal_to_Time</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tmin_RegVal_to_Time))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Powerstep01_Tmin_RegVal_to_Time &rArr; __aeabi_ui2f &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
 
-<P><STRONG><a name="[12f]"></a>Powerstep01_Tmin_Time_to_RegVal</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tmin_Time_to_RegVal))
+<P><STRONG><a name="[12e]"></a>Powerstep01_Tmin_Time_to_RegVal</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tmin_Time_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_Tmin_Time_to_RegVal &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[12e]"></a>Powerstep01_Tval_RefVoltage_to_RegVal</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tval_RefVoltage_to_RegVal))
+<P><STRONG><a name="[12d]"></a>Powerstep01_Tval_RefVoltage_to_RegVal</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tval_RefVoltage_to_RegVal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Powerstep01_Tval_RefVoltage_to_RegVal &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
+<BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetDeviceParamsToGivenValues
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SetAnalogValue
 </UL>
 
-<P><STRONG><a name="[122]"></a>Powerstep01_Tval_RegVal_to_RefVoltage</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tval_RegVal_to_RefVoltage))
+<P><STRONG><a name="[121]"></a>Powerstep01_Tval_RegVal_to_RefVoltage</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Tval_RegVal_to_RefVoltage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Powerstep01_Tval_RegVal_to_RefVoltage &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_GetAnalogValue
 </UL>
@@ -2132,20 +2123,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
-<P><STRONG><a name="[116]"></a>Powerstep01_WriteBytes</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_WriteBytes))
+<P><STRONG><a name="[115]"></a>Powerstep01_WriteBytes</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_WriteBytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
+<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiWriteBytes
 </UL>
 <BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendQueuedCommands
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_SendCommand
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_FetchAndClearAllStatus
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdSetParam
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetStatus
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 
-<P><STRONG><a name="[130]"></a>Real_Time_Polling_Init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, real_time_polling.o(i.Real_Time_Polling_Init))
+<P><STRONG><a name="[12f]"></a>Real_Time_Polling_Init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, real_time_polling.o(i.Real_Time_Polling_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Real_Time_Polling_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -2153,7 +2144,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[131]"></a>SPI3_Init</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, spi3.o(i.SPI3_Init))
+<P><STRONG><a name="[130]"></a>SPI3_Init</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, spi3.o(i.SPI3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = SPI3_Init &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Init
@@ -2161,7 +2152,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Weight_Sensor_Init
 </UL>
 
-<P><STRONG><a name="[13e]"></a>SPI3_SetSpeed</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, spi3.o(i.SPI3_SetSpeed))
+<P><STRONG><a name="[13d]"></a>SPI3_SetSpeed</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, spi3.o(i.SPI3_SetSpeed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI3_SetSpeed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Weight_Sensor_Init
@@ -2178,16 +2169,16 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = Scan_Bar_Action &rArr; End_BL180 &rArr; Config_BL80_Transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Load_BL180_Uart_Config
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Exit_BL180_Uart_Config
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_BL180
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bl180.o(.data)
 </UL>
-<P><STRONG><a name="[132]"></a>Start_BL180</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, bl180.o(i.Start_BL180))
+<P><STRONG><a name="[131]"></a>Start_BL180</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, bl180.o(i.Start_BL180))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = Start_BL180 &rArr; Config_BL80_Transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -2197,7 +2188,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Bar_Action
 </UL>
 
-<P><STRONG><a name="[ff]"></a>Start_Scan_FM100</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fm100.o(i.Start_Scan_FM100))
+<P><STRONG><a name="[fd]"></a>Start_Scan_FM100</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fm100.o(i.Start_Scan_FM100))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Start_Scan_FM100 &rArr; FM100_Scan_Control_Status &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Into_Configuration_State
@@ -2207,7 +2198,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Obtain_Barcode_String
 </UL>
 
-<P><STRONG><a name="[133]"></a>Stm32_Clock_Init</STRONG> (Thumb, 68 bytes, Stack size 72 bytes, sys.o(i.Stm32_Clock_Init))
+<P><STRONG><a name="[132]"></a>Stm32_Clock_Init</STRONG> (Thumb, 68 bytes, Stack size 72 bytes, sys.o(i.Stm32_Clock_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = Stm32_Clock_Init &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
@@ -2236,7 +2227,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[48]"></a>SysTick_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.SysTick_Handler))
-<BR><BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
+<BR><BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
@@ -2264,12 +2255,12 @@ Global Symbols
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start_IT
 </UL>
 
-<P><STRONG><a name="[135]"></a>Timer4_Init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, usmart.o(i.Timer4_Init))
+<P><STRONG><a name="[134]"></a>Timer4_Init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, usmart.o(i.Timer4_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = Timer4_Init &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_init
@@ -2280,20 +2271,20 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart2_Config_Init
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Exit_BL180_Uart_Config
 </UL>
 
-<P><STRONG><a name="[fe]"></a>UART2_Init_Check</STRONG> (Thumb, 152 bytes, Stack size 40 bytes, uart2.o(i.UART2_Init_Check))
+<P><STRONG><a name="[fc]"></a>UART2_Init_Check</STRONG> (Thumb, 152 bytes, Stack size 40 bytes, uart2.o(i.UART2_Init_Check))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = UART2_Init_Check &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Load_BL180_Uart_Config
 </UL>
@@ -2331,13 +2322,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
-<P><STRONG><a name="[137]"></a>UART4_Init</STRONG> (Thumb, 150 bytes, Stack size 40 bytes, uart4.o(i.UART4_Init))
+<P><STRONG><a name="[136]"></a>UART4_Init</STRONG> (Thumb, 150 bytes, Stack size 40 bytes, uart4.o(i.UART4_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = UART4_Init &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2354,8 +2345,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 </UL>
@@ -2363,9 +2354,9 @@ Global Symbols
 <P><STRONG><a name="[6e]"></a>USART1_IRQHandler</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, usart.o(i.USART1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = USART1_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
+<BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_GetState
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_GetState
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
@@ -2386,7 +2377,7 @@ Global Symbols
 <P><STRONG><a name="[f4]"></a>Uart2_Config_Init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uart_config.o(i.Uart2_Config_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Uart2_Config_Init &rArr; UART2_Init &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
+<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
@@ -2401,10 +2392,10 @@ Global Symbols
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartReceive
 </UL>
 
-<P><STRONG><a name="[13d]"></a>Uart_cs_init</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, uart_choose.o(i.Uart_cs_init))
+<P><STRONG><a name="[13c]"></a>Uart_cs_init</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, uart_choose.o(i.Uart_cs_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = Uart_cs_init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart2_Config_Init
@@ -2420,51 +2411,50 @@ Global Symbols
 <P><STRONG><a name="[f6]"></a>Weight_Sensor_Init</STRONG> (Thumb, 74 bytes, Stack size 32 bytes, weight.o(i.Weight_Sensor_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Weight_Sensor_Init &rArr; SPI3_Init &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_SetSpeed
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_Init
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_SetSpeed
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI3_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 </UL>
 
-<P><STRONG><a name="[13f]"></a>__0printf</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[13e]"></a>__0printf</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[16e]"></a>__1printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+<P><STRONG><a name="[16d]"></a>__1printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
 
 <P><STRONG><a name="[b9]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Bar_Action
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_BL180
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Obtain_Barcode_String
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
-<P><STRONG><a name="[16f]"></a>__c89printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+<P><STRONG><a name="[16e]"></a>__c89printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
 
-<P><STRONG><a name="[170]"></a>printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+<P><STRONG><a name="[16f]"></a>printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
 
-<P><STRONG><a name="[171]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[170]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[172]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[171]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[173]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[172]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[146]"></a>delay_init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, delay.o(i.delay_init))
+<P><STRONG><a name="[145]"></a>delay_init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, delay.o(i.delay_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = delay_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_CLKSourceConfig
+<BR>[Calls]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_CLKSourceConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2474,10 +2464,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Receive_Data
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_BL180
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Bar_Action
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_BL180
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Obtain_Barcode_String
@@ -2487,6 +2476,7 @@ Global Symbols
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Control_Status
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Command_Mode
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FM100_Scan_Close_Beeper
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
@@ -2503,7 +2493,7 @@ Global Symbols
 <P><STRONG><a name="[b5]"></a>init_motor_device</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, step01.o(i.init_motor_device))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = init_motor_device &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 </UL>
@@ -2516,30 +2506,28 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
 </UL>
 
-<P><STRONG><a name="[85]"></a>main</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, main.o(i.main))
+<P><STRONG><a name="[85]"></a>main</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = main &rArr; Init_Board_Config &rArr; BSP_Motor_Control_Init &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Liquid_Sensor_Get
+<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P><STRONG><a name="[37]"></a>read_addr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, usmart.o(i.read_addr))
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
-<P><STRONG><a name="[149]"></a>uart_init</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, usart.o(i.uart_init))
+<P><STRONG><a name="[148]"></a>uart_init</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, usart.o(i.uart_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = uart_init &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
+<BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -2548,137 +2536,137 @@ Global Symbols
 <P><STRONG><a name="[3c]"></a>usmart_cmd_rec</STRONG> (Thumb, 144 bytes, Stack size 96 bytes, usmart.o(i.usmart_cmd_rec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 364<LI>Call Chain = usmart_cmd_rec &rArr; usmart_get_fparam &rArr; usmart_str2num
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
 <P><STRONG><a name="[3d]"></a>usmart_exe</STRONG> (Thumb, 510 bytes, Stack size 128 bytes, usmart.o(i.usmart_exe))
 <BR><BR>[Stack]<UL><LI>Max Depth = 188<LI>Call Chain = usmart_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
-<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_reset_runtime
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_runtime
+<BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_reset_runtime
+<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_runtime
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
-<P><STRONG><a name="[151]"></a>usmart_get_aparm</STRONG> (Thumb, 164 bytes, Stack size 20 bytes, usmart_str.o(i.usmart_get_aparm))
+<P><STRONG><a name="[150]"></a>usmart_get_aparm</STRONG> (Thumb, 164 bytes, Stack size 20 bytes, usmart_str.o(i.usmart_get_aparm))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = usmart_get_aparm
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 </UL>
 
-<P><STRONG><a name="[157]"></a>usmart_get_cmdname</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, usmart_str.o(i.usmart_get_cmdname))
+<P><STRONG><a name="[156]"></a>usmart_get_cmdname</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, usmart_str.o(i.usmart_get_cmdname))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = usmart_get_cmdname
 </UL>
-<BR>[Called By]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 </UL>
 
-<P><STRONG><a name="[14a]"></a>usmart_get_fname</STRONG> (Thumb, 352 bytes, Stack size 60 bytes, usmart_str.o(i.usmart_get_fname))
+<P><STRONG><a name="[149]"></a>usmart_get_fname</STRONG> (Thumb, 352 bytes, Stack size 60 bytes, usmart_str.o(i.usmart_get_fname))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
 </UL>
-<BR>[Called By]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
 </UL>
 
-<P><STRONG><a name="[14c]"></a>usmart_get_fparam</STRONG> (Thumb, 202 bytes, Stack size 240 bytes, usmart_str.o(i.usmart_get_fparam))
+<P><STRONG><a name="[14b]"></a>usmart_get_fparam</STRONG> (Thumb, 202 bytes, Stack size 240 bytes, usmart_str.o(i.usmart_get_fparam))
 <BR><BR>[Stack]<UL><LI>Max Depth = 268<LI>Call Chain = usmart_get_fparam &rArr; usmart_str2num
 </UL>
-<BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strlen
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+<BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strlen
+<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
 </UL>
 
-<P><STRONG><a name="[14d]"></a>usmart_get_parmpos</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, usmart_str.o(i.usmart_get_parmpos))
+<P><STRONG><a name="[14c]"></a>usmart_get_parmpos</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, usmart_str.o(i.usmart_get_parmpos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usmart_get_parmpos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
-<P><STRONG><a name="[14f]"></a>usmart_get_runtime</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, usmart.o(i.usmart_get_runtime))
+<P><STRONG><a name="[14e]"></a>usmart_get_runtime</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, usmart.o(i.usmart_get_runtime))
 <BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
 <P><STRONG><a name="[3b]"></a>usmart_init</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, usmart.o(i.usmart_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = usmart_init &rArr; Timer4_Init &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
+<BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer4_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
-<P><STRONG><a name="[156]"></a>usmart_pow</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_pow))
-<BR><BR>[Called By]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+<P><STRONG><a name="[155]"></a>usmart_pow</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_pow))
+<BR><BR>[Called By]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
 </UL>
 
-<P><STRONG><a name="[14e]"></a>usmart_reset_runtime</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, usmart.o(i.usmart_reset_runtime))
+<P><STRONG><a name="[14d]"></a>usmart_reset_runtime</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, usmart.o(i.usmart_reset_runtime))
 <BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
 <P><STRONG><a name="[3e]"></a>usmart_scan</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, usmart.o(i.usmart_scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = usmart_scan &rArr; usmart_sys_cmd_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Calls]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
-<P><STRONG><a name="[150]"></a>usmart_search_nextc</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_search_nextc))
-<BR><BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
+<P><STRONG><a name="[14f]"></a>usmart_search_nextc</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_search_nextc))
+<BR><BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<BR>[Called By]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 </UL>
 
-<P><STRONG><a name="[152]"></a>usmart_str2num</STRONG> (Thumb, 214 bytes, Stack size 28 bytes, usmart_str.o(i.usmart_str2num))
+<P><STRONG><a name="[151]"></a>usmart_str2num</STRONG> (Thumb, 214 bytes, Stack size 28 bytes, usmart_str.o(i.usmart_str2num))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = usmart_str2num
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_pow
+<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_pow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 </UL>
 
-<P><STRONG><a name="[14b]"></a>usmart_strcmp</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcmp))
-<BR><BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<P><STRONG><a name="[14a]"></a>usmart_strcmp</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcmp))
+<BR><BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
 </UL>
 
-<P><STRONG><a name="[154]"></a>usmart_strcopy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcopy))
-<BR><BR>[Calls]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
+<P><STRONG><a name="[153]"></a>usmart_strcopy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcopy))
+<BR><BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
-</UL>
-
-<P><STRONG><a name="[153]"></a>usmart_strlen</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strlen))
-<BR><BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<BR>[Called By]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
 </UL>
 
-<P><STRONG><a name="[155]"></a>usmart_sys_cmd_exe</STRONG> (Thumb, 1458 bytes, Stack size 72 bytes, usmart.o(i.usmart_sys_cmd_exe))
+<P><STRONG><a name="[152]"></a>usmart_strlen</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strlen))
+<BR><BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+</UL>
+
+<P><STRONG><a name="[154]"></a>usmart_sys_cmd_exe</STRONG> (Thumb, 1458 bytes, Stack size 72 bytes, usmart.o(i.usmart_sys_cmd_exe))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = usmart_sys_cmd_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_cmdname
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+<BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_cmdname
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
@@ -2698,7 +2686,7 @@ Local Symbols
 <P><STRONG><a name="[e7]"></a>UART_Receive_IT</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, stm32f1xx_hal_uart.o(i.UART_Receive_IT))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = UART_Receive_IT &rArr; HAL_UART_RxCpltCallback
 </UL>
-<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
+<BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
 </UL>
@@ -2706,8 +2694,8 @@ Local Symbols
 <P><STRONG><a name="[ed]"></a>UART_SetConfig</STRONG> (Thumb, 364 bytes, Stack size 24 bytes, stm32f1xx_hal_uart.o(i.UART_SetConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = UART_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK2Freq
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK1Freq
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK2Freq
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK1Freq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 </UL>
@@ -2733,33 +2721,33 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_TransmitReceive
 </UL>
 
-<P><STRONG><a name="[141]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<P><STRONG><a name="[140]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[140]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[13f]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
-<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf
-</UL>
-
-<P><STRONG><a name="[144]"></a>_printf_post_padding</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf
 </UL>
 
-<P><STRONG><a name="[143]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[143]"></a>_printf_post_padding</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[142]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 <P>
 <H3>

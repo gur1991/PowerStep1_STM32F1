@@ -172,8 +172,8 @@ typedef enum Command_Package_type{
 			NORMAL_BLANK_REST,//sensor
 			NORMAL_FIRST_POSITON,//sensor
 			MIX_AND_REACH_POSITION,//sensor
-			M10_SLOW,//sensor
-			M10_NORMAL,//sensor
+			BIG_IN_OUT_SLOW,//sensor
+			BIG_IN_OUT_NORMAL,//sensor
 
 
 

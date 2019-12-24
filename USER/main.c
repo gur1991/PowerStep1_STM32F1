@@ -132,7 +132,7 @@ int main(void)
 	
 	while(1)
 	{
-			printf("Liquid %d \r\n",Liquid_Sensor_Get());
+		//	printf("Liquid %d \r\n",Liquid_Sensor_Get());
 
 		
 		  delay_ms(500);

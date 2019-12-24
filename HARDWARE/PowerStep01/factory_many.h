@@ -67,6 +67,14 @@ void First_Open_Motor_AutoCheck(void);
 #define M2_MIX_LEFT BACKWARD
 #define M2_MIX_RIGHT FORWARD
 
+/*************************************************************/
+/*
+blank  ------check-------next
+-							-
+-							-
+-							-
+left---------------------wait
+*/
 #define M4_LIGHT 2
 #define M4_BLANK_NEXT 4
 #define M4_BLANK_TO_NEXT  FORWARD
@@ -98,92 +106,16 @@ void First_Open_Motor_AutoCheck(void);
 #define M7_FRONT_TURN  FORWARD
 #define M7_BACK_TURN  BACKWARD
 
+#define NORMAL_NEXT_LIGHT 8
+#define NORMAL_CHECK_MIX_LIGHT 11
+#define NORMAL_CHECK_DRAIN_LIGHT 9
 
-
-#define M5_LIGHT 5
-#define M6_LIGHT 6
-
-
-
-/*******************new end**********************************/
-/*
- *????18CM
- *1000s = 3cm
- */
-#define M5_FAR_NEAR 1
-#define M5_FAR BACKWARD//?
-#define M5_NEAR FORWARD//?
-
-/*
- *????8CM
- *17w s = 7cm
- */
-#define M6_UP_DOWM 2
-#define M6_UP FORWARD//?
-#define M6_DOWM BACKWARD//?
-
-/*
- *??3.5cm
- *1w =0.5
- */
-#define M10_BIG_IN_OUT 10
-#define M10_BIG_IN BACKWARD//?
-#define M10_BIG_OUT FORWARD//?
-
-
-/*
- * ??6cm
- * 1w =0.5
- */
-#define M7_LIGHT_WORK 20
-#define M7_MIX_V 10
-#define M7_MIX_V_UP  BACKWARD
-#define M7_MIX_V_DOWN FORWARD
-
-/*
- * 15w
- */
-#define M8_MIX 11
-#define M8_MIX_LEFT BACKWARD
-#define M8_MIX_RIGHT FORWARD
-
-/*************************************************************/
-/*
-blank  ------check-------next
--							-
--							-
--							-
-left---------------------wait
-*/
-#define M1_BLANK_NEXT 1
-#define M1_BLANK_TO_NEXT BACKWARD
-#define M1_NEXT_TO_BLANK FORWARD
-
-
-#define M2_BLANK_LEFT 2
-#define M2_BLANK_TO_LEFT FORWARD
-#define M2_LEFT_TO_BLANK BACKWARD
-
-#define M3_WAIT_NEXT 3
-#define M3_WAIT_TO_NEXT FORWARD
-#define M3_NEXT_TO_WAIT BACKWARD
-
-#define M4_LEFT_WAIT 4
-#define M4_LEFT_TO_WAIT  FORWARD
-#define M4_WAIT_TO_LEFT  BACKWARD
-
-
-#define NORMAL_NEXT_LIGHT 7
-#define NORMAL_CHECK_LIGHT 23//??????????
-#define NORMAL_CHECK_LAST 24//金属开关最后一个，和其他传感器电平反向
-
-
-#define M11_HIGH_TURN 11
-#define M11_LEFT_TURN  FORWARD
-#define M11_RIGHT_TURN  BACKWARD
-
+#define NORMAL_CHECK_LAST 14
 //#define PITCH_VALUE 1320
 //#define HIGH_PITCH_VALUE 1000
+
+/*******************new end**********************************/
+
 /*****************************************************************/
 
 void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time);

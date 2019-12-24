@@ -16,9 +16,6 @@
 
 /*****************************************************/
 //UART4 ----- ARM 
-//#define USE_SENSOR_BOARD 1
-
-//#define USE_MOTOR_BOARD 0
 
 #define COUNT_TIME (10*1000-1) //4s
 
@@ -34,7 +31,6 @@
 
 #define  BL180_UART_PORT UART2_RS232
 #define  BL180_UART_CS CS_THREE
-
 
 
 #define  PUMP_UART_PORT UART2_RS232
