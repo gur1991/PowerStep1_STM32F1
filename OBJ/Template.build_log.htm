@@ -27,288 +27,33 @@ Project File Date:  12/23/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
-compiling stm32f1xx_it.c...
-compiling light.c...
-compiling x_nucleo_ihm03a1_stm32f1xx.c...
-compiling stm32f1xx_hal_msp.c...
-compiling uart3.c...
-compiling powerstep01.c...
 compiling main.c...
-..\HARDWARE\PowerStep01\factory_many.h(116): warning:  #47-D: incompatible redefinition of macro "M9_LIGHT" (declared at line 65)
+..\HARDWARE\PowerStep01\factory_many.h(131): warning:  #47-D: incompatible redefinition of macro "M9_LIGHT" (declared at line 46)
   #define M9_LIGHT 15
-..\HARDWARE\PowerStep01\factory_many.h(148): warning:  #47-D: incompatible redefinition of macro "M1_LIGHT" (declared at line 40)
+..\HARDWARE\PowerStep01\factory_many.h(133): warning:  #47-D: incompatible redefinition of macro "M9_IN" (declared at line 48)
+  #define M9_IN BACKWARD//?
+..\HARDWARE\PowerStep01\factory_many.h(134): warning:  #47-D: incompatible redefinition of macro "M9_OUT" (declared at line 49)
+  #define M9_OUT FORWARD//?
+..\HARDWARE\PowerStep01\factory_many.h(163): warning:  #47-D: incompatible redefinition of macro "M1_LIGHT" (declared at line 80)
   #define M1_LIGHT 6
-main.c(172): warning:  #128-D: loop is not reachable
+..\HARDWARE\PowerStep01\factory_many.h(194): warning:  #47-D: incompatible redefinition of macro "M11_LIGHT" (declared at line 55)
+  #define M11_LIGHT 10
+main.c(178): warning:  #128-D: loop is not reachable
   	while(1)
-main.c(202): warning:  #111-D: statement is unreachable
+main.c(208): warning:  #111-D: statement is unreachable
   	return 0;
-main.c(120): warning:  #177-D: variable "i" was declared but never referenced
-  	int i=0;
-main.c: 5 warnings, 0 errors
-compiling Cheminert_c52.c...
-compiling printpaper.c...
-compiling baby18dad400.c...
-compiling timer.c...
-compiling spi1.c...
-compiling pump_s100.c...
-..\HARDWARE\PUMPS100\pump_s100.c(50): warning:  #177-D: variable "i" was declared but never referenced
-      int len, i;
-..\HARDWARE\PUMPS100\pump_s100.c(52): warning:  #177-D: variable "rs485buf" was declared but never referenced
-  		u8 rs485buf[16];
-..\HARDWARE\PUMPS100\pump_s100.c(148): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\PUMPS100\pump_s100.c(149): warning:  #177-D: variable "result" was declared but never referenced
-  		u8 result;
-..\HARDWARE\PUMPS100\pump_s100.c(150): warning:  #177-D: variable "i" was declared but never referenced
-      int len, i;
-..\HARDWARE\PUMPS100\pump_s100.c: 5 warnings, 0 errors
-compiling temperature.c...
-compiling weight.c...
-compiling step01.c...
-..\HARDWARE\PowerStep01\step01.c(442): warning:  #177-D: variable "status" was declared but never referenced
-  	int status=0;
-..\HARDWARE\PowerStep01\step01.c(507): warning:  #177-D: variable "value" was declared but never referenced
-  int i,result,value;
-..\HARDWARE\PowerStep01\step01.c: 2 warnings, 0 errors
-compiling keep_temperature.c...
-compiling uart_choose.c...
-compiling uart4.c...
-compiling uart2.c...
-compiling electromagnetic.c...
-compiling factory_many.c...
-..\HARDWARE\PowerStep01\factory_many.h(116): warning:  #47-D: incompatible redefinition of macro "M9_LIGHT" (declared at line 65)
-  #define M9_LIGHT 15
-..\HARDWARE\PowerStep01\factory_many.h(148): warning:  #47-D: incompatible redefinition of macro "M1_LIGHT" (declared at line 40)
-  #define M1_LIGHT 6
-..\HARDWARE\PowerStep01\factory_many.c: 2 warnings, 0 errors
-compiling time_interrupt.c...
-compiling uart_command_control_protocol.c...
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(214): warning:  #111-D: statement is unreachable
-  		return ret;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(164): warning:  #177-D: variable "myMaxSpeed" was declared but never referenced
-    uint32_t myMaxSpeed;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(165): warning:  #177-D: variable "myMinSpeed" was declared but never referenced
-    uint32_t myMinSpeed;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(166): warning:  #177-D: variable "myAcceleration" was declared but never referenced
-    uint16_t myAcceleration;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(167): warning:  #177-D: variable "myDeceleration" was declared but never referenced
-    uint16_t myDeceleration;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(168): warning:  #177-D: variable "readData" was declared but never referenced
-    uint32_t readData;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(219): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(221): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(222): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
-  		u8 RX_CMD_BUF[5];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(223): warning:  #177-D: variable "len" was declared but never referenced
-  		u8 len=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(230): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(232): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(233): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
-  		u8 RX_CMD_BUF[5];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(234): warning:  #177-D: variable "len" was declared but never referenced
-  		u8 len=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(241): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(242): warning:  #177-D: variable "types" was declared but never referenced
-  		Command_type_t types= MOVE_TYPE;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(243): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(252): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(253): warning:  #177-D: variable "types" was declared but never referenced
-  		Command_type_t types= MOVE_TYPE;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(254): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(266): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(272): warning:  #177-D: variable "RX_PARA_BUF" was declared but never referenced
-  		u8 RX_PARA_BUF[100];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(327): warning:  #550-D: variable "motorCommand" was set but never used
-  		Powerstep1_contorl_motor_command_t motorCommand;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c: 23 warnings, 0 errors
-compiling slave_uart_control_interface.c...
-..\HARDWARE\PowerStep01\factory_many.h(116): warning:  #47-D: incompatible redefinition of macro "M9_LIGHT" (declared at line 65)
-  #define M9_LIGHT 15
-..\HARDWARE\PowerStep01\factory_many.h(148): warning:  #47-D: incompatible redefinition of macro "M1_LIGHT" (declared at line 40)
-  #define M1_LIGHT 6
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(6): warning:  #550-D: variable "performer" was set but never used
-  		move_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(48): warning:  #177-D: variable "performer" was declared but never referenced
-  		send_command_and_wait_no_busy_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(185): warning:  #177-D: variable "performer" was declared but never referenced
-  			get_all_light_sensor_level_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(243): warning:  #177-D: variable "i" was declared but never referenced
-  			u8 ret,rx_size,i,j=3;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(519): warning:  #177-D: variable "performer" was declared but never referenced
-  			get_all_weight_warning_result_type_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(688): warning:  #177-D: variable "performer" was declared but never referenced
-  	get_liquid_sensor_level_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(694): warning:  #177-D: variable "performer" was declared but never referenced
-  	pump_s100_set_flowSpeed_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(711): warning:  #177-D: variable "performer" was declared but never referenced
-  	rfid_destory_config_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(787): warning:  #177-D: variable "performer" was declared but never referenced
-  			Real_Time_Polling_Press_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(795): warning:  #177-D: variable "performer" was declared but never referenced
-  			Real_Time_Polling_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(818): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret =0;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1238): warning:  #177-D: variable "ret" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1238): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1287): warning:  #177-D: variable "ret" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1287): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c: 17 warnings, 0 errors
-compiling master_uart_control_interface.c...
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(34): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(58): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(81): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(105): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(127): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(150): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(172): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(196): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(220): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(244): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(267): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(290): warning:  #177-D: variable "times" was declared but never referenced
-  		int times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(317): warning:  #177-D: variable "times" was declared but never referenced
-  		u8 times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(345): warning:  #177-D: variable "size" was declared but never referenced
-  		u8 size=0;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c(346): warning:  #177-D: variable "times" was declared but never referenced
-  		u8 times =100;
-..\HARDWARE\RS232_protocol\master_uart_control_interface.c: 15 warnings, 0 errors
-compiling fm100.c...
-..\HARDWARE\FM100\fm100.c(21): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
-..\HARDWARE\FM100\fm100.c(21): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
-..\HARDWARE\FM100\fm100.c(11): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(45): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
-..\HARDWARE\FM100\fm100.c(45): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
-..\HARDWARE\FM100\fm100.c(34): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(61): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(62): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(92): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(93): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(119): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(120): warning:  #177-D: variable "ret" was declared but never referenced
-  		int ret;
-..\HARDWARE\FM100\fm100.c(121): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(148): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(173): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(195): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(196): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(223): warning:  #177-D: variable "tmp_buf" was declared but never referenced
-  	u8 tmp_buf[]="!";
-..\HARDWARE\FM100\fm100.c(290): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(291): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(292): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(307): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(308): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(309): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(322): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(323): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(324): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(417): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  						if(len==len_cmp&&!strncmp( buf_cmp, buf,len))break;
-..\HARDWARE\FM100\fm100.c(417): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  						if(len==len_cmp&&!strncmp( buf_cmp, buf,len))break;
-..\HARDWARE\FM100\fm100.c(402): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c: 30 warnings, 0 errors
-compiling bl180.c...
-..\HARDWARE\BL180\bl180.c(68): warning:  #177-D: variable "i" was declared but never referenced
-  	int i=100;
-..\HARDWARE\BL180\bl180.c: 1 warning, 0 errors
-compiling S1125.c...
-..\HARDWARE\S1125\S1125.c(47): warning:  #550-D: variable "len" was set but never used
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(64): warning:  #550-D: variable "len" was set but never used
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(75): warning:  #550-D: variable "len" was set but never used
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(92): warning:  #550-D: variable "len" was set but never used
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(119): warning:  #550-D: variable "len" was set but never used
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(149): warning:  #550-D: variable "len" was set but never used
-  		int len=0;
-..\HARDWARE\S1125\S1125.c(177): warning:  #550-D: variable "len" was set but never used
-  	uint8_t len=0;
-..\HARDWARE\S1125\S1125.c(203): warning:  #550-D: variable "ret" was set but never used
-  	 uint8_t ret=0;
-..\HARDWARE\S1125\S1125.c: 8 warnings, 0 errors
-compiling m6e_apply.c...
-compiling uart_config.c...
-compiling spi3.c...
-compiling serial_transport_stm32F103RB.c...
-..\HARDWARE\RFID\serial_transport_stm32F103RB.c(78): warning:  #177-D: variable "i" was declared but never referenced
-  		int i=0;
-..\HARDWARE\RFID\serial_transport_stm32F103RB.c: 1 warning, 0 errors
-compiling rs232_change_protocol.c...
-compiling mini_board_protocol.c...
-compiling real_time_polling.c...
-..\HARDWARE\PowerStep01\factory_many.h(116): warning:  #47-D: incompatible redefinition of macro "M9_LIGHT" (declared at line 65)
-  #define M9_LIGHT 15
-..\HARDWARE\PowerStep01\factory_many.h(148): warning:  #47-D: incompatible redefinition of macro "M1_LIGHT" (declared at line 40)
-  #define M1_LIGHT 6
-..\HARDWARE\Real_Time_Polling\real_time_polling.c: 2 warnings, 0 errors
-compiling uart5.c...
+main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=22432 RO-data=508 RW-data=964 ZI-data=4268  
+Program Size: Code=25924 RO-data=508 RW-data=1012 ZI-data=4388  
 FromELF: creating hex file...
-"..\OBJ\Template.axf" - 0 Error(s), 111 Warning(s).
+"..\OBJ\Template.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:55
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

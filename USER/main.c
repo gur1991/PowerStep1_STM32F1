@@ -123,8 +123,14 @@ int main(void)
 	Init_Board_Config();
 	
 
+	PowerStep_Select_Motor_Baby(M2_MIX);
+	BSP_MotorControl_Move(0, M2_MIX_LEFT, 5000);
+	BSP_MotorControl_WaitWhileActive(0);
+	BSP_MotorControl_Move(0, M2_MIX_RIGHT, 5000);
+	BSP_MotorControl_WaitWhileActive(0);
 
-
+	
+	
 /*
 u8 txbuf[20]={"asdfghjkl"};
 	
