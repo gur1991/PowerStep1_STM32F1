@@ -13,6 +13,10 @@ void Liquid_Sensor_Init(void)
     HAL_GPIO_Init(GPIOE,&GPIO_Initure);
 }	
 
+//∑œ“∫ºÏ≤‚
+//value 3 ---- normal
+//value 1 ---- warning 
+//value 0 ---- flow warning 
 //BIT0 -- L1  BIT1--L2
 u8 Liquid_Sensor_Get(void)
 {	

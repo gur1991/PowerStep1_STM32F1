@@ -132,14 +132,9 @@ int main(void)
 	
 	while(1)
 	{
+			printf("Liquid %d \r\n",Liquid_Sensor_Get());
 
-			printf("HIGH_CHECK_LIGHT %d \r\n",Light_Sensor_Get(10));
-			printf("M7_LIGHT %d \r\n",Light_Sensor_Get(7));
 		
-		  printf("M8_LIGHT %d \r\n",Light_Sensor_Get(8));
-		  printf("M9_LIGHT %d \r\n",Light_Sensor_Get(9));
-		  printf("M11_LIGHT %d \r\n",Light_Sensor_Get(11));
-			
 		  delay_ms(500);
 	}	
 	
