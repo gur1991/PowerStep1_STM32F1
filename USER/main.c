@@ -83,7 +83,7 @@ void Init_Board_Config(void)
 	
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
-	//ScanHandle->init(true);
+	ScanHandle->init(true);
 	
 	printf("automatic inject board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -123,63 +123,18 @@ int main(void)
 	Init_Board_Config();
 	
 
-	//PowerStep_Select_Motor_Baby(M7_HIGH_TURN);
-	//BSP_MotorControl_Move(0, M7_BACK_TURN, 500);
-	//BSP_MotorControl_WaitWhileActive(0);
-	//BSP_MotorControl_Move(0, M2_MIX_RIGHT, 5000);
-	//BSP_MotorControl_WaitWhileActive(0);
-
-	
+	char string[30];
+	int length;
 	while(1)
 	{
-		//	printf("Liquid %d \r\n",Liquid_Sensor_Get());
-
-		
-		  delay_ms(500);
-	}	
-	
-	
-/*
-u8 txbuf[20]={"asdfghjkl"};
-	
-	Uart_Select_Baby(UART2_RS232,3);
-	
-	PowerStep_Select_Motor_Baby(1);
-	BSP_MotorControl_Move(0, M4_LEFT_TO_WAIT, 23000);
-	BSP_MotorControl_WaitWhileActive(0);
-	BSP_MotorControl_Move(0, M4_WAIT_TO_LEFT, 23000);
-	BSP_MotorControl_WaitWhileActive(0);
-*/
-
-	while(1)
-	{
-
-		//UART4_Send_Data(txbuf,sizeof(txbuf));
-		
-		//printf("%d %d\r\n",Light_Sensor_Get(15),Light_Sensor_Get(16));
-		delay_ms(500);
-	
-	//	for(i=15;i<=18;i++)
-		{
-			//printf("%d\r\n",Get_weight_current_gram(WEIGHT_FOUR));
-		}
-		
-		/*
-		for(i=11;i<=16;i++)
-		{
-			electromagnetic_control(i,0);
-		}
-		  delay_ms(200);
-			for(i=11;i<=16;i++)
-		{
-		
-			electromagnetic_control(i,1);
+			memset(string,0,sizeof(string));
+			ScanHandle->scan( string, &length, 7,false);
+			if(length)
+					printf("barcode %s \r\n",string);
 			
-		}
-	  delay_ms(200);
-		*/
-	
+			delay_ms(500);
 	}	
+	
 	
 	
 	
