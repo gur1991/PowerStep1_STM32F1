@@ -123,7 +123,7 @@ int main(void)
 	Init_Board_Config();
 	
 	
-		
+	
 	while(1)
 	{
 		if(ARM_RS232_ASK)

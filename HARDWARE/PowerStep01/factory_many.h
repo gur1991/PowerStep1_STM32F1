@@ -3,7 +3,7 @@
 
 #include "step01.h"
 #include "uart_command_control_protocol.h"
-
+#include "config.h"
 
 
 uint8_t process_motor_command_receive(Command_Package_t command);
@@ -44,13 +44,13 @@ void First_Open_Motor_AutoCheck(void);
 #define M9_OUT BACKWARD//?
 
 
-#define M11_LIGHT 20
+#define M11_LIGHT 19
 #define M11_FAR_NEAR 11
 #define M11_FAR FORWARD//?
 #define M11_NEAR BACKWARD//?
 
 
-#define M10_LIGHT 19
+#define M10_LIGHT 20
 #define M10_UP_DOWM 10
 #define M10_UP  BACKWARD//?
 #define M10_DOWM FORWARD//?
@@ -103,8 +103,8 @@ left---------------------wait
 #define HIGH_CHECK_LIGHT 10
 #define M7_LIGHT 7
 #define M7_HIGH_TURN 7
-#define M7_FRONT_TURN  FORWARD
-#define M7_BACK_TURN  BACKWARD
+#define M7_FRONT_TURN   BACKWARD
+#define M7_BACK_TURN  FORWARD
 
 #define NORMAL_NEXT_LIGHT 8
 #define NORMAL_CHECK_MIX_LIGHT 11

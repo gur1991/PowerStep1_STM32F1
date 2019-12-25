@@ -1008,7 +1008,7 @@ uint8_t Set_Pumps100_FlowSpeed(int speed)
 {
 	uint8_t ret=0;
 	pump_s100_command_type_t data;
-	
+#if USE_GRADIENT_CONTROL_BOARD	
 	uint8_t ge = speed%10;
 	speed=speed/10;
 	uint8_t shi = speed%10;
@@ -1037,7 +1037,7 @@ uint8_t Set_Pumps100_FlowSpeed(int speed)
 	protocol_pump_s100_interface(&data);
 
 	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
-
+#endif
 	return ret;
 }
 
@@ -1046,7 +1046,8 @@ uint8_t Set_Pumps100_MaxPress(int press)
 {
 	uint8_t ret=0;
 	pump_s100_command_type_t data;
-
+	
+#if USE_GRADIENT_CONTROL_BOARD
 	uint8_t ge = press%10;
 	press=press/10;
 	uint8_t shi = press%10;
@@ -1074,7 +1075,7 @@ uint8_t Set_Pumps100_MaxPress(int press)
 	
 	protocol_pump_s100_interface(&data);
 	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
-
+#endif
 	return ret;
 }
 
@@ -1084,6 +1085,8 @@ uint8_t Set_Pumps100_MinPress(int press)
 	uint8_t ret=0;
 	pump_s100_command_type_t data;
 
+#if USE_GRADIENT_CONTROL_BOARD
+	
 	uint8_t ge = press%10;
 	press=press/10;
 	uint8_t shi = press%10;
@@ -1112,6 +1115,7 @@ uint8_t Set_Pumps100_MinPress(int press)
 	protocol_pump_s100_interface(&data);
 	if(data.response.s100_reply.SpecialACK.S100_RESULT!='#')ret=1;
 
+#endif
 	return ret;
 }
 
@@ -1123,16 +1127,18 @@ return 0;
 uint8_t Set_Pumps100_Press(int MinPress,int MaxPress)
 {
 	uint8_t ret=0;
+#if 	USE_GRADIENT_CONTROL_BOARD
 	if(Set_Pumps100_MinPress(MinPress))return 1;
 	if(Set_Pumps100_MaxPress(MaxPress))return 1;
+#endif	
 	return ret;
 }
 
-
+//此指令已废弃
 uint8_t Balance_Chromatographic_Column(int IdleFlowSpeed)
 {
 	uint8_t ret=0;
-	
+/*	
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
 	cheminert_c52_c55.request.timeout=1000;
@@ -1142,15 +1148,17 @@ uint8_t Balance_Chromatographic_Column(int IdleFlowSpeed)
 
 	//ret=Set_Pumps100_FlowSpeed(IdleFlowSpeed);
 	ret=PumpHandle->setFlowSpeed(IdleFlowSpeed);
+*/	
 	return ret;
 }
 
 
+//此指令已废弃
 uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int C_timeS,int A2_timeS)
 {
 	uint8_t ret=0;
 	
-	
+/*
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
 	cheminert_c52_c55.request.timeout=1000;
@@ -1175,7 +1183,7 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 	electromagnetic_control(ELECTROMAGNETIC_A, OPEN_FT);
 	delay_ms(1000*A2_timeS);
 	electromagnetic_control(ELECTROMAGNETIC_A, CLOSE_FT);
-	
+*/
 	return ret;
 }
 
@@ -1183,7 +1191,7 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 uint8_t Rest_C55_C52_Position(void)
 {
 	uint8_t ret=0;
-
+#if USE_CLEANING_DILUTION_BOARD
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.timeout=1000;
 	
@@ -1194,16 +1202,18 @@ uint8_t Rest_C55_C52_Position(void)
 	cheminert_c52_c55.request.para=	CHEMINERT_C55_CC2;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(cheminert_c52_c55.response.buf[0]!='4')return 1;
-	
+#endif	
 	return ret;
 }	
 
 void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	Set_Weight_Sensor_Warnning_Line(WEIGHT_ONE , weightA);
 	Set_Weight_Sensor_Warnning_Line(WEIGHT_TWO , weightB);
 	Set_Weight_Sensor_Warnning_Line(WEIGHT_THREE , weightC);
 	Set_Weight_Sensor_Warnning_Line(WEIGHT_FOUR , weightD);
+#endif
 }
 
 
@@ -1216,6 +1226,8 @@ void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD)
 u8 test_actuator(Command_Cheminert_type_t type)
 {
 	u8 ret=0,i;
+	
+#if USE_CLEANING_DILUTION_BOARD		
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.para=	type;
 	cheminert_c52_c55.request.timeout=1000;
@@ -1226,6 +1238,8 @@ u8 test_actuator(Command_Cheminert_type_t type)
 				printf("%c",cheminert_c52_c55.response.buf[i]);
 	}
 	printf("\r\n");
+#endif
+	
 	return ret;
 }
 
@@ -1241,6 +1255,7 @@ uint8_t Run_S100_Pump(void)
 	u8 ret=0,i;
 	pump_s100_command_type_t data;
 	
+#if USE_GRADIENT_CONTROL_BOARD		
 	data.request.timeout=1000;
 	
 	data.request.para.S100_STX=0x21;
@@ -1279,6 +1294,8 @@ uint8_t Run_S100_Pump(void)
 	
 	}
 */	
+
+#endif
 	return data.response.ret;
 }
 
@@ -1288,7 +1305,9 @@ uint8_t Run_S100_Pump(void)
 uint8_t Stop_S100_Pump(void)
 {
 	u8 ret=0,i;
+	
 	pump_s100_command_type_t data;
+#if USE_GRADIENT_CONTROL_BOARD		
 	
 	data.request.timeout=1000;
 	
@@ -1327,6 +1346,8 @@ uint8_t Stop_S100_Pump(void)
 			printf("unkown answer! \r\n");
 	}
 	*/
+	
+#endif	
 	return data.response.ret;
 }
 
@@ -1339,6 +1360,7 @@ int Read_S100_Pump_press(void){return 0;}
 
 void scan_test(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD	
 	int i;
 	scan_barcode_t scan;
 	scan.request.timeout=7;
@@ -1350,17 +1372,19 @@ void scan_test(void)
 		printf("%c",scan.response.string[i]);
 	}
 	printf("\r\n");
-
+#endif
 }	
 
 void weight_test()
 {
+#if USE_AUTOMATIC_INJECTION_BOARD	
 	Gravity_Sensor_Getting_type_t data;
 	protocol_gravity_sensor_getting(&data);
 	printf("A:%d /gram .\r\n",data.response.weightA);
 	printf("B:%d /gram .\r\n",data.response.weightB);
 	printf("C:%d /gram .\r\n",data.response.weightC);
 	printf("D:%d /gram .\r\n",data.response.weightD);
+#endif 
 }	
 /**************************PUMP start************************************/
 
@@ -1420,6 +1444,9 @@ void PumpChooseHandle(PUMP_type id)
 int pump_process_cmd(pump_type_t pump)
 {
 	int value=0;
+
+#if USE_GRADIENT_CONTROL_BOARD
+	
 	switch(pump.request.type)
 	{
 		case RUN_PUMP:
@@ -1456,7 +1483,8 @@ int pump_process_cmd(pump_type_t pump)
 		default:
 			break;
 	}	
-
+	
+#endif
 	return value;
 }	
 /**************************PUMP end************************************/
