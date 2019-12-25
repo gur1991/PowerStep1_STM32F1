@@ -9,97 +9,6 @@
 #include <string.h>
 #include <inttypes.h>
 
-typedef enum Chemical_Produce_Id
-{
-	Produce_SEPAX=0xB1,
-	Produce_B,
-}Chemical_Produce_Id_type;
-
-typedef enum Chemical_Produce_Adress
-{
-	CHINA_SUZHOU=0xC1,
-	CHINA_YANGZHOU=0xC2,
-	USA_TALA=0xA1,
-}Chemical_Produce_Adress_type;
-
-typedef enum Chemical_Produce_Name
-{
-	BUFFER_A=0xB1,
-	BUFFER_B=0xB2,
-	BUFFER_C=0xB3,
-	DILUENT=0xD1,
-}Chemical_Produce_Name_type;
-
-typedef enum Chemical_Produce_Used
-{
-	USED_EPC=((uint8_t)0x00),
-	UNUSED_EPC=((uint8_t)0xAA),
-}Chemical_Produce_Used_type;
-
-/*
- *two type just for disguish, no differ
- */
-typedef struct
-{
-	uint8_t year[2];
-	uint8_t month;
-	uint8_t day;
-}Chemical_Produce_Period_Hex_type;
-
-typedef struct
-{
-	uint8_t year[2];
-	uint8_t month;
-	uint8_t day;
-}Chemical_Produce_Period_int_type;
-
-typedef struct
-{
-	uint8_t produce_id;
-	uint8_t produce_adress;
-	uint8_t produce_name;
-}Chemical_Produce_Info_type;
-
-
-typedef struct Chemical_reagent_EPC{
-	Chemical_Produce_Info_type Info;
-	uint8_t validity_period[8];
-	uint8_t random_sequence[6];
-	uint8_t check_sequence[4];
-	uint8_t used;
-}Chemical_reagent_EPC_type;
-
-
-#define SN_A "LSP23412"
-#define SN_B "LSP18023"
-
-#define BN_VOLUM_A 5000
-#define BN_VOLUM_B 4000
-
-#define RN_COUNT_A 10000
-#define RN_COUNT_B 1000
-
-typedef struct {
-	uint16_t serial_number[4];
-	uint16_t total_volume;
-	uint16_t total_count;
-}Chemical_reagent_user_Hex_type;
-/*
- * double
- */
-typedef struct {
-	uint8_t serial_number[8];
-	uint8_t total_volume[2];
-	uint8_t total_count[2];
-}Chemical_reagent_user_Char_type;
-
-
-typedef struct Chemical_reagent{
-	uint8_t used;//???????
-	uint8_t error;//??????
-	Chemical_reagent_EPC_type EPC;
-	Chemical_reagent_user_Char_type USR;
-}Chemical_reagent_type;
 
 
 typedef struct {
@@ -177,13 +86,13 @@ struct{
 struct{
 		uint8_t ret;
 		int  length; 
-		char epc[60];
+		char epc[48];
 }response;
 }rfid_get_epc_string_type_t;
 
 typedef union{
 struct{
-	  uint8_t* epcData;
+	  uint8_t epcData[48];
 	  uint8_t epcByteCount;
 }request;
 struct{
@@ -194,7 +103,7 @@ struct{
 typedef union{
 struct{
 		uint8_t wordCount;
-		uint16_t* writeData;
+		uint16_t writeData[8];
 }request;
 struct{
 		uint8_t ret;

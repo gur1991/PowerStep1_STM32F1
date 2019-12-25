@@ -13,14 +13,12 @@ char dataStr[128];
 
 
 static Chemical_reagent_Info_type RfidReadInfo[10];
-static Chemical_reagent_type RfidFormartReadInfo[10];
 static uint8_t index_get=0;
 
 
 void Clear_Storage_Info_Rfid(void)
 {
 	memset(RfidReadInfo, 0, sizeof(RfidReadInfo));
-	memset(RfidFormartReadInfo, 0, sizeof(RfidFormartReadInfo));
 	index_get=0;
 }	
 
@@ -125,12 +123,10 @@ int M6e_Read_Info(void)
 		RfidReadInfo[i].used=1;
 		RfidReadInfo[i].epcStringCount=trd.tag.epcByteCount>sizeof(RfidReadInfo[i].epcString)?sizeof(RfidReadInfo[i].epcString):trd.tag.epcByteCount;
 		memcpy(RfidReadInfo[i].epcString, trd.tag.epc, RfidReadInfo[i].epcStringCount);
-		//RfidReadInfo[i].epcStringCount=trd.tag.epcByteCount;
 
 		if(trd.data.len){
 			  RfidReadInfo[i].userBlankCount=trd.data.len>sizeof(RfidReadInfo[i].userBlankData)?sizeof(RfidReadInfo[i].userBlankData):trd.data.len;
 				memcpy(RfidReadInfo[i].userBlankData, trd.data.list, RfidReadInfo[i].userBlankCount);
-				//RfidReadInfo[i].userBlankCount=trd.data.len;
 		}
 		i++;	
 	}
@@ -139,43 +135,6 @@ int M6e_Read_Info(void)
 	return ret;
 }
 
-/*
-void extractRfidReadInfo(void)
-{
-	  int i=0;
-	  int check=0;
-
-	  memset(RfidFormartReadInfo,0,sizeof(RfidFormartReadInfo));
-
-	  for(i=0;i<sizeof(RfidReadInfo)/sizeof(RfidReadInfo[0]);i++)
-	  {
-
-		  if(RfidReadInfo[i].used==0)break;
-
-		  RfidFormartReadInfo[i].used=1;
-		  check=checkEpcCrcStrArray(RfidReadInfo[i].epcString,RfidReadInfo[i].epcStringCount-1);
-		  if(check)
-		  {
-			  RfidFormartReadInfo[i].error=1;
-			  continue;
-		  }else{
-			  RfidFormartReadInfo[i].error=0;
-		  }
-			if(RfidReadInfo[i].epcStringCount<=sizeof(Chemical_reagent_EPC_type)){
-				memcpy(&RfidFormartReadInfo[i].EPC,RfidReadInfo[i].epcString,RfidReadInfo[i].epcStringCount);
-			}else{
-				memcpy(&RfidFormartReadInfo[i].EPC,RfidReadInfo[i].epcString,sizeof(Chemical_reagent_EPC_type));
-			}	
-			if(RfidReadInfo[i].userBlankCount<=sizeof(Chemical_reagent_user_Char_type))
-			{
-				memcpy(&RfidFormartReadInfo[i].USR,RfidReadInfo[i].userBlankData, RfidReadInfo[i].userBlankCount);
-			}else{
-				memcpy(&RfidFormartReadInfo[i].USR, RfidReadInfo[i].userBlankData, sizeof(Chemical_reagent_user_Char_type));
-			}
-	}
-		  index_get=i;
-}
-*/
 
 uint8_t M6e_Magic_Read_Rfid_Info(int* length)
 {
@@ -183,7 +142,6 @@ uint8_t M6e_Magic_Read_Rfid_Info(int* length)
 	uint8_t ret=0;	
 	ret=M6e_Read_Info()==0?0:1;
 	if(!ret){
-		//extractRfidReadInfo();
 		*length=index_get;
 	}else{
 		*length=0;
