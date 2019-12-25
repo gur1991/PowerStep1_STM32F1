@@ -8,7 +8,7 @@
 
 #define USE_CLEANING_DILUTION_BOARD 0 //Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
-#define USE_AUTOMATIC_INJECTION_BOARD 1//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 
+#define USE_AUTOMATIC_INJECTION_BOARD 1//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
 
 #define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 

@@ -123,19 +123,7 @@ int main(void)
 	Init_Board_Config();
 	
 
-	char string[30];
-	int length;
-	while(1)
-	{
-			memset(string,0,sizeof(string));
-			ScanHandle->scan( string, &length, 7,false);
-			if(length)
-					printf("barcode %s \r\n",string);
-			
-			delay_ms(500);
-	}	
-	
-	
+
 	
 	
 	while(1)

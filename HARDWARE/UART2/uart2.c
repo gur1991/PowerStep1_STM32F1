@@ -24,7 +24,7 @@ void USART2_IRQHandler(void)
 		{
 			
 			USART2_RX_BUF[USART2_RX_CNT]=res;		//记录接收到的值
-			//printf("zzzz%c\r\n",res);
+			//printf("zzzz%d\r\n",res);
 			USART2_RX_CNT++;						//接收数据增加1 
 		}
 		
@@ -37,6 +37,11 @@ void USART2_IRQHandler(void)
 #endif
 
 #if USE_AUTOMATIC_INJECTION_BOARD		
+		if(USART2_RX_CNT>=7 && USART2_RX_BUF[0]==0xff)
+		{
+				if(USART2_RX_CNT == USART2_RX_BUF[1]+7)FLAG_RECEIVE_RFID=1;
+		}
+		
 		if((USART2_RX_BUF[1]=='K')&&(USART2_RX_BUF[0]=='O'))
 		{
 				FLAG_UART_BL180_ACK=1;
@@ -64,11 +69,7 @@ void USART2_IRQHandler(void)
 #endif		
 
 #if USE_GRADIENT_CONTROL_BOARD				
-		if(USART2_RX_CNT>=7 && USART2_RX_BUF[0]==0xff)
-		{
-				if(USART2_RX_CNT == USART2_RX_BUF[1]+7)FLAG_RECEIVE_RFID=1;
-			
-		}
+
 		
 		if(USART2_RX_CNT==1&&(USART2_RX_BUF[0]==0x23||USART2_RX_BUF[0]==0x24||USART2_RX_BUF[0]==0x25)){
 					FLAG_RECEIVE_ACK_PUMP100=1;

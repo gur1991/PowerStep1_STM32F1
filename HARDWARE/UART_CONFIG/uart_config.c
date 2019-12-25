@@ -16,6 +16,7 @@ void Uart2_Config_Init(void)
 //条码器和RFID共用一个串口，需要把RFID工作后，再把串口配置成115200	
 #if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init(9600);
+	  //UART2_Init(115200);
 #endif	
 	Uart_cs_init();
 }
