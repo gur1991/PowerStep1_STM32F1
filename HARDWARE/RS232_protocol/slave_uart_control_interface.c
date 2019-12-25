@@ -522,6 +522,7 @@ static void protocol_get_all_weight_warning_result_interface(get_all_weight_warn
 			data->response.ret=0;
 }
 
+//hal->stm32(master)
 static void protocol_get_single_temperature_degree_interface(get_single_temperature_degree_type_t *data)
 {
 			get_single_temperature_degree_type_t  performer;
@@ -531,7 +532,7 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&data->response.degree);
 
 }
-
+//hal->stm32(master)
 static void protocol_set_single_temperature_degree_interface(set_single_temperature_degree_type_t *data)
 {
 			set_single_temperature_degree_type_t  performer;
@@ -757,7 +758,7 @@ static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
 		data->response.ret=performer.response.ret;
 }
 
-
+//stm32(master)--->stm32(slave)
 static void  protocol_mini_board_set_degree(mini_set_single_temperature_degree_type_t* data)
 {
 			mini_set_single_temperature_degree_type_t  performer;
@@ -765,18 +766,20 @@ static void  protocol_mini_board_set_degree(mini_set_single_temperature_degree_t
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
 			
-
+			printf("mini board set degree. \r\n");
 			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
 
 }	
-
+//stm32(master)--->stm32(slave)
 static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_type_t* data)
 {
 			mini_get_single_temperature_degree_type_t  performer;
 			
 			performer.request.devices=data->request.devices;
-
+			
+		  printf("mini board get degree. \r\n");	
+			data->response.degree=300;
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
 }	
