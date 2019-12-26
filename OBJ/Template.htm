@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Wed Dec 25 19:47:47 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Dec 26 14:56:40 2019
 <BR><P>
 <H3>Maximum Stack Usage =       2616 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -883,10 +883,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckNextPosition
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckLeftPosition
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Move_And_Wait
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LeftMoveTowardWaitPosition
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckWaitPosition
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckBlankPosition
@@ -927,9 +927,10 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_ErrorHandler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
+<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckNextPosition
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckLeftPosition
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Move_And_Wait
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckWaitPosition
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckBlankPosition
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Belt_Move_At_SameTime
@@ -998,10 +999,10 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
+<BR>[Called By]<UL><LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
+<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
 </UL>
 
 <P><STRONG><a name="[de]"></a>ClearAndCheckBlankPosition</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, factory_many.o(i.ClearAndCheckBlankPosition))
@@ -1034,7 +1035,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M6e_Read_Info
 </UL>
 
-<P><STRONG><a name="[d2]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 442 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
+<P><STRONG><a name="[d2]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 482 bytes, Stack size 36 bytes, step01.o(i.ConfigMotorAllDevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = ConfigMotorAllDevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
@@ -2008,15 +2009,17 @@ Global Symbols
 <LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[15f]"></a>Mix_Work_Goto_Postion</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, factory_many.o(i.Mix_Work_Goto_Postion))
+<P><STRONG><a name="[15f]"></a>Mix_Work_Goto_Postion</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, factory_many.o(i.Mix_Work_Goto_Postion))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Mix_Work_Goto_Postion &rArr; RestSelectMotorOrgin &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
 <P><STRONG><a name="[157]"></a>Motor_Move_And_Wait</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, factory_many.o(i.Motor_Move_And_Wait))
@@ -2027,7 +2030,7 @@ Global Symbols
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
+<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;March_high_wheel
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;March_Transporter_Belt
 </UL>
@@ -2035,16 +2038,15 @@ Global Symbols
 <P><STRONG><a name="[44]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
-<P><STRONG><a name="[160]"></a>Normal_Goto_First_Position</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, factory_many.o(i.Normal_Goto_First_Position))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Normal_Goto_First_Position &rArr; Normal_Pitch_Move_Next &rArr; RestSelectMotorOrgin &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[160]"></a>Normal_Goto_First_Position</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, factory_many.o(i.Normal_Goto_First_Position))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Normal_Goto_First_Position &rArr; RestSelectMotorOrgin &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
-<LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[162]"></a>Normal_Move_Blank</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, factory_many.o(i.Normal_Move_Blank))
+<P><STRONG><a name="[161]"></a>Normal_Move_Blank</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, factory_many.o(i.Normal_Move_Blank))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Normal_Move_Blank &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
@@ -2053,14 +2055,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[161]"></a>Normal_Pitch_Move_Next</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, factory_many.o(i.Normal_Pitch_Move_Next))
+<P><STRONG><a name="[162]"></a>Normal_Pitch_Move_Next</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, factory_many.o(i.Normal_Pitch_Move_Next))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Normal_Pitch_Move_Next &rArr; RestSelectMotorOrgin &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Move_And_Wait
 <LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Goto_First_Position
 </UL>
 
 <P><STRONG><a name="[3a]"></a>Obtain_Barcode_String</STRONG> (Thumb, 196 bytes, Stack size 88 bytes, fm100.o(i.Obtain_Barcode_String))
@@ -2103,12 +2104,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = PowerStep_Select_Motor_Baby
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Motor_Control_Init
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckNextPosition
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckLeftPosition
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Move_And_Wait
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LeftMoveTowardWaitPosition
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckWaitPosition
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckBlankPosition
@@ -2947,8 +2948,8 @@ Global Symbols
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_CmdGetParam
 </UL>
 
-<P><STRONG><a name="[194]"></a>ReadyAndCheckLeftPosition</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, factory_many.o(i.ReadyAndCheckLeftPosition))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = ReadyAndCheckLeftPosition &rArr; delay_ms &rArr; delay_us
+<P><STRONG><a name="[194]"></a>ReadyAndCheckLeftPosition</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, factory_many.o(i.ReadyAndCheckLeftPosition))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ReadyAndCheckLeftPosition &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
@@ -2960,11 +2961,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[195]"></a>ReadyAndCheckNextPosition</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, factory_many.o(i.ReadyAndCheckNextPosition))
+<P><STRONG><a name="[195]"></a>ReadyAndCheckNextPosition</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, factory_many.o(i.ReadyAndCheckNextPosition))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ReadyAndCheckNextPosition &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_WaitWhileActive
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Move
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
@@ -3002,13 +3004,13 @@ Global Symbols
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_high_wheel
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_Transporter_Belt
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Goto_First_Position
 <LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Work_Goto_Postion
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_high_wheel
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_Transporter_Belt
+<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Goto_First_Position
 </UL>
 
 <P><STRONG><a name="[24d]"></a>Rest_C55_C52_Position</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, slave_uart_control_interface.o(i.Rest_C55_C52_Position))
@@ -3111,7 +3113,8 @@ Global Symbols
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
 <P><STRONG><a name="[35]"></a>SetTemperatureDegree</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, keep_temperature.o(i.SetTemperatureDegree))
@@ -4833,7 +4836,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_SetNbDevices
 </UL>
 
-<P><STRONG><a name="[89]"></a>main</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, main.o(i.main))
+<P><STRONG><a name="[89]"></a>main</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 2616<LI>Call Chain = main &rArr; protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; M6e_Magic_Write_Rfid_Blank &rArr; TMR_SR_executeTagOp &rArr;  TMR_SR_executeTagOp (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[247]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -4842,7 +4845,10 @@ Global Symbols
 <LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
 <LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Init
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
+<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
 <LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Work_Goto_Postion
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
@@ -4866,18 +4872,18 @@ Global Symbols
 <P><STRONG><a name="[24c]"></a>process_motor_command_receive</STRONG> (Thumb, 170 bytes, Stack size 8 bytes, factory_many.o(i.process_motor_command_receive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = process_motor_command_receive &rArr; Mix_Blood_High_Speed &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_C55_C52_Position
+<BR>[Calls]<UL><LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Work_Goto_Postion
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
+<LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_C55_C52_Position
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rearch_Degree_Wait
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_high_wheel
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_Transporter_Belt
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckNextPosition
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckLeftPosition
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
+<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Pitch_Move_Next
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Move_Blank
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Goto_First_Position
-<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Work_Goto_Postion
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mix_Blood_High_Speed
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LeftMoveTowardWaitPosition
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;First_Open_Motor_AutoCheck_Sensor
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearAndCheckWaitPosition

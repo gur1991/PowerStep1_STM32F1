@@ -74,7 +74,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 	int i=0;
 	uint8_t value=0;
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);
-	BSP_MotorControl_Move(0, M5_WAIT_TO_NEXT, 11000);
+	BSP_MotorControl_Move(0, M5_WAIT_TO_NEXT, 20000);
 
 	while(1)
 	{
@@ -84,9 +84,9 @@ uint8_t ReadyAndCheckNextPosition(void)
 		{
 				BSP_MotorControl_HardStop(0);
 				BSP_MotorControl_Move(0, M5_WAIT_TO_NEXT, 5000);
-				BSP_MotorControl_HardStop(0);
+				BSP_MotorControl_WaitWhileActive(0);
 				break;
-		}else if(i>=250)
+		}else if(i>=450)
 		{
 				BSP_MotorControl_HardStop(0);
 				break;
@@ -109,7 +109,7 @@ uint8_t ReadyAndCheckLeftPosition(void)
 #if USE_AUTOMATIC_INJECTION_BOARD		
 		int i=0;
 		PowerStep_Select_Motor_Baby(M6_BLANK_LEFT);
-		BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 11000);
+		BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 20000);
 		while(1)
 		{
 				  i++;
@@ -118,9 +118,8 @@ uint8_t ReadyAndCheckLeftPosition(void)
 								BSP_MotorControl_HardStop(0);
 								BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 5000);
 								BSP_MotorControl_WaitWhileActive(0);
-								BSP_MotorControl_HardStop(0);
 								break;
-					}else if(i>=250)
+					}else if(i>=450)
 					{
 								BSP_MotorControl_HardStop(0);
 								break;
@@ -150,7 +149,7 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
-				}else if(i>=1000)
+				}else if(i>=800)
 				{
 						BSP_MotorControl_HardStop(0);
 						break;
@@ -194,8 +193,12 @@ uint8_t Belt_Move_At_SameTime(void)
 void Rest_Sample_Motor_Orgin(void)
 {
 #if USE_CLEANING_DILUTION_BOARD	
-	RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 300*1000);
+	RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 600*1000);
+	
+	Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 	RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 15*1000);
+	Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
+	
 #endif
 }
 
@@ -263,18 +266,17 @@ void RestFarAndDownMotorOrgin(void)
 #if USE_CLEANING_DILUTION_BOARD	
 	if(!Light_Sensor_Get(M11_LIGHT)&&!Light_Sensor_Get(M10_LIGHT))
 	{
-			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
-			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 500);
+			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 750);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 1000);
+			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 		
-			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 520);
-			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 20000);
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 30000);
+			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 750);
+			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 60000);
+			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 60*10000);
 		
 		  Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 1000);
+			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 	
 	}else	if(!Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
@@ -283,24 +285,24 @@ void RestFarAndDownMotorOrgin(void)
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 60000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 		
-		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 520);
-			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 20000);
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 30000);
+		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 750);
+			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 60000);
+			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 60*10000);
 		
 		  Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 1000);
+			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 		
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&!Light_Sensor_Get(M11_LIGHT))
 	{
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 300000);
-			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 520);
+			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 60*10000);
+			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 750);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 1000);
+			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
-		  RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 300000);
+		  RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 60*10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
@@ -357,7 +359,7 @@ void Mix_Blood_High_Speed(void)
 void Mix_Work_Goto_Postion(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 40*1000);
+	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
 	//Motor_Move_And_Wait(M7_MIX_V, M7_MIX_V_DOWN, 3000);
 #endif
 }
@@ -377,7 +379,7 @@ void Normal_Goto_First_Position(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD			
 	RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 5000);
-	Normal_Pitch_Move_Next();
+	//Normal_Pitch_Move_Next();
 #endif	
 }
 

@@ -123,6 +123,14 @@ int main(void)
 	Init_Board_Config();
 	
 	
+	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
+	
+	//Normal_Goto_First_Position();
+	Mix_Work_Goto_Postion();
+	Scan_Motor_Slow_Spin();
+	delay_ms(4*1000);
+	Mix_Blood_High_Speed();
+	
 	
 	while(1)
 	{
