@@ -122,42 +122,37 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	
-	Rest_Drain_And_Wash_Motor_Orgin();
-	//March_Drain_And_Wash_Motor_Orgin();
-	Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 110000);
-	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 120000);
-	
 	while(1)
 	{
-		if(ARM_RS232_ASK)
-		{
-						printf("start receive !\r\n");
-						protocol_handle_uart_powerstep01_plain_slave_cmd();
-						ARM_RS232_ASK=0;
-		}	
-		delay_ms(10);
+			if(ARM_RS232_ASK)
+			{
+							printf("start receive !\r\n");
+							protocol_handle_uart_powerstep01_plain_slave_cmd();
+							ARM_RS232_ASK=0;
+			}	
+			delay_ms(10);
 
 		
 		
+			
+			
 #if USE_KEEP_TEMPERATURE_BOARD
-		i++;
-		if(i==100)
-		{
-			i=0;		
-			keep_thermometer_degree();
-			IWDG_Feed();
-		}
+			i++;
+			if(i==100)
+			{
+				i=0;		
+				keep_thermometer_degree();
+				IWDG_Feed();
+			}
 #endif		
 
 #if (USE_AUTOMATIC_INJECTION_BOARD|USE_GRADIENT_CONTROL_BOARD)
-		i++;
-		if(i==50)
-		{		
-				i=0;
-					//这里还有问题
-				//Real_Time_Polling_Current_Index();
-		}
+			i++;
+			if(i==50)
+			{		
+					i=0;
+					Real_Time_Polling_Current_Index();
+			}
 #endif		
 	}
 

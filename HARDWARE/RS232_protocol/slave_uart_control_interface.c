@@ -766,7 +766,7 @@ static void  protocol_mini_board_set_degree(mini_set_single_temperature_degree_t
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
 			
-			printf("mini board set degree. \r\n");
+	//		printf("mini board set degree. \r\n");
 			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
 
@@ -778,7 +778,7 @@ static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_t
 			
 			performer.request.devices=data->request.devices;
 			
-		  printf("mini board get degree. \r\n");	
+//		  printf("mini board get degree. \r\n");	
 			data->response.degree=300;
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;

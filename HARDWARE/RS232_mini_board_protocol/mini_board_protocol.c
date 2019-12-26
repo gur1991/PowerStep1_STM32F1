@@ -11,7 +11,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 			if(MINI_RS232_ASK){
 					UART5_Receive_Data((u8*)(master),len);
 					MINI_RS232_ASK=0;
-					printf("master receive data ok\r\n");
+					//printf("master receive data ok\r\n");
 					break;		
 			}
 			times--;
@@ -34,7 +34,7 @@ uint8_t Master_Mini_Board_Set_Degree(mini_set_single_temperature_degree_type_t d
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MINI_TEMPERATURE_SENSOR_SET_TYPE;
 		master_motorCommand.CommandPowerStep1.mini_set_single_temperature_degree=data;
-		printf("start mini_set_single_temperature_degree \r\n");	
+//		printf("start mini_set_single_temperature_degree \r\n");	
 		
 		ret=Master_Mini_Board_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
 		//printf("wait out \r\n");
@@ -47,7 +47,7 @@ uint8_t Master_Mini_Board_Set_Degree(mini_set_single_temperature_degree_type_t d
 				}
 		}
 	
-		printf("end mini_set_single_temperature_degree ,ret:%d \r\n",ret);
+//		printf("end mini_set_single_temperature_degree ,ret:%d \r\n",ret);
 		return ret;
 }
 
@@ -58,7 +58,7 @@ uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t d
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MINI_TEMPERATURE_SENSOR_GET_TYPE;
 		master_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree=data;
-		printf("start mini_get_single_temperature_degree \r\n");	
+//		printf("start mini_get_single_temperature_degree \r\n");	
 		
 		ret=Master_Mini_Board_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
 		//printf("wait out \r\n");
@@ -72,7 +72,7 @@ uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t d
 					 *degree=0;
 				}
 		}
-		printf("end mini_get_single_temperature_degree ,ret:%d \r\n",ret);
+//		printf("end mini_get_single_temperature_degree ,ret:%d \r\n",ret);
 		return ret;
 }
 

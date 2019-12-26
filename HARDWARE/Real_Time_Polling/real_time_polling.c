@@ -27,7 +27,10 @@ void  Real_Time_Polling_Current_Index(void)
 		POLLING_data.weightThree=Get_weight_current_gram(WEIGHT_THREE);
 		POLLING_data.weightFour=Get_weight_current_gram(WEIGHT_FOUR);
 
-#elif USE_GRADIENT_CONTROL_BOARD
+#endif
+	
+	
+#if USE_GRADIENT_CONTROL_BOARD
 	
 		POLLING_press.pumpPress=PumpHandle->readPress();
 
