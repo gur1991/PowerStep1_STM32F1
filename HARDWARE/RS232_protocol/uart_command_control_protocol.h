@@ -174,6 +174,9 @@ typedef enum Command_Package_type{
 			MIX_AND_REACH_POSITION,//sensor
 			BIG_IN_OUT_SLOW,//sensor
 			BIG_IN_OUT_NORMAL,//sensor
+			
+			NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO,//sensor
+			
 
 
 

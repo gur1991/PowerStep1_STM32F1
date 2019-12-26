@@ -1,5 +1,5 @@
 Dependencies for Project 'SepaxShark', Target 'SepaxShark': (DO NOT MODIFY !)
-F (.\main.c)(0x5E045964)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5E046A96)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x59254212)
 I (..\USER\stm32f1xx.h)(0x571DE09C)
 I (..\USER\stm32f103xe.h)(0x571DE09C)
@@ -76,7 +76,7 @@ I (..\HARDWARE\UART5\uart5.h)(0x5E006CD3)
 I (..\HARDWARE\UART3\uart3.h)(0x5E006CD3)
 I (..\HARDWARE\UART2\uart2.h)(0x5E006CD3)
 I (..\HARDWARE\RS232_protocol\slave_uart_control_interface.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -121,7 +121,7 @@ I (..\HARDWARE\RFID\tmr_serial_transport.h)(0x5D0A0D99)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x574E3E26)
-I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E034147)
+I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E045BC8)
 I (..\HARDWARE\DS18B20\keep_temperature.h)(0x5D72568D)
 I (..\HARDWARE\DS18B20\ds18b20.h)(0x5E006CD2)
 I (..\HARDWARE\BL180\bl180.h)(0x5E006CD2)
@@ -2061,7 +2061,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\SYSTEM\usart\usart.h)(0x5D2E8136)
 I (..\HARDWARE\UART4\uart4.h)(0x5E006CD3)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -2317,7 +2317,7 @@ I (..\HARDWARE\Config\config.h)(0x5E043CEE)
 I (..\HARDWARE\UART3\uart3.h)(0x5E006CD3)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
 I (..\HARDWARE\UART_CHOOSE\uart_choose.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -2827,8 +2827,8 @@ I (..\HARDWARE\Weight\weight.h)(0x5E006CD3)
 I (..\HARDWARE\SPI3\spi3.h)(0x5E006CD3)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x574E3E26)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
-F (..\HARDWARE\PowerStep01\factory_many.c)(0x5E0459A6)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\factory_many.o --omf_browse ..\obj\factory_many.crf --depend ..\obj\factory_many.d)
-I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E034147)
+F (..\HARDWARE\PowerStep01\factory_many.c)(0x5E046D4D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\factory_many.o --omf_browse ..\obj\factory_many.crf --depend ..\obj\factory_many.d)
+I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E045BC8)
 I (..\HARDWARE\PowerStep01\step01.h)(0x5E006CD3)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -2903,7 +2903,7 @@ I (..\HARDWARE\TIME_INTERRUPT\time_interrupt.h)(0x5D561D33)
 I (..\HARDWARE\AD_SPI\spi1.h)(0x5E006CD2)
 I (..\HARDWARE\Weight\weight.h)(0x5E006CD3)
 I (..\HARDWARE\SPI3\spi3.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\PUMPS100\pump_s100.h)(0x5D8B1447)
 I (..\HARDWARE\UART2\uart2.h)(0x5E006CD3)
 I (..\HARDWARE\UART3\uart3.h)(0x5E006CD3)
@@ -3010,7 +3010,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -3257,7 +3257,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\HARDWARE\Config\config.h)(0x5E043CEE)
 I (..\HARDWARE\UART3\uart3.h)(0x5E006CD3)
 I (..\SYSTEM\delay\delay.h)(0x592658E0)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -3436,7 +3436,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\HARDWARE\Config\config.h)(0x5E043CEE)
 F (..\HARDWARE\RS232_protocol\master_uart_control_interface.c)(0x5E006CD3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\master_uart_control_interface.o --omf_browse ..\obj\master_uart_control_interface.crf --depend ..\obj\master_uart_control_interface.d)
 I (..\HARDWARE\RS232_protocol\master_uart_control_interface.h)(0x5D9BF24F)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
@@ -3554,7 +3554,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x574E3E26)
 I (..\HARDWARE\UART4\uart4.h)(0x5E006CD3)
 F (..\HARDWARE\RS232_protocol\slave_uart_control_interface.c)(0x5E034ACC)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\slave_uart_control_interface.o --omf_browse ..\obj\slave_uart_control_interface.crf --depend ..\obj\slave_uart_control_interface.d)
 I (..\HARDWARE\RS232_protocol\slave_uart_control_interface.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
@@ -3670,13 +3670,13 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x574E3E26)
 I (..\HARDWARE\UART4\uart4.h)(0x5E006CD3)
-I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E034147)
+I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E045BC8)
 I (..\HARDWARE\DS18B20\keep_temperature.h)(0x5D72568D)
 I (..\HARDWARE\DS18B20\ds18b20.h)(0x5E006CD2)
 I (..\HARDWARE\BL180\bl180.h)(0x5E006CD2)
 I (..\HARDWARE\UART_CONFIG\uart_config.h)(0x5E006CD3)
 F (..\HARDWARE\RS232_protocol\uart_command_control_protocol.c)(0x5E006CD3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\OBJ -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HALLIB\STM32F1xx_HAL_Driver\Inc -I ..\USMART -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\KEY -I ..\HARDWARE\SPI -I ..\HARDWARE\W25QXX -I ..\HARDWARE\Drivers\BSP\Components\Common -I ..\HARDWARE\Drivers\BSP\Components\powerSTEP01 -I ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo -I ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx -I ..\HARDWARE\UART3 -I ..\STM32F10x_FWLib\inc -I ..\HARDWARE\LIGHT -I ..\HARDWARE\Cheminert -I ..\HARDWARE\PUMPS100 -I ..\HARDWARE\PRINT -I ..\HARDWARE\BABY18 -I ..\HARDWARE\TIMER -I ..\HARDWARE\AD_SPI -I ..\HARDWARE\Temperature -I ..\HARDWARE\Weight -I ..\HARDWARE\PowerStep01 -I ..\HARDWARE\UART4 -I ..\HARDWARE\DS18B20 -I ..\HARDWARE\UART2 -I ..\HARDWARE\UART_CHOOSE -I ..\HARDWARE\Config -I ..\HARDWARE\Electromagnetic -I ..\HARDWARE\RS232_protocol -I ..\HARDWARE\WDG -I ..\HARDWARE\Execute_Command -I ..\HARDWARE\TIME_INTERRUPT -I ..\HARDWARE\FM100 -I ..\HARDWARE\S1125 -I ..\HARDWARE\Liquid_Sensor -I ..\HARDWARE\BL180 -I ..\HARDWARE\RFID -I ..\HARDWARE\RFID\M6E -I ..\HARDWARE\KEY -I ..\HARDWARE\UART_CONFIG -I ..\HARDWARE\UART_RTS_CONTROL -I ..\HARDWARE\SPI3 -I ..\HARDWARE\UART5 -I ..\HARDWARE\RS232_mini_board_protocol -I ..\HARDWARE\Real_Time_Polling --c99-ID:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -DSTM32F10X_HD -DBARE_METAL -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\obj\uart_command_control_protocol.o --omf_browse ..\obj\uart_command_control_protocol.crf --depend ..\obj\uart_command_control_protocol.d)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CC5097E)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
@@ -4890,7 +4890,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -5007,7 +5007,7 @@ I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x571E2CF8)
 I (..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x571E2CF8)
 I (..\HARDWARE\Config\config.h)(0x5E043CEE)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -5132,7 +5132,7 @@ I (..\HARDWARE\AD_SPI\spi1.h)(0x5E006CD2)
 I (..\HARDWARE\Weight\weight.h)(0x5E006CD3)
 I (..\HARDWARE\SPI3\spi3.h)(0x5E006CD3)
 I (..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -5251,7 +5251,7 @@ I (..\HARDWARE\AD_SPI\spi1.h)(0x5E006CD2)
 I (..\HARDWARE\Weight\weight.h)(0x5E006CD3)
 I (..\HARDWARE\SPI3\spi3.h)(0x5E006CD3)
 I (..\HARDWARE\RS232_protocol\slave_uart_control_interface.h)(0x5E006CD3)
-I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E01B762)
+I (..\HARDWARE\RS232_protocol\uart_command_control_protocol.h)(0x5E046A5B)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h)(0x5D2EA798)
 I (..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h)(0x5D26ECBE)
 I (..\HARDWARE\Drivers\BSP\Components\Common\motor.h)(0x5CD3D45A)
@@ -5301,7 +5301,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x574E3E26)
 I (D:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x574E3E26)
 I (..\HARDWARE\UART4\uart4.h)(0x5E006CD3)
-I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E034147)
+I (..\HARDWARE\PowerStep01\factory_many.h)(0x5E045BC8)
 I (..\HARDWARE\DS18B20\keep_temperature.h)(0x5D72568D)
 I (..\HARDWARE\DS18B20\ds18b20.h)(0x5E006CD2)
 I (..\HARDWARE\BL180\bl180.h)(0x5E006CD2)

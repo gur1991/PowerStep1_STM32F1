@@ -364,7 +364,16 @@ void Mix_Work_Goto_Postion(void)
 #endif
 }
 
-	
+
+
+//有->无-有
+void Normal_Pitch_Move_Next_The_Last_Two(void)
+{
+#if USE_AUTOMATIC_INJECTION_BOARD		
+	Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,800);
+	RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT,M4_NEXT_TO_BLANK, 5000);
+#endif
+}
 
 //有->无-有
 void Normal_Pitch_Move_Next(void)
@@ -555,6 +564,10 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			case BIG_IN_OUT_NORMAL:
 				Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,NORMAL_SPEED);
+				break;
+			
+			case NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO:
+					Normal_Pitch_Move_Next_The_Last_Two();
 				break;
 			
 			default:
