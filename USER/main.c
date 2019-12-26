@@ -123,7 +123,10 @@ int main(void)
 	Init_Board_Config();
 	
 	
-
+	Rest_Drain_And_Wash_Motor_Orgin();
+	//March_Drain_And_Wash_Motor_Orgin();
+	Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 110000);
+	Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 120000);
 	
 	while(1)
 	{

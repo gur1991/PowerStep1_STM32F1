@@ -206,8 +206,8 @@ void Rest_Sample_Motor_Orgin(void)
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
 #if USE_CLEANING_DILUTION_BOARD		
-	RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 200*1000);
-	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 200*1000);
+	RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 800*1000);
+	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 800*1000);
 #endif	
 }
 

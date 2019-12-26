@@ -32,12 +32,14 @@ void First_Open_Motor_AutoCheck(void);
 
 /****************new start*******************************/
 
+
+//MAX steps 11*10000
 #define M8_LIGHT 17
 #define M8_BIG_IN_OUT 8
 #define M8_BIG_IN FORWARD//?
 #define M8_BIG_OUT BACKWARD//?
 
-
+//MAX steps 12*10000
 #define M9_LIGHT 18
 #define M9_IN_OUT 9
 #define M9_IN FORWARD//?
