@@ -1,5 +1,8 @@
 #include "S1125.h"
 #include "electromagnetic.h"
+#include "config.h"
+
+
 Uart_Receive_Data S1125_Read=NULL ;
 Uart_Send_Data S1125_Write=NULL ;
 static S1125_protocl_type pump;
@@ -31,6 +34,7 @@ void config_s1125_pump(void)
 int transfer_s1125(void)
 {
 	int len=0;
+#if USE_GRADIENT_CONTROL_BOARD
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
 	uart_rts_control(PUMP_UART_CS, 0);
@@ -38,12 +42,14 @@ int transfer_s1125(void)
 	uart_rts_control(PUMP_UART_CS, 1);
 	delay_ms(100);
 	S1125_Read(S1125_rx_buf,&len);
+#endif
 	
 	return len;
 }
 
 uint8_t Run_S1125_Pump(void)
 {
+#if USE_GRADIENT_CONTROL_BOARD	
 	int len=0;
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
@@ -54,24 +60,28 @@ uint8_t Run_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
+#endif
 	
 	return 0;
 }	
 
 uint8_t Stop_S1125_Pump(void)
 {
-	
+#if USE_GRADIENT_CONTROL_BOARD	
 	int len=0;
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
 	memcpy(pump.address,"012D", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
+#endif
+	
 	return 0;
 }
 //test connect :0F06006F00  --6F00
 uint8_t Connect_S1125_Pump(void)
 {
+#if USE_GRADIENT_CONTROL_BOARD	
 	int len=0;
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
@@ -81,6 +91,9 @@ uint8_t Connect_S1125_Pump(void)
 	if(S1125_rx_buf[7]=='6')
 		return 0;
 	else return 1;
+#endif
+
+	return 0;
 }
 
 
@@ -92,6 +105,8 @@ int Read_Press_S1125_Pump(void)
 	int len=0;
 	int press=0;
 	int i=0;
+
+#if USE_GRADIENT_CONTROL_BOARD	
 	config_s1125_pump();
 	memcpy(pump.device,"0F04", 4);
 	memcpy(pump.address,"0065", 4);
@@ -119,11 +134,13 @@ int Read_Press_S1125_Pump(void)
 */	
 	press=S1125_rx_buf[10]+S1125_rx_buf[9]*16+S1125_rx_buf[8]*16*16+S1125_rx_buf[7]*16*16*16;
 
+#endif	
 	return press;
 }	
 
 uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 {
+#if USE_GRADIENT_CONTROL_BOARD
 	int len=0;
 	int i=0;
 	pump.value[3]=SpeedFlow%16;
@@ -145,7 +162,8 @@ uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 	memcpy(pump.address,"00C8", 4);
 	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
-	
+
+#endif	
 	return 0;
 }	
 
@@ -153,7 +171,7 @@ uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 
 uint8_t Write_MinPress_s1125_pump(int MinPress)
 {
-	
+#if USE_GRADIENT_CONTROL_BOARD	
 		int len=0;
 		int i=0;
 	pump.value[3]=MinPress%16;
@@ -175,6 +193,9 @@ uint8_t Write_MinPress_s1125_pump(int MinPress)
 	memcpy(pump.address,"00C9", 4);
 	memcpy(pump.value,"0000", 4);
 	len=transfer_s1125();
+
+#endif
+	
 	return 0;
 	
 }	
@@ -182,6 +203,8 @@ uint8_t Write_MinPress_s1125_pump(int MinPress)
 
 uint8_t Write_MaxPress_s1125_pump(int MaxPress)
 {
+	
+#if USE_GRADIENT_CONTROL_BOARD	
 	uint8_t len=0;
 	int i=0;
 	pump.value[3]=MaxPress%16;
@@ -203,16 +226,20 @@ uint8_t Write_MaxPress_s1125_pump(int MaxPress)
 	memcpy(pump.address,"00CA", 4);
 	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
+
+#endif
+	
 	return 0;
 	
 }	
 uint8_t Write_Press_s1125_pump(int MinPress, int MaxPress)
 {
 	 uint8_t ret=0;
-		
+	
+#if USE_GRADIENT_CONTROL_BOARD				
 	ret=Write_MaxPress_s1125_pump(MaxPress);	
 	ret=Write_MinPress_s1125_pump(MinPress);
-
+#endif
 	return 0;
 }	
 

@@ -59,3 +59,4 @@
 ..\obj\ds18b20.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\ds18b20.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\ds18b20.o: ..\SYSTEM\delay\delay.h
+..\obj\ds18b20.o: ..\HARDWARE\Config\config.h

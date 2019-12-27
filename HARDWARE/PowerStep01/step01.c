@@ -397,14 +397,16 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 	return ret;
 }
 
-
+//discard
 void StopALLMotorMotion(void)
-{	
+{
+/*	
 	int i;
 	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
 			PowerStep_Select_Motor_Baby(i);
 			BSP_MotorControl_HardStop(0);
-	}		
+	}
+*/	
 }
 
 //motor ±àºÅ

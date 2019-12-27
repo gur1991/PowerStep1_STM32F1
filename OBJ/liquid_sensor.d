@@ -58,3 +58,4 @@
 ..\obj\liquid_sensor.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\liquid_sensor.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\liquid_sensor.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
+..\obj\liquid_sensor.o: ..\HARDWARE\Config\config.h

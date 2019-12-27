@@ -1,4 +1,5 @@
 #include "weight.h"
+#include "config.h"
 
 static int WARNNIG_VALUE_ONE=0;
 static int WARNNIG_VALUE_TWO=0;
@@ -20,11 +21,13 @@ int get_weight_sensor_value(WEIGHT_type weight)
 {
 		int value=0; 
 	
+#if USE_AUTOMATIC_INJECTION_BOARD	
 		if(weight==WEIGHT_ONE)		value = AD_Sensor_Get_Data(AD1_CS);
 		if(weight==WEIGHT_TWO)		value = AD_Sensor_Get_Data(AD2_CS);
 		if(weight==WEIGHT_THREE)	value = AD_Sensor_Get_Data(AD3_CS);
 		if(weight==WEIGHT_FOUR)		value = AD_Sensor_Get_Data(AD4_CS);
-
+#endif
+	
 		return value;
 }	
 
@@ -42,8 +45,11 @@ int Get_weight_current_gram(WEIGHT_type weight)
 {
 	int value=0;
 	int gram=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	value = get_weight_sensor_value(weight);
 	gram=weight_AD_value_change_to_unit(value);
+#endif
 	
 	return gram;
 }
@@ -59,16 +65,21 @@ static __inline int weight_unit_change_to_AD_value(int gram)
 /**************************interface for extern******************************************/
 void Set_Weight_Sensor_Warnning_Line(WEIGHT_type weight,int gram)
 {
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 		int degree=weight_unit_change_to_AD_value(gram);
 		
 		__set_weight_sensor_warnning_line(weight, degree);
-
+#endif
+	
 }
 //result 1----warning    0----normal
 
 uint8_t Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_type weight)
 {		
 		uint8_t ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 		int value = get_weight_sensor_value(weight);
 		
 		switch(weight)
@@ -89,6 +100,8 @@ uint8_t Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_type weight)
 			default:
 					ret=0;
 		}
+#endif
+		
 		return ret;
 }
 
@@ -102,12 +115,12 @@ bit3   bit2   bit1   bit0
 uint8_t Get_All_Weight_Sensor_Warnning_Result(void)
 {
 		uint8_t value=0;
-	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 		value|=Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_ONE)<<0;
 		value|=Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_TWO)<<1;
 		value|=Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_THREE)<<2;
 		value|=Get_Single_Weight_Sensor_Warnning_Result(WEIGHT_FOUR)<<3;
-	
+#endif	
 		return value;
 }	
 
@@ -116,6 +129,7 @@ uint8_t Get_All_Weight_Sensor_Warnning_Result(void)
 
 u8 Weight_Sensor_Init(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD		
     GPIO_InitTypeDef GPIO_Initure;
     __HAL_RCC_GPIOG_CLK_ENABLE();           
     
@@ -130,6 +144,8 @@ u8 Weight_Sensor_Init(void)
 
 		SPI3_Init();		   			        //初始化SPI
 		SPI3_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
+#endif
+	
 	return 0;
 }
 
@@ -148,13 +164,16 @@ static __inline void Set_AD_CS(AD_type cs,AD_LEVEL_type level)
 }	
 
 
-void SPI3_Transfer(u8* txData,u8*rxData,int len,AD_type cs){
+void SPI3_Transfer(u8* txData,u8*rxData,int len,AD_type cs)
+{	
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		int i;
 		Set_AD_CS(cs,CS_LOW);
 		for(i=0;i<len;i++){
 				rxData[i]=SPI3_ReadWriteByte(txData[i]);
 		}
 		Set_AD_CS(cs,CS_HIGH);
+#endif		
 }
 
 int AD_Sensor_Get_Data(AD_type cs){
@@ -164,6 +183,7 @@ int AD_Sensor_Get_Data(AD_type cs){
 		u8 bit_high=0;
 		u16 value=0;
 		
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		SPI3_Transfer(txbuf,rxbuf,sizeof(txbuf),cs);
 				
 		bit_high|=rxbuf[0]<<6;//取低2bit
@@ -176,6 +196,8 @@ int AD_Sensor_Get_Data(AD_type cs){
 		value|=bit_low;
 		
 //		printf("here value:%d \r\n",value);
+#endif
+		
 		return value;
 }
 

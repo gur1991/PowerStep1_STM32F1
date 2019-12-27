@@ -39,6 +39,7 @@ void Uart_Rts_Control_Init(void)
 
 void uart_rts_control(uint8_t devices, uint8_t status)
 {
+#if USE_GRADIENT_CONTROL_BOARD			
 		switch(devices)
 		{
 			case 0:	RTS0=status;break;
@@ -47,6 +48,8 @@ void uart_rts_control(uint8_t devices, uint8_t status)
 		  case 3:	RTS3=status;break;
 			default:break;
 		}	
+#endif
+		
 }
 
 	

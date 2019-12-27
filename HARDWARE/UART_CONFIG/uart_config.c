@@ -24,22 +24,30 @@ void Uart2_Config_Init(void)
 
 void Load_RFID_Uart_Config(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init(115200);
+#endif	
 }
 
 void Exit_RFID_Uart_Config(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init(9600);
+#endif	
 }
 
 void Load_BL180_Uart_Config(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init_Check(9600);
+#endif	
 }
 
 void Exit_BL180_Uart_Config(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD			
 		UART2_Init(9600);
+#endif	
 }
 
 

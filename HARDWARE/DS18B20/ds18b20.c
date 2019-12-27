@@ -1,11 +1,14 @@
 #include "ds18b20.h"
 #include "delay.h"
+#include "config.h"
 
 static int CHOOSE_DS18B20=1;
 
 //复位DS18B20
 void DS18B20_Rst(void)	   
-{ 
+{
+	
+#if USE_KEEP_TEMPERATURE_BOARD		
 if(CHOOSE_DS18B20==1){	
 	DS18B20_IO_OUT();   //设置为输出
 	DS18B20_DQ_OUT=0;  	//拉低DQ
@@ -18,15 +21,17 @@ if(CHOOSE_DS18B20==1){
 	delay_us(750);      //拉低750us
 	DS18B20_DQ_OUT_T2=1;  	//DQ=1 
 	delay_us(15);       //15US
-
 }	
+#endif
+
 }
 
 //等待DS18B20的回应
 //返回1:未检测到DS18B20的存在
 //返回0:存在
 u8 DS18B20_Check(void) 	   
-{   
+{  
+#if USE_KEEP_TEMPERATURE_BOARD	
 	u8 retry=0;
 if(CHOOSE_DS18B20==1){		
 	DS18B20_IO_IN();    //设置为输入
@@ -60,6 +65,9 @@ if(CHOOSE_DS18B20==1){
 	};
 }	
 	if(retry>=240)return 1;	    
+
+#endif
+
 	return 0;
 }
 
@@ -67,7 +75,9 @@ if(CHOOSE_DS18B20==1){
 //返回值：1/0
 u8 DS18B20_Read_Bit(void) 
 {
-	u8 data;
+	u8 data=0;
+	
+#if USE_KEEP_TEMPERATURE_BOARD	
 if(CHOOSE_DS18B20==1){	
 	DS18B20_IO_OUT();   //设置为输出
 	DS18B20_DQ_OUT=0; 
@@ -89,6 +99,8 @@ if(CHOOSE_DS18B20==1){
 	else data=0;	 
 	delay_us(50);
 }	
+
+#endif
 	return data;
 }
 
@@ -98,18 +110,21 @@ u8 DS18B20_Read_Byte(void)
 {        
 	u8 i,j,dat;
 	dat=0;
+#if USE_KEEP_TEMPERATURE_BOARD	
 	for (i=1;i<=8;i++) 
 	{
         j=DS18B20_Read_Bit();
         dat=(j<<7)|(dat>>1);
-    }						    
+    }
+#endif	
 	return dat;
 }
 
 //写一个字节到DS18B20
 //dat：要写入的字节
 void DS18B20_Write_Byte(u8 dat)     
- {             
+ {    
+#if USE_KEEP_TEMPERATURE_BOARD	 
     u8 j;
     u8 testb;
 if(CHOOSE_DS18B20==1){		 
@@ -150,6 +165,7 @@ if(CHOOSE_DS18B20==1){
 						}			
         }
     }
+#endif	
 }
  
 //开始温度转换
@@ -166,6 +182,7 @@ void DS18B20_Start(void)
 //返回0:存在    	 
 u8 DS18B20_Init(void)
 {
+#if USE_KEEP_TEMPERATURE_BOARD	
 	GPIO_InitTypeDef GPIO_Initure;
   __HAL_RCC_GPIOE_CLK_ENABLE();			//开启GPIOG时钟
 	
@@ -177,6 +194,8 @@ u8 DS18B20_Init(void)
  
 	DS18B20_Rst();
 	return DS18B20_Check();
+#endif
+	return 0;	
 }
 
 //从ds18b20得到温度值
@@ -184,6 +203,7 @@ u8 DS18B20_Init(void)
 //返回值：温度值 （-550~1250） 
 short DS18B20_Get_Temp(int chip)
 {
+#if USE_KEEP_TEMPERATURE_BOARD	
     u8 temp;
     u8 TL,TH;
     short tem;
@@ -208,6 +228,8 @@ short DS18B20_Get_Temp(int chip)
     tem=(double)tem*0.625;//转换     
 	if(temp)return tem; //返回温度值
 	else return -tem;    
+#endif
+		return 0;
 }
 
 

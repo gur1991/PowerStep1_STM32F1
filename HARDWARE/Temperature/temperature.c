@@ -1,4 +1,6 @@
 #include "temperature.h"
+#include "config.h"
+
 static int TMP_TEMPERATURE_VALUE_ONE=0; 
 static int TMP_TEMPERATURE_VALUE_TWO=0;
 static int TMP_TEMPERATURE_VALUE=0;
@@ -123,16 +125,19 @@ static int value_change_to_temperature(int value)
 }
 int get_temperature_degree(AD_type AD_CS){
 		int value=0,temperature=0;
-		value=AD_Sensor_Get_Data(AD_CS);
+#if USE_KEEP_TEMPERATURE_BOARD		
+  	value=AD_Sensor_Get_Data(AD_CS);
 		temperature=value_change_to_temperature(value);
 		//printf("get_temperature_degree:%d  %d\r\n",value,temperature);
-		return temperature;
+#endif		
+	  return temperature;
 }
 
 
 static int set_calculate_duty_cycle(int value,int list_value)
 {
 	int duty_cycle=0;
+	
 			if(list_value-value>1000){duty_cycle=0;return duty_cycle;}
 			if(list_value-value>500){duty_cycle=250;return duty_cycle;}
 			if(list_value-value>300){duty_cycle=350;return duty_cycle;}
@@ -147,6 +152,7 @@ static int set_calculate_duty_cycle(int value,int list_value)
 //两个温度计和与设定值对比
 static  void __keep_temperature_degree(void)
 {
+#if USE_KEEP_TEMPERATURE_BOARD		
 		int value=0,value1=0,value2=0;
 		int duty_cycle=0;
 		int last_duty_cycle=0;
@@ -167,7 +173,8 @@ static  void __keep_temperature_degree(void)
 				if(last_duty_cycle==duty_cycle)return;
 				last_duty_cycle=duty_cycle;
 				TIM_SetTIM3Compare4(duty_cycle);
-		}	
+		}
+#endif		
 }	
 /*
 void set_temperature_degree(int degree,AD_type AD_CS){
@@ -215,13 +222,17 @@ int Get_Single_Temperature_Degree(TMEPERATURE_type devices)
 
 void Set_Single_Temperature_Degree(int degree, TMEPERATURE_type devices)
 {		
+#if USE_KEEP_TEMPERATURE_BOARD		
 		if(TMEPERATURE_ONE==devices)TMP_TEMPERATURE_VALUE_ONE=temperature_change_to_value(degree);
 		if(TMEPERATURE_TWO==devices)TMP_TEMPERATURE_VALUE_TWO=temperature_change_to_value(degree);
 		TMP_TEMPERATURE_VALUE=TMP_TEMPERATURE_VALUE_ONE+TMP_TEMPERATURE_VALUE_TWO;
+#endif
 }	
 
 
 void Main_Keep_Temperature_Degree(void)
 {
+#if USE_KEEP_TEMPERATURE_BOARD		
 		__keep_temperature_degree();
+#endif	
 }	

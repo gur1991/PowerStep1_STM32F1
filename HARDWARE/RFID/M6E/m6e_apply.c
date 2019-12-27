@@ -1,5 +1,6 @@
 #include "m6e_apply.h"
 #include "uart_config.h"
+#include "config.h"
 
 static TMR_Reader r, *rp=NULL;
 static TMR_ReadPlan plan;
@@ -25,8 +26,9 @@ void Clear_Storage_Info_Rfid(void)
 
 void Destory_M6e_Config(void)
 {
+#if USE_AUTOMATIC_INJECTION_BOARD	
 	TMR_destroy(rp);
-
+#endif	
 }	
 
 
@@ -35,8 +37,9 @@ void Destory_M6e_Config(void)
 uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 {
  
-  TMR_Status ret;
-   int powerdbm; 
+  TMR_Status ret=0;
+#if USE_AUTOMATIC_INJECTION_BOARD	
+	int powerdbm; 
   TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
 
 	Load_RFID_Uart_Config();	
@@ -84,6 +87,8 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 	
 
 	Exit_RFID_Uart_Config();	
+	
+#endif	
 	return ret;		
 
 }
@@ -92,7 +97,9 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 
 int M6e_Read_Info(void)
 {
-  TMR_Status ret;
+  TMR_Status ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	int i=0;
 	Load_RFID_Uart_Config();	
 	
@@ -132,6 +139,8 @@ int M6e_Read_Info(void)
 	}
 	index_get=i;
   Exit_RFID_Uart_Config();	
+	
+#endif	
 	return ret;
 }
 
@@ -140,12 +149,16 @@ uint8_t M6e_Magic_Read_Rfid_Info(int* length)
 {
 	
 	uint8_t ret=0;	
+
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	ret=M6e_Read_Info()==0?0:1;
 	if(!ret){
 		*length=index_get;
 	}else{
 		*length=0;
 	}	
+#endif	
+	
 	return ret;
 }	
 
@@ -157,7 +170,9 @@ Chemical_reagent_Info_type M6e_Magic_Get_One_Rfid_Info(uint8_t index)
 
 uint8_t Get_EPC_String(int*length, char* epc)
 {
-	uint8_t ret;
+	uint8_t ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	TMR_TagReadData trd;
 	memset(epcStr, 0, sizeof(epcStr));
   Load_RFID_Uart_Config();	
@@ -173,13 +188,17 @@ uint8_t Get_EPC_String(int*length, char* epc)
 	}
 
 	Exit_RFID_Uart_Config();	
+#endif
+	
 	return ret;
 }
 
 
 uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
 {
-	  TMR_Status ret;
+	  TMR_Status ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
     TMR_TagData epc;
     TMR_TagOp tagop;
 		Load_RFID_Uart_Config();	
@@ -188,11 +207,16 @@ uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
     ret = TMR_TagOp_init_GEN2_WriteTag(&tagop, &epc);
     ret = TMR_executeTagOp(rp, &tagop, NULL, NULL);
     Exit_RFID_Uart_Config();	
+#endif
+	
 	  return ret;
 }
 
 uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
 {
+		TMR_Status ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD		
     TMR_TagFilter filter, *pfilter = &filter;
 
     TMR_TagOp writeop, readop;
@@ -202,7 +226,7 @@ uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
     TMR_uint8List response;
     uint8_t responseData[16];
     TMR_uint16List writeArgs;
-	  TMR_Status ret;
+	  
 		
 		Load_RFID_Uart_Config();	
 	
@@ -233,6 +257,8 @@ uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
     }
     tagopList.list = NULL;
     Exit_RFID_Uart_Config();	
+#endif
+		
 		return ret;
 }
 

@@ -1,4 +1,5 @@
 #include "bl180.h"
+#include "config.h"
 
 #define SCAN_DEBUG 1
 
@@ -235,6 +236,8 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 	int ret=0;
 	u8 rx_buf[128];
 	int len=0;
+#if USE_AUTOMATIC_INJECTION_BOARD			
+	
 #if(SCAN_DEBUG)		
 	printf("start scan \r\n");
 #endif
@@ -269,16 +272,20 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 #endif
 
 	Exit_BL180_Uart_Config();
-//	Wait_Ack();
+	
+#endif	
 	return ret;
 }
 void Init_BL180(bool status)
 {
 	
+#if USE_AUTOMATIC_INJECTION_BOARD			
 	Load_BL180_Uart_Config();
 	Config_BL80_Transfer();
 	End_BL180();
 	Exit_BL180_Uart_Config();
+#endif
+	
 /*	
 	Goto_Setting_Mode();
 	

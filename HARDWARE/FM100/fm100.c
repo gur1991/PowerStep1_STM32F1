@@ -1,4 +1,6 @@
 #include "fm100.h"
+#include "config.h"
+
 Uart_Receive_Data FM100_Read=NULL ;
 Uart_Send_Data FM100_Write=NULL ;
 
@@ -378,7 +380,8 @@ void Init_Scan_FM100(bool status)
 {
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	
+
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	FM100_Scan_Code_Programming(false);
 	
 	//FM100_Scan_Short_Intervel();
@@ -388,12 +391,14 @@ void Init_Scan_FM100(bool status)
 	Stop_Scan_FM100();
 	//Start_Scan_FM100();
 	Control_Scan_FM100_Beeper(status);
-	
+#endif	
 }	
 
 int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 {
 	int ret=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD	
 	static u8 buf[30];
 	u8 buf_cmp[30];
 	int timeout=TimeOut_S*100;
@@ -432,6 +437,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	
 	printf("stop scan. \r\n");
 	
+#endif	
 	return ret;
 }
 

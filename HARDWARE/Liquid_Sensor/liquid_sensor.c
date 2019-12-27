@@ -1,7 +1,10 @@
 #include "liquid_sensor.h"
+#include "config.h"
 
 void Liquid_Sensor_Init(void)
 {
+
+#if USE_AUTOMATIC_INJECTION_BOARD			
     GPIO_InitTypeDef GPIO_Initure;
     
 	  __HAL_RCC_GPIOE_CLK_ENABLE();         
@@ -11,6 +14,8 @@ void Liquid_Sensor_Init(void)
     GPIO_Initure.Pull=GPIO_PULLUP;        //下拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速
     HAL_GPIO_Init(GPIOE,&GPIO_Initure);
+#endif
+	
 }	
 
 //废液检测
@@ -21,9 +26,11 @@ void Liquid_Sensor_Init(void)
 u8 Liquid_Sensor_Get(void)
 {	
 	u8 value=0;	
-	
+
+#if USE_AUTOMATIC_INJECTION_BOARD		
 	value=LIQUID_ONE_VALUE;
 	value|=LIQUID_TWO_VALUE<<1;
+#endif
 	
 	return value;
 }

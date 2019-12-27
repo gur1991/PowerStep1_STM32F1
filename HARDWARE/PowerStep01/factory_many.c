@@ -5,9 +5,13 @@
 //**********************************************plan A**********************************************
 void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
+	
+#if (USE_CLEANING_DILUTION_BOARD|USE_AUTOMATIC_INJECTION_BOARD)	
 	PowerStep_Select_Motor_Baby(deviceId);	
 	BSP_MotorControl_Move(0, direction, stepCount);
 	BSP_MotorControl_WaitWhileActive(0);
+#endif
+	
 }
 /*
 //右下角第一位为blank position 位

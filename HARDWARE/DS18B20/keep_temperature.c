@@ -1,6 +1,6 @@
 #include "keep_temperature.h"
 #include "delay.h"
-
+#include "config.h"
 static int SET_VALUE=0;
 //static int FLAG_SET_VALUE=0;
 static int FLAG_START_PID=0;
@@ -43,9 +43,11 @@ void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 }
 
 void KeepTemperatureDegree_Duty(void)
-{
+{	
+#if USE_KEEP_TEMPERATURE_BOARD		
 	float keep_duty=435-(SET_VALUE-375)*0.6;
 	TIM_SetTIM3Compare4((int)keep_duty);
+#endif
 }	
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
@@ -64,6 +66,8 @@ int GetTemperatureDegree(TMEPERATURE_type devices)
 uint8_t Rearch_Degree_Wait(void)
 {
 	uint8_t ret=0;
+	
+#if USE_KEEP_TEMPERATURE_BOARD		
 	int i=0;
 	while(1)
 	{
@@ -84,6 +88,8 @@ uint8_t Rearch_Degree_Wait(void)
 		delay_ms(1000);
 		
 	}
+#endif
+	
 	return ret;
 }	
 
@@ -150,7 +156,8 @@ int PID_Control(int temperature)
 
 void KeepTemperatureDegree(void)
 {	
-	
+
+#if USE_KEEP_TEMPERATURE_BOARD	
 		int duty_cycle=0;
 		int temp1=0,temp2=0;
 		static int i=0;
@@ -184,6 +191,8 @@ void KeepTemperatureDegree(void)
 		printf(" duty:%d\r\n",duty_cycle);
 		
 		TIM_SetTIM3Compare4(duty_cycle);	
+
+#endif		
 }	
 
 
