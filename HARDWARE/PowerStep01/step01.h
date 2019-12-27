@@ -64,7 +64,6 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 }response;
 }init_motor_speed_tension_type_t;
 
@@ -97,7 +96,6 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 }response;
 }rest_select_motor_orgin_type_t;
 
@@ -127,7 +125,6 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 }response;
 }move_wait_motor_type_t;
 
@@ -139,7 +136,6 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 }response;
 }move_many_motor_type_t;
 
@@ -155,7 +151,6 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 }response;
 }wait_many_motor_type_t;
 
@@ -167,7 +162,6 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;	
 	}response;	
 }mix_and_reach_type_t;
 #endif

@@ -53,7 +53,6 @@ struct{
 struct{
 		uint8_t ret;
 		uint8_t value;
-		real_time_polling_type_t polling;
 }response;
 }get_light_sensor_level_t;
 
@@ -64,7 +63,6 @@ struct{
 struct{
 		uint8_t ret;
 		uint8_t value[3];
-		real_time_polling_type_t polling;
 }response;
 }get_all_light_sensor_level_t;
 

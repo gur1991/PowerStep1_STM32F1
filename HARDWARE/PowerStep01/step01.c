@@ -438,7 +438,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 					{						
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=count_delay*100){
+				}else if(i>=count_delay*300){
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}

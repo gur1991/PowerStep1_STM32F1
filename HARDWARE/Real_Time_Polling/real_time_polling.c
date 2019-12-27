@@ -1,8 +1,8 @@
 #include "real_time_polling.h"
 #include "slave_uart_control_interface.h"
 
-real_time_polling_type_t POLLING_data;
-real_time_polling_press_type_t POLLING_press;
+static real_time_polling_type_t POLLING_data;
+static real_time_polling_press_type_t POLLING_press;
 
 
 void  Real_Time_Polling_Init(void)
@@ -38,4 +38,12 @@ void  Real_Time_Polling_Current_Index(void)
 	
 }	
 
+real_time_polling_type_t  Get_Real_Time_Polling_Value(void)
+{
+		return POLLING_data;
+}	
 
+real_time_polling_press_type_t  Get_Real_Time_Polling_Press(void)
+{
+		return POLLING_press;
+}	

@@ -11,8 +11,6 @@ static void protocol_powerstep01_move(move_type_t* data){
 
 		//Powerstep01_QueueCommands(performer.request.devices,performer.request.types,performer.request.steps);
 		data->response.ret=0;	
-		//data->response.polling.degree=POLLING_data.degree;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 //Ö¸ÁîÖØĞÂ½âÊÍÎªÍ£Ö¹stop 
@@ -31,7 +29,6 @@ static void protocol_powerstep01_power(power_type_t* data){
 		}
 	
 		data->response.ret=0;
-	  memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 //¸´Î»Ô­µã
 static void protocol_powerstep01_rest_pos(rest_pos_type_t* data){
@@ -41,7 +38,6 @@ static void protocol_powerstep01_rest_pos(rest_pos_type_t* data){
 		PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_CmdResetPos(performer.request.devices);//´Ëº¯Êı²»Á¬½ÓÓ²¼ş×èÈû
 		data->response.ret=0;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 //discard 
 static void protocol_powerstep01_send_command_and_wait_no_busy(send_command_and_wait_no_busy_type_t* data){
@@ -51,7 +47,6 @@ static void protocol_powerstep01_send_command_and_wait_no_busy(send_command_and_
     /* Wait for all device ends moving */ 
     //BSP_MotorControl_WaitForAllDevicesNotBusy();//´Ëº¯Êı²»Á¬½ÓÓ²¼ş×èÈû
 		data->response.ret=0;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 //µ¥¸öµç»úÔË¶
@@ -67,7 +62,6 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		BSP_MotorControl_Move(0, (motorDir_t)performer.request.dir, performer.request.steps);
 
 	  data->response.ret=0;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 //µÈ´ıµ¥¸öµç»úÔË¶¯Í£Ö¹
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
@@ -76,7 +70,6 @@ static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
 		PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_WaitWhileActive(0);	
 		data->response.ret=0;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 //»ñÈ¡µ±Ç°Î»ÖÃ
@@ -88,7 +81,6 @@ static void protocol_powerstep01_one_device_get_pos(one_device_get_pos_type_t*da
 			data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);//´Ëº¯Êı²»Á¬½ÓÓ²¼ş×èÈû
 	
 		  data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*data){
 			one_device_set_mark_type_t performer;
@@ -98,7 +90,6 @@ static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*
 			PowerStep_Select_Motor_Baby(performer.request.devices);
 			BSP_MotorControl_SetMark(0, performer.request.pos);//´Ëº¯Êı²»Á¬½ÓÓ²¼ş×èÈû
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 
@@ -111,7 +102,6 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 			data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.registe);
 
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));	
 }
 static void protocol_powerstep01_set_para(set_para_type_t*data){
 			set_para_type_t performer;
@@ -122,7 +112,6 @@ static void protocol_powerstep01_set_para(set_para_type_t*data){
 			PowerStep_Select_Motor_Baby(performer.request.devices);
 			BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.para);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			select_step_mode_t performer;
@@ -132,7 +121,6 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			PowerStep_Select_Motor_Baby(performer.request.devices);
 			BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*data){
@@ -142,7 +130,6 @@ static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*da
 	
 			Set_Single_Motor_Config(*data);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }	
 //discard
 static void protocol_move_many_motor(move_many_motor_type_t*data){
@@ -151,7 +138,6 @@ static void protocol_move_many_motor(move_many_motor_type_t*data){
 			memcpy(&performer, data,sizeof(performer));
 			//move_many_motor(performer);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 //discard
 static void protocol_wait_many_motor(wait_many_motor_type_t*data){
@@ -160,7 +146,6 @@ static void protocol_wait_many_motor(wait_many_motor_type_t*data){
 			memcpy(&performer, data,sizeof(performer));
 			//wait_many_motor(performer);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 static void protocol_command_package_motor(motor_command_package_type_t*data)
@@ -169,7 +154,6 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 		performer.request.command = data->request.command;
 		data->response.value=process_motor_command_receive(performer.request.command);
 		data->response.ret=0;
-		memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }	
 
 
@@ -178,7 +162,6 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			performer.request.number=data->request.number;
 			data->response.value=Light_Sensor_Get(performer.request.number);
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*data){
@@ -187,7 +170,6 @@ static void protocol_get_all_light_sensor_level(get_all_light_sensor_level_t*dat
 			Light_Sensor_Get_All();
 			memcpy(data->response.value, gStatusLight, sizeof(gStatusLight));		
 			data->response.ret=0;
-			memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }
 
 
@@ -581,7 +563,6 @@ static void protocol_rest_select_motor_orgin(rest_select_motor_orgin_type_t* dat
 	performer.request.flag_wait = data->request.flag_wait;
 	RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps);
 	data->response.ret=0;
-	memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }	
 
 static void protocol_move_wait_motor(move_wait_motor_type_t* data)
@@ -592,7 +573,6 @@ static void protocol_move_wait_motor(move_wait_motor_type_t* data)
 	performer.request.data.direction = data->request.data.direction;
 	Motor_Move_And_Wait(performer.request.data.array, performer.request.data.direction , performer.request.data.stepCount);
 	data->response.ret=0;
-	memcpy((void*)&data->response.polling, (void*)&POLLING_data, sizeof(POLLING_data));
 }	
 
 static void protocol_set_pumps100_press(Set_Pumps100_Press_type_t* data)
@@ -789,7 +769,7 @@ static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
 {
 			Real_Time_Polling_Press_t  performer;
 			
-			data->response.polling_press.pumpPress = POLLING_press.pumpPress;
+			data->response.polling_press.pumpPress = Get_Real_Time_Polling_Press().pumpPress;
 			data->response.ret = 0;
 }	
 
@@ -797,13 +777,13 @@ static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 {
 			Real_Time_Polling_t  performer;
 
-			data->response.polling.degree=POLLING_data.degree;
-			data->response.polling.liquid=POLLING_data.liquid;
+			data->response.polling.degree= Get_Real_Time_Polling_Value().degree;
+			data->response.polling.liquid= Get_Real_Time_Polling_Value().liquid;
 			
-			data->response.polling.weightOne=POLLING_data.weightOne;
-		  data->response.polling.weightTwo=POLLING_data.weightTwo;
-			data->response.polling.weightThree=POLLING_data.weightThree;
-			data->response.polling.weightFour=POLLING_data.weightFour;
+			data->response.polling.weightOne=Get_Real_Time_Polling_Value().weightOne;
+		  data->response.polling.weightTwo=Get_Real_Time_Polling_Value().weightTwo;
+			data->response.polling.weightThree=Get_Real_Time_Polling_Value().weightThree;
+			data->response.polling.weightFour=Get_Real_Time_Polling_Value().weightFour;
 	
 			data->response.ret = 0;
 }	

@@ -189,7 +189,6 @@ typedef union{
 	struct{
 		uint8_t value;
 		uint8_t ret;
-		real_time_polling_type_t polling;
 	}response;
 }motor_command_package_type_t;
 
@@ -203,7 +202,6 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
-		real_time_polling_type_t polling;
 	}response;
 }move_type_t;
 
@@ -214,7 +212,6 @@ typedef union{
 		uint8_t power;//·ÏÆú
 	}request;
 	struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }power_type_t;
@@ -224,7 +221,6 @@ typedef union{
 		uint8_t devices;//0,1,2
 	}request;
 	struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }rest_pos_type_t;
@@ -234,7 +230,6 @@ typedef union{
 		uint8_t Nor;//±£ÁôÎ»
 	}request;
 	struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 	}response;
 }	send_command_and_wait_no_busy_type_t;
@@ -244,7 +239,6 @@ struct{
 		uint16_t time_ms;
 }request;
 struct{
-	  real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }delay_time_type_t;
@@ -258,7 +252,6 @@ struct{
 		uint32_t steps;//+forward -backward
 }request;
 struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_move_type_t;
@@ -269,7 +262,6 @@ struct{
 		uint8_t devices;//0,1,2
 }request;
 struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_wait_type_t;
@@ -279,7 +271,6 @@ typedef union{
 		uint8_t devices;//0,1,2
 }request;
 struct{
-		real_time_polling_type_t polling;
 		int32_t pos;
 		uint8_t ret;	
 }response;
@@ -291,7 +282,6 @@ struct{
 		int32_t pos;
 }request;
 struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }one_device_set_mark_type_t;
@@ -304,7 +294,6 @@ struct{
 		uint8_t registe;
 }request;
 struct{
-		real_time_polling_type_t polling;
 		uint32_t result_para;
 		uint8_t ret;
 }response;
@@ -317,7 +306,6 @@ struct{
 		uint32_t para;
 }request;
 struct{
-		real_time_polling_type_t polling;
 		uint8_t ret;
 }response;
 }set_para_type_t;
@@ -328,7 +316,6 @@ struct{
 		motorStepMode_t StepMode;
 }request;
 struct{
-		real_time_polling_type_t polling;	
 		uint8_t ret;
 }response;
 }select_step_mode_t;

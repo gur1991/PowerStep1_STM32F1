@@ -122,6 +122,9 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+	
+
+	
 	while(1)
 	{
 			if(ARM_RS232_ASK)

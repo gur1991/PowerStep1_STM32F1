@@ -308,7 +308,7 @@ void RestFarAndDownMotorOrgin(void)
 	{
 		  RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 60*10000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 10000);
+			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 12000);
 			Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
 	}
 #endif	
