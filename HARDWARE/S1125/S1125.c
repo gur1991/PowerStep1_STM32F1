@@ -113,11 +113,16 @@ int Read_Press_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
+	
+/*	
 	for(i=0;i<len;i++)
 	{
 			printf("%c",S1125_rx_buf[i]);
 	}
 	printf("\r\n");
+*/	
+	
+	
 	
 	
 /*	

@@ -8,9 +8,6 @@
 void  Real_Time_Polling_Current_Index(void);
 void  Real_Time_Polling_Init(void);
 
-
-
-
 typedef struct{ 
 		int degree;
 		int weightOne;
