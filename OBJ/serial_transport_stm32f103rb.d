@@ -58,6 +58,7 @@
 ..\obj\serial_transport_stm32f103rb.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
+..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\Config\config.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\RFID\tm_reader.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\RFID\tm_config.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\RFID\tmr_types.h
@@ -83,4 +84,3 @@
 ..\obj\serial_transport_stm32f103rb.o: ..\SYSTEM\delay\delay.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\UART2\uart2.h
-..\obj\serial_transport_stm32f103rb.o: ..\HARDWARE\Config\config.h

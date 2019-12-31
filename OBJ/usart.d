@@ -60,3 +60,4 @@
 ..\obj\usart.o: ..\SYSTEM\usart\usart.h
 ..\obj\usart.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\usart.o: ..\HARDWARE\UART3\uart3.h
+..\obj\usart.o: ..\HARDWARE\Config\config.h

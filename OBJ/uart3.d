@@ -58,6 +58,7 @@
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\uart3.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
+..\obj\uart3.o: ..\HARDWARE\Config\config.h
 ..\obj\uart3.o: ..\SYSTEM\usart\usart.h
 ..\obj\uart3.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\uart3.o: ..\SYSTEM\delay\delay.h
@@ -69,7 +70,6 @@
 ..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h
 ..\obj\uart3.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
-..\obj\uart3.o: ..\HARDWARE\Config\config.h
 ..\obj\uart3.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\uart3.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\uart3.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h

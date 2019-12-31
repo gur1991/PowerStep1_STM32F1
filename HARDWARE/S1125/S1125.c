@@ -37,11 +37,13 @@ int transfer_s1125(void)
 #if USE_GRADIENT_CONTROL_BOARD
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
-	uart_rts_control(PUMP_UART_CS, 0);
-	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
 	uart_rts_control(PUMP_UART_CS, 1);
+	
+	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
 	delay_ms(100);
 	S1125_Read(S1125_rx_buf,&len);
+	
+	uart_rts_control(PUMP_UART_CS, 0);
 #endif
 	
 	return len;
@@ -53,9 +55,11 @@ uint8_t Run_S1125_Pump(void)
 	int len=0;
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);
+
 	memcpy(pump.address,"00CC", 4);
-	memcpy(pump.value,"0011", 4);
+	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
+
 	memcpy(pump.address,"012C", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
@@ -74,6 +78,7 @@ uint8_t Stop_S1125_Pump(void)
 	memcpy(pump.address,"012D", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
+	
 #endif
 	
 	return 0;
@@ -88,6 +93,19 @@ uint8_t Connect_S1125_Pump(void)
 	memcpy(pump.address,"006F", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
+	
+	/*
+	if(len){
+		int i;
+	
+		for(i=0;i<len;i++)
+		{
+			printf("%c",S1125_rx_buf[i]);
+		}
+		printf("\r\n");
+	}
+	*/
+	
 	if(S1125_rx_buf[7]=='6')
 		return 0;
 	else return 1;
@@ -108,37 +126,43 @@ int Read_Press_S1125_Pump(void)
 
 #if USE_GRADIENT_CONTROL_BOARD	
 	config_s1125_pump();
+	
 	memcpy(pump.device,"0F04", 4);
 	memcpy(pump.address,"0065", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
 	
-/*	
-	for(i=0;i<len;i++)
-	{
+
+	/*
+	if(len){
+		int i;
+	
+		for(i=0;i<len;i++)
+		{
 			printf("%c",S1125_rx_buf[i]);
+		}
+		printf("\r\n");
 	}
-	printf("\r\n");
-*/	
+	
+	*/
 	
 	
-	
-	
-/*	
+
 	for(i=7;i<11;i++)
 	{
-		printf("char %c\r\n",S1125_rx_buf[i]);
+	//	printf("char %c\r\n",S1125_rx_buf[i]);
 		
 			if(S1125_rx_buf[i]<'A')S1125_rx_buf[i]-='0';
 			else S1125_rx_buf[i]-=55;
 		
-			printf("%d\r\n",S1125_rx_buf[i]);
+			//printf("%d\r\n",S1125_rx_buf[i]);
 		
 	}
-*/	
+
 	press=S1125_rx_buf[10]+S1125_rx_buf[9]*16+S1125_rx_buf[8]*16*16+S1125_rx_buf[7]*16*16*16;
 
+	//press=(int)(press/145);
 #endif	
 	return press;
 }	

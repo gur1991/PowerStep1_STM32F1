@@ -59,6 +59,6 @@
 ..\obj\uart_choose.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h
 ..\obj\uart_choose.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h
 ..\obj\uart_choose.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
-..\obj\uart_choose.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\uart_choose.o: ..\HARDWARE\Config\config.h
+..\obj\uart_choose.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\uart_choose.o: ..\SYSTEM\delay\delay.h

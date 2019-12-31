@@ -122,10 +122,6 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
-
-	
-	
-	
 	while(1)
 	{
 			if(ARM_RS232_ASK)
@@ -134,11 +130,7 @@ int main(void)
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
 			}	
-			delay_ms(10);
-
-		
-		
-			
+			delay_ms(10);			
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
