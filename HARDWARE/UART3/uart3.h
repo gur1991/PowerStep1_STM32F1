@@ -5,6 +5,9 @@
 
 #define LEN_MAX_UART3 260
 
+void Uart3_Rx_Clear(void);
+
+
 extern u8 UART3_RX_BUF[LEN_MAX_UART3]; 		
 extern int UART3_RX_CNT;   			//接收到的数据长度
 

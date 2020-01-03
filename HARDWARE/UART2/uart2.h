@@ -6,6 +6,8 @@
 
 #define MAX_LENGTH 260
 
+void Uart2_Rx_Clear(void);
+
 extern u8 USART2_RX_BUF[MAX_LENGTH]; 	
 extern int USART2_RX_CNT;   			
 

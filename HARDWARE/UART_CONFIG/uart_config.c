@@ -1,7 +1,7 @@
 #include "uart_config.h"
 #include "uart_choose.h"
-
-
+#include "uart5.h"
+#include "uart4.h"
 
 void Uart2_Config_Init(void)
 {
@@ -50,4 +50,14 @@ void Exit_BL180_Uart_Config(void)
 #endif	
 }
 
+void Uart_Clear_Context(void)
+{
+	Uart3_Rx_Clear();
+	Uart2_Rx_Clear();
 
+#if USE_KEEP_TEMPERATURE_BOARD	
+	Uart5_Rx_Clear();
+#endif
+	
+	Uart4_Rx_Clear();
+}	

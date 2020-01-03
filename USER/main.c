@@ -61,7 +61,7 @@ void Init_Board_Config(void)
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
 	
-	printf("gradient board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	printf("[Hummingbird],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 
@@ -70,7 +70,7 @@ void Init_Board_Config(void)
 	Light_Sensor_Init();
 	BSP_Motor_Control_Init();//没设备连接会卡住
 	Electromagnetic_init();//电磁阀
-	printf("cleaning dilution board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	printf("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 #if USE_AUTOMATIC_INJECTION_BOARD
@@ -84,8 +84,8 @@ void Init_Board_Config(void)
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
-	
-	printf("automatic inject board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	//Init_M6e_Config(TMR_REGION_PRC,0,0);
+	printf("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 //1:加热的定时器方波heating 2：PID算法  3：温度传感器 4:初始化并设置初始温度为0	
@@ -101,7 +101,7 @@ void Init_Board_Config(void)
 	  
 	  IWDG_Init(4,625*4); //4s   	MAX
     IWDG_Start();
-		printf("keep temperature board,protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+		printf("[Mini],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 
 #endif
 
@@ -122,19 +122,21 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+	
+	
 	while(1)
 	{
 			if(ARM_RS232_ASK)
 			{
-							printf("start receive !\r\n");
+							//printf("start receive !\r\n");
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
 			}	
-			delay_ms(10);			
+			delay_ms(20);			
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
-			if(i==100)
+			if(i==50)
 			{
 				i=0;		
 				keep_thermometer_degree();

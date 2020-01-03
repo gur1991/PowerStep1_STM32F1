@@ -1,5 +1,7 @@
 #include "slave_uart_control_interface.h"
 #include "real_time_polling.h"
+#include "config.h"
+
 //discard 
 static void protocol_powerstep01_move(move_type_t* data){
 		
@@ -400,7 +402,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			
 			}
 while(j--){
-			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,timeout,wait_flag, type_flag);
+			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,4*1000,wait_flag, type_flag);
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
@@ -684,7 +686,7 @@ static void  protocol_rfid_init_config(rfid_init_config_type_t* data)
 	performer.request.ReadPowerdbm=data->request.ReadPowerdbm;
 	performer.request.WritePowerdbm=data->request.WritePowerdbm;
 	
-	data->response.ret=Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+	data->response.ret=0;//Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
 }
 
 static void  protocol_rfid_destory_config(rfid_destory_config_type_t* data)
@@ -797,18 +799,32 @@ static void  protocol_electromagnetic_package(electromagnetic_package_type_t* da
 			data->response.ret = 0;
 }	
 
+void inline __InfoBoard__(int len,int type)
+{
+#if USE_GRADIENT_CONTROL_BOARD 
+ printf("[H]%d@%d\r\n",type,len);
+#endif	
+#if USE_CLEANING_DILUTION_BOARD 
+ printf("[P]%d@%d\r\n",type,len);
+#endif
+#if USE_AUTOMATIC_INJECTION_BOARD 
+ printf("[C]%d@%d\r\n",type,len);
+#endif	
+#if USE_KEEP_TEMPERATURE_BOARD 
+ printf("[T]%d@%d\r\n",type,len);
+#endif		
+}	
+
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
-		
-	  printf("*******%d \r\n",len);
 	
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
-				printf("receive data len error !\r\n");
+				__InfoBoard__(len,slave_motorCommand.type);
 				goto OVER;
 		}
 		
@@ -978,7 +994,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
 		}
-OVER:		
+OVER:
+		Uart_Clear_Context();	
 		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 }
 

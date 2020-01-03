@@ -195,3 +195,8 @@ void UART2_Receive_Data(u8 *buf,int *len)
 		USART2_RX_CNT=0;		//«Â¡„
 	}
 } 
+
+void Uart2_Rx_Clear(void)
+{
+	USART2_RX_CNT=0;		//«Â¡„
+}	

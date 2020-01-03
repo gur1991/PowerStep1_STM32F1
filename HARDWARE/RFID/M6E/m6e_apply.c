@@ -57,7 +57,7 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
   ret = TMR_connect(rp);
 	printf("connect ret:%d \r\n",ret);
 	
-	powerdbm=2000;
+	powerdbm=2500;
 	ret = TMR_paramSet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
 	ret = TMR_paramGet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
 	printf("******* ReadPowerdbm:%d \r\n",powerdbm);
@@ -84,7 +84,6 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 	}
   ret = TMR_RP_init_simple(&plan, gantennaCount, gantennaList, TMR_TAG_PROTOCOL_GEN2, 1000);
 
-	
 
 	Exit_RFID_Uart_Config();	
 	

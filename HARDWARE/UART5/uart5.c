@@ -86,3 +86,8 @@ void UART5_Receive_Data(u8 *buf,int *len)
 		UART5_RX_CNT=0;		//«Â¡„
 	}
 } 
+
+void Uart5_Rx_Clear(void)
+{
+	UART5_RX_CNT=0;		//«Â¡„
+}	

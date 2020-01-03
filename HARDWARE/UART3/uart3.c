@@ -158,3 +158,7 @@ void UART3_Receive_Data(u8 *buf,int *len)
 		UART3_RX_CNT=0;		//«Â¡„
 	}
 } 
+void Uart3_Rx_Clear(void)
+{
+	UART3_RX_CNT=0;		//«Â¡„
+}	

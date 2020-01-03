@@ -351,10 +351,11 @@ void Mix_Blood_High_Speed(void)
 	Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M2_MIX);	
 	
-	for(i=0;i<4;i++){
-		BSP_MotorControl_Move(0, M2_MIX_RIGHT, 80000);
+	//for(i=0;i<4;i++)
+	{
+		BSP_MotorControl_Move(0, M2_MIX_RIGHT, 2000);
 		BSP_MotorControl_WaitWhileActive(0);
-		BSP_MotorControl_Move(0, M2_MIX_LEFT, 80000);
+		BSP_MotorControl_Move(0, M2_MIX_LEFT, 2000);
 		BSP_MotorControl_WaitWhileActive(0);
 	}
 	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);

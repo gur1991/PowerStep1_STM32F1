@@ -150,3 +150,8 @@ void UART4_Receive_Data(u8 *buf,int *len)
 		UART4_RX_CNT=0;		//«Â¡„
 	}
 } 
+void Uart4_Rx_Clear(void)
+{
+	UART4_RX_CNT=0;			//«Â¡„
+}	
+
