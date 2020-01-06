@@ -65,6 +65,7 @@ typedef union{
 	struct{
 		uint8_t devices;//0-9
 		uint8_t status;//1 open ---0 close
+		uint8_t nor[2];
 	}request;
 	struct{
 		uint8_t ret;
@@ -82,6 +83,7 @@ typedef union{
 		uint8_t device_3;
 		uint8_t status_3;
 
+		uint8_t nor[2];
 	}request;
 	struct{
 		uint8_t ret;

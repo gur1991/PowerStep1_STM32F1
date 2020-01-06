@@ -154,7 +154,7 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 {
 		motor_command_package_type_t performer;
 		performer.request.command = data->request.command;
-		data->response.value=process_motor_command_receive(performer.request.command);
+		data->response.value=process_motor_command_receive((Command_Package_t)performer.request.command);
 		data->response.ret=0;
 }	
 
@@ -230,8 +230,9 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			bool wait_flag=true;
 			timeout=data->request.timeout;
 			if(timeout<1000)timeout=1000;
-			performer.request.para=data->request.para;
-			switch(performer.request.para){
+			performer.request.command=data->request.command;
+			switch(performer.request.command)
+			{
 					case CHEMINERT_C52_CP:
 								type_flag=1;
 					case CHEMINERT_C55_CP:
@@ -513,7 +514,7 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			
 			performer.request.devices=data->request.devices;
 	
-			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&data->response.degree);
+			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&(data->response.degree));
 
 }
 //hal->stm32(master)
@@ -820,15 +821,20 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		int len=0;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
-		UART4_Receive_Data((u8*)(&slave_motorCommand),&len);
+		
+		UART4_Receive_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t),&len);
 	
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
 				__InfoBoard__(len,slave_motorCommand.type);
 				printf("check length error!\r\n");
-				slave_motorCommand.type=ERROR_TYPE;
-				slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
-				goto OVER;
+			
+				if(len<sizeof(Powerstep1_contorl_motor_command_t))
+				{	
+					slave_motorCommand.type=ERROR_TYPE;
+					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
+					goto OVER;
+				}	
 		}
 		
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
@@ -1203,11 +1209,11 @@ uint8_t Rest_C55_C52_Position(void)
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.timeout=1000;
 	
-	cheminert_c52_c55.request.para=	CHEMINERT_C52_CCA;
+	cheminert_c52_c55.request.command=	CHEMINERT_C52_CCA;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-	cheminert_c52_c55.request.para=	CHEMINERT_C55_CC2;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC2;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(cheminert_c52_c55.response.buf[0]!='4')return 1;
 #endif	
@@ -1237,7 +1243,7 @@ u8 test_actuator(Command_Cheminert_type_t type)
 	
 #if USE_CLEANING_DILUTION_BOARD		
 	cheminert_c52_c55_type_t cheminert_c52_c55;
-	cheminert_c52_c55.request.para=	type;
+	cheminert_c52_c55.request.command=	type;
 	cheminert_c52_c55.request.timeout=1000;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	printf("ret:%d \r\n",cheminert_c52_c55.response.ret);

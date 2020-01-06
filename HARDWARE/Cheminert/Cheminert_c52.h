@@ -59,13 +59,14 @@ typedef enum Command_Cheminert_type{
 //actuator
 typedef union{ 
 struct{
-		Command_Cheminert_type_t para;
+		
+		uint8_t command;//Command_Cheminert_type_t command;
 	  int timeout;
 }request;
 struct{
 		uint8_t ret;
 		uint8_t size;
-		uint8_t buf[64];
+		uint8_t buf[20];
 }response;
 }cheminert_c52_c55_type_t;
 

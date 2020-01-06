@@ -42,7 +42,9 @@ void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
 void MyErrorHandler(uint16_t error);	 
 	 
-	 
+
+
+
 #define OVER_UART_VALUE0 0x0d
 #define OVER_UART_VALUE1 0x0a
 
@@ -127,7 +129,7 @@ typedef enum Command_type{
 
 typedef union{ 
 	struct{
-		uint8_t nor;
+		uint8_t nor[4];
 	}request;
 	struct{
 		uint8_t ret;
@@ -199,21 +201,22 @@ typedef enum Command_Package_type{
 
 typedef union{ 
 	struct{
-		Command_Package_t command;
+		uint8_t command;
 	}request;
 	struct{
 		uint8_t value;
 		uint8_t ret;
+		uint8_t nor[2];
 	}response;
 }motor_command_package_type_t;
 
 
-
 typedef union{ 
 	struct{
-		uint8_t devices;//0,1,2
-		powerstep01_Commands_t types;//gpowerstep01_Commands_t
 		int32_t steps;//+forward -backward
+		uint8_t devices;//0,1,2
+		uint8_t types;//gpowerstep01_Commands_t
+		
 	}request;
 	struct{
 		uint8_t ret;
@@ -225,6 +228,7 @@ typedef union{
 	struct{
 		uint8_t devices;//1,2  0xff stop all
 		uint8_t power;//废弃
+		uint8_t nor[2];
 	}request;
 	struct{
 		uint8_t ret;
@@ -234,6 +238,7 @@ typedef union{
 typedef union{ 
 	struct{
 		uint8_t devices;//0,1,2
+		uint8_t nor[3];
 	}request;
 	struct{
 		uint8_t ret;
@@ -242,7 +247,7 @@ typedef union{
 
 typedef union{ 
 	struct{
-		uint8_t Nor;//保留位
+		uint8_t Nor[4];//保留位
 	}request;
 	struct{
 		uint8_t ret;
@@ -252,6 +257,7 @@ typedef union{
 typedef union{
 struct{
 		uint16_t time_ms;
+	  uint8_t nor[2];
 }request;
 struct{
 		uint8_t ret;
@@ -275,6 +281,7 @@ struct{
 typedef union{
 struct{
 		uint8_t devices;//0,1,2
+		uint8_t nor[3];
 }request;
 struct{
 		uint8_t ret;
@@ -328,17 +335,17 @@ struct{
 typedef union{ 
 struct{
 		uint8_t devices;//1,2
-		motorStepMode_t StepMode;
+		uint8_t StepMode;
+	  uint8_t nor[2];
 }request;
 struct{
 		uint8_t ret;
 }response;
 }select_step_mode_t;
 
-
 typedef struct{
 		u8 StartReceiveFlag[2];
-		Command_type_t type;
+		int type;//Command_type_t type;
 		union {
 				error_type_t error;
 				move_type_t move;
@@ -423,7 +430,6 @@ typedef struct{
  		}CommandPowerStep1;
 		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;
-
 
 
 	 

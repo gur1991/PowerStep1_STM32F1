@@ -47,6 +47,7 @@ typedef union{
 struct{
 		s100_command_t para;
 	  uint16_t timeout;
+		uint8_t nor[2];
 }request;
 struct{
 		uint8_t ret;

@@ -12,7 +12,7 @@ u8 Liquid_Sensor_Get(void);//一次读取两个液路传感器的值
 
 typedef union{ 
 struct{
-		uint8_t nor;
+		uint8_t nor[4];
 }request;
 struct{
 		uint8_t ret;

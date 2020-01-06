@@ -52,7 +52,7 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor;
+	  uint8_t nor[4];
 }request;
 struct{
 		uint8_t ret;
@@ -94,6 +94,7 @@ typedef union{
 struct{
 	  uint8_t epcData[48];
 	  uint8_t epcByteCount;
+		uint8_t nor[3];
 }request;
 struct{
 		uint8_t ret;
@@ -102,8 +103,9 @@ struct{
 
 typedef union{
 struct{
-		uint8_t wordCount;
-		uint16_t writeData[8];
+	uint16_t writeData[8];	
+	uint8_t wordCount;
+	uint8_t nor[3];
 }request;
 struct{
 		uint8_t ret;

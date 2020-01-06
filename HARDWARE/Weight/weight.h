@@ -67,12 +67,13 @@ struct{
 struct{
 		uint8_t ret;
 		uint8_t result;
+	  uint8_t nor[2];
 }response;
 }get_single_weight_warning_result_type_t;
 
 typedef union{
 struct{
-		uint8_t nor;
+		uint8_t nor[4];
 }request;
 struct{
 		uint8_t ret;

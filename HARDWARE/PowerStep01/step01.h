@@ -111,7 +111,7 @@ void StopALLMotorMotion(void);
 void BSP_Motor_Control_Init(void);
 
 /*********************************************************************/
-#define ALLOW_MANY_MOTOR 6//最多允许6个电机同时控制
+#define ALLOW_MANY_MOTOR 2//最多允许6个电机同时控制
 typedef struct{
 			uint8_t array;//哪个电机
 			uint32_t stepCount;	//大小
@@ -150,6 +150,7 @@ struct{
 		wait_motor_data_type_t wait_motor_data[ALLOW_MANY_MOTOR];
 }request;
 struct{
+		uint8_t nor[3];
 		uint8_t ret;
 }response;
 }wait_many_motor_type_t;
@@ -162,6 +163,7 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		uint8_t nor[3];
 	}response;	
 }mix_and_reach_type_t;
 #endif

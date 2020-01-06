@@ -19,7 +19,9 @@ void UART4_IRQHandler(void)
 		if(UART4_RX_CNT<LEN_MAX_UART4)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
+			//printf("r[%d]0x%x\r\n",UART4_RX_CNT,res);
 			UART4_RX_CNT++;						//接收数据增加1	
+			
 		}
 		
 		if(UART4_RX_CNT == 2)
@@ -85,14 +87,20 @@ void UART4_Send_Data(u8 *buf,int len)
 }
 //buf:接收缓存首地址
 //len:读到的数据长度
-void UART4_Receive_Data(u8 *buf,int *len)
+void UART4_Receive_Data(u8 *buf,int RxLen, int *len)
 {
 	int rxlen=UART4_RX_CNT;
 	int i=0;
-	*len=0;				//默认为0
-	if(rxlen==UART4_RX_CNT&&rxlen)//接收到了数据,且接收完成了
+	*len=0;				
+	if(rxlen<RxLen)
 	{
-		for(i=0;i<rxlen;i++)
+		*len=rxlen;
+		return;
+	}
+		
+	else if(rxlen==UART4_RX_CNT&&rxlen)//接收到了数据,且接收完成了
+	{
+		for(i=0;i<RxLen;i++)
 		{
 			buf[i]=UART4_RX_BUF[i];	
 		}		

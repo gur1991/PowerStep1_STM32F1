@@ -49,6 +49,7 @@ void Light_Sensor_Get_All(void);
 typedef union{ 
 struct{
 		uint8_t number;//0,1,2...
+	  uint8_t nor[3];
 }request;
 struct{
 		uint8_t ret;
