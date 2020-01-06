@@ -11,6 +11,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 	 Uart_Receive_Data R232_Read=NULL;
 	 Uart_Send_Data R232_Write=NULL;
 	
+	
 	//printf("timeout %d \r\n",timeout);
 	if(type_flag){
 			printf("c52\r\n");
@@ -31,12 +32,15 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 				*rx_size=2;
 				return ret;
 	 } 	
+
 	 
 	 while(1){
 				//timeout, must return
 		 		if(!timeout){
 						ret=1;
 						printf("cheminert_c52_c55_transfer fuck timeout! \r\n");
+						*rx_size=0;
+						FLAG_UART_CHEMINERT=0;
 						break;
 				}
 				if(FLAG_UART_CHEMINERT)
@@ -44,14 +48,17 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 							delay_ms(10);
 							R232_Read(rx_buf_tmp,&len);
 							//rm in the end 0d 0a from buf array
-							memcpy(rx_buf,rx_buf_tmp,len-2);
-							printf("c55 c52 :%c \r\n",rx_buf[0]);
-							*rx_size=len-2;
+							if(len){
+								memcpy(rx_buf,rx_buf_tmp,len-2);
+								printf("c55 c52 :%c \r\n",rx_buf[0]);
+								*rx_size=len-2;
+							}	
 							FLAG_UART_CHEMINERT=0;
 							break;
 					}
 				timeout--;
-				delay_ms(1);
+				delay_ms(10);
 		}
+
 		return ret;
 }
