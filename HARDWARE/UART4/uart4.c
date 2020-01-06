@@ -7,9 +7,8 @@ UART_HandleTypeDef UART4_Handler;
 //接收缓存区 	
 u8 UART4_RX_BUF[LEN_MAX_UART4];  	
 //接收到的数据长度
- int UART4_RX_CNT=0;  
+int UART4_RX_CNT=0;  
 u8 ARM_RS232_ASK =0;
-
 
 void UART4_IRQHandler(void)
 {
@@ -21,69 +20,21 @@ void UART4_IRQHandler(void)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
 			UART4_RX_CNT++;						//接收数据增加1	
-		} 
-		if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
+		}
+		
+		if(UART4_RX_CNT == 2)
+		{
+				if( UART4_RX_BUF[0]==START_UART_VALUE0 && UART4_RX_BUF[1]==START_UART_VALUE1){ ;}
+				else {UART4_RX_BUF[0]= UART4_RX_BUF[1];UART4_RX_CNT=1;}
+		}
+
+		else if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
 		{
 					ARM_RS232_ASK=1;
 		}
 
 	}
 } 
-/*
-u16 USART_RX_STA4=0;       //接收状态标记	  
-u16 USART_RX_STA_UART4=0; 
-
-#if 1
-void HAL_UART_RxCpltCallback_Uart4(void){    
-	u8 aRxBuffer[1];
-		if((USART_RX_STA4&0x8000)==0)//接收未完成
-		{
-			if(USART_RX_STA4&0x4000)//接收到了0x0d
-			{
-				if(aRxBuffer[0]!=0x0a)USART_RX_STA4=0;//接收错误,重新开始
-				else USART_RX_STA4|=0x8000;	//接收完成了 
-			}
-			else //还没收到0X0D
-			{	
-				if(aRxBuffer[0]==0x0d)USART_RX_STA4|=0x4000;
-				else
-				{
-							UART4_RX_BUF[UART4_RX_CNT]=aRxBuffer[0];		//记录接收到的值
-							printf("rx[%d]%d\r\n",UART4_RX_CNT,aRxBuffer[0]);
-							UART4_RX_CNT++;						//接收数据增加1	
-					if(USART_RX_STA4>(64-1))USART_RX_STA4=0;//接收数据错误,重新开始接收	  
-				}		 
-			}
-		}
-}
-
-#endif
-
-//串口1中断服务程序
-void UART4_IRQHandler(void)                	
-{ 
-	u32 timeout=0;
-
-	HAL_UART_IRQHandler(&UART4_Handler);	//调用HAL库中断处理公用函数
-	timeout=0;
-   while (HAL_UART_GetState(&UART4_Handler) != HAL_UART_STATE_READY)//等待就绪
-	{
-	 timeout++;////超时处理
-     if(timeout>HAL_MAX_DELAY) break;		
-	}
-     
-	timeout=0;
-	while(HAL_UART_Receive_IT(&UART4_Handler, &aRxBuffer_UART4, 1) != HAL_OK)//一次处理完成之后，重新开启中断并设置RxXferCount为1
-	{
-		timeout++; //超时处理
-		if(timeout>HAL_MAX_DELAY) break;	
-		
-		
-
-	}
-
-} 
-*/
 
 //初始化IO 串口2
 //bound:波特率
@@ -118,7 +69,6 @@ void UART4_Init(u32 bound)
 	UART4_Handler.Init.OverSampling = UART_OVERSAMPLING_16;
 	HAL_UART_Init(&UART4_Handler);			        //HAL_UART_Init()会使能USART2
   
-	//HAL_UART_Receive_IT(&UART4_Handler, &aRxBuffer_UART4, 1);//该函数会开启接收中断：标志位UART_IT_RXNE，并且设置接收缓冲以及接收缓冲接收最大数据量
   __HAL_UART_DISABLE_IT(&UART4_Handler,UART_IT_TC);
 	__HAL_UART_ENABLE_IT(&UART4_Handler,UART_IT_RXNE);//开启接收中断
 	HAL_NVIC_EnableIRQ(UART4_IRQn);				        //使能UART4中断

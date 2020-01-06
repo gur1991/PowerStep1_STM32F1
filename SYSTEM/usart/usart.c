@@ -39,18 +39,13 @@ int fputc(int ch, FILE *f)
 //¥Æø⁄1÷–∂œ∑˛ŒÒ≥Ã–Ú
 //◊¢“‚,∂¡»°USARTx->SRƒ‹±‹√‚ƒ™√˚∆‰√Óµƒ¥ÌŒÛ   	
 u8 USART_RX_BUF[USART_REC_LEN];     //Ω” ’ª∫≥Â,◊Ó¥ÛUSART_REC_LEN∏ˆ◊÷Ω⁄.
-u8 USART3_RX_BUF[USART3_REC_LEN]; 
-
-
 //Ω” ’◊¥Ã¨
 //bit15£¨	Ω” ’ÕÍ≥…±Í÷æ
 //bit14£¨	Ω” ’µΩ0x0d
 //bit13~0£¨	Ω” ’µΩµƒ”––ß◊÷Ω⁄ ˝ƒø
 u16 USART_RX_STA=0;       //Ω” ’◊¥Ã¨±Íº«	  
-u16 USART_RX_STA_UART3=0; 
-
-u8 aRxBuffer_UART3[RXBUFFERSIZE_UART3];//
 u8 aRxBuffer[RXBUFFERSIZE];//HALø‚ π”√µƒ¥Æø⁄Ω” ’ª∫≥Â
+#endif
 
 UART_HandleTypeDef UART1_Handler; //UARTæ‰±˙
   
@@ -65,10 +60,10 @@ void uart_init(u32 bound)
 	UART1_Handler.Init.StopBits=UART_STOPBITS_1;	    //“ª∏ˆÕ£÷πŒª
 	UART1_Handler.Init.Parity=UART_PARITY_NONE;		    //Œﬁ∆Ê≈º–£—ÈŒª
 	UART1_Handler.Init.HwFlowCtl=UART_HWCONTROL_NONE;   //Œﬁ”≤º˛¡˜øÿ
-	UART1_Handler.Init.Mode=UART_MODE_TX_RX;		    // ’∑¢ƒ£ Ω
+	UART1_Handler.Init.Mode= UART_MODE_TX;//UART_MODE_TX_RX;		    // ’∑¢ƒ£ Ω
 	HAL_UART_Init(&UART1_Handler);					    //HAL_UART_Init()ª· πƒ‹UART1
 	
-	HAL_UART_Receive_IT(&UART1_Handler, (u8 *)aRxBuffer, RXBUFFERSIZE);//∏√∫Ø ˝ª·ø™∆ÙΩ” ’÷–∂œ£∫±Í÷æŒªUART_IT_RXNE£¨≤¢«“…Ë÷√Ω” ’ª∫≥Â“‘º∞Ω” ’ª∫≥ÂΩ” ’◊Ó¥Û ˝æ›¡ø
+	//HAL_UART_Receive_IT(&UART1_Handler, (u8 *)aRxBuffer, RXBUFFERSIZE);//∏√∫Ø ˝ª·ø™∆ÙΩ” ’÷–∂œ£∫±Í÷æŒªUART_IT_RXNE£¨≤¢«“…Ë÷√Ω” ’ª∫≥Â“‘º∞Ω” ’ª∫≥ÂΩ” ’◊Ó¥Û ˝æ›¡ø
   
 }
 
@@ -93,58 +88,22 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 		GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH;//∏ﬂÀŸ
 		HAL_GPIO_Init(GPIOA,&GPIO_Initure);	   	//≥ı ºªØPA9
 
+		
+#if EN_USART1_RX
 		GPIO_Initure.Pin=GPIO_PIN_10;			//PA10
 		GPIO_Initure.Mode=GPIO_MODE_AF_INPUT;	//ƒ£ Ω“™…Ë÷√Œ™∏¥”√ ‰»Îƒ£ Ω£°	
 		HAL_GPIO_Init(GPIOA,&GPIO_Initure);	   	//≥ı ºªØPA10
 		
-#if EN_USART1_RX
 		HAL_NVIC_EnableIRQ(USART1_IRQn);				// πƒ‹USART1÷–∂œÕ®µ¿
 		HAL_NVIC_SetPriority(USART1_IRQn,3,3);			//«¿’º”≈œ»º∂3£¨◊””≈œ»º∂3
 #endif	
 	}
 }
 
+
+#if EN_USART1_RX
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	#if 0
-	printf("fuck 33\r\n");
-	if(huart->Instance==USART3){
-		printf("ddsds %d \r\n",aRxBuffer_UART3[0]);
-		#if 1
-		printf("fuck 44\r\n");
-		if((USART_RX_STA_UART3&0x8000)==0)//Ω” ’Œ¥ÕÍ≥…
-		{
-			printf("fuck 55\r\n");
-			if(USART_RX_STA_UART3&0x4000)//Ω” ’µΩ¡À0x0d
-			{
-				printf("fuck 66\r\n");
-				if(aRxBuffer_UART3[0]!=0x0a){
-						USART_RX_STA_UART3=0;//Ω” ’¥ÌŒÛ,÷ÿ–¬ø™ º
-						printf("fuck 77\r\n");
-				}
-				else {USART_RX_STA_UART3|=0x8000;	//Ω” ’ÕÍ≥…¡
-						printf("fuck 88\r\n");
-					
-				}	
-			HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3);				
-			}
-			else //ªπ√ª ’µΩ0X0D
-			{	
-				if(aRxBuffer_UART3[0]==0x0d){USART_RX_STA_UART3|=0x4000;printf("fuck 99\r\n");}
-				else
-				{
-					printf("fuck aa\r\n");
-					USART3_RX_BUF[USART_RX_STA_UART3&0X3FFF]=aRxBuffer_UART3[0] ;
-					
-					USART_RX_STA_UART3++;
-					HAL_UART_Receive_IT(&USART3_Handler, (u8 *)aRxBuffer_UART3, RXBUFFERSIZE_UART3);
-					if(USART_RX_STA_UART3>(USART3_REC_LEN-1))USART_RX_STA_UART3=0;//Ω” ’ ˝æ›¥ÌŒÛ,÷ÿ–¬ø™ ºΩ” ’	  
-				}		 
-			}
-		}
-		#endif
-	}
-#endif	
 	/**************************************************************************/
 	if(huart->Instance==USART1)//»Áπ˚ «¥Æø⁄1
 	{
@@ -170,7 +129,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 /**************************************************************************/
 
 }
- 
+
+
+
 //¥Æø⁄1÷–∂œ∑˛ŒÒ≥Ã–Ú
 void USART1_IRQHandler(void)                	
 { 
@@ -199,44 +160,5 @@ void USART1_IRQHandler(void)
 #endif
 } 
 #endif	
-
-/*œ¬√Ê¥˙¬ÎŒ“√«÷±Ω”∞—÷–∂œøÿ÷∆¬ﬂº≠–¥‘⁄÷–∂œ∑˛ŒÒ∫Ø ˝ƒ⁄≤ø°£*/
-
-//¥Æø⁄1÷–∂œ∑˛ŒÒ≥Ã–Ú
-//void USART1_IRQHandler(void)                	
-//{ 
-//	u8 Res;
-//	HAL_StatusTypeDef err;
-//#if SYSTEM_SUPPORT_OS	 	// π”√OS
-//	OSIntEnter();    
-//#endif
-//	if((__HAL_UART_GET_FLAG(&UART1_Handler,UART_FLAG_RXNE)!=RESET))  //Ω” ’÷–∂œ(Ω” ’µΩµƒ ˝æ›±ÿ–Î «0x0d 0x0aΩ·Œ≤)
-//	{
-//		Res=USART1->DR; 
-//		if((USART_RX_STA&0x8000)==0)//Ω” ’Œ¥ÕÍ≥…
-//		{
-//			if(USART_RX_STA&0x4000)//Ω” ’µΩ¡À0x0d
-//			{
-//				if(Res!=0x0a)USART_RX_STA=0;//Ω” ’¥ÌŒÛ,÷ÿ–¬ø™ º
-//				else USART_RX_STA|=0x8000;	//Ω” ’ÕÍ≥…¡À 
-//			}
-//			else //ªπ√ª ’µΩ0X0D
-//			{	
-//				if(Res==0x0d)USART_RX_STA|=0x4000;
-//				else
-//				{
-//					USART_RX_BUF[USART_RX_STA&0X3FFF]=Res ;
-//					USART_RX_STA++;
-//					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//Ω” ’ ˝æ›¥ÌŒÛ,÷ÿ–¬ø™ ºΩ” ’	  
-//				}		 
-//			}
-//		}   		 
-//	}
-//	HAL_UART_IRQHandler(&UART1_Handler);	
-//#if SYSTEM_SUPPORT_OS	 	// π”√OS
-//	OSIntExit();  											 
-//#endif
-//} 
-//#endif	
 
 

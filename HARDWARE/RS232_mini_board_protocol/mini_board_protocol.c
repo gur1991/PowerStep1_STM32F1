@@ -9,6 +9,8 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 		int times =100;
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
+		master->StartReceiveFlag[0]=START_UART_VALUE0;
+	  master->StartReceiveFlag[1]=START_UART_VALUE1;
 	
 		UART5_Send_Data((u8*)(master),length_data);
 		while(1){

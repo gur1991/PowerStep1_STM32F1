@@ -122,7 +122,28 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+/*	
+	Powerstep1_contorl_motor_command_t command;
+	u8 stringCommand[100];
+	memset(stringCommand, 0, sizeof(stringCommand));
 	
+	command.StartReceiveFlag[0]=START_UART_VALUE0;
+	command.StartReceiveFlag[1]=START_UART_VALUE1;
+	command.OverReceiveFlag[0]=OVER_UART_VALUE0;
+	command.OverReceiveFlag[1]=OVER_UART_VALUE1;
+	
+	command.type=ERROR_TYPE;
+	command.CommandPowerStep1.error.response.ret=1;	
+	memcpy(stringCommand, &command, sizeof(Powerstep1_contorl_motor_command_t));
+	
+
+	//for(i=0;i++;i<3)
+	{
+		printf("xx 0x%x \r\n",stringCommand[0]);
+		printf("xx 0x%x \r\n",stringCommand[1]);
+		printf("xx 0x%x \r\n",stringCommand[2]);
+	}
+*/
 	
 	while(1)
 	{

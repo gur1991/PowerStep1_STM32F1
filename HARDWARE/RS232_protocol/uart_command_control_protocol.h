@@ -45,8 +45,12 @@ void MyErrorHandler(uint16_t error);
 	 
 #define OVER_UART_VALUE0 0x0d
 #define OVER_UART_VALUE1 0x0a
-	 
+
+#define START_UART_VALUE0 0xaa
+#define START_UART_VALUE1 0xdd
+
 typedef enum Command_type{ 
+		ERROR_TYPE=0,
 		MOVE_TYPE=1,
 		POWER_TYPE,
 		REST_TYPE,
@@ -119,6 +123,17 @@ typedef enum Command_type{
 		ELECTROMAGNETIC_PACKAGE_TYPE,
 
 }Command_type_t;
+
+
+typedef union{ 
+	struct{
+		uint8_t nor;
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}error_type_t;
+
 
 typedef union{ 
 	struct{
@@ -322,8 +337,10 @@ struct{
 
 
 typedef struct{
+		u8 StartReceiveFlag[2];
 		Command_type_t type;
 		union {
+				error_type_t error;
 				move_type_t move;
 				power_type_t power;
 				rest_pos_type_t rest_post;

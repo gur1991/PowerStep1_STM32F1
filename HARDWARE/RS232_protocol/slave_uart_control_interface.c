@@ -825,11 +825,16 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
 				__InfoBoard__(len,slave_motorCommand.type);
+				printf("check length error!\r\n");
+				slave_motorCommand.type=ERROR_TYPE;
+				slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 				goto OVER;
 		}
 		
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
 					printf("check flag error!\r\n");
+					slave_motorCommand.type=ERROR_TYPE;
+					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 					goto OVER;
 		}
 			
@@ -993,9 +998,15 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			
 			default:
 					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
+					slave_motorCommand.type=ERROR_TYPE;
+				  slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 		}
 OVER:
 		Uart_Clear_Context();	
+		slave_motorCommand.StartReceiveFlag[0]=START_UART_VALUE0;
+		slave_motorCommand.StartReceiveFlag[1]=START_UART_VALUE1;
+		slave_motorCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
+		slave_motorCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 }
 
