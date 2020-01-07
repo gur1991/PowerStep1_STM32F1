@@ -122,11 +122,15 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-
-	
-			
-	//RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-	//Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 30*10000);
+/*
+	Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,NORMAL_SPEED);
+	test_actuator(CHEMINERT_C55_CC4);		
+	RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 800*1000);
+  
+	Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,LOW_SPEED);
+	test_actuator(CHEMINERT_C55_CC3);
+	Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10*10000);
+	*/
 	
 	while(1)
 	{

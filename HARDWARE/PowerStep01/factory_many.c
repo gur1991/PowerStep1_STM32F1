@@ -209,7 +209,8 @@ void Rest_Sample_Motor_Orgin(void)
 
 void Rest_Drain_And_Wash_Motor_Orgin(void)
 {
-#if USE_CLEANING_DILUTION_BOARD		
+#if USE_CLEANING_DILUTION_BOARD
+	test_actuator(CHEMINERT_C55_CC4);	
 	RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 800*1000);
 	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 800*1000);
 #endif	
@@ -217,7 +218,8 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 
 void March_Drain_And_Wash_Motor_Orgin(void)
 {
-#if USE_CLEANING_DILUTION_BOARD			
+#if USE_CLEANING_DILUTION_BOARD	
+	test_actuator(CHEMINERT_C55_CC4);	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
 		Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
 	
