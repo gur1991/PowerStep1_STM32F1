@@ -15,6 +15,7 @@ typedef struct{
 	  int weightThree;
 	  int weightFour;
 	  uint8_t liquid;
+	  uint8_t nor[3];
 }real_time_polling_type_t;
 
 typedef struct{ 
@@ -25,7 +26,7 @@ typedef struct{
 
 typedef union{ 
 struct{
-	uint8_t nor;
+	uint8_t nor[44];
 }request;
 struct{
 	real_time_polling_type_t polling;
@@ -35,7 +36,7 @@ struct{
 
 typedef union{ 
 struct{
-	uint8_t nor;
+	uint8_t nor[44];
 }request;
 struct{
 	real_time_polling_press_type_t polling_press;

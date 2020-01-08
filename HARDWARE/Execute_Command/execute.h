@@ -9,6 +9,7 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		uint8_t nor[7];
 	}response;
 }Set_Pumps100_Press_type_t;
 
@@ -18,6 +19,7 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		uint8_t nor[3];
 	}response;
 }Balance_Chromatographic_Column_type_t;
 
@@ -32,6 +34,7 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		uint8_t nor[19];
 	}response;
 }Gradient_control_buffer_type_t;
 
@@ -45,12 +48,13 @@ typedef union{
 	}request;
 	struct{
 		uint8_t ret;
+		uint8_t nor[19];
 	}response;
 }Gravity_Sensor_Setting_type_t;
 
 typedef union{ 
 	struct{
-		uint8_t nor;
+		uint8_t nor[20];
 	}request;
 	struct{
 		int weightA;

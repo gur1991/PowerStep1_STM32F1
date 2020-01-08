@@ -29,6 +29,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[7];
 }response;
 }set_single_temperature_degree_type_t;
 
@@ -39,6 +40,7 @@ struct{
 struct{
 		int degree;
 		uint8_t ret;
+		uint8_t nor[3];
 }response;
 }get_single_temperature_degree_type_t;
 

@@ -67,6 +67,7 @@ struct{
 		uint8_t ret;
 		uint8_t size;
 		uint8_t buf[20];
+	  uint8_t nor[2];
 }response;
 }cheminert_c52_c55_type_t;
 

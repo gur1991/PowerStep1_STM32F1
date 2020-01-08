@@ -47,6 +47,7 @@ struct{
 struct{
 		int gram;
 		uint8_t ret;
+		uint8_t nor[7];
 }response;
 }get_weight_current_gram_type_t;
 
@@ -57,6 +58,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[7];
 }response;
 }set_weight_warning_line_type_t;
 

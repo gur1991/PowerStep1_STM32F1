@@ -22,6 +22,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check);
 typedef union{ 
 struct{
 		int timeout;
+		uint8_t nor[47];
 }request;
 struct{
 		int length;

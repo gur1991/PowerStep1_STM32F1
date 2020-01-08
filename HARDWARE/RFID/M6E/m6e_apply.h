@@ -47,6 +47,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[11];
 }response;
 }rfid_init_config_type_t;
 
@@ -61,7 +62,7 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor;
+	  uint8_t nor[8];
 }request;
 struct{
 		int length;
@@ -72,6 +73,7 @@ struct{
 typedef union{
 struct{
 	  uint8_t index;
+		uint8_t nor[59];
 }request;
 struct{
 		uint8_t ret;
@@ -81,7 +83,7 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor;
+	  uint8_t nor[60];
 }request;
 struct{
 		uint8_t ret;

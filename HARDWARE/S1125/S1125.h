@@ -45,6 +45,7 @@ struct{
 		uint8_t type;
 		int  para;
 		int  para_nor;
+		uint8_t nor[3];
 }request;
 struct{
 		uint8_t ret;

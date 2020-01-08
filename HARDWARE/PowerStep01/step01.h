@@ -64,6 +64,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[27];
 }response;
 }init_motor_speed_tension_type_t;
 
@@ -96,6 +97,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+	  uint8_t nor[19];
 }response;
 }rest_select_motor_orgin_type_t;
 
@@ -125,6 +127,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[23];
 }response;
 }move_wait_motor_type_t;
 
@@ -136,6 +139,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
+		uint8_t nor[23];
 }response;
 }move_many_motor_type_t;
 
@@ -150,7 +154,7 @@ struct{
 		wait_motor_data_type_t wait_motor_data[ALLOW_MANY_MOTOR];
 }request;
 struct{
-		uint8_t nor[3];
+		uint8_t nor[23];
 		uint8_t ret;
 }response;
 }wait_many_motor_type_t;

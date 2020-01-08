@@ -150,7 +150,7 @@ typedef union{
 
 typedef union{ 
 	struct{
-		uint8_t nor;
+		uint8_t nor[4];
 	}request;
 	struct{
 		uint8_t ret;
@@ -271,6 +271,7 @@ struct{
 		uint8_t devices;//1,2
 		uint8_t dir;
 		uint32_t steps;//+forward -backward
+		uint8_t  nor[2];
 }request;
 struct{
 		uint8_t ret;
@@ -294,7 +295,8 @@ typedef union{
 }request;
 struct{
 		int32_t pos;
-		uint8_t ret;	
+		uint8_t ret;
+		uint8_t nor[3]; 
 }response;
 }one_device_get_pos_type_t;
 
@@ -302,6 +304,7 @@ typedef union{
 struct{
 		uint8_t devices;//0,1,2
 		int32_t pos;
+	  uint8_t nor[3]; 
 }request;
 struct{
 		uint8_t ret;
@@ -318,6 +321,7 @@ struct{
 struct{
 		uint32_t result_para;
 		uint8_t ret;
+		uint8_t nor[3];
 }response;
 }get_para_type_t;
 //ÉèÖÃ²ÎÊı----5
@@ -326,6 +330,7 @@ struct{
 		uint8_t devices;//1,2
 		uint8_t registe;
 		uint32_t para;
+	  uint8_t nor[2];
 }request;
 struct{
 		uint8_t ret;
