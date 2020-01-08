@@ -2,6 +2,27 @@
 #include "factory_many.h"
 #include "delay.h"
 #include "slave_uart_control_interface.h"
+
+/*
+	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
+	Normal_Goto_First_Position();
+	
+	for(i=0;i<12;i++)
+	{
+		if(i<9){
+			Normal_Pitch_Move_Next();
+		}else{
+			Normal_Pitch_Move_Next_The_Last_Two();
+		}
+	}
+	//Normal_Move_Blank();
+	Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2600);
+
+
+
+*/
+
+
 //**********************************************plan A**********************************************
 void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
@@ -478,6 +499,16 @@ void mix_and_reach_position(void)
 */
 }	
 
+uint8_t C55_C52_connect_check(void)
+{
+	uint8_t ret=0;
+	if(C55_connect_check())ret|=0x01;
+	if(C52_connect_check())ret|=0x10;
+	
+	printf("C55 C52 0x%x \r\n",ret);
+	
+	return ret;
+}
 
 
 
@@ -577,6 +608,9 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			
 			case NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO:
 					Normal_Pitch_Move_Next_The_Last_Two();
+				break;
+			case C55_C52_CONNECT:
+					value = C55_C52_connect_check();
 				break;
 			
 			default:

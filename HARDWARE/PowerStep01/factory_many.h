@@ -126,4 +126,10 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 
 void mix_and_reach_position(void);
 
+extern u8 C55_connect_check(void);
+
+extern u8 C52_connect_check(void);
+
+uint8_t C55_C52_connect_check(void);
+
 #endif

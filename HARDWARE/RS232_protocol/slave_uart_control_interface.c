@@ -1257,6 +1257,44 @@ u8 test_actuator(Command_Cheminert_type_t type)
 }
 
 
+u8 C55_connect_check(void)
+{
+	u8 ret=0;
+	
+#if USE_CLEANING_DILUTION_BOARD		
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC1;
+	cheminert_c52_c55.request.timeout=100;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(!cheminert_c52_c55.response.ret&&cheminert_c52_c55.response.size)
+	{
+		if(cheminert_c52_c55.response.buf[0]=='1')ret=0;
+		else	ret=1;		
+	}else ret=1;
+#endif
+	
+	return ret;
+}
+
+u8 C52_connect_check(void)
+{
+	u8 ret=0;
+	
+#if USE_CLEANING_DILUTION_BOARD		
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.command=	CHEMINERT_C52_CCA;
+	cheminert_c52_c55.request.timeout=100;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(!cheminert_c52_c55.response.ret&&cheminert_c52_c55.response.size)
+	{
+		if(cheminert_c52_c55.response.buf[0]=='A')ret=0;
+		else	ret=1;		
+	}else ret=1;
+#endif
+	
+	return ret;
+}
+
 
 
 

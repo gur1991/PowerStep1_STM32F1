@@ -6,7 +6,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 		uint8_t ret=0;
 	
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		int times =50;
+		int times =100;
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
 		master->StartReceiveFlag[0]=START_UART_VALUE0;
@@ -26,7 +26,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 					printf("transfer error ! \r\n");
 					break;
 			}
-			delay_ms(10);
+			delay_ms(5);
 			//printf("wait  \r\n");
 		}
 #endif

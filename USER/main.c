@@ -122,6 +122,8 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+	
+	
 /*
 	Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,NORMAL_SPEED);
 	test_actuator(CHEMINERT_C55_CC4);		
@@ -130,7 +132,7 @@ int main(void)
 	Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,LOW_SPEED);
 	test_actuator(CHEMINERT_C55_CC3);
 	Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10*10000);
-	*/
+*/
 	
 	while(1)
 	{
@@ -152,7 +154,7 @@ int main(void)
 			}
 #endif		
 
-#if 0//(USE_AUTOMATIC_INJECTION_BOARD|USE_GRADIENT_CONTROL_BOARD)
+#if (USE_AUTOMATIC_INJECTION_BOARD|USE_GRADIENT_CONTROL_BOARD)
 			i++;
 			if(i==50)
 			{		
