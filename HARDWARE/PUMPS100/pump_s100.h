@@ -60,7 +60,7 @@ struct{
 
 typedef union{ 
 struct{
-	  int flowSpeed;
+	  uint32_t flowSpeed;
 }request;
 struct{
 		uint8_t ret;

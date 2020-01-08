@@ -34,12 +34,12 @@ void Destory_M6e_Config(void)
 
 
 
-uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
+uint8_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm)
 {
  
   TMR_Status ret=0;
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	int powerdbm; 
+	uint32_t powerdbm; 
   TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
 
 	Load_RFID_Uart_Config();	
@@ -94,7 +94,7 @@ uint8_t Init_M6e_Config(TMR_Region region, int Rpowerdbm,int Wpowerdbm)
 
 
 
-int M6e_Read_Info(void)
+uint8_t M6e_Read_Info(void)
 {
   TMR_Status ret=0;
 	
@@ -144,7 +144,7 @@ int M6e_Read_Info(void)
 }
 
 
-uint8_t M6e_Magic_Read_Rfid_Info(int* length)
+uint8_t M6e_Magic_Read_Rfid_Info(uint8_t* length)
 {
 	
 	uint8_t ret=0;	
@@ -167,7 +167,7 @@ Chemical_reagent_Info_type M6e_Magic_Get_One_Rfid_Info(uint8_t index)
 }
 
 
-uint8_t Get_EPC_String(int*length, char* epc)
+uint8_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 {
 	uint8_t ret=0;
 	

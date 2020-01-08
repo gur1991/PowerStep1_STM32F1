@@ -89,11 +89,11 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 
 typedef union{ 
 struct{
-		int motorNum;
-		int lightNum;
+		uint8_t motorNum;
+		uint8_t lightNum;
 		uint8_t motorDir;
 		uint32_t steps;
-		int flag_wait;
+		uint8_t flag_wait;
 }request;
 struct{
 		uint8_t ret;

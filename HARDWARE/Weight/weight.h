@@ -42,10 +42,10 @@ typedef enum{
 
 typedef union{
 struct{
-		int weight;
+		uint32_t  weight;
 }request;
 struct{
-		int gram;
+		uint32_t gram;
 		uint8_t ret;
 		uint8_t nor[3];
 }response;
@@ -53,8 +53,8 @@ struct{
 
 typedef union{
 struct{
-		int weight;
-		int gram;
+		uint32_t weight;
+		uint32_t gram;
 }request;
 struct{
 		uint8_t ret;
@@ -64,7 +64,7 @@ struct{
 
 typedef union{
 struct{
-		int weight;
+		uint32_t weight;
 }request;
 struct{
 		uint8_t ret;

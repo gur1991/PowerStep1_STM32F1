@@ -20,7 +20,7 @@ uint8_t STM32_Change_Protocol_Control_Mini_Board_Set_Degree(set_single_temperatu
 		return ret;
 }	
 
-uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperature_degree_type_t data,int*degree)
+uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperature_degree_type_t data,uint32_t*degree)
 {
 		uint8_t ret=0;
 	

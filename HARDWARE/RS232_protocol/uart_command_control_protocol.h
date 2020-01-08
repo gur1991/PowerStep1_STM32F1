@@ -247,7 +247,7 @@ typedef union{
 
 typedef union{ 
 	struct{
-		uint8_t Nor[4];//保留位
+		uint8_t nor[4];//保留位
 	}request;
 	struct{
 		uint8_t ret;
@@ -350,7 +350,7 @@ struct{
 
 typedef struct{
 		u8 StartReceiveFlag[2];
-		int type;//Command_type_t type;
+		uint32_t type;//Command_type_t type;
 		union {
 				error_type_t error;
 				move_type_t move;

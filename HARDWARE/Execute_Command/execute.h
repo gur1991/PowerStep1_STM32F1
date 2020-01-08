@@ -4,8 +4,8 @@
 
 typedef union{ 
 	struct{
-		int MaxPress;
-		int MinPress;
+		uint32_t MaxPress;
+		uint32_t MinPress;
 	}request;
 	struct{
 		uint8_t ret;
@@ -15,7 +15,7 @@ typedef union{
 
 typedef union{ 
 	struct{
-		int IdleFlowSpeed;
+		uint32_t IdleFlowSpeed;
 	}request;
 	struct{
 		uint8_t ret;
@@ -26,11 +26,11 @@ typedef union{
 
 typedef union{ 
 	struct{
-		int Work_Flow_Speed;
-		int A_timeS;
-		int B_timeS;
-		int C_timeS;
-		int A2_timeS;
+		uint32_t Work_Flow_Speed;
+		uint32_t A_timeS;
+		uint32_t B_timeS;
+		uint32_t C_timeS;
+		uint32_t A2_timeS;
 	}request;
 	struct{
 		uint8_t ret;
@@ -41,10 +41,10 @@ typedef union{
 
 typedef union{ 
 	struct{
-		int weightA;
-		int weightB;
-		int weightC;
-		int weightD;
+		uint32_t weightA;
+		uint32_t weightB;
+		uint32_t weightC;
+		uint32_t weightD;
 	}request;
 	struct{
 		uint8_t ret;
@@ -57,10 +57,10 @@ typedef union{
 		uint8_t nor[20];
 	}request;
 	struct{
-		int weightA;
-		int weightB;
-		int weightC;
-		int weightD;
+		uint32_t weightA;
+		uint32_t weightB;
+		uint32_t weightC;
+		uint32_t weightD;
 		uint8_t ret;
 	}response;
 }Gravity_Sensor_Getting_type_t;

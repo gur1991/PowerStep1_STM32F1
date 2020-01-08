@@ -61,7 +61,7 @@ typedef union{
 struct{
 		
 		uint8_t command;//Command_Cheminert_type_t command;
-	  int timeout;
+	  uint32_t timeout;
 }request;
 struct{
 		uint8_t ret;

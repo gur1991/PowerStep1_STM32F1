@@ -9,16 +9,16 @@ void  Real_Time_Polling_Current_Index(void);
 void  Real_Time_Polling_Init(void);
 
 typedef struct{ 
-		int degree;
-		int weightOne;
-	  int weightTwo;
-	  int weightThree;
-	  int weightFour;
+		uint32_t degree;
+		uint32_t weightOne;
+	  uint32_t weightTwo;
+	  uint32_t weightThree;
+	  uint32_t weightFour;
 	  uint8_t liquid;
 }real_time_polling_type_t;
 
 typedef struct{ 
-	  int pumpPress;
+	  uint32_t pumpPress;
 }real_time_polling_press_type_t;
 
 
