@@ -433,17 +433,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 {
 	int status=0;
 	int i=0;
-	int count_delay=0;
-	
-		if(steps<5000)count_delay=10;
-		else if(steps<15000)count_delay=20;
-		else if(steps<25000)count_delay=30;
-		else if(steps<35000)count_delay=35;
-		else if(steps<45000)count_delay=40;
-		else if(steps<55000)count_delay=45;
-		else count_delay=50;
-		
-		count_delay=2*count_delay;
+
 		
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, (int)(steps*1.2));
@@ -453,7 +443,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 					{						
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=count_delay*300){
+				}else if(i>=10*1000){
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}
