@@ -15,7 +15,6 @@ typedef struct{
 	  int weightThree;
 	  int weightFour;
 	  uint8_t liquid;
-	  uint8_t nor[3];
 }real_time_polling_type_t;
 
 typedef struct{ 

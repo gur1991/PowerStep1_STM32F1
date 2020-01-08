@@ -792,10 +792,10 @@ static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 
 static void  protocol_electromagnetic_package(electromagnetic_package_type_t* data)
 {
-			electromagnetic_package_type_t  performer;
+			//electromagnetic_package_type_t  performer;
 
-			memcpy((void*)&performer, data, sizeof(electromagnetic_package_type_t));
-			electromagnetic_control_package(performer);	
+			//memcpy((void*)&performer, data, sizeof(electromagnetic_package_type_t));
+			electromagnetic_control_package(*data);	
 			data->response.ret = 0;
 }	
 

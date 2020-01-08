@@ -216,7 +216,7 @@ typedef union{
 		int32_t steps;//+forward -backward
 		uint8_t devices;//0,1,2
 		uint8_t types;//gpowerstep01_Commands_t
-		
+		uint8_t nor[2];
 	}request;
 	struct{
 		uint8_t ret;

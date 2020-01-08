@@ -154,8 +154,8 @@ struct{
 		wait_motor_data_type_t wait_motor_data[ALLOW_MANY_MOTOR];
 }request;
 struct{
-		uint8_t nor[23];
 		uint8_t ret;
+		uint8_t nor[23];
 }response;
 }wait_many_motor_type_t;
 

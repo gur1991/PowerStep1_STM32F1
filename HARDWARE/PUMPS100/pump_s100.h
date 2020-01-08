@@ -31,7 +31,7 @@ typedef	union{
 struct{
 		uint8_t S100_AI;
 		uint8_t S100_VALUE[6];
-	  uint8_t nor[11];
+	  uint8_t nor[5];
 }NormalAnswer;
 struct{
 		uint8_t S100_RESULT; 	
@@ -64,7 +64,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		uint8_t nor[7];	
+		uint8_t nor[3];	
 }response;
 }pump_s100_set_flowSpeed_type_t;
 

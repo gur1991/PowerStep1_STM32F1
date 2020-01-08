@@ -42,18 +42,18 @@ typedef enum{
 
 typedef union{
 struct{
-		WEIGHT_type weight;
+		int weight;
 }request;
 struct{
 		int gram;
 		uint8_t ret;
-		uint8_t nor[7];
+		uint8_t nor[3];
 }response;
 }get_weight_current_gram_type_t;
 
 typedef union{
 struct{
-		WEIGHT_type weight;
+		int weight;
 		int gram;
 }request;
 struct{
@@ -64,7 +64,7 @@ struct{
 
 typedef union{
 struct{
-		WEIGHT_type weight;
+		int weight;
 }request;
 struct{
 		uint8_t ret;

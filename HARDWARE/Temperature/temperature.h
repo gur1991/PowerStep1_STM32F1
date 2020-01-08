@@ -24,7 +24,7 @@ void Main_Keep_Temperature_Degree(void);
 
 typedef union{
 struct{
-		TMEPERATURE_type devices;
+		int devices;
 		int degree;
 }request;
 struct{
@@ -35,7 +35,7 @@ struct{
 
 typedef union{
 struct{
-		TMEPERATURE_type devices;
+		int devices;
 }request;
 struct{
 		int degree;
