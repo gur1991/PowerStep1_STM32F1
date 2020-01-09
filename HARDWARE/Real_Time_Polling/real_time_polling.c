@@ -39,7 +39,7 @@ void  Real_Time_Polling_Current_Index(void)
 		weight1=Get_weight_current_gram(WEIGHT_ONE);
 		weight2=Get_weight_current_gram(WEIGHT_TWO);
 		weight3=Get_weight_current_gram(WEIGHT_THREE);
-		weight4==Get_weight_current_gram(WEIGHT_FOUR);
+		weight4=Get_weight_current_gram(WEIGHT_FOUR);
 		//解决重力异常	 weight1
 		if(weight1<5000)
 		{ 
