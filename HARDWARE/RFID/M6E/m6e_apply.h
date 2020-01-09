@@ -23,20 +23,22 @@ typedef struct {
 *单片机只负责读取原始数据，之后分多次传给hal层，hal层再进行格式提取，涉及加密解密都放在hal层，这样做为了以后方便管理
 */
 
-uint8_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm);
+uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm);
 
 void Destory_M6e_Config(void);
 
 //读RFID信息
-uint8_t M6e_Magic_Read_Rfid_Info(uint8_t* length);
+uint32_t M6e_Magic_Read_Rfid_Info(uint8_t* length);
 //读之后，一个个返回HAL
 Chemical_reagent_Info_type M6e_Magic_Get_One_Rfid_Info(uint8_t index);
 //获取EPC字符串用于验证连接性
-uint8_t Get_EPC_String(uint8_t*length, uint8_t* epc);
+uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc);
 //写EPC信息	
-uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount);
+uint32_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount);
 //写BLANK信息
-uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData);
+uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData);
+
+uint32_t M6e_Read_Info(void);
 
 
 typedef union{
@@ -46,6 +48,7 @@ struct{
 		uint32_t WritePowerdbm;
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t ret;
 		uint8_t nor[11];
 }response;
@@ -62,9 +65,10 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor[4];
+	  uint8_t nor[8];
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t length;
 		uint8_t ret;
 }response;
@@ -76,6 +80,7 @@ struct{
 		uint8_t nor[59];
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t ret;
 		Chemical_reagent_Info_type tag;
 }response;
@@ -86,6 +91,7 @@ struct{
 	  uint8_t nor[60];
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t ret;
 		uint8_t  length; 
 		uint8_t epc[48];
@@ -99,6 +105,7 @@ struct{
 		uint8_t nor[3];
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t ret;
 }response;
 }rfid_write_epc_type_t;
@@ -110,6 +117,7 @@ struct{
 	uint8_t nor[3];
 }request;
 struct{
+		uint32_t RetM6e;
 		uint8_t ret;
 }response;
 }rfid_write_blank_type_t;

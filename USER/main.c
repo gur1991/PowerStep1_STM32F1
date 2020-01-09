@@ -84,7 +84,7 @@ void Init_Board_Config(void)
 	printf("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
-//	Init_M6e_Config(TMR_REGION_PRC,0,0);
+	//Init_M6e_Config(TMR_REGION_PRC,0,0);
 	printf("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -122,7 +122,6 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-
 
 	
 	while(1)

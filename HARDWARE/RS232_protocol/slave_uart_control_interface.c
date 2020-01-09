@@ -685,8 +685,8 @@ static void  protocol_rfid_init_config(rfid_init_config_type_t* data)
 	performer.request.region=data->request.region;
 	performer.request.ReadPowerdbm=data->request.ReadPowerdbm;
 	performer.request.WritePowerdbm=data->request.WritePowerdbm;
-	
-	data->response.ret=0;//Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+	data->response.RetM6e=Init_M6e_Config((TMR_Region)performer.request.region, performer.request.ReadPowerdbm, performer.request.WritePowerdbm);
+	data->response.ret=0;
 }
 
 static void  protocol_rfid_destory_config(rfid_destory_config_type_t* data)
@@ -699,8 +699,10 @@ static void  protocol_rfid_destory_config(rfid_destory_config_type_t* data)
 static void  protocol_rfid_send_read_command(rfid_send_read_command_type_t* data)
 {
 	rfid_send_read_command_type_t performer;
-	data->response.ret=M6e_Magic_Read_Rfid_Info(&performer.response.length);
+	
+	data->response.RetM6e=M6e_Magic_Read_Rfid_Info(&performer.response.length);
 	data->response.length=performer.response.length;
+	data->response.ret=0;
 }
 
 static void  protocol_rfid_receive_index_tag(rfid_receive_index_tag_type_t* data)
@@ -719,7 +721,8 @@ static void  protocol_rfid_get_epc_string(rfid_get_epc_string_type_t* data)
 {
 	  rfid_get_epc_string_type_t performer;
 	
-		data->response.ret=Get_EPC_String(&performer.response.length, performer.response.epc);
+		data->response.ret=0;
+	  data->response.RetM6e=Get_EPC_String(&performer.response.length, performer.response.epc);
 	  memcpy(data->response.epc, performer.response.epc, performer.response.length);
 		data->response.length=performer.response.length;
 }
@@ -728,16 +731,19 @@ static void  protocol_rfid_write_epc(rfid_write_epc_type_t* data)
 {
 	  rfid_write_epc_type_t performer;
 	
-		performer.response.ret=M6e_Magic_Write_Rfid_EPC(data->request.epcData,data->request.epcByteCount);
-		data->response.ret=performer.response.ret;
+		
+		performer.response.RetM6e=M6e_Magic_Write_Rfid_EPC(data->request.epcData,data->request.epcByteCount);
+		data->response.ret=0;
+		data->response.RetM6e=performer.response.RetM6e;
 }
 
 static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
 {
 	  rfid_write_blank_type_t performer;
 	
-		performer.response.ret=M6e_Magic_Write_Rfid_Blank(data->request.wordCount,data->request.writeData);
-		data->response.ret=performer.response.ret;
+		performer.response.RetM6e=M6e_Magic_Write_Rfid_Blank(data->request.wordCount,data->request.writeData);
+		data->response.ret=0;
+		data->response.RetM6e=performer.response.RetM6e;
 }
 
 //stm32(master)--->stm32(slave)

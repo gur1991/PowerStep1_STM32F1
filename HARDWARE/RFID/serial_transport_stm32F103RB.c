@@ -9,7 +9,7 @@
 #include "config.h"
 #include "uart2.h"
 
-#define RFID_DEBUG 1
+#define RFID_DEBUG 0
 
 Uart_Receive_Data M6E_Read=NULL ;
 Uart_Send_Data M6E_Write=NULL ;

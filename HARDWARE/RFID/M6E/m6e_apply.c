@@ -2,16 +2,11 @@
 #include "uart_config.h"
 #include "config.h"
 
+#define M6E_APPLY_DEBUG 1
+
 static TMR_Reader r, *rp=NULL;
 static TMR_ReadPlan plan;
-static uint8_t *gantennaList=NULL;
-static uint8_t gantennaCount=0x0;
-static uint8_t gbuffer[20];
-
 static TMR_TagReadData trd;
-char epcStr[128];
-char dataStr[128];
-
 
 static Chemical_reagent_Info_type RfidReadInfo[10];
 static uint8_t index_get=0;
@@ -34,50 +29,64 @@ void Destory_M6e_Config(void)
 
 
 
-uint8_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm)
+uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm)
 {
  
   TMR_Status ret=0;
-#if USE_AUTOMATIC_INJECTION_BOARD	
+#if USE_AUTOMATIC_INJECTION_BOARD
+	
+	static uint8_t *gantennaList=NULL;
+	static uint8_t gantennaCount=0x0;
+	static uint8_t gbuffer[20];	
 	uint32_t powerdbm; 
   TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
 
 	Load_RFID_Uart_Config();	
   
   rp = &r;
+#if M6E_APPLY_DEBUG	
 	printf("start. \r\n");
+#endif	
   ret = TMR_create(rp, "tmr:///com1");
+#if M6E_APPLY_DEBUG	
   printf("create ret:%d \r\n",ret);
-	
+#endif	
 	gbuffer[0] = 1;
 	gbuffer[1] = 2;
   gantennaList = gbuffer;
   gantennaCount = 2;
 
   ret = TMR_connect(rp);
+#if M6E_APPLY_DEBUG
 	printf("connect ret:%d \r\n",ret);
-	
-	powerdbm=2500;
+#endif	
+	//powerdbm=2500;
+	powerdbm=Rpowerdbm;
 	ret = TMR_paramSet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
 	ret = TMR_paramGet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
+#if M6E_APPLY_DEBUG	
 	printf("******* ReadPowerdbm:%d \r\n",powerdbm);
-	
-	powerdbm=3000;
+#endif	
+	//powerdbm=3000;
+	powerdbm=Wpowerdbm;
 	ret = TMR_paramSet(rp, TMR_PARAM_RADIO_WRITEPOWER, &powerdbm);
 	ret = TMR_paramGet(rp, TMR_PARAM_RADIO_WRITEPOWER, &powerdbm);
+#if M6E_APPLY_DEBUG	
 	printf("******* WritePowerdbm:%d \r\n",powerdbm);
-	
-	region=TMR_REGION_PRC;
+#endif	
+	//region=TMR_REGION_PRC;
   ret = TMR_paramSet(rp, TMR_PARAM_REGION_ID, &region);
 	ret = TMR_paramGet(rp, TMR_PARAM_REGION_ID, &region);
+#if M6E_APPLY_DEBUG	
 	printf("******* region:%d \r\n",region);
-
+#endif
   
 	ret = isAntDetectEnabled(rp, gantennaList);
+#if M6E_APPLY_DEBUG	
 	printf("******* gantennaList:%d \r\n",ret);
 	
 	printf("read type:%d \r\n",rp->readerType);
-
+#endif
   if (rp->readerType == TMR_READER_TYPE_SERIAL)
   {
 			ret = TMR_paramSet(rp, TMR_PARAM_METADATAFLAG, &metadata);
@@ -94,37 +103,49 @@ uint8_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm
 
 
 
-uint8_t M6e_Read_Info(void)
+uint32_t M6e_Read_Info(void)
 {
   TMR_Status ret=0;
 	
-#if USE_AUTOMATIC_INJECTION_BOARD		
+#if USE_AUTOMATIC_INJECTION_BOARD
+	char dataStr[128];
+	char epcStr[128];	
 	int i=0;
 	Load_RFID_Uart_Config();	
 	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
-  printf("****read plan:ret:0x%x\r\n",ret);
+#if M6E_APPLY_DEBUG 
+	printf("****read plan:ret:0x%x\r\n",ret);
 	
 	
 	printf("**** start TMR_read.\r\n");
+#endif	
 	ret = TMR_read(rp, 500, NULL);
-  printf("**** read:ret:0x%X\r\n",ret);
-	
+#if M6E_APPLY_DEBUG  
+	printf("**** read:ret:0x%X\r\n",ret);
+#endif	
 	ret=TMR_hasMoreTags(rp);
+#if M6E_APPLY_DEBUG	
 	printf("**** TMR_hasMoreTags:ret:0x%X\r\n",ret);
-
+#endif
 	Clear_Storage_Info_Rfid();
 	while (TMR_SUCCESS == TMR_hasMoreTags(rp))
   {
+#if M6E_APPLY_DEBUG		
 		printf("start next tag. \r\n");
-    ret = TMR_getNextTag(rp, &trd);
+#endif    
+		ret = TMR_getNextTag(rp, &trd);
+#if M6E_APPLY_DEBUG		
 		printf("getNextTag:ret:0x%x\r\n",ret);
+#endif		
 		TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
-    printf("EPC:%s %d", epcStr,trd.tag.epcByteCount);
-		
+#if M6E_APPLY_DEBUG    
+		printf("EPC:%s %d", epcStr,trd.tag.epcByteCount);
+#endif		
 		TMR_bytesToHex(trd.data.list, trd.data.len, dataStr);
-	  printf("  data(%d): %s\n", trd.data.len, dataStr);
-	
+#if M6E_APPLY_DEBUG	  
+		printf("  data(%d): %s\n", trd.data.len, dataStr);
+#endif	
 		
 		RfidReadInfo[i].used=1;
 		RfidReadInfo[i].epcStringCount=trd.tag.epcByteCount>sizeof(RfidReadInfo[i].epcString)?sizeof(RfidReadInfo[i].epcString):trd.tag.epcByteCount;
@@ -138,19 +159,20 @@ uint8_t M6e_Read_Info(void)
 	}
 	index_get=i;
   Exit_RFID_Uart_Config();	
-	
+			
 #endif	
 	return ret;
 }
 
 
-uint8_t M6e_Magic_Read_Rfid_Info(uint8_t* length)
+uint32_t M6e_Magic_Read_Rfid_Info(uint8_t* length)
 {
 	
-	uint8_t ret=0;	
+	uint32_t ret=0;	
 
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	ret=M6e_Read_Info()==0?0:1;
+	//ret=M6e_Read_Info()==0?0:1;
+	ret=M6e_Read_Info();
 	if(!ret){
 		*length=index_get;
 	}else{
@@ -167,12 +189,13 @@ Chemical_reagent_Info_type M6e_Magic_Get_One_Rfid_Info(uint8_t index)
 }
 
 
-uint8_t Get_EPC_String(uint8_t*length, uint8_t* epc)
+uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 {
-	uint8_t ret=0;
+	uint32_t ret=0;
 	
-#if USE_AUTOMATIC_INJECTION_BOARD		
-	TMR_TagReadData trd;
+#if USE_AUTOMATIC_INJECTION_BOARD
+	char epcStr[128];	
+	
 	memset(epcStr, 0, sizeof(epcStr));
   Load_RFID_Uart_Config();	
 	
@@ -193,7 +216,7 @@ uint8_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 }
 
 
-uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
+uint32_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
 {
 	  TMR_Status ret=0;
 	
@@ -211,7 +234,7 @@ uint8_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
 	  return ret;
 }
 
-uint8_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
+uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
 {
 		TMR_Status ret=0;
 	
