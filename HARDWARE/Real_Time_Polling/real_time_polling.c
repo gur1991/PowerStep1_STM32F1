@@ -17,16 +17,50 @@ void  Real_Time_Polling_Current_Index(void)
 #if USE_AUTOMATIC_INJECTION_BOARD
 	  get_single_temperature_degree_type_t data;
 		data.request.devices=TMEPERATURE_CURRENT;
+		
+		uint32_t degree=0;
+		uint32_t weight1=0;
+		uint32_t weight2=0;
+		uint32_t weight3=0;
+		uint32_t weight4=0;
 	
-		memset(&POLLING_data, 0, sizeof(POLLING_data));
-	  STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&POLLING_data.degree);
-	 
+		//memset(&POLLING_data, 0, sizeof(POLLING_data));
+	  
+	
+		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree);
+		
+		//解决温度异常	
+		if(degree<800){ 
+			POLLING_data.degree=degree;
+		}
+		
 	  POLLING_data.liquid=Liquid_Sensor_Get();
-		POLLING_data.weightOne=Get_weight_current_gram(WEIGHT_ONE);
-	  POLLING_data.weightTwo=Get_weight_current_gram(WEIGHT_TWO);
-		POLLING_data.weightThree=Get_weight_current_gram(WEIGHT_THREE);
-		POLLING_data.weightFour=Get_weight_current_gram(WEIGHT_FOUR);
-
+		
+		weight1=Get_weight_current_gram(WEIGHT_ONE);
+		weight2=Get_weight_current_gram(WEIGHT_TWO);
+		weight3=Get_weight_current_gram(WEIGHT_THREE);
+		weight4==Get_weight_current_gram(WEIGHT_FOUR);
+		//解决重力异常	 weight1
+		if(weight1<5000)
+		{ 
+			POLLING_data.weightOne=weight1;
+		}
+		//weight2
+		if(weight2<5000)
+		{ 
+			POLLING_data.weightTwo=weight2;
+		}
+		//weight3	
+		if(weight3<5000)
+		{ 
+			POLLING_data.weightThree=weight3;
+		}
+		//weight4	
+		if(weight4<5000)
+		{ 
+			POLLING_data.weightFour=weight4;
+		}
+		
 #endif
 	
 	

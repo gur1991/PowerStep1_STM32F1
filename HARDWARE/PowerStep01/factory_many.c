@@ -363,7 +363,7 @@ void Scan_Motor_Slow_Spin(void)
 #if USE_AUTOMATIC_INJECTION_BOARD		
 	Choose_Single_Motor_Speed_Config(M2_MIX,LOW_SPEED);
 	PowerStep_Select_Motor_Baby(M2_MIX);	
-	BSP_MotorControl_Move(0, M2_MIX_RIGHT, 86000);
+	BSP_MotorControl_Move(0, M2_MIX_LEFT, 86000);
 #endif	
 }
 
