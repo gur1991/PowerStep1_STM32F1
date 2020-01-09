@@ -200,13 +200,16 @@ uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
   Load_RFID_Uart_Config();	
 	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
-	ret = TMR_read(rp, 1000, NULL);
+	ret = TMR_read(rp, 500, NULL);
 	if(!TMR_hasMoreTags(rp))
 	 {
 		    ret = TMR_getNextTag(rp, &trd);
 		    TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
 		    *length=2*trd.tag.epcByteCount;
+				
+				if(*length>48)*length=48;
 		    memcpy(epc, epcStr, *length);
+					
 	}
 
 	Exit_RFID_Uart_Config();	
