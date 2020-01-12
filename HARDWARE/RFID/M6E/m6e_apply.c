@@ -34,6 +34,10 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
  
   TMR_Status ret=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
+	static bool Init_Ok=false;
+	
+	//解决不关机再开机问题	
+	if(Init_Ok)return 0;else Init_Ok=true;
 	
 	static uint8_t *gantennaList=NULL;
 	static uint8_t gantennaCount=0x0;
