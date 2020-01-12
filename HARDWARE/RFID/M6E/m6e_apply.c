@@ -34,10 +34,10 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
  
   TMR_Status ret=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
-	static bool Init_Ok=false;
+	static bool Init_M6e_Ok=false;
 	
 	//解决不关机再开机问题	
-	if(Init_Ok)return 0;else Init_Ok=true;
+	if(Init_M6e_Ok)return 0;else Init_M6e_Ok=true;
 	
 	static uint8_t *gantennaList=NULL;
 	static uint8_t gantennaCount=0x0;
@@ -199,6 +199,7 @@ uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 	
 #if USE_AUTOMATIC_INJECTION_BOARD
 	char epcStr[128];	
+	int len=0;
 	
 	memset(epcStr, 0, sizeof(epcStr));
   Load_RFID_Uart_Config();	
@@ -209,13 +210,13 @@ uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 	 {
 		    ret = TMR_getNextTag(rp, &trd);
 		    TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
-		    *length=2*trd.tag.epcByteCount;
+		    len=2*trd.tag.epcByteCount;
 				
-				if(*length>48)*length=48;
-		    memcpy(epc, epcStr, *length);
-					
+				if(len>48)len=48;
+		    memcpy(epc, epcStr, len);
+						
 	}
-
+	*length=len;
 	Exit_RFID_Uart_Config();	
 #endif
 	

@@ -123,15 +123,24 @@ int main(void)
 	Init_Board_Config();
 	
 
-#if 0//USE_AUTOMATIC_INJECTION_BOARD	
+#if 0
 Init_M6e_Config(6, 3000,3000);
+while(1)
+{	
+	Read_EPC_String();
+	delay_ms(400);	
+}		
+#endif	
+
+
+#if 0//USE_AUTOMATIC_INJECTION_BOARD	
+  Init_M6e_Config(6, 3000,3000);
 	uint8_t length;
 	uint8_t epc[64];
 	memset(epc,0,sizeof(epc));
 	
 while(1)
 {
-	M6e_Read_Info();
 	Get_EPC_String(&length, epc);
 	if(length)
 	{
@@ -141,7 +150,7 @@ while(1)
 	}	else{
 		printf("epc:none\r\n");
 	}	
-	delay_ms(1000);	
+	delay_ms(400);	
 }	
 #endif
 	

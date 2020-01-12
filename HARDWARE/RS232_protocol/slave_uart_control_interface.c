@@ -723,7 +723,9 @@ static void  protocol_rfid_get_epc_string(rfid_get_epc_string_type_t* data)
 	
 		data->response.ret=0;
 	  data->response.RetM6e=Get_EPC_String(&performer.response.length, performer.response.epc);
-	  memcpy(data->response.epc, performer.response.epc, performer.response.length);
+	  
+		if(performer.response.length)
+			memcpy(data->response.epc, performer.response.epc, performer.response.length);
 		data->response.length=performer.response.length;
 }
 
@@ -1545,6 +1547,36 @@ int pump_process_cmd(pump_type_t pump)
 	return value;
 }	
 /**************************PUMP end************************************/
+
+void Read_EPC_String(void)
+{
+	rfid_get_epc_string_type_t rfid;
+	
+	memset(&rfid,0,sizeof(rfid));
+	
+	protocol_rfid_get_epc_string(&rfid);
+	
+	if(rfid.response.length)
+	{
+		printf("epc:%s\r\n",rfid.response.epc);
+	}	else{
+		printf("epc:none\r\n");
+	}	
+
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
