@@ -122,38 +122,20 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-
-#if 0
-Init_M6e_Config(6, 3000,3000);
+/*
+	electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);	
+	PumpHandle->setFlowSpeed(9000);
+	PumpHandle->run();
+*/	
+/*	
+	Init_M6e_Config(6,3000,3000);
 while(1)
 {	
-	Read_EPC_String();
-	delay_ms(400);	
-}		
-#endif	
-
-
-#if 0//USE_AUTOMATIC_INJECTION_BOARD	
-  Init_M6e_Config(6, 3000,3000);
-	uint8_t length;
-	uint8_t epc[64];
-	memset(epc,0,sizeof(epc));
-	
-while(1)
-{
-	Get_EPC_String(&length, epc);
-	if(length)
-	{
-		printf("epc:%s\r\n",epc);
-		memset(epc,0,sizeof(epc));
-		length=0;	
-	}	else{
-		printf("epc:none\r\n");
-	}	
-	delay_ms(400);	
+		M6e_Read_Info();
+		delay_ms(1000);	
 }	
-#endif
-	
+*/
+
 	while(1)
 	{
 			if(ARM_RS232_ASK)

@@ -502,8 +502,9 @@ void mix_and_reach_position(void)
 uint8_t C55_C52_connect_check(void)
 {
 	uint8_t ret=0;
-	if(C55_connect_check())ret|=0x01;
+	
 	if(C52_connect_check())ret|=0x10;
+	if(C55_connect_check())ret|=0x01;
 	
 	printf("C55 C52 0x%x \r\n",ret);
 	

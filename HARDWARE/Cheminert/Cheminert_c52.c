@@ -6,8 +6,8 @@
 u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int timeout,bool wait_flag,int type_flag)
 {
 	 u8 ret=0;
-		int len;
-	 u8 rx_buf_tmp[64];
+		int len=0;
+	 u8 rx_buf_tmp[64]={0};
 	 Uart_Receive_Data R232_Read=NULL;
 	 Uart_Send_Data R232_Write=NULL;
 	

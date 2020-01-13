@@ -101,7 +101,6 @@ left---------------------wait
 #define WAIT_LIGHT 3
 #define NEXT_LIGHT 4
 
-
 #define HIGH_CHECK_LIGHT 10
 #define M7_LIGHT 7
 #define M7_HIGH_TURN 7

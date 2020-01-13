@@ -221,12 +221,15 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 	
 			int type_flag=0;//type_flag =1 c52    type_flag=0 c55
 			
-			u8 rx_buf[64];
+			u8 rx_buf[64]={0};
 			u8 tx_size=0;
-			u8 tx_buf[10];
-			u8 ret,rx_size,i,j=2;
+			u8 tx_buf[10]={0};
+			u8 ret=0,rx_size=0,i=0,j=2;
 			cheminert_c52_c55_type_t performer;
-
+			
+			memset(&performer, 0, sizeof(performer));
+			
+			
 			bool wait_flag=true;
 			performer.request.command=data->request.command;
 			switch(performer.request.command)
@@ -407,6 +410,7 @@ while(j--){
 						data->response.size=rx_size;
 						break;
 			}
+			delay_ms(800);
 			Uart_Clear_Context();	
 }			
 			data->response.ret=ret;		
