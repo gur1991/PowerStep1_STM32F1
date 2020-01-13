@@ -226,11 +226,13 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			u8 tx_buf[10]={0};
 			u8 ret=0,rx_size=0,i=0,j=2;
 			cheminert_c52_c55_type_t performer;
+			bool wait_flag;
 			
+while(j--){			
 			memset(&performer, 0, sizeof(performer));
 			
 			
-			bool wait_flag=true;
+			wait_flag=true;
 			performer.request.command=data->request.command;
 			switch(performer.request.command)
 			{
@@ -403,14 +405,14 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 								printf("no found this cmd ! \r\n");
 			
 			}
-while(j--){
+
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
 						break;
 			}
-			delay_ms(800);
+			delay_ms(1500);
 			Uart_Clear_Context();	
 }			
 			data->response.ret=ret;		

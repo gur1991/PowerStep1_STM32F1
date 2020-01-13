@@ -127,11 +127,11 @@ int main(void)
 	PumpHandle->setFlowSpeed(9000);
 	PumpHandle->run();
 */	
-/*	
-	Init_M6e_Config(6,3000,3000);
+	
+/*
 while(1)
 {	
-		M6e_Read_Info();
+	   printf("ret:%d \r\n",C55_connect_check());
 		delay_ms(1000);	
 }	
 */
