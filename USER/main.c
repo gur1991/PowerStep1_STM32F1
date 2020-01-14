@@ -134,8 +134,8 @@ while(1)
 	   printf("ret:%d \r\n",C55_connect_check());
 		delay_ms(1000);	
 }	
-*/
 
+*/
 	while(1)
 	{
 			if(ARM_RS232_ASK)

@@ -447,7 +447,10 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
 		
     /* Reset Powerstep0*/
     //Powerstep01_Board_Reset(deviceId);
-		Powerstep01_Board_Reset_All();
+		//Powerstep01_Board_Reset_All();
+		
+		Powerstep01_Board_ReleaseReset_All();
+		
 		//此處需要全部rst
 
 		
