@@ -121,7 +121,8 @@ int main(void)
 	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-	
+
+
 	
 	while(1)
 	{

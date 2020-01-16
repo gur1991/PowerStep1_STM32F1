@@ -195,7 +195,9 @@ typedef enum Command_Package_type{
 			NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO,//sensor
 			
 			C55_C52_CONNECT,//motor
-
+			
+			MOTOR_UP_DOWN_SLOW,//sensor
+			MOTOR_UP_DOWN_NORMAL,//sensor
 
 }Command_Package_t;
 

@@ -613,6 +613,16 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			case C55_C52_CONNECT:
 					value = C55_C52_connect_check();
 				break;
+			case MOTOR_UP_DOWN_SLOW:
+#if USE_CLEANING_DILUTION_BOARD
+					Choose_Single_Motor_Speed_Config(M10_UP_DOWM,LOW_SPEED);
+#endif					
+				break;
+			case MOTOR_UP_DOWN_NORMAL:
+#if USE_CLEANING_DILUTION_BOARD						
+					Choose_Single_Motor_Speed_Config(M10_UP_DOWM,NORMAL_SPEED);
+#endif					
+					break;	
 			
 			default:
 					break;

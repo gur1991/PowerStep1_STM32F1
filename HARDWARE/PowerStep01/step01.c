@@ -330,8 +330,15 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=120;
 		
-			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
-			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
+			if(speed_type==LOW_SPEED){
+				
+				TempMotor.request.init_motor.motor_commonSpeed.acceleration=18000;
+				TempMotor.request.init_motor.motor_commonSpeed.deceleration=18000;
+				TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+				TempMotor.request.init_motor.motor_config.current.current_value=130;
+				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=10000;
+				
+			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
 		
 	
