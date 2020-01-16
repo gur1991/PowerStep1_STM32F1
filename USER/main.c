@@ -122,20 +122,7 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-/*
-	electromagnetic_control(ELECTROMAGNETIC_B, OPEN_FT);	
-	PumpHandle->setFlowSpeed(9000);
-	PumpHandle->run();
-*/	
 	
-/*
-while(1)
-{	
-	   printf("ret:%d \r\n",C55_connect_check());
-		delay_ms(1000);	
-}	
-
-*/
 	while(1)
 	{
 			if(ARM_RS232_ASK)

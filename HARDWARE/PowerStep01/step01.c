@@ -443,11 +443,11 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 					{						
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=10*1000){
+				}else if(i>=1000){
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}
-				delay_ms(1);	
+				delay_ms(10);	
 		}				
 }
 
@@ -486,23 +486,22 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 //初始化
 void BSP_Motor_Control_Init(void)
 {
-int i,result,value;
+int i=0,result=0,value=0;
+int start=0,end=0;	
 	
-	
-#if USE_AUTOMATIC_INJECTION_BOARD		
-	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
-
-	for(i=1;i<=7;i++){
-#elif USE_CLEANING_DILUTION_BOARD
-	BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-  BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数
-
-	for(i=8;i<=11;i++){
-#else
-	for(i=12;i<13;i++){
-		return;
+#if USE_AUTOMATIC_INJECTION_BOARD	
+		start=1;end=7;
 #endif		
+#if USE_CLEANING_DILUTION_BOARD
+		start=8;end=11;
+#endif
+
+		
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_CLEANING_DILUTION_BOARD)	
+	for(i=start;i<=end;i++)
+	{
+			BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
+			BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数		
 			result=ConfigMotorAllDevice(i,NORMAL_SPEED);//配置电机参数
 			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);
@@ -515,9 +514,18 @@ int i,result,value;
 				Powerstep01_Init_Register(NULL);
 			}
 			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
-  }		
+	}	
+#endif
 
+			
 }	
+
+
+
+
+
+
+
 
 
 
