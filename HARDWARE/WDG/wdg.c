@@ -1,4 +1,5 @@
 #include "wdg.h"
+#include "config.h"
 //#include "stm32f1xx_hal_iwdg.h"
 IWDG_HandleTypeDef hiwdg;
 //Óë·ÖÆµÊýÎª64,ÖØÔØÖµÎª625,Òç³öÊ±¼äÎª1s	    Tout=64×625/40=1000ms

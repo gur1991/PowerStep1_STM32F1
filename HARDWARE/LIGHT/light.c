@@ -1,6 +1,7 @@
 #include "light.h"
 #include "delay.h"
 #include <string.h>
+#include "config.h"
 
 void Light_Sensor_Init(void)
 {

@@ -1,5 +1,6 @@
 #include "real_time_polling.h"
 #include "slave_uart_control_interface.h"
+#include "config.h"
 
 static real_time_polling_type_t POLLING_data;
 static real_time_polling_press_type_t POLLING_press;

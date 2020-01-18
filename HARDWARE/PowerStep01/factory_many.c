@@ -2,7 +2,7 @@
 #include "factory_many.h"
 #include "delay.h"
 #include "slave_uart_control_interface.h"
-
+#include "config.h"
 /*
 	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
 	Normal_Goto_First_Position();
@@ -27,7 +27,7 @@
 void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
 	
-#if (USE_CLEANING_DILUTION_BOARD|USE_AUTOMATIC_INJECTION_BOARD)	
+#if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)	
 	PowerStep_Select_Motor_Baby(deviceId);	
 	BSP_MotorControl_Move(0, direction, stepCount);
 	BSP_MotorControl_WaitWhileActive(0);
@@ -257,10 +257,10 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 void Rest_Transporter_Belt(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	
+	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
 	RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000);
 	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
+	
 #endif
 }
 
@@ -268,15 +268,16 @@ void March_Transporter_Belt(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
-		
+	if(Light_Sensor_Get(M4_LIGHT)==0)
+			Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
+	
 	if(Light_Sensor_Get(M3_LIGHT)==0)
 			Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 2000);
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 	
-	if(Light_Sensor_Get(M4_LIGHT)==0)
-			Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
+
 
 #endif	
 }	
@@ -348,14 +349,12 @@ void RestFarAndDownMotorOrgin(void)
 void First_Open_Motor_AutoCheck_Sensor(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD
-	March_high_wheel();
-	Rest_high_wheel();
-
+	
 	March_Transporter_Belt();
 	Rest_Transporter_Belt();
 	
-
-	
+	March_high_wheel();
+	Rest_high_wheel();
 
 #endif 
 }

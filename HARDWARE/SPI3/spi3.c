@@ -1,4 +1,5 @@
 #include "spi3.h"
+#include "config.h"
 
 SPI_HandleTypeDef SPI3_Handler;  
 

@@ -1,6 +1,6 @@
 #include "uart_command_control_protocol.h"
 #include "stdio.h"
-
+#include "config.h"
 
 static volatile uint16_t gLastError;
 

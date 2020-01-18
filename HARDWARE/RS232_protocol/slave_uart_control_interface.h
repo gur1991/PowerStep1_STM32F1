@@ -10,7 +10,6 @@
 #include "temperature.h"
 #include "uart_choose.h"
 #include "Cheminert_c52.h"
-#include "config.h"
 #include "bl180.h"
 #include "S1125.h"
 #include "m6e_apply.h"

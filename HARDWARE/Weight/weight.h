@@ -2,7 +2,6 @@
 #define _WEIGHT_H
 #include "spi1.h"
 #include "spi3.h"
-#include "config.h"
 #include "sys.h"
 
 typedef enum{

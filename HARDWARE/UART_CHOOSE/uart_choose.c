@@ -1,5 +1,6 @@
 #include "uart_choose.h"
 #include "delay.h"
+#include "config.h"
 
 static  UART_CS_TYPE UART2_STAUS_LAST=CS_FOUR,UART3_STAUS_LAST=CS_FOUR;
 

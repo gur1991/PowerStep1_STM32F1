@@ -69,7 +69,7 @@ extern void BSP_MotorControl_FlagInterruptHandler(void);
 void HAL_MspInit(void)
 {
 }
-#if (USE_AUTOMATIC_INJECTION_BOARD|USE_CLEANING_DILUTION_BOARD)
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_CLEANING_DILUTION_BOARD)
 /**
   * @brief SPI MSP Initialization 
   *        This function configures the hardware resources used in this example: 

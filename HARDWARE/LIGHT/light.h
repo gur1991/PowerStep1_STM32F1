@@ -1,7 +1,6 @@
 #ifndef _LIGHT_H
 #define _LIGHT_H
 #include "sys.h"
-#include "config.h"
 #include "real_time_polling.h"
 
 //下面的方式是通过直接操作HAL库函数方式读取IO

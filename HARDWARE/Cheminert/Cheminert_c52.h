@@ -6,7 +6,6 @@
 #include "uart2.h"
 #include "delay.h"
 #include <stdbool.h>
-#include "config.h"
 #include "uart_choose.h"
 u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int timeout,bool wait_flag, int type_flag);
 

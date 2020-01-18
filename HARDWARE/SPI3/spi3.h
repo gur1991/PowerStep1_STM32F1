@@ -1,7 +1,6 @@
 #ifndef __SPI_3_H
 #define __SPI_3_H
 #include "sys.h"
-#include "config.h"
 
 
 void SPI3_Init(void);

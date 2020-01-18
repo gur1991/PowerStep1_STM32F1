@@ -1,5 +1,6 @@
 #include "pump_s100.h"
 #include "uart_command_control_protocol.h"
+#include "config.h"
 
 void Big_Little_Endian_Convert(u8*array,u8 array_size){
 		u8 tmp_data[128];

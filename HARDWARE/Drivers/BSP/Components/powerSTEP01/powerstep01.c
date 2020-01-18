@@ -36,6 +36,7 @@
   */
 
 #include "powerstep01.h"
+#include "config.h"
 /** @addtogroup BSP
   * @{
   */   

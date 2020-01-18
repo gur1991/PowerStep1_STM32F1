@@ -8,7 +8,6 @@
 #include "delay.h"
 #include <stdbool.h>
 #include "uart_choose.h"
-#include "config.h"
 #include "spi1.h"
 #include "uart_rts_control.h"
 #include "real_time_polling.h"

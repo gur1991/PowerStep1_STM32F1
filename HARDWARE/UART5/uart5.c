@@ -1,6 +1,7 @@
 
 #include "uart5.h"
 #include "uart_command_control_protocol.h"
+#include "config.h"
 
 UART_HandleTypeDef UART5_Handler;  
 

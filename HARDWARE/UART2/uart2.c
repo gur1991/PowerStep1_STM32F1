@@ -1,7 +1,7 @@
 #include "uart2.h"
 #include "delay.h"
 #include "uart_command_control_protocol.h"
-
+#include "config.h"
 
 UART_HandleTypeDef USART2_Handler;  
 

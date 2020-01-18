@@ -1,7 +1,6 @@
 #ifndef __MINI_BORAD_PROTOCL_H
 #define __MINI_BORAD_PROTOCL_H
 #include "sys.h"
-#include "config.h"
 #include "uart_command_control_protocol.h"
 #include <stdbool.h>
 #include "uart5.h"

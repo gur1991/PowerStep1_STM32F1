@@ -6,7 +6,6 @@
 #include "uart2.h"
 #include "delay.h"
 #include "uart_choose.h"
-#include "config.h"
 //1 need ------ 0 no need
 #define NEED_BIG_LITTLE_ENDIAN_CONVERT 1
 

@@ -1,5 +1,5 @@
 #include "printpaper.h"
-
+#include "config.h"
 
 /*
 iType:,0=È«ÇÐ,1=°ëÇÐ

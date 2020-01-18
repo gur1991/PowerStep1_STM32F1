@@ -36,7 +36,7 @@
  */
 /* Includes ------------------------------------------------------------------*/
 #include "x_nucleo_ihmxx.h"
-
+#include "config.h"
 /** @addtogroup BSP
  * @{
  */

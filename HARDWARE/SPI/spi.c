@@ -1,5 +1,5 @@
 #include "spi.h"
-
+#include "config.h"
 SPI_HandleTypeDef SPI2_Handler;  //SPI1¾ä±ú
 
 void SPI2_Init(void)

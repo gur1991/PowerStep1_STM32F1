@@ -1,7 +1,6 @@
 #ifndef __ELECTROMAGNETIC_H
 #define __ELECTROMAGNETIC_H
 #include "sys.h"
-#include "config.h"
 
 #define	FET1 		PBout(4)  		
 #define	FET2 		PBout(5) 

@@ -1,7 +1,6 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 #include "sys.h"
-#include "config.h"
 #include "time_interrupt.h"
 
 

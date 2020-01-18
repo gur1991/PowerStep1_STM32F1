@@ -121,7 +121,16 @@ int main(void)
 	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-
+	
+  //Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
+	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
+	
+/*	
+	while(1){
+		printf("M4_LIGHT:%d \r\n",Light_Sensor_Get(M4_LIGHT));
+		delay_ms(1000);
+	}
+*/
 	
 	while(1)
 	{
@@ -143,7 +152,7 @@ int main(void)
 			}
 #endif		
 
-#if (USE_AUTOMATIC_INJECTION_BOARD|USE_GRADIENT_CONTROL_BOARD)
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
 			i++;
 			if(i==50)
 			{		

@@ -7,7 +7,6 @@
 #include "delay.h"
 #include <stdbool.h>
 #include "uart_choose.h"
-#include "config.h"
 #include "fm100.h"
 #include "uart_config.h"
 

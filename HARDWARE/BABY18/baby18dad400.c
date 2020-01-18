@@ -1,5 +1,5 @@
 #include "baby18dad400.h"
-
+#include "config.h"
 static uint8_t baby18_request[24];
 static uint8_t baby18_reponse[128];
 

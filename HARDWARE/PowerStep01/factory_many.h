@@ -3,7 +3,6 @@
 
 #include "step01.h"
 #include "uart_command_control_protocol.h"
-#include "config.h"
 
 
 uint8_t process_motor_command_receive(Command_Package_t command);

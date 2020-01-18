@@ -2,7 +2,6 @@
 #define __DS18B20_KEEP_H
 #include "ds18b20.h"
 #include "temperature.h"
-#include "config.h"
 
 //五分钟之内等待，否则退出
 uint8_t Rearch_Degree_Wait(void);

@@ -39,7 +39,7 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_nucleo.h"
-
+#include "config.h"
 /** @defgroup BSP BSP
   * @{
   */ 

@@ -11,6 +11,7 @@
 //#include "STM32F10x.h"
 #include "stm32f1xx_hal.h"
 //uint32_t msec;
+#include "config.h"
 
 /*
 void SysTick_Handler(void)

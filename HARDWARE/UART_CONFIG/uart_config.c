@@ -2,6 +2,7 @@
 #include "uart_choose.h"
 #include "uart5.h"
 #include "uart4.h"
+#include "config.h"
 
 void Uart2_Config_Init(void)
 {

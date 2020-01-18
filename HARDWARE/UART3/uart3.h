@@ -1,7 +1,6 @@
 #ifndef __UART3_H
 #define __UART3_H
 #include "sys.h"
-#include "config.h"
 
 #define LEN_MAX_UART3 260
 

@@ -1,5 +1,5 @@
 #include "uart_rts_control.h"
-
+#include "config.h"
 
 void Uart_Rts_Control_Init(void)
 {

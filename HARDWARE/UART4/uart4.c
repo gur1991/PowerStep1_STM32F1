@@ -1,6 +1,7 @@
 #include "uart4.h"
 #include "delay.h"
 #include "uart_command_control_protocol.h"
+#include "config.h"
 
 UART_HandleTypeDef UART4_Handler;  
 
@@ -16,6 +17,11 @@ void UART4_IRQHandler(void)
     if((__HAL_UART_GET_FLAG(&UART4_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	 {	 	
 		HAL_UART_Receive(&UART4_Handler,&res,1,10);//115200 256byte 需要20ms，现在给30ms
+			
+		//如果上次指令尚没有结束，就不会接受新的指令 
+		if(ARM_RS232_ASK)return;
+		 
+		 
 		if(UART4_RX_CNT<LEN_MAX_UART4)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值

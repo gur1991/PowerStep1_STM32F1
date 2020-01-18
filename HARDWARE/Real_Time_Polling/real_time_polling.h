@@ -1,7 +1,6 @@
 #ifndef __REAL_TIME_POLLING_H
 #define __REAL_TIME_POLLING_H
 #include "sys.h"
-#include "config.h"
 #include "rs232_change_protocol.h"
 #include "temperature.h"
 

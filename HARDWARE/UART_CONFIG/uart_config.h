@@ -1,6 +1,5 @@
 #ifndef __UART_CONFIG_H
 #define __UART_CONFIG_H
-#include "config.h"
 #include "uart2.h"
 #include "uart3.h"
 
