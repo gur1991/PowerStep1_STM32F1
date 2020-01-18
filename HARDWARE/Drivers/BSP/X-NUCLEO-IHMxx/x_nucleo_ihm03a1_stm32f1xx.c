@@ -41,6 +41,7 @@
 #include "x_nucleo_ihmxx.h"
 #include "stdint.h"	 
 #include "config.h"
+#include "delay.h"
 
 GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
 uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
@@ -613,7 +614,8 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
   HAL_StatusTypeDef status;
   uint32_t i;
   //HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT2, BSP_MOTOR_CONTROL_BOARD_CS_PIN2, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET); 
+  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET);
+			
 	
   for (i = 0; i < nbDevices; i++)
   {
@@ -627,7 +629,8 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
     pReceivedByte++;
   }
   HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_SET);
-  //HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT2, BSP_MOTOR_CONTROL_BOARD_CS_PIN2, GPIO_PIN_SET); 
+  
+	//HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT2, BSP_MOTOR_CONTROL_BOARD_CS_PIN2, GPIO_PIN_SET); 
 	
   
   return (uint8_t) status;  

@@ -122,7 +122,6 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
-
 	
 	while(1)
 	{
@@ -151,7 +150,8 @@ int main(void)
 					i=0;
 					Real_Time_Polling_Current_Index();
 			}
-#endif		
+#endif
+			
 	}
 
 	return 0;

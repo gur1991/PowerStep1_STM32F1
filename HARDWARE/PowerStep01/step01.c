@@ -261,6 +261,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
    		break;
 	
 		case 7:
+/*			
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
@@ -276,6 +277,22 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=500;
 		
    		break;
+*/
+			TempMotor.request.devices=chip;
+			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
+		
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=600;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=600;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=250;
+		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
+		
+			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=80;
+			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=250;
+			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
+			
+			break;
 		case 8:
 /*			
 			TempMotor.request.devices=chip;
@@ -443,19 +460,20 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 
 		
 		PowerStep_Select_Motor_Baby(motorNum);
-		BSP_MotorControl_Move(0, motorDir, (int)(steps*1.2));
+		BSP_MotorControl_Move(0, motorDir, steps);
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(lightNum))
 					{						
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=1000){
+				}else if(i>=10*1000){
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}
-				delay_ms(10);	
-		}				
+				delay_ms(1);	
+		}
+	 BSP_MotorControl_WaitWhileActive(0);		
 }
 
 
@@ -505,10 +523,11 @@ int start=0,end=0;
 
 		
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_CLEANING_DILUTION_BOARD)	
+		BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
+		BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数	
 	for(i=start;i<=end;i++)
 	{
-			BSP_MotorControl_SetNbDevices(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, 1);
-			BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数		
+	
 			result=ConfigMotorAllDevice(i,NORMAL_SPEED);//配置电机参数
 			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);

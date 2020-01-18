@@ -114,6 +114,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 		}else if(i>=450)
 		{
 				BSP_MotorControl_HardStop(0);
+				BSP_MotorControl_WaitWhileActive(0);
 				break;
 		}
 		delay_ms(10);
@@ -147,6 +148,7 @@ uint8_t ReadyAndCheckLeftPosition(void)
 					}else if(i>=450)
 					{
 								BSP_MotorControl_HardStop(0);
+								BSP_MotorControl_WaitWhileActive(0);
 								break;
 					}
 					delay_ms(10);
@@ -173,10 +175,12 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				if(!Light_Sensor_Get(WAIT_LIGHT))
 				{
 						BSP_MotorControl_HardStop(0);
+						BSP_MotorControl_WaitWhileActive(0);
 						break;
 				}else if(i>=800)
 				{
 						BSP_MotorControl_HardStop(0);
+						BSP_MotorControl_WaitWhileActive(0);
 						break;
 				}
 				delay_ms(10);
@@ -253,29 +257,33 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 void Rest_Transporter_Belt(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
+	
 	RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000);
 	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 40*1000);
 #endif
 }
 
 void March_Transporter_Belt(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	if(Light_Sensor_Get(M4_LIGHT)==0)
-			Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
 	
+		
 	if(Light_Sensor_Get(M3_LIGHT)==0)
 			Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 2000);
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
+	
+	if(Light_Sensor_Get(M4_LIGHT)==0)
+			Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
+
 #endif	
 }	
 void Rest_high_wheel(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	RestSelectMotorOrgin(M7_HIGH_TURN,M7_LIGHT,M7_BACK_TURN, 13500);
+	RestSelectMotorOrgin(M7_HIGH_TURN,M7_LIGHT,M7_BACK_TURN, 2000);
 #endif
 }
 void March_high_wheel(void)
@@ -340,10 +348,15 @@ void RestFarAndDownMotorOrgin(void)
 void First_Open_Motor_AutoCheck_Sensor(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD
-	March_Transporter_Belt();
 	March_high_wheel();
-	Rest_Transporter_Belt();
 	Rest_high_wheel();
+
+	March_Transporter_Belt();
+	Rest_Transporter_Belt();
+	
+
+	
+
 #endif 
 }
 //5 6 9 10
@@ -450,11 +463,13 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 				if(!Light_Sensor_Get(M10_LIGHT)&&!flag1)
 				{		PowerStep_Select_Motor_Baby(M8_BIG_IN_OUT);				
 						BSP_MotorControl_HardStop(0);	
+						BSP_MotorControl_WaitWhileActive(0);
 						flag1=1;
 				}
 				if(!Light_Sensor_Get(M10_LIGHT)&&!flag2)
 				{		PowerStep_Select_Motor_Baby(M10_UP_DOWM);			
 						BSP_MotorControl_HardStop(0);
+						BSP_MotorControl_WaitWhileActive(0);
 						flag2=1;					
 						
 				}	
@@ -463,8 +478,10 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 				if(i>=1500){
 							PowerStep_Select_Motor_Baby(M8_BIG_IN_OUT);
 							BSP_MotorControl_HardStop(0);
+							BSP_MotorControl_WaitWhileActive(0);
 							PowerStep_Select_Motor_Baby(M10_UP_DOWM);
 							BSP_MotorControl_HardStop(0);
+							BSP_MotorControl_WaitWhileActive(0);
 							break;	
 				}
 				
