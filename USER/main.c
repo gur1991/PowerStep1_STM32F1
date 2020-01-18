@@ -122,6 +122,16 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+	/*
+		Uart_Send_Data FM6E_Write=NULL ;
+	uint8_t buf[]="ddssasa";
+	
+	FM6E_Write = GetUartSend(RFID_UART_PORT,RFID_UART_CS);
+
+	while(1){
+		FM6E_Write(buf,5);
+	}
+	*/
   //Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
 	

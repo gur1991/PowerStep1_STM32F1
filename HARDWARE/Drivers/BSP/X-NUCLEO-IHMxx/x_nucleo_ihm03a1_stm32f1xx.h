@@ -48,7 +48,7 @@
 #include "stm32f1xx_nucleo.h"
 #include "x_nucleo_ihm03a1_stm32f1xx.h" 
 //#define BSP_MOTOR_CONTROL_BOARD_USE_SPI2	 
-	 
+	 #include "config.h"
 	 /** @addtogroup BSP
   * @{
   */   

@@ -1,6 +1,7 @@
 #ifndef __UART4_H
 #define __UART4_H
 #include "sys.h"
+#include "config.h"
 
 void Uart4_Rx_Clear(void);
 

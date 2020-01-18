@@ -1,7 +1,7 @@
 #ifndef __UART_RTS_CONTROL_H
 #define __UART_RTS_CONTROL_H
 #include "sys.h"
-
+#include "config.h"
 
 #define	RTS0 		PAout(7)
 #define	RTS1 		PGout(9) 

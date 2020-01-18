@@ -3,6 +3,7 @@
 #include "spi1.h"
 #include "spi3.h"
 #include "sys.h"
+#include "config.h"
 
 typedef enum{
 	AD1_CS=10,

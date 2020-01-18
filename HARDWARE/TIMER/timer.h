@@ -2,7 +2,7 @@
 #define _TIMER_H
 #include "sys.h"
 #include "time_interrupt.h"
-
+#include "config.h"
 
 //≥ı ºªØpwm
 void TIM3_PWM_Init(u16 arr,u16 psc);

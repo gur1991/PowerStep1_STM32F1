@@ -14,7 +14,7 @@
 #include "S1125.h"
 #include "m6e_apply.h"
 #include "rs232_change_protocol.h"
-
+#include "config.h"
 
 
 

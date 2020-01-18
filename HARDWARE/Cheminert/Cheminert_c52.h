@@ -7,6 +7,8 @@
 #include "delay.h"
 #include <stdbool.h>
 #include "uart_choose.h"
+#include "config.h"
+
 u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int timeout,bool wait_flag, int type_flag);
 
 typedef enum Command_Cheminert_type{ 

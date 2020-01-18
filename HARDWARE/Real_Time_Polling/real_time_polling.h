@@ -3,7 +3,7 @@
 #include "sys.h"
 #include "rs232_change_protocol.h"
 #include "temperature.h"
-
+#include "config.h"
 void  Real_Time_Polling_Current_Index(void);
 void  Real_Time_Polling_Init(void);
 

@@ -9,6 +9,7 @@
 #include "uart_choose.h"
 #include "fm100.h"
 #include "uart_config.h"
+#include "config.h"
 
 void Init_BL180(bool status);
 

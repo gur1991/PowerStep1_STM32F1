@@ -2,7 +2,7 @@
 #define __UART_CONFIG_H
 #include "uart2.h"
 #include "uart3.h"
-
+#include "config.h"
 void Uart_Clear_Context(void);
 
 void Uart2_Config_Init(void);

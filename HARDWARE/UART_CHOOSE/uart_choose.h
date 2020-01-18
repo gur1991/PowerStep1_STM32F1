@@ -2,7 +2,7 @@
 #define __UART_CHOOSE_H
 #include "uart3.h"
 #include "uart2.h"
-
+#include "config.h"
 
  //PA5--1  PA6--0
 #if USE_GRADIENT_CONTROL_BOARD	

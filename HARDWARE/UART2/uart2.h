@@ -2,6 +2,7 @@
 #define __UART2_H
 #include "sys.h"
 #include "uart3.h"
+#include "config.h"
 
 #define MAX_LENGTH 260
 

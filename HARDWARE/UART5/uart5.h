@@ -1,7 +1,7 @@
 #ifndef __UART_5_H
 #define __UART_5_H
 #include "sys.h"
-
+#include "config.h"
 #define LEN_MAX_UART5 128
 
 void Uart5_Rx_Clear(void);
