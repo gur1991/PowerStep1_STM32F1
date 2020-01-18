@@ -261,7 +261,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
    		break;
 	
 		case 7:
-/*			
+			
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
@@ -277,7 +277,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=500;
 		
    		break;
-*/
+/*
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
@@ -293,6 +293,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=400;
 			
 			break;
+*/			
 		case 8:
 /*			
 			TempMotor.request.devices=chip;
