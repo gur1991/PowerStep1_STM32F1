@@ -339,32 +339,27 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
    		break;		
 	case 10:
-	
+
 			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
-			TempMotor.request.init_motor.motor_commonSpeed.acceleration=28000;
-			TempMotor.request.init_motor.motor_commonSpeed.deceleration=28000;
+			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
 		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
-		  TempMotor.request.init_motor.motor_config.current.current_value=120;
+		  TempMotor.request.init_motor.motor_config.current.current_value=130;
 		
 			if(speed_type==LOW_SPEED){
 				
-				TempMotor.request.init_motor.motor_commonSpeed.acceleration=18000;
-				TempMotor.request.init_motor.motor_commonSpeed.deceleration=18000;
+				TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
+				TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
 				TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 				TempMotor.request.init_motor.motor_config.current.current_value=130;
-				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=10000;
+				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 				
-			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
-			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=25000;
-		
-	
-	
-
+			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=3000;
+			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=5000;
    		break;	
-
-
+	
 		
 		case 11:
 			TempMotor.request.devices=chip;
@@ -469,6 +464,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=10*1000){
+							printf("motor no find light \r\n");
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}

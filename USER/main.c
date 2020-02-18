@@ -121,6 +121,17 @@ int main(void)
 	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+
+	
+	
+//	RestFarAndDownMotorOrgin();
+//	Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 100000);
+/*	
+	Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 10000);
+	RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000);
+	Belt_Move_At_SameTime();
+*/
+	
 	
 	/*
 		Uart_Send_Data FM6E_Write=NULL ;
@@ -150,11 +161,11 @@ int main(void)
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
 			}	
-			delay_ms(20);			
+			delay_ms(1);			
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
-			if(i==50)
+			if(i==1000)
 			{
 				i=0;		
 				keep_thermometer_degree();
@@ -164,7 +175,7 @@ int main(void)
 
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
 			i++;
-			if(i==50)
+			if(i==1000)
 			{		
 					i=0;
 					Real_Time_Polling_Current_Index();

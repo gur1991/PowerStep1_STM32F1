@@ -28,6 +28,8 @@ void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCo
 {
 	
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)	
+	
+	printf("motor move:%d \r\n",deviceId);
 	PowerStep_Select_Motor_Baby(deviceId);	
 	BSP_MotorControl_Move(0, direction, stepCount);
 	BSP_MotorControl_WaitWhileActive(0);
@@ -204,6 +206,10 @@ uint8_t Belt_Move_At_SameTime(void)
 	PowerStep_Select_Motor_Baby(M6_BLANK_LEFT);
 	BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 11000);
 	BSP_MotorControl_WaitWhileActive(0);
+	
+	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);
+	BSP_MotorControl_WaitWhileActive(0);
+	
 	
 	if(Light_Sensor_Get(LEFT_LIGHT)==0)status|=0x01;
 	if(Light_Sensor_Get(NEXT_LIGHT)==0)status|=0x10;
@@ -494,25 +500,7 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 //dischard
 void mix_and_reach_position(void)	
 {
-/*
-		//下发混匀动作
-		Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
-		PowerStep_Select_Motor_Baby(M2_MIX);
-		BSP_MotorControl_Move(0, M2_MIX_RIGHT, 120000);
-	
-		//复位电机
-		Rest_Sample_Motor_Orgin();
 
-	  //执行混匀剩余动作
-		PowerStep_Select_Motor_Baby(M2_MIX_LEFT);
-		BSP_MotorControl_HardStop(0);
-		
-		PowerStep_Select_Motor_Baby(M2_MIX_LEFT);
-		BSP_MotorControl_Move(0, M2_MIX_LEFT, 66000);
-		BSP_MotorControl_WaitWhileActive(0);
-		
-		RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*1000);
-*/
 }	
 
 uint8_t C55_C52_connect_check(void)

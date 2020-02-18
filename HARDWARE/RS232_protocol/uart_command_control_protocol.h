@@ -189,15 +189,16 @@ typedef enum Command_Package_type{
 			NORMAL_BLANK_REST,//sensor
 			NORMAL_FIRST_POSITON,//sensor
 			MIX_AND_REACH_POSITION,//sensor
-			BIG_IN_OUT_SLOW,//sensor
-			BIG_IN_OUT_NORMAL,//sensor
+			
+			BIG_IN_OUT_SLOW,//motor
+			BIG_IN_OUT_NORMAL,//motor
 			
 			NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO,//sensor
 			
 			C55_C52_CONNECT,//motor
 			
-			MOTOR_UP_DOWN_SLOW,//sensor
-			MOTOR_UP_DOWN_NORMAL,//sensor
+			MOTOR_UP_DOWN_SLOW,//motor
+			MOTOR_UP_DOWN_NORMAL,//motor
 
 }Command_Package_t;
 
