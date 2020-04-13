@@ -15,7 +15,7 @@
 #include "m6e_apply.h"
 #include "rs232_change_protocol.h"
 #include "config.h"
-
+#include "check_rs232.h"
 
 
 uint8_t Rest_C55_C52_Position(void);

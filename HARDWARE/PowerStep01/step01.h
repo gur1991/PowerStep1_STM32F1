@@ -36,6 +36,7 @@ typedef struct
   float deceleration;
   float maxSpeed;//-----电机速度调试
   float minSpeed;//电机idle 速度
+	
 }motor_commonSpeed_type_t;	
 
 //电压是占空比

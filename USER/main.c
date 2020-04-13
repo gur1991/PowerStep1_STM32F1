@@ -121,37 +121,33 @@ int main(void)
 	//KEY_Init(); 
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-
 	
-	
-//	RestFarAndDownMotorOrgin();
+//	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
+//	delay_ms(1000);
+//	Normal_Goto_First_Position();//到第一个混运位 
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();//前进一个试管位
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	Normal_Pitch_Move_Next();
+//	delay_ms(1000);
+//	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);//复位
+	//RestFarAndDownMotorOrgin();
 //	Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 100000);
-/*	
-	Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 10000);
-	RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000);
-	Belt_Move_At_SameTime();
-*/
 	
-	
-	/*
-		Uart_Send_Data FM6E_Write=NULL ;
-	uint8_t buf[]="ddssasa";
-	
-	FM6E_Write = GetUartSend(RFID_UART_PORT,RFID_UART_CS);
-
-	while(1){
-		FM6E_Write(buf,5);
-	}
-	*/
-  //Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 2000);
-	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
-	
-/*	
-	while(1){
-		printf("M4_LIGHT:%d \r\n",Light_Sensor_Get(M4_LIGHT));
-		delay_ms(1000);
-	}
-*/
+  //RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 40*1000);
+	//Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 7000);
 	
 	while(1)
 	{

@@ -832,6 +832,7 @@ void inline __InfoBoard__(int len,int type)
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
+	check_bit_type_t check;
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		
@@ -850,7 +851,9 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 				}	
 		}
 		
-		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1){
+	  check=caculate_tansfer_check_bit(slave_motorCommand);
+		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1
+				||slave_motorCommand.CheckBit[0]!=check.H||slave_motorCommand.CheckBit[1]!=check.L){
 					printf("check flag error!\r\n");
 					slave_motorCommand.type=ERROR_TYPE;
 					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
@@ -1021,11 +1024,14 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 				  slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 		}
 OVER:
-		Uart_Clear_Context();	
+		Uart_Clear_Context();
+		check=caculate_tansfer_check_bit(slave_motorCommand);	
 		slave_motorCommand.StartReceiveFlag[0]=START_UART_VALUE0;
 		slave_motorCommand.StartReceiveFlag[1]=START_UART_VALUE1;
 		slave_motorCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
 		slave_motorCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
+		slave_motorCommand.CheckBit[0]=check.H;
+		slave_motorCommand.CheckBit[1]=check.L;
 		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
 }
 

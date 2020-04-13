@@ -199,6 +199,8 @@ typedef enum Command_Package_type{
 			
 			MOTOR_UP_DOWN_SLOW,//motor
 			MOTOR_UP_DOWN_NORMAL,//motor
+			LITTLE_IN_OUT_SLOW,
+			LITTLE_IN_OUT_NORMAL,
 
 }Command_Package_t;
 
@@ -436,6 +438,7 @@ typedef struct{
 				print_outcome_type_t  print_outcome;
 */			
  		}CommandPowerStep1;
+		u8 CheckBit[4];
 		u8 OverReceiveFlag[2];
 }Powerstep1_contorl_motor_command_t;
 
