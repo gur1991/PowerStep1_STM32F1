@@ -11,7 +11,7 @@ static u8 S1125_rx_buf [30];
 
 void S1125_Init(void)
 {
-	printf("init S1125 pump\r\n");
+	LOGD("init S1125 pump\r\n");
 }
 
 
@@ -100,9 +100,9 @@ uint8_t Connect_S1125_Pump(void)
 	
 		for(i=0;i<len;i++)
 		{
-			printf("%c",S1125_rx_buf[i]);
+			LOGD("%c",S1125_rx_buf[i]);
 		}
-		printf("\r\n");
+		LOGD("\r\n");
 	}
 	*/
 	
@@ -140,9 +140,9 @@ int Read_Press_S1125_Pump(void)
 	
 		for(i=0;i<len;i++)
 		{
-			printf("%c",S1125_rx_buf[i]);
+			LOGD("%c",S1125_rx_buf[i]);
 		}
-		printf("\r\n");
+		LOGD("\r\n");
 	}
 	
 	*/
@@ -151,12 +151,12 @@ int Read_Press_S1125_Pump(void)
 
 	for(i=7;i<11;i++)
 	{
-	//	printf("char %c\r\n",S1125_rx_buf[i]);
+	//	LOGD("char %c\r\n",S1125_rx_buf[i]);
 		
 			if(S1125_rx_buf[i]<'A')S1125_rx_buf[i]-='0';
 			else S1125_rx_buf[i]-=55;
 		
-			//printf("%d\r\n",S1125_rx_buf[i]);
+			//LOGD("%d\r\n",S1125_rx_buf[i]);
 		
 	}
 
@@ -184,7 +184,7 @@ uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 	{
 			if(pump.value[i]<10)pump.value[i]+='0';
 			else pump.value[i]+=55;
-			//printf("[%d]%c\r\n",i,pump.value[i]);
+			//LOGD("[%d]%c\r\n",i,pump.value[i]);
 	}
 	config_s1125_pump();
 	memcpy(pump.device,"0F06", 4);

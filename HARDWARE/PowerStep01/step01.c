@@ -68,7 +68,7 @@ union powerstep01_Init_u init_voltage =
   488, // Maximum speed in step/s, range 15.25 to 15610 steps/s
   0, // Minimum speed in step/s, range 0 to 976.3 steps/s
   POWERSTEP01_LSPD_OPT_OFF, // Low speed optimization bit, enum powerstep01_LspdOpt_t
-  244.16,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
+  2000,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
   POWERSTEP01_BOOST_MODE_OFF, // Boost of the amplitude square wave, enum powerstep01_BoostMode_t
   281.25, // Overcurrent threshold settings via enum powerstep01_OcdTh_t
  // STEP_MODE_1_16, // Step mode settings via enum motorStepMode_t
@@ -472,7 +472,7 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=10*1000){
-							printf("motor no find light \r\n");
+							LOGD("motor no find light \r\n");
 							BSP_MotorControl_HardStop(0);
 							break;	
 				}
@@ -491,13 +491,13 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
 	init_motor_device(data);//把电机参数保存在数组里
 	PowerStep_Select_Motor_Baby(data.request.devices);
 	Powerstep01_Init_Register(&motor_config_array[data.request.devices]);
-	printf("devices:%d\r\n",data.request.devices);
-	printf("mode:%d\r\n",data.request.init_motor.ModeSelection);
+	LOGD("devices:%d\r\n",data.request.devices);
+	LOGD("mode:%d\r\n",data.request.init_motor.ModeSelection);
 	
-	printf("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
-	printf("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
-	printf("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
-	printf("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
+	LOGD("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
+	LOGD("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
+	LOGD("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
+	LOGD("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
 }
 
 /*
@@ -544,7 +544,7 @@ int start=0,end=0;
 			{	
 				Powerstep01_Init_Register(NULL);
 			}
-			printf("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
+			LOGD("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
 	}	
 #endif
 

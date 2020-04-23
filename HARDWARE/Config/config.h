@@ -1,6 +1,6 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
-
+#include <stdio.h>
 
 //new start for dev branch
 
@@ -8,12 +8,14 @@
 
 #define USE_CLEANING_DILUTION_BOARD 0//Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
-#define USE_AUTOMATIC_INJECTION_BOARD 0//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
+#define USE_AUTOMATIC_INJECTION_BOARD 1//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
 
-#define USE_KEEP_TEMPERATURE_BOARD 1// mini control temperature
+#define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 
 
-
+#define LOGD(format,...) do { printf("[%s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
+#define LOGE(format,...) do { printf("[ERROR %s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
+				
 /*****************************************************/
 //UART4 ----- ARM 
 

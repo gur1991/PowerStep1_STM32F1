@@ -14,6 +14,7 @@ void  Real_Time_Polling_Init(void)
 
 void  Real_Time_Polling_Current_Index(void)
 {
+		//LOGD("start \r\n");
 	
 #if USE_AUTOMATIC_INJECTION_BOARD
 	  get_single_temperature_degree_type_t data;
@@ -70,7 +71,7 @@ void  Real_Time_Polling_Current_Index(void)
 		POLLING_press.pumpPress=PumpHandle->readPress();
 
 #endif	
-	
+	//LOGD("end \r\n");
 }	
 
 real_time_polling_type_t  Get_Real_Time_Polling_Value(void)

@@ -407,14 +407,14 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	int i;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	printf("start scan. \r\n");
+	LOGD("start scan. \r\n");
 	Start_Scan_FM100();
 	memset(buf, 0 ,sizeof(buf));
 	memset(buf_cmp, 0 ,sizeof(buf_cmp));
 	while(timeout--){
 		if(FLAG_UART_FM100)
 		{
-				printf("scanning ... \r\n");	
+				LOGD("scanning ... \r\n");	
 				FM100_Read( (u8*)buf ,&len);
 				FLAG_UART_FM100=0;
 				if(check)
@@ -435,7 +435,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	}
 	*length=len;
 	
-	printf("stop scan. \r\n");
+	LOGD("stop scan. \r\n");
 	
 #endif	
 	return ret;

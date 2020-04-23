@@ -16,7 +16,7 @@ uint8_t STM32_Change_Protocol_Control_Mini_Board_Set_Degree(set_single_temperatu
 		ret=Master_Mini_Board_Set_Degree(action);
 #endif
 
-	
+	 if(ret)LOGE("fail \r\n");
 		return ret;
 }	
 
@@ -31,6 +31,7 @@ uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperatu
 	
 		ret=Master_Mini_Board_Get_Degree(action,degree);
 #endif
+		if(ret)LOGE("fail \r\n");
 	
 		return ret;
 }	

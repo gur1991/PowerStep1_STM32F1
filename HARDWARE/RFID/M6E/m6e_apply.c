@@ -49,11 +49,11 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
   
   rp = &r;
 #if M6E_APPLY_DEBUG	
-	printf("start. \r\n");
+	LOGD("start. \r\n");
 #endif	
   ret = TMR_create(rp, "tmr:///com1");
 #if M6E_APPLY_DEBUG	
-  printf("create ret:%d \r\n",ret);
+  LOGD("create ret:%d \r\n",ret);
 #endif	
 	gbuffer[0] = 1;
 	gbuffer[1] = 2;
@@ -62,34 +62,34 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
 
   ret = TMR_connect(rp);
 #if M6E_APPLY_DEBUG
-	printf("connect ret:%d \r\n",ret);
+	LOGD("connect ret:%d \r\n",ret);
 #endif	
 	//powerdbm=2500;
 	powerdbm=Rpowerdbm;
 	ret = TMR_paramSet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
 	ret = TMR_paramGet(rp, TMR_PARAM_RADIO_READPOWER, &powerdbm);
 #if M6E_APPLY_DEBUG	
-	printf("******* ReadPowerdbm:%d \r\n",powerdbm);
+	LOGD("******* ReadPowerdbm:%d \r\n",powerdbm);
 #endif	
 	//powerdbm=3000;
 	powerdbm=Wpowerdbm;
 	ret = TMR_paramSet(rp, TMR_PARAM_RADIO_WRITEPOWER, &powerdbm);
 	ret = TMR_paramGet(rp, TMR_PARAM_RADIO_WRITEPOWER, &powerdbm);
 #if M6E_APPLY_DEBUG	
-	printf("******* WritePowerdbm:%d \r\n",powerdbm);
+	LOGD("******* WritePowerdbm:%d \r\n",powerdbm);
 #endif	
 	//region=TMR_REGION_PRC;
   ret = TMR_paramSet(rp, TMR_PARAM_REGION_ID, &region);
 	ret = TMR_paramGet(rp, TMR_PARAM_REGION_ID, &region);
 #if M6E_APPLY_DEBUG	
-	printf("******* region:%d \r\n",region);
+	LOGD("******* region:%d \r\n",region);
 #endif
   
 	ret = isAntDetectEnabled(rp, gantennaList);
 #if M6E_APPLY_DEBUG	
-	printf("******* gantennaList:%d \r\n",ret);
+	LOGD("******* gantennaList:%d \r\n",ret);
 	
-	printf("read type:%d \r\n",rp->readerType);
+	LOGD("read type:%d \r\n",rp->readerType);
 #endif
   if (rp->readerType == TMR_READER_TYPE_SERIAL)
   {
@@ -119,36 +119,36 @@ uint32_t M6e_Read_Info(void)
 	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
 #if M6E_APPLY_DEBUG 
-	printf("****read plan:ret:0x%x\r\n",ret);
+	LOGD("****read plan:ret:0x%x\r\n",ret);
 	
 	
-	printf("**** start TMR_read.\r\n");
+	LOGD("**** start TMR_read.\r\n");
 #endif	
 	ret = TMR_read(rp, 500, NULL);
 #if M6E_APPLY_DEBUG  
-	printf("**** read:ret:0x%X\r\n",ret);
+	LOGD("**** read:ret:0x%X\r\n",ret);
 #endif	
 	ret=TMR_hasMoreTags(rp);
 #if M6E_APPLY_DEBUG	
-	printf("**** TMR_hasMoreTags:ret:0x%X\r\n",ret);
+	LOGD("**** TMR_hasMoreTags:ret:0x%X\r\n",ret);
 #endif
 	Clear_Storage_Info_Rfid();
 	while (TMR_SUCCESS == TMR_hasMoreTags(rp))
   {
 #if M6E_APPLY_DEBUG		
-		printf("start next tag. \r\n");
+		LOGD("start next tag. \r\n");
 #endif    
 		ret = TMR_getNextTag(rp, &trd);
 #if M6E_APPLY_DEBUG		
-		printf("getNextTag:ret:0x%x\r\n",ret);
+		LOGD("getNextTag:ret:0x%x\r\n",ret);
 #endif		
 		TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
 #if M6E_APPLY_DEBUG    
-		printf("EPC:%s %d", epcStr,trd.tag.epcByteCount);
+		LOGD("EPC:%s %d", epcStr,trd.tag.epcByteCount);
 #endif		
 		TMR_bytesToHex(trd.data.list, trd.data.len, dataStr);
 #if M6E_APPLY_DEBUG	  
-		printf("  data(%d): %s\n", trd.data.len, dataStr);
+		LOGD("  data(%d): %s\n", trd.data.len, dataStr);
 #endif	
 		
 		RfidReadInfo[i].used=1;

@@ -67,7 +67,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 			 		if(!timeout){
 						ret=1;
 						*type=UNKNOWN_ANSWER;	
-						printf(" pump_s100_transfer fuck timeout! \r\n");
+						LOGD(" pump_s100_transfer fuck timeout! \r\n");
 						break;
 					}
 					if(FLAG_RECEIVE_ACK_PUMP100){
@@ -89,7 +89,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pum
 									//s100 active event 
 									if(S100_receive.S100_PFC[1]=='9'&&(S100_receive.S100_PFC[0]=='0'||S100_receive.S100_PFC[0]=='2'||S100_receive.S100_PFC[0]=='3'))
 									{
-											printf(" pump_s100_transfer ACTIVE_EVENT_S100! \r\n");
+											LOGD(" pump_s100_transfer ACTIVE_EVENT_S100! \r\n");
 											*type=ACTIVE_EVENT_S100;
 											reply->ActiveEvent.S100_AI=S100_receive.S100_AI;
 											memcpy(reply->ActiveEvent.S100_VALUE,S100_receive.S100_VALUE,sizeof(S100_receive.S100_VALUE));
@@ -158,7 +158,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void)
 		CommandData.OverReceiveFlag[0]=OVER_UART_VALUE0;
 		CommandData.OverReceiveFlag[1]=OVER_UART_VALUE1;
 		
-		//printf("start .\r\n");
+		//LOGD("start .\r\n");
 		if(FLAG_RECEIVE_ANSOWER_PUMP100){
 					R232_Read((u8*)(&S100_receive),&len);
 					Big_Little_Endian_Convert(S100_receive.S100_PFC,sizeof(S100_receive.S100_PFC));	
@@ -167,7 +167,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void)
 					//s100 active event 
 					if(S100_receive.S100_PFC[1]=='9'&&(S100_receive.S100_PFC[0]=='0'||S100_receive.S100_PFC[0]=='2'||S100_receive.S100_PFC[0]=='3'))
 					{
-								printf(" Wait_Ack_Pump_S100_Event_And_Send_Master ACTIVE_EVENT_S100! \r\n");
+								LOGD(" Wait_Ack_Pump_S100_Event_And_Send_Master ACTIVE_EVENT_S100! \r\n");
 								CommandData.CommandPowerStep1.pump_s100_command.response.PUMP_S100_REPLY_type=ACTIVE_EVENT_S100;
 								CommandData.CommandPowerStep1.pump_s100_command.response.ret=0;
 								CommandData.CommandPowerStep1.pump_s100_command.response.s100_reply.ActiveEvent.S100_AI=S100_receive.S100_AI;
@@ -179,6 +179,6 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void)
 					
 					FLAG_RECEIVE_ANSOWER_PUMP100=0;//其他事件不去处理
 				}
-				//printf("end .\r\n");
+				//LOGD("end .\r\n");
 		
 }

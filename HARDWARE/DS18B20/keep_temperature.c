@@ -55,7 +55,7 @@ int GetTemperatureDegree(TMEPERATURE_type devices)
 	return current_value;
 	/*
 			if(TMEPERATURE_CURRENT==devices){
-				//printf("%d  %d \r\n",DS18B20_Get_Temp(TMEPERATURE_ONE),DS18B20_Get_Temp(TMEPERATURE_TWO));	
+				//LOGD("%d  %d \r\n",DS18B20_Get_Temp(TMEPERATURE_ONE),DS18B20_Get_Temp(TMEPERATURE_TWO));	
 				return (int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
 			}else	
 				return DS18B20_Get_Temp(devices);
@@ -124,7 +124,7 @@ int PID_Control(int temperature)
 	
 	pid.differ =pid.setValue - pid.actualValue;
 	
-	printf("set:%d get:%d ",pid.setValue,pid.actualValue);
+	LOGD("set:%d get:%d ",pid.setValue,pid.actualValue);
 	if(pid.differ>=5){pid.duty_pwm=0;}
 	else if(pid.differ<0){
 			pid.duty_pwm=500;
@@ -164,7 +164,7 @@ void KeepTemperatureDegree(void)
 		
 		temp1=DS18B20_Get_Temp(TMEPERATURE_ONE);
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
-	  printf("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
+	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
 		if(temp1<100&&temp2>100)current_value = temp2;//温度计1坏了 
 	  else if(temp1>100&&temp2<100)current_value = temp1;//温度计2坏了
@@ -188,7 +188,7 @@ void KeepTemperatureDegree(void)
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-		printf(" duty:%d\r\n",duty_cycle);
+		LOGD(" duty:%d\r\n",duty_cycle);
 		
 		TIM_SetTIM3Compare4(duty_cycle);	
 

@@ -14,7 +14,7 @@ void MyFlagInterruptHandler(void)
   /* Get the value of the status register via the command GET_STATUS */
   uint16_t statusRegister = BSP_MotorControl_CmdGetStatus(0);
 
-	printf("MyFlagInterruptHandler\r\n");
+	LOGD("MyFlagInterruptHandler\r\n");
   /* Check HIZ flag: if set, power brigdes are disabled */
   if ((statusRegister & POWERSTEP01_STATUS_HIZ) == POWERSTEP01_STATUS_HIZ)
   {
@@ -127,7 +127,7 @@ void MyFlagInterruptHandler(void)
   */
 void MyBusyInterruptHandler(void)
 {
-		printf("MyBusyInterruptHandler\r\n");
+		LOGD("MyBusyInterruptHandler\r\n");
    if (BSP_MotorControl_CheckBusyHw())
    {
       /* Busy pin is low, so at list one Powerstep01 chip is busy */
@@ -150,7 +150,7 @@ void MyErrorHandler(uint16_t error)
   /* Backup error number */
   gLastError = error;
   
-	printf("MyErrorHandler\r\n");
+	LOGD("MyErrorHandler\r\n");
   /* Infinite loop */
   while(1)
   {
@@ -208,7 +208,7 @@ uint8_t motorInit(void){
     BSP_MotorControl_WaitForAllDevicesNotBusy();
 //		BSP_MotorControl_CmdResetPos(0);
 		//HAL_Delay(3000);
-		printf("spi end \r\n");
+		LOGD("spi end \r\n");
   }
 
 		return ret;
@@ -223,7 +223,7 @@ void master_device_send(void){
 		u8 len=0;
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
-		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+		LOGD("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
    
 }
 void master_device_receive(void){
@@ -234,7 +234,7 @@ void master_device_receive(void){
 		u8 len=0;
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
-		printf("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+		LOGD("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
     
 }
 void slave_device_send(void){
@@ -246,7 +246,7 @@ void slave_device_send(void){
 		
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
-		printf("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
+		LOGD("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
 }
 void slave_device_receive(void){
 		uint8_t ret=0;
@@ -257,7 +257,7 @@ void slave_device_receive(void){
 		
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
-		printf("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
+		LOGD("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
 }
 
 uint8_t test_protocl(void){
@@ -282,39 +282,39 @@ uint8_t test_protocl(void){
 		
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
-		printf("master send len: %d, types: %d \r\n",sizeof(Command_type_t),types);
+		LOGD("master send len: %d, types: %d \r\n",sizeof(Command_type_t),types);
 						UART3_Receive_Data(RX_CMD_BUF_SLAVE,&len);
-						printf("slave receive len: %d, types: %d \r\n",len,RX_CMD_BUF_SLAVE[0]);
+						LOGD("slave receive len: %d, types: %d \r\n",len,RX_CMD_BUF_SLAVE[0]);
 						TX_CMD_BUF_SLAVE[0]=0;
 						UART3_Send_Data(TX_CMD_BUF_SLAVE,1);
-						printf("slave send len: %d, result: %d \r\n",1,TX_CMD_BUF_SLAVE[0]);
+						LOGD("slave send len: %d, result: %d \r\n",1,TX_CMD_BUF_SLAVE[0]);
 		UART2_Receive_Data(RX_CMD_BUF,&len);
-		printf("master receive len: %d, result: %d \r\n",len,RX_CMD_BUF[0]);
+		LOGD("master receive len: %d, result: %d \r\n",len,RX_CMD_BUF[0]);
 		
 		UART2_Send_Data((u8*)(&motor_master.request),sizeof(motor_master.request));
-		printf("master send request \r\n");
+		LOGD("master send request \r\n");
 						
 		switch(RX_CMD_BUF_SLAVE[0]){
 			case MOVE_TYPE:
 					
 									UART3_Receive_Data((u8*)(&motor_slave.request),&len);
-									printf("slave receive request \r\n");
-									printf("devices:%d \r\n",motor_slave.request.devices);
-									printf("steps:%d \r\n",motor_slave.request.steps);
-									printf("types:%d \r\n",motor_slave.request.types);
+									LOGD("slave receive request \r\n");
+									LOGD("devices:%d \r\n",motor_slave.request.devices);
+									LOGD("steps:%d \r\n",motor_slave.request.steps);
+									LOGD("types:%d \r\n",motor_slave.request.types);
 			
 									/*
 											slave motor run cmd
 									*/
 									motor_slave.response.ret=100;
 									UART3_Send_Data((u8*)&motor_slave.response,sizeof(motor_slave.response));
-									printf("slave send response \r\n");
+									LOGD("slave send response \r\n");
 					UART2_Receive_Data((u8*)(&motor_master.response),&len);
-					printf("master receive len: %d, result: %d \r\n",len,motor_master.response.ret);
-					printf("\r\n\r\n");
+					LOGD("master receive len: %d, result: %d \r\n",len,motor_master.response.ret);
+					LOGD("\r\n\r\n");
 					break;
 			default:
-					printf("no found this cmd ! \r\n");
+					LOGD("no found this cmd ! \r\n");
 
 		}
 		
@@ -348,12 +348,12 @@ uint8_t master_powerStep01_move(move_type_t tx_move){
 		switch(slave_motorCommand.type){
 			case MOVE_TYPE:
 						rx_move=slave_motorCommand.CommandPowerStep1.move;
-						printf("devices %d \r\n",rx_move.request.devices);
-						printf("steps %d \r\n",rx_move.request.steps);
-						printf("types %d \r\n",rx_move.request.types);
+						LOGD("devices %d \r\n",rx_move.request.devices);
+						LOGD("steps %d \r\n",rx_move.request.steps);
+						LOGD("types %d \r\n",rx_move.request.types);
 						break;
 			default:
-					printf("no found this cmd ! \r\n");
+					LOGE("no found this cmd ! \r\n");
 		}
 	
 		return ret;

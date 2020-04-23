@@ -20,13 +20,16 @@ void UART5_IRQHandler(void)
 			UART5_RX_BUF[UART5_RX_CNT]=res;		//记录接收到的值
 			UART5_RX_CNT++;						//接收数据增加1	
 		} 
+		/*
 		if(UART5_RX_CNT == 2)
 		{
 				if( UART5_RX_BUF[0]==START_UART_VALUE0 && UART5_RX_BUF[1]==START_UART_VALUE1){ ;}
 				else {UART5_RX_BUF[0]= UART5_RX_BUF[1];UART5_RX_CNT=1;}
 		}
 
-		else if(UART5_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
+		else
+		*/ 
+		if(UART5_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
 		{
 					MINI_RS232_ASK=1;
 		}

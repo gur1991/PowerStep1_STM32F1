@@ -41,27 +41,27 @@ int Check_Board_Define_Config(void)
 	value+=USE_CLEANING_DILUTION_BOARD;
   value+=USE_AUTOMATIC_INJECTION_BOARD;
 	value+=USE_KEEP_TEMPERATURE_BOARD;
-	if(!value)printf("you have not choose Define Board in [config.h]. \r\n");
-	else if(value==1)printf("you have choose Define Board OK in [config.h]. \r\n");
-	else printf("you have choose Define Board too many in [config.h]. \r\n");
+	if(!value)LOGD("you have not choose Define Board in [config.h]. \r\n");
+	else if(value==1)LOGD("you have choose Define Board OK in [config.h]. \r\n");
+	else LOGD("you have choose Define Board too many in [config.h]. \r\n");
 
 	return value-1;
 }	
 
 void Init_Board_Config(void)
 {	
-	printf("start Init_Board_Config. \r\n");
+	LOGD("start Init_Board_Config. \r\n");
 //串口2 电磁阀	CS片选信号 硬件流信号
 #if USE_GRADIENT_CONTROL_BOARD	
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Uart_Rts_Control_Init();//硬件流控初始化
 	Electromagnetic_init();//电磁阀
 	
-	printf("init pump. \r\n");
+	LOGD("init pump. \r\n");
 	PumpChooseHandle(S1125);
 	PumpHandle->init();
 	
-	printf("[Hummingbird],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	LOGD("[Hummingbird],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 
@@ -70,7 +70,7 @@ void Init_Board_Config(void)
 	Light_Sensor_Init();
 	BSP_Motor_Control_Init();//没设备连接会卡住
 	Electromagnetic_init();//电磁阀
-	printf("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	LOGD("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 #if USE_AUTOMATIC_INJECTION_BOARD
@@ -81,11 +81,11 @@ void Init_Board_Config(void)
 	BSP_Motor_Control_Init();//没设备连接会卡住
 	UART5_Init(115200);
 	
-	printf("init scan. \r\n");
+	LOGD("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
-	printf("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+	LOGD("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
 //1:加热的定时器方波heating 2：PID算法  3：温度传感器 4:初始化并设置初始温度为0	
@@ -101,7 +101,7 @@ void Init_Board_Config(void)
 	  
 	  IWDG_Init(4,625*4); //4s   	MAX
     IWDG_Start();
-		printf("[Mini],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
+		LOGD("[Mini],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 
 #endif
 
@@ -122,40 +122,14 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-//	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
-//	delay_ms(1000);
-//	Normal_Goto_First_Position();//到第一个混运位 
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();//前进一个试管位
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	Normal_Pitch_Move_Next();
-//	delay_ms(1000);
-//	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);//复位
-	//RestFarAndDownMotorOrgin();
-//	Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 100000);
-	
-  //RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 40*1000);
-	//Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 7000);
-	
 	while(1)
 	{
 			if(ARM_RS232_ASK)
 			{
-							//printf("start receive !\r\n");
+							LOGD("[come\r\n");
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
+							LOGD("gone\r\n");
 			}	
 			delay_ms(1);			
 			
@@ -175,6 +149,7 @@ int main(void)
 			{		
 					i=0;
 					Real_Time_Polling_Current_Index();
+					
 			}
 #endif
 			

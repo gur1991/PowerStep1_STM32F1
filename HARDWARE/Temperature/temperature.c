@@ -24,7 +24,7 @@ Thermometer_t* PT1000_GetHandle(void)
 
 static  int temperature_change_to_value(int temperature)
 {
-	printf("tmp:%d\r\n",temperature);
+	LOGD("tmp:%d\r\n",temperature);
 	switch(temperature){
 		case 545:return 9235;
 		case 540:return 9162;
@@ -128,7 +128,7 @@ int get_temperature_degree(AD_type AD_CS){
 #if USE_KEEP_TEMPERATURE_BOARD		
   	value=AD_Sensor_Get_Data(AD_CS);
 		temperature=value_change_to_temperature(value);
-		//printf("get_temperature_degree:%d  %d\r\n",value,temperature);
+		//LOGD("get_temperature_degree:%d  %d\r\n",value,temperature);
 #endif		
 	  return temperature;
 }
@@ -169,7 +169,7 @@ static  void __keep_temperature_degree(void)
 		else if(value<TMP_TEMPERATURE_VALUE)
 		{
 				duty_cycle=set_calculate_duty_cycle(value,TMP_TEMPERATURE_VALUE);
-				printf("set duty_cycle:%d\r\n",duty_cycle);
+				LOGD("set duty_cycle:%d\r\n",duty_cycle);
 				if(last_duty_cycle==duty_cycle)return;
 				last_duty_cycle=duty_cycle;
 				TIM_SetTIM3Compare4(duty_cycle);
@@ -195,7 +195,7 @@ void set_temperature_degree(int degree,AD_type AD_CS){
 		else if(value<TMP_TEMPERATURE)
 		{
 				duty_cycle=set_calculate_duty_cycle(value,TMP_TEMPERATURE);
-				printf("set duty_cycle:%d\r\n",duty_cycle);
+				LOGD("set duty_cycle:%d\r\n",duty_cycle);
 				if(last_duty_cycle==duty_cycle)return;
 				last_duty_cycle=duty_cycle;
 				TIM_SetTIM3Compare4(duty_cycle);

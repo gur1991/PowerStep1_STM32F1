@@ -16,7 +16,7 @@ void UART4_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&UART4_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	 {	 	
-		HAL_UART_Receive(&UART4_Handler,&res,1,10);//115200 256byte 需要20ms，现在给30ms
+		HAL_UART_Receive(&UART4_Handler,&res,1,30);//115200 256byte 需要20ms，现在给30ms
 			
 		//如果上次指令尚没有结束，就不会接受新的指令 
 		if(ARM_RS232_ASK)return;
@@ -25,18 +25,19 @@ void UART4_IRQHandler(void)
 		if(UART4_RX_CNT<LEN_MAX_UART4)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
-			//printf("r[%d]0x%x\r\n",UART4_RX_CNT,res);
+			//LOGD("r[%d]0x%x\r\n",UART4_RX_CNT,res);
 			UART4_RX_CNT++;						//接收数据增加1	
 			
 		}
-		
+/*		
 		if(UART4_RX_CNT == 2)
 		{
 				if( UART4_RX_BUF[0]==START_UART_VALUE0 && UART4_RX_BUF[1]==START_UART_VALUE1){ ;}
-				else {UART4_RX_BUF[0]= UART4_RX_BUF[1];UART4_RX_CNT=1;}
+				else {UART4_RX_BUF[0]= UART4_RX_BUF[1];UART4_RX_CNT=1; LOGE("fuck\r\n");}
 		}
-
-		else if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
+*/
+//		else 
+			if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
 		{
 					ARM_RS232_ASK=1;
 		}

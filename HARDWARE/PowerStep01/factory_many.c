@@ -29,7 +29,7 @@ void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCo
 	
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)	
 	
-	printf("motor move:%d \r\n",deviceId);
+	LOGD("motor move:%d \r\n",deviceId);
 	PowerStep_Select_Motor_Baby(deviceId);	
 	BSP_MotorControl_Move(0, direction, stepCount);
 	BSP_MotorControl_WaitWhileActive(0);
@@ -525,7 +525,7 @@ uint8_t C55_C52_connect_check(void)
 	if(C52_connect_check())ret|=0x10;
 	if(C55_connect_check())ret|=0x01;
 	
-	printf("C55 C52 0x%x \r\n",ret);
+	LOGD("C55 C52 0x%x \r\n",ret);
 	
 	return ret;
 }
@@ -536,12 +536,12 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 {
 		uint8_t value=0;
 	
-	printf("type command:%d\r\n",command);
+	LOGD("type command:%d\r\n",command);
 	
 		switch(command)
 		{
 			case SLEF_TEST:	
-					printf("Nor command !\r\n");
+					LOGE("Nor command !\r\n");
 					break;
 			
 			

@@ -36,12 +36,12 @@ STM32---SLVAE设备的协议和这个不同
 #include "m6e_apply.h"
 #include "rs232_change_protocol.h"
 #include "real_time_polling.h"
-
+/*
 uint8_t motorInit(void);	 
 void MyFlagInterruptHandler(void);
 void MyBusyInterruptHandler(void);	 
 void MyErrorHandler(uint16_t error);	 
-	 
+*/	 
 
 
 

@@ -227,7 +227,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			u8 ret=0,rx_size=0,i=0,j=2;
 			cheminert_c52_c55_type_t performer;
 			bool wait_flag;
-			
+			LOGD("start. \r\n");
 while(j--){			
 			memset(&performer, 0, sizeof(performer));
 			
@@ -402,7 +402,7 @@ while(j--){
 								break;
 					
 					default:
-								printf("no found this cmd ! \r\n");
+								LOGE("no found this cmd ! \r\n");
 			
 			}
 
@@ -416,6 +416,7 @@ while(j--){
 			Uart_Clear_Context();	
 }			
 			data->response.ret=ret;		
+	    LOGD("end. \r\n");
 }
 /*
 		u8 S100_STX;
@@ -433,9 +434,9 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			uint8_t ret=0,i;
 	
 	
-			printf("size:%d \r\n",sizeof(data->request.para.S100_VALUE));	
+			LOGD("size:%d \r\n",sizeof(data->request.para.S100_VALUE));	
 			for(i=0;i<sizeof(data->request.para.S100_VALUE);i++){
-					printf("value gggg:0x%x\r\n",data->request.para.S100_VALUE[i]);
+					LOGD("value gggg:0x%x\r\n",data->request.para.S100_VALUE[i]);
 			}	
 	
 			performer.request.para.S100_STX=data->request.para.S100_STX;
@@ -454,14 +455,14 @@ static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			data->response.ret=ret;	
 			data->response.PUMP_S100_REPLY_type=type;
 	
-			printf("pump type:%d \r\n",data->response.PUMP_S100_REPLY_type);
+			LOGD("pump type:%d \r\n",data->response.PUMP_S100_REPLY_type);
 			if(type==SPECIAL_ACK_S100){
 						data->response.s100_reply.SpecialACK.S100_RESULT=s100_reply.SpecialACK.S100_RESULT;
 			}else if(type==NORMAL_ANSWER_S100){
 						data->response.s100_reply.NormalAnswer.S100_AI=s100_reply.NormalAnswer.S100_AI;
 						memcpy(data->response.s100_reply.NormalAnswer.S100_VALUE,s100_reply.NormalAnswer.S100_VALUE,sizeof(s100_reply.NormalAnswer.S100_VALUE));
 						for(i=0;i<sizeof(data->request.para.S100_VALUE);i++){
-							printf("value zzz:%c\r\n",data->response.s100_reply.NormalAnswer.S100_VALUE[i]);
+							LOGD("value zzz:%c\r\n",data->response.s100_reply.NormalAnswer.S100_VALUE[i]);
 			}	
 			}else if(type==ACTIVE_EVENT_S100){
 						data->response.s100_reply.ActiveEvent.S100_AI=s100_reply.ActiveEvent.S100_AI;
@@ -762,7 +763,7 @@ static void  protocol_mini_board_set_degree(mini_set_single_temperature_degree_t
 			performer.request.devices=data->request.devices;
 			performer.request.degree=data->request.degree;
 			
-	//		printf("mini board set degree. \r\n");
+	//		LOGD("mini board set degree. \r\n");
 			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
 			data->response.ret=0;
 
@@ -774,7 +775,7 @@ static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_t
 			
 			performer.request.devices=data->request.devices;
 			
-//		  printf("mini board get degree. \r\n");	
+//		  LOGD("mini board get degree. \r\n");	
 			data->response.degree=300;
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
@@ -816,16 +817,16 @@ static void  protocol_electromagnetic_package(electromagnetic_package_type_t* da
 void inline __InfoBoard__(int len,int type)
 {
 #if USE_GRADIENT_CONTROL_BOARD 
- printf("[H]%d@%d\r\n",type,len);
+ LOGD("[H]%d@%d\r\n",type,len);
 #endif	
 #if USE_CLEANING_DILUTION_BOARD 
- printf("[P]%d@%d\r\n",type,len);
+ LOGD("[P]%d@%d\r\n",type,len);
 #endif
 #if USE_AUTOMATIC_INJECTION_BOARD 
- printf("[C]%d@%d\r\n",type,len);
+ LOGD("[C]%d@%d\r\n",type,len);
 #endif	
 #if USE_KEEP_TEMPERATURE_BOARD 
- printf("[T]%d@%d\r\n",type,len);
+ LOGD("[T]%d@%d\r\n",type,len);
 #endif		
 }	
 
@@ -841,7 +842,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
 				__InfoBoard__(len,slave_motorCommand.type);
-				printf("check length error!\r\n");
+				LOGE("check length error!\r\n");
 			
 				if(len<sizeof(Powerstep1_contorl_motor_command_t))
 				{	
@@ -854,7 +855,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 	  check=caculate_tansfer_check_bit(slave_motorCommand);
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1
 				||slave_motorCommand.CheckBit[0]!=check.H||slave_motorCommand.CheckBit[1]!=check.L){
-					printf("check flag error!\r\n");
+					LOGE("check flag error!\r\n");
 					slave_motorCommand.type=ERROR_TYPE;
 					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 					goto OVER;
@@ -1019,7 +1020,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			   break;
 			
 			default:
-					printf("no found this cmd ! %d \r\n",slave_motorCommand.type);
+					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
 					slave_motorCommand.type=ERROR_TYPE;
 				  slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 		}
@@ -1265,12 +1266,12 @@ u8 test_actuator(Command_Cheminert_type_t type)
 	cheminert_c52_c55.request.command=	type;
 	cheminert_c52_c55.request.timeout=100;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	printf("ret:%d \r\n",cheminert_c52_c55.response.ret);
-	printf("size:%d \r\n",cheminert_c52_c55.response.size);
+	LOGD("ret:%d \r\n",cheminert_c52_c55.response.ret);
+	LOGD("size:%d \r\n",cheminert_c52_c55.response.size);
 	for(i=0;i<cheminert_c52_c55.response.size;i++){
-				printf("%c",cheminert_c52_c55.response.buf[i]);
+				LOGD("%c",cheminert_c52_c55.response.buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 	
 	return ret;
@@ -1350,18 +1351,18 @@ uint8_t Run_S100_Pump(void)
 	protocol_pump_s100_interface(&data);
 	
 /*
-	printf("ret:%d \r\n",data.response.ret);
-	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
+	LOGD("ret:%d \r\n",data.response.ret);
+	LOGD("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
 	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
-			printf("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
+			LOGD("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
 			for(i=0;i<6;i++){
-					printf("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
+					LOGD("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
 			}
-			printf("\r\n");
+			LOGD("\r\n");
 	}else if(SPECIAL_ACK_S100==data.response.PUMP_S100_REPLY_type){
-			printf("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
+			LOGD("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
 	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
-			printf("unkown answer! \r\n");
+			LOGD("unkown answer! \r\n");
 	
 	}
 */	
@@ -1403,18 +1404,18 @@ uint8_t Stop_S100_Pump(void)
 	protocol_pump_s100_interface(&data);
 	
 	/*
-	printf("ret:%d \r\n",data.response.ret);
-	printf("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
+	LOGD("ret:%d \r\n",data.response.ret);
+	LOGD("type:%d\r\n",data.response.PUMP_S100_REPLY_type);
 	if(NORMAL_ANSWER_S100==data.response.PUMP_S100_REPLY_type){
-			printf("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
+			LOGD("AI:%d \r\n",data.response.s100_reply.NormalAnswer.S100_AI);
 			for(i=0;i<6;i++){
-					printf("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
+					LOGD("%c",data.response.s100_reply.NormalAnswer.S100_VALUE[5-i]);
 			}
-			printf("\r\n");
+			LOGD("\r\n");
 	}else if(SPECIAL_ACK_S100==data.response.PUMP_S100_REPLY_type){
-			printf("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
+			LOGD("ACK:%c\n\r",data.response.s100_reply.SpecialACK.S100_RESULT);
 	}else if(data.response.PUMP_S100_REPLY_type==UNKNOWN_ANSWER){
-			printf("unkown answer! \r\n");
+			LOGD("unkown answer! \r\n");
 	}
 	*/
 	
@@ -1437,12 +1438,12 @@ void scan_test(void)
 	scan.request.timeout=7;
 	protocol_scan_barcode(&scan);
 	
-	printf("obtain len :%d \r\n",scan.response.length);
+	LOGD("obtain len :%d \r\n",scan.response.length);
 	for(i=0;i<scan.response.length;i++)
 	{
-		printf("%c",scan.response.string[i]);
+		LOGD("%c",scan.response.string[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -1451,10 +1452,10 @@ void weight_test()
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	Gravity_Sensor_Getting_type_t data;
 	protocol_gravity_sensor_getting(&data);
-	printf("A:%d /gram .\r\n",data.response.weightA);
-	printf("B:%d /gram .\r\n",data.response.weightB);
-	printf("C:%d /gram .\r\n",data.response.weightC);
-	printf("D:%d /gram .\r\n",data.response.weightD);
+	LOGD("A:%d /gram .\r\n",data.response.weightA);
+	LOGD("B:%d /gram .\r\n",data.response.weightB);
+	LOGD("C:%d /gram .\r\n",data.response.weightC);
+	LOGD("D:%d /gram .\r\n",data.response.weightD);
 #endif 
 }	
 /**************************PUMP start************************************/
@@ -1570,9 +1571,9 @@ void Read_EPC_String(void)
 	
 	if(rfid.response.length)
 	{
-		printf("epc:%s\r\n",rfid.response.epc);
+		LOGD("epc:%s\r\n",rfid.response.epc);
 	}	else{
-		printf("epc:none\r\n");
+		LOGE("epc:none\r\n");
 	}	
 
 }	

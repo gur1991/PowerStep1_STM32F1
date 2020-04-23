@@ -90,9 +90,9 @@ void Goto_Setting_Mode(void)
 #if(SCAN_DEBUG)	
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -116,9 +116,9 @@ void Exit_Setting_Mode(void)
 #if(SCAN_DEBUG)		
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -135,9 +135,9 @@ void Save_Setting_Commond(void)
 #if(SCAN_DEBUG)		
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -154,9 +154,9 @@ void Set_Data_Bit(void)
 #if(SCAN_DEBUG)		
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -173,9 +173,9 @@ void Set_Check_Bit(void)
 #if(SCAN_DEBUG)		
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 #endif
 }	
 
@@ -194,7 +194,7 @@ void Start_BL180(void)
 	BL180_Write(tx_buf,5);
 	Wait_Ack();
 #if(SCAN_DEBUG)		
-	printf("SCAN START\r\n");	
+	LOGD("SCAN START\r\n");	
 #endif
 }	
 
@@ -220,12 +220,12 @@ void End_BL180(void)
 #if(SCAN_DEBUG)	
 	for(i=0;i<len;i++)
 	{
-		printf("%c",rx_buf[i]);
+		LOGD("%c",rx_buf[i]);
 	
 	}
-	printf("\r\n");
+	LOGD("\r\n");
 
-	printf("SCAN END\r\n");
+	LOGD("SCAN END\r\n");
 #endif
 }	
 
@@ -239,7 +239,7 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 #if USE_AUTOMATIC_INJECTION_BOARD			
 	
 #if(SCAN_DEBUG)		
-	printf("start scan \r\n");
+	LOGD("start scan \r\n");
 #endif
 	FLAG_RECEIVE_ANSOWER_BL180=0;
 	USART2_RX_CNT=0;
@@ -268,7 +268,7 @@ int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 		USART2_RX_CNT=0;
 	}
 #if(SCAN_DEBUG)		
-	printf("end scan \r\n");
+	LOGD("end scan \r\n");
 #endif
 
 	Exit_BL180_Uart_Config();

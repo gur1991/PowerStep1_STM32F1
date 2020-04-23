@@ -177,10 +177,10 @@ void Printer_Nv_BMP(void){
 				0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 		}; 
 		u8 buf_cmd_TX[]={0x1c,0x70,0x01,0x00};
-		printf("start nv bmp print \r\n");	
+		LOGD("start nv bmp print \r\n");	
 		UART3_Send_Data(buf_bmp_TX,sizeof(buf_bmp_TX));//∂®“ÂNVŒªÕº
 		UART3_Send_Data(buf_cmd_TX,sizeof(buf_cmd_TX));//
-		printf("end nv bmp print \r\n");
+		LOGD("end nv bmp print \r\n");
 }
 const unsigned char gImage_1[20480] = { /* 0X02,0X01,0X00,0X02,0X40,0X01, */
 0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,

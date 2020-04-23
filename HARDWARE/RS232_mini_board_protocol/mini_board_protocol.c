@@ -21,17 +21,17 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 			if(MINI_RS232_ASK){
 					UART5_Receive_Data((u8*)(master),len);
 					MINI_RS232_ASK=0;
-					//printf("master receive data ok\r\n");
+					//LOGD("master receive data ok\r\n");
 					break;		
 			}
 			times--;
 			if(times ==0){
 					ret=1;
-					printf("transfer error ! \r\n");
+					LOGE("transfer error ! \r\n");
 					break;
 			}
 			delay_ms(5);
-			//printf("wait  \r\n");
+			//LOGD("wait  \r\n");
 		}
 #endif
 		
@@ -48,10 +48,10 @@ uint8_t Master_Mini_Board_Set_Degree(mini_set_single_temperature_degree_type_t d
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MINI_TEMPERATURE_SENSOR_SET_TYPE;
 		master_motorCommand.CommandPowerStep1.mini_set_single_temperature_degree=data;
-//		printf("start mini_set_single_temperature_degree \r\n");	
+//		LOGD("start mini_set_single_temperature_degree \r\n");	
 		
 		ret=Master_Mini_Board_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
-		//printf("wait out \r\n");
+		//LOGD("wait out \r\n");
 		//len值为0的时候，从设备没有反馈
 		if(!ret){
 				if(len!=0){
@@ -61,7 +61,7 @@ uint8_t Master_Mini_Board_Set_Degree(mini_set_single_temperature_degree_type_t d
 				}
 		}
 	
-//		printf("end mini_set_single_temperature_degree ,ret:%d \r\n",ret);
+//		LOGD("end mini_set_single_temperature_degree ,ret:%d \r\n",ret);
 #endif
 		
 		return ret;
@@ -76,10 +76,10 @@ uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t d
 		Powerstep1_contorl_motor_command_t master_motorCommand;
 		master_motorCommand.type = MINI_TEMPERATURE_SENSOR_GET_TYPE;
 		master_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree=data;
-//		printf("start mini_get_single_temperature_degree \r\n");	
+//		LOGD("start mini_get_single_temperature_degree \r\n");	
 		
 		ret=Master_Mini_Board_Transfer_Interface(&master_motorCommand,sizeof(Powerstep1_contorl_motor_command_t),&len);
-		//printf("wait out \r\n");
+		//LOGD("wait out \r\n");
 		//len值为0的时候，从设备没有反馈
 		if(!ret){
 				if(len!=0){
@@ -90,7 +90,7 @@ uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t d
 					 *degree=0;
 				}
 		}
-//		printf("end mini_get_single_temperature_degree ,ret:%d \r\n",ret);
+//		LOGD("end mini_get_single_temperature_degree ,ret:%d \r\n",ret);
 #endif
 		
 		return ret;

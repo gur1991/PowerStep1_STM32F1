@@ -53,12 +53,12 @@ int baby18_detector_name_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -72,12 +72,12 @@ int baby18_hardware_version_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -92,12 +92,12 @@ int baby18_model_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -112,12 +112,12 @@ int baby18_firmware_version_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -131,12 +131,12 @@ int baby18_serial_number_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -150,12 +150,12 @@ int baby18_status_of_detector_read_protocol(uint8_t*data,int length,int timeout)
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -171,12 +171,12 @@ int baby18_status_of_detector_read_with_checksum_protocol(uint8_t*data,int lengt
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -191,12 +191,12 @@ int baby18_break_errors_write_with_checksum_protocol(uint8_t*data,int length,int
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -211,12 +211,12 @@ int baby18_wavelength_range_read_protocol(uint8_t*data,int length,int timeout){
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -232,12 +232,12 @@ int baby18_wavelength_on_channels_read_protocol(uint8_t*data,int length,int time
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -254,12 +254,12 @@ int baby18_wavelength_on_channels_write_protocol(uint8_t*data,int length,int tim
 		memcpy(DATA_BABY18,data,length);
 		ret=baby18_transfer(KEY_BABY18,DATA_BABY18,length,&len,timeout);
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
@@ -460,7 +460,7 @@ static int Baby_Choose_Key(Baby18Call_type_t TYPE){
 					memcpy(KEY_BABY18,"CRr",3);
 					break;
 			default:
-					printf("no this command !\r\n");
+					LOGD("no this command !\r\n");
 					return -1;
 		}
 		return 0;
@@ -490,12 +490,12 @@ int Baby18dad_Execute_Interface(Baby18Call_type_t TYPE,uint8_t*tx_data,int tx_le
 		*rx_len=len;
 	
 		if(ret){	
-				printf("baby18_transfer fail ! \r\n");
+				LOGD("baby18_transfer fail ! \r\n");
 		}else{
 				for(i=0;i<len-3;i++){
-						printf("%c",baby18_reponse[3+i]);
+						LOGD("%c",baby18_reponse[3+i]);
 				}
-				printf("\r\n");
+				LOGD("\r\n");
 		}
 		return ret;
 }
