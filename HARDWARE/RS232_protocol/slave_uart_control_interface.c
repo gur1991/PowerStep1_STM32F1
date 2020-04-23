@@ -830,6 +830,15 @@ void inline __InfoBoard__(int len,int type)
 #endif		
 }	
 
+void inline __Wait_RS232_Recieve_For_Check__(void)
+{
+	delay_ms(30);
+}	
+void inline __Wait_RS232_Recieve_For_ERROR__(void)
+{
+	delay_ms(50);
+}
+
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
@@ -837,28 +846,21 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		
+		__Wait_RS232_Recieve_For_Check__();
 		UART4_Receive_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t),&len);
 	
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
 				__InfoBoard__(len,slave_motorCommand.type);
 				LOGE("check length error!\r\n");
-			
-				if(len<sizeof(Powerstep1_contorl_motor_command_t))
-				{	
-					slave_motorCommand.type=ERROR_TYPE;
-					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
-					goto OVER;
-				}	
+				goto ERROE_OVER;
 		}
 		
 	  check=caculate_tansfer_check_bit(slave_motorCommand);
 		if(slave_motorCommand.OverReceiveFlag[0]!=OVER_UART_VALUE0||slave_motorCommand.OverReceiveFlag[1]!=OVER_UART_VALUE1
 				||slave_motorCommand.CheckBit[0]!=check.H||slave_motorCommand.CheckBit[1]!=check.L){
 					LOGE("check flag error!\r\n");
-					slave_motorCommand.type=ERROR_TYPE;
-					slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
-					goto OVER;
+					goto ERROE_OVER;
 		}
 			
 		switch(slave_motorCommand.type){
@@ -1021,9 +1023,18 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
-					slave_motorCommand.type=ERROR_TYPE;
-				  slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
+					goto ERROE_OVER;
 		}
+		
+		goto OVER;
+		
+		
+		
+		
+ERROE_OVER:
+		slave_motorCommand.type=ERROR_TYPE;
+		slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
+		__Wait_RS232_Recieve_For_ERROR__();
 OVER:
 		Uart_Clear_Context();
 		check=caculate_tansfer_check_bit(slave_motorCommand);	

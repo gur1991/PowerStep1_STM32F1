@@ -64,3 +64,4 @@
 ..\obj\uart_config.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\uart_config.o: ..\HARDWARE\UART5\uart5.h
 ..\obj\uart_config.o: ..\HARDWARE\UART4\uart4.h
+..\obj\uart_config.o: ..\SYSTEM\delay\delay.h

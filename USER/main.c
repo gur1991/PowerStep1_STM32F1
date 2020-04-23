@@ -126,10 +126,10 @@ int main(void)
 	{
 			if(ARM_RS232_ASK)
 			{
-							LOGD("[come\r\n");
+							//LOGD("come\r\n");
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
-							LOGD("gone\r\n");
+							//LOGD("gone\r\n");
 			}	
 			delay_ms(1);			
 			
