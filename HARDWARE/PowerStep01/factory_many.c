@@ -530,13 +530,58 @@ uint8_t C55_C52_connect_check(void)
 	return ret;
 }
 
+#define NUM2STR(x) case x: return #x
+static char* _num2string_(uint8_t num)
+{
 
+    switch ( num )
+    {
+        NUM2STR(SLEF_TEST);
+        NUM2STR(FIRST_START_CHECK_SENSOR_BOARD);
+        NUM2STR(REST_SENSOR_BOARD_MOTOR);
+        NUM2STR(FIRST_START_CHECK_MOTOR_BOARD);
+        NUM2STR(REST_MOTOR_BOARD_MOTOR);
+        NUM2STR(REST_C55_C52);
+        NUM2STR(REST_DRAIN_AND_WASH_MOTOR);
+        NUM2STR(REST_SAMPLE_MOTOR);
+        NUM2STR(CLEAR_BLANK);
+        NUM2STR(CLEARL_WAIT);
+        NUM2STR(READY_NEXT);
+        NUM2STR(READY_LEFT);
+        NUM2STR(LEFT_MOVE_TO_WAIT);
+        NUM2STR(REST_HIGH_WHEEL);
+        NUM2STR(REST_TRANSPORTER_BELT);
+        NUM2STR(REACH_DEGREE_WAIT);
+        NUM2STR(MIX_SCAN_SLOW);
+        NUM2STR(MIX_BLOOD_HIGH);
+
+        NUM2STR(BELT_MOVE_SAMETIME);
+        NUM2STR(MIX_WORK_GOTO);
+        NUM2STR(NORMAL_PITCH_MOVE_NEXT);
+        NUM2STR(NORMAL_BLANK_REST);
+        NUM2STR(NORMAL_FIRST_POSITON);
+        NUM2STR(MIX_AND_REACH_POSITION);
+        NUM2STR(BIG_IN_OUT_SLOW);
+        NUM2STR(BIG_IN_OUT_NORMAL);
+        NUM2STR(NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO);
+        NUM2STR(C55_C52_CONNECT);
+
+
+        NUM2STR(MOTOR_UP_DOWN_SLOW);
+        NUM2STR(MOTOR_UP_DOWN_NORMAL);
+        NUM2STR(LITTLE_IN_OUT_SLOW);
+        NUM2STR(LITTLE_IN_OUT_NORMAL);
+
+    default:
+        return "UNKNOW COMMAND";
+    }
+}
 
 uint8_t process_motor_command_receive(Command_Package_t command)
 {
 		uint8_t value=0;
 	
-	LOGD("type command:%d\r\n",command);
+	LOGD("type command:%s\r\n", _num2string_(command));
 	
 		switch(command)
 		{

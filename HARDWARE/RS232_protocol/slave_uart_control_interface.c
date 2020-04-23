@@ -814,19 +814,96 @@ static void  protocol_electromagnetic_package(electromagnetic_package_type_t* da
 			data->response.ret = 0;
 }	
 
-void inline __InfoBoard__(int len,int type)
+
+
+#define NUM2STR(x) case x: return #x
+static char* _commandTOstring_(uint8_t num)
+{
+
+    switch ( num )
+    {
+			NUM2STR(ERROR_TYPE);
+			NUM2STR(MOVE_TYPE);
+			NUM2STR(POWER_TYPE);
+			NUM2STR(REST_TYPE);
+			NUM2STR(SEND_COMMAND_AND_WAIT_NOTBUSY_TYPE);
+			
+			NUM2STR(DELAY_TIME_TYPE);
+			NUM2STR(ONE_DEVICE_MOVE_TYPE);
+			NUM2STR(ONE_DEVICE_WAIT_TYPE);
+			NUM2STR(ONE_DEVICE_GET_POS_TYPE);
+			NUM2STR(ONE_DEVICE_SET_MARK_TYPE);
+			NUM2STR(GET_PARAM_TYPE);
+			
+			NUM2STR(SET_PARAM_TYPE);
+			NUM2STR(SElECT_STEP_MODE_TYPE);
+			NUM2STR(INIT_MOTOR_SPEED_TENSION_TYPE);
+			NUM2STR(MOVE_MANY_MOTOR);
+			NUM2STR(WAIT_MANY_MOTOR);
+			
+			NUM2STR(COMMAND_PACKAGE_MOTOR);
+			NUM2STR(GET_LIGHT_LEVEL_TYPE);
+			NUM2STR(GET_ALL_LIGHT_LEVEL_TYPE);
+			NUM2STR(CHEMINERT_C52_C55_TYPE);
+			NUM2STR(PUMP_S100_TYPE);
+			
+			NUM2STR(WEIGHT_SENSOR_SET_LINE_TYPE);
+			NUM2STR(WEIGHT_SENSOR_GET_SINGLE_RESULT_TYPE);
+			NUM2STR(WEIGHT_SENSOR_GET_ALL_RESULT_TYPE);
+			NUM2STR(TEMPERATURE_SENSOR_GET_TYPE);
+			NUM2STR(TEMPERATURE_SENSOR_SET_TYPE);
+			
+			NUM2STR(ELECTROMAGNETIC_TYPE);
+			NUM2STR(CONNECT_TEST_TYPE);
+			NUM2STR(GET_WEIGHT_CURRENT_GRAM);
+			NUM2STR(REST_MOTOR_ORGIN);
+			NUM2STR(MOTOR_MOVE_AND_WAIT);
+			
+			NUM2STR(SET_PUMPS100_PRESS);
+			NUM2STR(BALANCE_CHROMATOGRAPHIC_COLUMN);
+			NUM2STR(GRADIENT_CONTROL_BUFFER);
+			NUM2STR(GRAVITY_SENSOR_SETTING);
+			NUM2STR(GRAVITY_SENSOR_GETTING);
+			
+			NUM2STR(SCAN_BARCODE);
+			NUM2STR(PUMP_INTERFACE);
+			NUM2STR(REST_INJECTION_MODLUE_MOTOR);
+			NUM2STR(LIQUID_SENSOR);
+			NUM2STR(PUMPS100_SET_FLOWSPEED);
+			
+			NUM2STR(RFID_INIT);
+			NUM2STR(RFID_DESTORY);
+			NUM2STR(RFID_SEND_READ_COMMAND);
+			NUM2STR(RFID_RECEIVE_INDEX_TAG);
+			NUM2STR(RFID_GET_EPC_STRING);
+			
+			NUM2STR(RFID_WRITE_EPC);
+			NUM2STR(RFID_WRITE_BLANK);
+			NUM2STR(MINI_TEMPERATURE_SENSOR_GET_TYPE);
+			NUM2STR(MINI_TEMPERATURE_SENSOR_SET_TYPE);
+			NUM2STR(POLLING_DATA);
+			
+			NUM2STR(POLLING_PRESS);
+			NUM2STR(ELECTROMAGNETIC_PACKAGE_TYPE);
+    default:
+        return "UNKNOW COMMAND";
+    }
+}
+
+
+void  __InfoBoard__(int type)
 {
 #if USE_GRADIENT_CONTROL_BOARD 
- LOGD("[H]%d@%d\r\n",type,len);
+ LOGE("[Hummingbird]%s\r\n",_commandTOstring_(type));
 #endif	
 #if USE_CLEANING_DILUTION_BOARD 
- LOGD("[P]%d@%d\r\n",type,len);
+ LOGE("[Pecker]%s\r\n",_commandTOstring_(type));
 #endif
 #if USE_AUTOMATIC_INJECTION_BOARD 
- LOGD("[C]%d@%d\r\n",type,len);
+ LOGE("[Camel]%s\r\n",_commandTOstring_(type));
 #endif	
 #if USE_KEEP_TEMPERATURE_BOARD 
- LOGD("[T]%d@%d\r\n",type,len);
+ LOGE("[Mini]%s\r\n",_commandTOstring_(type));
 #endif		
 }	
 
@@ -851,7 +928,6 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 	
 		if(sizeof(Powerstep1_contorl_motor_command_t)!=len)
 		{
-				__InfoBoard__(len,slave_motorCommand.type);
 				LOGE("check length error!\r\n");
 				goto ERROE_OVER;
 		}
@@ -1032,6 +1108,7 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		
 		
 ERROE_OVER:
+		__InfoBoard__(slave_motorCommand.type);
 		slave_motorCommand.type=ERROR_TYPE;
 		slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
 		__Wait_RS232_Recieve_For_ERROR__();
