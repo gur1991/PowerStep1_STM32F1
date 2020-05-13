@@ -78,6 +78,7 @@ typedef enum MOTOR_SPEED_type
 		LOW_SPEED=0,
 		NORMAL_SPEED,	
 		HIGH_SPEED,	
+	  SLEEP_SPEED
 }MOTOR_SPEED_type_t;
 
 //配置motor参数
@@ -87,7 +88,13 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data);
 
 void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_type);
 
+void __BSP_MotorControl_HardStop__(uint8_t deviceId);
+void __BSP_MotorControl_WaitWhileActive__(uint8_t deviceId);
+void __BSP_MotorControl_Move__(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
 
+
+void RestSelectMotorOrginSelect(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type);
+void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
 typedef union{ 
 struct{
 		uint8_t motorNum;
@@ -102,12 +109,29 @@ struct{
 }response;
 }rest_select_motor_orgin_type_t;
 
+
+typedef union{ 
+struct{
+		uint8_t motorNum;
+		uint8_t lightNum;
+		uint8_t motorDir;
+		uint32_t steps;
+		uint8_t flag_wait;
+	  uint8_t speed;
+}request;
+struct{
+		uint8_t ret;
+	  uint8_t nor[19];
+}response;
+}rest_select_motor_orgin_select_type_t;
+
+
 //motor 编号
 //light 编号
 //复位时步伐
 //复位时的电机方向
 
-void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
+
 	
 void StopALLMotorMotion(void);
 
@@ -132,7 +156,16 @@ struct{
 }response;
 }move_wait_motor_type_t;
 
-
+typedef union{
+struct{
+		uint8_t speed;
+		move_motor_data_type_t data;
+}request;
+struct{
+		uint8_t ret;
+		uint8_t nor[23];
+}response;
+}move_wait_motor_select_type_t;
 
 typedef union{ 
 struct{

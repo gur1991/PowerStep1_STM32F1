@@ -123,6 +123,9 @@ typedef enum Command_type{
 		POLLING_PRESS,
 		
 		ELECTROMAGNETIC_PACKAGE_TYPE,
+		MOTOR_MOVE_AND_WAIT_SELECT,
+		REST_MOTOR_ORGIN_SELECT,
+		
 
 }Command_type_t;
 
@@ -431,6 +434,9 @@ typedef struct{
 				Real_Time_Polling_Press_t Real_Time_Polling_Press;
 				
 				electromagnetic_package_type_t electromagnetic_package;
+				
+				move_wait_motor_select_type_t move_wait_motor_select;
+				rest_select_motor_orgin_select_type_t rest_select_motor_orgin_select;
 
 /*
 *print move rk3188

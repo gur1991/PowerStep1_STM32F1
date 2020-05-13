@@ -443,20 +443,14 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 //discard
 void StopALLMotorMotion(void)
 {
-/*	
-	int i;
-	for(i=1;i<SIZE_MOTOR_ARRAY;i++){
-			PowerStep_Select_Motor_Baby(i);
-			BSP_MotorControl_HardStop(0);
-	}
-*/	
-}
 
-//motor 编号
-//light 编号
-//复位时步伐
-//复位时的电机方向
-//是否先wait steps
+}
+void RestSelectMotorOrginSelect(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
+{
+		Choose_Single_Motor_Speed_Config(motorNum,speed_type);
+		RestSelectMotorOrgin(motorNum, lightNum,  motorDir, steps);
+}	
+
 void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
 {
 	int status=0;
@@ -474,20 +468,37 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 				i++;
 				if(!Light_Sensor_Get(lightNum))
 					{						
-							BSP_MotorControl_HardStop(0);	
+							__BSP_MotorControl_HardStop__(motorNum);	
 							break;
 				}else if(i>=10*1000){
-							LOGD("motor no find light \r\n");
-							BSP_MotorControl_HardStop(0);
+							LOGE("motor no find light \r\n");
+							__BSP_MotorControl_HardStop__(motorNum);
 							break;	
 				}
 				delay_ms(1);	
 		}
-	 BSP_MotorControl_HardStop(0);	
+	 __BSP_MotorControl_HardStop__(motorNum);	
 		
-	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
-
 }
+
+void __BSP_MotorControl_Move__(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type)
+{
+		Choose_Single_Motor_Speed_Config(deviceId,speed_type);
+		BSP_MotorControl_Move( 0,  direction,  stepCount);
+}	
+
+void __BSP_MotorControl_HardStop__(uint8_t deviceId)
+{
+	BSP_MotorControl_HardStop(0);
+	Choose_Single_Motor_Speed_Config(deviceId,SLEEP_SPEED);
+}	
+
+void __BSP_MotorControl_WaitWhileActive__(uint8_t deviceId)
+{
+	BSP_MotorControl_WaitWhileActive(0);
+	Choose_Single_Motor_Speed_Config(deviceId,SLEEP_SPEED);
+}
+
 
 
 /*
@@ -499,13 +510,13 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
 	init_motor_device(data);//把电机参数保存在数组里
 	PowerStep_Select_Motor_Baby(data.request.devices);
 	Powerstep01_Init_Register(&motor_config_array[data.request.devices]);
-	LOGD("devices:%d\r\n",data.request.devices);
-	LOGD("mode:%d\r\n",data.request.init_motor.ModeSelection);
+	//LOGD("devices:%d\r\n",data.request.devices);
+	//LOGD("mode:%d\r\n",data.request.init_motor.ModeSelection);
 	
-	LOGD("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
-	LOGD("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
-	LOGD("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
-	LOGD("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
+	//LOGD("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
+	//LOGD("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
+	//LOGD("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
+	//LOGD("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
 	
 	BSP_MotorControl_HardStop(0);
 }
@@ -544,7 +555,7 @@ int start=0,end=0;
 	for(i=start;i<=end;i++)
 	{
 	
-			result=ConfigMotorAllDevice(i,NORMAL_SPEED);//配置电机参数
+			result=ConfigMotorAllDevice(i,SLEEP_SPEED);//配置电机参数
 			init_motor_device(TempMotor);//把电机参数保存在数组里
 			PowerStep_Select_Motor_Baby(i);
 			
@@ -555,7 +566,7 @@ int start=0,end=0;
 			{	
 				Powerstep01_Init_Register(NULL);
 			}
-			LOGD("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
+			//LOGD("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
 			BSP_MotorControl_HardStop(0);
 	}	
 #endif

@@ -7,6 +7,8 @@
 
 uint8_t process_motor_command_receive(Command_Package_t command);
 
+void Motor_Move_And_Wait_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
+
 void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
 
 uint8_t ClearAndCheckBlankPosition(void);

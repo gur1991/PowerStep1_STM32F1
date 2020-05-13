@@ -26,8 +26,7 @@ static void protocol_powerstep01_power(power_type_t* data){
 		{
 				StopALLMotorMotion();
 		}else{
-					PowerStep_Select_Motor_Baby(performer.request.devices);
-					BSP_MotorControl_HardStop(0);
+					__BSP_MotorControl_HardStop__(performer.request.devices);
 		}
 	
 		data->response.ret=0;
@@ -60,8 +59,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.dir=data->request.dir;
 		performer.request.steps = data->request.steps;
 	
-		PowerStep_Select_Motor_Baby(performer.request.devices);
-		BSP_MotorControl_Move(0, (motorDir_t)performer.request.dir, performer.request.steps);
+		__BSP_MotorControl_Move__(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps,NORMAL_SPEED);
 
 	  data->response.ret=0;
 }
@@ -813,6 +811,31 @@ static void  protocol_electromagnetic_package(electromagnetic_package_type_t* da
 			electromagnetic_control_package(*data);	
 			data->response.ret = 0;
 }	
+static void  protocol_move_wait_motor_select(move_wait_motor_select_type_t * data)
+{
+	move_wait_motor_select_type_t performer;
+	performer.request.data.array = data->request.data.array;
+	performer.request.data.stepCount = data->request.data.stepCount;
+	performer.request.data.direction = data->request.data.direction;
+	performer.request.speed = data->request.speed;
+	
+	Motor_Move_And_Wait_Select(performer.request.data.array, performer.request.data.direction , performer.request.data.stepCount,performer.request.speed);
+	data->response.ret=0;
+}	
+static void protocol_rest_select_motor_orgin_select(rest_select_motor_orgin_select_type_t* data)
+{
+	rest_select_motor_orgin_select_type_t  performer;
+	performer.request.motorNum = data->request.motorNum;
+	performer.request.lightNum = data->request.lightNum;
+	performer.request.motorDir = data->request.motorDir;
+	performer.request.steps = data->request.steps;
+	performer.request.flag_wait = data->request.flag_wait;
+	performer.request.speed = data->request.speed;
+	RestSelectMotorOrginSelect(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps,performer.request.speed);
+	data->response.ret=0;
+}	
+
+
 
 
 
@@ -885,6 +908,8 @@ static char* _commandTOstring_(uint8_t num)
 			
 			NUM2STR(POLLING_PRESS);
 			NUM2STR(ELECTROMAGNETIC_PACKAGE_TYPE);
+			NUM2STR(MOTOR_MOVE_AND_WAIT_SELECT);
+			NUM2STR(REST_MOTOR_ORGIN_SELECT);
     default:
         return "UNKNOW COMMAND";
     }
@@ -1096,7 +1121,12 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case ELECTROMAGNETIC_PACKAGE_TYPE:
 				 protocol_electromagnetic_package(&slave_motorCommand.CommandPowerStep1.electromagnetic_package);
 			   break;
-			
+			case MOTOR_MOVE_AND_WAIT_SELECT:
+				protocol_move_wait_motor_select(&slave_motorCommand.CommandPowerStep1.move_wait_motor_select);
+			break;
+			case REST_MOTOR_ORGIN_SELECT:
+				protocol_rest_select_motor_orgin_select(&slave_motorCommand.CommandPowerStep1.rest_select_motor_orgin_select);
+			break;
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
 					goto ERROE_OVER;
