@@ -62,3 +62,5 @@
 ..\obj\stm32f1xx_it.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h
 ..\obj\stm32f1xx_it.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\stm32f1xx_it.o: ..\HARDWARE\Config\config.h
+..\obj\stm32f1xx_it.o: ..\SYSTEM\delay\delay.h
+..\obj\stm32f1xx_it.o: ..\SYSTEM\sys\sys.h

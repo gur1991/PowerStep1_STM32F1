@@ -67,10 +67,10 @@
 ..\obj\mini_board_protocol.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\Config\config.h
+..\obj\mini_board_protocol.o: ..\SYSTEM\delay\delay.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\UART3\uart3.h
-..\obj\mini_board_protocol.o: ..\SYSTEM\delay\delay.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\mini_board_protocol.o: ..\HARDWARE\Cheminert\Cheminert_c52.h
 ..\obj\mini_board_protocol.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

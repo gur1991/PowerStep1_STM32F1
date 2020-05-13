@@ -49,6 +49,7 @@
 #include "x_nucleo_ihm03a1_stm32f1xx.h" 
 //#define BSP_MOTOR_CONTROL_BOARD_USE_SPI2	 
 	 #include "config.h"
+	  #include "delay.h"	
 	 /** @addtogroup BSP
   * @{
   */   
@@ -72,6 +73,7 @@
 */ 
 void Powerstep01_Board_Reset_All(void);
 void Powerstep01_Board_ReleaseReset_All(void);
+void Powerstep01_Board_PullUp_Cs_All(void);
 
 typedef struct{
 	GPIO_TypeDef* GPIOx;

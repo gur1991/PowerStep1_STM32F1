@@ -2,7 +2,7 @@
 #include <string.h>
 #include "delay.h"
 #include "config.h"
-
+#include "factory_many.h"
 powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
 init_motor_speed_tension_type_t TempMotor;
 
@@ -17,7 +17,7 @@ union powerstep01_Init_u init_current =
   488, // Maximum speed in step/s, range 15.25 to 15610 steps/s
   0, // Minimum speed in step/s, range 0 to 976.3 steps/s
   POWERSTEP01_LSPD_OPT_OFF, // Low speed optimization bit, enum powerstep01_LspdOpt_t
-  2000,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
+  2500,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
   POWERSTEP01_BOOST_MODE_OFF, // Boost of the amplitude square wave, enum powerstep01_BoostMode_t
   281.25, // Overcurrent threshold settings via enum powerstep01_OcdTh_t
   STEP_MODE_1_16, // Step mode settings via enum motorStepMode_t
@@ -68,11 +68,11 @@ union powerstep01_Init_u init_voltage =
   488, // Maximum speed in step/s, range 15.25 to 15610 steps/s
   0, // Minimum speed in step/s, range 0 to 976.3 steps/s
   POWERSTEP01_LSPD_OPT_OFF, // Low speed optimization bit, enum powerstep01_LspdOpt_t
-  2000,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
+  2500,//244.16, // Full step speed in step/s, range 7.63 to 15625 steps/s
   POWERSTEP01_BOOST_MODE_OFF, // Boost of the amplitude square wave, enum powerstep01_BoostMode_t
   281.25, // Overcurrent threshold settings via enum powerstep01_OcdTh_t
  // STEP_MODE_1_16, // Step mode settings via enum motorStepMode_t
-  STEP_MODE_1_16,
+  STEP_MODE_1_64,
 	POWERSTEP01_SYNC_SEL_DISABLED, // Synch. Mode settings via enum powerstep01_SyncSel_t
   (POWERSTEP01_ALARM_EN_OVERCURRENT|
    POWERSTEP01_ALARM_EN_THERMAL_SHUTDOWN|
@@ -168,7 +168,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		  TempMotor.request.init_motor.motor_config.current.current_value=100;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=5000;
+			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=6000;
 		
    		break;			
@@ -194,7 +194,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			else if(speed_type==NORMAL_SPEED){
 				TempMotor.request.init_motor.motor_commonSpeed.acceleration=12000;
 				TempMotor.request.init_motor.motor_commonSpeed.deceleration=12000;
-				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=3500;
+				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=4000;
 			}else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 		
    		break;	
@@ -353,11 +353,11 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 				TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 				TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
 				TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
-				TempMotor.request.init_motor.motor_config.current.current_value=200;
+				TempMotor.request.init_motor.motor_config.current.current_value=150;
 				//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=70;
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 				
-			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=3000;
+			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2400;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=3000;
    		break;	
 	
@@ -381,7 +381,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			if(speed_type==LOW_SPEED){
 				TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 				TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
+				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 			}else if(speed_type==NORMAL_SPEED)
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
@@ -462,7 +462,12 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 	int status=0;
 	int i=0;
 
+	
+	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
+
 		
+		steps=200*10000;
+	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
 		while(1){
@@ -478,7 +483,10 @@ void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_
 				}
 				delay_ms(1);	
 		}
-	 BSP_MotorControl_WaitWhileActive(0);		
+	 BSP_MotorControl_HardStop(0);	
+		
+	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
+
 }
 
 
@@ -498,6 +506,8 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
 	LOGD("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
 	LOGD("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
 	LOGD("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
+	
+	BSP_MotorControl_HardStop(0);
 }
 
 /*
@@ -510,6 +520,7 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 			init_motor_device(TempMotor);
 			PowerStep_Select_Motor_Baby(motor_chip);
 			Powerstep01_Init_Register(&motor_config_array[motor_chip]);
+			BSP_MotorControl_HardStop(0);
 }	
 
 
@@ -545,6 +556,7 @@ int start=0,end=0;
 				Powerstep01_Init_Register(NULL);
 			}
 			LOGD("M[%d]-speed£º %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
+			BSP_MotorControl_HardStop(0);
 	}	
 #endif
 

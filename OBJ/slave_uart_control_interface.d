@@ -66,11 +66,11 @@
 ..\obj\slave_uart_control_interface.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\Config\config.h
+..\obj\slave_uart_control_interface.o: ..\SYSTEM\delay\delay.h
 ..\obj\slave_uart_control_interface.o: ..\SYSTEM\sys\sys.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART3\uart3.h
-..\obj\slave_uart_control_interface.o: ..\SYSTEM\delay\delay.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\Cheminert\Cheminert_c52.h
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

@@ -60,7 +60,7 @@
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Config\config.h
-..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h
-..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\SYSTEM\delay\delay.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\SYSTEM\sys\sys.h
+..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h
+..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h

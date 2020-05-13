@@ -66,6 +66,7 @@
 ..\obj\factory_many.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h
 ..\obj\factory_many.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\factory_many.o: ..\HARDWARE\Config\config.h
+..\obj\factory_many.o: ..\SYSTEM\delay\delay.h
 ..\obj\factory_many.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h
 ..\obj\factory_many.o: ..\HARDWARE\LIGHT\light.h
 ..\obj\factory_many.o: ..\HARDWARE\Real_Time_Polling\real_time_polling.h
@@ -80,7 +81,6 @@
 ..\obj\factory_many.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\factory_many.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\factory_many.o: ..\HARDWARE\UART3\uart3.h
-..\obj\factory_many.o: ..\SYSTEM\delay\delay.h
 ..\obj\factory_many.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\factory_many.o: ..\HARDWARE\Cheminert\Cheminert_c52.h
 ..\obj\factory_many.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

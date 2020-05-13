@@ -201,6 +201,9 @@ typedef enum Command_Package_type{
 			MOTOR_UP_DOWN_NORMAL,//motor
 			LITTLE_IN_OUT_SLOW,
 			LITTLE_IN_OUT_NORMAL,
+			
+			BLANK_NEXT_MOTOR_HIGH,
+			BLANK_NEXT_MOTOR_NORMAL,
 
 }Command_Package_t;
 

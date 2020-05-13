@@ -64,3 +64,5 @@
 ..\obj\powerstep01.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\powerstep01.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\powerstep01.o: ..\HARDWARE\Config\config.h
+..\obj\powerstep01.o: ..\SYSTEM\delay\delay.h
+..\obj\powerstep01.o: ..\SYSTEM\sys\sys.h

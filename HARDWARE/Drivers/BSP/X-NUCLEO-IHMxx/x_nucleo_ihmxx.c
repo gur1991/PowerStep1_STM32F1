@@ -520,6 +520,9 @@ void BSP_MotorControl_HardStop(uint8_t deviceId)
  **********************************************************/
 void BSP_MotorControl_Move(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
+	//add by gur
+	//stepCount=stepCount*2;
+	
   if ((motorDrvHandle != 0)&&(motorDrvHandle->Move != 0))
   {
     motorDrvHandle->Move(deviceId, direction, stepCount);

@@ -67,10 +67,10 @@
 ..\obj\uart5.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\uart5.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h
 ..\obj\uart5.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
+..\obj\uart5.o: ..\SYSTEM\delay\delay.h
 ..\obj\uart5.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\uart5.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\uart5.o: ..\HARDWARE\UART3\uart3.h
-..\obj\uart5.o: ..\SYSTEM\delay\delay.h
 ..\obj\uart5.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\uart5.o: ..\HARDWARE\Cheminert\Cheminert_c52.h
 ..\obj\uart5.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

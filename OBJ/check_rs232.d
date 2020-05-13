@@ -66,11 +66,11 @@
 ..\obj\check_rs232.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\check_rs232.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\check_rs232.o: ..\HARDWARE\Config\config.h
+..\obj\check_rs232.o: ..\SYSTEM\delay\delay.h
 ..\obj\check_rs232.o: ..\SYSTEM\sys\sys.h
 ..\obj\check_rs232.o: ..\HARDWARE\PUMPS100\pump_s100.h
 ..\obj\check_rs232.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\check_rs232.o: ..\HARDWARE\UART3\uart3.h
-..\obj\check_rs232.o: ..\SYSTEM\delay\delay.h
 ..\obj\check_rs232.o: ..\HARDWARE\UART_CHOOSE\uart_choose.h
 ..\obj\check_rs232.o: ..\HARDWARE\Cheminert\Cheminert_c52.h
 ..\obj\check_rs232.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

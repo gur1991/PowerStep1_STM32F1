@@ -18,14 +18,9 @@ void UART4_IRQHandler(void)
 	 {	 	
 		HAL_UART_Receive(&UART4_Handler,&res,1,30);//115200 256byte 需要20ms，现在给30ms
 			
-		//如果上次指令尚没有结束，就不会接受新的指令 
-		if(ARM_RS232_ASK)return;
-		 
-		 
 		if(UART4_RX_CNT<LEN_MAX_UART4)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
-			//LOGD("r[%d]0x%x\r\n",UART4_RX_CNT,res);
 			UART4_RX_CNT++;						//接收数据增加1	
 			
 		}
