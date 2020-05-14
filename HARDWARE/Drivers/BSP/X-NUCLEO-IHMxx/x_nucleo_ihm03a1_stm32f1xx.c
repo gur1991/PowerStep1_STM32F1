@@ -43,16 +43,19 @@
 #include "config.h"
 #include "delay.h"
 
-GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
-uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
+static GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
+static uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
 
-GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT;
-uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
+static GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT;
+static uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 	
-powerStep01_select_type_t MotorBaby;
+static powerStep01_select_type_t MotorBaby;
 
 void PowerStep_Select_Motor_Baby(uint8_t chip)
 {
+	
+	memset((void*)&MotorBaby,0,sizeof(MotorBaby));
+	
 	switch(chip)
 	{
 #if USE_AUTOMATIC_INJECTION_BOARD		
@@ -148,7 +151,9 @@ void PowerStep_Select_Motor_Baby(uint8_t chip)
 				break;
 #endif		
 
+
 	}
+	
 	BSP_MOTOR_CONTROL_BOARD_CS_PORT=MotorBaby.cs.GPIOx;
 	BSP_MOTOR_CONTROL_BOARD_CS_PIN=MotorBaby.cs.GPIO_Pin;
 	BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT=MotorBaby.rst.GPIOx;

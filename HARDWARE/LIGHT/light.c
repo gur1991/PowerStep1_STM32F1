@@ -81,10 +81,13 @@ void Light_Sensor_Init(void)
 }
 
 
+
+
+
 //光感处理函数
 //返回信号值
 //或者使用宏值
-u8 Light_Sensor_Get(u8 number)
+u8 __Light_Sensor_Get__(u8 number)
 {	
 	u8 status=2;
 	switch(number)
@@ -125,6 +128,40 @@ u8 Light_Sensor_Get(u8 number)
 	}	
     return status; 
 }
+
+
+u8 Light_Sensor_Get(u8 number)
+{
+	u8 status[2]={2,2};
+	int i=1;
+	
+
+	status[0]=__Light_Sensor_Get__(number);
+RETY:	
+	delay_ms(1);
+	status[1]=__Light_Sensor_Get__(number);
+	
+	//连续两次检测一致
+	if(status[1]==status[0])
+	{	
+		return status[1];
+	
+	}else if(i)//两次不一致，可以再来一次
+	{
+			i--;
+			status[0]=status[1];
+			goto RETY;
+	}else//两次结果仍不一致，则判定异常
+	{
+		return 2;
+	}
+}
+
+
+
+
+
+
 
 u8 gStatusLight[3];
 void Light_Sensor_Get_All(void)

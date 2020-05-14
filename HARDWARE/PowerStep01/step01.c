@@ -3,13 +3,13 @@
 #include "delay.h"
 #include "config.h"
 #include "factory_many.h"
-powerstep01_Init_u_t motor_config_array[SIZE_MOTOR_ARRAY];
-init_motor_speed_tension_type_t TempMotor;
+static powerstep01_Init_u_t MotorConfig;
+static init_motor_speed_tension_type_t TempMotor;
 
 
 //#ifdef CURRENT_MODE
 /* Initialization parameters for current mode */
-union powerstep01_Init_u init_current =
+static powerstep01_Init_u_t init_current =
 {
   .cm.cp.cmVmSelection = POWERSTEP01_CM_VM_CURRENT, // enum powerstep01_CmVm_t
   582, // Acceleration rate in step/s2, range 14.55 to 59590 steps/s^2
@@ -59,7 +59,7 @@ union powerstep01_Init_u init_current =
 //#ifdef VOLTAGE_MODE
 /* Initialization parameters for voltage mode */
 
-union powerstep01_Init_u init_voltage =
+static powerstep01_Init_u_t init_voltage =
 {
   /* common parameters */
   .vm.cp.cmVmSelection = POWERSTEP01_CM_VM_VOLTAGE, // enum powerstep01_CmVm_t
@@ -116,34 +116,37 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 {	
 		int ret=0;
 	
+		memset(&MotorConfig,0,sizeof(MotorConfig));
+	
+	
 		if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_CURRENT)
 		{
-				memcpy(&motor_config_array[data.request.devices], &init_current,sizeof(init_current));
+				memcpy(&MotorConfig.cm, &init_current.cm,sizeof(init_current.cm));
 				
-				motor_config_array[data.request.devices].cm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
-				motor_config_array[data.request.devices].cm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
-				motor_config_array[data.request.devices].cm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
-				motor_config_array[data.request.devices].cm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;//速度
+				MotorConfig.cm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
+				MotorConfig.cm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
+				MotorConfig.cm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
+				MotorConfig.cm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;//速度
 			
-				motor_config_array[data.request.devices].cm.tvalAcc=data.request.init_motor.motor_config.current.current_value;
-				motor_config_array[data.request.devices].cm.tvalDec=data.request.init_motor.motor_config.current.current_value;
-				motor_config_array[data.request.devices].cm.tvalHold=data.request.init_motor.motor_config.current.current_value;
-				motor_config_array[data.request.devices].cm.tvalRun=data.request.init_motor.motor_config.current.current_value;//拉力
+				MotorConfig.cm.tvalAcc=data.request.init_motor.motor_config.current.current_value;
+				MotorConfig.cm.tvalDec=data.request.init_motor.motor_config.current.current_value;
+				MotorConfig.cm.tvalHold=data.request.init_motor.motor_config.current.current_value;
+				MotorConfig.cm.tvalRun=data.request.init_motor.motor_config.current.current_value;//拉力
 				
 		
 		}else if(data.request.init_motor.ModeSelection==POWERSTEP01_CM_VM_VOLTAGE)
 		{
-				memcpy(&motor_config_array[data.request.devices], &init_voltage,sizeof(init_voltage));
+				memcpy(&MotorConfig.vm, &init_voltage.vm,sizeof(init_voltage.vm));
 				
-				motor_config_array[data.request.devices].vm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
-				motor_config_array[data.request.devices].vm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
-				motor_config_array[data.request.devices].vm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
-				motor_config_array[data.request.devices].vm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;
+				MotorConfig.vm.cp.acceleration=data.request.init_motor.motor_commonSpeed.acceleration;
+				MotorConfig.vm.cp.deceleration=data.request.init_motor.motor_commonSpeed.deceleration;
+				MotorConfig.vm.cp.minSpeed=data.request.init_motor.motor_commonSpeed.minSpeed;
+				MotorConfig.vm.cp.maxSpeed=data.request.init_motor.motor_commonSpeed.maxSpeed;
 			
-				motor_config_array[data.request.devices].vm.kvalAcc=data.request.init_motor.motor_config.voltage.duty_cycle;
-				motor_config_array[data.request.devices].vm.kvalDec=data.request.init_motor.motor_config.voltage.duty_cycle;
-				motor_config_array[data.request.devices].vm.kvalHold=data.request.init_motor.motor_config.voltage.duty_cycle;
-				motor_config_array[data.request.devices].vm.kvalRun=data.request.init_motor.motor_config.voltage.duty_cycle;
+				MotorConfig.vm.kvalAcc=data.request.init_motor.motor_config.voltage.duty_cycle;
+				MotorConfig.vm.kvalDec=data.request.init_motor.motor_config.voltage.duty_cycle;
+				MotorConfig.vm.kvalHold=data.request.init_motor.motor_config.voltage.duty_cycle;
+				MotorConfig.vm.kvalRun=data.request.init_motor.motor_config.voltage.duty_cycle;
 			
 		}else {
 				return -1;
@@ -156,6 +159,13 @@ int init_motor_device(init_motor_speed_tension_type_t data)
 int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 {
 	int ret=0;
+	
+	memset(&TempMotor, 0, sizeof(TempMotor));
+	
+	
+	TempMotor.request.devices=chip;
+	TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+	
 	switch(chip)
 	{
 		case 1:
@@ -164,118 +174,104 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=15000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=15000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+		
 		  TempMotor.request.init_motor.motor_config.current.current_value=100;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=6000;
-		
+			else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
+				
    		break;			
 
 
 		
 		case 2:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
-	
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
-		  TempMotor.request.init_motor.motor_config.current.current_value=120;
+			  TempMotor.request.init_motor.motor_config.current.current_value=120;
 		
-			if(speed_type==LOW_SPEED){
-					TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;				
-					TempMotor.request.init_motor.motor_commonSpeed.acceleration=580;
-					TempMotor.request.init_motor.motor_commonSpeed.deceleration=580;
-					TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
-					TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
-				
-					TempMotor.request.init_motor.motor_config.voltage.duty_cycle=18;
-			}
-			else if(speed_type==NORMAL_SPEED){
+			if(speed_type==NORMAL_SPEED){
 				TempMotor.request.init_motor.motor_commonSpeed.acceleration=12000;
 				TempMotor.request.init_motor.motor_commonSpeed.deceleration=12000;
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=4000;
 			}else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 		
+			else if(speed_type==SLEEP_SPEED){
+				TempMotor.request.init_motor.motor_config.current.current_value=10;
+			}
    		break;	
 
 
 		case 3:
 			
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
-			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=1;
+			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-		
+			else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
 			break;
 
 		case 4:
 			
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
-			//TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
    		break;
 		
 
 		case 5:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
+		
+			if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
    		break;
 
 		case 6:
-	TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=200;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
+		
+		  if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
    		break;
 	
 		case 7:
 			
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=150;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=150;
 		
 			TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=500;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
    		break;
 /*
 			TempMotor.request.devices=chip;
@@ -309,129 +305,108 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 */		
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=150;
 			
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=800;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
-			
+			else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
    		break;	
 			
 	case 9:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 			TempMotor.request.init_motor.motor_config.current.current_value=100;
-			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=100;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=800;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
-		
+			else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
+	
    		break;		
 	case 10:
 
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=120;
-			//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=70;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 			if(speed_type==LOW_SPEED){
 				
-				TempMotor.request.init_motor.motor_commonSpeed.acceleration=5000;
-				TempMotor.request.init_motor.motor_commonSpeed.deceleration=5000;
-				TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 				TempMotor.request.init_motor.motor_config.current.current_value=150;
-				//TempMotor.request.init_motor.motor_config.voltage.duty_cycle=70;
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
 				
 			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2400;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=3000;
+			else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
+			
    		break;	
 	
 		
 		case 11:
-			TempMotor.request.devices=chip;
+			
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_VOLTAGE;
 		  
-			//TempMotor.request.init_motor.motor_config.current.current_value=110;
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		
-		
-		
-			//TempMotor.request.init_motor.motor_commonSpeed.acceleration=580;
-			//TempMotor.request.init_motor.motor_commonSpeed.deceleration=580;
-			//TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-			//TempMotor.request.init_motor.motor_commonSpeed.minSpeed=1000;
+			TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 		  TempMotor.request.init_motor.motor_config.voltage.duty_cycle=20;
 		
 			if(speed_type==LOW_SPEED){
-				TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
-				TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=100;
 			}else if(speed_type==NORMAL_SPEED)
 				TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.voltage.duty_cycle=5;
 
    		break;
 
 	 case 12:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=100;
-		
+		  TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
+	 
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
 		
    		break;			
 		case 13:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=100;
+		  TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
 		
    		break;
 		case 14:
-			TempMotor.request.devices=chip;
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
 			TempMotor.request.init_motor.motor_commonSpeed.acceleration=3000;
 			TempMotor.request.init_motor.motor_commonSpeed.deceleration=3000;
-		  TempMotor.request.init_motor.motor_commonSpeed.minSpeed=0;
 		  TempMotor.request.init_motor.motor_config.current.current_value=100;
 		
 			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1000;
 			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=1500;
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.motor_commonSpeed.maxSpeed=2000;
-		
+		  else if(speed_type==SLEEP_SPEED) TempMotor.request.init_motor.motor_config.current.current_value=10;
 		
    		break;
 		default:
@@ -506,19 +481,13 @@ void __BSP_MotorControl_WaitWhileActive__(uint8_t deviceId)
 */
 void Set_Single_Motor_Config(init_motor_speed_tension_type_t data)
 {
-
+/*
 	init_motor_device(data);//把电机参数保存在数组里
 	PowerStep_Select_Motor_Baby(data.request.devices);
 	Powerstep01_Init_Register(&motor_config_array[data.request.devices]);
-	//LOGD("devices:%d\r\n",data.request.devices);
-	//LOGD("mode:%d\r\n",data.request.init_motor.ModeSelection);
-	
-	//LOGD("MAXspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.maxSpeed);
-	//LOGD("MINspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.minSpeed);
-	//LOGD("ACCspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.acceleration);
-	//LOGD("DECspeed:%f\r\n", data.request.init_motor.motor_commonSpeed.deceleration);
 	
 	BSP_MotorControl_HardStop(0);
+*/
 }
 
 /*
@@ -530,8 +499,9 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 			ConfigMotorAllDevice(motor_chip,speed_type);
 			init_motor_device(TempMotor);
 			PowerStep_Select_Motor_Baby(motor_chip);
-			Powerstep01_Init_Register(&motor_config_array[motor_chip]);
+			Powerstep01_Init_Register(&MotorConfig);
 			BSP_MotorControl_HardStop(0);
+	
 }	
 
 
@@ -554,20 +524,7 @@ int start=0,end=0;
 		BSP_MotorControl_Init(BSP_MOTOR_CONTROL_BOARD_ID_POWERSTEP01, NULL);//此处NULL只能是NULL，无需传参数	
 	for(i=start;i<=end;i++)
 	{
-	
-			result=ConfigMotorAllDevice(i,SLEEP_SPEED);//配置电机参数
-			init_motor_device(TempMotor);//把电机参数保存在数组里
-			PowerStep_Select_Motor_Baby(i);
-			
-			if(!result){
-				Powerstep01_Init_Register(&motor_config_array[i]);//后续再需要初始化，无需上位机填写
-			}
-			else
-			{	
-				Powerstep01_Init_Register(NULL);
-			}
-			//LOGD("M[%d]-speed： %f \r\n",i,motor_config_array[i].vm.cp.maxSpeed);
-			BSP_MotorControl_HardStop(0);
+			Choose_Single_Motor_Speed_Config(i,SLEEP_SPEED);
 	}	
 #endif
 

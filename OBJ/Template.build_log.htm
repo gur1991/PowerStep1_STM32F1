@@ -21,81 +21,20 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TARMSTM.DLL V1.65.0.0
  
 <h2>Project:</h2>
-D:\STM32softeware\STM32F1\zhou\SepaxSharkStm32\SepaxSharkStm32\USER\SepaxShark.uvprojx
+D:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\SepaxSharkStm32\USER\SepaxShark.uvprojx
 Project File Date:  05/13/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
-compiling slave_uart_control_interface.c...
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(8): warning:  #550-D: variable "performer" was set but never used
-  		move_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(45): warning:  #177-D: variable "performer" was declared but never referenced
-  		send_command_and_wait_no_busy_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(122): warning:  #188-D: enumerated type mixed with another type
-  			BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(168): warning:  #177-D: variable "performer" was declared but never referenced
-  			get_all_light_sensor_level_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(225): warning:  #177-D: variable "i" was declared but never referenced
-  			u8 ret=0,rx_size=0,i=0,j=2;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(490): warning:  #188-D: enumerated type mixed with another type
-  			Set_Weight_Sensor_Warnning_Line(performer.request.weight,performer.request.gram);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(501): warning:  #188-D: enumerated type mixed with another type
-  			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(508): warning:  #177-D: variable "performer" was declared but never referenced
-  			get_all_weight_warning_result_type_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(521): warning:  #167-D: argument of type "int *" is incompatible with parameter of type "uint32_t *"
-  			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&(data->response.degree));
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(559): warning:  #188-D: enumerated type mixed with another type
-  	data->response.gram=Get_weight_current_gram(performer.request.weight);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(676): warning:  #177-D: variable "performer" was declared but never referenced
-  	get_liquid_sensor_level_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(682): warning:  #177-D: variable "performer" was declared but never referenced
-  	pump_s100_set_flowSpeed_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(699): warning:  #177-D: variable "performer" was declared but never referenced
-  	rfid_destory_config_type_t performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(765): warning:  #188-D: enumerated type mixed with another type
-  			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(778): warning:  #188-D: enumerated type mixed with another type
-  			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(785): warning:  #177-D: variable "performer" was declared but never referenced
-  			Real_Time_Polling_Press_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(793): warning:  #177-D: variable "performer" was declared but never referenced
-  			Real_Time_Polling_t  performer;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(822): warning:  #188-D: enumerated type mixed with another type
-  	Motor_Move_And_Wait_Select(performer.request.data.array, performer.request.data.direction , performer.request.data.stepCount,performer.request.speed);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(834): warning:  #188-D: enumerated type mixed with another type
-  	RestSelectMotorOrginSelect(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps,performer.request.speed);
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(945): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret =0;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1162): warning:  #177-D: variable "data" was declared but never referenced
-  	pump_s100_command_type_t data;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1200): warning:  #177-D: variable "data" was declared but never referenced
-  	pump_s100_command_type_t data;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1238): warning:  #177-D: variable "data" was declared but never referenced
-  	pump_s100_command_type_t data;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1380): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1445): warning:  #177-D: variable "ret" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1445): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1497): warning:  #177-D: variable "ret" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1497): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 ret=0,i;
-..\HARDWARE\RS232_protocol\slave_uart_control_interface.c: 28 warnings, 0 errors
-linking...
-Program Size: Code=67434 RO-data=1294 RW-data=1172 ZI-data=8788  
-FromELF: creating hex file...
-"..\OBJ\Template.axf" - 0 Error(s), 28 Warning(s).
+"..\OBJ\Template.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  D:\STM32softeware\STM32F1\zhou\SepaxSharkStm32\SepaxSharkStm32\USER\RTE
+  D:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\SepaxSharkStm32\USER\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -229,6 +229,7 @@ void March_Drain_And_Wash_Motor_Orgin(void)
 {
 #if USE_CLEANING_DILUTION_BOARD	
 	test_actuator(CHEMINERT_C55_CC4);	
+	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
 			Motor_Move_And_Wait_Select(M8_BIG_IN_OUT, M8_BIG_IN, 40000,NORMAL_SPEED);
 	
