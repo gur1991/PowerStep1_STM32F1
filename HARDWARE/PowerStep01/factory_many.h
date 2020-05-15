@@ -5,6 +5,14 @@
 #include "uart_command_control_protocol.h"
 #include "config.h"
 
+void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type);
+
+void RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type);
+
+
+void BSP_MotorControl_Move_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
+
+
 uint8_t process_motor_command_receive(Command_Package_t command);
 
 void Motor_Move_And_Wait_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);

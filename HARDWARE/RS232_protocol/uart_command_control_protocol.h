@@ -125,9 +125,23 @@ typedef enum Command_type{
 		ELECTROMAGNETIC_PACKAGE_TYPE,
 		MOTOR_MOVE_AND_WAIT_SELECT,
 		REST_MOTOR_ORGIN_SELECT,
-		
+		ONE_DEVICE_MOVE_SELECT_TYPE,
+		MOTOR_HARD_STOP_SELECT,
 
 }Command_type_t;
+
+typedef union{ 
+	struct{
+		uint8_t devices;
+		uint8_t speed;
+		uint8_t nor[2];
+	}request;
+	struct{
+		uint8_t ret;
+	}response;
+}motor_hard_stop_select_type_t;
+
+
 
 
 typedef union{ 
@@ -289,6 +303,20 @@ struct{
 }response;
 }one_device_move_type_t;
 
+typedef union{ 
+struct{
+		uint8_t devices;//1,2
+		uint8_t dir;
+		uint32_t steps;//+forward -backward
+		uint8_t  nor;
+		uint8_t  speed;
+}request;
+struct{
+		uint8_t ret;
+}response;
+}one_device_move_select_type_t;
+
+
 //单个电机等待停止----2
 typedef union{
 struct{
@@ -437,6 +465,8 @@ typedef struct{
 				
 				move_wait_motor_select_type_t move_wait_motor_select;
 				rest_select_motor_orgin_select_type_t rest_select_motor_orgin_select;
+				one_device_move_select_type_t one_device_move_select;
+				motor_hard_stop_select_type_t motor_hard_stop_select;
 
 /*
 *print move rk3188

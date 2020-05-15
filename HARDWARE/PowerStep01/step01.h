@@ -34,28 +34,22 @@ typedef struct
 {
   float acceleration;
   float deceleration;
-  float maxSpeed;//-----电机速度调试
-  float minSpeed;//电机idle 速度
-	
+  float maxSpeed;
+  float minSpeed;	
 }motor_commonSpeed_type_t;	
 
-//电压是占空比
-//电流是ma
-typedef union{
-struct{
-	float current_value;//CURRENT_VALUE;
-}current;	
-struct{
-	float duty_cycle;
-	
-}voltage;	
+
+typedef struct{
+	float acc;
+	float dec;
+	float hold;
+	float run;
 }motor_config_type_t;
 
 typedef struct {
-		//Current or voltage mode selection
 		powerstep01_CmVm_t ModeSelection;
-		motor_commonSpeed_type_t motor_commonSpeed;
-		motor_config_type_t motor_config;	
+		motor_commonSpeed_type_t Speed;
+		motor_config_type_t config;	
 }init_motor_type_t;
 
 typedef union{ 
@@ -65,11 +59,10 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-		uint8_t nor[27];
+		uint8_t nor[39];
 }response;
 }init_motor_speed_tension_type_t;
 
-extern init_motor_speed_tension_type_t TempMotor;
 
 int init_motor_device(init_motor_speed_tension_type_t data);
 
@@ -88,12 +81,7 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data);
 
 void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_type);
 
-void __BSP_MotorControl_HardStop__(uint8_t deviceId);
-void __BSP_MotorControl_WaitWhileActive__(uint8_t deviceId);
-void __BSP_MotorControl_Move__(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
 
-
-void RestSelectMotorOrginSelect(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type);
 void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
 typedef union{ 
 struct{

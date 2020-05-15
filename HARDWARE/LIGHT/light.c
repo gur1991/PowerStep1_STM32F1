@@ -132,6 +132,10 @@ u8 __Light_Sensor_Get__(u8 number)
 
 u8 Light_Sensor_Get(u8 number)
 {
+	
+	
+	return __Light_Sensor_Get__(number);
+	
 	u8 status[2]={2,2};
 	int i=1;
 	

@@ -26,7 +26,8 @@ static void protocol_powerstep01_power(power_type_t* data){
 		{
 				StopALLMotorMotion();
 		}else{
-					__BSP_MotorControl_HardStop__(performer.request.devices);
+					PowerStep_Select_Motor_Baby(performer.request.devices);	
+					BSP_MotorControl_HardStop(0);
 		}
 	
 		data->response.ret=0;
@@ -59,7 +60,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.dir=data->request.dir;
 		performer.request.steps = data->request.steps;
 	
-		__BSP_MotorControl_Move__(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps,NORMAL_SPEED);
+		BSP_MotorControl_Move(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
 
 	  data->response.ret=0;
 }
@@ -835,8 +836,31 @@ static void protocol_rest_select_motor_orgin_select(rest_select_motor_orgin_sele
 	data->response.ret=0;
 }	
 
+static void protocol_one_motor_move_select(one_device_move_select_type_t*data)
+{
+		one_device_move_select_type_t performer;
+		
+		performer.request.devices = data->request.devices;
+		performer.request.dir=data->request.dir;
+		performer.request.steps = data->request.steps;
+	  performer.request.speed = data->request.speed;
+	
+		BSP_MotorControl_Move_Select(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps,performer.request.speed);
 
+	  data->response.ret=0;
 
+}	
+static void protocol_motor_hard_stop_select(motor_hard_stop_select_type_t*data)
+{
+
+		motor_hard_stop_select_type_t performer;
+		
+		performer.request.devices = data->request.devices;
+	  performer.request.speed = data->request.speed;
+	
+		BSP_MotorControl_HardStop_Select(performer.request.devices,performer.request.speed);
+	  data->response.ret=0;
+}	
 
 
 #define NUM2STR(x) case x: return #x
@@ -910,6 +934,8 @@ static char* _commandTOstring_(uint8_t num)
 			NUM2STR(ELECTROMAGNETIC_PACKAGE_TYPE);
 			NUM2STR(MOTOR_MOVE_AND_WAIT_SELECT);
 			NUM2STR(REST_MOTOR_ORGIN_SELECT);
+			NUM2STR(ONE_DEVICE_MOVE_SELECT_TYPE);
+			NUM2STR(MOTOR_HARD_STOP_SELECT);
     default:
         return "UNKNOW COMMAND";
     }
@@ -1126,6 +1152,12 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			break;
 			case REST_MOTOR_ORGIN_SELECT:
 				protocol_rest_select_motor_orgin_select(&slave_motorCommand.CommandPowerStep1.rest_select_motor_orgin_select);
+			break;
+			case ONE_DEVICE_MOVE_SELECT_TYPE:
+				protocol_one_motor_move_select(&slave_motorCommand.CommandPowerStep1.one_device_move_select);
+			break;
+			case MOTOR_HARD_STOP_SELECT:
+				protocol_motor_hard_stop_select(&slave_motorCommand.CommandPowerStep1.motor_hard_stop_select);
 			break;
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);

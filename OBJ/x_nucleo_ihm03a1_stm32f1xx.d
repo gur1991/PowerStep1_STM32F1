@@ -64,3 +64,4 @@
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\SYSTEM\sys\sys.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h
 ..\obj\x_nucleo_ihm03a1_stm32f1xx.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
+..\obj\x_nucleo_ihm03a1_stm32f1xx.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

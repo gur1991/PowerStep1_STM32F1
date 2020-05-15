@@ -347,7 +347,8 @@ void Powerstep01_Init(void* pInit)
   Powerstep01_Board_ReleaseReset_All();
 
   /* Let a delay after reset */
-  Powerstep01_Board_Delay(20);
+  //Powerstep01_Board_Delay(5);
+	delay_ms(5);
 //  LOGD("spi delay ok \r\n");
 
 	//Powerstep01_Init_Register(pInit);

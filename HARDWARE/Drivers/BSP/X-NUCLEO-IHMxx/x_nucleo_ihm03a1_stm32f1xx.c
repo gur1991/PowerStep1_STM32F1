@@ -42,7 +42,7 @@
 #include "stdint.h"	 
 #include "config.h"
 #include "delay.h"
-
+#include <string.h>
 static GPIO_TypeDef* BSP_MOTOR_CONTROL_BOARD_CS_PORT;
 static uint16_t BSP_MOTOR_CONTROL_BOARD_CS_PIN;
 
@@ -52,9 +52,8 @@ static uint16_t BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN;
 static powerStep01_select_type_t MotorBaby;
 
 void PowerStep_Select_Motor_Baby(uint8_t chip)
-{
-	
-	memset((void*)&MotorBaby,0,sizeof(MotorBaby));
+{	
+	//memset((void*)&MotorBaby,0,sizeof(MotorBaby));
 	
 	switch(chip)
 	{
@@ -158,6 +157,7 @@ void PowerStep_Select_Motor_Baby(uint8_t chip)
 	BSP_MOTOR_CONTROL_BOARD_CS_PIN=MotorBaby.cs.GPIO_Pin;
 	BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT=MotorBaby.rst.GPIOx;
 	BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN=MotorBaby.rst.GPIO_Pin;
+
 }
 
 
@@ -633,9 +633,8 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
   HAL_StatusTypeDef status;
   uint32_t i;
 	
-  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET);
-			
-	
+  
+	Powerstep01_Board_Cs_Pull_Low();
   for (i = 0; i < nbDevices; i++)
   {
     status = HAL_SPI_TransmitReceive(&SpiHandle, pByteToTransmit, pReceivedByte, 1, SPIx_TIMEOUT_MAX);
@@ -646,12 +645,25 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
     pByteToTransmit++;
     pReceivedByte++;
   }
-  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_SET);
+  Powerstep01_Board_Cs_Pull_High();
   
 	
   
   return (uint8_t) status;  
 }
+
+void Powerstep01_Board_Cs_Pull_High(void)
+{
+	//delay_us(10);
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_SET);
+}	
+void Powerstep01_Board_Cs_Pull_Low(void)
+{
+	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET);
+	//delay_us(10);
+}	
+
+
 
 /******************************************************//**
  * @brief  Returns the BUSY pin state.

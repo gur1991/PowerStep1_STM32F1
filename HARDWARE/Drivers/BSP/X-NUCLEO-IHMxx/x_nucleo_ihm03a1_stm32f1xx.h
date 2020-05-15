@@ -75,6 +75,9 @@ void Powerstep01_Board_Reset_All(void);
 void Powerstep01_Board_ReleaseReset_All(void);
 void Powerstep01_Board_PullUp_Cs_All(void);
 
+void Powerstep01_Board_Cs_Pull_High(void);
+void Powerstep01_Board_Cs_Pull_Low(void);
+
 typedef struct{
 	GPIO_TypeDef* GPIOx;
 	uint16_t GPIO_Pin;
