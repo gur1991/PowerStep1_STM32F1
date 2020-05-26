@@ -485,6 +485,13 @@ void StopALLMotorMotion(void)
 }
 
 
+static uint32_t  delayMs_Normal_Positon=0;
+
+void set_DelayMs_Normal_Positon(uint32_t delayMs)
+{
+	delayMs_Normal_Positon=delayMs;
+}	
+
 
 uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
 {
@@ -518,7 +525,10 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 		{
 				i++;
 				if(!Light_Sensor_Get(lightNum))
-				{						
+				{			
+							
+							delay_ms(delayMs_Normal_Positon);
+					
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=5*1000)

@@ -127,8 +127,21 @@ typedef enum Command_type{
 		REST_MOTOR_ORGIN_SELECT,
 		ONE_DEVICE_MOVE_SELECT_TYPE,
 		MOTOR_HARD_STOP_SELECT,
+		NORMAL_POSITION_MORE_RUN,
 
 }Command_type_t;
+
+typedef union{ 
+	struct{
+		uint32_t delayMs;
+	}request;
+	struct{
+		uint8_t nor[3];
+		uint8_t ret;
+	}response;
+}normal_position_more_run_type_t;
+
+
 
 typedef union{ 
 	struct{
@@ -467,6 +480,7 @@ typedef struct{
 				rest_select_motor_orgin_select_type_t rest_select_motor_orgin_select;
 				one_device_move_select_type_t one_device_move_select;
 				motor_hard_stop_select_type_t motor_hard_stop_select;
+				normal_position_more_run_type_t normal_position_more_run;
 
 /*
 *print move rk3188

@@ -87,6 +87,8 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 
 uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
 
+void set_DelayMs_Normal_Positon(uint32_t delayMs);
+
 typedef union{ 
 struct{
 		uint8_t motorNum;

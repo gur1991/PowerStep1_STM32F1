@@ -862,6 +862,18 @@ static void protocol_motor_hard_stop_select(motor_hard_stop_select_type_t*data)
 	  data->response.ret=0;
 }	
 
+static void protocol_normal_position_more_run(normal_position_more_run_type_t*data)
+{
+
+		normal_position_more_run_type_t performer;
+		
+		performer.request.delayMs = data->request.delayMs;
+	
+		set_DelayMs_Normal_Positon(performer.request.delayMs);
+	
+	  data->response.ret=0;
+}	
+
 
 #define NUM2STR(x) case x: return #x
 static char* _commandTOstring_(uint8_t num)
@@ -1159,6 +1171,11 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 			case MOTOR_HARD_STOP_SELECT:
 				protocol_motor_hard_stop_select(&slave_motorCommand.CommandPowerStep1.motor_hard_stop_select);
 			break;
+			
+			case NORMAL_POSITION_MORE_RUN:
+				protocol_normal_position_more_run(&slave_motorCommand.CommandPowerStep1.normal_position_more_run);
+			break;
+			
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
 					goto ERROE_OVER;
