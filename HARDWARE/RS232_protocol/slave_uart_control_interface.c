@@ -59,7 +59,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.devices = data->request.devices;
 		performer.request.dir=data->request.dir;
 		performer.request.steps = data->request.steps;
-	
+	  PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_Move(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
 
 	  data->response.ret=0;
@@ -569,7 +569,7 @@ static void protocol_rest_select_motor_orgin(rest_select_motor_orgin_type_t* dat
 	performer.request.motorDir = data->request.motorDir;
 	performer.request.steps = data->request.steps;
 	performer.request.flag_wait = data->request.flag_wait;
-	RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps);
+	data->response.light=RestSelectMotorOrgin(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps);
 	data->response.ret=0;
 }	
 
@@ -832,9 +832,9 @@ static void protocol_rest_select_motor_orgin_select(rest_select_motor_orgin_sele
 	performer.request.steps = data->request.steps;
 	performer.request.flag_wait = data->request.flag_wait;
 	performer.request.speed = data->request.speed;
-	RestSelectMotorOrginSelect(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps,performer.request.speed);
+	data->response.light=RestSelectMotorOrginSelect(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps,performer.request.speed);
 	data->response.ret=0;
-}	
+}
 
 static void protocol_one_motor_move_select(one_device_move_select_type_t*data)
 {

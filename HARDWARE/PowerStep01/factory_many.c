@@ -15,13 +15,14 @@ void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type
 	  #endif
 }
 //可选速度复位，复位后，速度回复正常配置
-void RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
-{
+uint8_t RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
+{  uint8_t light=1;
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)		
 		Choose_Single_Motor_Speed_Config(deviceId,speed_type);
-		RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
+		light=RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
 		Choose_Single_Motor_Speed_Config(deviceId,NORMAL_SPEED);
 #endif
+	return light;
 }
 //可选速度移动，移动后速度不能恢复，需再次配置
 void BSP_MotorControl_Move_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type)
@@ -262,16 +263,16 @@ void Rest_Drain_And_Wash_Motor_Orgin(void)
 #endif	
 }
 
-void March_Drain_And_Wash_Motor_Orgin(void)
+void March_Drain_And_Wash_Motor_Orgin(void) //大小注射泵复位
 {
 #if USE_CLEANING_DILUTION_BOARD	
 	test_actuator(CHEMINERT_C55_CC4);	
 	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
-			Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
+			Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
 	
 	if(Light_Sensor_Get(M9_LIGHT)==0)
-			Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 40000);
+			Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
 #endif
 }	
 
@@ -280,9 +281,9 @@ void Rest_Transporter_Belt(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD
 	
-	RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000);
+	RestSelectMotorOrginSelect(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000,HIGH_SPEED);
 	
-	RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000);
+	RestSelectMotorOrginSelect(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000,HIGH_SPEED);
 	
 	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
 	
@@ -332,7 +333,7 @@ void RestFarAndDownMotorOrgin(void)
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 		
 			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
-			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 40000);
+			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 	
@@ -341,7 +342,7 @@ void RestFarAndDownMotorOrgin(void)
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 		
 		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
-			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 40000);
+			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 		
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);

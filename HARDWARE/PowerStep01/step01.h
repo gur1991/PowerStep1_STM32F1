@@ -82,7 +82,8 @@ void Set_Single_Motor_Config(init_motor_speed_tension_type_t data);
 void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_type);
 
 
-void RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
+uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
+
 typedef union{ 
 struct{
 		uint8_t motorNum;
@@ -92,8 +93,9 @@ struct{
 		uint8_t flag_wait;
 }request;
 struct{
+		uint8_t light;
 		uint8_t ret;
-	  uint8_t nor[19];
+	  uint8_t nor[18];
 }response;
 }rest_select_motor_orgin_type_t;
 
@@ -108,8 +110,9 @@ struct{
 	  uint8_t speed;
 }request;
 struct{
+		uint8_t light;
 		uint8_t ret;
-	  uint8_t nor[19];
+	  uint8_t nor[18];
 }response;
 }rest_select_motor_orgin_select_type_t;
 

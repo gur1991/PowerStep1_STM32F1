@@ -122,10 +122,16 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-
+	//Motor_Move_And_Wait(M8_BIG_IN_OUT , M8_BIG_IN,60000);
+	//RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 600*1000);
+	//RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 600*1000);
+	//Motor_Move_And_Wait(M8_BIG_IN_OUT , M8_BIG_IN, 40000);
 	
 	while(1)
 	{
+		
+			//RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 600*1000);
+			//Motor_Move_And_Wait(M11_FAR_NEAR , M11_FAR, 20000);
 			if(ARM_RS232_ASK)
 			{
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
