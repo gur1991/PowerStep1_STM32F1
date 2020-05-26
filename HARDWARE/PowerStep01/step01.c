@@ -484,6 +484,61 @@ void StopALLMotorMotion(void)
 
 }
 
+
+
+uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
+{
+		uint8_t ret=0;
+		int i=0;
+	
+	
+		PowerStep_Select_Motor_Baby(motorNum);
+		BSP_MotorControl_Move(0, motorDir, steps);
+	
+		//step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
+	  delay_ms(50);	
+	
+	 //step2:持续检测，等待指示灯灭掉
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(lightNum))
+				{				
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return -1;
+				}
+				delay_ms(1);	
+		}
+	
+		//step3:持续检测，等待指示灯亮起
+		i=0;
+		while(1)
+		{
+				i++;
+				if(!Light_Sensor_Get(lightNum))
+				{						
+							BSP_MotorControl_HardStop(0);	
+							break;
+				}else if(i>=5*1000)
+				{
+							ret=1;
+							LOGE("motor no find light \r\n");
+							BSP_MotorControl_HardStop(0);	
+							break;	
+				}
+				delay_ms(1);	
+		}
+	
+
+	return ret;
+}	
+
+
+
+
+
 uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
 {
 	int status=0;

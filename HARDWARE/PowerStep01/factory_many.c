@@ -5,6 +5,10 @@
 #include "config.h"
 
 
+
+
+
+
 //停止可变速度配置
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type)
 {
@@ -418,24 +422,27 @@ void Mix_Work_Goto_Postion(void)
 
 
 
+
+
+
 //有->无-有
 void Normal_Pitch_Move_Next_The_Last_Two(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,3200);
-	RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT,M4_NEXT_TO_BLANK, 20000);
-#endif
+	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,3200);
+	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT,M4_NEXT_TO_BLANK, 20000);
+	 __Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000);
+	#endif
 }
-
 
 
 //有->无-有
 void Normal_Pitch_Move_Next(void)
 {
-
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,4800);
-	RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
+	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,4800);
+	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
+	__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000);
 #endif
 }
 
