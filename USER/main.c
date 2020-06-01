@@ -122,10 +122,23 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-
+	//RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
+//	RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP,600*1000);
+//	RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR,600*1000);
+//	Motor_Move_And_Wait(M11_FAR_NEAR,M11_FAR,20300);
+//	Motor_Move_And_Wait(M10_UP_DOWM,M10_DOWM,42000);
 	while(1)
 	{
-		
+//		if (i<=20)
+//		{
+//			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP,600*1000);
+//			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR,600*1000);
+//			Motor_Move_And_Wait(M11_FAR_NEAR,M11_FAR,20300);
+//			Motor_Move_And_Wait(M10_UP_DOWM,M10_DOWM,42000);
+//			Motor_Move_And_Wait(M10_UP_DOWM,M10_UP,42000);
+//			i++;
+//		}
+
 			if(ARM_RS232_ASK)
 			{
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
@@ -151,7 +164,7 @@ int main(void)
 					Real_Time_Polling_Current_Index();
 					
 			}
-#endif
+#endif  
 			
 	}
 
