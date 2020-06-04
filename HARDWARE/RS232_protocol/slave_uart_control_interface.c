@@ -982,10 +982,14 @@ void inline __Wait_RS232_Recieve_For_ERROR__(void)
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
-	check_bit_type_t check;
-		Powerstep1_contorl_motor_command_t slave_motorCommand;
+	  check_bit_type_t check;
+		static Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
+	
+	  static Powerstep1_contorl_motor_command_t slave_sendCommand;
+		memset(&slave_sendCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		
+	
 		__Wait_RS232_Recieve_For_Check__();
 		UART4_Receive_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t),&len);
 	
@@ -1181,6 +1185,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					goto ERROE_OVER;
 		}
 		
+		
+		slave_sendCommand.type=slave_motorCommand.type;
+		slave_sendCommand.CommandPowerStep1=slave_motorCommand.CommandPowerStep1;
+		
 		goto OVER;
 		
 		
@@ -1188,19 +1196,19 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		
 ERROE_OVER:
 		__InfoBoard__(slave_motorCommand.type);
-		slave_motorCommand.type=ERROR_TYPE;
-		slave_motorCommand.CommandPowerStep1.error.response.ret=1;	
+		slave_sendCommand.type=ERROR_TYPE;
+		slave_sendCommand.CommandPowerStep1.error.response.ret=1;	
 		__Wait_RS232_Recieve_For_ERROR__();
 OVER:
 		Uart_Clear_Context();
-		check=caculate_tansfer_check_bit(slave_motorCommand);	
-		slave_motorCommand.StartReceiveFlag[0]=START_UART_VALUE0;
-		slave_motorCommand.StartReceiveFlag[1]=START_UART_VALUE1;
-		slave_motorCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
-		slave_motorCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
-		slave_motorCommand.CheckBit[0]=check.H;
-		slave_motorCommand.CheckBit[1]=check.L;
-		UART4_Send_Data((u8*)(&slave_motorCommand),sizeof(Powerstep1_contorl_motor_command_t));
+		slave_sendCommand.StartReceiveFlag[0]=START_UART_VALUE0;
+		slave_sendCommand.StartReceiveFlag[1]=START_UART_VALUE1;
+		slave_sendCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
+		slave_sendCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
+		check=caculate_tansfer_check_bit(slave_sendCommand);	//不对flag进行校验
+		slave_sendCommand.CheckBit[0]=check.H;
+		slave_sendCommand.CheckBit[1]=check.L;
+		UART4_Send_Data((u8*)(&slave_sendCommand),sizeof(Powerstep1_contorl_motor_command_t));
 }
 
 
