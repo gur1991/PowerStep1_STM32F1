@@ -127,8 +127,11 @@ int main(void)
 //	RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR,600*1000);
 //	Motor_Move_And_Wait(M11_FAR_NEAR,M11_FAR,20300);
 //	Motor_Move_And_Wait(M10_UP_DOWM,M10_DOWM,42000);
+	//Choose_Single_Motor_Speed_Config(M2_MIX,LOW_SPEED);
+			//Motor_Move_And_Wait(M2_MIX,M10_UP,42000);
 	while(1)
 	{
+		//Motor_Move_And_Wait(M2_MIX,M10_UP,42000);
 //		if (i<=20)
 //		{
 //			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP,600*1000);
@@ -138,6 +141,7 @@ int main(void)
 //			Motor_Move_And_Wait(M10_UP_DOWM,M10_UP,42000);
 //			i++;
 //		}
+			
 
 			if(ARM_RS232_ASK)
 			{

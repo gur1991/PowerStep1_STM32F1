@@ -191,20 +191,41 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		case 2:
 			TempMotor.request.init_motor.ModeSelection=POWERSTEP01_CM_VM_CURRENT;
 		
-			TempMotor.request.init_motor.config.acc=120;
+			TempMotor.request.init_motor.Speed.acceleration=15000;
+			TempMotor.request.init_motor.Speed.deceleration=15000;
+		
+		  TempMotor.request.init_motor.config.acc=100;
 		  TempMotor.request.init_motor.config.hold=10;
 		
-		  TempMotor.request.init_motor.config.dec=120;
-			TempMotor.request.init_motor.config.run=120;
-		
-			TempMotor.request.init_motor.Speed.acceleration=12000;
-			TempMotor.request.init_motor.Speed.deceleration=12000;
+		  TempMotor.request.init_motor.config.dec=100;
+			TempMotor.request.init_motor.config.run=100;
 			TempMotor.request.init_motor.Speed.maxSpeed=4000;
 		
 		
-			if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=4000;
+			if(speed_type==NORMAL_SPEED)
+			{
+				TempMotor.request.init_motor.Speed.acceleration=15000;
+				TempMotor.request.init_motor.Speed.deceleration=15000;
 		
-
+				TempMotor.request.init_motor.config.acc=100;
+				TempMotor.request.init_motor.config.hold=10;
+		
+				TempMotor.request.init_motor.config.dec=100;
+				TempMotor.request.init_motor.config.run=100;
+				TempMotor.request.init_motor.Speed.maxSpeed=4000;
+				
+			}
+			else if (speed_type==LOW_SPEED)
+			{
+				TempMotor.request.init_motor.config.acc=120;
+				TempMotor.request.init_motor.config.hold=10;
+				TempMotor.request.init_motor.config.dec=120;
+				TempMotor.request.init_motor.config.run=120;
+				TempMotor.request.init_motor.Speed.acceleration=2000;
+				TempMotor.request.init_motor.Speed.deceleration=2000;
+				TempMotor.request.init_motor.Speed.maxSpeed=2000;
+			}
+				
    		break;	
 
 
