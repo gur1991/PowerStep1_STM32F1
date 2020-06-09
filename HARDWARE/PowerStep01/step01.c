@@ -398,12 +398,12 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 
 			if(speed_type==LOW_SPEED){
 					TempMotor.request.init_motor.config.acc=120;
-		  TempMotor.request.init_motor.config.hold=100;
+		      TempMotor.request.init_motor.config.hold=100;
 					TempMotor.request.init_motor.config.dec=120;
 					TempMotor.request.init_motor.config.run=120;
-					TempMotor.request.init_motor.Speed.maxSpeed=1000;
+					TempMotor.request.init_motor.Speed.maxSpeed=600;
 				
-			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=800;//陔佪話蚚1000,導佪話蚚2400
+			}else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=1200;//陔佪話蚚1000,導佪話蚚2400
 			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=3000;
 			
    		break;	

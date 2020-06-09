@@ -412,9 +412,9 @@ typedef struct{
 				get_para_type_t  get_para;
 				set_para_type_t  set_para;
 				select_step_mode_t  select_step_mode;
-				init_motor_speed_tension_type_t init_motor_speed_tension;
-				move_many_motor_type_t move_many_motor;
-				wait_many_motor_type_t wait_many_motor;
+				//init_motor_speed_tension_type_t init_motor_speed_tension;
+				//move_many_motor_type_t move_many_motor;
+				//wait_many_motor_type_t wait_many_motor;
 				motor_command_package_type_t motor_command_package;
 			
 				get_light_sensor_level_t get_light_sensor_level;
@@ -457,11 +457,11 @@ typedef struct{
 				
 				rfid_init_config_type_t rfid_init_config;
 				rfid_destory_config_type_t rfid_destory_config;
-				rfid_send_read_command_type_t rfid_send_read_command;
-				rfid_receive_index_tag_type_t rfid_receive_index_tag;
-				rfid_get_epc_string_type_t rfid_get_epc_string;
-				rfid_write_epc_type_t rfid_write_epc;
-				rfid_write_blank_type_t rfid_write_blank;
+				//rfid_send_read_command_type_t rfid_send_read_command;
+				//rfid_receive_index_tag_type_t rfid_receive_index_tag;
+				//rfid_get_epc_string_type_t rfid_get_epc_string;
+				//rfid_write_epc_type_t rfid_write_epc;
+				//rfid_write_blank_type_t rfid_write_blank;
 				
 				mini_set_single_temperature_degree_type_t mini_set_single_temperature_degree;
 				mini_get_single_temperature_degree_type_t mini_get_single_temperature_degree;

@@ -983,10 +983,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 		uint8_t ret =0;
 		int len=0;
 	  check_bit_type_t check;
-		static Powerstep1_contorl_motor_command_t slave_motorCommand;
+		Powerstep1_contorl_motor_command_t slave_motorCommand;
 		memset(&slave_motorCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 	
-	  static Powerstep1_contorl_motor_command_t slave_sendCommand;
+	  Powerstep1_contorl_motor_command_t slave_sendCommand;
 		memset(&slave_sendCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
 		
 	
@@ -1041,13 +1041,13 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 						protocol_powerstep01_select_step_mode(&slave_motorCommand.CommandPowerStep1.select_step_mode);
 						break;
 			case INIT_MOTOR_SPEED_TENSION_TYPE:
-						protocol_init_motor_speed_tension(&slave_motorCommand.CommandPowerStep1.init_motor_speed_tension);
+						//protocol_init_motor_speed_tension(&slave_motorCommand.CommandPowerStep1.init_motor_speed_tension);
 						break;
 			case MOVE_MANY_MOTOR:
-						protocol_move_many_motor(&slave_motorCommand.CommandPowerStep1.move_many_motor);
+						//protocol_move_many_motor(&slave_motorCommand.CommandPowerStep1.move_many_motor);
 						break;
 			case WAIT_MANY_MOTOR:
-						protocol_wait_many_motor(&slave_motorCommand.CommandPowerStep1.wait_many_motor);
+						//protocol_wait_many_motor(&slave_motorCommand.CommandPowerStep1.wait_many_motor);
 						break;
 			case COMMAND_PACKAGE_MOTOR:
 					  protocol_command_package_motor(&slave_motorCommand.CommandPowerStep1.motor_command_package);
@@ -1134,19 +1134,19 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					protocol_rfid_destory_config(&slave_motorCommand.CommandPowerStep1.rfid_destory_config);
 					break;
 			case RFID_SEND_READ_COMMAND:
-					protocol_rfid_send_read_command(&slave_motorCommand.CommandPowerStep1.rfid_send_read_command);
+					//protocol_rfid_send_read_command(&slave_motorCommand.CommandPowerStep1.rfid_send_read_command);
 				break;
 			case RFID_RECEIVE_INDEX_TAG:
-					protocol_rfid_receive_index_tag(&slave_motorCommand.CommandPowerStep1.rfid_receive_index_tag);
+					//protocol_rfid_receive_index_tag(&slave_motorCommand.CommandPowerStep1.rfid_receive_index_tag);
 				break;
 			case RFID_GET_EPC_STRING:
-					protocol_rfid_get_epc_string(&slave_motorCommand.CommandPowerStep1.rfid_get_epc_string);
+					//protocol_rfid_get_epc_string(&slave_motorCommand.CommandPowerStep1.rfid_get_epc_string);
 				break;
 			case RFID_WRITE_EPC:
-					protocol_rfid_write_epc(&slave_motorCommand.CommandPowerStep1.rfid_write_epc);
+					//protocol_rfid_write_epc(&slave_motorCommand.CommandPowerStep1.rfid_write_epc);
 				break;
 			case RFID_WRITE_BLANK:
-					protocol_rfid_write_blank(&slave_motorCommand.CommandPowerStep1.rfid_write_blank);
+					//protocol_rfid_write_blank(&slave_motorCommand.CommandPowerStep1.rfid_write_blank);
 				break;
 			case MINI_TEMPERATURE_SENSOR_GET_TYPE:
 					protocol_mini_board_get_degree(&slave_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree);
