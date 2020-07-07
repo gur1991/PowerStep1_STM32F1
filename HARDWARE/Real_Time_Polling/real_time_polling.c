@@ -32,8 +32,12 @@ void  Real_Time_Polling_Current_Index(void)
 		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree);
 		
 		//解决温度异常	
-		if(degree<800){ 
+		if(degree<800)
+		{ 
 			POLLING_data.degree=degree;
+		}else if(degree==1000)
+		{
+			POLLING_data.degree=degree;	
 		}
 		
 	  POLLING_data.liquid=Liquid_Sensor_Get();

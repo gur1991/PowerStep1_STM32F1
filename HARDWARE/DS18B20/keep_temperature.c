@@ -52,6 +52,12 @@ void KeepTemperatureDegree_Duty(void)
 
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
+	//异常后，设置当前温度为1000
+	if(SET_VALUE<0)
+	{
+		return 1000;
+	}
+	
 	return current_value;
 	/*
 			if(TMEPERATURE_CURRENT==devices){
