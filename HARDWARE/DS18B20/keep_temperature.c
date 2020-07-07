@@ -114,7 +114,7 @@ void Pid_init(void)
 	pid.duty_pwm_last=pid.balance;
 }	
 
-
+//SET_VALUE < 0  abort
 int PID_Control(int temperature)
 {
 	if(SET_VALUE<=0)return 500;
@@ -178,7 +178,7 @@ void KeepTemperatureDegree(void)
 		if( (temp1>650||temp2>650) || (temp1<=25 && temp2<=25) )
 		{
 				i++;
-				if(i>=3)SetTemperatureDegree(0,TMEPERATURE_CURRENT);//温度异常，设置为0
+				if(i>=3)SetTemperatureDegree(-1,TMEPERATURE_CURRENT);//温度异常，设置为0
 		}else{
 			i=0;
 		}
