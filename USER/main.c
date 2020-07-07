@@ -97,7 +97,7 @@ void Init_Board_Config(void)
 		TIM_SetTIM3Compare4(500);	
 		ThermometerChooseHandle(DS18B20);
 		ThermometerHandle->init();
-		ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
+		ThermometerHandle->set_degree(3,TMEPERATURE_CURRENT);
 	  
 	  IWDG_Init(4,625*4); //4s   	MAX
     IWDG_Start();
