@@ -401,7 +401,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	static u8 buf[30];
 	u8 buf_cmp[30];
-	int timeout=TimeOut_S*100;
+	int timeout=TimeOut_S*10;
 	int len=0;
 	int len_cmp=0;
 	int i;

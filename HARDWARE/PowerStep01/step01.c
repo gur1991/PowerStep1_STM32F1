@@ -393,7 +393,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
 			TempMotor.request.init_motor.Speed.acceleration=5000;
 			TempMotor.request.init_motor.Speed.deceleration=5000;
-			TempMotor.request.init_motor.Speed.maxSpeed=2000;
+			//TempMotor.request.init_motor.Speed.maxSpeed=2000;
 	
 
 			if(speed_type==LOW_SPEED){
