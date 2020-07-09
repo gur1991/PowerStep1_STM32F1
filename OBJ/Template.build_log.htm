@@ -27,19 +27,232 @@ Project File Date:  07/07/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
+compiling uart4.c...
+compiling pump_s100.c...
+..\HARDWARE\PUMPS100\pump_s100.c(51): warning:  #177-D: variable "i" was declared but never referenced
+      int len, i;
+..\HARDWARE\PUMPS100\pump_s100.c(53): warning:  #177-D: variable "rs485buf" was declared but never referenced
+  		u8 rs485buf[16];
+..\HARDWARE\PUMPS100\pump_s100.c(149): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\PUMPS100\pump_s100.c(150): warning:  #177-D: variable "result" was declared but never referenced
+  		u8 result;
+..\HARDWARE\PUMPS100\pump_s100.c(151): warning:  #177-D: variable "i" was declared but never referenced
+      int len, i;
+..\HARDWARE\PUMPS100\pump_s100.c: 5 warnings, 0 errors
+compiling light.c...
+..\HARDWARE\LIGHT\light.c(139): warning:  #185-D: dynamic initialization in unreachable code
+  	u8 status[2]={2,2};
+..\HARDWARE\LIGHT\light.c: 1 warning, 0 errors
+compiling uart3.c...
+compiling main.c...
+main.c(175): warning:  #111-D: statement is unreachable
+  	return 0;
+main.c: 1 warning, 0 errors
+compiling factory_many.c...
+compiling step01.c...
+..\HARDWARE\PowerStep01\step01.c(538): warning:  #68-D: integer conversion resulted in a change of sign
+  							return -1;
+..\HARDWARE\PowerStep01\step01.c(575): warning:  #177-D: variable "status" was declared but never referenced
+  	int status=0;
+..\HARDWARE\PowerStep01\step01.c(640): warning:  #177-D: variable "i" was declared but never referenced
+  int i=0,result=0,value=0;
+..\HARDWARE\PowerStep01\step01.c(640): warning:  #177-D: variable "result" was declared but never referenced
+  int i=0,result=0,value=0;
+..\HARDWARE\PowerStep01\step01.c(640): warning:  #177-D: variable "value" was declared but never referenced
+  int i=0,result=0,value=0;
+..\HARDWARE\PowerStep01\step01.c(641): warning:  #177-D: variable "start" was declared but never referenced
+  int start=0,end=0;	
+..\HARDWARE\PowerStep01\step01.c(641): warning:  #177-D: variable "end" was declared but never referenced
+  int start=0,end=0;	
+..\HARDWARE\PowerStep01\step01.c: 7 warnings, 0 errors
 compiling keep_temperature.c...
+compiling S1125.c...
+..\HARDWARE\S1125\S1125.c(123): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\S1125\S1125.c(125): warning:  #177-D: variable "i" was declared but never referenced
+  	int i=0;
+..\HARDWARE\S1125\S1125.c(266): warning:  #177-D: variable "ret" was declared but never referenced
+  	 uint8_t ret=0;
+..\HARDWARE\S1125\S1125.c(9): warning:  #177-D: variable "S1125_rx_buf" was declared but never referenced
+  static u8 S1125_rx_buf [30];
+..\HARDWARE\S1125\S1125.c: 4 warnings, 0 errors
+compiling uart_command_control_protocol.c...
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(214): warning:  #111-D: statement is unreachable
+  		return ret;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(164): warning:  #177-D: variable "myMaxSpeed" was declared but never referenced
+    uint32_t myMaxSpeed;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(165): warning:  #177-D: variable "myMinSpeed" was declared but never referenced
+    uint32_t myMinSpeed;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(166): warning:  #177-D: variable "myAcceleration" was declared but never referenced
+    uint16_t myAcceleration;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(167): warning:  #177-D: variable "myDeceleration" was declared but never referenced
+    uint16_t myDeceleration;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(168): warning:  #177-D: variable "readData" was declared but never referenced
+    uint32_t readData;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(219): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(221): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(222): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(223): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(230): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(232): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(233): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(234): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(241): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(242): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(243): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(252): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(253): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(254): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(266): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(272): warning:  #177-D: variable "RX_PARA_BUF" was declared but never referenced
+  		u8 RX_PARA_BUF[100];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(327): warning:  #550-D: variable "motorCommand" was set but never used
+  		Powerstep1_contorl_motor_command_t motorCommand;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c: 23 warnings, 0 errors
+compiling slave_uart_control_interface.c...
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(8): warning:  #550-D: variable "performer" was set but never used
+  		move_type_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(46): warning:  #177-D: variable "performer" was declared but never referenced
+  		send_command_and_wait_no_busy_type_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(123): warning:  #188-D: enumerated type mixed with another type
+  			BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(169): warning:  #177-D: variable "performer" was declared but never referenced
+  			get_all_light_sensor_level_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(226): warning:  #177-D: variable "i" was declared but never referenced
+  			u8 ret=0,rx_size=0,i=0,j=2;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(491): warning:  #188-D: enumerated type mixed with another type
+  			Set_Weight_Sensor_Warnning_Line(performer.request.weight,performer.request.gram);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(502): warning:  #188-D: enumerated type mixed with another type
+  			data->response.result = Get_Single_Weight_Sensor_Warnning_Result(performer.request.weight);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(509): warning:  #177-D: variable "performer" was declared but never referenced
+  			get_all_weight_warning_result_type_t  performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(522): warning:  #167-D: argument of type "int *" is incompatible with parameter of type "uint32_t *"
+  			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&(data->response.degree));
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(560): warning:  #188-D: enumerated type mixed with another type
+  	data->response.gram=Get_weight_current_gram(performer.request.weight);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(677): warning:  #177-D: variable "performer" was declared but never referenced
+  	get_liquid_sensor_level_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(683): warning:  #177-D: variable "performer" was declared but never referenced
+  	pump_s100_set_flowSpeed_type_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(700): warning:  #177-D: variable "performer" was declared but never referenced
+  	rfid_destory_config_type_t performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(766): warning:  #188-D: enumerated type mixed with another type
+  			ThermometerHandle->set_degree(performer.request.degree, performer.request.devices);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(779): warning:  #188-D: enumerated type mixed with another type
+  			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(786): warning:  #177-D: variable "performer" was declared but never referenced
+  			Real_Time_Polling_Press_t  performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(794): warning:  #177-D: variable "performer" was declared but never referenced
+  			Real_Time_Polling_t  performer;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(823): warning:  #188-D: enumerated type mixed with another type
+  	Motor_Move_And_Wait_Select(performer.request.data.array, performer.request.data.direction , performer.request.data.stepCount,performer.request.speed);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(835): warning:  #188-D: enumerated type mixed with another type
+  	data->response.light=RestSelectMotorOrginSelect(performer.request.motorNum,performer.request.lightNum, (motorDir_t)performer.request.motorDir,performer.request.steps,performer.request.speed);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(848): warning:  #188-D: enumerated type mixed with another type
+  		BSP_MotorControl_Move_Select(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps,performer.request.speed);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(861): warning:  #188-D: enumerated type mixed with another type
+  		BSP_MotorControl_HardStop_Select(performer.request.devices,performer.request.speed);
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(983): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret =0;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1219): warning:  #177-D: variable "data" was declared but never referenced
+  	pump_s100_command_type_t data;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1257): warning:  #177-D: variable "data" was declared but never referenced
+  	pump_s100_command_type_t data;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1295): warning:  #177-D: variable "data" was declared but never referenced
+  	pump_s100_command_type_t data;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1437): warning:  #177-D: variable "i" was declared but never referenced
+  	u8 ret=0,i;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1502): warning:  #177-D: variable "ret" was declared but never referenced
+  	u8 ret=0,i;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1502): warning:  #177-D: variable "i" was declared but never referenced
+  	u8 ret=0,i;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1554): warning:  #177-D: variable "ret" was declared but never referenced
+  	u8 ret=0,i;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(1554): warning:  #177-D: variable "i" was declared but never referenced
+  	u8 ret=0,i;
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(127): warning:  #177-D: function "protocol_init_motor_speed_tension" was declared but never referenced
+  static void protocol_init_motor_speed_tension(init_motor_speed_tension_type_t*data){
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(136): warning:  #177-D: function "protocol_move_many_motor" was declared but never referenced
+  static void protocol_move_many_motor(move_many_motor_type_t*data){
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(144): warning:  #177-D: function "protocol_wait_many_motor" was declared but never referenced
+  static void protocol_wait_many_motor(wait_many_motor_type_t*data){
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(705): warning:  #177-D: function "protocol_rfid_send_read_command" was declared but never referenced
+  static void  protocol_rfid_send_read_command(rfid_send_read_command_type_t* data)
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(714): warning:  #177-D: function "protocol_rfid_receive_index_tag" was declared but never referenced
+  static void  protocol_rfid_receive_index_tag(rfid_receive_index_tag_type_t* data)
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(738): warning:  #177-D: function "protocol_rfid_write_epc" was declared but never referenced
+  static void  protocol_rfid_write_epc(rfid_write_epc_type_t* data)
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(748): warning:  #177-D: function "protocol_rfid_write_blank" was declared but never referenced
+  static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
+..\HARDWARE\RS232_protocol\slave_uart_control_interface.c: 37 warnings, 0 errors
+compiling uart2.c...
+compiling master_uart_control_interface.c...
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(35): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(59): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(82): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(106): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(128): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(151): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(173): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(197): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(221): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(245): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(268): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(291): warning:  #177-D: variable "times" was declared but never referenced
+  		int times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(318): warning:  #177-D: variable "times" was declared but never referenced
+  		u8 times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(346): warning:  #177-D: variable "size" was declared but never referenced
+  		u8 size=0;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c(347): warning:  #177-D: variable "times" was declared but never referenced
+  		u8 times =100;
+..\HARDWARE\RS232_protocol\master_uart_control_interface.c: 15 warnings, 0 errors
+compiling uart5.c...
+compiling mini_board_protocol.c...
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c(7): warning:  #177-D: variable "check" was declared but never referenced
+  	  check_bit_type_t check;
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c: 1 warning, 0 errors
+compiling check_rs232.c...
+compiling rs232_change_protocol.c...
 compiling real_time_polling.c...
 linking...
 Program Size: Code=31596 RO-data=956 RW-data=1096 ZI-data=2960  
 FromELF: creating hex file...
-"..\OBJ\Template.axf" - 0 Error(s), 0 Warning(s).
+"..\OBJ\Template.axf" - 0 Error(s), 94 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:34
 </pre>
 </body>
 </html>

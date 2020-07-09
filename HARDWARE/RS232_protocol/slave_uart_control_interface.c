@@ -775,7 +775,7 @@ static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_t
 			performer.request.devices=data->request.devices;
 			
 //		  LOGD("mini board get degree. \r\n");	
-			data->response.degree=300;
+			//data->response.degree=300;
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
 			data->response.ret = 0;
 }	
