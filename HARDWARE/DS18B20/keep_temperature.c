@@ -53,10 +53,13 @@ void KeepTemperatureDegree_Duty(void)
 int GetTemperatureDegree(TMEPERATURE_type devices)
 {
 	//异常后，设置当前温度为1000
+
+/*
 	if(SET_VALUE<0)
 	{
 		return 1000;
 	}
+*/
 	
 	return current_value;
 
@@ -117,7 +120,7 @@ void Pid_init(void)
 //SET_VALUE < 0  abort
 int PID_Control(int temperature)
 {
-	if(SET_VALUE<=0)return 500;
+	if(temperature == 1000)return 500;
 	
 	pid.setValue = SET_VALUE;
 	pid.actualValue=temperature;
@@ -166,16 +169,16 @@ void KeepTemperatureDegree(void)
 		
 		temp1=DS18B20_Get_Temp(TMEPERATURE_ONE);
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
-	  //LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
+	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
-		if(temp1<5 && temp2>5)current_value = temp2;//温度计1坏了 
-	  else if(temp1>5 && temp2<5)current_value = temp1;//温度计2坏了
-    else if(temp1>5 || temp2>5)current_value = (int)((temp1+temp2)/2);//温度都可以 
+		if(temp1<=0 && temp2>0)current_value = temp2;//温度计1坏了 
+	  else if(temp1>0 && temp2<=0)current_value = temp1;//温度计2坏了
+    else if(temp1>0 || temp2>0)current_value = (int)((temp1+temp2)/2);//温度都可以 
 		
 	
 	
 		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
-		if( (temp1>650||temp2>650) || (temp1<=5 && temp2<=5) )
+		if( (temp1>800||temp2>800) || (temp1 <= 0 && temp2 <= 0) )
 		{
 				i++;
 				if(i>=3)
