@@ -171,6 +171,8 @@ void KeepTemperatureDegree(void)
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
 	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
+		
+	
 		if(temp1<=0 && temp2>0)current_value = temp2;//温度计1坏了 
 	  else if(temp1>0 && temp2<=0)current_value = temp1;//温度计2坏了
     else if(temp1>0 || temp2>0)current_value = (int)((temp1+temp2)/2);//温度都可以 
@@ -200,8 +202,9 @@ void KeepTemperatureDegree(void)
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-		//LOGD(" duty:%d\r\n",duty_cycle);
+		LOGD(" duty:%d\r\n",duty_cycle);
 		
+		//duty_cycle=0;
 		TIM_SetTIM3Compare4(duty_cycle);	
 
 #endif		
