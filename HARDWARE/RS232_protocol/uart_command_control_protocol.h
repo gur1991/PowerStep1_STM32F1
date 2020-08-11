@@ -457,9 +457,10 @@ typedef struct{
 				
 				rfid_init_config_type_t rfid_init_config;
 				rfid_destory_config_type_t rfid_destory_config;
-				//rfid_send_read_command_type_t rfid_send_read_command;
-				//rfid_receive_index_tag_type_t rfid_receive_index_tag;
-				//rfid_get_epc_string_type_t rfid_get_epc_string;
+				
+				rfid_send_read_command_type_t rfid_send_read_command;
+				rfid_receive_index_tag_type_t rfid_receive_index_tag;
+				rfid_get_epc_string_type_t rfid_get_epc_string;
 				//rfid_write_epc_type_t rfid_write_epc;
 				//rfid_write_blank_type_t rfid_write_blank;
 				

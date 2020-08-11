@@ -15,8 +15,8 @@ typedef struct {
 	uint8_t used;
 	uint8_t epcString[48];
 	uint8_t epcStringCount;
-	uint8_t userBlankData[16];
-	uint8_t userBlankCount;
+	//uint8_t userBlankData[16];
+	//uint8_t userBlankCount;
 }Chemical_reagent_Info_type;
 
 /*
@@ -80,7 +80,7 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor[8];
+	  uint8_t nor[60];
 }request;
 struct{
 		uint32_t RetM6e;
