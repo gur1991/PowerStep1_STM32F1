@@ -117,6 +117,8 @@
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\slave_uart_control_interface.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\PowerStep01\factory_many.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\DS18B20\keep_temperature.h

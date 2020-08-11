@@ -75,6 +75,7 @@ void Init_Board_Config(void)
 
 #if USE_AUTOMATIC_INJECTION_BOARD
   Uart2_Config_Init();
+	
 	Liquid_Sensor_Init();
 	Weight_Sensor_Init();
 	Light_Sensor_Init();
@@ -84,6 +85,7 @@ void Init_Board_Config(void)
 	LOGD("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
+	
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
 	LOGD("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -122,27 +124,38 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	//RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
-//	RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP,600*1000);
-//	RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR,600*1000);
-//	Motor_Move_And_Wait(M11_FAR_NEAR,M11_FAR,20300);
-//	Motor_Move_And_Wait(M10_UP_DOWM,M10_DOWM,42000);
-	//Choose_Single_Motor_Speed_Config(M2_MIX,LOW_SPEED);
-			//Motor_Move_And_Wait(M2_MIX,M10_UP,42000);
+/*
+	Init_M6e_Config(TMR_REGION_PRC,2500,3000,ONLY_SECOND);
+	
+	uint8_t length=0;
+	uint8_t epc[100];
+	memset(epc,0,sizeof(epc));
+	
+	uint32_t ret = Get_EPC_String(&length, epc);
+	LOGD("ret:0x%x\r\n",ret);
+	LOGD("len:%d EPC:%s\r\n",length,epc);
+	
+	
+	uint8_t len=0;
+	ret= M6e_Magic_Read_Rfid_Info(&len);
+	LOGD("ret:0x%x\r\n",ret);
+	int index=0;
+	Chemical_reagent_Info_type info;
+	
+	for(index=0;index<len;index++)
+	{
+		info=M6e_Magic_Get_One_Rfid_Info(index);
+		Protocol_Output_Report(info);
+	}
+	LOGD("½áÊø! \r\n");
+	
+	return 0;
+*/
+
+
+	
 	while(1)
 	{
-		//Motor_Move_And_Wait(M2_MIX,M10_UP,42000);
-//		if (i<=20)
-//		{
-//			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP,600*1000);
-//			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR,600*1000);
-//			Motor_Move_And_Wait(M11_FAR_NEAR,M11_FAR,20300);
-//			Motor_Move_And_Wait(M10_UP_DOWM,M10_DOWM,42000);
-//			Motor_Move_And_Wait(M10_UP_DOWM,M10_UP,42000);
-//			i++;
-//		}
-			
-
 			if(ARM_RS232_ASK)
 			{
 							protocol_handle_uart_powerstep01_plain_slave_cmd();

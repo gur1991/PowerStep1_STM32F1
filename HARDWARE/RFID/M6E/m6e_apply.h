@@ -1,14 +1,14 @@
 #ifndef __M6E_APPLY_H
 #define __M6E_APPLY_H
 
-#include <tm_reader.h>
+#include "tm_reader.h"
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
 #include <inttypes.h>
-
+#include "rfid.h"
 
 
 typedef struct {
@@ -23,7 +23,7 @@ typedef struct {
 *单片机只负责读取原始数据，之后分多次传给hal层，hal层再进行格式提取，涉及加密解密都放在hal层，这样做为了以后方便管理
 */
 
-uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm);
+uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm, uint8_t type);
 
 void Destory_M6e_Config(void);
 
@@ -41,11 +41,26 @@ uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData);
 uint32_t M6e_Read_Info(void);
 
 
+void Protocol_Output_Report(Chemical_reagent_Info_type info);
+void Process_Regent_Info(Sepax_EPC_Type_T Sepc);
+void Process_Filiter_Info(Sepax_EPC_Type_T Sepc);
+void Process_Colunm_Info(Sepax_EPC_Type_T Sepc);
+void Process_Date_Info(Sepax_EPC_Type_T Sepc);
+	
+enum{
+	ONLY_FIRST=1,
+	ONLY_SECOND,
+	TWO_ALL,
+	TWO_NONE
+};
+
+
 typedef union{
 struct{
 		uint8_t region;
 		uint32_t ReadPowerdbm;
 		uint32_t WritePowerdbm;
+	  uint8_t RfidType;
 }request;
 struct{
 		uint32_t RetM6e;

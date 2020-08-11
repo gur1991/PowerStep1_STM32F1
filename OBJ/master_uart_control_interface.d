@@ -117,4 +117,6 @@
 ..\obj\master_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\master_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\master_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\master_uart_control_interface.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\master_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\master_uart_control_interface.o: ..\HARDWARE\UART4\uart4.h

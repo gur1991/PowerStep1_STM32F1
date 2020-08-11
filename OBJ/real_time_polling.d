@@ -117,6 +117,8 @@
 ..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\real_time_polling.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\real_time_polling.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\real_time_polling.o: ..\HARDWARE\PowerStep01\factory_many.h
 ..\obj\real_time_polling.o: ..\HARDWARE\DS18B20\keep_temperature.h

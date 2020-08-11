@@ -11,7 +11,10 @@ static TMR_TagReadData trd;
 static Chemical_reagent_Info_type RfidReadInfo[10];
 static uint8_t index_get=0;
 
-
+static uint8_t *gantennaList=NULL;
+static uint8_t gantennaCount=0x0;
+static uint8_t gbuffer[20];	
+	
 void Clear_Storage_Info_Rfid(void)
 {
 	memset(RfidReadInfo, 0, sizeof(RfidReadInfo));
@@ -29,7 +32,7 @@ void Destory_M6e_Config(void)
 
 
 
-uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm)
+uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdbm, uint8_t type)
 {
  
   TMR_Status ret=0;
@@ -39,9 +42,7 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
 	//解决不关机再开机问题	
 	if(Init_M6e_Ok)return 0;else Init_M6e_Ok=true;
 	
-	static uint8_t *gantennaList=NULL;
-	static uint8_t gantennaCount=0x0;
-	static uint8_t gbuffer[20];	
+
 	uint32_t powerdbm; 
   TMR_TRD_MetadataFlag metadata = TMR_TRD_METADATA_FLAG_ALL;
 
@@ -55,10 +56,37 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
 #if M6E_APPLY_DEBUG	
   LOGD("create ret:%d \r\n",ret);
 #endif	
-	gbuffer[0] = 1;
-	gbuffer[1] = 2;
-  gantennaList = gbuffer;
-  gantennaCount = 2;
+
+
+	if(type==ONLY_FIRST)
+	{
+		gbuffer[0] = 1;
+		gantennaList = gbuffer;
+		gantennaCount = 1;
+	
+	}else
+	if(type==ONLY_SECOND)
+	{
+		gbuffer[0] = 2;
+		gantennaList = gbuffer;
+		gantennaCount = 1;
+	
+	}else
+	if(type==TWO_ALL)	
+	{
+		gbuffer[0] = 1;
+		gbuffer[1] = 2;
+		gantennaList = gbuffer;
+		gantennaCount = 2;
+	}else{
+		
+		gbuffer[0] = 1;
+		gbuffer[1] = 2;
+		gantennaList = gbuffer;
+		gantennaCount = 0;
+		return 1;
+	}
+
 
   ret = TMR_connect(rp);
 #if M6E_APPLY_DEBUG
@@ -95,7 +123,7 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
   {
 			ret = TMR_paramSet(rp, TMR_PARAM_METADATAFLAG, &metadata);
 	}
-  ret = TMR_RP_init_simple(&plan, gantennaCount, gantennaList, TMR_TAG_PROTOCOL_GEN2, 1000);
+
 
 
 	Exit_RFID_Uart_Config();	
@@ -116,6 +144,8 @@ uint32_t M6e_Read_Info(void)
 	char epcStr[128];	
 	int i=0;
 	Load_RFID_Uart_Config();	
+	
+	ret = TMR_RP_init_simple(&plan, gantennaCount, gantennaList, TMR_TAG_PROTOCOL_GEN2, 1000);
 	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
 #if M6E_APPLY_DEBUG 
@@ -143,6 +173,7 @@ uint32_t M6e_Read_Info(void)
 		LOGD("getNextTag:ret:0x%x\r\n",ret);
 #endif		
 		TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
+		
 #if M6E_APPLY_DEBUG    
 		LOGD("EPC:%s %d", epcStr,trd.tag.epcByteCount);
 #endif		
@@ -204,6 +235,8 @@ uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 	memset(epcStr, 0, sizeof(epcStr));
   Load_RFID_Uart_Config();	
 	
+	ret = TMR_RP_init_simple(&plan, gantennaCount, gantennaList, TMR_TAG_PROTOCOL_GEN2, 1000);
+	
 	ret = TMR_paramSet(rp, TMR_PARAM_READ_PLAN, &plan);
 	ret = TMR_read(rp, 500, NULL);
 	if(!TMR_hasMoreTags(rp))
@@ -234,6 +267,7 @@ uint32_t M6e_Magic_Write_Rfid_EPC(uint8_t* epcData,uint8_t epcByteCount)
 		Load_RFID_Uart_Config();	
     epc.epcByteCount = epcByteCount;
     memcpy(epc.epc, epcData, epc.epcByteCount * sizeof(uint8_t));
+		ret = TMR_paramSet(rp, TMR_PARAM_TAGOP_ANTENNA, &gantennaList[0]);
     ret = TMR_TagOp_init_GEN2_WriteTag(&tagop, &epc);
     ret = TMR_executeTagOp(rp, &tagop, NULL, NULL);
     Exit_RFID_Uart_Config();	
@@ -265,6 +299,7 @@ uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
       writeArgs.list = writeData;
       writeArgs.len = writeArgs.max = wordCount;
 
+			ret = TMR_paramSet(rp, TMR_PARAM_TAGOP_ANTENNA, &gantennaList[0]);
       TMR_TagOp_init_GEN2_WriteData(&writeop, TMR_GEN2_BANK_USER, 0, &writeArgs);
       TMR_TagOp_init_GEN2_ReadData(&readop, TMR_GEN2_BANK_USER, 0, writeArgs.len);
 
@@ -292,4 +327,118 @@ uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData)
 		return ret;
 }
 
+
+void Protocol_Output_Report(Chemical_reagent_Info_type info)
+{
+	Sepax_EPC_Type_T Sepc;
+
+	int pLen = sizeof(Sepax_EPC_Type_T);
+
+	LOGD("plen:%d   info:%d \r\n",pLen,info.epcStringCount);
+	
+	if(info.epcStringCount != pLen)
+	{
+		LOGE("EPC size is error \r\n");
+		return ;
+	}
+		memcpy(&Sepc, info.epcString,pLen);
+
+		switch (Sepc.type)
+		{
+			case BUFFER_A:
+				LOGD("A: \r\n");
+				Process_Regent_Info(Sepc);
+				break;
+			case BUFFER_B:
+				LOGD("B: \r\n");
+				Process_Regent_Info(Sepc);
+				break;
+			case BUFFER_C:
+				LOGD("C: \r\n");
+				Process_Regent_Info(Sepc);
+				break;
+			case DILUENT:
+				LOGD("D: \r\n");
+				Process_Regent_Info(Sepc);
+				break;
+			case COLUNM:
+				LOGD("Colunm: \r\n");
+				Process_Colunm_Info(Sepc);
+				break;
+			case FILITER:
+				LOGD("Filiter: \r\n");
+				Process_Filiter_Info(Sepc);
+				break;
+			default:
+				LOGE("不可识别: \r\n");
+		}
+		
+
+
+}
+
+void Process_Date_Info(Sepax_EPC_Type_T Sepc)
+{
+		int start = Sepc.start.year[0] + Sepc.start.year[1] * 256;
+		int end = Sepc.end.year[0] + Sepc.end.year[1] * 256;
+		printf("%04d年%02d月%02d日-" ,start,Sepc.start.month,Sepc.start.day);
+		printf("%04d年%02d月%02d日\r\n" ,end,Sepc.end.month,Sepc.end.day);
+}
+
+void Process_Filiter_Info(Sepax_EPC_Type_T Sepc)
+{
+	Process_Date_Info(Sepc);
+
+	uint32_t IntTmp;
+	IntTmp = Sepc.info.filiter.total[0] + Sepc.info.filiter.total[1] * 256;
+	LOGD("次数：%d\r\n",IntTmp);
+
+	uint64_t sn = Sepc.info.filiter.sn[0] +
+		Sepc.info.filiter.sn[1] * 256 +
+		Sepc.info.filiter.sn[2] * 256 * 256 +
+		Sepc.info.filiter.sn[3] * 256 * 256 * 256;
+
+	LOGD("SN:%lld\r\n",sn);
+}
+void Process_Colunm_Info(Sepax_EPC_Type_T Sepc)
+{
+	Process_Date_Info(Sepc);
+	uint32_t IntTmp;
+	if (Sepc.info.colunm.method == M_Hba1c)	LOGD("方法是：HbA1c\r\n");
+	else LOGD("方法是：未知\r\n");
+	
+	IntTmp = Sepc.info.colunm.total[0] + Sepc.info.colunm.total[1] * 256;
+	LOGD("次数：%d\r\n",IntTmp);
+
+
+	uint64_t sn = Sepc.info.colunm.sn[0] + 
+		Sepc.info.colunm.sn[1] * 256 + 
+		Sepc.info.colunm.sn[2] * 256 * 256 +
+		Sepc.info.colunm.sn[3] * 256 * 256 * 256;
+
+	LOGD("SN:%lld\r\n",sn);
+
+}
+
+void Process_Regent_Info(Sepax_EPC_Type_T Sepc)
+{
+	Process_Date_Info(Sepc);
+
+	uint32_t IntTmp;
+	if (Sepc.info.regent.method == M_Hba1c)LOGD("方法是：HbA1c\r\n");
+	else LOGD("方法是：未知\r\n");
+
+	IntTmp = Sepc.info.regent.volume[0] + Sepc.info.regent.volume[1] * 256;
+	LOGD("体积：%d\r\n",IntTmp);
+
+
+	uint64_t sn = Sepc.info.regent.sn[0] +
+		Sepc.info.regent.sn[1] * 256 +
+		Sepc.info.regent.sn[2] * 256 * 256 +
+		Sepc.info.regent.sn[3] * 256 * 256 * 256;
+
+	LOGD("SN:%lld\r\n",sn);
+
+
+}
 

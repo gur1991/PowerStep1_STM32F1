@@ -117,5 +117,7 @@
 ..\obj\rs232_change_protocol.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\rs232_change_protocol.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\rs232_change_protocol.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\rs232_change_protocol.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\rs232_change_protocol.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\rs232_change_protocol.o: ..\HARDWARE\UART5\uart5.h
 ..\obj\rs232_change_protocol.o: ..\HARDWARE\Check_RS232\check_rs232.h

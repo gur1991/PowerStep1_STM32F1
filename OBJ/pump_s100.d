@@ -116,3 +116,5 @@
 ..\obj\pump_s100.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\pump_s100.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\pump_s100.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\pump_s100.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\pump_s100.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h

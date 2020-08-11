@@ -117,3 +117,5 @@
 ..\obj\uart4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\uart4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\uart4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\uart4.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\uart4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h

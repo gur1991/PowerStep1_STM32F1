@@ -122,6 +122,8 @@
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\main.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\main.o: ..\HARDWARE\PowerStep01\factory_many.h
 ..\obj\main.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\main.o: ..\HARDWARE\DS18B20\ds18b20.h

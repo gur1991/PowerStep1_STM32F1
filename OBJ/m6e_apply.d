@@ -28,6 +28,8 @@
 ..\obj\m6e_apply.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\m6e_apply.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\m6e_apply.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\m6e_apply.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\m6e_apply.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\m6e_apply.o: ..\HARDWARE\UART_CONFIG\uart_config.h
 ..\obj\m6e_apply.o: ..\HARDWARE\UART2\uart2.h
 ..\obj\m6e_apply.o: ..\SYSTEM\sys\sys.h

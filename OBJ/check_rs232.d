@@ -117,3 +117,5 @@
 ..\obj\check_rs232.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\check_rs232.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\check_rs232.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+..\obj\check_rs232.o: ..\HARDWARE\RFID\M6E\rfid.h
+..\obj\check_rs232.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
