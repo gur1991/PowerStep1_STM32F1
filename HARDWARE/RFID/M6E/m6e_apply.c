@@ -175,15 +175,17 @@ uint32_t M6e_Read_Info(void)
 		TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
 		
 #if M6E_APPLY_DEBUG    
-		LOGD("EPC:%s %d", epcStr,trd.tag.epcByteCount);
-#endif		
+		LOGD("EPC:%s %d\r\n", epcStr,trd.tag.epcByteCount);
+#endif	
+/*		
 		TMR_bytesToHex(trd.data.list, trd.data.len, dataStr);
 #if M6E_APPLY_DEBUG	  
 		LOGD("  data(%d): %s\n", trd.data.len, dataStr);
 #endif	
-		
+*/		
 		RfidReadInfo[i].used=1;
-		RfidReadInfo[i].epcStringCount=trd.tag.epcByteCount>sizeof(RfidReadInfo[i].epcString)?sizeof(RfidReadInfo[i].epcString):trd.tag.epcByteCount;
+		if(trd.tag.epcByteCount>32)trd.tag.epcByteCount=32;
+		RfidReadInfo[i].epcStringCount=trd.tag.epcByteCount;
 		memcpy(RfidReadInfo[i].epcString, trd.tag.epc, RfidReadInfo[i].epcStringCount);
 /*
 		if(trd.data.len){
@@ -246,7 +248,7 @@ uint32_t Get_EPC_String(uint8_t*length, uint8_t* epc)
 		    TMR_bytesToHex(trd.tag.epc, trd.tag.epcByteCount, epcStr);
 		    len=2*trd.tag.epcByteCount;
 				
-				if(len>48)len=48;
+				if(len>32)len=32;
 		    memcpy(epc, epcStr, len);
 						
 	}

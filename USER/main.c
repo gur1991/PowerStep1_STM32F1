@@ -150,8 +150,8 @@ int main(void)
 	LOGD("½áÊø! \r\n");
 	
 	return 0;
-*/
 
+*/
 
 	
 	while(1)

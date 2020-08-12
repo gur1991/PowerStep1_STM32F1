@@ -13,10 +13,8 @@
 
 typedef struct {
 	uint8_t used;
-	uint8_t epcString[48];
+	uint8_t epcString[32];
 	uint8_t epcStringCount;
-	//uint8_t userBlankData[16];
-	//uint8_t userBlankCount;
 }Chemical_reagent_Info_type;
 
 /*
@@ -80,19 +78,20 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor[60];
+	  uint8_t nor[8];
 }request;
 struct{
 		uint32_t RetM6e;
 		uint8_t length;
 		uint8_t ret;
+		
 }response;
 }rfid_send_read_command_type_t;
 
 typedef union{
 struct{
 	  uint8_t index;
-		uint8_t nor[59];
+		uint8_t nor[39];
 }request;
 struct{
 		uint32_t RetM6e;
@@ -103,13 +102,13 @@ struct{
 
 typedef union{
 struct{
-	  uint8_t nor[60];
+	  uint8_t nor[40];
 }request;
 struct{
 		uint32_t RetM6e;
 		uint8_t ret;
 		uint8_t  length; 
-		uint8_t epc[48];
+		uint8_t epc[32];
 }response;
 }rfid_get_epc_string_type_t;
 

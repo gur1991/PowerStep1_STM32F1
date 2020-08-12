@@ -1135,13 +1135,13 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					protocol_rfid_destory_config(&slave_motorCommand.CommandPowerStep1.rfid_destory_config);
 					break;
 			case RFID_SEND_READ_COMMAND:
-					//protocol_rfid_send_read_command(&slave_motorCommand.CommandPowerStep1.rfid_send_read_command);
+					protocol_rfid_send_read_command(&slave_motorCommand.CommandPowerStep1.rfid_send_read_command);
 				break;
 			case RFID_RECEIVE_INDEX_TAG:
-					//protocol_rfid_receive_index_tag(&slave_motorCommand.CommandPowerStep1.rfid_receive_index_tag);
+					protocol_rfid_receive_index_tag(&slave_motorCommand.CommandPowerStep1.rfid_receive_index_tag);
 				break;
 			case RFID_GET_EPC_STRING:
-					//protocol_rfid_get_epc_string(&slave_motorCommand.CommandPowerStep1.rfid_get_epc_string);
+					protocol_rfid_get_epc_string(&slave_motorCommand.CommandPowerStep1.rfid_get_epc_string);
 				break;
 			case RFID_WRITE_EPC:
 					//protocol_rfid_write_epc(&slave_motorCommand.CommandPowerStep1.rfid_write_epc);

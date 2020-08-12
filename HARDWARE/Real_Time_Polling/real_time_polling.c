@@ -35,7 +35,7 @@ void  Real_Time_Polling_Current_Index(void)
 		if(degree<=800 || degree==1000)
 		{ 
 			POLLING_data.degree=degree;
-			LOGD("degree:%d \r\n",degree);
+			//LOGD("degree:%d \r\n",degree);
 		}
 		//LOGD("POLLING_data.degree:%d \r\n",POLLING_data.degree);
 
