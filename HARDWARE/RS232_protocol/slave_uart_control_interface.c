@@ -162,6 +162,9 @@ static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
 			data->response.value=Light_Sensor_Get(performer.request.number);
+			
+			LOGD("number:%d  value:%d \r\n",performer.request.number,data->response.value);
+			
 			data->response.ret=0;
 }
 

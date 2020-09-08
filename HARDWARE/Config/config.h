@@ -2,17 +2,40 @@
 #define __CONFIG_H
 #include <stdio.h>
 
+
+
 //新的结构设计定义
-#define USE_NEW_DESIGN 1
+#define USE_NEW_DESIGN 0
 //new start for dev branch
 
-#define USE_GRADIENT_CONTROL_BOARD 1//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
+#define USE_GRADIENT_CONTROL_BOARD 0//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
 
 #define USE_CLEANING_DILUTION_BOARD 0//Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
 #define USE_AUTOMATIC_INJECTION_BOARD 0//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
 
-#define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
+#define USE_KEEP_TEMPERATURE_BOARD 1// mini control temperature
+
+
+
+
+#define _SHARK_HEADER_ "VG1-"
+#define _SHARK_VERSION_ "-1.1.200908.D"
+
+#if USE_GRADIENT_CONTROL_BOARD
+	#define _STM_BOARD_  "SH"
+#endif
+#if USE_CLEANING_DILUTION_BOARD
+	#define _STM_BOARD_  "SP"
+#endif
+#if USE_AUTOMATIC_INJECTION_BOARD
+	#define _STM_BOARD_  "SC"
+#endif
+#if USE_KEEP_TEMPERATURE_BOARD
+	#define _STM_BOARD_  "ST"
+#endif
+
+//#define STM_VERSION #_SHARK_HEADER_###_STM_BOARD_###_SHARK_VERSION_
 
 
 #define LOGD(format,...) do { printf("[%s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)

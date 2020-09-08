@@ -51,7 +51,7 @@ int Check_Board_Define_Config(void)
 void Init_Board_Config(void)
 {	
 	LOGD("start Init_Board_Config. \r\n");
-//串口2 电磁阀	CS片选信号 硬件流信号
+	//串口2 电磁阀	CS片选信号 硬件流信号
 #if USE_GRADIENT_CONTROL_BOARD	
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Uart_Rts_Control_Init();//硬件流控初始化
@@ -107,6 +107,8 @@ void Init_Board_Config(void)
 
 #endif
 
+		
+
 }	
 
 
@@ -121,8 +123,20 @@ int main(void)
 	Real_Time_Polling_Init();
 	int i=0;
 	//KEY_Init(); 
+	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+	
+	
+	//Normal_Goto_First_Position();
+/*	
+	while(1)
+	{	
+		delay_ms(100);	
+		LOGD("light[9][10][11]:%d  %d  %d\r\n",Light_Sensor_Get(9),Light_Sensor_Get(10),Light_Sensor_Get(11));
+		//LOGD("light[9][10][11]:%d  %d  %d\r\n",__Light_Sensor_Get__(9),__Light_Sensor_Get__(10),__Light_Sensor_Get__(11));
+	}
+*/
 	
 /*
 	Init_M6e_Config(TMR_REGION_PRC,2500,3000,ONLY_SECOND);
@@ -153,6 +167,12 @@ int main(void)
 
 */
 
+
+	//Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 400000);
+	
+	
+	
+	
 	
 	while(1)
 	{
