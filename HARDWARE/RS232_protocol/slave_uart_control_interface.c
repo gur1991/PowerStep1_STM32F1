@@ -805,7 +805,7 @@ static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 		  data->response.polling.weightTwo=Get_Real_Time_Polling_Value().weightTwo;
 			data->response.polling.weightThree=Get_Real_Time_Polling_Value().weightThree;
 			data->response.polling.weightFour=Get_Real_Time_Polling_Value().weightFour;
-	
+			data->response.polling.status=Get_Real_Time_Polling_Value().status;
 			data->response.ret = 0;
 }	
 

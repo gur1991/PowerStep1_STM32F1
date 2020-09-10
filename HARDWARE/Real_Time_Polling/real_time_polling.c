@@ -34,6 +34,8 @@ void  Real_Time_Polling_Current_Index(void)
 		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree,&status);
 		
 		POLLING_data.status=status;
+		//LOGD("STATUS:[%d] \r\n",POLLING_data.status);
+	
 	
 		//解决温度异常	
 		if(degree<=800 ||degree==1000)
@@ -83,6 +85,7 @@ void  Real_Time_Polling_Current_Index(void)
 
 real_time_polling_type_t  Get_Real_Time_Polling_Value(void)
 {
+		//LOGD("STATUS:[%d] \r\n",POLLING_data.status);
 		return POLLING_data;
 }	
 
