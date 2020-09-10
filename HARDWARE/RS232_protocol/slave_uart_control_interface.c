@@ -881,7 +881,7 @@ static void protocol_normal_position_more_run(normal_position_more_run_type_t*da
 
 static void protocol_get_version(get_version_t*data)
 {
-		sprintf((char*)data->response.version, "%s%s%s\r\n", _SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
+		sprintf((char*)data->response.version, "%s%s%s", _SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 		//data->response.version
 	  data->response.ret=0;
 }

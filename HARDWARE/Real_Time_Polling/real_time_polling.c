@@ -1,6 +1,7 @@
 #include "real_time_polling.h"
 #include "slave_uart_control_interface.h"
 #include "config.h"
+#include "temperature.h"
 
 static real_time_polling_type_t POLLING_data;
 static real_time_polling_press_type_t POLLING_press;
@@ -25,7 +26,7 @@ void  Real_Time_Polling_Current_Index(void)
 		uint32_t weight2=0;
 		uint32_t weight3=0;
 		uint32_t weight4=0;
-	  uint8_t status=0;
+	  uint8_t status=ALL_GOOD;
 	
 		//memset(&POLLING_data, 0, sizeof(POLLING_data));
 	  

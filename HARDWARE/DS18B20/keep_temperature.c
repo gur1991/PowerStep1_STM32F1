@@ -8,7 +8,7 @@ static int SET_VALUE=0;
 static int FLAG_START_PID=0;
 static int current_value=0;
 pid_type_t pid;
-static uint8_t STATUS=ALL_GOOD;
+static uint8_t T_STATUS=ALL_GOOD;
 
 
 Thermometer_t *ThermometerHandle = 0;
@@ -39,7 +39,7 @@ void ThermometerChooseHandle(THERMOMETER_type id)
 }
 
 uint8_t GetTemperatureStatus(void)
-{return STATUS;}	
+{return T_STATUS;}	
 
 
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
@@ -180,10 +180,10 @@ void KeepTemperatureDegree(void)
 	
 		
 	
-		if(temp1<=0 && temp2>0){current_value = temp2;STATUS=NUMBER_ONE_BROKE;}//温度计1坏了 
-	  else if(temp1>0 && temp2<=0){current_value = temp1;STATUS=NUMBER_TWO_BROKE;}//温度计2坏了
-    else if(temp1>0 || temp2>0){current_value = (int)((temp1+temp2)/2);STATUS=ALL_GOOD;}//温度都可以 
-		
+		if(temp1<=0 && temp2>0){current_value = temp2;T_STATUS=NUMBER_ONE_BROKE;}//温度计1坏了 
+	  else if(temp1>0 && temp2<=0){current_value = temp1;T_STATUS=NUMBER_TWO_BROKE;}//温度计2坏了
+    else if(temp1>0 || temp2>0){current_value = (int)((temp1+temp2)/2);T_STATUS=ALL_GOOD;}//温度都可以 
+		else if(temp1==0 && temp2==0){T_STATUS=ALL_BROKE;}	
 	
 	
 		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
@@ -192,7 +192,7 @@ void KeepTemperatureDegree(void)
 				i++;
 				if(i>=3)
 				{
-					STATUS=ALL_BROKE;
+					
 					current_value=1000;
 					SetTemperatureDegree(-1,TMEPERATURE_CURRENT);//温度异常，设置为0
 				}	
