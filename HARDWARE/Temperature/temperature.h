@@ -10,7 +10,12 @@ typedef enum{
 	
 }TMEPERATURE_type;
 
-
+enum{
+	ALL_GOOD=0,
+	NUMBER_ONE_BROKE=1,
+	NUMBER_TWO_BROKE=2,
+	ALL_BROKE=3,
+};
 
 
 //一个加热器，两个温度计，控制温箱温度
@@ -21,6 +26,7 @@ void Set_Single_Temperature_Degree(int degree, TMEPERATURE_type devices);
 
 void Main_Keep_Temperature_Degree(void);
 
+uint8_t Temperature_Get_Status(void);
 
 typedef union{
 struct{
@@ -40,7 +46,8 @@ struct{
 struct{
 		int degree;
 		uint8_t ret;
-		uint8_t nor[3];
+		uint8_t status;
+		uint8_t nor[2];
 }response;
 }get_single_temperature_degree_type_t;
 
@@ -52,6 +59,7 @@ typedef struct
   int (*get_degree)(TMEPERATURE_type devices);
   void(*set_degree)(int degree, TMEPERATURE_type devices);
 	void (*keep_degree)(void);
+	uint8_t (*get_status)(void);
 }Thermometer_t;	
 
 

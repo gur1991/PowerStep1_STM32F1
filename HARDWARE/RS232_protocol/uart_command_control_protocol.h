@@ -123,6 +123,8 @@ typedef enum Command_type{
 		ONE_DEVICE_MOVE_SELECT_TYPE,
 		MOTOR_HARD_STOP_SELECT,
 		NORMAL_POSITION_MORE_RUN,
+		
+		GET_VERSION,
 
 }Command_type_t;
 
@@ -395,6 +397,20 @@ struct{
 }response;
 }select_step_mode_t;
 
+
+
+typedef union{ 
+struct{
+	  uint8_t nor[32];
+}request;
+struct{
+		uint8_t version[30];	
+		uint8_t ret;	
+}response;
+}get_version_t;
+
+
+
 typedef struct{
 		u8 StartReceiveFlag[2];
 		uint32_t type;//Command_type_t type;
@@ -477,6 +493,7 @@ typedef struct{
 				one_device_move_select_type_t one_device_move_select;
 				motor_hard_stop_select_type_t motor_hard_stop_select;
 				normal_position_more_run_type_t normal_position_more_run;
+				get_version_t get_version;
 
 /*
 *print move rk3188

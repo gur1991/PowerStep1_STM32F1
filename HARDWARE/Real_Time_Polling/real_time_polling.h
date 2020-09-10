@@ -14,6 +14,7 @@ typedef struct{
 	  uint32_t weightThree;
 	  uint32_t weightFour;
 	  uint8_t liquid;
+	  uint8_t status;
 }real_time_polling_type_t;
 
 typedef struct{ 

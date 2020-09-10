@@ -522,7 +522,7 @@ static void protocol_get_single_temperature_degree_interface(get_single_temperat
 			
 			performer.request.devices=data->request.devices;
 	
-			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&(data->response.degree));
+			data->response.ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(performer,&(data->response.degree),&(data->response.status));
 
 }
 //hal->stm32(master)
@@ -781,6 +781,7 @@ static void  protocol_mini_board_get_degree(mini_get_single_temperature_degree_t
 //		  LOGD("mini board get degree. \r\n");	
 			//data->response.degree=300;
 			data->response.degree = ThermometerHandle->get_degree(performer.request.devices);
+			data->response.status =  ThermometerHandle->get_status();
 			data->response.ret = 0;
 }	
 
@@ -877,6 +878,14 @@ static void protocol_normal_position_more_run(normal_position_more_run_type_t*da
 	
 	  data->response.ret=0;
 }	
+
+static void protocol_get_version(get_version_t*data)
+{
+		sprintf((char*)data->response.version, "%s%s%s\r\n", _SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
+		//data->response.version
+	  data->response.ret=0;
+}
+
 
 
 #define NUM2STR(x) case x: return #x
@@ -1184,6 +1193,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 				protocol_normal_position_more_run(&slave_motorCommand.CommandPowerStep1.normal_position_more_run);
 			break;
 			
+		case GET_VERSION:
+				protocol_get_version(&slave_motorCommand.CommandPowerStep1.get_version);
+			break;
+						
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
 					goto ERROE_OVER;

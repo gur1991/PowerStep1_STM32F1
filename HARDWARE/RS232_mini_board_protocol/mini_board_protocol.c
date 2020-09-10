@@ -67,7 +67,7 @@ uint8_t Master_Mini_Board_Set_Degree(mini_set_single_temperature_degree_type_t d
 		return ret;
 }
 
-uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t data,uint32_t* degree)
+uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t data,uint32_t* degree,uint8_t* status)
 {
 		uint8_t ret =0;
 	
@@ -85,6 +85,7 @@ uint8_t Master_Mini_Board_Get_Degree(mini_get_single_temperature_degree_type_t d
 				if(len!=0){
 						ret = master_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree.response.ret;
 					 *degree=master_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree.response.degree;
+					 *status=master_motorCommand.CommandPowerStep1.mini_get_single_temperature_degree.response.status;
 				}else{
 						ret = 1;//fail
 					 *degree=0;

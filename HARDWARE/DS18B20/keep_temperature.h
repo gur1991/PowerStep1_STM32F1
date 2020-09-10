@@ -9,6 +9,7 @@ uint8_t Rearch_Degree_Wait(void);
 //设定温度
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices);
 
+uint8_t GetTemperatureStatus(void);
 
 //保持温度
 void KeepTemperatureDegree(void);

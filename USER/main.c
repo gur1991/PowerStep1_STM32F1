@@ -79,12 +79,12 @@ void Init_Board_Config(void)
 	Liquid_Sensor_Init();
 	Weight_Sensor_Init();
 	Light_Sensor_Init();
-	//BSP_Motor_Control_Init();//没设备连接会卡住
+	BSP_Motor_Control_Init();//没设备连接会卡住
 	UART5_Init(115200);
 	
 	LOGD("init scan. \r\n");
-	//ScanChooseHandle(FM100);
-	//ScanHandle->init(true);
+	ScanChooseHandle(FM100);
+	ScanHandle->init(true);
 	
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
 	LOGD("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
@@ -129,14 +129,15 @@ int main(void)
 	
 	
 	//Normal_Goto_First_Position();
-	
+#if 0	
 	while(1)
 	{	
 		delay_ms(100);	
 		LOGD("light[9][10][11]:%d  %d  %d\r\n",Light_Sensor_Get(9),Light_Sensor_Get(10),Light_Sensor_Get(11));
 		//LOGD("light[9][10][11]:%d  %d  %d\r\n",__Light_Sensor_Get__(9),__Light_Sensor_Get__(10),__Light_Sensor_Get__(11));
 	}
-
+#endif
+	
 	
 /*
 	Init_M6e_Config(TMR_REGION_PRC,2500,3000,ONLY_SECOND);

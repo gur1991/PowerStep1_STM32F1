@@ -20,7 +20,7 @@ uint8_t STM32_Change_Protocol_Control_Mini_Board_Set_Degree(set_single_temperatu
 		return ret;
 }	
 
-uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperature_degree_type_t data,uint32_t*degree)
+uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperature_degree_type_t data,uint32_t*degree,uint8_t*status)
 {
 		uint8_t ret=0;
 	
@@ -29,7 +29,7 @@ uint8_t STM32_Change_Protocol_Control_Mini_Board_Get_Degree(get_single_temperatu
 		
 	  action.request.devices=data.request.devices;
 	
-		ret=Master_Mini_Board_Get_Degree(action,degree);
+		ret=Master_Mini_Board_Get_Degree(action,degree,status);
 #endif
 		if(ret)LOGE("fail \r\n");
 	

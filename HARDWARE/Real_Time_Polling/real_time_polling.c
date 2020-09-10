@@ -25,14 +25,17 @@ void  Real_Time_Polling_Current_Index(void)
 		uint32_t weight2=0;
 		uint32_t weight3=0;
 		uint32_t weight4=0;
+	  uint8_t status=0;
 	
 		//memset(&POLLING_data, 0, sizeof(POLLING_data));
 	  
 	
-		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree);
+		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree,&status);
 		
+		POLLING_data.status=status;
+	
 		//解决温度异常	
-		if(degree<=800 || degree==1000)
+		if(degree<=800 ||degree==1000)
 		{ 
 			POLLING_data.degree=degree;
 			//LOGD("degree:%d \r\n",degree);
@@ -86,3 +89,6 @@ real_time_polling_press_type_t  Get_Real_Time_Polling_Press(void)
 {
 		return POLLING_press;
 }	
+
+
+

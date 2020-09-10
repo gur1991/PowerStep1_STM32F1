@@ -11,7 +11,8 @@ Thermometer_t pt1000=
 	Weight_Sensor_Init,
 	Get_Single_Temperature_Degree,
 	Set_Single_Temperature_Degree,
-	Main_Keep_Temperature_Degree
+	Main_Keep_Temperature_Degree,
+	Temperature_Get_Status
 };
 
 
@@ -20,7 +21,10 @@ Thermometer_t* PT1000_GetHandle(void)
   return (&pt1000);
 }
 
-
+uint8_t Temperature_Get_Status(void)
+{
+	return 0;
+}
 
 static  int temperature_change_to_value(int temperature)
 {

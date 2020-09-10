@@ -1,11 +1,14 @@
 #include "keep_temperature.h"
 #include "delay.h"
 #include "config.h"
+#include "temperature.h"
+
 static int SET_VALUE=0;
 //static int FLAG_SET_VALUE=0;
 static int FLAG_START_PID=0;
 static int current_value=0;
 pid_type_t pid;
+static uint8_t STATUS=ALL_GOOD;
 
 
 Thermometer_t *ThermometerHandle = 0;
@@ -15,7 +18,8 @@ Thermometer_t ds18b20=
 	DS18B20_Init,
 	GetTemperatureDegree,
 	SetTemperatureDegree,
-	KeepTemperatureDegree
+	KeepTemperatureDegree,
+	GetTemperatureStatus
 };
 
 Thermometer_t* Ds18b20_GetHandle(void)
@@ -33,6 +37,9 @@ void ThermometerChooseHandle(THERMOMETER_type id)
 		ThermometerHandle = PT1000_GetHandle();
 	}	
 }
+
+uint8_t GetTemperatureStatus(void)
+{return STATUS;}	
 
 
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
@@ -173,9 +180,9 @@ void KeepTemperatureDegree(void)
 	
 		
 	
-		if(temp1<=0 && temp2>0)current_value = temp2;//温度计1坏了 
-	  else if(temp1>0 && temp2<=0)current_value = temp1;//温度计2坏了
-    else if(temp1>0 || temp2>0)current_value = (int)((temp1+temp2)/2);//温度都可以 
+		if(temp1<=0 && temp2>0){current_value = temp2;STATUS=NUMBER_ONE_BROKE;}//温度计1坏了 
+	  else if(temp1>0 && temp2<=0){current_value = temp1;STATUS=NUMBER_TWO_BROKE;}//温度计2坏了
+    else if(temp1>0 || temp2>0){current_value = (int)((temp1+temp2)/2);STATUS=ALL_GOOD;}//温度都可以 
 		
 	
 	
@@ -185,6 +192,7 @@ void KeepTemperatureDegree(void)
 				i++;
 				if(i>=3)
 				{
+					STATUS=ALL_BROKE;
 					current_value=1000;
 					SetTemperatureDegree(-1,TMEPERATURE_CURRENT);//温度异常，设置为0
 				}	
