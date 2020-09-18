@@ -391,7 +391,7 @@ void First_Open_Motor_AutoCheck_Motor(void)
 void Scan_Motor_Slow_Spin(void)  //ЩЈТы
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 320000,LOW_SPEED);
+	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 10000,LOW_SPEED);
 #endif	
 }
 

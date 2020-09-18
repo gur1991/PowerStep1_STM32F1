@@ -128,7 +128,9 @@ int main(void)
 	Init_Board_Config();
 	
 	
-	//Normal_Goto_First_Position();
+	//Scan_Motor_Slow_Spin();
+	
+	
 #if 0	
 	while(1)
 	{	

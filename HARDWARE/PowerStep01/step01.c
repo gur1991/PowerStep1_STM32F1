@@ -217,13 +217,13 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 			}
 			else if (speed_type==LOW_SPEED)
 			{
-				TempMotor.request.init_motor.config.acc=120;
+				TempMotor.request.init_motor.config.acc=100;
 				TempMotor.request.init_motor.config.hold=10;
-				TempMotor.request.init_motor.config.dec=120;
-				TempMotor.request.init_motor.config.run=120;
-				TempMotor.request.init_motor.Speed.acceleration=2000;
-				TempMotor.request.init_motor.Speed.deceleration=2000;
-				TempMotor.request.init_motor.Speed.maxSpeed=2000;
+				TempMotor.request.init_motor.config.dec=100;
+				TempMotor.request.init_motor.config.run=100;
+				TempMotor.request.init_motor.Speed.acceleration=300;
+				TempMotor.request.init_motor.Speed.deceleration=300;
+				TempMotor.request.init_motor.Speed.maxSpeed=300;
 			}
 				
    		break;	
