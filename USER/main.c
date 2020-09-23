@@ -129,7 +129,8 @@ int main(void)
 	
 	
 	//Scan_Motor_Slow_Spin();
-	
+	//Mix_Work_Goto_Postion();
+	//Mix_Blood_High_Speed();
 	
 #if 0	
 	while(1)

@@ -20,7 +20,7 @@
 
 
 #define _SHARK_HEADER_ "VG1-"
-#define _SHARK_VERSION_ "-2.3.200918.D"
+#define _SHARK_VERSION_ "-2.4.200923.D"
 
 #if USE_GRADIENT_CONTROL_BOARD
 	#define _STM_BOARD_  "SH"
