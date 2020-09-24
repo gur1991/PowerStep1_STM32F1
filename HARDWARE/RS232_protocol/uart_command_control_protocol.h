@@ -125,8 +125,22 @@ typedef enum Command_type{
 		NORMAL_POSITION_MORE_RUN,
 		
 		GET_VERSION,
+		CONFIG_MIX_SPEED,
 
 }Command_type_t;
+
+
+typedef union{ 
+	struct{
+			mix_motor_config_type_t mix;
+	}request;
+	struct{
+		uint8_t nor[15];
+		uint8_t ret;
+	}response;
+}mix_motor_speed_config_type_t;
+
+
 
 typedef union{ 
 	struct{
@@ -494,6 +508,7 @@ typedef struct{
 				motor_hard_stop_select_type_t motor_hard_stop_select;
 				normal_position_more_run_type_t normal_position_more_run;
 				get_version_t get_version;
+				mix_motor_speed_config_type_t mix_motor_speed_config;
 
 /*
 *print move rk3188

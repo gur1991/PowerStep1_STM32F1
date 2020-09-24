@@ -200,4 +200,20 @@ typedef union{
 		uint8_t nor[3];
 	}response;	
 }mix_and_reach_type_t;
+
+
+typedef struct mix_motor_config_type
+{
+		uint16_t max_slow;
+		uint16_t acc_slow;
+		uint16_t dec_slow;
+		
+		uint16_t max_normal;
+		uint16_t acc_normal;
+		uint16_t dec_normal;
+}mix_motor_config_type_t;
+
+void init_mix_motor_config(void);
+void set_mix_motor_config(mix_motor_config_type_t p);
+
 #endif
