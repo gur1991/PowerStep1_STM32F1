@@ -127,9 +127,9 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	
-	//Scan_Motor_Slow_Spin();
 	//Mix_Work_Goto_Postion();
+	//Scan_Motor_Slow_Spin();
+	
 	//Mix_Blood_High_Speed();
 	
 #if 0	
