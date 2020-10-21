@@ -410,7 +410,11 @@ void Mix_Blood_High_Speed(void) //ªÏ‘»
 		BSP_MotorControl_Move(0, M2_MIX_LEFT, 60000);
 		BSP_MotorControl_WaitWhileActive(0);
 	}
+	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);//----up and mix		
 	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	PowerStep_Select_Motor_Baby(M2_MIX);//----up and mix		
+	BSP_MotorControl_HardStop(0);//----up and mix		
+	
 #endif	
 }	
 void Mix_Work_Goto_Postion(void)
