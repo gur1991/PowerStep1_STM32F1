@@ -514,7 +514,7 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
    		break;*/
 		default:
-			ret=-1;
+			ret=1;
 	}	
 	return ret;
 }
@@ -555,7 +555,7 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 							break;
 				}else if(i>=5*1000){
 							LOGE("motor can't move.\r\n");
-							return -1;
+							return 2;
 				}
 				delay_ms(1);	
 		}
@@ -599,7 +599,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 
 		
-		steps=200*10000;
+		//steps=200*10000;
 	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
@@ -610,7 +610,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							light=0;		
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=10*1000){
+				}else if(i>=7*1000){
 							light=1;
 							LOGE("motor no find light \r\n");
 							BSP_MotorControl_HardStop(0);	

@@ -5,6 +5,36 @@
 #include "uart_command_control_protocol.h"
 #include "config.h"
 
+
+//Pecker
+//Camel
+
+typedef uint64_t FACTORY_TYPE;
+
+#define LIGHT_HAVE_STATE							 0x00000000
+#define LIGHT_NONE_STATE               0x00000001
+
+#define LEFT_LIGHT_STATE 							 0x00000010
+#define NEXT_LIGHT_STATE 							 0x00000020
+#define C55_CONNECT_ERROR 						 0x00000040
+#define C52_CONNECT_ERROR							 0x00000080
+
+#define M1_LIGHT_ERROR 								 0x00010000
+#define M3_LIGHT_ERROR 								 0x00020000
+#define M4_LIGHT_ERROR 								 0x00040000
+#define M7_LIGHT_ERROR 								 0x00080000
+#define NORMAL_CHECK_DRAIN_LIGHT_ERROR 0x00100000
+#define NORMAL_NEXT_ERROR 					   0x00200000
+#define BLANK_LIGHT_ERROR 						 0x00400000
+#define M1_LIGHT_WORK_ERROR 					 0x00800000
+
+#define M8_LIGHT_ERROR 								 0x01000000
+#define M9_LIGHT_ERROR 								 0x02000000
+#define M10_LIGHT_ERROR 							 0x04000000
+#define M11_LIGHT_ERROR 							 0x08000000
+
+
+
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type);
 
 uint8_t RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type);
@@ -13,7 +43,7 @@ uint8_t RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDi
 void BSP_MotorControl_Move_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
 
 
-uint8_t process_motor_command_receive(Command_Package_t command);
+FACTORY_TYPE process_motor_command_receive(Command_Package_t command);
 
 void Motor_Move_And_Wait_Select(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,MOTOR_SPEED_type_t speed_type);
 
@@ -29,16 +59,19 @@ uint8_t ReadyAndCheckLeftPosition(void);
 
 uint8_t LeftMoveTowardWaitPosition(void);
 
-void Rest_Drain_And_Wash_Motor_Orgin(void);
+FACTORY_TYPE Rest_Drain_And_Wash_Motor_Orgin(void);
 
-void Rest_Transporter_Belt(void);
+FACTORY_TYPE Rest_Transporter_Belt(void);
 
-void Rest_high_wheel(void);
+FACTORY_TYPE Rest_high_wheel(void);
 
-void RestAllMotorOrgin(void);
+extern u8 C55_connect_check(void);
 
-void First_Open_Motor_AutoCheck(void);
+extern u8 C52_connect_check(void);
 
+FACTORY_TYPE C55_C52_connect_check(void);
+
+void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time);
 /****************new start*******************************/
 
 
@@ -137,20 +170,14 @@ left---------------------wait
 //#define PITCH_VALUE 1320
 //#define HIGH_PITCH_VALUE 1000
 
+
+
+
+
 /*******************new end**********************************/
 
 /*****************************************************************/
 
-void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time);
 
-
-
-void mix_and_reach_position(void);
-
-extern u8 C55_connect_check(void);
-
-extern u8 C52_connect_check(void);
-
-uint8_t C55_C52_connect_check(void);
 
 #endif

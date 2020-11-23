@@ -214,9 +214,9 @@ uint8_t LeftMoveTowardWaitPosition(void)
 
 //**********************************************plan B**********************************************
 
-uint8_t Belt_Move_At_SameTime(void)
+FACTORY_TYPE Belt_Move_At_SameTime(void)
 {
-	uint8_t status=0x00;
+	FACTORY_TYPE state=0;
 	
 #if USE_AUTOMATIC_INJECTION_BOARD	
 
@@ -230,13 +230,11 @@ uint8_t Belt_Move_At_SameTime(void)
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);	
 	BSP_MotorControl_WaitWhileActive(0);
 
-	
-	
-	if(Light_Sensor_Get(LEFT_LIGHT)==0)status|=0x01;
-	if(Light_Sensor_Get(NEXT_LIGHT)==0)status|=0x10;
+	if(Light_Sensor_Get(LEFT_LIGHT)==0)state|=LEFT_LIGHT_STATE;
+	if(Light_Sensor_Get(NEXT_LIGHT)==0)state|=NEXT_LIGHT_STATE;
 #endif
 	
-	return status;
+	return state;
 }
 
 
@@ -246,30 +244,46 @@ uint8_t Belt_Move_At_SameTime(void)
 
 /**********************************************************/
 
-void Rest_Sample_Motor_Orgin(void)
+FACTORY_TYPE Rest_Sample_Motor_Orgin(void)
 {
+		FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD
+		uint8_t ret=0;
 	
-	RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 600*1000);
-	RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 15*1000);	
+	ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 600*1000);
+	if(ret)value|=M10_LIGHT_ERROR;
+	
+	ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 15*1000);	
+	if(ret)value|=M11_LIGHT_ERROR;
+	
 #endif
+	  return value;
 }
 
 
-void Rest_Drain_And_Wash_Motor_Orgin(void)
+FACTORY_TYPE Rest_Drain_And_Wash_Motor_Orgin(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD
+	uint8_t ret=0;
+	
 	test_actuator(CHEMINERT_C55_CC4);
 	
-	RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 600*1000);
-	RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 600*1000);
+	ret=RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 600*1000);
+	if(ret)value|=M8_LIGHT_ERROR;
+	
+	ret=RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 600*1000);
+	if(ret)value|=M9_LIGHT_ERROR;
 	
 #endif	
+	return value;
 }
 
-void March_Drain_And_Wash_Motor_Orgin(void) //大小注射泵复位
+FACTORY_TYPE March_Drain_And_Wash_Motor_Orgin(void) //大小注射泵复位
 {
+	FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD	
+	
 	test_actuator(CHEMINERT_C55_CC4);	
 	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
@@ -277,25 +291,38 @@ void March_Drain_And_Wash_Motor_Orgin(void) //大小注射泵复位
 	
 	if(Light_Sensor_Get(M9_LIGHT)==0)
 			Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
+	
+	
+	if(Light_Sensor_Get(M8_LIGHT)==0)value|=M8_LIGHT_ERROR;
+	if(Light_Sensor_Get(M9_LIGHT)==0)value|=M9_LIGHT_ERROR;
+	
 #endif
+	return value;
 }	
 
 
-void Rest_Transporter_Belt(void)
+FACTORY_TYPE Rest_Transporter_Belt(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
+	uint8_t ret=0;
 	
-	RestSelectMotorOrginSelect(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000,HIGH_SPEED);
+	ret=RestSelectMotorOrginSelect(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000,HIGH_SPEED);
+	if(ret)value|=M4_LIGHT_ERROR;
 	
-	RestSelectMotorOrginSelect(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000,HIGH_SPEED);
+	ret=RestSelectMotorOrginSelect(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000,HIGH_SPEED);
+	if(ret)value|=M3_LIGHT_ERROR;
 	
-	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	if(ret)value|=M1_LIGHT_ERROR;
 	
 #endif
+	return value;
 }
 
-void March_Transporter_Belt(void)
+FACTORY_TYPE March_Transporter_Belt(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
 	if(Light_Sensor_Get(M4_LIGHT)==0)
@@ -305,32 +332,48 @@ void March_Transporter_Belt(void)
 			Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
-		Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
+		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
 	
-
-
-#endif	
-}	
-void Rest_high_wheel(void)
-{
-#if USE_AUTOMATIC_INJECTION_BOARD
+	if(Light_Sensor_Get(M4_LIGHT)==0)value|=M4_LIGHT_ERROR;
+	if(Light_Sensor_Get(M3_LIGHT)==0)value|=M3_LIGHT_ERROR;
+	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
 	
-	RestSelectMotorOrgin(M7_HIGH_TURN,M7_LIGHT,M7_BACK_TURN, 8000);
 #endif
-}
-void March_high_wheel(void)
+		return value;
+}	
+
+
+FACTORY_TYPE Rest_high_wheel(void)
 {
+	FACTORY_TYPE value=0;
+#if USE_AUTOMATIC_INJECTION_BOARD
+	uint8_t ret=RestSelectMotorOrgin(M7_HIGH_TURN,M7_LIGHT,M7_BACK_TURN, 8000);
+	if(ret)value|=M7_LIGHT_ERROR;
+#endif
+	return value;
+}
+FACTORY_TYPE March_high_wheel(void)
+{
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	if(Light_Sensor_Get(M7_LIGHT)==0)
 		  Motor_Move_And_Wait(M7_HIGH_TURN, M7_FRONT_TURN, 2400);
+	
+	if(Light_Sensor_Get(M7_LIGHT)==0)value|=M7_LIGHT_ERROR;
+	
 #endif
+	return value;
 }	
 
 
 //F5 //F6
-void RestFarAndDownMotorOrgin(void)
+FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 {
+	FACTORY_TYPE value=0;
+	
 #if USE_CLEANING_DILUTION_BOARD	
+	uint8_t ret=0;
+	
 	if(!Light_Sensor_Get(M11_LIGHT)&&!Light_Sensor_Get(M10_LIGHT))
 	{
 			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 3000);
@@ -338,52 +381,64 @@ void RestFarAndDownMotorOrgin(void)
 		
 			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-	
+			
+			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
+			if(ret)value|=M10_LIGHT_ERROR;
+		
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)value|=M11_LIGHT_ERROR;
 	}else	if(!Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 		
 		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 		
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		
+			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
+			if(ret)value|=M10_LIGHT_ERROR;
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)value|=M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&!Light_Sensor_Get(M11_LIGHT))
 	{
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
+		  if(ret)value|=M10_LIGHT_ERROR;
+			
+		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+		  if(ret)value|=M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
-		  RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+		  ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
+		  if(ret)value|=M10_LIGHT_ERROR;
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+		  if(ret)value|=M11_LIGHT_ERROR; 
 	}
 #endif	
+	
+	return value;
 }	
 
-void First_Open_Motor_AutoCheck_Sensor(void)
+FACTORY_TYPE First_Open_Motor_AutoCheck_Sensor(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
-	
-	March_Transporter_Belt();
-	Rest_Transporter_Belt();
-	
-	March_high_wheel();
-	Rest_high_wheel();
-
+	value|=March_Transporter_Belt();		
+	value|=Rest_Transporter_Belt();
+	value|=March_high_wheel();
+	value|=Rest_high_wheel();
 #endif 
+	return value;
 }
 //5 6 9 10
-void First_Open_Motor_AutoCheck_Motor(void)
+FACTORY_TYPE First_Open_Motor_AutoCheck_Motor(void)
 {
-#if USE_CLEANING_DILUTION_BOARD	
-	RestFarAndDownMotorOrgin();
-	March_Drain_And_Wash_Motor_Orgin();
-	Rest_Drain_And_Wash_Motor_Orgin();
+	FACTORY_TYPE value=0;
+#if USE_CLEANING_DILUTION_BOARD		
+	value|=RestFarAndDownMotorOrgin();	
+	value|=March_Drain_And_Wash_Motor_Orgin();
+	value|=Rest_Drain_And_Wash_Motor_Orgin();
 #endif
+	return value;
 }	
 
 
@@ -395,9 +450,11 @@ void Scan_Motor_Slow_Spin(void)  //扫码
 #endif	
 }
 
-void Mix_Blood_High_Speed(void) //混匀
+FACTORY_TYPE Mix_Blood_High_Speed(void) //混匀
 {
-#if USE_AUTOMATIC_INJECTION_BOARD			
+	FACTORY_TYPE value=0;
+#if USE_AUTOMATIC_INJECTION_BOARD
+  uint8_t ret=0;	
 	int i=0;
 	Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
 	
@@ -411,17 +468,25 @@ void Mix_Blood_High_Speed(void) //混匀
 		BSP_MotorControl_WaitWhileActive(0);
 	}
 	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);//----up and mix		
-	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	if(ret)value|=M1_LIGHT_ERROR;
+	
 	PowerStep_Select_Motor_Baby(M2_MIX);//----up and mix		
 	BSP_MotorControl_HardStop(0);//----up and mix		
 	
 #endif	
+	return value;
 }	
-void Mix_Work_Goto_Postion(void)
+FACTORY_TYPE Mix_Work_Goto_Postion(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD		
-	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
+	
+	uint8_t ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
+	if(ret)value|=M1_LIGHT_WORK_ERROR;
+	
 #endif
+	return value;
 }
 
 
@@ -430,39 +495,53 @@ void Mix_Work_Goto_Postion(void)
 
 
 //有->无-有
-void Normal_Pitch_Move_Next_The_Last_Two(void)
+FACTORY_TYPE  Normal_Pitch_Move_Next_The_Last_Two(void)
 {
-#if USE_AUTOMATIC_INJECTION_BOARD		
+	 FACTORY_TYPE value=0;
+#if USE_AUTOMATIC_INJECTION_BOARD
+		uint8_t ret=0;
+	
 	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,3200);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT,M4_NEXT_TO_BLANK, 20000);
-	 __Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000);
-	#endif
+	 ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000);
+	if(ret)value=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+#endif
+		return value;
 }
 
 
 //有->无-有
-void Normal_Pitch_Move_Next(void)
+FACTORY_TYPE  Normal_Pitch_Move_Next(void)
 {
-#if USE_AUTOMATIC_INJECTION_BOARD		
+	FACTORY_TYPE value=0;
+#if USE_AUTOMATIC_INJECTION_BOARD
+	uint8_t ret=0;
 	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,4800);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
-	__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000);
+	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000);
+	if(ret)value=NORMAL_NEXT_ERROR;
 #endif
+	return value;
 }
 
-void Normal_Goto_First_Position(void)
+FACTORY_TYPE Normal_Goto_First_Position(void)
 {
-
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-	RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
-#endif	
+	uint8_t ret=RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
+	if(ret)value|=NORMAL_NEXT_ERROR;
+#endif
+ return value;	
 }
 
-void Normal_Move_Blank(void)
+FACTORY_TYPE Normal_Move_Blank(void)
 {
+	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		RestSelectMotorOrginSelect(M4_BLANK_NEXT,BLANK_LIGHT,M4_NEXT_TO_BLANK, 32000,LOW_SPEED);
+	uint8_t ret=RestSelectMotorOrginSelect(M4_BLANK_NEXT,BLANK_LIGHT,M4_NEXT_TO_BLANK, 32000,LOW_SPEED);
+	if(ret)value|=BLANK_LIGHT_ERROR;
 #endif	
+	return value;
 }	
 
 /***********************************************************/
@@ -515,22 +594,17 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 }	
 
 
-//dischard
-void mix_and_reach_position(void)	
-{
 
-}	
-
-uint8_t C55_C52_connect_check(void)
+FACTORY_TYPE C55_C52_connect_check(void)
 {
-	uint8_t ret=0;
+	FACTORY_TYPE value=0;
 	
-	if(C52_connect_check())ret|=0x10;
-	if(C55_connect_check())ret|=0x01;
+	if(C52_connect_check())value|=C52_CONNECT_ERROR;
+	if(C55_connect_check())value|=C55_CONNECT_ERROR;
 	
-	LOGD("C55 C52 0x%x \r\n",ret);
+	//LOGD("C55 C52 0x%x \r\n",ret);
 	
-	return ret;
+	return value;
 }
 
 #define NUM2STR(x) case x: return #x
@@ -582,9 +656,9 @@ static char* _num2string_(uint8_t num)
 }			
 			
 
-uint8_t process_motor_command_receive(Command_Package_t command)
+FACTORY_TYPE process_motor_command_receive(Command_Package_t command)
 {
-		uint8_t value=0;
+		FACTORY_TYPE value=0;
 	
 	LOGD("type command:%s\r\n", _num2string_(command));
 	
@@ -596,18 +670,18 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 			
 			
 			case FIRST_START_CHECK_SENSOR_BOARD:
-					First_Open_Motor_AutoCheck_Sensor();
+					value=First_Open_Motor_AutoCheck_Sensor();
 				  break;
 			case FIRST_START_CHECK_MOTOR_BOARD:
-					First_Open_Motor_AutoCheck_Motor();
+					value=First_Open_Motor_AutoCheck_Motor();
 				  break;
 			case REST_SENSOR_BOARD_MOTOR:
-					Rest_Transporter_Belt();
-					Rest_high_wheel();
+					value=Rest_Transporter_Belt();
+					value|=Rest_high_wheel();
 				break;
 			case REST_MOTOR_BOARD_MOTOR:
-					Rest_Sample_Motor_Orgin();
-					Rest_Drain_And_Wash_Motor_Orgin();
+					value=Rest_Sample_Motor_Orgin();
+					value|=Rest_Drain_And_Wash_Motor_Orgin();
 				break;	
 			
 			
@@ -631,43 +705,42 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 					value=Rest_C55_C52_Position();
 				break;
 			case REST_HIGH_WHEEL:
-				Rest_high_wheel();
+				  value=Rest_high_wheel();
 				break;
 			case REST_TRANSPORTER_BELT:
-				Rest_Transporter_Belt();
+				  value=Rest_Transporter_Belt();
 				break;
 			case REST_DRAIN_AND_WASH_MOTOR:
-				Rest_Drain_And_Wash_Motor_Orgin();
+				  value=Rest_Drain_And_Wash_Motor_Orgin();
 				break;
 			case REACH_DEGREE_WAIT:
-				value=Rearch_Degree_Wait();
+				  value=Rearch_Degree_Wait();
 				break;
 			case MIX_SCAN_SLOW:
-				Scan_Motor_Slow_Spin();
+				  Scan_Motor_Slow_Spin();
 				break;
 			case MIX_BLOOD_HIGH:
-				Mix_Blood_High_Speed();
+				  value=Mix_Blood_High_Speed();
 				break;
 			case BELT_MOVE_SAMETIME:
-				value = Belt_Move_At_SameTime();
+				  value = Belt_Move_At_SameTime();
 				break;
 			case MIX_WORK_GOTO:
-				Mix_Work_Goto_Postion();
+				  value=Mix_Work_Goto_Postion();
 				break;
 			case NORMAL_PITCH_MOVE_NEXT:
-				Normal_Pitch_Move_Next();
+				  value=Normal_Pitch_Move_Next();
 				break;
 			case NORMAL_BLANK_REST:
-				Normal_Move_Blank();
+				  value=Normal_Move_Blank();
 				break;
 			case REST_SAMPLE_MOTOR:
-				Rest_Sample_Motor_Orgin();
+				  value=Rest_Sample_Motor_Orgin();
 				break;
 			case NORMAL_FIRST_POSITON:
-				Normal_Goto_First_Position();
+				  value=Normal_Goto_First_Position();
 				break;
 			case MIX_AND_REACH_POSITION:
-				mix_and_reach_position();//已被废弃的指令
 				break;
 			case BIG_IN_OUT_SLOW:
 				Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,LOW_SPEED);
@@ -677,7 +750,7 @@ uint8_t process_motor_command_receive(Command_Package_t command)
 				break;
 			
 			case NORMAL_PITCH_MOVE_NEXT_THE_LAST_TWO:
-					Normal_Pitch_Move_Next_The_Last_Two();
+					value=Normal_Pitch_Move_Next_The_Last_Two();
 				break;
 			case C55_C52_CONNECT:
 					value = C55_C52_connect_check();

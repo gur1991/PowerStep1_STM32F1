@@ -253,9 +253,9 @@ typedef union{
 		uint8_t command;
 	}request;
 	struct{
-		uint8_t value;
+		uint64_t value;
 		uint8_t ret;
-		uint8_t nor[2];
+		uint8_t nor[3];
 	}response;
 }motor_command_package_type_t;
 
