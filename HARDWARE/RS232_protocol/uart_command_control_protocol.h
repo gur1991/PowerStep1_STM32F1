@@ -253,7 +253,7 @@ typedef union{
 		uint8_t command;
 	}request;
 	struct{
-		uint64_t value;
+		uint32_t value;
 		uint8_t ret;
 		uint8_t nor[3];
 	}response;

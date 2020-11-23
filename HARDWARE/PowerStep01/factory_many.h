@@ -9,7 +9,7 @@
 //Pecker
 //Camel
 
-typedef uint64_t FACTORY_TYPE;
+typedef uint32_t FACTORY_TYPE;
 
 #define LIGHT_HAVE_STATE							 0x00000000
 #define LIGHT_NONE_STATE               0x00000001
