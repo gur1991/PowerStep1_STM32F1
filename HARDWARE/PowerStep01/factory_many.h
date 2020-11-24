@@ -13,25 +13,31 @@ typedef uint32_t FACTORY_TYPE;
 
 #define LIGHT_HAVE_STATE							 0x00000000
 #define LIGHT_NONE_STATE               0x00000001
-
 #define LEFT_LIGHT_STATE 							 0x00000010
 #define NEXT_LIGHT_STATE 							 0x00000020
 #define C55_CONNECT_ERROR 						 0x00000040
 #define C52_CONNECT_ERROR							 0x00000080
+//。。。。。。。。。。。。
+#define BLANK_LIGHT_ERROR							 0x00001000
+#define LEFT_LIGHT_ERROR							 0x00002000
+#define WAIT_LIGHT_ERROR							 0x00004000
+#define NEXT_LIGHT_ERROR							 0x00008000
+#define NORMAL_CHECK_DRAIN_LIGHT_ERROR 0x00010000
+#define NORMAL_NEXT_LIGHT_ERROR 					   0x00020000
+#define NORMAL_CHECK_MIX_LIGHT_ERROR   0x00040000
+#define HIGH_CHECK_LIGHT_ERROR				 0x00080000
 
-#define M1_LIGHT_ERROR 								 0x00010000
-#define M3_LIGHT_ERROR 								 0x00020000
-#define M4_LIGHT_ERROR 								 0x00040000
-#define M7_LIGHT_ERROR 								 0x00080000
-#define NORMAL_CHECK_DRAIN_LIGHT_ERROR 0x00100000
-#define NORMAL_NEXT_ERROR 					   0x00200000
-#define BLANK_LIGHT_ERROR 						 0x00400000
-#define M1_LIGHT_WORK_ERROR 					 0x00800000
+#define M1_LIGHT_WORK_ERROR 					 0x00100000
+//。。。。。。。。。。。。
+#define M1_LIGHT_ERROR 								 0x01000000
+#define M3_LIGHT_ERROR 								 0x02000000
+#define M4_LIGHT_ERROR 								 0x04000000
+#define M7_LIGHT_ERROR 								 0x08000000
 
-#define M8_LIGHT_ERROR 								 0x01000000
-#define M9_LIGHT_ERROR 								 0x02000000
-#define M10_LIGHT_ERROR 							 0x04000000
-#define M11_LIGHT_ERROR 							 0x08000000
+#define M8_LIGHT_ERROR 								 0x10000000
+#define M9_LIGHT_ERROR 								 0x20000000
+#define M10_LIGHT_ERROR 							 0x40000000
+#define M11_LIGHT_ERROR 							 0x80000000
 
 
 
@@ -166,9 +172,6 @@ left---------------------wait
 #define NORMAL_CHECK_MIX_LIGHT 11
 #define NORMAL_CHECK_DRAIN_LIGHT 9
 
-#define NORMAL_CHECK_LAST 14
-//#define PITCH_VALUE 1320
-//#define HIGH_PITCH_VALUE 1000
 
 
 

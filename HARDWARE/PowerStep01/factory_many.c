@@ -417,6 +417,25 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 	
 	return value;
 }	
+FACTORY_TYPE Get_Board_Idle_Light_State(void)
+{
+	FACTORY_TYPE value=0;
+	
+#if USE_AUTOMATIC_INJECTION_BOARD
+	if(Light_Sensor_Get(BLANK_LIGHT)==0)value|=BLANK_LIGHT_ERROR;
+	if(Light_Sensor_Get(LEFT_LIGHT)==0)value|=LEFT_LIGHT_ERROR;
+	if(Light_Sensor_Get(WAIT_LIGHT)==0)value|=WAIT_LIGHT_ERROR;
+	if(Light_Sensor_Get(NEXT_LIGHT)==0)value|=NEXT_LIGHT_ERROR;
+	
+	if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT)==0)value|=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)value|=NORMAL_NEXT_LIGHT_ERROR;
+	if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)value|=NORMAL_CHECK_MIX_LIGHT_ERROR;
+	if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)value|=HIGH_CHECK_LIGHT_ERROR;
+	
+	if(Light_Sensor_Get(M1_LIGHT_WORK)==0)value|=M1_LIGHT_WORK_ERROR;
+#endif	
+	return value;
+}
 
 FACTORY_TYPE First_Open_Motor_AutoCheck_Sensor(void)
 {
@@ -426,6 +445,7 @@ FACTORY_TYPE First_Open_Motor_AutoCheck_Sensor(void)
 	value|=Rest_Transporter_Belt();
 	value|=March_high_wheel();
 	value|=Rest_high_wheel();
+	value|=Get_Board_Idle_Light_State();//获取其他九个检测灯的状态
 #endif 
 	return value;
 }
@@ -519,7 +539,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next(void)
 	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,4800);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
 	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000);
-	if(ret)value=NORMAL_NEXT_ERROR;
+	if(ret)value=NORMAL_NEXT_LIGHT_ERROR;
 #endif
 	return value;
 }
@@ -529,7 +549,7 @@ FACTORY_TYPE Normal_Goto_First_Position(void)
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
 	uint8_t ret=RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
-	if(ret)value|=NORMAL_NEXT_ERROR;
+	if(ret)value|=NORMAL_NEXT_LIGHT_ERROR;
 #endif
  return value;	
 }
