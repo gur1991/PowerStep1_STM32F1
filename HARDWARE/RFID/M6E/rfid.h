@@ -7,7 +7,6 @@ extern "C" {
 #include <stddef.h>
 #include <stdbool.h>
 
-
 #ifndef u8
 typedef unsigned char u8;
 #endif
@@ -33,7 +32,7 @@ typedef enum Chemical_Produce_Method
 
 typedef struct
 {
-	u8 year[2];
+	u8 year;
 	u8 month;
 	u8 day;
 }Chemical_Produce_Period_Type;
@@ -41,7 +40,7 @@ typedef struct
 //8
 typedef struct
 {
-	u8 sn[4];
+	u8 sn[9];
 	u8 volume[2];
 	u8 method;
 	//u8 nor;
@@ -49,7 +48,7 @@ typedef struct
 
 typedef struct
 {
-	u8 sn[4];
+	u8 sn[9];
 	u8 total[2];
 	u8 method;
 	//u8 nor;
@@ -57,7 +56,7 @@ typedef struct
 
 typedef struct
 {
-	u8 sn[4];
+	u8 sn[9];
 	u8 total[2];
 	u8 nor;
 }Chemical_Produce_Filiter_Type;
@@ -77,9 +76,8 @@ typedef struct Sepax_EPC
 {
 	//u8 check;//1
 	u8 type;//1
-	Chemical_Produce_Period_Type start;//4
-	Chemical_Produce_Period_Type end;//4
-	Chemical_Produce_Info_Type info;//7
+	Chemical_Produce_Info_Type info;//12
+	Chemical_Produce_Period_Type date;//3
 }Sepax_EPC_Type_T;
 
 

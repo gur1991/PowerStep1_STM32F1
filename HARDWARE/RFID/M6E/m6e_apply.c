@@ -382,10 +382,7 @@ void Protocol_Output_Report(Chemical_reagent_Info_type info)
 
 void Process_Date_Info(Sepax_EPC_Type_T Sepc)
 {
-		int start = Sepc.start.year[0] + Sepc.start.year[1] * 256;
-		int end = Sepc.end.year[0] + Sepc.end.year[1] * 256;
-		printf("%04d年%02d月%02d日-" ,start,Sepc.start.month,Sepc.start.day);
-		printf("%04d年%02d月%02d日\r\n" ,end,Sepc.end.month,Sepc.end.day);
+		LOGD("%02d年%02d月%02d日-" ,Sepc.date.year,Sepc.date.month,Sepc.date.day);
 }
 
 void Process_Filiter_Info(Sepax_EPC_Type_T Sepc)
@@ -396,13 +393,9 @@ void Process_Filiter_Info(Sepax_EPC_Type_T Sepc)
 	IntTmp = Sepc.info.filiter.total[0] + Sepc.info.filiter.total[1] * 256;
 	LOGD("次数：%d\r\n",IntTmp);
 
-	uint64_t sn = Sepc.info.filiter.sn[0] +
-		Sepc.info.filiter.sn[1] * 256 +
-		Sepc.info.filiter.sn[2] * 256 * 256 +
-		Sepc.info.filiter.sn[3] * 256 * 256 * 256;
-
-	LOGD("SN:%lld\r\n",sn);
+	LOGD("SN:%s\r\n",Sepc.info.filiter.sn);
 }
+
 void Process_Colunm_Info(Sepax_EPC_Type_T Sepc)
 {
 	Process_Date_Info(Sepc);
@@ -414,12 +407,7 @@ void Process_Colunm_Info(Sepax_EPC_Type_T Sepc)
 	LOGD("次数：%d\r\n",IntTmp);
 
 
-	uint64_t sn = Sepc.info.colunm.sn[0] + 
-		Sepc.info.colunm.sn[1] * 256 + 
-		Sepc.info.colunm.sn[2] * 256 * 256 +
-		Sepc.info.colunm.sn[3] * 256 * 256 * 256;
-
-	LOGD("SN:%lld\r\n",sn);
+	LOGD("SN:%s\r\n",Sepc.info.colunm.sn);
 
 }
 
@@ -435,12 +423,7 @@ void Process_Regent_Info(Sepax_EPC_Type_T Sepc)
 	LOGD("体积：%d\r\n",IntTmp);
 
 
-	uint64_t sn = Sepc.info.regent.sn[0] +
-		Sepc.info.regent.sn[1] * 256 +
-		Sepc.info.regent.sn[2] * 256 * 256 +
-		Sepc.info.regent.sn[3] * 256 * 256 * 256;
-
-	LOGD("SN:%lld\r\n",sn);
+	LOGD("SN:%s\r\n",Sepc.info.regent.sn);
 
 
 }

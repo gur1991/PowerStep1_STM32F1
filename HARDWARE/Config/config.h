@@ -5,7 +5,7 @@
 
 
 //新的结构设计定义
-#define USE_NEW_DESIGN 0
+#define USE_NEW_DESIGN 1
 //new start for dev branch
 
 #define USE_GRADIENT_CONTROL_BOARD 0//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
