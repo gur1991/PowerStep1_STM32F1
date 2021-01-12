@@ -18,6 +18,6 @@ extern int UART4_RX_CNT;
 void UART4_Init(u32 bound);
 void UART4_Send_Data(u8 *buf,int len);
 void UART4_Receive_Data(u8 *buf,int RxLen, int *len);
-
-
+void Uart4_Rx_Clear(void);
+void UART4_Enable_Interrupt(void);
 #endif

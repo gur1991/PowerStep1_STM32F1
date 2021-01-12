@@ -126,56 +126,8 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-	
-	//Mix_Work_Goto_Postion();
-	//Scan_Motor_Slow_Spin();
-	
-	//Mix_Blood_High_Speed();
-	
-#if 0	
-	while(1)
-	{	
-		delay_ms(100);	
-		LOGD("light[9][10][11]:%d  %d  %d\r\n",Light_Sensor_Get(9),Light_Sensor_Get(10),Light_Sensor_Get(11));
-		//LOGD("light[9][10][11]:%d  %d  %d\r\n",__Light_Sensor_Get__(9),__Light_Sensor_Get__(10),__Light_Sensor_Get__(11));
-	}
-#endif
-	
-	
-/*
-	Init_M6e_Config(TMR_REGION_PRC,2500,3000,ONLY_SECOND);
-	
-	uint8_t length=0;
-	uint8_t epc[100];
-	memset(epc,0,sizeof(epc));
-	
-	uint32_t ret = Get_EPC_String(&length, epc);
-	LOGD("ret:0x%x\r\n",ret);
-	LOGD("len:%d EPC:%s\r\n",length,epc);
-	
-	
-	uint8_t len=0;
-	ret= M6e_Magic_Read_Rfid_Info(&len);
-	LOGD("ret:0x%x\r\n",ret);
-	int index=0;
-	Chemical_reagent_Info_type info;
-	
-	for(index=0;index<len;index++)
-	{
-		info=M6e_Magic_Get_One_Rfid_Info(index);
-		Protocol_Output_Report(info);
-	}
-	LOGD("½áÊø! \r\n");
-	
-	return 0;
-
-*/
-
-
-	//Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 400000);
-	
-	
-	
+	Uart4_Rx_Clear();
+	UART4_Enable_Interrupt();
 	
 	
 	while(1)

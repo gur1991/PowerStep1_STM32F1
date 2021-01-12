@@ -22,19 +22,13 @@ void UART4_IRQHandler(void)
 		{
 			UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
 			UART4_RX_CNT++;						//接收数据增加1	
-			
 		}
-/*		
-		if(UART4_RX_CNT == 2)
+		if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
 		{
-				if( UART4_RX_BUF[0]==START_UART_VALUE0 && UART4_RX_BUF[1]==START_UART_VALUE1){ ;}
-				else {UART4_RX_BUF[0]= UART4_RX_BUF[1];UART4_RX_CNT=1; LOGE("fuck\r\n");}
-		}
-*/
-//		else 
-			if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
-		{
-					ARM_RS232_ASK=1;
+				// if( UART4_RX_BUF[0]==START_UART_VALUE0 && UART4_RX_BUF[1]==START_UART_VALUE1)
+						ARM_RS232_ASK=1;
+				 //else
+				//		UART4_RX_CNT=0;
 		}
 
 	}
@@ -75,11 +69,16 @@ void UART4_Init(u32 bound)
   
   __HAL_UART_DISABLE_IT(&UART4_Handler,UART_IT_TC);
 	__HAL_UART_ENABLE_IT(&UART4_Handler,UART_IT_RXNE);//开启接收中断
-	HAL_NVIC_EnableIRQ(UART4_IRQn);				        //使能UART4中断
-	HAL_NVIC_SetPriority(UART4_IRQn,3,3);			        //抢占优先级3，子优先级3
-
+	HAL_NVIC_DisableIRQ(UART4_IRQn);
+	//HAL_NVIC_EnableIRQ(UART4_IRQn);				        //使能UART4中断
+	//HAL_NVIC_SetPriority(UART4_IRQn,3,3);			        //抢占优先级3，子优先级3
 }
 
+void UART4_Enable_Interrupt(void)
+{
+		HAL_NVIC_EnableIRQ(UART4_IRQn);				        //使能UART4中断
+		HAL_NVIC_SetPriority(UART4_IRQn,3,3);			        //抢占优先级3，子优先级3
+}	
 //buf:发送区首地址
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART4_Send_Data(u8 *buf,int len)
