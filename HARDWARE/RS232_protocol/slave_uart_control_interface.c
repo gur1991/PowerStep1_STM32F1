@@ -993,11 +993,11 @@ void  __InfoBoard__(int type)
 
 void inline __Wait_RS232_Recieve_For_Check__(void)
 {
-	delay_ms(30);
+	delay_ms(10);
 }	
 void inline __Wait_RS232_Recieve_For_ERROR__(void)
 {
-	delay_ms(50);
+	delay_ms(20);
 }
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){

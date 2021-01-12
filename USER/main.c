@@ -122,6 +122,7 @@ int main(void)
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
 	int i=0;
+	int temp_a=0,temp_b=0;
 	//KEY_Init(); 
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
@@ -132,16 +133,33 @@ int main(void)
 	
 	while(1)
 	{
+/*		
 			if(ARM_RS232_ASK)
 			{
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
 							ARM_RS232_ASK=0;
 			}	
-			delay_ms(1);			
+*/
+			
+			temp_a=UART4_RX_CNT;
+			delay_ms(10);	
+			temp_b=UART4_RX_CNT;
+			
+			if((temp_a==temp_b) && (temp_b!=sizeof(Powerstep1_contorl_motor_command_t)))
+			{
+				UART4_RX_CNT=0;
+			}
+			
+			if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
+			{
+					protocol_handle_uart_powerstep01_plain_slave_cmd();
+					UART4_RX_CNT=0;
+			}	
+			
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
-			if(i==1000)
+			if(i==100)
 			{
 				i=0;		
 				keep_thermometer_degree();
@@ -151,11 +169,10 @@ int main(void)
 
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
 			i++;
-			if(i==1000)
+			if(i==100)
 			{		
 					i=0;
 					Real_Time_Polling_Current_Index();
-					
 			}
 #endif  
 			
