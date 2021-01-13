@@ -130,7 +130,7 @@ int main(void)
 	Uart4_Rx_Clear();
 	UART4_Enable_Interrupt();
 	
-	
+	//Mix_Blood_High_Speed();
 	while(1)
 	{
 /*		
