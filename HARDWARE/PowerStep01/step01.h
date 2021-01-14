@@ -84,10 +84,11 @@ void Choose_Single_Motor_Speed_Config( int motor_chip, MOTOR_SPEED_type_t speed_
 
 uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
 
+uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,uint16_t delayMs);
 
-uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps);
+uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps, uint16_t delayMs);
 
-void set_DelayMs_Normal_Positon(uint32_t delayMs);
+uint8_t __Normal_Move_Blank__(void);
 
 typedef union{ 
 struct{

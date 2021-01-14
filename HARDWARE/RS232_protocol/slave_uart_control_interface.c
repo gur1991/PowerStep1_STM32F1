@@ -873,8 +873,9 @@ static void protocol_normal_position_more_run(normal_position_more_run_type_t*da
 		normal_position_more_run_type_t performer;
 		
 		performer.request.delayMs = data->request.delayMs;
+		performer.request.delayMsLastTwo = data->request.delayMsLastTwo;
 	
-		set_DelayMs_Normal_Positon(performer.request.delayMs);
+		set_DelayMs_Normal_Positon(performer.request.delayMs,performer.request.delayMsLastTwo);
 	
 	  data->response.ret=0;
 }	

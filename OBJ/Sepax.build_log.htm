@@ -27,22 +27,20 @@ Project File Date:  11/27/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
-compiling factory_many.c...
-..\HARDWARE\PowerStep01\factory_many.c(85): warning:  #111-D: statement is unreachable
-  		return 0;		
-..\HARDWARE\PowerStep01\factory_many.c(109): warning:  #111-D: statement is unreachable
-  		return 0;			
-..\HARDWARE\PowerStep01\factory_many.c(146): warning:  #111-D: statement is unreachable
-  		return 0;			
-..\HARDWARE\PowerStep01\factory_many.c(180): warning:  #111-D: statement is unreachable
-  		return 0;		
-..\HARDWARE\PowerStep01\factory_many.c(212): warning:  #111-D: statement is unreachable
-  		return 0;
-..\HARDWARE\PowerStep01\factory_many.c: 5 warnings, 0 errors
+compiling step01.c...
+..\HARDWARE\PowerStep01\step01.c(651): warning:  #177-D: variable "status" was declared but never referenced
+  	int status=0;
+..\HARDWARE\PowerStep01\step01.c(687): warning:  #177-D: variable "status" was declared but never referenced
+  	int status=0;
+..\HARDWARE\PowerStep01\step01.c(750): warning:  #177-D: variable "result" was declared but never referenced
+  int i=0,result=0,value=0;
+..\HARDWARE\PowerStep01\step01.c(750): warning:  #177-D: variable "value" was declared but never referenced
+  int i=0,result=0,value=0;
+..\HARDWARE\PowerStep01\step01.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=64562 RO-data=1390 RW-data=1184 ZI-data=7080  
+Program Size: Code=64730 RO-data=1438 RW-data=1184 ZI-data=7080  
 FromELF: creating hex file...
-"..\OBJ\Sepax.axf" - 0 Error(s), 5 Warning(s).
+"..\OBJ\Sepax.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\MOTOR\SepaxSharkStm32\USER\RTE

@@ -508,7 +508,14 @@ FACTORY_TYPE Mix_Work_Goto_Postion(void)
 }
 
 
+static uint16_t  delayMs_Normal_Positon=0;
+static uint16_t  delayMs_Normal_Positon_Last_Two=0;
 
+void set_DelayMs_Normal_Positon(uint16_t delayMs,uint16_t delayMsLastTwo)
+{
+		delayMs_Normal_Positon=delayMs;
+		delayMs_Normal_Positon_Last_Two=delayMsLastTwo;
+}	
 
 
 
@@ -521,7 +528,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next_The_Last_Two(void)
 	
 	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,3200);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT,M4_NEXT_TO_BLANK, 20000);
-	 ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000);
+	 ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon_Last_Two);
 	if(ret)value=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
 #endif
 		return value;
@@ -536,7 +543,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next(void)
 	uint8_t ret=0;
 	//Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK,4800);
 	//RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
-	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000);
+	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon);
 	if(ret)value=NORMAL_NEXT_LIGHT_ERROR;
 #endif
 	return value;
@@ -546,21 +553,27 @@ FACTORY_TYPE Normal_Goto_First_Position(void)
 {
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-	uint8_t ret=RestSelectMotorOrgin(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000);
+	uint8_t ret=RestSelectMotorOrginDelay(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000,delayMs_Normal_Positon);
 	if(ret)value|=NORMAL_NEXT_LIGHT_ERROR;
 #endif
  return value;	
 }
 
+
+
 FACTORY_TYPE Normal_Move_Blank(void)
 {
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-	uint8_t ret=RestSelectMotorOrginSelect(M4_BLANK_NEXT,BLANK_LIGHT,M4_NEXT_TO_BLANK, 32000,LOW_SPEED);
-	if(ret)value|=BLANK_LIGHT_ERROR;
+	//uint8_t ret=__Normal_Move_Blank__();
+	//if(ret)value|=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	uint8_t ret=Normal_Pitch_Move_Next_The_Last_Two();
+	if(ret)value|=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
 #endif	
 	return value;
 }	
+
+
 
 /***********************************************************/
 //time ms
@@ -750,7 +763,8 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command)
 				  value=Normal_Pitch_Move_Next();
 				break;
 			case NORMAL_BLANK_REST:
-				  value=Normal_Move_Blank();
+				  //value=Normal_Move_Blank();
+					value=Normal_Pitch_Move_Next_The_Last_Two();
 				break;
 			case REST_SAMPLE_MOTOR:
 				  value=Rest_Sample_Motor_Orgin();

@@ -526,15 +526,72 @@ void StopALLMotorMotion(void)
 }
 
 
-static uint32_t  delayMs_Normal_Positon=0;
-
-void set_DelayMs_Normal_Positon(uint32_t delayMs)
+uint8_t __Normal_Move_Blank__(void)
 {
-	delayMs_Normal_Positon=delayMs;
-}	
+		uint8_t ret=0;
+		int i=0;
+	
+		PowerStep_Select_Motor_Baby(M4_BLANK_NEXT);
+		BSP_MotorControl_Move(0, M4_NEXT_TO_BLANK, 40000);
+	
+	  //step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
+		delay_ms(100);	
+		
+	  //step2:持续检测，等待指示灯灭掉
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{	
+							delay_ms(100);
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return 2;
+				}
+				delay_ms(1);	
+		}
+	
+		
+		//step3:持续检测，等待指示灯亮起
+		i=0;
+		while(1)
+		{
+				i++;
+				if(!Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{			delay_ms(100);						
+							BSP_MotorControl_HardStop(0);	
+							break;
+				}else if(i>=5*1000)
+				{
+							ret=1;
+							LOGE("motor no find light \r\n");
+							BSP_MotorControl_HardStop(0);	
+							break;	
+				}
+				delay_ms(1);	
+		}
+		
+		//step4:持续检测，等待指示灯灭掉
+ 		i=0;
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{			delay_ms(100);	
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return 2;
+				}
+				delay_ms(1);	
+		}
+	
+		return ret;
+}
 
 
-uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps)
+uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps, uint16_t delayMs)
 {
 		uint8_t ret=0;
 		int i=0;
@@ -544,7 +601,7 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 		BSP_MotorControl_Move(0, motorDir, steps);
 	
 		//step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
-	  delay_ms(50);	
+	  delay_ms(100);	
 	
 	 //step2:持续检测，等待指示灯灭掉
 		while(1)
@@ -567,8 +624,7 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 				i++;
 				if(!Light_Sensor_Get(lightNum))
 				{			
-							
-							delay_ms(delayMs_Normal_Positon);
+							delay_ms(delayMs);
 					
 							BSP_MotorControl_HardStop(0);	
 							break;
@@ -626,7 +682,41 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 }
 
 
+uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps,uint16_t delayMs)
+{
+	int status=0;
+	int i=0;
+  uint8_t light=1;
+	
+	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 
+		
+		steps=200*10000;
+	
+		PowerStep_Select_Motor_Baby(motorNum);
+		BSP_MotorControl_Move(0, motorDir, steps);
+		while(1){
+				i++;
+				if(!Light_Sensor_Get(lightNum))
+					{				
+							light=0;
+						  delay_ms(delayMs);
+							BSP_MotorControl_HardStop(0);	
+							break;
+				}else if(i>=7*1000){
+							light=1;
+							LOGE("motor no find light \r\n");
+							BSP_MotorControl_HardStop(0);	
+							break;	
+				}
+				delay_ms(1);	
+		}
+	 //BSP_MotorControl_HardStop(0);
+		
+	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
+
+	return light;		
+}
 
 
 

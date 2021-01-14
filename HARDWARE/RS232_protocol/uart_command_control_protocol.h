@@ -144,7 +144,8 @@ typedef union{
 
 typedef union{ 
 	struct{
-		uint32_t delayMs;
+		uint16_t delayMs;
+		uint16_t delayMsLastTwo;
 	}request;
 	struct{
 		uint8_t nor[3];
