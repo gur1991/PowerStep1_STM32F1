@@ -26,25 +26,19 @@ void  Real_Time_Polling_Current_Index(void)
 		uint32_t weight2=0;
 		uint32_t weight3=0;
 		uint32_t weight4=0;
-	  uint8_t status=ALL_GOOD;
+	  uint8_t status=ALL_GOOD;	  
 	
-		//memset(&POLLING_data, 0, sizeof(POLLING_data));
-	  
-	
-		STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree,&status);
-		
-		POLLING_data.status=status;
-		//LOGD("STATUS:[%d] \r\n",POLLING_data.status);
-	
-	
-		//解决温度异常	
-		if(degree<=800 ||degree==1000)
-		{ 
-			POLLING_data.degree=degree;
-			//LOGD("degree:%d \r\n",degree);
+		uint8_t ret=STM32_Change_Protocol_Control_Mini_Board_Get_Degree(data,&degree,&status);
+		if(!ret)
+		{	
+				POLLING_data.status=status;
+				//解决温度异常	
+				if(degree<=800 ||degree==1000)
+				{ 
+					POLLING_data.degree=degree;
+				}
 		}
-		//LOGD("POLLING_data.degree:%d \r\n",POLLING_data.degree);
-
+		
 	  POLLING_data.liquid=Liquid_Sensor_Get();
 		
 		weight1=Get_weight_current_gram(WEIGHT_ONE);

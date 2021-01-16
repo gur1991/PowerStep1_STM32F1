@@ -23,13 +23,6 @@ void UART4_IRQHandler(void)
 				UART4_RX_BUF[UART4_RX_CNT]=res;		//记录接收到的值
 				UART4_RX_CNT++;						//接收数据增加1	
 			}
-			
-			//if(UART4_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
-			//{
-					// if( UART4_RX_BUF[0]==START_UART_VALUE0 && UART4_RX_BUF[1]==START_UART_VALUE1)
-			//				ARM_RS232_ASK=1;
-			//}
-
 	}
 } 
 

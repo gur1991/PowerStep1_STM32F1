@@ -1028,7 +1028,8 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 					goto ERROE_OVER;
 		}
 			
-		switch(slave_motorCommand.type){
+		switch(slave_motorCommand.type)
+		{
 			case MOVE_TYPE:
 						protocol_powerstep01_move(&slave_motorCommand.CommandPowerStep1.move);
 						break;

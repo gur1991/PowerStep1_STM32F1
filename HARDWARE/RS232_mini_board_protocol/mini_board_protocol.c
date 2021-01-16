@@ -5,9 +5,9 @@
 uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t* master,int length_data,int* len){
 		uint8_t ret=0;
 	  check_bit_type_t check;
-	
+	  int temp_a=0,temp_b=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		int times =100;
+		int times =50;
 	  check=caculate_tansfer_check_bit(*master);
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
@@ -15,26 +15,41 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 	  master->StartReceiveFlag[1]=START_UART_VALUE1;
 		master->CheckBit[0]=check.H;
 	  master->CheckBit[1]=check.L;
-	
+		UART5_Enable_Interrupt();
+	  UART5_RX_CNT=0;
 		UART5_Send_Data((u8*)(master),length_data);
-		while(1){
-			if(MINI_RS232_ASK){
-					UART5_Receive_Data((u8*)(master),len);
-					MINI_RS232_ASK=0;
-					//LOGD("master receive data ok\r\n");
-					break;		
+		while(1)
+		{
+			temp_a=UART5_RX_CNT;
+			delay_ms(20);	
+			temp_b=UART5_RX_CNT;
+			
+			if(temp_b!=0)
+			{		
+					if((temp_a==temp_b) && (temp_b!=sizeof(Powerstep1_contorl_motor_command_t)))
+					{
+						LOGE("rx len is error \r\n");
+						UART5_RX_CNT=0;
+						ret=1;
+					}
+					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
+					{
+							UART5_Receive_Data((u8*)(master),len);
+							UART5_RX_CNT=0;
+						  break;
+					}	
 			}
+
 			times--;
-			if(times ==0){
+			if(times ==0)
+			{
 					ret=1;
 					LOGE("transfer error ! \r\n");
 					break;
 			}
-			delay_ms(5);
-			//LOGD("wait  \r\n");
 		}
+		UART5_Disable_Interrupt();
 #endif
-		
 		return ret;
 }
 

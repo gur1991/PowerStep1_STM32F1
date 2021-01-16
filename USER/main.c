@@ -32,7 +32,7 @@
 #include "uart_rts_control.h"
 #include "real_time_polling.h"
 #include "uart_choose.h"
-
+#include "check_rs232.h"
 
 int Check_Board_Define_Config(void)
 {
@@ -110,8 +110,25 @@ void Init_Board_Config(void)
 		
 
 }	
-
-
+void __ack_error_msg__(void)
+{	
+	  check_bit_type_t check;
+		Powerstep1_contorl_motor_command_t slave_sendCommand;
+		memset(&slave_sendCommand,0,sizeof(Powerstep1_contorl_motor_command_t));
+	
+		slave_sendCommand.type=ERROR_TYPE;
+		slave_sendCommand.CommandPowerStep1.error.response.ret=1;	
+	
+		Uart_Clear_Context();
+		slave_sendCommand.StartReceiveFlag[0]=START_UART_VALUE0;
+		slave_sendCommand.StartReceiveFlag[1]=START_UART_VALUE1;
+		slave_sendCommand.OverReceiveFlag[0]=OVER_UART_VALUE0;
+		slave_sendCommand.OverReceiveFlag[1]=OVER_UART_VALUE1;
+		check=caculate_tansfer_check_bit(slave_sendCommand);	//不对flag进行校验
+		slave_sendCommand.CheckBit[0]=check.H;
+		slave_sendCommand.CheckBit[1]=check.L;
+		UART4_Send_Data((u8*)(&slave_sendCommand),sizeof(Powerstep1_contorl_motor_command_t));
+}
 
 int main(void)
 {	
@@ -133,24 +150,19 @@ int main(void)
 	//Mix_Blood_High_Speed();
 	while(1)
 	{
-/*		
-			if(ARM_RS232_ASK)
-			{
-							protocol_handle_uart_powerstep01_plain_slave_cmd();
-							ARM_RS232_ASK=0;
-			}	
-*/
-			
 			temp_a=UART4_RX_CNT;
-			delay_ms(10);	
+			delay_ms(20);	
 			temp_b=UART4_RX_CNT;
 			
 			if(temp_b!=0)
 			{		
 					if((temp_a==temp_b) && (temp_b!=sizeof(Powerstep1_contorl_motor_command_t)))
 					{
-						LOGE("rx len is error \r\n");
-						UART4_RX_CNT=0;
+							LOGE("rx len is error [%d] \r\n",temp_a);
+							UART4_RX_CNT=0;
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)						
+							__ack_error_msg__();
+#endif						
 					}
 					
 					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))

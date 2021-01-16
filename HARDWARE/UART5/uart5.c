@@ -7,7 +7,6 @@ UART_HandleTypeDef UART5_Handler;
 
 u8 UART5_RX_BUF[LEN_MAX_UART5];  	
 int UART5_RX_CNT=0;  
-int MINI_RS232_ASK=0;
 
 void UART5_IRQHandler(void)
 {
@@ -20,20 +19,6 @@ void UART5_IRQHandler(void)
 			UART5_RX_BUF[UART5_RX_CNT]=res;		//记录接收到的值
 			UART5_RX_CNT++;						//接收数据增加1	
 		} 
-		/*
-		if(UART5_RX_CNT == 2)
-		{
-				if( UART5_RX_BUF[0]==START_UART_VALUE0 && UART5_RX_BUF[1]==START_UART_VALUE1){ ;}
-				else {UART5_RX_BUF[0]= UART5_RX_BUF[1];UART5_RX_CNT=1;}
-		}
-
-		else
-		*/ 
-		if(UART5_RX_CNT==sizeof(Powerstep1_contorl_motor_command_t))
-		{
-					MINI_RS232_ASK=1;
-		}
-
 	}
 } 
 
@@ -69,10 +54,23 @@ void UART5_Init(u32 bound)
 	//HAL_UART_Receive_IT(&UART5_Handler, &aRxBuffer_UART5, 1);//该函数会开启接收中断：标志位UART_IT_RXNE，并且设置接收缓冲以及接收缓冲接收最大数据量
   __HAL_UART_DISABLE_IT(&UART5_Handler,UART_IT_TC);
 	__HAL_UART_ENABLE_IT(&UART5_Handler,UART_IT_RXNE);//开启接收中断
-	HAL_NVIC_EnableIRQ(UART5_IRQn);				        //使能UART5中断
-	HAL_NVIC_SetPriority(UART5_IRQn,3,3);			        //抢占优先级3，子优先级3
-
+	//HAL_NVIC_EnableIRQ(UART5_IRQn);				        //使能UART5中断
+	//HAL_NVIC_SetPriority(UART5_IRQn,3,3);			        //抢占优先级3，子优先级3
+	HAL_NVIC_DisableIRQ(UART5_IRQn);
 }
+
+void UART5_Enable_Interrupt(void)
+{
+		HAL_NVIC_EnableIRQ(UART5_IRQn);				       
+		HAL_NVIC_SetPriority(UART5_IRQn,3,3);			        
+}	
+
+void UART5_Disable_Interrupt(void)
+{
+	  HAL_NVIC_DisableIRQ(UART5_IRQn);		      
+}	
+
+
 
 void UART5_Send_Data(u8 *buf,int len)
 {
