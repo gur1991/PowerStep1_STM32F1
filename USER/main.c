@@ -145,17 +145,20 @@ int main(void)
 			delay_ms(10);	
 			temp_b=UART4_RX_CNT;
 			
-			if((temp_a==temp_b) && (temp_b!=sizeof(Powerstep1_contorl_motor_command_t)))
-			{
-				UART4_RX_CNT=0;
+			if(temp_b!=0)
+			{		
+					if((temp_a==temp_b) && (temp_b!=sizeof(Powerstep1_contorl_motor_command_t)))
+					{
+						LOGE("rx len is error \r\n");
+						UART4_RX_CNT=0;
+					}
+					
+					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
+					{
+							protocol_handle_uart_powerstep01_plain_slave_cmd();
+							UART4_RX_CNT=0;
+					}	
 			}
-			
-			if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
-			{
-					protocol_handle_uart_powerstep01_plain_slave_cmd();
-					UART4_RX_CNT=0;
-			}	
-			
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
