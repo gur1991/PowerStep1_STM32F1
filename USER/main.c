@@ -167,7 +167,9 @@ int main(void)
 					
 					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
 					{
+							UART4_Disable_Interrupt();
 							protocol_handle_uart_powerstep01_plain_slave_cmd();
+						  UART4_Enable_Interrupt();
 							UART4_RX_CNT=0;
 					}	
 			}

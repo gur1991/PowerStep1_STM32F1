@@ -34,6 +34,7 @@ Section Cross References
     main.o(i.main) refers to uart4.o(i.UART4_Enable_Interrupt) for UART4_Enable_Interrupt
     main.o(i.main) refers to delay.o(i.delay_ms) for delay_ms
     main.o(i.main) refers to main.o(i.__ack_error_msg__) for __ack_error_msg__
+    main.o(i.main) refers to uart4.o(i.UART4_Disable_Interrupt) for UART4_Disable_Interrupt
     main.o(i.main) refers to slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd) for protocol_handle_uart_powerstep01_plain_slave_cmd
     main.o(i.main) refers to real_time_polling.o(i.Real_Time_Polling_Current_Index) for Real_Time_Polling_Current_Index
     main.o(i.main) refers to main.o(.constdata) for .constdata
@@ -1350,6 +1351,7 @@ Section Cross References
     factory_many.o(i.process_motor_command_receive) refers to factory_many.o(i.C55_C52_connect_check) for C55_C52_connect_check
     factory_many.o(i.process_motor_command_receive) refers to factory_many.o(.constdata) for .constdata
     factory_many.o(i.set_DelayMs_Normal_Positon) refers to factory_many.o(.data) for .data
+    uart4.o(i.UART4_Disable_Interrupt) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_DisableIRQ) for HAL_NVIC_DisableIRQ
     uart4.o(i.UART4_Enable_Interrupt) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ) for HAL_NVIC_EnableIRQ
     uart4.o(i.UART4_Enable_Interrupt) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriority) for HAL_NVIC_SetPriority
     uart4.o(i.UART4_IRQHandler) refers to stm32f1xx_hal_uart.o(i.HAL_UART_Receive) for HAL_UART_Receive
@@ -4166,42 +4168,42 @@ Image Symbol Table
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/string/strcmp.c         0x00000000   Number         0  strcmp.o ABSOLUTE
@@ -4210,24 +4212,24 @@ Image Symbol Table
     ../clib/microlib/string/strncpy.c        0x00000000   Number         0  strncpy.o ABSOLUTE
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok.o ABSOLUTE
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok_r.o ABSOLUTE
-    ../clib/microlib/stubs.s                 0x00000000   Number         0  useno.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  useno.o ABSOLUTE
     ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
-    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixi.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixi.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixui.o ABSOLUTE
-    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  fflti.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  ffltui.o ABSOLUTE
-    ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  fmul.o ABSOLUTE
+    ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     ../fplib/microlib/fpscalb.c              0x00000000   Number         0  fscalb.o ABSOLUTE
     ..\CORE\startup_stm32f103xe.s            0x00000000   Number         0  startup_stm32f103xe.o ABSOLUTE
     ..\HALLIB\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c 0x00000000   Number         0  stm32f1xx_hal.o ABSOLUTE
@@ -4429,8 +4431,8 @@ Image Symbol Table
     .text                                    0x080007bc   Section        0  uldiv.o(.text)
     .text                                    0x0800081e   Section        0  llushr.o(.text)
     .text                                    0x0800083e   Section        0  llsshr.o(.text)
-    .text                                    0x08000862   Section        0  iusefp.o(.text)
     .text                                    0x08000862   Section        0  fepilogue.o(.text)
+    .text                                    0x08000862   Section        0  iusefp.o(.text)
     .text                                    0x080008d0   Section        0  depilogue.o(.text)
     .text                                    0x0800098c   Section       36  init.o(.text)
     .text                                    0x080009b0   Section        0  __dczerorl2.o(.text)
@@ -4839,222 +4841,223 @@ Image Symbol Table
     i.UART2_Send_Data                        0x0800aff4   Section        0  uart2.o(i.UART2_Send_Data)
     i.UART3_Receive_Data                     0x0800b014   Section        0  uart3.o(i.UART3_Receive_Data)
     i.UART3_Send_Data                        0x0800b048   Section        0  uart3.o(i.UART3_Send_Data)
-    i.UART4_Enable_Interrupt                 0x0800b068   Section        0  uart4.o(i.UART4_Enable_Interrupt)
-    i.UART4_IRQHandler                       0x0800b080   Section        0  uart4.o(i.UART4_IRQHandler)
-    i.UART4_Init                             0x0800b0bc   Section        0  uart4.o(i.UART4_Init)
-    i.UART4_Receive_Data                     0x0800b158   Section        0  uart4.o(i.UART4_Receive_Data)
-    i.UART4_Send_Data                        0x0800b194   Section        0  uart4.o(i.UART4_Send_Data)
-    i.UART5_Disable_Interrupt                0x0800b1b4   Section        0  uart5.o(i.UART5_Disable_Interrupt)
-    i.UART5_Enable_Interrupt                 0x0800b1ba   Section        0  uart5.o(i.UART5_Enable_Interrupt)
-    i.UART5_IRQHandler                       0x0800b1d0   Section        0  uart5.o(i.UART5_IRQHandler)
-    i.UART5_Init                             0x0800b20c   Section        0  uart5.o(i.UART5_Init)
-    i.UART5_Receive_Data                     0x0800b2bc   Section        0  uart5.o(i.UART5_Receive_Data)
-    i.UART5_Send_Data                        0x0800b2f0   Section        0  uart5.o(i.UART5_Send_Data)
-    i.UART_Receive_IT                        0x0800b310   Section        0  stm32f1xx_hal_uart.o(i.UART_Receive_IT)
-    UART_Receive_IT                          0x0800b311   Thumb Code   166  stm32f1xx_hal_uart.o(i.UART_Receive_IT)
-    i.UART_SetConfig                         0x0800b3b8   Section        0  stm32f1xx_hal_uart.o(i.UART_SetConfig)
-    UART_SetConfig                           0x0800b3b9   Thumb Code   364  stm32f1xx_hal_uart.o(i.UART_SetConfig)
-    i.UART_Transmit_IT                       0x0800b528   Section        0  stm32f1xx_hal_uart.o(i.UART_Transmit_IT)
-    UART_Transmit_IT                         0x0800b529   Thumb Code   102  stm32f1xx_hal_uart.o(i.UART_Transmit_IT)
-    i.UART_WaitOnFlagUntilTimeout            0x0800b58e   Section        0  stm32f1xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
-    UART_WaitOnFlagUntilTimeout              0x0800b58f   Thumb Code   146  stm32f1xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
-    i.USART1_IRQHandler                      0x0800b620   Section        0  usart.o(i.USART1_IRQHandler)
-    i.USART2_IRQHandler                      0x0800b64c   Section        0  uart2.o(i.USART2_IRQHandler)
-    i.USART3_IRQHandler                      0x0800b734   Section        0  uart3.o(i.USART3_IRQHandler)
-    i.Uart2_Config_Init                      0x0800b7dc   Section        0  uart_config.o(i.Uart2_Config_Init)
-    i.Uart2_Rx_Clear                         0x0800b7f0   Section        0  uart2.o(i.Uart2_Rx_Clear)
-    i.Uart3_Rx_Clear                         0x0800b7fc   Section        0  uart3.o(i.Uart3_Rx_Clear)
-    i.Uart4_Rx_Clear                         0x0800b808   Section        0  uart4.o(i.Uart4_Rx_Clear)
-    i.Uart_Clear_Context                     0x0800b814   Section        0  uart_config.o(i.Uart_Clear_Context)
-    i.Uart_Select_Baby                       0x0800b828   Section        0  uart_choose.o(i.Uart_Select_Baby)
-    i.Uart_cs_init                           0x0800b8f0   Section        0  uart_choose.o(i.Uart_cs_init)
-    i.UsageFault_Handler                     0x0800b930   Section        0  stm32f1xx_it.o(i.UsageFault_Handler)
-    i.Weight_Sensor_Init                     0x0800b934   Section        0  weight.o(i.Weight_Sensor_Init)
-    i.__0printf$8                            0x0800b988   Section        0  printf8.o(i.__0printf$8)
-    i.__0sprintf$8                           0x0800b9a8   Section        0  printf8.o(i.__0sprintf$8)
-    i.__InfoBoard__                          0x0800b9d0   Section        0  slave_uart_control_interface.o(i.__InfoBoard__)
-    i.__Light_Sensor_Get__                   0x0800ba0c   Section        0  light.o(i.__Light_Sensor_Get__)
-    i.__Normal_Pitch_Move_Next__             0x0800baa4   Section        0  step01.o(i.__Normal_Pitch_Move_Next__)
-    i.__ack_error_msg__                      0x0800bb80   Section        0  main.o(i.__ack_error_msg__)
-    i.__malloc$realloc                       0x0800bbe0   Section        0  mallocr.o(i.__malloc$realloc)
-    i.__scatterload_copy                     0x0800bc30   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800bc3e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0800bc40   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._commandTOstring_                      0x0800bc50   Section        0  slave_uart_control_interface.o(i._commandTOstring_)
-    _commandTOstring_                        0x0800bc51   Thumb Code  1360  slave_uart_control_interface.o(i._commandTOstring_)
-    i._num2string_                           0x0800c2d8   Section        0  factory_many.o(i._num2string_)
-    _num2string_                             0x0800c2d9   Thumb Code   182  factory_many.o(i._num2string_)
-    i._printf_core                           0x0800c65c   Section        0  printf8.o(i._printf_core)
-    _printf_core                             0x0800c65d   Thumb Code   996  printf8.o(i._printf_core)
-    i._printf_post_padding                   0x0800ca6c   Section        0  printf8.o(i._printf_post_padding)
-    _printf_post_padding                     0x0800ca6d   Thumb Code    36  printf8.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x0800ca90   Section        0  printf8.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x0800ca91   Thumb Code    46  printf8.o(i._printf_pre_padding)
-    i._sputc                                 0x0800cabe   Section        0  printf8.o(i._sputc)
-    _sputc                                   0x0800cabf   Thumb Code    10  printf8.o(i._sputc)
-    i.autoDetectAntennaList                  0x0800cac8   Section        0  serial_reader.o(i.autoDetectAntennaList)
-    autoDetectAntennaList                    0x0800cac9   Thumb Code   146  serial_reader.o(i.autoDetectAntennaList)
-    i.caculate_tansfer_check_bit             0x0800cb60   Section        0  check_rs232.o(i.caculate_tansfer_check_bit)
-    i.checkForAvailableFeatures              0x0800cbc0   Section        0  tm_reader.o(i.checkForAvailableFeatures)
-    i.cheminert_c52_c55_transfer             0x0800cc04   Section        0  cheminert_c52.o(i.cheminert_c52_c55_transfer)
-    i.compareAntennas                        0x0800cd9c   Section        0  serial_reader.o(i.compareAntennas)
-    i.compareVersion                         0x0800ce14   Section        0  serial_reader.o(i.compareVersion)
-    i.delay_init                             0x0800ce50   Section        0  delay.o(i.delay_init)
-    i.delay_ms                               0x0800ce64   Section        0  delay.o(i.delay_ms)
-    i.delay_us                               0x0800ce80   Section        0  delay.o(i.delay_us)
-    i.electromagnetic_control                0x0800ceb4   Section        0  electromagnetic.o(i.electromagnetic_control)
-    i.electromagnetic_control_package        0x0800ceb6   Section        0  electromagnetic.o(i.electromagnetic_control_package)
-    i.extractGen2MemoryBankValues            0x0800ceb8   Section        0  serial_reader_l3.o(i.extractGen2MemoryBankValues)
-    i.filterbytes                            0x0800cf5c   Section        0  serial_reader_l3.o(i.filterbytes)
-    filterbytes                              0x0800cf5d   Thumb Code   678  serial_reader_l3.o(i.filterbytes)
-    i.fputc                                  0x0800d20c   Section        0  usart.o(i.fputc)
-    i.getPortValues                          0x0800d224   Section        0  serial_reader.o(i.getPortValues)
-    getPortValues                            0x0800d225   Thumb Code   166  serial_reader.o(i.getPortValues)
-    i.getSerialNumber                        0x0800d2cc   Section        0  serial_reader.o(i.getSerialNumber)
-    getSerialNumber                          0x0800d2cd   Thumb Code   114  serial_reader.o(i.getSerialNumber)
-    i.get_weight_sensor_value                0x0800d344   Section        0  weight.o(i.get_weight_sensor_value)
-    i.initTxRxMapFromPorts                   0x0800d36c   Section        0  serial_reader.o(i.initTxRxMapFromPorts)
-    initTxRxMapFromPorts                     0x0800d36d   Thumb Code   454  serial_reader.o(i.initTxRxMapFromPorts)
-    i.init_mix_motor_config                  0x0800d538   Section        0  step01.o(i.init_mix_motor_config)
-    i.init_motor_device                      0x0800d558   Section        0  step01.o(i.init_motor_device)
-    i.internal_alloc                         0x0800d5b8   Section        0  mallocr.o(i.internal_alloc)
-    internal_alloc                           0x0800d5b9   Thumb Code    76  mallocr.o(i.internal_alloc)
-    i.isAntDetectEnabled                     0x0800d608   Section        0  tm_reader.o(i.isAntDetectEnabled)
-    i.isContinuousReadParamSupported         0x0800d6b0   Section        0  serial_reader_l3.o(i.isContinuousReadParamSupported)
-    i.isMultiSelectSupported                 0x0800d76a   Section        0  tm_reader.o(i.isMultiSelectSupported)
-    i.l647x_GetMotorHandle                   0x0800d7de   Section        0  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
-    i.l648x_GetMotorHandle                   0x0800d7e2   Section        0  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
-    i.main                                   0x0800d7e8   Section        0  main.o(i.main)
-    i.prepEmbReadTagMultiple                 0x0800d8f8   Section        0  serial_reader.o(i.prepEmbReadTagMultiple)
-    prepEmbReadTagMultiple                   0x0800d8f9   Thumb Code    56  serial_reader.o(i.prepEmbReadTagMultiple)
-    i.prepForSearch                          0x0800d930   Section        0  serial_reader.o(i.prepForSearch)
-    i.process_motor_command_receive          0x0800d9a0   Section        0  factory_many.o(i.process_motor_command_receive)
-    i.protocol_cheminert_c52_c55             0x0800dad0   Section        0  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
-    protocol_cheminert_c52_c55               0x0800dad1   Thumb Code   882  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
-    i.protocol_gravity_sensor_getting        0x0800df88   Section        0  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
-    protocol_gravity_sensor_getting          0x0800df89   Thumb Code    42  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
-    i.protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfb4   Section        0  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
-    i.protocol_pump_s100_interface           0x0800e51c   Section        0  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
-    protocol_pump_s100_interface             0x0800e51d   Thumb Code   248  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
-    i.protocol_real_time_polling             0x0800e678   Section        0  slave_uart_control_interface.o(i.protocol_real_time_polling)
-    protocol_real_time_polling               0x0800e679   Thumb Code   158  slave_uart_control_interface.o(i.protocol_real_time_polling)
-    i.protocol_rfid_get_epc_string           0x0800e716   Section        0  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
-    protocol_rfid_get_epc_string             0x0800e717   Thumb Code    50  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
-    i.protocol_scan_barcode                  0x0800e748   Section        0  slave_uart_control_interface.o(i.protocol_scan_barcode)
-    protocol_scan_barcode                    0x0800e749   Thumb Code    34  slave_uart_control_interface.o(i.protocol_scan_barcode)
-    i.pump_s100_transfer                     0x0800e770   Section        0  pump_s100.o(i.pump_s100_transfer)
-    i.read_addr                              0x0800e914   Section        0  usmart.o(i.read_addr)
-    i.s_flush                                0x0800e918   Section        0  serial_transport_stm32f103rb.o(i.s_flush)
-    s_flush                                  0x0800e919   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_flush)
-    i.s_open                                 0x0800e91c   Section        0  serial_transport_stm32f103rb.o(i.s_open)
-    s_open                                   0x0800e91d   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_open)
-    i.s_receiveBytes                         0x0800e920   Section        0  serial_transport_stm32f103rb.o(i.s_receiveBytes)
-    s_receiveBytes                           0x0800e921   Thumb Code   154  serial_transport_stm32f103rb.o(i.s_receiveBytes)
-    i.s_sendBytes                            0x0800e9c8   Section        0  serial_transport_stm32f103rb.o(i.s_sendBytes)
-    s_sendBytes                              0x0800e9c9   Thumb Code    24  serial_transport_stm32f103rb.o(i.s_sendBytes)
-    i.s_setBaudRate                          0x0800e9e4   Section        0  serial_transport_stm32f103rb.o(i.s_setBaudRate)
-    s_setBaudRate                            0x0800e9e5   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_setBaudRate)
-    i.s_shutdown                             0x0800e9e8   Section        0  serial_transport_stm32f103rb.o(i.s_shutdown)
-    s_shutdown                               0x0800e9e9   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_shutdown)
-    i.setAntennaList                         0x0800e9ec   Section        0  serial_reader.o(i.setAntennaList)
-    setAntennaList                           0x0800e9ed   Thumb Code   124  serial_reader.o(i.setAntennaList)
-    i.setAntennaReadTimeHelper               0x0800ea6c   Section        0  serial_reader.o(i.setAntennaReadTimeHelper)
-    i.setAntennaReadTimeList                 0x0800eb68   Section        0  serial_reader.o(i.setAntennaReadTimeList)
-    i.setPortValues                          0x0800ebb4   Section        0  serial_reader.o(i.setPortValues)
-    setPortValues                            0x0800ebb5   Thumb Code   234  serial_reader.o(i.setPortValues)
-    i.setProtocol                            0x0800eca4   Section        0  serial_reader.o(i.setProtocol)
-    setProtocol                              0x0800eca5   Thumb Code   106  serial_reader.o(i.setProtocol)
-    i.set_DelayMs_Normal_Positon             0x0800ed10   Section        0  factory_many.o(i.set_DelayMs_Normal_Positon)
-    i.set_mix_motor_config                   0x0800ed1c   Section        0  step01.o(i.set_mix_motor_config)
-    i.tm_crc                                 0x0800ed28   Section        0  serial_reader_l3.o(i.tm_crc)
-    tm_crc                                   0x0800ed29   Thumb Code    54  serial_reader_l3.o(i.tm_crc)
-    i.tm_gettime_consistent                  0x0800ed64   Section        0  tmr_utils.o(i.tm_gettime_consistent)
-    i.tm_memcpy                              0x0800ed8a   Section        0  tmr_utils.o(i.tm_memcpy)
-    i.tm_strcpy                              0x0800eda0   Section        0  tmr_utils.o(i.tm_strcpy)
-    i.tm_time_subtract                       0x0800edb0   Section        0  tmr_utils.o(i.tm_time_subtract)
-    i.tm_u8s_per_bits                        0x0800edbe   Section        0  tmr_utils.o(i.tm_u8s_per_bits)
-    i.tmr_gettime                            0x0800edd0   Section        0  osdep_stm32f103rb.o(i.tmr_gettime)
-    i.tmr_gettime_high                       0x0800edf4   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_high)
-    i.tmr_gettime_low                        0x0800edfe   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_low)
-    i.tmr_sleep                              0x0800ee08   Section        0  osdep_stm32f103rb.o(i.tmr_sleep)
-    i.uart_init                              0x0800ee28   Section        0  usart.o(i.uart_init)
-    i.usmart_cmd_rec                         0x0800ee4c   Section        0  usmart.o(i.usmart_cmd_rec)
-    i.usmart_exe                             0x0800eee0   Section        0  usmart.o(i.usmart_exe)
-    i.usmart_get_aparm                       0x0800f140   Section        0  usmart_str.o(i.usmart_get_aparm)
-    i.usmart_get_cmdname                     0x0800f1e4   Section        0  usmart_str.o(i.usmart_get_cmdname)
-    i.usmart_get_fname                       0x0800f214   Section        0  usmart_str.o(i.usmart_get_fname)
-    i.usmart_get_fparam                      0x0800f37c   Section        0  usmart_str.o(i.usmart_get_fparam)
-    i.usmart_get_parmpos                     0x0800f44c   Section        0  usmart_str.o(i.usmart_get_parmpos)
-    i.usmart_get_runtime                     0x0800f470   Section        0  usmart.o(i.usmart_get_runtime)
-    i.usmart_init                            0x0800f4a0   Section        0  usmart.o(i.usmart_init)
-    i.usmart_pow                             0x0800f4c8   Section        0  usmart_str.o(i.usmart_pow)
-    i.usmart_reset_runtime                   0x0800f4d8   Section        0  usmart.o(i.usmart_reset_runtime)
-    i.usmart_scan                            0x0800f500   Section        0  usmart.o(i.usmart_scan)
-    i.usmart_search_nextc                    0x0800f5a4   Section        0  usmart_str.o(i.usmart_search_nextc)
-    i.usmart_str2num                         0x0800f5b4   Section        0  usmart_str.o(i.usmart_str2num)
-    i.usmart_strcmp                          0x0800f68a   Section        0  usmart_str.o(i.usmart_strcmp)
-    i.usmart_strcopy                         0x0800f6a2   Section        0  usmart_str.o(i.usmart_strcopy)
-    i.usmart_strlen                          0x0800f6b4   Section        0  usmart_str.o(i.usmart_strlen)
-    i.usmart_sys_cmd_exe                     0x0800f6c8   Section        0  usmart.o(i.usmart_sys_cmd_exe)
-    i.validateParams                         0x0800fd48   Section        0  serial_reader.o(i.validateParams)
-    i.validateReadPlan                       0x0800fdb4   Section        0  tm_reader.o(i.validateReadPlan)
-    i.verifySearchStatus                     0x0800fe54   Section        0  serial_reader.o(i.verifySearchStatus)
-    i.versionCompare                         0x0800fedc   Section        0  tm_reader.o(i.versionCompare)
-    i.write_addr                             0x0800ff0a   Section        0  usmart.o(i.write_addr)
-    .constdata                               0x0800ff0e   Section       49  main.o(.constdata)
-    __func__                                 0x0800ff0e   Data           5  main.o(.constdata)
-    __func__                                 0x0800ff13   Data          26  main.o(.constdata)
-    __func__                                 0x0800ff2d   Data          18  main.o(.constdata)
-    .constdata                               0x0800ff3f   Section       16  system_stm32f1xx.o(.constdata)
-    .constdata                               0x0800ff4f   Section        8  system_stm32f1xx.o(.constdata)
-    .constdata                               0x0800ff57   Section       27  cheminert_c52.o(.constdata)
-    __func__                                 0x0800ff57   Data          27  cheminert_c52.o(.constdata)
-    .constdata                               0x0800ff72   Section       60  pump_s100.o(.constdata)
-    __func__                                 0x0800ff72   Data          19  pump_s100.o(.constdata)
-    __func__                                 0x0800ff85   Data          41  pump_s100.o(.constdata)
-    .constdata                               0x0800ffae   Section       96  step01.o(.constdata)
-    __func__                                 0x0800ffae   Data          22  step01.o(.constdata)
-    __func__                                 0x0800ffc4   Data          27  step01.o(.constdata)
-    __func__                                 0x0800ffdf   Data          21  step01.o(.constdata)
-    __func__                                 0x0800fff4   Data          26  step01.o(.constdata)
-    .constdata                               0x0801000e   Section       30  factory_many.o(.constdata)
-    __func__                                 0x0801000e   Data          30  factory_many.o(.constdata)
-    .constdata                               0x0801002c   Section      202  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x08010039   Data          32  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x08010059   Data          27  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x08010074   Data          29  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x08010091   Data          14  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0801009f   Data          49  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x080100d0   Data          10  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x080100da   Data          12  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x080100e6   Data          16  slave_uart_control_interface.o(.constdata)
-    .constdata                               0x080100f6   Section       22  fm100.o(.constdata)
-    __func__                                 0x080100f6   Data          22  fm100.o(.constdata)
-    .constdata                               0x0801010c   Section      122  bl180.o(.constdata)
-    __func__                                 0x0801010c   Data          18  bl180.o(.constdata)
-    __func__                                 0x0801011e   Data          18  bl180.o(.constdata)
-    __func__                                 0x08010130   Data          21  bl180.o(.constdata)
-    __func__                                 0x08010145   Data          13  bl180.o(.constdata)
-    __func__                                 0x08010152   Data          14  bl180.o(.constdata)
-    __func__                                 0x08010160   Data          12  bl180.o(.constdata)
-    __func__                                 0x0801016c   Data          10  bl180.o(.constdata)
-    __func__                                 0x08010176   Data          16  bl180.o(.constdata)
-    .constdata                               0x08010186   Section      132  m6e_apply.o(.constdata)
-    __func__                                 0x08010186   Data          16  m6e_apply.o(.constdata)
-    __func__                                 0x08010196   Data          14  m6e_apply.o(.constdata)
-    __func__                                 0x080101a4   Data          23  m6e_apply.o(.constdata)
-    __func__                                 0x080101bb   Data          18  m6e_apply.o(.constdata)
-    __func__                                 0x080101cd   Data          21  m6e_apply.o(.constdata)
-    __func__                                 0x080101e2   Data          20  m6e_apply.o(.constdata)
-    __func__                                 0x080101f6   Data          20  m6e_apply.o(.constdata)
-    .constdata                               0x0801020c   Section       44  serial_reader.o(.constdata)
-    .constdata                               0x08010238   Section       37  mini_board_protocol.o(.constdata)
-    __func__                                 0x08010238   Data          37  mini_board_protocol.o(.constdata)
-    .constdata                               0x0801025d   Section      104  rs232_change_protocol.o(.constdata)
-    __func__                                 0x0801025d   Data          52  rs232_change_protocol.o(.constdata)
-    __func__                                 0x08010291   Data          52  rs232_change_protocol.o(.constdata)
-    .conststring                             0x080102c8   Section       40  usmart.o(.conststring)
-    .conststring                             0x080102f0   Section      107  usmart_config.o(.conststring)
+    i.UART4_Disable_Interrupt                0x0800b068   Section        0  uart4.o(i.UART4_Disable_Interrupt)
+    i.UART4_Enable_Interrupt                 0x0800b06e   Section        0  uart4.o(i.UART4_Enable_Interrupt)
+    i.UART4_IRQHandler                       0x0800b084   Section        0  uart4.o(i.UART4_IRQHandler)
+    i.UART4_Init                             0x0800b0c0   Section        0  uart4.o(i.UART4_Init)
+    i.UART4_Receive_Data                     0x0800b15c   Section        0  uart4.o(i.UART4_Receive_Data)
+    i.UART4_Send_Data                        0x0800b198   Section        0  uart4.o(i.UART4_Send_Data)
+    i.UART5_Disable_Interrupt                0x0800b1b8   Section        0  uart5.o(i.UART5_Disable_Interrupt)
+    i.UART5_Enable_Interrupt                 0x0800b1be   Section        0  uart5.o(i.UART5_Enable_Interrupt)
+    i.UART5_IRQHandler                       0x0800b1d4   Section        0  uart5.o(i.UART5_IRQHandler)
+    i.UART5_Init                             0x0800b210   Section        0  uart5.o(i.UART5_Init)
+    i.UART5_Receive_Data                     0x0800b2c0   Section        0  uart5.o(i.UART5_Receive_Data)
+    i.UART5_Send_Data                        0x0800b2f4   Section        0  uart5.o(i.UART5_Send_Data)
+    i.UART_Receive_IT                        0x0800b314   Section        0  stm32f1xx_hal_uart.o(i.UART_Receive_IT)
+    UART_Receive_IT                          0x0800b315   Thumb Code   166  stm32f1xx_hal_uart.o(i.UART_Receive_IT)
+    i.UART_SetConfig                         0x0800b3bc   Section        0  stm32f1xx_hal_uart.o(i.UART_SetConfig)
+    UART_SetConfig                           0x0800b3bd   Thumb Code   364  stm32f1xx_hal_uart.o(i.UART_SetConfig)
+    i.UART_Transmit_IT                       0x0800b52c   Section        0  stm32f1xx_hal_uart.o(i.UART_Transmit_IT)
+    UART_Transmit_IT                         0x0800b52d   Thumb Code   102  stm32f1xx_hal_uart.o(i.UART_Transmit_IT)
+    i.UART_WaitOnFlagUntilTimeout            0x0800b592   Section        0  stm32f1xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
+    UART_WaitOnFlagUntilTimeout              0x0800b593   Thumb Code   146  stm32f1xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
+    i.USART1_IRQHandler                      0x0800b624   Section        0  usart.o(i.USART1_IRQHandler)
+    i.USART2_IRQHandler                      0x0800b650   Section        0  uart2.o(i.USART2_IRQHandler)
+    i.USART3_IRQHandler                      0x0800b738   Section        0  uart3.o(i.USART3_IRQHandler)
+    i.Uart2_Config_Init                      0x0800b7e0   Section        0  uart_config.o(i.Uart2_Config_Init)
+    i.Uart2_Rx_Clear                         0x0800b7f4   Section        0  uart2.o(i.Uart2_Rx_Clear)
+    i.Uart3_Rx_Clear                         0x0800b800   Section        0  uart3.o(i.Uart3_Rx_Clear)
+    i.Uart4_Rx_Clear                         0x0800b80c   Section        0  uart4.o(i.Uart4_Rx_Clear)
+    i.Uart_Clear_Context                     0x0800b818   Section        0  uart_config.o(i.Uart_Clear_Context)
+    i.Uart_Select_Baby                       0x0800b82c   Section        0  uart_choose.o(i.Uart_Select_Baby)
+    i.Uart_cs_init                           0x0800b8f4   Section        0  uart_choose.o(i.Uart_cs_init)
+    i.UsageFault_Handler                     0x0800b934   Section        0  stm32f1xx_it.o(i.UsageFault_Handler)
+    i.Weight_Sensor_Init                     0x0800b938   Section        0  weight.o(i.Weight_Sensor_Init)
+    i.__0printf$8                            0x0800b98c   Section        0  printf8.o(i.__0printf$8)
+    i.__0sprintf$8                           0x0800b9ac   Section        0  printf8.o(i.__0sprintf$8)
+    i.__InfoBoard__                          0x0800b9d4   Section        0  slave_uart_control_interface.o(i.__InfoBoard__)
+    i.__Light_Sensor_Get__                   0x0800ba10   Section        0  light.o(i.__Light_Sensor_Get__)
+    i.__Normal_Pitch_Move_Next__             0x0800baa8   Section        0  step01.o(i.__Normal_Pitch_Move_Next__)
+    i.__ack_error_msg__                      0x0800bb84   Section        0  main.o(i.__ack_error_msg__)
+    i.__malloc$realloc                       0x0800bbe4   Section        0  mallocr.o(i.__malloc$realloc)
+    i.__scatterload_copy                     0x0800bc34   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0800bc42   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x0800bc44   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._commandTOstring_                      0x0800bc54   Section        0  slave_uart_control_interface.o(i._commandTOstring_)
+    _commandTOstring_                        0x0800bc55   Thumb Code  1360  slave_uart_control_interface.o(i._commandTOstring_)
+    i._num2string_                           0x0800c2dc   Section        0  factory_many.o(i._num2string_)
+    _num2string_                             0x0800c2dd   Thumb Code   182  factory_many.o(i._num2string_)
+    i._printf_core                           0x0800c660   Section        0  printf8.o(i._printf_core)
+    _printf_core                             0x0800c661   Thumb Code   996  printf8.o(i._printf_core)
+    i._printf_post_padding                   0x0800ca70   Section        0  printf8.o(i._printf_post_padding)
+    _printf_post_padding                     0x0800ca71   Thumb Code    36  printf8.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x0800ca94   Section        0  printf8.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x0800ca95   Thumb Code    46  printf8.o(i._printf_pre_padding)
+    i._sputc                                 0x0800cac2   Section        0  printf8.o(i._sputc)
+    _sputc                                   0x0800cac3   Thumb Code    10  printf8.o(i._sputc)
+    i.autoDetectAntennaList                  0x0800cacc   Section        0  serial_reader.o(i.autoDetectAntennaList)
+    autoDetectAntennaList                    0x0800cacd   Thumb Code   146  serial_reader.o(i.autoDetectAntennaList)
+    i.caculate_tansfer_check_bit             0x0800cb64   Section        0  check_rs232.o(i.caculate_tansfer_check_bit)
+    i.checkForAvailableFeatures              0x0800cbc4   Section        0  tm_reader.o(i.checkForAvailableFeatures)
+    i.cheminert_c52_c55_transfer             0x0800cc08   Section        0  cheminert_c52.o(i.cheminert_c52_c55_transfer)
+    i.compareAntennas                        0x0800cda0   Section        0  serial_reader.o(i.compareAntennas)
+    i.compareVersion                         0x0800ce18   Section        0  serial_reader.o(i.compareVersion)
+    i.delay_init                             0x0800ce54   Section        0  delay.o(i.delay_init)
+    i.delay_ms                               0x0800ce68   Section        0  delay.o(i.delay_ms)
+    i.delay_us                               0x0800ce84   Section        0  delay.o(i.delay_us)
+    i.electromagnetic_control                0x0800ceb8   Section        0  electromagnetic.o(i.electromagnetic_control)
+    i.electromagnetic_control_package        0x0800ceba   Section        0  electromagnetic.o(i.electromagnetic_control_package)
+    i.extractGen2MemoryBankValues            0x0800cebc   Section        0  serial_reader_l3.o(i.extractGen2MemoryBankValues)
+    i.filterbytes                            0x0800cf60   Section        0  serial_reader_l3.o(i.filterbytes)
+    filterbytes                              0x0800cf61   Thumb Code   678  serial_reader_l3.o(i.filterbytes)
+    i.fputc                                  0x0800d210   Section        0  usart.o(i.fputc)
+    i.getPortValues                          0x0800d228   Section        0  serial_reader.o(i.getPortValues)
+    getPortValues                            0x0800d229   Thumb Code   166  serial_reader.o(i.getPortValues)
+    i.getSerialNumber                        0x0800d2d0   Section        0  serial_reader.o(i.getSerialNumber)
+    getSerialNumber                          0x0800d2d1   Thumb Code   114  serial_reader.o(i.getSerialNumber)
+    i.get_weight_sensor_value                0x0800d348   Section        0  weight.o(i.get_weight_sensor_value)
+    i.initTxRxMapFromPorts                   0x0800d370   Section        0  serial_reader.o(i.initTxRxMapFromPorts)
+    initTxRxMapFromPorts                     0x0800d371   Thumb Code   454  serial_reader.o(i.initTxRxMapFromPorts)
+    i.init_mix_motor_config                  0x0800d53c   Section        0  step01.o(i.init_mix_motor_config)
+    i.init_motor_device                      0x0800d55c   Section        0  step01.o(i.init_motor_device)
+    i.internal_alloc                         0x0800d5bc   Section        0  mallocr.o(i.internal_alloc)
+    internal_alloc                           0x0800d5bd   Thumb Code    76  mallocr.o(i.internal_alloc)
+    i.isAntDetectEnabled                     0x0800d60c   Section        0  tm_reader.o(i.isAntDetectEnabled)
+    i.isContinuousReadParamSupported         0x0800d6b4   Section        0  serial_reader_l3.o(i.isContinuousReadParamSupported)
+    i.isMultiSelectSupported                 0x0800d76e   Section        0  tm_reader.o(i.isMultiSelectSupported)
+    i.l647x_GetMotorHandle                   0x0800d7e2   Section        0  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
+    i.l648x_GetMotorHandle                   0x0800d7e6   Section        0  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
+    i.main                                   0x0800d7ec   Section        0  main.o(i.main)
+    i.prepEmbReadTagMultiple                 0x0800d904   Section        0  serial_reader.o(i.prepEmbReadTagMultiple)
+    prepEmbReadTagMultiple                   0x0800d905   Thumb Code    56  serial_reader.o(i.prepEmbReadTagMultiple)
+    i.prepForSearch                          0x0800d93c   Section        0  serial_reader.o(i.prepForSearch)
+    i.process_motor_command_receive          0x0800d9ac   Section        0  factory_many.o(i.process_motor_command_receive)
+    i.protocol_cheminert_c52_c55             0x0800dadc   Section        0  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
+    protocol_cheminert_c52_c55               0x0800dadd   Thumb Code   882  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
+    i.protocol_gravity_sensor_getting        0x0800df94   Section        0  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
+    protocol_gravity_sensor_getting          0x0800df95   Thumb Code    42  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
+    i.protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc0   Section        0  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
+    i.protocol_pump_s100_interface           0x0800e528   Section        0  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
+    protocol_pump_s100_interface             0x0800e529   Thumb Code   248  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
+    i.protocol_real_time_polling             0x0800e684   Section        0  slave_uart_control_interface.o(i.protocol_real_time_polling)
+    protocol_real_time_polling               0x0800e685   Thumb Code   158  slave_uart_control_interface.o(i.protocol_real_time_polling)
+    i.protocol_rfid_get_epc_string           0x0800e722   Section        0  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
+    protocol_rfid_get_epc_string             0x0800e723   Thumb Code    50  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
+    i.protocol_scan_barcode                  0x0800e754   Section        0  slave_uart_control_interface.o(i.protocol_scan_barcode)
+    protocol_scan_barcode                    0x0800e755   Thumb Code    34  slave_uart_control_interface.o(i.protocol_scan_barcode)
+    i.pump_s100_transfer                     0x0800e77c   Section        0  pump_s100.o(i.pump_s100_transfer)
+    i.read_addr                              0x0800e920   Section        0  usmart.o(i.read_addr)
+    i.s_flush                                0x0800e924   Section        0  serial_transport_stm32f103rb.o(i.s_flush)
+    s_flush                                  0x0800e925   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_flush)
+    i.s_open                                 0x0800e928   Section        0  serial_transport_stm32f103rb.o(i.s_open)
+    s_open                                   0x0800e929   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_open)
+    i.s_receiveBytes                         0x0800e92c   Section        0  serial_transport_stm32f103rb.o(i.s_receiveBytes)
+    s_receiveBytes                           0x0800e92d   Thumb Code   154  serial_transport_stm32f103rb.o(i.s_receiveBytes)
+    i.s_sendBytes                            0x0800e9d4   Section        0  serial_transport_stm32f103rb.o(i.s_sendBytes)
+    s_sendBytes                              0x0800e9d5   Thumb Code    24  serial_transport_stm32f103rb.o(i.s_sendBytes)
+    i.s_setBaudRate                          0x0800e9f0   Section        0  serial_transport_stm32f103rb.o(i.s_setBaudRate)
+    s_setBaudRate                            0x0800e9f1   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_setBaudRate)
+    i.s_shutdown                             0x0800e9f4   Section        0  serial_transport_stm32f103rb.o(i.s_shutdown)
+    s_shutdown                               0x0800e9f5   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_shutdown)
+    i.setAntennaList                         0x0800e9f8   Section        0  serial_reader.o(i.setAntennaList)
+    setAntennaList                           0x0800e9f9   Thumb Code   124  serial_reader.o(i.setAntennaList)
+    i.setAntennaReadTimeHelper               0x0800ea78   Section        0  serial_reader.o(i.setAntennaReadTimeHelper)
+    i.setAntennaReadTimeList                 0x0800eb74   Section        0  serial_reader.o(i.setAntennaReadTimeList)
+    i.setPortValues                          0x0800ebc0   Section        0  serial_reader.o(i.setPortValues)
+    setPortValues                            0x0800ebc1   Thumb Code   234  serial_reader.o(i.setPortValues)
+    i.setProtocol                            0x0800ecb0   Section        0  serial_reader.o(i.setProtocol)
+    setProtocol                              0x0800ecb1   Thumb Code   106  serial_reader.o(i.setProtocol)
+    i.set_DelayMs_Normal_Positon             0x0800ed1c   Section        0  factory_many.o(i.set_DelayMs_Normal_Positon)
+    i.set_mix_motor_config                   0x0800ed28   Section        0  step01.o(i.set_mix_motor_config)
+    i.tm_crc                                 0x0800ed34   Section        0  serial_reader_l3.o(i.tm_crc)
+    tm_crc                                   0x0800ed35   Thumb Code    54  serial_reader_l3.o(i.tm_crc)
+    i.tm_gettime_consistent                  0x0800ed70   Section        0  tmr_utils.o(i.tm_gettime_consistent)
+    i.tm_memcpy                              0x0800ed96   Section        0  tmr_utils.o(i.tm_memcpy)
+    i.tm_strcpy                              0x0800edac   Section        0  tmr_utils.o(i.tm_strcpy)
+    i.tm_time_subtract                       0x0800edbc   Section        0  tmr_utils.o(i.tm_time_subtract)
+    i.tm_u8s_per_bits                        0x0800edca   Section        0  tmr_utils.o(i.tm_u8s_per_bits)
+    i.tmr_gettime                            0x0800eddc   Section        0  osdep_stm32f103rb.o(i.tmr_gettime)
+    i.tmr_gettime_high                       0x0800ee00   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_high)
+    i.tmr_gettime_low                        0x0800ee0a   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_low)
+    i.tmr_sleep                              0x0800ee14   Section        0  osdep_stm32f103rb.o(i.tmr_sleep)
+    i.uart_init                              0x0800ee34   Section        0  usart.o(i.uart_init)
+    i.usmart_cmd_rec                         0x0800ee58   Section        0  usmart.o(i.usmart_cmd_rec)
+    i.usmart_exe                             0x0800eeec   Section        0  usmart.o(i.usmart_exe)
+    i.usmart_get_aparm                       0x0800f14c   Section        0  usmart_str.o(i.usmart_get_aparm)
+    i.usmart_get_cmdname                     0x0800f1f0   Section        0  usmart_str.o(i.usmart_get_cmdname)
+    i.usmart_get_fname                       0x0800f220   Section        0  usmart_str.o(i.usmart_get_fname)
+    i.usmart_get_fparam                      0x0800f388   Section        0  usmart_str.o(i.usmart_get_fparam)
+    i.usmart_get_parmpos                     0x0800f458   Section        0  usmart_str.o(i.usmart_get_parmpos)
+    i.usmart_get_runtime                     0x0800f47c   Section        0  usmart.o(i.usmart_get_runtime)
+    i.usmart_init                            0x0800f4ac   Section        0  usmart.o(i.usmart_init)
+    i.usmart_pow                             0x0800f4d4   Section        0  usmart_str.o(i.usmart_pow)
+    i.usmart_reset_runtime                   0x0800f4e4   Section        0  usmart.o(i.usmart_reset_runtime)
+    i.usmart_scan                            0x0800f50c   Section        0  usmart.o(i.usmart_scan)
+    i.usmart_search_nextc                    0x0800f5b0   Section        0  usmart_str.o(i.usmart_search_nextc)
+    i.usmart_str2num                         0x0800f5c0   Section        0  usmart_str.o(i.usmart_str2num)
+    i.usmart_strcmp                          0x0800f696   Section        0  usmart_str.o(i.usmart_strcmp)
+    i.usmart_strcopy                         0x0800f6ae   Section        0  usmart_str.o(i.usmart_strcopy)
+    i.usmart_strlen                          0x0800f6c0   Section        0  usmart_str.o(i.usmart_strlen)
+    i.usmart_sys_cmd_exe                     0x0800f6d4   Section        0  usmart.o(i.usmart_sys_cmd_exe)
+    i.validateParams                         0x0800fd54   Section        0  serial_reader.o(i.validateParams)
+    i.validateReadPlan                       0x0800fdc0   Section        0  tm_reader.o(i.validateReadPlan)
+    i.verifySearchStatus                     0x0800fe60   Section        0  serial_reader.o(i.verifySearchStatus)
+    i.versionCompare                         0x0800fee8   Section        0  tm_reader.o(i.versionCompare)
+    i.write_addr                             0x0800ff16   Section        0  usmart.o(i.write_addr)
+    .constdata                               0x0800ff1a   Section       49  main.o(.constdata)
+    __func__                                 0x0800ff1a   Data           5  main.o(.constdata)
+    __func__                                 0x0800ff1f   Data          26  main.o(.constdata)
+    __func__                                 0x0800ff39   Data          18  main.o(.constdata)
+    .constdata                               0x0800ff4b   Section       16  system_stm32f1xx.o(.constdata)
+    .constdata                               0x0800ff5b   Section        8  system_stm32f1xx.o(.constdata)
+    .constdata                               0x0800ff63   Section       27  cheminert_c52.o(.constdata)
+    __func__                                 0x0800ff63   Data          27  cheminert_c52.o(.constdata)
+    .constdata                               0x0800ff7e   Section       60  pump_s100.o(.constdata)
+    __func__                                 0x0800ff7e   Data          19  pump_s100.o(.constdata)
+    __func__                                 0x0800ff91   Data          41  pump_s100.o(.constdata)
+    .constdata                               0x0800ffba   Section       96  step01.o(.constdata)
+    __func__                                 0x0800ffba   Data          22  step01.o(.constdata)
+    __func__                                 0x0800ffd0   Data          27  step01.o(.constdata)
+    __func__                                 0x0800ffeb   Data          21  step01.o(.constdata)
+    __func__                                 0x08010000   Data          26  step01.o(.constdata)
+    .constdata                               0x0801001a   Section       30  factory_many.o(.constdata)
+    __func__                                 0x0801001a   Data          30  factory_many.o(.constdata)
+    .constdata                               0x08010038   Section      202  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x08010045   Data          32  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x08010065   Data          27  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x08010080   Data          29  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0801009d   Data          14  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x080100ab   Data          49  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x080100dc   Data          10  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x080100e6   Data          12  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x080100f2   Data          16  slave_uart_control_interface.o(.constdata)
+    .constdata                               0x08010102   Section       22  fm100.o(.constdata)
+    __func__                                 0x08010102   Data          22  fm100.o(.constdata)
+    .constdata                               0x08010118   Section      122  bl180.o(.constdata)
+    __func__                                 0x08010118   Data          18  bl180.o(.constdata)
+    __func__                                 0x0801012a   Data          18  bl180.o(.constdata)
+    __func__                                 0x0801013c   Data          21  bl180.o(.constdata)
+    __func__                                 0x08010151   Data          13  bl180.o(.constdata)
+    __func__                                 0x0801015e   Data          14  bl180.o(.constdata)
+    __func__                                 0x0801016c   Data          12  bl180.o(.constdata)
+    __func__                                 0x08010178   Data          10  bl180.o(.constdata)
+    __func__                                 0x08010182   Data          16  bl180.o(.constdata)
+    .constdata                               0x08010192   Section      132  m6e_apply.o(.constdata)
+    __func__                                 0x08010192   Data          16  m6e_apply.o(.constdata)
+    __func__                                 0x080101a2   Data          14  m6e_apply.o(.constdata)
+    __func__                                 0x080101b0   Data          23  m6e_apply.o(.constdata)
+    __func__                                 0x080101c7   Data          18  m6e_apply.o(.constdata)
+    __func__                                 0x080101d9   Data          21  m6e_apply.o(.constdata)
+    __func__                                 0x080101ee   Data          20  m6e_apply.o(.constdata)
+    __func__                                 0x08010202   Data          20  m6e_apply.o(.constdata)
+    .constdata                               0x08010218   Section       44  serial_reader.o(.constdata)
+    .constdata                               0x08010244   Section       37  mini_board_protocol.o(.constdata)
+    __func__                                 0x08010244   Data          37  mini_board_protocol.o(.constdata)
+    .constdata                               0x08010269   Section      104  rs232_change_protocol.o(.constdata)
+    __func__                                 0x08010269   Data          52  rs232_change_protocol.o(.constdata)
+    __func__                                 0x0801029d   Data          52  rs232_change_protocol.o(.constdata)
+    .conststring                             0x080102d4   Section       40  usmart.o(.conststring)
+    .conststring                             0x080102fc   Section      107  usmart_config.o(.conststring)
     .data                                    0x20000000   Section        4  system_stm32f1xx.o(.data)
     .data                                    0x20000004   Section        4  stm32f1xx_hal.o(.data)
     uwTick                                   0x20000004   Data           4  stm32f1xx_hal.o(.data)
@@ -5729,110 +5732,111 @@ Image Symbol Table
     UART2_Send_Data                          0x0800aff5   Thumb Code    22  uart2.o(i.UART2_Send_Data)
     UART3_Receive_Data                       0x0800b015   Thumb Code    44  uart3.o(i.UART3_Receive_Data)
     UART3_Send_Data                          0x0800b049   Thumb Code    22  uart3.o(i.UART3_Send_Data)
-    UART4_Enable_Interrupt                   0x0800b069   Thumb Code    22  uart4.o(i.UART4_Enable_Interrupt)
-    UART4_IRQHandler                         0x0800b081   Thumb Code    50  uart4.o(i.UART4_IRQHandler)
-    UART4_Init                               0x0800b0bd   Thumb Code   140  uart4.o(i.UART4_Init)
-    UART4_Receive_Data                       0x0800b159   Thumb Code    52  uart4.o(i.UART4_Receive_Data)
-    UART4_Send_Data                          0x0800b195   Thumb Code    22  uart4.o(i.UART4_Send_Data)
-    UART5_Disable_Interrupt                  0x0800b1b5   Thumb Code     6  uart5.o(i.UART5_Disable_Interrupt)
-    UART5_Enable_Interrupt                   0x0800b1bb   Thumb Code    22  uart5.o(i.UART5_Enable_Interrupt)
-    UART5_IRQHandler                         0x0800b1d1   Thumb Code    50  uart5.o(i.UART5_IRQHandler)
-    UART5_Init                               0x0800b20d   Thumb Code   154  uart5.o(i.UART5_Init)
-    UART5_Receive_Data                       0x0800b2bd   Thumb Code    44  uart5.o(i.UART5_Receive_Data)
-    UART5_Send_Data                          0x0800b2f1   Thumb Code    22  uart5.o(i.UART5_Send_Data)
-    USART1_IRQHandler                        0x0800b621   Thumb Code    34  usart.o(i.USART1_IRQHandler)
-    USART2_IRQHandler                        0x0800b64d   Thumb Code   202  uart2.o(i.USART2_IRQHandler)
-    USART3_IRQHandler                        0x0800b735   Thumb Code   160  uart3.o(i.USART3_IRQHandler)
-    Uart2_Config_Init                        0x0800b7dd   Thumb Code    18  uart_config.o(i.Uart2_Config_Init)
-    Uart2_Rx_Clear                           0x0800b7f1   Thumb Code     8  uart2.o(i.Uart2_Rx_Clear)
-    Uart3_Rx_Clear                           0x0800b7fd   Thumb Code     8  uart3.o(i.Uart3_Rx_Clear)
-    Uart4_Rx_Clear                           0x0800b809   Thumb Code     8  uart4.o(i.Uart4_Rx_Clear)
-    Uart_Clear_Context                       0x0800b815   Thumb Code    18  uart_config.o(i.Uart_Clear_Context)
-    Uart_Select_Baby                         0x0800b829   Thumb Code   186  uart_choose.o(i.Uart_Select_Baby)
-    Uart_cs_init                             0x0800b8f1   Thumb Code    56  uart_choose.o(i.Uart_cs_init)
-    UsageFault_Handler                       0x0800b931   Thumb Code     2  stm32f1xx_it.o(i.UsageFault_Handler)
-    Weight_Sensor_Init                       0x0800b935   Thumb Code    74  weight.o(i.Weight_Sensor_Init)
-    __0printf$8                              0x0800b989   Thumb Code    22  printf8.o(i.__0printf$8)
-    __1printf$8                              0x0800b989   Thumb Code     0  printf8.o(i.__0printf$8)
-    __2printf                                0x0800b989   Thumb Code     0  printf8.o(i.__0printf$8)
-    __0sprintf$8                             0x0800b9a9   Thumb Code    34  printf8.o(i.__0sprintf$8)
-    __1sprintf$8                             0x0800b9a9   Thumb Code     0  printf8.o(i.__0sprintf$8)
-    __2sprintf                               0x0800b9a9   Thumb Code     0  printf8.o(i.__0sprintf$8)
-    __InfoBoard__                            0x0800b9d1   Thumb Code    26  slave_uart_control_interface.o(i.__InfoBoard__)
-    __Light_Sensor_Get__                     0x0800ba0d   Thumb Code   130  light.o(i.__Light_Sensor_Get__)
-    __Normal_Pitch_Move_Next__               0x0800baa5   Thumb Code   140  step01.o(i.__Normal_Pitch_Move_Next__)
-    __ack_error_msg__                        0x0800bb81   Thumb Code    94  main.o(i.__ack_error_msg__)
-    malloc                                   0x0800bbe1   Thumb Code    64  mallocr.o(i.__malloc$realloc)
-    __scatterload_copy                       0x0800bc31   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800bc3f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0800bc41   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    caculate_tansfer_check_bit               0x0800cb61   Thumb Code    90  check_rs232.o(i.caculate_tansfer_check_bit)
-    checkForAvailableFeatures                0x0800cbc1   Thumb Code    66  tm_reader.o(i.checkForAvailableFeatures)
-    cheminert_c52_c55_transfer               0x0800cc05   Thumb Code   246  cheminert_c52.o(i.cheminert_c52_c55_transfer)
-    compareAntennas                          0x0800cd9d   Thumb Code   120  serial_reader.o(i.compareAntennas)
-    compareVersion                           0x0800ce15   Thumb Code    58  serial_reader.o(i.compareVersion)
-    delay_init                               0x0800ce51   Thumb Code    16  delay.o(i.delay_init)
-    delay_ms                                 0x0800ce65   Thumb Code    26  delay.o(i.delay_ms)
-    delay_us                                 0x0800ce81   Thumb Code    48  delay.o(i.delay_us)
-    electromagnetic_control                  0x0800ceb5   Thumb Code     2  electromagnetic.o(i.electromagnetic_control)
-    electromagnetic_control_package          0x0800ceb7   Thumb Code     2  electromagnetic.o(i.electromagnetic_control_package)
-    extractGen2MemoryBankValues              0x0800ceb9   Thumb Code   164  serial_reader_l3.o(i.extractGen2MemoryBankValues)
-    fputc                                    0x0800d20d   Thumb Code    18  usart.o(i.fputc)
-    get_weight_sensor_value                  0x0800d345   Thumb Code    40  weight.o(i.get_weight_sensor_value)
-    init_mix_motor_config                    0x0800d539   Thumb Code    28  step01.o(i.init_mix_motor_config)
-    init_motor_device                        0x0800d559   Thumb Code    88  step01.o(i.init_motor_device)
-    isAntDetectEnabled                       0x0800d609   Thumb Code   128  tm_reader.o(i.isAntDetectEnabled)
-    isContinuousReadParamSupported           0x0800d6b1   Thumb Code   186  serial_reader_l3.o(i.isContinuousReadParamSupported)
-    isMultiSelectSupported                   0x0800d76b   Thumb Code   116  tm_reader.o(i.isMultiSelectSupported)
-    l647x_GetMotorHandle                     0x0800d7df   Thumb Code     4  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
-    l648x_GetMotorHandle                     0x0800d7e3   Thumb Code     4  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
-    main                                     0x0800d7e9   Thumb Code   164  main.o(i.main)
-    prepForSearch                            0x0800d931   Thumb Code   106  serial_reader.o(i.prepForSearch)
-    process_motor_command_receive            0x0800d9a1   Thumb Code   240  factory_many.o(i.process_motor_command_receive)
-    protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfb5   Thumb Code  1338  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
-    pump_s100_transfer                       0x0800e771   Thumb Code   306  pump_s100.o(i.pump_s100_transfer)
-    read_addr                                0x0800e915   Thumb Code     4  usmart.o(i.read_addr)
-    setAntennaReadTimeHelper                 0x0800ea6d   Thumb Code   242  serial_reader.o(i.setAntennaReadTimeHelper)
-    setAntennaReadTimeList                   0x0800eb69   Thumb Code    76  serial_reader.o(i.setAntennaReadTimeList)
-    set_DelayMs_Normal_Positon               0x0800ed11   Thumb Code     8  factory_many.o(i.set_DelayMs_Normal_Positon)
-    set_mix_motor_config                     0x0800ed1d   Thumb Code     8  step01.o(i.set_mix_motor_config)
-    tm_gettime_consistent                    0x0800ed65   Thumb Code    38  tmr_utils.o(i.tm_gettime_consistent)
-    tm_memcpy                                0x0800ed8b   Thumb Code    22  tmr_utils.o(i.tm_memcpy)
-    tm_strcpy                                0x0800eda1   Thumb Code    16  tmr_utils.o(i.tm_strcpy)
-    tm_time_subtract                         0x0800edb1   Thumb Code    14  tmr_utils.o(i.tm_time_subtract)
-    tm_u8s_per_bits                          0x0800edbf   Thumb Code    16  tmr_utils.o(i.tm_u8s_per_bits)
-    tmr_gettime                              0x0800edd1   Thumb Code    32  osdep_stm32f103rb.o(i.tmr_gettime)
-    tmr_gettime_high                         0x0800edf5   Thumb Code    10  osdep_stm32f103rb.o(i.tmr_gettime_high)
-    tmr_gettime_low                          0x0800edff   Thumb Code     8  osdep_stm32f103rb.o(i.tmr_gettime_low)
-    tmr_sleep                                0x0800ee09   Thumb Code    28  osdep_stm32f103rb.o(i.tmr_sleep)
-    uart_init                                0x0800ee29   Thumb Code    28  usart.o(i.uart_init)
-    usmart_cmd_rec                           0x0800ee4d   Thumb Code   144  usmart.o(i.usmart_cmd_rec)
-    usmart_exe                               0x0800eee1   Thumb Code   510  usmart.o(i.usmart_exe)
-    usmart_get_aparm                         0x0800f141   Thumb Code   164  usmart_str.o(i.usmart_get_aparm)
-    usmart_get_cmdname                       0x0800f1e5   Thumb Code    46  usmart_str.o(i.usmart_get_cmdname)
-    usmart_get_fname                         0x0800f215   Thumb Code   352  usmart_str.o(i.usmart_get_fname)
-    usmart_get_fparam                        0x0800f37d   Thumb Code   202  usmart_str.o(i.usmart_get_fparam)
-    usmart_get_parmpos                       0x0800f44d   Thumb Code    30  usmart_str.o(i.usmart_get_parmpos)
-    usmart_get_runtime                       0x0800f471   Thumb Code    38  usmart.o(i.usmart_get_runtime)
-    usmart_init                              0x0800f4a1   Thumb Code    36  usmart.o(i.usmart_init)
-    usmart_pow                               0x0800f4c9   Thumb Code    16  usmart_str.o(i.usmart_pow)
-    usmart_reset_runtime                     0x0800f4d9   Thumb Code    32  usmart.o(i.usmart_reset_runtime)
-    usmart_scan                              0x0800f501   Thumb Code    94  usmart.o(i.usmart_scan)
-    usmart_search_nextc                      0x0800f5a5   Thumb Code    16  usmart_str.o(i.usmart_search_nextc)
-    usmart_str2num                           0x0800f5b5   Thumb Code   214  usmart_str.o(i.usmart_str2num)
-    usmart_strcmp                            0x0800f68b   Thumb Code    24  usmart_str.o(i.usmart_strcmp)
-    usmart_strcopy                           0x0800f6a3   Thumb Code    18  usmart_str.o(i.usmart_strcopy)
-    usmart_strlen                            0x0800f6b5   Thumb Code    18  usmart_str.o(i.usmart_strlen)
-    usmart_sys_cmd_exe                       0x0800f6c9   Thumb Code  1458  usmart.o(i.usmart_sys_cmd_exe)
-    validateParams                           0x0800fd49   Thumb Code   108  serial_reader.o(i.validateParams)
-    validateReadPlan                         0x0800fdb5   Thumb Code   150  tm_reader.o(i.validateReadPlan)
-    verifySearchStatus                       0x0800fe55   Thumb Code   130  serial_reader.o(i.verifySearchStatus)
-    versionCompare                           0x0800fedd   Thumb Code    46  tm_reader.o(i.versionCompare)
-    write_addr                               0x0800ff0b   Thumb Code     4  usmart.o(i.write_addr)
-    AHBPrescTable                            0x0800ff3f   Data          16  system_stm32f1xx.o(.constdata)
-    APBPrescTable                            0x0800ff4f   Data           8  system_stm32f1xx.o(.constdata)
-    Region$$Table$$Base                      0x0801035c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0801037c   Number         0  anon$$obj.o(Region$$Table)
+    UART4_Disable_Interrupt                  0x0800b069   Thumb Code     6  uart4.o(i.UART4_Disable_Interrupt)
+    UART4_Enable_Interrupt                   0x0800b06f   Thumb Code    22  uart4.o(i.UART4_Enable_Interrupt)
+    UART4_IRQHandler                         0x0800b085   Thumb Code    50  uart4.o(i.UART4_IRQHandler)
+    UART4_Init                               0x0800b0c1   Thumb Code   140  uart4.o(i.UART4_Init)
+    UART4_Receive_Data                       0x0800b15d   Thumb Code    52  uart4.o(i.UART4_Receive_Data)
+    UART4_Send_Data                          0x0800b199   Thumb Code    22  uart4.o(i.UART4_Send_Data)
+    UART5_Disable_Interrupt                  0x0800b1b9   Thumb Code     6  uart5.o(i.UART5_Disable_Interrupt)
+    UART5_Enable_Interrupt                   0x0800b1bf   Thumb Code    22  uart5.o(i.UART5_Enable_Interrupt)
+    UART5_IRQHandler                         0x0800b1d5   Thumb Code    50  uart5.o(i.UART5_IRQHandler)
+    UART5_Init                               0x0800b211   Thumb Code   154  uart5.o(i.UART5_Init)
+    UART5_Receive_Data                       0x0800b2c1   Thumb Code    44  uart5.o(i.UART5_Receive_Data)
+    UART5_Send_Data                          0x0800b2f5   Thumb Code    22  uart5.o(i.UART5_Send_Data)
+    USART1_IRQHandler                        0x0800b625   Thumb Code    34  usart.o(i.USART1_IRQHandler)
+    USART2_IRQHandler                        0x0800b651   Thumb Code   202  uart2.o(i.USART2_IRQHandler)
+    USART3_IRQHandler                        0x0800b739   Thumb Code   160  uart3.o(i.USART3_IRQHandler)
+    Uart2_Config_Init                        0x0800b7e1   Thumb Code    18  uart_config.o(i.Uart2_Config_Init)
+    Uart2_Rx_Clear                           0x0800b7f5   Thumb Code     8  uart2.o(i.Uart2_Rx_Clear)
+    Uart3_Rx_Clear                           0x0800b801   Thumb Code     8  uart3.o(i.Uart3_Rx_Clear)
+    Uart4_Rx_Clear                           0x0800b80d   Thumb Code     8  uart4.o(i.Uart4_Rx_Clear)
+    Uart_Clear_Context                       0x0800b819   Thumb Code    18  uart_config.o(i.Uart_Clear_Context)
+    Uart_Select_Baby                         0x0800b82d   Thumb Code   186  uart_choose.o(i.Uart_Select_Baby)
+    Uart_cs_init                             0x0800b8f5   Thumb Code    56  uart_choose.o(i.Uart_cs_init)
+    UsageFault_Handler                       0x0800b935   Thumb Code     2  stm32f1xx_it.o(i.UsageFault_Handler)
+    Weight_Sensor_Init                       0x0800b939   Thumb Code    74  weight.o(i.Weight_Sensor_Init)
+    __0printf$8                              0x0800b98d   Thumb Code    22  printf8.o(i.__0printf$8)
+    __1printf$8                              0x0800b98d   Thumb Code     0  printf8.o(i.__0printf$8)
+    __2printf                                0x0800b98d   Thumb Code     0  printf8.o(i.__0printf$8)
+    __0sprintf$8                             0x0800b9ad   Thumb Code    34  printf8.o(i.__0sprintf$8)
+    __1sprintf$8                             0x0800b9ad   Thumb Code     0  printf8.o(i.__0sprintf$8)
+    __2sprintf                               0x0800b9ad   Thumb Code     0  printf8.o(i.__0sprintf$8)
+    __InfoBoard__                            0x0800b9d5   Thumb Code    26  slave_uart_control_interface.o(i.__InfoBoard__)
+    __Light_Sensor_Get__                     0x0800ba11   Thumb Code   130  light.o(i.__Light_Sensor_Get__)
+    __Normal_Pitch_Move_Next__               0x0800baa9   Thumb Code   140  step01.o(i.__Normal_Pitch_Move_Next__)
+    __ack_error_msg__                        0x0800bb85   Thumb Code    94  main.o(i.__ack_error_msg__)
+    malloc                                   0x0800bbe5   Thumb Code    64  mallocr.o(i.__malloc$realloc)
+    __scatterload_copy                       0x0800bc35   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0800bc43   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x0800bc45   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    caculate_tansfer_check_bit               0x0800cb65   Thumb Code    90  check_rs232.o(i.caculate_tansfer_check_bit)
+    checkForAvailableFeatures                0x0800cbc5   Thumb Code    66  tm_reader.o(i.checkForAvailableFeatures)
+    cheminert_c52_c55_transfer               0x0800cc09   Thumb Code   246  cheminert_c52.o(i.cheminert_c52_c55_transfer)
+    compareAntennas                          0x0800cda1   Thumb Code   120  serial_reader.o(i.compareAntennas)
+    compareVersion                           0x0800ce19   Thumb Code    58  serial_reader.o(i.compareVersion)
+    delay_init                               0x0800ce55   Thumb Code    16  delay.o(i.delay_init)
+    delay_ms                                 0x0800ce69   Thumb Code    26  delay.o(i.delay_ms)
+    delay_us                                 0x0800ce85   Thumb Code    48  delay.o(i.delay_us)
+    electromagnetic_control                  0x0800ceb9   Thumb Code     2  electromagnetic.o(i.electromagnetic_control)
+    electromagnetic_control_package          0x0800cebb   Thumb Code     2  electromagnetic.o(i.electromagnetic_control_package)
+    extractGen2MemoryBankValues              0x0800cebd   Thumb Code   164  serial_reader_l3.o(i.extractGen2MemoryBankValues)
+    fputc                                    0x0800d211   Thumb Code    18  usart.o(i.fputc)
+    get_weight_sensor_value                  0x0800d349   Thumb Code    40  weight.o(i.get_weight_sensor_value)
+    init_mix_motor_config                    0x0800d53d   Thumb Code    28  step01.o(i.init_mix_motor_config)
+    init_motor_device                        0x0800d55d   Thumb Code    88  step01.o(i.init_motor_device)
+    isAntDetectEnabled                       0x0800d60d   Thumb Code   128  tm_reader.o(i.isAntDetectEnabled)
+    isContinuousReadParamSupported           0x0800d6b5   Thumb Code   186  serial_reader_l3.o(i.isContinuousReadParamSupported)
+    isMultiSelectSupported                   0x0800d76f   Thumb Code   116  tm_reader.o(i.isMultiSelectSupported)
+    l647x_GetMotorHandle                     0x0800d7e3   Thumb Code     4  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
+    l648x_GetMotorHandle                     0x0800d7e7   Thumb Code     4  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
+    main                                     0x0800d7ed   Thumb Code   172  main.o(i.main)
+    prepForSearch                            0x0800d93d   Thumb Code   106  serial_reader.o(i.prepForSearch)
+    process_motor_command_receive            0x0800d9ad   Thumb Code   240  factory_many.o(i.process_motor_command_receive)
+    protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc1   Thumb Code  1338  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
+    pump_s100_transfer                       0x0800e77d   Thumb Code   306  pump_s100.o(i.pump_s100_transfer)
+    read_addr                                0x0800e921   Thumb Code     4  usmart.o(i.read_addr)
+    setAntennaReadTimeHelper                 0x0800ea79   Thumb Code   242  serial_reader.o(i.setAntennaReadTimeHelper)
+    setAntennaReadTimeList                   0x0800eb75   Thumb Code    76  serial_reader.o(i.setAntennaReadTimeList)
+    set_DelayMs_Normal_Positon               0x0800ed1d   Thumb Code     8  factory_many.o(i.set_DelayMs_Normal_Positon)
+    set_mix_motor_config                     0x0800ed29   Thumb Code     8  step01.o(i.set_mix_motor_config)
+    tm_gettime_consistent                    0x0800ed71   Thumb Code    38  tmr_utils.o(i.tm_gettime_consistent)
+    tm_memcpy                                0x0800ed97   Thumb Code    22  tmr_utils.o(i.tm_memcpy)
+    tm_strcpy                                0x0800edad   Thumb Code    16  tmr_utils.o(i.tm_strcpy)
+    tm_time_subtract                         0x0800edbd   Thumb Code    14  tmr_utils.o(i.tm_time_subtract)
+    tm_u8s_per_bits                          0x0800edcb   Thumb Code    16  tmr_utils.o(i.tm_u8s_per_bits)
+    tmr_gettime                              0x0800eddd   Thumb Code    32  osdep_stm32f103rb.o(i.tmr_gettime)
+    tmr_gettime_high                         0x0800ee01   Thumb Code    10  osdep_stm32f103rb.o(i.tmr_gettime_high)
+    tmr_gettime_low                          0x0800ee0b   Thumb Code     8  osdep_stm32f103rb.o(i.tmr_gettime_low)
+    tmr_sleep                                0x0800ee15   Thumb Code    28  osdep_stm32f103rb.o(i.tmr_sleep)
+    uart_init                                0x0800ee35   Thumb Code    28  usart.o(i.uart_init)
+    usmart_cmd_rec                           0x0800ee59   Thumb Code   144  usmart.o(i.usmart_cmd_rec)
+    usmart_exe                               0x0800eeed   Thumb Code   510  usmart.o(i.usmart_exe)
+    usmart_get_aparm                         0x0800f14d   Thumb Code   164  usmart_str.o(i.usmart_get_aparm)
+    usmart_get_cmdname                       0x0800f1f1   Thumb Code    46  usmart_str.o(i.usmart_get_cmdname)
+    usmart_get_fname                         0x0800f221   Thumb Code   352  usmart_str.o(i.usmart_get_fname)
+    usmart_get_fparam                        0x0800f389   Thumb Code   202  usmart_str.o(i.usmart_get_fparam)
+    usmart_get_parmpos                       0x0800f459   Thumb Code    30  usmart_str.o(i.usmart_get_parmpos)
+    usmart_get_runtime                       0x0800f47d   Thumb Code    38  usmart.o(i.usmart_get_runtime)
+    usmart_init                              0x0800f4ad   Thumb Code    36  usmart.o(i.usmart_init)
+    usmart_pow                               0x0800f4d5   Thumb Code    16  usmart_str.o(i.usmart_pow)
+    usmart_reset_runtime                     0x0800f4e5   Thumb Code    32  usmart.o(i.usmart_reset_runtime)
+    usmart_scan                              0x0800f50d   Thumb Code    94  usmart.o(i.usmart_scan)
+    usmart_search_nextc                      0x0800f5b1   Thumb Code    16  usmart_str.o(i.usmart_search_nextc)
+    usmart_str2num                           0x0800f5c1   Thumb Code   214  usmart_str.o(i.usmart_str2num)
+    usmart_strcmp                            0x0800f697   Thumb Code    24  usmart_str.o(i.usmart_strcmp)
+    usmart_strcopy                           0x0800f6af   Thumb Code    18  usmart_str.o(i.usmart_strcopy)
+    usmart_strlen                            0x0800f6c1   Thumb Code    18  usmart_str.o(i.usmart_strlen)
+    usmart_sys_cmd_exe                       0x0800f6d5   Thumb Code  1458  usmart.o(i.usmart_sys_cmd_exe)
+    validateParams                           0x0800fd55   Thumb Code   108  serial_reader.o(i.validateParams)
+    validateReadPlan                         0x0800fdc1   Thumb Code   150  tm_reader.o(i.validateReadPlan)
+    verifySearchStatus                       0x0800fe61   Thumb Code   130  serial_reader.o(i.verifySearchStatus)
+    versionCompare                           0x0800fee9   Thumb Code    46  tm_reader.o(i.versionCompare)
+    write_addr                               0x0800ff17   Thumb Code     4  usmart.o(i.write_addr)
+    AHBPrescTable                            0x0800ff4b   Data          16  system_stm32f1xx.o(.constdata)
+    APBPrescTable                            0x0800ff5b   Data           8  system_stm32f1xx.o(.constdata)
+    Region$$Table$$Base                      0x08010368   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08010388   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f1xx.o(.data)
     uCRCErrorWorkaroundCheck                 0x20000008   Data           1  stm32f1xx_hal_spi_ex.o(.data)
     aRxBuffer                                0x20000010   Data           1  usart.o(.data)
@@ -5907,54 +5911,54 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00010818, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00010538])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00010824, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00010544])
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0001037c, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00010388, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x00000130   Data   RO          732    RESET               startup_stm32f103xe.o
-    0x08000130   0x00000000   Code   RO        10458  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000130   0x00000004   Code   RO        10808    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000134   0x00000004   Code   RO        10811    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000138   0x00000000   Code   RO        10813    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000138   0x00000000   Code   RO        10815    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000138   0x00000008   Code   RO        10816    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000140   0x00000000   Code   RO        10818    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000140   0x00000000   Code   RO        10820    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000140   0x00000004   Code   RO        10809    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000130   0x00000000   Code   RO        10464  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000130   0x00000004   Code   RO        10814    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000134   0x00000004   Code   RO        10817    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000138   0x00000000   Code   RO        10819    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000138   0x00000000   Code   RO        10821    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000138   0x00000008   Code   RO        10822    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000140   0x00000000   Code   RO        10824    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000140   0x00000000   Code   RO        10826    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000140   0x00000004   Code   RO        10815    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000144   0x00000024   Code   RO          733    .text               startup_stm32f103xe.o
-    0x08000168   0x0000001e   Code   RO        10461    .text               mc_w.l(llshl.o)
-    0x08000186   0x00000040   Code   RO        10465    .text               mc_w.l(memmovea.o)
-    0x080001c6   0x00000024   Code   RO        10467    .text               mc_w.l(memseta.o)
-    0x080001ea   0x00000018   Code   RO        10469    .text               mc_w.l(strncpy.o)
-    0x08000202   0x0000000e   Code   RO        10471    .text               mc_w.l(strlen.o)
-    0x08000210   0x0000001c   Code   RO        10473    .text               mc_w.l(strcmp.o)
-    0x0800022c   0x0000001e   Code   RO        10477    .text               mc_w.l(strncmp.o)
+    0x08000168   0x0000001e   Code   RO        10467    .text               mc_w.l(llshl.o)
+    0x08000186   0x00000040   Code   RO        10471    .text               mc_w.l(memmovea.o)
+    0x080001c6   0x00000024   Code   RO        10473    .text               mc_w.l(memseta.o)
+    0x080001ea   0x00000018   Code   RO        10475    .text               mc_w.l(strncpy.o)
+    0x08000202   0x0000000e   Code   RO        10477    .text               mc_w.l(strlen.o)
+    0x08000210   0x0000001c   Code   RO        10479    .text               mc_w.l(strcmp.o)
+    0x0800022c   0x0000001e   Code   RO        10483    .text               mc_w.l(strncmp.o)
     0x0800024a   0x00000002   PAD
-    0x0800024c   0x00000044   Code   RO        10479    .text               mc_w.l(strtok.o)
-    0x08000290   0x000000b0   Code   RO        10778    .text               mf_w.l(fadd.o)
-    0x08000340   0x00000064   Code   RO        10780    .text               mf_w.l(fmul.o)
-    0x080003a4   0x00000018   Code   RO        10782    .text               mf_w.l(fscalb.o)
-    0x080003bc   0x0000014e   Code   RO        10784    .text               mf_w.l(dadd.o)
-    0x0800050a   0x000000e4   Code   RO        10786    .text               mf_w.l(dmul.o)
-    0x080005ee   0x000000de   Code   RO        10788    .text               mf_w.l(ddiv.o)
-    0x080006cc   0x00000012   Code   RO        10790    .text               mf_w.l(fflti.o)
-    0x080006de   0x0000000a   Code   RO        10792    .text               mf_w.l(ffltui.o)
-    0x080006e8   0x00000022   Code   RO        10794    .text               mf_w.l(dflti.o)
-    0x0800070a   0x00000028   Code   RO        10798    .text               mf_w.l(ffixui.o)
-    0x08000732   0x0000003e   Code   RO        10800    .text               mf_w.l(dfixi.o)
-    0x08000770   0x00000038   Code   RO        10804    .text               mf_w.l(d2f.o)
-    0x080007a8   0x00000014   Code   RO        10806    .text               mf_w.l(cfrcmple.o)
-    0x080007bc   0x00000062   Code   RO        10824    .text               mc_w.l(uldiv.o)
-    0x0800081e   0x00000020   Code   RO        10826    .text               mc_w.l(llushr.o)
-    0x0800083e   0x00000024   Code   RO        10828    .text               mc_w.l(llsshr.o)
-    0x08000862   0x00000000   Code   RO        10832    .text               mc_w.l(iusefp.o)
-    0x08000862   0x0000006e   Code   RO        10833    .text               mf_w.l(fepilogue.o)
-    0x080008d0   0x000000ba   Code   RO        10835    .text               mf_w.l(depilogue.o)
+    0x0800024c   0x00000044   Code   RO        10485    .text               mc_w.l(strtok.o)
+    0x08000290   0x000000b0   Code   RO        10784    .text               mf_w.l(fadd.o)
+    0x08000340   0x00000064   Code   RO        10786    .text               mf_w.l(fmul.o)
+    0x080003a4   0x00000018   Code   RO        10788    .text               mf_w.l(fscalb.o)
+    0x080003bc   0x0000014e   Code   RO        10790    .text               mf_w.l(dadd.o)
+    0x0800050a   0x000000e4   Code   RO        10792    .text               mf_w.l(dmul.o)
+    0x080005ee   0x000000de   Code   RO        10794    .text               mf_w.l(ddiv.o)
+    0x080006cc   0x00000012   Code   RO        10796    .text               mf_w.l(fflti.o)
+    0x080006de   0x0000000a   Code   RO        10798    .text               mf_w.l(ffltui.o)
+    0x080006e8   0x00000022   Code   RO        10800    .text               mf_w.l(dflti.o)
+    0x0800070a   0x00000028   Code   RO        10804    .text               mf_w.l(ffixui.o)
+    0x08000732   0x0000003e   Code   RO        10806    .text               mf_w.l(dfixi.o)
+    0x08000770   0x00000038   Code   RO        10810    .text               mf_w.l(d2f.o)
+    0x080007a8   0x00000014   Code   RO        10812    .text               mf_w.l(cfrcmple.o)
+    0x080007bc   0x00000062   Code   RO        10830    .text               mc_w.l(uldiv.o)
+    0x0800081e   0x00000020   Code   RO        10832    .text               mc_w.l(llushr.o)
+    0x0800083e   0x00000024   Code   RO        10834    .text               mc_w.l(llsshr.o)
+    0x08000862   0x00000000   Code   RO        10838    .text               mc_w.l(iusefp.o)
+    0x08000862   0x0000006e   Code   RO        10839    .text               mf_w.l(fepilogue.o)
+    0x080008d0   0x000000ba   Code   RO        10841    .text               mf_w.l(depilogue.o)
     0x0800098a   0x00000002   PAD
-    0x0800098c   0x00000024   Code   RO        10841    .text               mc_w.l(init.o)
-    0x080009b0   0x00000056   Code   RO        10851    .text               mc_w.l(__dczerorl2.o)
+    0x0800098c   0x00000024   Code   RO        10847    .text               mc_w.l(init.o)
+    0x080009b0   0x00000056   Code   RO        10857    .text               mc_w.l(__dczerorl2.o)
     0x08000a06   0x00000040   Code   RO         6088    i.AD_Sensor_Get_Data  weight.o
     0x08000a46   0x00000002   PAD
     0x08000a48   0x0000001c   Code   RO         4901    i.BSP_MotorControl_BusyInterruptHandler  x_nucleo_ihmxx.o
@@ -5979,54 +5983,54 @@ Memory Map of the image
     0x08000cd2   0x00000054   Code   RO         6257    i.Belt_Move_At_SameTime  factory_many.o
     0x08000d26   0x00000028   Code   RO         5621    i.Big_Little_Endian_Convert  pump_s100.o
     0x08000d4e   0x00000002   Code   RO          464    i.BusFault_Handler  stm32f1xx_it.o
-    0x08000d50   0x00000004   Code   RO         6935    i.C52_connect_check  slave_uart_control_interface.o
+    0x08000d50   0x00000004   Code   RO         6941    i.C52_connect_check  slave_uart_control_interface.o
     0x08000d54   0x0000001a   Code   RO         6258    i.C55_C52_connect_check  factory_many.o
-    0x08000d6e   0x00000004   Code   RO         6936    i.C55_connect_check  slave_uart_control_interface.o
+    0x08000d6e   0x00000004   Code   RO         6942    i.C55_connect_check  slave_uart_control_interface.o
     0x08000d72   0x0000005c   Code   RO         5622    i.CRC_Digital_Convert_Get  pump_s100.o
     0x08000dce   0x00000002   PAD
     0x08000dd0   0x00000050   Code   RO            4    i.Check_Board_Define_Config  main.o
     0x08000e20   0x00000040   Code   RO         6162    i.Choose_Single_Motor_Speed_Config  step01.o
     0x08000e60   0x00000030   Code   RO         6259    i.ClearAndCheckBlankPosition  factory_many.o
     0x08000e90   0x00000030   Code   RO         6260    i.ClearAndCheckWaitPosition  factory_many.o
-    0x08000ec0   0x0000001c   Code   RO         7705    i.Clear_Storage_Info_Rfid  m6e_apply.o
+    0x08000ec0   0x0000001c   Code   RO         7711    i.Clear_Storage_Info_Rfid  m6e_apply.o
     0x08000edc   0x00000208   Code   RO         6163    i.ConfigMotorAllDevice  step01.o
-    0x080010e4   0x00000020   Code   RO         7588    i.Config_BL80_Transfer  bl180.o
-    0x08001104   0x00000020   Code   RO         9372    i.Config_M6e_Transfer  serial_transport_stm32f103rb.o
-    0x08001124   0x0000001c   Code   RO         7316    i.Control_Scan_FM100_Beeper  fm100.o
-    0x08001140   0x00000004   Code   RO         6528    i.DS18B20_Init      ds18b20.o
+    0x080010e4   0x00000020   Code   RO         7594    i.Config_BL80_Transfer  bl180.o
+    0x08001104   0x00000020   Code   RO         9378    i.Config_M6e_Transfer  serial_transport_stm32f103rb.o
+    0x08001124   0x0000001c   Code   RO         7322    i.Control_Scan_FM100_Beeper  fm100.o
+    0x08001140   0x00000004   Code   RO         6534    i.DS18B20_Init      ds18b20.o
     0x08001144   0x00000002   Code   RO          465    i.DebugMon_Handler  stm32f1xx_it.o
     0x08001146   0x00000002   PAD
-    0x08001148   0x0000000c   Code   RO         7706    i.Destory_M6e_Config  m6e_apply.o
+    0x08001148   0x0000000c   Code   RO         7712    i.Destory_M6e_Config  m6e_apply.o
     0x08001154   0x00000002   Code   RO          466    i.EXTI15_10_IRQHandler  stm32f1xx_it.o
     0x08001156   0x00000006   Code   RO          467    i.EXTI2_IRQHandler  stm32f1xx_it.o
     0x0800115c   0x00000006   Code   RO          468    i.EXTI3_IRQHandler  stm32f1xx_it.o
     0x08001162   0x00000002   PAD
     0x08001164   0x00000030   Code   RO          469    i.EXTI9_5_IRQHandler  stm32f1xx_it.o
-    0x08001194   0x000000ac   Code   RO         7589    i.End_BL180         bl180.o
-    0x08001240   0x00000008   Code   RO         9930    i.Exit_BL180_Uart_Config  uart_config.o
-    0x08001248   0x00000008   Code   RO         9931    i.Exit_RFID_Uart_Config  uart_config.o
-    0x08001250   0x00000054   Code   RO         7317    i.FM100_Scan_Close_Beeper  fm100.o
-    0x080012a4   0x00000040   Code   RO         7318    i.FM100_Scan_Code_Programming  fm100.o
-    0x080012e4   0x00000088   Code   RO         7319    i.FM100_Scan_Command_Mode  fm100.o
-    0x0800136c   0x000000ac   Code   RO         7323    i.FM100_Scan_Control_Status  fm100.o
-    0x08001418   0x00000070   Code   RO         7324    i.FM100_Scan_Exit_Configuration_State  fm100.o
-    0x08001488   0x00000012   Code   RO         7325    i.FM100_Scan_Goto_Command_Mode  fm100.o
+    0x08001194   0x000000ac   Code   RO         7595    i.End_BL180         bl180.o
+    0x08001240   0x00000008   Code   RO         9936    i.Exit_BL180_Uart_Config  uart_config.o
+    0x08001248   0x00000008   Code   RO         9937    i.Exit_RFID_Uart_Config  uart_config.o
+    0x08001250   0x00000054   Code   RO         7323    i.FM100_Scan_Close_Beeper  fm100.o
+    0x080012a4   0x00000040   Code   RO         7324    i.FM100_Scan_Code_Programming  fm100.o
+    0x080012e4   0x00000088   Code   RO         7325    i.FM100_Scan_Command_Mode  fm100.o
+    0x0800136c   0x000000ac   Code   RO         7329    i.FM100_Scan_Control_Status  fm100.o
+    0x08001418   0x00000070   Code   RO         7330    i.FM100_Scan_Exit_Configuration_State  fm100.o
+    0x08001488   0x00000012   Code   RO         7331    i.FM100_Scan_Goto_Command_Mode  fm100.o
     0x0800149a   0x00000002   PAD
-    0x0800149c   0x00000070   Code   RO         7326    i.FM100_Scan_Into_Configuration_State  fm100.o
-    0x0800150c   0x00000054   Code   RO         7327    i.FM100_Scan_Open_Beeper  fm100.o
+    0x0800149c   0x00000070   Code   RO         7332    i.FM100_Scan_Into_Configuration_State  fm100.o
+    0x0800150c   0x00000054   Code   RO         7333    i.FM100_Scan_Open_Beeper  fm100.o
     0x08001560   0x00000028   Code   RO         6262    i.First_Open_Motor_AutoCheck_Sensor  factory_many.o
-    0x08001588   0x0000000c   Code   RO         6591    i.GetTemperatureDegree  keep_temperature.o
-    0x08001594   0x0000000c   Code   RO         6592    i.GetTemperatureStatus  keep_temperature.o
-    0x080015a0   0x00000028   Code   RO         6738    i.GetUartReceive    uart_choose.o
-    0x080015c8   0x00000028   Code   RO         6739    i.GetUartSend       uart_choose.o
+    0x08001588   0x0000000c   Code   RO         6597    i.GetTemperatureDegree  keep_temperature.o
+    0x08001594   0x0000000c   Code   RO         6598    i.GetTemperatureStatus  keep_temperature.o
+    0x080015a0   0x00000028   Code   RO         6744    i.GetUartReceive    uart_choose.o
+    0x080015c8   0x00000028   Code   RO         6745    i.GetUartSend       uart_choose.o
     0x080015f0   0x0000002c   Code   RO         6089    i.Get_All_Weight_Sensor_Warnning_Result  weight.o
     0x0800161c   0x00000074   Code   RO         6263    i.Get_Board_Idle_Light_State  factory_many.o
-    0x08001690   0x00000094   Code   RO         7707    i.Get_EPC_String    m6e_apply.o
-    0x08001724   0x0000000c   Code   RO        10197    i.Get_Real_Time_Polling_Press  real_time_polling.o
-    0x08001730   0x0000000c   Code   RO        10198    i.Get_Real_Time_Polling_Value  real_time_polling.o
+    0x08001690   0x00000094   Code   RO         7713    i.Get_EPC_String    m6e_apply.o
+    0x08001724   0x0000000c   Code   RO        10203    i.Get_Real_Time_Polling_Press  real_time_polling.o
+    0x08001730   0x0000000c   Code   RO        10204    i.Get_Real_Time_Polling_Value  real_time_polling.o
     0x0800173c   0x0000003c   Code   RO         6090    i.Get_Single_Weight_Sensor_Warnning_Result  weight.o
     0x08001778   0x00000024   Code   RO         6091    i.Get_weight_current_gram  weight.o
-    0x0800179c   0x0000002c   Code   RO         6938    i.Gravity_Sensor_Setting  slave_uart_control_interface.o
+    0x0800179c   0x0000002c   Code   RO         6944    i.Gravity_Sensor_Setting  slave_uart_control_interface.o
     0x080017c8   0x00000016   Code   RO          747    i.HAL_Delay         stm32f1xx_hal.o
     0x080017de   0x00000012   Code   RO          685    i.HAL_GPIO_EXTI_Callback  stm32f1xx_hal_msp.o
     0x080017f0   0x00000018   Code   RO          993    i.HAL_GPIO_EXTI_IRQHandler  stm32f1xx_hal_gpio.o
@@ -6073,14 +6077,14 @@ Memory Map of the image
     0x08002c00   0x000000c8   Code   RO         1380    i.HAL_UART_Transmit  stm32f1xx_hal_uart.o
     0x08002cc8   0x00000002   Code   RO         1383    i.HAL_UART_TxCpltCallback  stm32f1xx_hal_uart.o
     0x08002cca   0x00000002   Code   RO          470    i.HardFault_Handler  stm32f1xx_it.o
-    0x08002ccc   0x00000016   Code   RO         7595    i.Init_BL180        bl180.o
+    0x08002ccc   0x00000016   Code   RO         7601    i.Init_BL180        bl180.o
     0x08002ce2   0x00000002   PAD
     0x08002ce4   0x000000bc   Code   RO            5    i.Init_Board_Config  main.o
-    0x08002da0   0x0000023c   Code   RO         7708    i.Init_M6e_Config   m6e_apply.o
-    0x08002fdc   0x00000038   Code   RO         7333    i.Init_Scan_FM100   fm100.o
-    0x08003014   0x0000006a   Code   RO         9433    i.IsAntennaReadTimeEnabled  tm_reader.o
-    0x0800307e   0x0000008c   Code   RO         9434    i.IsDutyCycleEnabled  tm_reader.o
-    0x0800310a   0x00000002   Code   RO         6593    i.KeepTemperatureDegree  keep_temperature.o
+    0x08002da0   0x0000023c   Code   RO         7714    i.Init_M6e_Config   m6e_apply.o
+    0x08002fdc   0x00000038   Code   RO         7339    i.Init_Scan_FM100   fm100.o
+    0x08003014   0x0000006a   Code   RO         9439    i.IsAntennaReadTimeEnabled  tm_reader.o
+    0x0800307e   0x0000008c   Code   RO         9440    i.IsDutyCycleEnabled  tm_reader.o
+    0x0800310a   0x00000002   Code   RO         6599    i.KeepTemperatureDegree  keep_temperature.o
     0x0800310c   0x00000004   Code   RO         4987    i.L6206_GetMotorHandle  x_nucleo_ihmxx.o
     0x08003110   0x00000004   Code   RO         4988    i.L6208_GetMotorHandle  x_nucleo_ihmxx.o
     0x08003114   0x00000004   Code   RO         4989    i.L6474_GetMotorHandle  x_nucleo_ihmxx.o
@@ -6088,18 +6092,18 @@ Memory Map of the image
     0x08003158   0x00000004   Code   RO         5548    i.Light_Sensor_Get  light.o
     0x0800315c   0x00000130   Code   RO         5549    i.Light_Sensor_Get_All  light.o
     0x0800328c   0x000000dc   Code   RO         5550    i.Light_Sensor_Init  light.o
-    0x08003368   0x00000024   Code   RO         7557    i.Liquid_Sensor_Get  liquid_sensor.o
-    0x0800338c   0x0000003c   Code   RO         7558    i.Liquid_Sensor_Init  liquid_sensor.o
-    0x080033c8   0x00000008   Code   RO         9932    i.Load_BL180_Uart_Config  uart_config.o
-    0x080033d0   0x00000008   Code   RO         9933    i.Load_RFID_Uart_Config  uart_config.o
-    0x080033d8   0x00000014   Code   RO         7709    i.M6e_Magic_Get_One_Rfid_Info  m6e_apply.o
-    0x080033ec   0x0000001c   Code   RO         7710    i.M6e_Magic_Read_Rfid_Info  m6e_apply.o
-    0x08003408   0x000001e8   Code   RO         7713    i.M6e_Read_Info     m6e_apply.o
+    0x08003368   0x00000024   Code   RO         7563    i.Liquid_Sensor_Get  liquid_sensor.o
+    0x0800338c   0x0000003c   Code   RO         7564    i.Liquid_Sensor_Init  liquid_sensor.o
+    0x080033c8   0x00000008   Code   RO         9938    i.Load_BL180_Uart_Config  uart_config.o
+    0x080033d0   0x00000008   Code   RO         9939    i.Load_RFID_Uart_Config  uart_config.o
+    0x080033d8   0x00000014   Code   RO         7715    i.M6e_Magic_Get_One_Rfid_Info  m6e_apply.o
+    0x080033ec   0x0000001c   Code   RO         7716    i.M6e_Magic_Read_Rfid_Info  m6e_apply.o
+    0x08003408   0x000001e8   Code   RO         7719    i.M6e_Read_Info     m6e_apply.o
     0x080035f0   0x00000068   Code   RO         6266    i.March_Transporter_Belt  factory_many.o
     0x08003658   0x00000028   Code   RO         6267    i.March_high_wheel  factory_many.o
-    0x08003680   0x0000003e   Code   RO        10126    i.Master_Mini_Board_Get_Degree  mini_board_protocol.o
-    0x080036be   0x0000002e   Code   RO        10127    i.Master_Mini_Board_Set_Degree  mini_board_protocol.o
-    0x080036ec   0x00000108   Code   RO        10128    i.Master_Mini_Board_Transfer_Interface  mini_board_protocol.o
+    0x08003680   0x0000003e   Code   RO        10132    i.Master_Mini_Board_Get_Degree  mini_board_protocol.o
+    0x080036be   0x0000002e   Code   RO        10133    i.Master_Mini_Board_Set_Degree  mini_board_protocol.o
+    0x080036ec   0x00000108   Code   RO        10134    i.Master_Mini_Board_Transfer_Interface  mini_board_protocol.o
     0x080037f4   0x00000002   Code   RO          471    i.MemManage_Handler  stm32f1xx_it.o
     0x080037f6   0x00000002   PAD
     0x080037f8   0x00000074   Code   RO         6268    i.Mix_Blood_High_Speed  factory_many.o
@@ -6111,7 +6115,7 @@ Memory Map of the image
     0x080038f0   0x00000028   Code   RO         6272    i.Normal_Goto_First_Position  factory_many.o
     0x08003918   0x00000028   Code   RO         6274    i.Normal_Pitch_Move_Next  factory_many.o
     0x08003940   0x00000028   Code   RO         6275    i.Normal_Pitch_Move_Next_The_Last_Two  factory_many.o
-    0x08003968   0x00000130   Code   RO         7334    i.Obtain_Barcode_String  fm100.o
+    0x08003968   0x00000130   Code   RO         7340    i.Obtain_Barcode_String  fm100.o
     0x08003a98   0x00000002   Code   RO          473    i.PendSV_Handler    stm32f1xx_it.o
     0x08003a9a   0x00000002   PAD
     0x08003a9c   0x000000a4   Code   RO         4763    i.PowerStep_Select_Motor_Baby  x_nucleo_ihm03a1_stm32f1xx.o
@@ -6217,333 +6221,333 @@ Memory Map of the image
     0x08004f3c   0x0000005c   Code   RO         6276    i.ReadyAndCheckLeftPosition  factory_many.o
     0x08004f98   0x00000056   Code   RO         6277    i.ReadyAndCheckNextPosition  factory_many.o
     0x08004fee   0x00000002   PAD
-    0x08004ff0   0x00000078   Code   RO        10199    i.Real_Time_Polling_Current_Index  real_time_polling.o
-    0x08005068   0x0000001c   Code   RO        10200    i.Real_Time_Polling_Init  real_time_polling.o
-    0x08005084   0x00000004   Code   RO         6597    i.Rearch_Degree_Wait  keep_temperature.o
+    0x08004ff0   0x00000078   Code   RO        10205    i.Real_Time_Polling_Current_Index  real_time_polling.o
+    0x08005068   0x0000001c   Code   RO        10206    i.Real_Time_Polling_Init  real_time_polling.o
+    0x08005084   0x00000004   Code   RO         6603    i.Rearch_Degree_Wait  keep_temperature.o
     0x08005088   0x000000a0   Code   RO         6164    i.RestSelectMotorOrgin  step01.o
     0x08005128   0x000000a8   Code   RO         6165    i.RestSelectMotorOrginDelay  step01.o
     0x080051d0   0x0000002e   Code   RO         6279    i.RestSelectMotorOrginSelect  factory_many.o
-    0x080051fe   0x00000004   Code   RO         6943    i.Rest_C55_C52_Position  slave_uart_control_interface.o
+    0x080051fe   0x00000004   Code   RO         6949    i.Rest_C55_C52_Position  slave_uart_control_interface.o
     0x08005202   0x00000002   Code   RO         6281    i.Rest_Injection_Module_Motor  factory_many.o
     0x08005204   0x0000004c   Code   RO         6283    i.Rest_Transporter_Belt  factory_many.o
     0x08005250   0x0000001c   Code   RO         6284    i.Rest_high_wheel   factory_many.o
-    0x0800526c   0x00000048   Code   RO        10020    i.SPI3_Init         spi3.o
-    0x080052b4   0x00000020   Code   RO        10021    i.SPI3_ReadWriteByte  spi3.o
-    0x080052d4   0x00000034   Code   RO        10022    i.SPI3_SetSpeed     spi3.o
+    0x0800526c   0x00000048   Code   RO        10026    i.SPI3_Init         spi3.o
+    0x080052b4   0x00000020   Code   RO        10027    i.SPI3_ReadWriteByte  spi3.o
+    0x080052d4   0x00000034   Code   RO        10028    i.SPI3_SetSpeed     spi3.o
     0x08005308   0x00000032   Code   RO         6092    i.SPI3_Transfer     weight.o
     0x0800533a   0x0000009e   Code   RO         3523    i.SPI_WaitOnFlagUntilTimeout  stm32f1xx_hal_spi.o
-    0x080053d8   0x0000003c   Code   RO        10166    i.STM32_Change_Protocol_Control_Mini_Board_Get_Degree  rs232_change_protocol.o
-    0x08005414   0x0000003c   Code   RO        10167    i.STM32_Change_Protocol_Control_Mini_Board_Set_Degree  rs232_change_protocol.o
+    0x080053d8   0x0000003c   Code   RO        10172    i.STM32_Change_Protocol_Control_Mini_Board_Get_Degree  rs232_change_protocol.o
+    0x08005414   0x0000003c   Code   RO        10173    i.STM32_Change_Protocol_Control_Mini_Board_Set_Degree  rs232_change_protocol.o
     0x08005450   0x00000002   Code   RO          474    i.SVC_Handler       stm32f1xx_it.o
     0x08005452   0x00000002   PAD
-    0x08005454   0x0000001c   Code   RO         7597    i.ScanChooseHandle  bl180.o
-    0x08005470   0x000000d0   Code   RO         7598    i.Scan_Bar_Action   bl180.o
+    0x08005454   0x0000001c   Code   RO         7603    i.ScanChooseHandle  bl180.o
+    0x08005470   0x000000d0   Code   RO         7604    i.Scan_Bar_Action   bl180.o
     0x08005540   0x00000010   Code   RO         6285    i.Scan_Motor_Slow_Spin  factory_many.o
-    0x08005550   0x00000040   Code   RO         6598    i.SetTemperatureDegree  keep_temperature.o
+    0x08005550   0x00000040   Code   RO         6604    i.SetTemperatureDegree  keep_temperature.o
     0x08005590   0x00000030   Code   RO         6093    i.Set_AD_CS         weight.o
     0x080055c0   0x00000044   Code   RO         6094    i.Set_Weight_Sensor_Warnning_Line  weight.o
-    0x08005604   0x00000060   Code   RO         7601    i.Start_BL180       bl180.o
-    0x08005664   0x00000014   Code   RO         7335    i.Start_Scan_FM100  fm100.o
+    0x08005604   0x00000060   Code   RO         7607    i.Start_BL180       bl180.o
+    0x08005664   0x00000014   Code   RO         7341    i.Start_Scan_FM100  fm100.o
     0x08005678   0x00000044   Code   RO         3851    i.Stm32_Clock_Init  sys.o
     0x080056bc   0x00000002   Code   RO         6167    i.StopALLMotorMotion  step01.o
-    0x080056be   0x00000016   Code   RO         7336    i.Stop_Scan_FM100   fm100.o
+    0x080056be   0x00000016   Code   RO         7342    i.Stop_Scan_FM100   fm100.o
     0x080056d4   0x00000004   Code   RO         4991    i.Stspin220_GetMotorHandle  x_nucleo_ihmxx.o
     0x080056d8   0x00000004   Code   RO         4992    i.Stspin240_250_GetMotorHandle  x_nucleo_ihmxx.o
-    0x080056dc   0x0000002c   Code   RO         7878    i.SysTick_Config    osdep_stm32f103rb.o
+    0x080056dc   0x0000002c   Code   RO         7884    i.SysTick_Config    osdep_stm32f103rb.o
     0x08005708   0x00000004   Code   RO          475    i.SysTick_Handler   stm32f1xx_it.o
     0x0800570c   0x00000048   Code   RO          572    i.SystemInit        system_stm32f1xx.o
-    0x08005754   0x00000034   Code   RO        10267    i.TIM4_IRQHandler   usmart.o
+    0x08005754   0x00000034   Code   RO        10273    i.TIM4_IRQHandler   usmart.o
     0x08005788   0x00000028   Code   RO         5936    i.TIM5_IRQHandler   timer.o
     0x080057b0   0x00000084   Code   RO         1974    i.TIM_Base_SetConfig  stm32f1xx_hal_tim.o
     0x08005834   0x00000016   Code   RO         1975    i.TIM_CCxChannelCmd  stm32f1xx_hal_tim.o
-    0x0800584a   0x00000032   Code   RO         9438    i.TMR_RP_init_simple  tm_reader.o
-    0x0800587c   0x00000100   Code   RO         7932    i.TMR_SR_SerialReader_init  serial_reader.o
-    0x0800597c   0x0000004c   Code   RO         9373    i.TMR_SR_SerialTransportNativeInit  serial_transport_stm32f103rb.o
-    0x080059c8   0x0000050c   Code   RO         7933    i.TMR_SR_addTagOp   serial_reader.o
-    0x08005ed4   0x00000314   Code   RO         7934    i.TMR_SR_boot       serial_reader.o
-    0x080061e8   0x0000005e   Code   RO         8196    i.TMR_SR_cmdAntennaDetect  serial_reader_l3.o
+    0x0800584a   0x00000032   Code   RO         9444    i.TMR_RP_init_simple  tm_reader.o
+    0x0800587c   0x00000100   Code   RO         7938    i.TMR_SR_SerialReader_init  serial_reader.o
+    0x0800597c   0x0000004c   Code   RO         9379    i.TMR_SR_SerialTransportNativeInit  serial_transport_stm32f103rb.o
+    0x080059c8   0x0000050c   Code   RO         7939    i.TMR_SR_addTagOp   serial_reader.o
+    0x08005ed4   0x00000314   Code   RO         7940    i.TMR_SR_boot       serial_reader.o
+    0x080061e8   0x0000005e   Code   RO         8202    i.TMR_SR_cmdAntennaDetect  serial_reader_l3.o
     0x08006246   0x00000002   PAD
-    0x08006248   0x00000068   Code   RO         8197    i.TMR_SR_cmdAuthReqResponse  serial_reader_l3.o
-    0x080062b0   0x0000009a   Code   RO         8202    i.TMR_SR_cmdBootFirmware  serial_reader_l3.o
-    0x0800634a   0x0000001a   Code   RO         8203    i.TMR_SR_cmdClearTagBuffer  serial_reader_l3.o
-    0x08006364   0x00000066   Code   RO         8212    i.TMR_SR_cmdGetAntennaPortPowersAndSettlingTime  serial_reader_l3.o
-    0x080063ca   0x00000066   Code   RO         8213    i.TMR_SR_cmdGetAntennaReturnLoss  serial_reader_l3.o
-    0x08006430   0x0000007e   Code   RO         8214    i.TMR_SR_cmdGetAvailableProtocols  serial_reader_l3.o
-    0x080064ae   0x0000004e   Code   RO         8215    i.TMR_SR_cmdGetAvailableRegions  serial_reader_l3.o
-    0x080064fc   0x00000022   Code   RO         8216    i.TMR_SR_cmdGetCurrentProgram  serial_reader_l3.o
-    0x0800651e   0x0000002a   Code   RO         8217    i.TMR_SR_cmdGetCurrentProtocol  serial_reader_l3.o
-    0x08006548   0x00000058   Code   RO         8218    i.TMR_SR_cmdGetFrequencyHopTable  serial_reader_l3.o
-    0x080065a0   0x00000038   Code   RO         8219    i.TMR_SR_cmdGetFrequencyHopTime  serial_reader_l3.o
-    0x080065d8   0x00000092   Code   RO         8220    i.TMR_SR_cmdGetGPIO  serial_reader_l3.o
-    0x0800666a   0x00000032   Code   RO         8221    i.TMR_SR_cmdGetGPIODirection  serial_reader_l3.o
-    0x0800669c   0x0000004e   Code   RO         8222    i.TMR_SR_cmdGetHardwareVersion  serial_reader_l3.o
-    0x080066ea   0x0000003a   Code   RO         8223    i.TMR_SR_cmdGetMinimumFrequency  serial_reader_l3.o
-    0x08006724   0x00000028   Code   RO         8224    i.TMR_SR_cmdGetPowerMode  serial_reader_l3.o
-    0x0800674c   0x00000114   Code   RO         8225    i.TMR_SR_cmdGetProtocolConfiguration  serial_reader_l3.o
-    0x08006860   0x0000003a   Code   RO         8226    i.TMR_SR_cmdGetQuantizationStep  serial_reader_l3.o
-    0x0800689a   0x00000030   Code   RO         8227    i.TMR_SR_cmdGetReadTxPower  serial_reader_l3.o
-    0x080068ca   0x0000003e   Code   RO         8228    i.TMR_SR_cmdGetReadTxPowerWithLimits  serial_reader_l3.o
-    0x08006908   0x000000b4   Code   RO         8229    i.TMR_SR_cmdGetReaderConfiguration  serial_reader_l3.o
-    0x080069bc   0x00000104   Code   RO         8230    i.TMR_SR_cmdGetReaderStatistics  serial_reader_l3.o
-    0x08006ac0   0x00000148   Code   RO         8231    i.TMR_SR_cmdGetReaderStats  serial_reader_l3.o
-    0x08006c08   0x0000003e   Code   RO         8232    i.TMR_SR_cmdGetReaderWriteTimeOut  serial_reader_l3.o
-    0x08006c46   0x00000028   Code   RO         8233    i.TMR_SR_cmdGetRegion  serial_reader_l3.o
+    0x08006248   0x00000068   Code   RO         8203    i.TMR_SR_cmdAuthReqResponse  serial_reader_l3.o
+    0x080062b0   0x0000009a   Code   RO         8208    i.TMR_SR_cmdBootFirmware  serial_reader_l3.o
+    0x0800634a   0x0000001a   Code   RO         8209    i.TMR_SR_cmdClearTagBuffer  serial_reader_l3.o
+    0x08006364   0x00000066   Code   RO         8218    i.TMR_SR_cmdGetAntennaPortPowersAndSettlingTime  serial_reader_l3.o
+    0x080063ca   0x00000066   Code   RO         8219    i.TMR_SR_cmdGetAntennaReturnLoss  serial_reader_l3.o
+    0x08006430   0x0000007e   Code   RO         8220    i.TMR_SR_cmdGetAvailableProtocols  serial_reader_l3.o
+    0x080064ae   0x0000004e   Code   RO         8221    i.TMR_SR_cmdGetAvailableRegions  serial_reader_l3.o
+    0x080064fc   0x00000022   Code   RO         8222    i.TMR_SR_cmdGetCurrentProgram  serial_reader_l3.o
+    0x0800651e   0x0000002a   Code   RO         8223    i.TMR_SR_cmdGetCurrentProtocol  serial_reader_l3.o
+    0x08006548   0x00000058   Code   RO         8224    i.TMR_SR_cmdGetFrequencyHopTable  serial_reader_l3.o
+    0x080065a0   0x00000038   Code   RO         8225    i.TMR_SR_cmdGetFrequencyHopTime  serial_reader_l3.o
+    0x080065d8   0x00000092   Code   RO         8226    i.TMR_SR_cmdGetGPIO  serial_reader_l3.o
+    0x0800666a   0x00000032   Code   RO         8227    i.TMR_SR_cmdGetGPIODirection  serial_reader_l3.o
+    0x0800669c   0x0000004e   Code   RO         8228    i.TMR_SR_cmdGetHardwareVersion  serial_reader_l3.o
+    0x080066ea   0x0000003a   Code   RO         8229    i.TMR_SR_cmdGetMinimumFrequency  serial_reader_l3.o
+    0x08006724   0x00000028   Code   RO         8230    i.TMR_SR_cmdGetPowerMode  serial_reader_l3.o
+    0x0800674c   0x00000114   Code   RO         8231    i.TMR_SR_cmdGetProtocolConfiguration  serial_reader_l3.o
+    0x08006860   0x0000003a   Code   RO         8232    i.TMR_SR_cmdGetQuantizationStep  serial_reader_l3.o
+    0x0800689a   0x00000030   Code   RO         8233    i.TMR_SR_cmdGetReadTxPower  serial_reader_l3.o
+    0x080068ca   0x0000003e   Code   RO         8234    i.TMR_SR_cmdGetReadTxPowerWithLimits  serial_reader_l3.o
+    0x08006908   0x000000b4   Code   RO         8235    i.TMR_SR_cmdGetReaderConfiguration  serial_reader_l3.o
+    0x080069bc   0x00000104   Code   RO         8236    i.TMR_SR_cmdGetReaderStatistics  serial_reader_l3.o
+    0x08006ac0   0x00000148   Code   RO         8237    i.TMR_SR_cmdGetReaderStats  serial_reader_l3.o
+    0x08006c08   0x0000003e   Code   RO         8238    i.TMR_SR_cmdGetReaderWriteTimeOut  serial_reader_l3.o
+    0x08006c46   0x00000028   Code   RO         8239    i.TMR_SR_cmdGetRegion  serial_reader_l3.o
     0x08006c6e   0x00000002   PAD
-    0x08006c70   0x00000048   Code   RO         8234    i.TMR_SR_cmdGetRegionConfiguration  serial_reader_l3.o
-    0x08006cb8   0x00000032   Code   RO         8235    i.TMR_SR_cmdGetTagsRemaining  serial_reader_l3.o
-    0x08006cea   0x00000028   Code   RO         8236    i.TMR_SR_cmdGetTemperature  serial_reader_l3.o
-    0x08006d12   0x00000028   Code   RO         8238    i.TMR_SR_cmdGetUserMode  serial_reader_l3.o
-    0x08006d3a   0x00000030   Code   RO         8240    i.TMR_SR_cmdGetWriteTxPower  serial_reader_l3.o
+    0x08006c70   0x00000048   Code   RO         8240    i.TMR_SR_cmdGetRegionConfiguration  serial_reader_l3.o
+    0x08006cb8   0x00000032   Code   RO         8241    i.TMR_SR_cmdGetTagsRemaining  serial_reader_l3.o
+    0x08006cea   0x00000028   Code   RO         8242    i.TMR_SR_cmdGetTemperature  serial_reader_l3.o
+    0x08006d12   0x00000028   Code   RO         8244    i.TMR_SR_cmdGetUserMode  serial_reader_l3.o
+    0x08006d3a   0x00000030   Code   RO         8246    i.TMR_SR_cmdGetWriteTxPower  serial_reader_l3.o
     0x08006d6a   0x00000002   PAD
-    0x08006d6c   0x000000e8   Code   RO         8257    i.TMR_SR_cmdMultipleProtocolSearch  serial_reader_l3.o
-    0x08006e54   0x000000a0   Code   RO         7935    i.TMR_SR_cmdProbeBaudRate  serial_reader.o
-    0x08006ef4   0x000000b0   Code   RO         8266    i.TMR_SR_cmdReadTagMultiple  serial_reader_l3.o
-    0x08006fa4   0x00000028   Code   RO         8267    i.TMR_SR_cmdResetReaderStatistics  serial_reader_l3.o
-    0x08006fcc   0x00000050   Code   RO         8268    i.TMR_SR_cmdResetReaderStats  serial_reader_l3.o
-    0x0800701c   0x00000076   Code   RO         8286    i.TMR_SR_cmdSetAntennaPortPowersAndSettlingTime  serial_reader_l3.o
-    0x08007092   0x00000046   Code   RO         8287    i.TMR_SR_cmdSetAntennaSearchList  serial_reader_l3.o
-    0x080070d8   0x00000030   Code   RO         8288    i.TMR_SR_cmdSetBaudRate  serial_reader_l3.o
-    0x08007108   0x00000058   Code   RO         8289    i.TMR_SR_cmdSetFrequencyHopTable  serial_reader_l3.o
-    0x08007160   0x00000036   Code   RO         8290    i.TMR_SR_cmdSetFrequencyHopTime  serial_reader_l3.o
-    0x08007196   0x0000002e   Code   RO         8292    i.TMR_SR_cmdSetGPIODirection  serial_reader_l3.o
-    0x080071c4   0x00000036   Code   RO         8293    i.TMR_SR_cmdSetMinimumFrequency  serial_reader_l3.o
-    0x080071fa   0x0000001e   Code   RO         8294    i.TMR_SR_cmdSetPowerMode  serial_reader_l3.o
-    0x08007218   0x00000024   Code   RO         8295    i.TMR_SR_cmdSetProtocol  serial_reader_l3.o
-    0x0800723c   0x00000168   Code   RO         8296    i.TMR_SR_cmdSetProtocolConfiguration  serial_reader_l3.o
-    0x080073a4   0x00000074   Code   RO         8297    i.TMR_SR_cmdSetProtocolLicenseKey  serial_reader_l3.o
-    0x08007418   0x00000036   Code   RO         8298    i.TMR_SR_cmdSetQuantizationStep  serial_reader_l3.o
+    0x08006d6c   0x000000e8   Code   RO         8263    i.TMR_SR_cmdMultipleProtocolSearch  serial_reader_l3.o
+    0x08006e54   0x000000a0   Code   RO         7941    i.TMR_SR_cmdProbeBaudRate  serial_reader.o
+    0x08006ef4   0x000000b0   Code   RO         8272    i.TMR_SR_cmdReadTagMultiple  serial_reader_l3.o
+    0x08006fa4   0x00000028   Code   RO         8273    i.TMR_SR_cmdResetReaderStatistics  serial_reader_l3.o
+    0x08006fcc   0x00000050   Code   RO         8274    i.TMR_SR_cmdResetReaderStats  serial_reader_l3.o
+    0x0800701c   0x00000076   Code   RO         8292    i.TMR_SR_cmdSetAntennaPortPowersAndSettlingTime  serial_reader_l3.o
+    0x08007092   0x00000046   Code   RO         8293    i.TMR_SR_cmdSetAntennaSearchList  serial_reader_l3.o
+    0x080070d8   0x00000030   Code   RO         8294    i.TMR_SR_cmdSetBaudRate  serial_reader_l3.o
+    0x08007108   0x00000058   Code   RO         8295    i.TMR_SR_cmdSetFrequencyHopTable  serial_reader_l3.o
+    0x08007160   0x00000036   Code   RO         8296    i.TMR_SR_cmdSetFrequencyHopTime  serial_reader_l3.o
+    0x08007196   0x0000002e   Code   RO         8298    i.TMR_SR_cmdSetGPIODirection  serial_reader_l3.o
+    0x080071c4   0x00000036   Code   RO         8299    i.TMR_SR_cmdSetMinimumFrequency  serial_reader_l3.o
+    0x080071fa   0x0000001e   Code   RO         8300    i.TMR_SR_cmdSetPowerMode  serial_reader_l3.o
+    0x08007218   0x00000024   Code   RO         8301    i.TMR_SR_cmdSetProtocol  serial_reader_l3.o
+    0x0800723c   0x00000168   Code   RO         8302    i.TMR_SR_cmdSetProtocolConfiguration  serial_reader_l3.o
+    0x080073a4   0x00000074   Code   RO         8303    i.TMR_SR_cmdSetProtocolLicenseKey  serial_reader_l3.o
+    0x08007418   0x00000036   Code   RO         8304    i.TMR_SR_cmdSetQuantizationStep  serial_reader_l3.o
     0x0800744e   0x00000002   PAD
-    0x08007450   0x00000038   Code   RO         8299    i.TMR_SR_cmdSetReadTxPower  serial_reader_l3.o
-    0x08007488   0x000000ac   Code   RO         8300    i.TMR_SR_cmdSetReaderConfiguration  serial_reader_l3.o
-    0x08007534   0x00000036   Code   RO         8301    i.TMR_SR_cmdSetReaderWriteTimeOut  serial_reader_l3.o
-    0x0800756a   0x0000001e   Code   RO         8302    i.TMR_SR_cmdSetRegion  serial_reader_l3.o
-    0x08007588   0x00000022   Code   RO         8303    i.TMR_SR_cmdSetRegionLbt  serial_reader_l3.o
-    0x080075aa   0x00000068   Code   RO         8304    i.TMR_SR_cmdSetRegulatoryTest  serial_reader_l3.o
-    0x08007612   0x00000022   Code   RO         8305    i.TMR_SR_cmdSetTxRxPorts  serial_reader_l3.o
-    0x08007634   0x0000001e   Code   RO         8306    i.TMR_SR_cmdSetUserMode  serial_reader_l3.o
+    0x08007450   0x00000038   Code   RO         8305    i.TMR_SR_cmdSetReadTxPower  serial_reader_l3.o
+    0x08007488   0x000000ac   Code   RO         8306    i.TMR_SR_cmdSetReaderConfiguration  serial_reader_l3.o
+    0x08007534   0x00000036   Code   RO         8307    i.TMR_SR_cmdSetReaderWriteTimeOut  serial_reader_l3.o
+    0x0800756a   0x0000001e   Code   RO         8308    i.TMR_SR_cmdSetRegion  serial_reader_l3.o
+    0x08007588   0x00000022   Code   RO         8309    i.TMR_SR_cmdSetRegionLbt  serial_reader_l3.o
+    0x080075aa   0x00000068   Code   RO         8310    i.TMR_SR_cmdSetRegulatoryTest  serial_reader_l3.o
+    0x08007612   0x00000022   Code   RO         8311    i.TMR_SR_cmdSetTxRxPorts  serial_reader_l3.o
+    0x08007634   0x0000001e   Code   RO         8312    i.TMR_SR_cmdSetUserMode  serial_reader_l3.o
     0x08007652   0x00000002   PAD
-    0x08007654   0x00000214   Code   RO         8307    i.TMR_SR_cmdSetUserProfile  serial_reader_l3.o
-    0x08007868   0x00000038   Code   RO         8308    i.TMR_SR_cmdSetWriteTxPower  serial_reader_l3.o
-    0x080078a0   0x00000038   Code   RO         8309    i.TMR_SR_cmdStopReading  serial_reader_l3.o
-    0x080078d8   0x000000aa   Code   RO         8313    i.TMR_SR_cmdVersion  serial_reader_l3.o
-    0x08007982   0x0000006c   Code   RO         7936    i.TMR_SR_connect    serial_reader.o
-    0x080079ee   0x00000032   Code   RO         7937    i.TMR_SR_destroy    serial_reader.o
-    0x08007a20   0x00000108   Code   RO         8317    i.TMR_SR_executeEmbeddedRead  serial_reader_l3.o
-    0x08007b28   0x00000164   Code   RO         7940    i.TMR_SR_getNextTag  serial_reader.o
-    0x08007c8c   0x00000224   Code   RO         7943    i.TMR_SR_hasMoreTags  serial_reader.o
-    0x08007eb0   0x000000c8   Code   RO         8318    i.TMR_SR_msgAddGEN2BlockErase  serial_reader_l3.o
-    0x08007f78   0x000000ea   Code   RO         8319    i.TMR_SR_msgAddGEN2BlockPermaLock  serial_reader_l3.o
-    0x08008062   0x00000108   Code   RO         8320    i.TMR_SR_msgAddGEN2BlockWrite  serial_reader_l3.o
+    0x08007654   0x00000214   Code   RO         8313    i.TMR_SR_cmdSetUserProfile  serial_reader_l3.o
+    0x08007868   0x00000038   Code   RO         8314    i.TMR_SR_cmdSetWriteTxPower  serial_reader_l3.o
+    0x080078a0   0x00000038   Code   RO         8315    i.TMR_SR_cmdStopReading  serial_reader_l3.o
+    0x080078d8   0x000000aa   Code   RO         8319    i.TMR_SR_cmdVersion  serial_reader_l3.o
+    0x08007982   0x0000006c   Code   RO         7942    i.TMR_SR_connect    serial_reader.o
+    0x080079ee   0x00000032   Code   RO         7943    i.TMR_SR_destroy    serial_reader.o
+    0x08007a20   0x00000108   Code   RO         8323    i.TMR_SR_executeEmbeddedRead  serial_reader_l3.o
+    0x08007b28   0x00000164   Code   RO         7946    i.TMR_SR_getNextTag  serial_reader.o
+    0x08007c8c   0x00000224   Code   RO         7949    i.TMR_SR_hasMoreTags  serial_reader.o
+    0x08007eb0   0x000000c8   Code   RO         8324    i.TMR_SR_msgAddGEN2BlockErase  serial_reader_l3.o
+    0x08007f78   0x000000ea   Code   RO         8325    i.TMR_SR_msgAddGEN2BlockPermaLock  serial_reader_l3.o
+    0x08008062   0x00000108   Code   RO         8326    i.TMR_SR_msgAddGEN2BlockWrite  serial_reader_l3.o
     0x0800816a   0x00000002   PAD
-    0x0800816c   0x000000a4   Code   RO         8321    i.TMR_SR_msgAddGEN2DataRead  serial_reader_l3.o
-    0x08008210   0x0000008c   Code   RO         8322    i.TMR_SR_msgAddGEN2DataWrite  serial_reader_l3.o
-    0x0800829c   0x00000070   Code   RO         8323    i.TMR_SR_msgAddGEN2KillTag  serial_reader_l3.o
-    0x0800830c   0x00000098   Code   RO         8324    i.TMR_SR_msgAddGEN2LockTag  serial_reader_l3.o
-    0x080083a4   0x0000004c   Code   RO         8325    i.TMR_SR_msgAddGEN2WriteTagEPC  serial_reader_l3.o
-    0x080083f0   0x000002ac   Code   RO         8367    i.TMR_SR_msgSetupMultipleProtocolSearch  serial_reader_l3.o
-    0x0800869c   0x00000022   Code   RO         8368    i.TMR_SR_msgSetupReadTagMultiple  serial_reader_l3.o
+    0x0800816c   0x000000a4   Code   RO         8327    i.TMR_SR_msgAddGEN2DataRead  serial_reader_l3.o
+    0x08008210   0x0000008c   Code   RO         8328    i.TMR_SR_msgAddGEN2DataWrite  serial_reader_l3.o
+    0x0800829c   0x00000070   Code   RO         8329    i.TMR_SR_msgAddGEN2KillTag  serial_reader_l3.o
+    0x0800830c   0x00000098   Code   RO         8330    i.TMR_SR_msgAddGEN2LockTag  serial_reader_l3.o
+    0x080083a4   0x0000004c   Code   RO         8331    i.TMR_SR_msgAddGEN2WriteTagEPC  serial_reader_l3.o
+    0x080083f0   0x000002ac   Code   RO         8373    i.TMR_SR_msgSetupMultipleProtocolSearch  serial_reader_l3.o
+    0x0800869c   0x00000022   Code   RO         8374    i.TMR_SR_msgSetupReadTagMultiple  serial_reader_l3.o
     0x080086be   0x00000002   PAD
-    0x080086c0   0x00000260   Code   RO         8369    i.TMR_SR_msgSetupReadTagMultipleWithMetadata  serial_reader_l3.o
-    0x08008920   0x0000006e   Code   RO         8370    i.TMR_SR_msgSetupReadTagSingle  serial_reader_l3.o
+    0x080086c0   0x00000260   Code   RO         8375    i.TMR_SR_msgSetupReadTagMultipleWithMetadata  serial_reader_l3.o
+    0x08008920   0x0000006e   Code   RO         8376    i.TMR_SR_msgSetupReadTagSingle  serial_reader_l3.o
     0x0800898e   0x00000002   PAD
-    0x08008990   0x00000978   Code   RO         7947    i.TMR_SR_paramGet   serial_reader.o
-    0x08009308   0x0000085c   Code   RO         7948    i.TMR_SR_paramSet   serial_reader.o
-    0x08009b64   0x00000132   Code   RO         8371    i.TMR_SR_parseMetadataFromMessage  serial_reader_l3.o
-    0x08009c96   0x0000020a   Code   RO         8372    i.TMR_SR_parseMetadataOnly  serial_reader_l3.o
-    0x08009ea0   0x000000f8   Code   RO         8373    i.TMR_SR_postprocessReaderSpecificMetadata  serial_reader_l3.o
-    0x08009f98   0x000000e4   Code   RO         7949    i.TMR_SR_read       serial_reader.o
-    0x0800a07c   0x00000420   Code   RO         7953    i.TMR_SR_read_internal  serial_reader.o
-    0x0800a49c   0x000001e4   Code   RO         8375    i.TMR_SR_receiveMessage  serial_reader_l3.o
-    0x0800a680   0x00000008   Code   RO         8376    i.TMR_SR_send       serial_reader_l3.o
-    0x0800a688   0x00000030   Code   RO         8377    i.TMR_SR_sendBytes  serial_reader_l3.o
-    0x0800a6b8   0x000000e4   Code   RO         8378    i.TMR_SR_sendMessage  serial_reader_l3.o
-    0x0800a79c   0x0000005e   Code   RO         8379    i.TMR_SR_sendTimeout  serial_reader_l3.o
-    0x0800a7fa   0x00000074   Code   RO         9454    i.TMR_TRD_init      tm_reader.o
-    0x0800a86e   0x0000002e   Code   RO         9469    i.TMR__notifyTransportListeners  tm_reader.o
-    0x0800a89c   0x00000030   Code   RO         7837    i.TMR_bytesToHex    hex_bytes.o
-    0x0800a8cc   0x00000190   Code   RO         9471    i.TMR_create        tm_reader.o
-    0x0800aa5c   0x000001e0   Code   RO         8380    i.TMR_fillReaderStats  serial_reader_l3.o
-    0x0800ac3c   0x00000038   Code   RO         7838    i.TMR_hexDottedQuad  hex_bytes.o
-    0x0800ac74   0x00000094   Code   RO         9474    i.TMR_initSerialTransportTable  tm_reader.o
-    0x0800ad08   0x00000022   Code   RO         9476    i.TMR_paramGet      tm_reader.o
-    0x0800ad2a   0x0000004a   Code   RO         9478    i.TMR_paramProbe    tm_reader.o
-    0x0800ad74   0x00000006   Code   RO         9479    i.TMR_paramSet      tm_reader.o
-    0x0800ad7a   0x00000066   Code   RO         9481    i.TMR_reader_init_internal  tm_reader.o
-    0x0800ade0   0x00000024   Code   RO         9842    i.TMR_stringCopy    tmr_utils.o
-    0x0800ae04   0x00000054   Code   RO        10268    i.Timer4_Init       usmart.o
-    0x0800ae58   0x000000a8   Code   RO         6676    i.UART2_Init        uart2.o
-    0x0800af00   0x000000a8   Code   RO         6677    i.UART2_Init_Check  uart2.o
-    0x0800afa8   0x0000004c   Code   RO         6678    i.UART2_Receive_Data  uart2.o
-    0x0800aff4   0x00000020   Code   RO         6679    i.UART2_Send_Data   uart2.o
+    0x08008990   0x00000978   Code   RO         7953    i.TMR_SR_paramGet   serial_reader.o
+    0x08009308   0x0000085c   Code   RO         7954    i.TMR_SR_paramSet   serial_reader.o
+    0x08009b64   0x00000132   Code   RO         8377    i.TMR_SR_parseMetadataFromMessage  serial_reader_l3.o
+    0x08009c96   0x0000020a   Code   RO         8378    i.TMR_SR_parseMetadataOnly  serial_reader_l3.o
+    0x08009ea0   0x000000f8   Code   RO         8379    i.TMR_SR_postprocessReaderSpecificMetadata  serial_reader_l3.o
+    0x08009f98   0x000000e4   Code   RO         7955    i.TMR_SR_read       serial_reader.o
+    0x0800a07c   0x00000420   Code   RO         7959    i.TMR_SR_read_internal  serial_reader.o
+    0x0800a49c   0x000001e4   Code   RO         8381    i.TMR_SR_receiveMessage  serial_reader_l3.o
+    0x0800a680   0x00000008   Code   RO         8382    i.TMR_SR_send       serial_reader_l3.o
+    0x0800a688   0x00000030   Code   RO         8383    i.TMR_SR_sendBytes  serial_reader_l3.o
+    0x0800a6b8   0x000000e4   Code   RO         8384    i.TMR_SR_sendMessage  serial_reader_l3.o
+    0x0800a79c   0x0000005e   Code   RO         8385    i.TMR_SR_sendTimeout  serial_reader_l3.o
+    0x0800a7fa   0x00000074   Code   RO         9460    i.TMR_TRD_init      tm_reader.o
+    0x0800a86e   0x0000002e   Code   RO         9475    i.TMR__notifyTransportListeners  tm_reader.o
+    0x0800a89c   0x00000030   Code   RO         7843    i.TMR_bytesToHex    hex_bytes.o
+    0x0800a8cc   0x00000190   Code   RO         9477    i.TMR_create        tm_reader.o
+    0x0800aa5c   0x000001e0   Code   RO         8386    i.TMR_fillReaderStats  serial_reader_l3.o
+    0x0800ac3c   0x00000038   Code   RO         7844    i.TMR_hexDottedQuad  hex_bytes.o
+    0x0800ac74   0x00000094   Code   RO         9480    i.TMR_initSerialTransportTable  tm_reader.o
+    0x0800ad08   0x00000022   Code   RO         9482    i.TMR_paramGet      tm_reader.o
+    0x0800ad2a   0x0000004a   Code   RO         9484    i.TMR_paramProbe    tm_reader.o
+    0x0800ad74   0x00000006   Code   RO         9485    i.TMR_paramSet      tm_reader.o
+    0x0800ad7a   0x00000066   Code   RO         9487    i.TMR_reader_init_internal  tm_reader.o
+    0x0800ade0   0x00000024   Code   RO         9848    i.TMR_stringCopy    tmr_utils.o
+    0x0800ae04   0x00000054   Code   RO        10274    i.Timer4_Init       usmart.o
+    0x0800ae58   0x000000a8   Code   RO         6682    i.UART2_Init        uart2.o
+    0x0800af00   0x000000a8   Code   RO         6683    i.UART2_Init_Check  uart2.o
+    0x0800afa8   0x0000004c   Code   RO         6684    i.UART2_Receive_Data  uart2.o
+    0x0800aff4   0x00000020   Code   RO         6685    i.UART2_Send_Data   uart2.o
     0x0800b014   0x00000034   Code   RO         5492    i.UART3_Receive_Data  uart3.o
     0x0800b048   0x00000020   Code   RO         5493    i.UART3_Send_Data   uart3.o
-    0x0800b068   0x00000016   Code   RO         6464    i.UART4_Enable_Interrupt  uart4.o
-    0x0800b07e   0x00000002   PAD
-    0x0800b080   0x0000003c   Code   RO         6465    i.UART4_IRQHandler  uart4.o
-    0x0800b0bc   0x0000009c   Code   RO         6466    i.UART4_Init        uart4.o
-    0x0800b158   0x0000003c   Code   RO         6467    i.UART4_Receive_Data  uart4.o
-    0x0800b194   0x00000020   Code   RO         6468    i.UART4_Send_Data   uart4.o
-    0x0800b1b4   0x00000006   Code   RO        10059    i.UART5_Disable_Interrupt  uart5.o
-    0x0800b1ba   0x00000016   Code   RO        10060    i.UART5_Enable_Interrupt  uart5.o
-    0x0800b1d0   0x0000003c   Code   RO        10061    i.UART5_IRQHandler  uart5.o
-    0x0800b20c   0x000000b0   Code   RO        10062    i.UART5_Init        uart5.o
-    0x0800b2bc   0x00000034   Code   RO        10063    i.UART5_Receive_Data  uart5.o
-    0x0800b2f0   0x00000020   Code   RO        10064    i.UART5_Send_Data   uart5.o
-    0x0800b310   0x000000a6   Code   RO         1390    i.UART_Receive_IT   stm32f1xx_hal_uart.o
-    0x0800b3b6   0x00000002   PAD
-    0x0800b3b8   0x00000170   Code   RO         1391    i.UART_SetConfig    stm32f1xx_hal_uart.o
-    0x0800b528   0x00000066   Code   RO         1392    i.UART_Transmit_IT  stm32f1xx_hal_uart.o
-    0x0800b58e   0x00000092   Code   RO         1393    i.UART_WaitOnFlagUntilTimeout  stm32f1xx_hal_uart.o
-    0x0800b620   0x0000002c   Code   RO         3896    i.USART1_IRQHandler  usart.o
-    0x0800b64c   0x000000e8   Code   RO         6680    i.USART2_IRQHandler  uart2.o
-    0x0800b734   0x000000a8   Code   RO         5494    i.USART3_IRQHandler  uart3.o
-    0x0800b7dc   0x00000012   Code   RO         9934    i.Uart2_Config_Init  uart_config.o
-    0x0800b7ee   0x00000002   PAD
-    0x0800b7f0   0x0000000c   Code   RO         6681    i.Uart2_Rx_Clear    uart2.o
-    0x0800b7fc   0x0000000c   Code   RO         5495    i.Uart3_Rx_Clear    uart3.o
-    0x0800b808   0x0000000c   Code   RO         6469    i.Uart4_Rx_Clear    uart4.o
-    0x0800b814   0x00000012   Code   RO         9935    i.Uart_Clear_Context  uart_config.o
-    0x0800b826   0x00000002   PAD
-    0x0800b828   0x000000c8   Code   RO         6740    i.Uart_Select_Baby  uart_choose.o
-    0x0800b8f0   0x00000040   Code   RO         6741    i.Uart_cs_init      uart_choose.o
-    0x0800b930   0x00000002   Code   RO          476    i.UsageFault_Handler  stm32f1xx_it.o
-    0x0800b932   0x00000002   PAD
-    0x0800b934   0x00000054   Code   RO         6095    i.Weight_Sensor_Init  weight.o
-    0x0800b988   0x00000020   Code   RO        10696    i.__0printf$8       mc_w.l(printf8.o)
-    0x0800b9a8   0x00000028   Code   RO        10698    i.__0sprintf$8      mc_w.l(printf8.o)
-    0x0800b9d0   0x0000003c   Code   RO         6953    i.__InfoBoard__     slave_uart_control_interface.o
-    0x0800ba0c   0x00000098   Code   RO         5551    i.__Light_Sensor_Get__  light.o
-    0x0800baa4   0x000000dc   Code   RO         6169    i.__Normal_Pitch_Move_Next__  step01.o
-    0x0800bb80   0x0000005e   Code   RO            6    i.__ack_error_msg__  main.o
-    0x0800bbde   0x00000002   PAD
-    0x0800bbe0   0x00000050   Code   RO        10755    i.__malloc$realloc  mc_w.l(mallocr.o)
-    0x0800bc30   0x0000000e   Code   RO        10845    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800bc3e   0x00000002   Code   RO        10846    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800bc40   0x0000000e   Code   RO        10847    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800bc4e   0x00000002   PAD
-    0x0800bc50   0x00000688   Code   RO         6954    i._commandTOstring_  slave_uart_control_interface.o
-    0x0800c2d8   0x00000384   Code   RO         6286    i._num2string_      factory_many.o
-    0x0800c65c   0x00000410   Code   RO        10703    i._printf_core      mc_w.l(printf8.o)
-    0x0800ca6c   0x00000024   Code   RO        10704    i._printf_post_padding  mc_w.l(printf8.o)
-    0x0800ca90   0x0000002e   Code   RO        10705    i._printf_pre_padding  mc_w.l(printf8.o)
-    0x0800cabe   0x0000000a   Code   RO        10707    i._sputc            mc_w.l(printf8.o)
-    0x0800cac8   0x00000098   Code   RO         7959    i.autoDetectAntennaList  serial_reader.o
-    0x0800cb60   0x00000060   Code   RO        10242    i.caculate_tansfer_check_bit  check_rs232.o
-    0x0800cbc0   0x00000042   Code   RO         9485    i.checkForAvailableFeatures  tm_reader.o
-    0x0800cc02   0x00000002   PAD
-    0x0800cc04   0x00000198   Code   RO         5596    i.cheminert_c52_c55_transfer  cheminert_c52.o
-    0x0800cd9c   0x00000078   Code   RO         7960    i.compareAntennas   serial_reader.o
-    0x0800ce14   0x0000003a   Code   RO         7961    i.compareVersion    serial_reader.o
-    0x0800ce4e   0x00000002   PAD
-    0x0800ce50   0x00000014   Code   RO         3810    i.delay_init        delay.o
-    0x0800ce64   0x0000001a   Code   RO         3811    i.delay_ms          delay.o
-    0x0800ce7e   0x00000002   PAD
-    0x0800ce80   0x00000034   Code   RO         3812    i.delay_us          delay.o
-    0x0800ceb4   0x00000002   Code   RO         6788    i.electromagnetic_control  electromagnetic.o
-    0x0800ceb6   0x00000002   Code   RO         6789    i.electromagnetic_control_package  electromagnetic.o
-    0x0800ceb8   0x000000a4   Code   RO         8382    i.extractGen2MemoryBankValues  serial_reader_l3.o
-    0x0800cf5c   0x000002b0   Code   RO         8383    i.filterbytes       serial_reader_l3.o
-    0x0800d20c   0x00000018   Code   RO         3898    i.fputc             usart.o
-    0x0800d224   0x000000a6   Code   RO         7962    i.getPortValues     serial_reader.o
-    0x0800d2ca   0x00000002   PAD
-    0x0800d2cc   0x00000078   Code   RO         7963    i.getSerialNumber   serial_reader.o
-    0x0800d344   0x00000028   Code   RO         6096    i.get_weight_sensor_value  weight.o
-    0x0800d36c   0x000001cc   Code   RO         7964    i.initTxRxMapFromPorts  serial_reader.o
-    0x0800d538   0x00000020   Code   RO         6170    i.init_mix_motor_config  step01.o
-    0x0800d558   0x00000060   Code   RO         6171    i.init_motor_device  step01.o
-    0x0800d5b8   0x00000050   Code   RO        10756    i.internal_alloc    mc_w.l(mallocr.o)
-    0x0800d608   0x000000a8   Code   RO         9487    i.isAntDetectEnabled  tm_reader.o
-    0x0800d6b0   0x000000ba   Code   RO         8388    i.isContinuousReadParamSupported  serial_reader_l3.o
-    0x0800d76a   0x00000074   Code   RO         9488    i.isMultiSelectSupported  tm_reader.o
-    0x0800d7de   0x00000004   Code   RO         4993    i.l647x_GetMotorHandle  x_nucleo_ihmxx.o
-    0x0800d7e2   0x00000004   Code   RO         4994    i.l648x_GetMotorHandle  x_nucleo_ihmxx.o
-    0x0800d7e6   0x00000002   PAD
-    0x0800d7e8   0x00000110   Code   RO            7    i.main              main.o
-    0x0800d8f8   0x00000038   Code   RO         7965    i.prepEmbReadTagMultiple  serial_reader.o
-    0x0800d930   0x00000070   Code   RO         7966    i.prepForSearch     serial_reader.o
-    0x0800d9a0   0x00000130   Code   RO         6287    i.process_motor_command_receive  factory_many.o
-    0x0800dad0   0x000004b8   Code   RO         6955    i.protocol_cheminert_c52_c55  slave_uart_control_interface.o
-    0x0800df88   0x0000002a   Code   RO         6956    i.protocol_gravity_sensor_getting  slave_uart_control_interface.o
-    0x0800dfb2   0x00000002   PAD
-    0x0800dfb4   0x00000568   Code   RO         6957    i.protocol_handle_uart_powerstep01_plain_slave_cmd  slave_uart_control_interface.o
-    0x0800e51c   0x0000015c   Code   RO         6958    i.protocol_pump_s100_interface  slave_uart_control_interface.o
-    0x0800e678   0x0000009e   Code   RO         6959    i.protocol_real_time_polling  slave_uart_control_interface.o
-    0x0800e716   0x00000032   Code   RO         6960    i.protocol_rfid_get_epc_string  slave_uart_control_interface.o
-    0x0800e748   0x00000028   Code   RO         6961    i.protocol_scan_barcode  slave_uart_control_interface.o
-    0x0800e770   0x000001a4   Code   RO         5624    i.pump_s100_transfer  pump_s100.o
-    0x0800e914   0x00000004   Code   RO        10269    i.read_addr         usmart.o
-    0x0800e918   0x00000004   Code   RO         9374    i.s_flush           serial_transport_stm32f103rb.o
-    0x0800e91c   0x00000004   Code   RO         9375    i.s_open            serial_transport_stm32f103rb.o
-    0x0800e920   0x000000a8   Code   RO         9376    i.s_receiveBytes    serial_transport_stm32f103rb.o
-    0x0800e9c8   0x0000001c   Code   RO         9377    i.s_sendBytes       serial_transport_stm32f103rb.o
-    0x0800e9e4   0x00000004   Code   RO         9378    i.s_setBaudRate     serial_transport_stm32f103rb.o
-    0x0800e9e8   0x00000004   Code   RO         9379    i.s_shutdown        serial_transport_stm32f103rb.o
-    0x0800e9ec   0x00000080   Code   RO         7967    i.setAntennaList    serial_reader.o
-    0x0800ea6c   0x000000fc   Code   RO         7968    i.setAntennaReadTimeHelper  serial_reader.o
-    0x0800eb68   0x0000004c   Code   RO         7969    i.setAntennaReadTimeList  serial_reader.o
-    0x0800ebb4   0x000000f0   Code   RO         7970    i.setPortValues     serial_reader.o
-    0x0800eca4   0x0000006a   Code   RO         7971    i.setProtocol       serial_reader.o
-    0x0800ed0e   0x00000002   PAD
-    0x0800ed10   0x0000000c   Code   RO         6288    i.set_DelayMs_Normal_Positon  factory_many.o
-    0x0800ed1c   0x0000000c   Code   RO         6172    i.set_mix_motor_config  step01.o
-    0x0800ed28   0x0000003c   Code   RO         8389    i.tm_crc            serial_reader_l3.o
-    0x0800ed64   0x00000026   Code   RO         9844    i.tm_gettime_consistent  tmr_utils.o
-    0x0800ed8a   0x00000016   Code   RO         9845    i.tm_memcpy         tmr_utils.o
-    0x0800eda0   0x00000010   Code   RO         9848    i.tm_strcpy         tmr_utils.o
-    0x0800edb0   0x0000000e   Code   RO         9849    i.tm_time_subtract  tmr_utils.o
-    0x0800edbe   0x00000010   Code   RO         9850    i.tm_u8s_per_bits   tmr_utils.o
-    0x0800edce   0x00000002   PAD
-    0x0800edd0   0x00000024   Code   RO         7879    i.tmr_gettime       osdep_stm32f103rb.o
-    0x0800edf4   0x0000000a   Code   RO         7880    i.tmr_gettime_high  osdep_stm32f103rb.o
-    0x0800edfe   0x00000008   Code   RO         7881    i.tmr_gettime_low   osdep_stm32f103rb.o
-    0x0800ee06   0x00000002   PAD
-    0x0800ee08   0x00000020   Code   RO         7883    i.tmr_sleep         osdep_stm32f103rb.o
-    0x0800ee28   0x00000024   Code   RO         3899    i.uart_init         usart.o
-    0x0800ee4c   0x00000094   Code   RO        10270    i.usmart_cmd_rec    usmart.o
-    0x0800eee0   0x00000260   Code   RO        10271    i.usmart_exe        usmart.o
-    0x0800f140   0x000000a4   Code   RO        10382    i.usmart_get_aparm  usmart_str.o
-    0x0800f1e4   0x0000002e   Code   RO        10383    i.usmart_get_cmdname  usmart_str.o
-    0x0800f212   0x00000002   PAD
-    0x0800f214   0x00000168   Code   RO        10384    i.usmart_get_fname  usmart_str.o
-    0x0800f37c   0x000000d0   Code   RO        10385    i.usmart_get_fparam  usmart_str.o
-    0x0800f44c   0x00000024   Code   RO        10386    i.usmart_get_parmpos  usmart_str.o
-    0x0800f470   0x00000030   Code   RO        10272    i.usmart_get_runtime  usmart.o
-    0x0800f4a0   0x00000028   Code   RO        10273    i.usmart_init       usmart.o
-    0x0800f4c8   0x00000010   Code   RO        10387    i.usmart_pow        usmart_str.o
-    0x0800f4d8   0x00000028   Code   RO        10274    i.usmart_reset_runtime  usmart.o
-    0x0800f500   0x000000a4   Code   RO        10275    i.usmart_scan       usmart.o
-    0x0800f5a4   0x00000010   Code   RO        10388    i.usmart_search_nextc  usmart_str.o
-    0x0800f5b4   0x000000d6   Code   RO        10389    i.usmart_str2num    usmart_str.o
-    0x0800f68a   0x00000018   Code   RO        10390    i.usmart_strcmp     usmart_str.o
-    0x0800f6a2   0x00000012   Code   RO        10391    i.usmart_strcopy    usmart_str.o
-    0x0800f6b4   0x00000012   Code   RO        10392    i.usmart_strlen     usmart_str.o
-    0x0800f6c6   0x00000002   PAD
-    0x0800f6c8   0x00000680   Code   RO        10276    i.usmart_sys_cmd_exe  usmart.o
-    0x0800fd48   0x0000006c   Code   RO         7972    i.validateParams    serial_reader.o
-    0x0800fdb4   0x000000a0   Code   RO         9492    i.validateReadPlan  tm_reader.o
-    0x0800fe54   0x00000088   Code   RO         7973    i.verifySearchStatus  serial_reader.o
-    0x0800fedc   0x0000002e   Code   RO         9493    i.versionCompare    tm_reader.o
-    0x0800ff0a   0x00000004   Code   RO        10277    i.write_addr        usmart.o
-    0x0800ff0e   0x00000031   Data   RO            8    .constdata          main.o
-    0x0800ff3f   0x00000010   Data   RO          573    .constdata          system_stm32f1xx.o
-    0x0800ff4f   0x00000008   Data   RO          574    .constdata          system_stm32f1xx.o
-    0x0800ff57   0x0000001b   Data   RO         5597    .constdata          cheminert_c52.o
-    0x0800ff72   0x0000003c   Data   RO         5625    .constdata          pump_s100.o
-    0x0800ffae   0x00000060   Data   RO         6174    .constdata          step01.o
-    0x0801000e   0x0000001e   Data   RO         6289    .constdata          factory_many.o
-    0x0801002c   0x000000ca   Data   RO         6966    .constdata          slave_uart_control_interface.o
-    0x080100f6   0x00000016   Data   RO         7338    .constdata          fm100.o
-    0x0801010c   0x0000007a   Data   RO         7603    .constdata          bl180.o
-    0x08010186   0x00000084   Data   RO         7720    .constdata          m6e_apply.o
-    0x0801020a   0x00000002   PAD
-    0x0801020c   0x0000002c   Data   RO         7974    .constdata          serial_reader.o
-    0x08010238   0x00000025   Data   RO        10129    .constdata          mini_board_protocol.o
-    0x0801025d   0x00000068   Data   RO        10168    .constdata          rs232_change_protocol.o
-    0x080102c5   0x00000003   PAD
-    0x080102c8   0x00000028   Data   RO        10279    .conststring        usmart.o
-    0x080102f0   0x0000006b   Data   RO        10356    .conststring        usmart_config.o
-    0x0801035b   0x00000001   PAD
-    0x0801035c   0x00000020   Data   RO        10843    Region$$Table       anon$$obj.o
+    0x0800b068   0x00000006   Code   RO         6464    i.UART4_Disable_Interrupt  uart4.o
+    0x0800b06e   0x00000016   Code   RO         6465    i.UART4_Enable_Interrupt  uart4.o
+    0x0800b084   0x0000003c   Code   RO         6466    i.UART4_IRQHandler  uart4.o
+    0x0800b0c0   0x0000009c   Code   RO         6467    i.UART4_Init        uart4.o
+    0x0800b15c   0x0000003c   Code   RO         6468    i.UART4_Receive_Data  uart4.o
+    0x0800b198   0x00000020   Code   RO         6469    i.UART4_Send_Data   uart4.o
+    0x0800b1b8   0x00000006   Code   RO        10065    i.UART5_Disable_Interrupt  uart5.o
+    0x0800b1be   0x00000016   Code   RO        10066    i.UART5_Enable_Interrupt  uart5.o
+    0x0800b1d4   0x0000003c   Code   RO        10067    i.UART5_IRQHandler  uart5.o
+    0x0800b210   0x000000b0   Code   RO        10068    i.UART5_Init        uart5.o
+    0x0800b2c0   0x00000034   Code   RO        10069    i.UART5_Receive_Data  uart5.o
+    0x0800b2f4   0x00000020   Code   RO        10070    i.UART5_Send_Data   uart5.o
+    0x0800b314   0x000000a6   Code   RO         1390    i.UART_Receive_IT   stm32f1xx_hal_uart.o
+    0x0800b3ba   0x00000002   PAD
+    0x0800b3bc   0x00000170   Code   RO         1391    i.UART_SetConfig    stm32f1xx_hal_uart.o
+    0x0800b52c   0x00000066   Code   RO         1392    i.UART_Transmit_IT  stm32f1xx_hal_uart.o
+    0x0800b592   0x00000092   Code   RO         1393    i.UART_WaitOnFlagUntilTimeout  stm32f1xx_hal_uart.o
+    0x0800b624   0x0000002c   Code   RO         3896    i.USART1_IRQHandler  usart.o
+    0x0800b650   0x000000e8   Code   RO         6686    i.USART2_IRQHandler  uart2.o
+    0x0800b738   0x000000a8   Code   RO         5494    i.USART3_IRQHandler  uart3.o
+    0x0800b7e0   0x00000012   Code   RO         9940    i.Uart2_Config_Init  uart_config.o
+    0x0800b7f2   0x00000002   PAD
+    0x0800b7f4   0x0000000c   Code   RO         6687    i.Uart2_Rx_Clear    uart2.o
+    0x0800b800   0x0000000c   Code   RO         5495    i.Uart3_Rx_Clear    uart3.o
+    0x0800b80c   0x0000000c   Code   RO         6470    i.Uart4_Rx_Clear    uart4.o
+    0x0800b818   0x00000012   Code   RO         9941    i.Uart_Clear_Context  uart_config.o
+    0x0800b82a   0x00000002   PAD
+    0x0800b82c   0x000000c8   Code   RO         6746    i.Uart_Select_Baby  uart_choose.o
+    0x0800b8f4   0x00000040   Code   RO         6747    i.Uart_cs_init      uart_choose.o
+    0x0800b934   0x00000002   Code   RO          476    i.UsageFault_Handler  stm32f1xx_it.o
+    0x0800b936   0x00000002   PAD
+    0x0800b938   0x00000054   Code   RO         6095    i.Weight_Sensor_Init  weight.o
+    0x0800b98c   0x00000020   Code   RO        10702    i.__0printf$8       mc_w.l(printf8.o)
+    0x0800b9ac   0x00000028   Code   RO        10704    i.__0sprintf$8      mc_w.l(printf8.o)
+    0x0800b9d4   0x0000003c   Code   RO         6959    i.__InfoBoard__     slave_uart_control_interface.o
+    0x0800ba10   0x00000098   Code   RO         5551    i.__Light_Sensor_Get__  light.o
+    0x0800baa8   0x000000dc   Code   RO         6169    i.__Normal_Pitch_Move_Next__  step01.o
+    0x0800bb84   0x0000005e   Code   RO            6    i.__ack_error_msg__  main.o
+    0x0800bbe2   0x00000002   PAD
+    0x0800bbe4   0x00000050   Code   RO        10761    i.__malloc$realloc  mc_w.l(mallocr.o)
+    0x0800bc34   0x0000000e   Code   RO        10851    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800bc42   0x00000002   Code   RO        10852    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800bc44   0x0000000e   Code   RO        10853    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800bc52   0x00000002   PAD
+    0x0800bc54   0x00000688   Code   RO         6960    i._commandTOstring_  slave_uart_control_interface.o
+    0x0800c2dc   0x00000384   Code   RO         6286    i._num2string_      factory_many.o
+    0x0800c660   0x00000410   Code   RO        10709    i._printf_core      mc_w.l(printf8.o)
+    0x0800ca70   0x00000024   Code   RO        10710    i._printf_post_padding  mc_w.l(printf8.o)
+    0x0800ca94   0x0000002e   Code   RO        10711    i._printf_pre_padding  mc_w.l(printf8.o)
+    0x0800cac2   0x0000000a   Code   RO        10713    i._sputc            mc_w.l(printf8.o)
+    0x0800cacc   0x00000098   Code   RO         7965    i.autoDetectAntennaList  serial_reader.o
+    0x0800cb64   0x00000060   Code   RO        10248    i.caculate_tansfer_check_bit  check_rs232.o
+    0x0800cbc4   0x00000042   Code   RO         9491    i.checkForAvailableFeatures  tm_reader.o
+    0x0800cc06   0x00000002   PAD
+    0x0800cc08   0x00000198   Code   RO         5596    i.cheminert_c52_c55_transfer  cheminert_c52.o
+    0x0800cda0   0x00000078   Code   RO         7966    i.compareAntennas   serial_reader.o
+    0x0800ce18   0x0000003a   Code   RO         7967    i.compareVersion    serial_reader.o
+    0x0800ce52   0x00000002   PAD
+    0x0800ce54   0x00000014   Code   RO         3810    i.delay_init        delay.o
+    0x0800ce68   0x0000001a   Code   RO         3811    i.delay_ms          delay.o
+    0x0800ce82   0x00000002   PAD
+    0x0800ce84   0x00000034   Code   RO         3812    i.delay_us          delay.o
+    0x0800ceb8   0x00000002   Code   RO         6794    i.electromagnetic_control  electromagnetic.o
+    0x0800ceba   0x00000002   Code   RO         6795    i.electromagnetic_control_package  electromagnetic.o
+    0x0800cebc   0x000000a4   Code   RO         8388    i.extractGen2MemoryBankValues  serial_reader_l3.o
+    0x0800cf60   0x000002b0   Code   RO         8389    i.filterbytes       serial_reader_l3.o
+    0x0800d210   0x00000018   Code   RO         3898    i.fputc             usart.o
+    0x0800d228   0x000000a6   Code   RO         7968    i.getPortValues     serial_reader.o
+    0x0800d2ce   0x00000002   PAD
+    0x0800d2d0   0x00000078   Code   RO         7969    i.getSerialNumber   serial_reader.o
+    0x0800d348   0x00000028   Code   RO         6096    i.get_weight_sensor_value  weight.o
+    0x0800d370   0x000001cc   Code   RO         7970    i.initTxRxMapFromPorts  serial_reader.o
+    0x0800d53c   0x00000020   Code   RO         6170    i.init_mix_motor_config  step01.o
+    0x0800d55c   0x00000060   Code   RO         6171    i.init_motor_device  step01.o
+    0x0800d5bc   0x00000050   Code   RO        10762    i.internal_alloc    mc_w.l(mallocr.o)
+    0x0800d60c   0x000000a8   Code   RO         9493    i.isAntDetectEnabled  tm_reader.o
+    0x0800d6b4   0x000000ba   Code   RO         8394    i.isContinuousReadParamSupported  serial_reader_l3.o
+    0x0800d76e   0x00000074   Code   RO         9494    i.isMultiSelectSupported  tm_reader.o
+    0x0800d7e2   0x00000004   Code   RO         4993    i.l647x_GetMotorHandle  x_nucleo_ihmxx.o
+    0x0800d7e6   0x00000004   Code   RO         4994    i.l648x_GetMotorHandle  x_nucleo_ihmxx.o
+    0x0800d7ea   0x00000002   PAD
+    0x0800d7ec   0x00000118   Code   RO            7    i.main              main.o
+    0x0800d904   0x00000038   Code   RO         7971    i.prepEmbReadTagMultiple  serial_reader.o
+    0x0800d93c   0x00000070   Code   RO         7972    i.prepForSearch     serial_reader.o
+    0x0800d9ac   0x00000130   Code   RO         6287    i.process_motor_command_receive  factory_many.o
+    0x0800dadc   0x000004b8   Code   RO         6961    i.protocol_cheminert_c52_c55  slave_uart_control_interface.o
+    0x0800df94   0x0000002a   Code   RO         6962    i.protocol_gravity_sensor_getting  slave_uart_control_interface.o
+    0x0800dfbe   0x00000002   PAD
+    0x0800dfc0   0x00000568   Code   RO         6963    i.protocol_handle_uart_powerstep01_plain_slave_cmd  slave_uart_control_interface.o
+    0x0800e528   0x0000015c   Code   RO         6964    i.protocol_pump_s100_interface  slave_uart_control_interface.o
+    0x0800e684   0x0000009e   Code   RO         6965    i.protocol_real_time_polling  slave_uart_control_interface.o
+    0x0800e722   0x00000032   Code   RO         6966    i.protocol_rfid_get_epc_string  slave_uart_control_interface.o
+    0x0800e754   0x00000028   Code   RO         6967    i.protocol_scan_barcode  slave_uart_control_interface.o
+    0x0800e77c   0x000001a4   Code   RO         5624    i.pump_s100_transfer  pump_s100.o
+    0x0800e920   0x00000004   Code   RO        10275    i.read_addr         usmart.o
+    0x0800e924   0x00000004   Code   RO         9380    i.s_flush           serial_transport_stm32f103rb.o
+    0x0800e928   0x00000004   Code   RO         9381    i.s_open            serial_transport_stm32f103rb.o
+    0x0800e92c   0x000000a8   Code   RO         9382    i.s_receiveBytes    serial_transport_stm32f103rb.o
+    0x0800e9d4   0x0000001c   Code   RO         9383    i.s_sendBytes       serial_transport_stm32f103rb.o
+    0x0800e9f0   0x00000004   Code   RO         9384    i.s_setBaudRate     serial_transport_stm32f103rb.o
+    0x0800e9f4   0x00000004   Code   RO         9385    i.s_shutdown        serial_transport_stm32f103rb.o
+    0x0800e9f8   0x00000080   Code   RO         7973    i.setAntennaList    serial_reader.o
+    0x0800ea78   0x000000fc   Code   RO         7974    i.setAntennaReadTimeHelper  serial_reader.o
+    0x0800eb74   0x0000004c   Code   RO         7975    i.setAntennaReadTimeList  serial_reader.o
+    0x0800ebc0   0x000000f0   Code   RO         7976    i.setPortValues     serial_reader.o
+    0x0800ecb0   0x0000006a   Code   RO         7977    i.setProtocol       serial_reader.o
+    0x0800ed1a   0x00000002   PAD
+    0x0800ed1c   0x0000000c   Code   RO         6288    i.set_DelayMs_Normal_Positon  factory_many.o
+    0x0800ed28   0x0000000c   Code   RO         6172    i.set_mix_motor_config  step01.o
+    0x0800ed34   0x0000003c   Code   RO         8395    i.tm_crc            serial_reader_l3.o
+    0x0800ed70   0x00000026   Code   RO         9850    i.tm_gettime_consistent  tmr_utils.o
+    0x0800ed96   0x00000016   Code   RO         9851    i.tm_memcpy         tmr_utils.o
+    0x0800edac   0x00000010   Code   RO         9854    i.tm_strcpy         tmr_utils.o
+    0x0800edbc   0x0000000e   Code   RO         9855    i.tm_time_subtract  tmr_utils.o
+    0x0800edca   0x00000010   Code   RO         9856    i.tm_u8s_per_bits   tmr_utils.o
+    0x0800edda   0x00000002   PAD
+    0x0800eddc   0x00000024   Code   RO         7885    i.tmr_gettime       osdep_stm32f103rb.o
+    0x0800ee00   0x0000000a   Code   RO         7886    i.tmr_gettime_high  osdep_stm32f103rb.o
+    0x0800ee0a   0x00000008   Code   RO         7887    i.tmr_gettime_low   osdep_stm32f103rb.o
+    0x0800ee12   0x00000002   PAD
+    0x0800ee14   0x00000020   Code   RO         7889    i.tmr_sleep         osdep_stm32f103rb.o
+    0x0800ee34   0x00000024   Code   RO         3899    i.uart_init         usart.o
+    0x0800ee58   0x00000094   Code   RO        10276    i.usmart_cmd_rec    usmart.o
+    0x0800eeec   0x00000260   Code   RO        10277    i.usmart_exe        usmart.o
+    0x0800f14c   0x000000a4   Code   RO        10388    i.usmart_get_aparm  usmart_str.o
+    0x0800f1f0   0x0000002e   Code   RO        10389    i.usmart_get_cmdname  usmart_str.o
+    0x0800f21e   0x00000002   PAD
+    0x0800f220   0x00000168   Code   RO        10390    i.usmart_get_fname  usmart_str.o
+    0x0800f388   0x000000d0   Code   RO        10391    i.usmart_get_fparam  usmart_str.o
+    0x0800f458   0x00000024   Code   RO        10392    i.usmart_get_parmpos  usmart_str.o
+    0x0800f47c   0x00000030   Code   RO        10278    i.usmart_get_runtime  usmart.o
+    0x0800f4ac   0x00000028   Code   RO        10279    i.usmart_init       usmart.o
+    0x0800f4d4   0x00000010   Code   RO        10393    i.usmart_pow        usmart_str.o
+    0x0800f4e4   0x00000028   Code   RO        10280    i.usmart_reset_runtime  usmart.o
+    0x0800f50c   0x000000a4   Code   RO        10281    i.usmart_scan       usmart.o
+    0x0800f5b0   0x00000010   Code   RO        10394    i.usmart_search_nextc  usmart_str.o
+    0x0800f5c0   0x000000d6   Code   RO        10395    i.usmart_str2num    usmart_str.o
+    0x0800f696   0x00000018   Code   RO        10396    i.usmart_strcmp     usmart_str.o
+    0x0800f6ae   0x00000012   Code   RO        10397    i.usmart_strcopy    usmart_str.o
+    0x0800f6c0   0x00000012   Code   RO        10398    i.usmart_strlen     usmart_str.o
+    0x0800f6d2   0x00000002   PAD
+    0x0800f6d4   0x00000680   Code   RO        10282    i.usmart_sys_cmd_exe  usmart.o
+    0x0800fd54   0x0000006c   Code   RO         7978    i.validateParams    serial_reader.o
+    0x0800fdc0   0x000000a0   Code   RO         9498    i.validateReadPlan  tm_reader.o
+    0x0800fe60   0x00000088   Code   RO         7979    i.verifySearchStatus  serial_reader.o
+    0x0800fee8   0x0000002e   Code   RO         9499    i.versionCompare    tm_reader.o
+    0x0800ff16   0x00000004   Code   RO        10283    i.write_addr        usmart.o
+    0x0800ff1a   0x00000031   Data   RO            8    .constdata          main.o
+    0x0800ff4b   0x00000010   Data   RO          573    .constdata          system_stm32f1xx.o
+    0x0800ff5b   0x00000008   Data   RO          574    .constdata          system_stm32f1xx.o
+    0x0800ff63   0x0000001b   Data   RO         5597    .constdata          cheminert_c52.o
+    0x0800ff7e   0x0000003c   Data   RO         5625    .constdata          pump_s100.o
+    0x0800ffba   0x00000060   Data   RO         6174    .constdata          step01.o
+    0x0801001a   0x0000001e   Data   RO         6289    .constdata          factory_many.o
+    0x08010038   0x000000ca   Data   RO         6972    .constdata          slave_uart_control_interface.o
+    0x08010102   0x00000016   Data   RO         7344    .constdata          fm100.o
+    0x08010118   0x0000007a   Data   RO         7609    .constdata          bl180.o
+    0x08010192   0x00000084   Data   RO         7726    .constdata          m6e_apply.o
+    0x08010216   0x00000002   PAD
+    0x08010218   0x0000002c   Data   RO         7980    .constdata          serial_reader.o
+    0x08010244   0x00000025   Data   RO        10135    .constdata          mini_board_protocol.o
+    0x08010269   0x00000068   Data   RO        10174    .constdata          rs232_change_protocol.o
+    0x080102d1   0x00000003   PAD
+    0x080102d4   0x00000028   Data   RO        10285    .conststring        usmart.o
+    0x080102fc   0x0000006b   Data   RO        10362    .conststring        usmart_config.o
+    0x08010367   0x00000001   PAD
+    0x08010368   0x00000020   Data   RO        10849    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00002040, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000001bc])
@@ -6568,49 +6572,49 @@ Memory Map of the image
     0x200001b8   0x00000010   Data   RW         6097    .data               weight.o
     0x200001c8   0x000000c8   Data   RW         6175    .data               step01.o
     0x20000290   0x00000004   Data   RW         6290    .data               factory_many.o
-    0x20000294   0x00000004   Data   RW         6471    .data               uart4.o
-    0x20000298   0x00000028   Data   RW         6602    .data               keep_temperature.o
-    0x200002c0   0x00000008   Data   RW         6683    .data               uart2.o
-    0x200002c8   0x00000001   Data   RW         6684    .data               uart2.o
+    0x20000294   0x00000004   Data   RW         6472    .data               uart4.o
+    0x20000298   0x00000028   Data   RW         6608    .data               keep_temperature.o
+    0x200002c0   0x00000008   Data   RW         6689    .data               uart2.o
+    0x200002c8   0x00000001   Data   RW         6690    .data               uart2.o
     0x200002c9   0x00000003   PAD
-    0x200002cc   0x0000000c   Data   RW         6743    .data               uart_choose.o
-    0x200002d8   0x00000008   Data   RW         7339    .data               fm100.o
-    0x200002e0   0x0000001c   Data   RW         7604    .data               bl180.o
-    0x200002fc   0x0000000c   Data   RW         7721    .data               m6e_apply.o
-    0x20000308   0x00000011   Data   RW         7841    .data               hex_bytes.o
-    0x20000319   0x00000002   Data   RW         7975    .data               serial_reader.o
+    0x200002cc   0x0000000c   Data   RW         6749    .data               uart_choose.o
+    0x200002d8   0x00000008   Data   RW         7345    .data               fm100.o
+    0x200002e0   0x0000001c   Data   RW         7610    .data               bl180.o
+    0x200002fc   0x0000000c   Data   RW         7727    .data               m6e_apply.o
+    0x20000308   0x00000011   Data   RW         7847    .data               hex_bytes.o
+    0x20000319   0x00000002   Data   RW         7981    .data               serial_reader.o
     0x2000031b   0x00000001   PAD
-    0x2000031c   0x00000024   Data   RW         8390    .data               serial_reader_l3.o
-    0x20000340   0x00000008   Data   RW         9381    .data               serial_transport_stm32f103rb.o
-    0x20000348   0x0000000c   Data   RW         9495    .data               tm_reader.o
-    0x20000354   0x00000004   Data   RW        10067    .data               uart5.o
-    0x20000358   0x00000004   Data   RW        10202    .data               real_time_polling.o
-    0x2000035c   0x00000002   Data   RW        10243    .data               check_rs232.o
+    0x2000031c   0x00000024   Data   RW         8396    .data               serial_reader_l3.o
+    0x20000340   0x00000008   Data   RW         9387    .data               serial_transport_stm32f103rb.o
+    0x20000348   0x0000000c   Data   RW         9501    .data               tm_reader.o
+    0x20000354   0x00000004   Data   RW        10073    .data               uart5.o
+    0x20000358   0x00000004   Data   RW        10208    .data               real_time_polling.o
+    0x2000035c   0x00000002   Data   RW        10249    .data               check_rs232.o
     0x2000035e   0x00000002   PAD
-    0x20000360   0x0000001c   Data   RW        10280    .data               usmart.o
-    0x2000037c   0x00000020   Data   RW        10357    .data               usmart_config.o
-    0x2000039c   0x000000f4   Data   RW        10358    .data               usmart_config.o
-    0x20000490   0x00000004   Data   RW        10480    .data               mc_w.l(strtok.o)
-    0x20000494   0x00000004   Data   RW        10830    .data               mc_w.l(mvars.o)
-    0x20000498   0x00000004   Data   RW        10831    .data               mc_w.l(mvars.o)
+    0x20000360   0x0000001c   Data   RW        10286    .data               usmart.o
+    0x2000037c   0x00000020   Data   RW        10363    .data               usmart_config.o
+    0x2000039c   0x000000f4   Data   RW        10364    .data               usmart_config.o
+    0x20000490   0x00000004   Data   RW        10486    .data               mc_w.l(strtok.o)
+    0x20000494   0x00000004   Data   RW        10836    .data               mc_w.l(mvars.o)
+    0x20000498   0x00000004   Data   RW        10837    .data               mc_w.l(mvars.o)
     0x2000049c   0x00000108   Zero   RW         3900    .bss                usart.o
     0x200005a4   0x00000018   Zero   RW         4091    .bss                powerstep01.o
     0x200005bc   0x000000a4   Zero   RW         4782    .bss                x_nucleo_ihm03a1_stm32f1xx.o
     0x20000660   0x00000144   Zero   RW         5496    .bss                uart3.o
     0x200007a4   0x00000094   Zero   RW         5940    .bss                timer.o
     0x20000838   0x00000098   Zero   RW         6173    .bss                step01.o
-    0x200008d0   0x000000c0   Zero   RW         6470    .bss                uart4.o
-    0x20000990   0x0000003c   Zero   RW         6600    .bss                keep_temperature.o
-    0x200009cc   0x00000144   Zero   RW         6682    .bss                uart2.o
-    0x20000b10   0x0000001e   Zero   RW         7337    .bss                fm100.o
+    0x200008d0   0x000000c0   Zero   RW         6471    .bss                uart4.o
+    0x20000990   0x0000003c   Zero   RW         6606    .bss                keep_temperature.o
+    0x200009cc   0x00000144   Zero   RW         6688    .bss                uart2.o
+    0x20000b10   0x0000001e   Zero   RW         7343    .bss                fm100.o
     0x20000b2e   0x00000002   PAD
-    0x20000b30   0x00000a64   Zero   RW         7719    .bss                m6e_apply.o
-    0x20001594   0x0000010c   Zero   RW         9380    .bss                serial_transport_stm32f103rb.o
-    0x200016a0   0x00000230   Zero   RW         9494    .bss                tm_reader.o
-    0x200018d0   0x00000058   Zero   RW        10023    .bss                spi3.o
-    0x20001928   0x000000c0   Zero   RW        10066    .bss                uart5.o
-    0x200019e8   0x00000018   Zero   RW        10201    .bss                real_time_polling.o
-    0x20001a00   0x0000003c   Zero   RW        10278    .bss                usmart.o
+    0x20000b30   0x00000a64   Zero   RW         7725    .bss                m6e_apply.o
+    0x20001594   0x0000010c   Zero   RW         9386    .bss                serial_transport_stm32f103rb.o
+    0x200016a0   0x00000230   Zero   RW         9500    .bss                tm_reader.o
+    0x200018d0   0x00000058   Zero   RW        10029    .bss                spi3.o
+    0x20001928   0x000000c0   Zero   RW        10072    .bss                uart5.o
+    0x200019e8   0x00000018   Zero   RW        10207    .bss                real_time_polling.o
+    0x20001a00   0x0000003c   Zero   RW        10284    .bss                usmart.o
     0x20001a3c   0x00000004   PAD
     0x20001a40   0x00000200   Zero   RW          731    HEAP                startup_stm32f103xe.o
     0x20001c40   0x00000400   Zero   RW          730    STACK               startup_stm32f103xe.o
@@ -6636,7 +6640,7 @@ Image component sizes
        680         88          0          3          0       3284   light.o
         96         16          0          0          0       1513   liquid_sensor.o
       1296        530        132         12       2660       9017   m6e_apply.o
-       634        278         49          0          0     617255   main.o
+       642        278         49          0          0     617267   main.o
        372         80         37          0          0       3381   mini_board_protocol.o
        130         14          0          0          0      25146   osdep_stm32f103rb.o
       3984        382          0        376         24      61513   powerstep01.o
@@ -6667,7 +6671,7 @@ Image component sizes
        142          0          0          0          0       4038   tmr_utils.o
        688         86          0          9        324       4672   uart2.o
        264         30          0         14        324       3417   uart3.o
-       342         48          0          4        192       4129   uart4.o
+       348         48          0          4        192       4567   uart4.o
        348         50          0          4        192       4040   uart5.o
        344         42          0         12          0       3511   uart_choose.o
         68          0          0          0          0       2831   uart_config.o
@@ -6680,9 +6684,9 @@ Image component sizes
        568         70          0          8          0      13209   x_nucleo_ihmxx.o
 
     ----------------------------------------------------------------------
-     61368       8900       1438       1168       7076    1124463   Object Totals
+     61380       8900       1438       1168       7076    1124913   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        86          0          6         12          6          0   (incl. Padding)
+        84          0          6         12          6          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -6751,15 +6755,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     64990       9002       1438       1180       7076    1099499   Grand Totals
-     64990       9002       1438        444       7076    1099499   ELF Image Totals (compressed)
-     64990       9002       1438        444          0          0   ROM Totals
+     65002       9002       1438       1180       7076    1099897   Grand Totals
+     65002       9002       1438        444       7076    1099897   ELF Image Totals (compressed)
+     65002       9002       1438        444          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                66428 (  64.87kB)
+    Total RO  Size (Code + RO Data)                66440 (  64.88kB)
     Total RW  Size (RW Data + ZI Data)              8256 (   8.06kB)
-    Total ROM Size (Code + RO Data + RW Data)      66872 (  65.30kB)
+    Total ROM Size (Code + RO Data + RW Data)      66884 (  65.32kB)
 
 ==============================================================================
 

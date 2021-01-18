@@ -20,4 +20,5 @@ void UART4_Send_Data(u8 *buf,int len);
 void UART4_Receive_Data(u8 *buf,int RxLen, int *len);
 void Uart4_Rx_Clear(void);
 void UART4_Enable_Interrupt(void);
+void UART4_Disable_Interrupt(void);
 #endif

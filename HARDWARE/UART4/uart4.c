@@ -65,6 +65,10 @@ void UART4_Init(u32 bound)
 	//HAL_NVIC_EnableIRQ(UART4_IRQn);				        //使能UART4中断
 	//HAL_NVIC_SetPriority(UART4_IRQn,3,3);			        //抢占优先级3，子优先级3
 }
+void UART4_Disable_Interrupt(void)
+{
+	  HAL_NVIC_DisableIRQ(UART4_IRQn);	
+}	
 
 void UART4_Enable_Interrupt(void)
 {
