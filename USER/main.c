@@ -151,7 +151,7 @@ int main(void)
 	while(1)
 	{
 			temp_a=UART4_RX_CNT;
-			delay_ms(20);	
+			delay_ms(40);	
 			temp_b=UART4_RX_CNT;
 			
 			if(temp_b!=0)
@@ -160,7 +160,7 @@ int main(void)
 					{
 							LOGE("rx len is error [%d] \r\n",temp_a);
 							UART4_RX_CNT=0;
-#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)						
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD||USE_CLEANING_DILUTION_BOARD)						
 							__ack_error_msg__();
 #endif						
 					}
@@ -176,7 +176,7 @@ int main(void)
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
-			if(i==100)
+			if(i==25)
 			{
 				i=0;		
 				keep_thermometer_degree();
@@ -186,7 +186,7 @@ int main(void)
 
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
 			i++;
-			if(i==100)
+			if(i==25)
 			{		
 					i=0;
 					Real_Time_Polling_Current_Index();

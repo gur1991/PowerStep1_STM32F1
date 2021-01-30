@@ -790,14 +790,16 @@ static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
 {
 			Real_Time_Polling_Press_t  performer;
 			
-			data->response.polling_press.pumpPress = Get_Real_Time_Polling_Press().pumpPress;
+			data->response.polling_press = Get_Real_Time_Polling_Press();
 			data->response.ret = 0;
 }	
 
 static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 {
 			Real_Time_Polling_t  performer;
-
+			
+			data->response.polling=Get_Real_Time_Polling_Value();
+/*	
 			data->response.polling.degree= Get_Real_Time_Polling_Value().degree;
 			data->response.polling.liquid= Get_Real_Time_Polling_Value().liquid;
 			
@@ -806,7 +808,8 @@ static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 			data->response.polling.weightThree=Get_Real_Time_Polling_Value().weightThree;
 			data->response.polling.weightFour=Get_Real_Time_Polling_Value().weightFour;
 			data->response.polling.status=Get_Real_Time_Polling_Value().status;
-			data->response.ret = 0;
+*/	
+	    data->response.ret = 0;
 }	
 
 static void  protocol_electromagnetic_package(electromagnetic_package_type_t* data)
