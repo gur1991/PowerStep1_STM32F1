@@ -151,7 +151,13 @@ int main(void)
 	while(1)
 	{
 			temp_a=UART4_RX_CNT;
-			delay_ms(40);	
+
+#if USE_KEEP_TEMPERATURE_BOARD		
+			delay_ms(40);
+#else
+		  delay_ms(70);
+#endif	
+		
 			temp_b=UART4_RX_CNT;
 			
 			if(temp_b!=0)
@@ -186,7 +192,7 @@ int main(void)
 
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
 			i++;
-			if(i==25)
+			if(i==14)
 			{		
 					i=0;
 					Real_Time_Polling_Current_Index();

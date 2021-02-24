@@ -32,12 +32,6 @@ int get_weight_sensor_value(WEIGHT_type weight)
 }	
 
 
-//value->gram
-static __inline int weight_AD_value_change_to_unit(int value)
-{
-	//0.58--- 实际测量估算
-	return (int)(value/0.855);
-}
 
 /*获得指定重力传感器的gram值
 */
@@ -48,28 +42,21 @@ int Get_weight_current_gram(WEIGHT_type weight)
 	
 #if USE_AUTOMATIC_INJECTION_BOARD		
 	value = get_weight_sensor_value(weight);
-	gram=weight_AD_value_change_to_unit(value);
 #endif
 	
-	return gram;
+	return value;
 }
 
 
 
-//克->value
-static __inline int weight_unit_change_to_AD_value(int gram)
-{
-	//0.58--- 实际测量估算
-	return (int)(gram*0.855);
-}	
+
 /**************************interface for extern******************************************/
 void Set_Weight_Sensor_Warnning_Line(WEIGHT_type weight,int gram)
 {
 	
 #if USE_AUTOMATIC_INJECTION_BOARD		
-		int degree=weight_unit_change_to_AD_value(gram);
 		
-		__set_weight_sensor_warnning_line(weight, degree);
+		__set_weight_sensor_warnning_line(weight, gram);
 #endif
 	
 }
