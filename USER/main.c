@@ -154,8 +154,10 @@ int main(void)
 
 #if USE_KEEP_TEMPERATURE_BOARD		
 			delay_ms(40);
-#else
+#elif USE_AUTOMATIC_INJECTION_BOARD		
 		  delay_ms(70);
+#else
+			delay_ms(50);
 #endif	
 		
 			temp_b=UART4_RX_CNT;
