@@ -144,6 +144,10 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+
+	#if USE_GRADIENT_CONTROL_BOARD	
+	delay_ms(1000*8);
+	#endif	
 	Uart4_Rx_Clear();
 	UART4_Enable_Interrupt();
 	
