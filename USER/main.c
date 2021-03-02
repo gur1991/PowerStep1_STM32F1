@@ -145,9 +145,10 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
-	#if USE_GRADIENT_CONTROL_BOARD	
+	//#if USE_GRADIENT_CONTROL_BOARD	
 	delay_ms(1000*8);
-	#endif	
+	//#endif
+	
 	Uart4_Rx_Clear();
 	UART4_Enable_Interrupt();
 	
