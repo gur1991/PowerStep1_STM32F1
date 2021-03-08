@@ -659,6 +659,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
+	  delay_ms(100);
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(lightNum))
@@ -695,6 +696,7 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
+	  delay_ms(100);
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(lightNum))

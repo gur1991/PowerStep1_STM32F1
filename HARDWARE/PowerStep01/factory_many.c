@@ -478,11 +478,11 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //混匀
 	int i=0;
 	Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M2_MIX);	
-	for(i=0;i<4;i++)
+	for(i=0;i<5;i++)
 	{
-		BSP_MotorControl_Move(0, M2_MIX_RIGHT, 40000); //以前是12000
+		BSP_MotorControl_Move(0, M2_MIX_RIGHT, 50000); //以前是12000
 		BSP_MotorControl_WaitWhileActive(0);
-		BSP_MotorControl_Move(0, M2_MIX_LEFT, 40000);
+		BSP_MotorControl_Move(0, M2_MIX_LEFT, 50000);
 		BSP_MotorControl_WaitWhileActive(0);
 	}
 	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);//----up and mix		
