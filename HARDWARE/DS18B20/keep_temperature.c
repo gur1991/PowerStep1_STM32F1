@@ -187,10 +187,10 @@ void KeepTemperatureDegree(void)
 	
 	
 		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
-		if( (temp1>800||temp2>800) || (temp1 <= 0 && temp2 <= 0) )
+		if(temp1>650 && temp2>650 )
 		{
 				i++;
-				if(i>=3)
+				if(i>=20)
 				{
 					
 					current_value=1000;
