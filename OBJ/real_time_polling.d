@@ -126,3 +126,4 @@
 ..\obj\real_time_polling.o: ..\HARDWARE\BL180\bl180.h
 ..\obj\real_time_polling.o: ..\HARDWARE\UART_CONFIG\uart_config.h
 ..\obj\real_time_polling.o: ..\HARDWARE\Check_RS232\check_rs232.h
+..\obj\real_time_polling.o: ..\HARDWARE\export_liquid\export_liquid.h

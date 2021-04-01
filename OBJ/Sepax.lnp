@@ -80,6 +80,7 @@
 "..\obj\rs232_change_protocol.o"
 "..\obj\real_time_polling.o"
 "..\obj\check_rs232.o"
+"..\obj\export_liquid.o"
 "..\obj\usmart.o"
 "..\obj\usmart_config.o"
 "..\obj\usmart_str.o"

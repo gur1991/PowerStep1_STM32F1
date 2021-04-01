@@ -797,18 +797,9 @@ static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
 static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 {
 			Real_Time_Polling_t  performer;
-			
+		  export_liquid_control(data->request.export_liquid_state);	
+	
 			data->response.polling=Get_Real_Time_Polling_Value();
-/*	
-			data->response.polling.degree= Get_Real_Time_Polling_Value().degree;
-			data->response.polling.liquid= Get_Real_Time_Polling_Value().liquid;
-			
-			data->response.polling.weightOne=Get_Real_Time_Polling_Value().weightOne;
-		  data->response.polling.weightTwo=Get_Real_Time_Polling_Value().weightTwo;
-			data->response.polling.weightThree=Get_Real_Time_Polling_Value().weightThree;
-			data->response.polling.weightFour=Get_Real_Time_Polling_Value().weightFour;
-			data->response.polling.status=Get_Real_Time_Polling_Value().status;
-*/	
 	    data->response.ret = 0;
 }	
 

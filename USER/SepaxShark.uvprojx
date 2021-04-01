@@ -335,7 +335,7 @@
               <MiscControls>--c99</MiscControls>
               <Define>BARE_METAL   USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18;..\HARDWARE\TIMER;..\HARDWARE\AD_SPI;..\HARDWARE\Temperature;..\HARDWARE\Weight;..\HARDWARE\PowerStep01;..\HARDWARE\UART4;..\HARDWARE\DS18B20;..\HARDWARE\UART2;..\HARDWARE\UART_CHOOSE;..\HARDWARE\Config;..\HARDWARE\Electromagnetic;..\HARDWARE\RS232_protocol;..\HARDWARE\WDG;..\HARDWARE\Execute_Command;..\HARDWARE\TIME_INTERRUPT;..\HARDWARE\FM100;..\HARDWARE\S1125;..\HARDWARE\Liquid_Sensor;..\HARDWARE\BL180;..\HARDWARE\RFID;..\HARDWARE\RFID\M6E;..\HARDWARE\KEY;..\HARDWARE\UART_CONFIG;..\HARDWARE\UART_RTS_CONTROL;..\HARDWARE\SPI3;..\HARDWARE\UART5;..\HARDWARE\RS232_mini_board_protocol;..\HARDWARE\Real_Time_Polling;..\HARDWARE\Check_RS232</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\OBJ;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HALLIB\STM32F1xx_HAL_Driver\Inc;..\USMART;..\HARDWARE\LED;..\HARDWARE\LCD;..\HARDWARE\KEY;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\Drivers\BSP\Components\Common;..\HARDWARE\Drivers\BSP\Components\powerSTEP01;..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo;..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx;..\HARDWARE\UART3;..\STM32F10x_FWLib\inc;..\HARDWARE\LIGHT;..\HARDWARE\Cheminert;..\HARDWARE\PUMPS100;..\HARDWARE\PRINT;..\HARDWARE\BABY18;..\HARDWARE\TIMER;..\HARDWARE\AD_SPI;..\HARDWARE\Temperature;..\HARDWARE\Weight;..\HARDWARE\PowerStep01;..\HARDWARE\UART4;..\HARDWARE\DS18B20;..\HARDWARE\UART2;..\HARDWARE\UART_CHOOSE;..\HARDWARE\Config;..\HARDWARE\Electromagnetic;..\HARDWARE\RS232_protocol;..\HARDWARE\WDG;..\HARDWARE\Execute_Command;..\HARDWARE\TIME_INTERRUPT;..\HARDWARE\FM100;..\HARDWARE\S1125;..\HARDWARE\Liquid_Sensor;..\HARDWARE\BL180;..\HARDWARE\RFID;..\HARDWARE\RFID\M6E;..\HARDWARE\KEY;..\HARDWARE\UART_CONFIG;..\HARDWARE\UART_RTS_CONTROL;..\HARDWARE\SPI3;..\HARDWARE\UART5;..\HARDWARE\RS232_mini_board_protocol;..\HARDWARE\Real_Time_Polling;..\HARDWARE\Check_RS232;..\HARDWARE\export_liquid</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -828,6 +828,11 @@
               <FileName>check_rs232.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Check_RS232\check_rs232.c</FilePath>
+            </File>
+            <File>
+              <FileName>export_liquid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\export_liquid\export_liquid.c</FilePath>
             </File>
           </Files>
         </Group>

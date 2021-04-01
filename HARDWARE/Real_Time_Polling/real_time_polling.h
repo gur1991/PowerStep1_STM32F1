@@ -25,7 +25,8 @@ typedef struct{
 
 typedef union{ 
 struct{
-	uint8_t nor[44];
+	uint8_t export_liquid_state;
+	uint8_t nor[43];
 }request;
 struct{
 	real_time_polling_type_t polling;

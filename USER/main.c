@@ -33,7 +33,7 @@
 #include "real_time_polling.h"
 #include "uart_choose.h"
 #include "check_rs232.h"
-
+#include "export_liquid.h"
 int Check_Board_Define_Config(void)
 {
 	int value=0;
@@ -75,7 +75,7 @@ void Init_Board_Config(void)
 
 #if USE_AUTOMATIC_INJECTION_BOARD
   Uart2_Config_Init();
-	
+	Export_Liquid_Control_Init();
 	Liquid_Sensor_Init();
 	Weight_Sensor_Init();
 	Light_Sensor_Init();

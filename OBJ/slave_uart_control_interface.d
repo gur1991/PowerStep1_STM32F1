@@ -126,3 +126,4 @@
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\BL180\bl180.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART_CONFIG\uart_config.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\Check_RS232\check_rs232.h
+..\obj\slave_uart_control_interface.o: ..\HARDWARE\export_liquid\export_liquid.h

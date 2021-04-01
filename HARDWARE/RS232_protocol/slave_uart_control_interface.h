@@ -16,7 +16,7 @@
 #include "rs232_change_protocol.h"
 #include "config.h"
 #include "check_rs232.h"
-
+#include "export_liquid.h"
 
 uint8_t Rest_C55_C52_Position(void);
 
