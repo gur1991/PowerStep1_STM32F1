@@ -17,8 +17,9 @@ void Export_Liquid_Control_Init(void)
 
 void export_liquid_control(uint8_t status)
 {
+	
 #if USE_AUTOMATIC_INJECTION_BOARD	
-		if(status!=0 && status!=1)
-	EXPORT_LIQUID=status;
+	if(status==0 || status==1)
+			EXPORT_LIQUID=status;
 #endif
 }	
