@@ -185,6 +185,7 @@ int AD_Sensor_Get_Data(AD_type cs){
 //		LOGD("here value:%d \r\n",value);
 #endif
 		
+		value=value*(2500.0/65536);
 		return value;
 }
 
