@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Sepax.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Sepax.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Fri Apr 02 13:37:55 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Fri Apr 09 12:38:16 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1760 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2933,7 +2933,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[243]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[15c]"></a>RestSelectMotorOrgin</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, step01.o(i.RestSelectMotorOrgin))
+<P><STRONG><a name="[15c]"></a>RestSelectMotorOrgin</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, step01.o(i.RestSelectMotorOrgin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = RestSelectMotorOrgin &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -2952,7 +2952,7 @@ Global Symbols
 <LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginSelect
 </UL>
 
-<P><STRONG><a name="[160]"></a>RestSelectMotorOrginDelay</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, step01.o(i.RestSelectMotorOrginDelay))
+<P><STRONG><a name="[160]"></a>RestSelectMotorOrginDelay</STRONG> (Thumb, 132 bytes, Stack size 32 bytes, step01.o(i.RestSelectMotorOrginDelay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = RestSelectMotorOrginDelay &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms

@@ -652,6 +652,8 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	int i=0;
   uint8_t light=1;
 	
+	if(!Light_Sensor_Get(lightNum))return 0;
+	
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 
 		
@@ -688,6 +690,8 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 	int status=0;
 	int i=0;
   uint8_t light=1;
+	
+	if(!Light_Sensor_Get(lightNum))return 0;
 	
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 
