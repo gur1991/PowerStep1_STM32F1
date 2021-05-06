@@ -2,6 +2,7 @@
 #include "delay.h"
 #include "config.h"
 #include "temperature.h"
+#include <stdlib.h>
 
 static int SET_VALUE=0;
 //static int FLAG_SET_VALUE=0;
@@ -178,21 +179,27 @@ void KeepTemperatureDegree(void)
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
 	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
+		T_STATUS=ALL_GOOD;
+		if(temp1<=0 || temp1>=600){
+				if(temp2<=0 || temp2>=600)T_STATUS=ALL_BROKE;
+			  else  T_STATUS=NUMBER_ONE_BROKE;
+		}else if(temp2<=0 || temp2>=600)T_STATUS=NUMBER_TWO_BROKE;
+		
 		
 	
-		if(temp1<=0 && temp2>0){current_value = temp2;T_STATUS=NUMBER_ONE_BROKE;}//温度计1坏了 
-	  else if(temp1>0 && temp2<=0){current_value = temp1;T_STATUS=NUMBER_TWO_BROKE;}//温度计2坏了
-    else if(temp1>0 || temp2>0){current_value = (int)((temp1+temp2)/2);T_STATUS=ALL_GOOD;}//温度都可以 
-		else if(temp1==0 && temp2==0){T_STATUS=ALL_BROKE;}	
-	
-	
+		if(T_STATUS==NUMBER_ONE_BROKE){current_value = temp2;}//温度计1坏了 
+	  else if(T_STATUS==NUMBER_TWO_BROKE){current_value = temp1;}//温度计2坏了
+    else if(T_STATUS==ALL_GOOD){
+			if(abs(temp1-temp2)>100)T_STATUS=ALL_BROKE;//两个温度传感器差10度也是异常
+			else current_value = (int)((temp1+temp2)/2);
+		}//温度都可以 
+		
 		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
-		if(temp1>650 && temp2>650 )
+	  if(T_STATUS==ALL_BROKE)
 		{
 				i++;
 				if(i>=20)
 				{
-					
 					current_value=1000;
 					SetTemperatureDegree(-1,TMEPERATURE_CURRENT);//温度异常，设置为0
 				}	

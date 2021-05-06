@@ -67,3 +67,4 @@
 ..\obj\keep_temperature.o: ..\HARDWARE\Weight\weight.h
 ..\obj\keep_temperature.o: ..\HARDWARE\SPI3\spi3.h
 ..\obj\keep_temperature.o: ..\SYSTEM\delay\delay.h
+..\obj\keep_temperature.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
