@@ -395,9 +395,9 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 	
 
 		
-			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=1500;
-			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=1500;
-			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=1500;
+			if(speed_type==LOW_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=750;//1500
+			else if(speed_type==NORMAL_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=750;
+			else if(speed_type==HIGH_SPEED)TempMotor.request.init_motor.Speed.maxSpeed=750;
 	
    		break;		
 	case 10:
