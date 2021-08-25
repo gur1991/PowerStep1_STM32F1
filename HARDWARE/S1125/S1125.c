@@ -40,7 +40,7 @@ int transfer_s1125(void)
 	uart_rts_control(PUMP_UART_CS, 1);
 	
 	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
-	delay_ms(100);
+	delay_ms(150);
 	S1125_Read(S1125_rx_buf,&len);
 	
 	uart_rts_control(PUMP_UART_CS, 0);
@@ -94,18 +94,6 @@ uint8_t Connect_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
-	/*
-	if(len){
-		int i;
-	
-		for(i=0;i<len;i++)
-		{
-			LOGD("%c",S1125_rx_buf[i]);
-		}
-		LOGD("\r\n");
-	}
-	*/
-	
 	if(S1125_rx_buf[7]=='6')
 		return 0;
 	else return 1;
@@ -132,37 +120,16 @@ int Read_Press_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
-	
-
-	/*
-	if(len){
-		int i;
-	
-		for(i=0;i<len;i++)
-		{
-			LOGD("%c",S1125_rx_buf[i]);
-		}
-		LOGD("\r\n");
-	}
-	
-	*/
-	
-	
+	if(len<12)return 0;	
 
 	for(i=7;i<11;i++)
-	{
-	//	LOGD("char %c\r\n",S1125_rx_buf[i]);
-		
+	{		
 			if(S1125_rx_buf[i]<'A')S1125_rx_buf[i]-='0';
-			else S1125_rx_buf[i]-=55;
-		
-			//LOGD("%d\r\n",S1125_rx_buf[i]);
-		
+			else S1125_rx_buf[i]-=55;		
 	}
 
 	press=S1125_rx_buf[10]+S1125_rx_buf[9]*16+S1125_rx_buf[8]*16*16+S1125_rx_buf[7]*16*16*16;
 
-	//press=(int)(press/145);
 #endif	
 	return press;
 }	

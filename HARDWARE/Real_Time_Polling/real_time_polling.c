@@ -15,7 +15,6 @@ void  Real_Time_Polling_Init(void)
 
 void  Real_Time_Polling_Current_Index(void)
 {
-		//LOGD("start \r\n");
 	
 #if USE_AUTOMATIC_INJECTION_BOARD
 	  get_single_temperature_degree_type_t data;
@@ -68,24 +67,25 @@ void  Real_Time_Polling_Current_Index(void)
 		
 #endif
 	
-	
 #if USE_GRADIENT_CONTROL_BOARD
-	
 		POLLING_press.pumpPress=PumpHandle->readPress();
-
 #endif	
-	//LOGD("end \r\n");
 }	
 
 real_time_polling_type_t  Get_Real_Time_Polling_Value(void)
 {
-		//LOGD("STATUS:[%d] \r\n",POLLING_data.status);
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)		
+		Real_Time_Polling_Current_Index();
+#endif	
 		return POLLING_data;
 }	
 
 real_time_polling_press_type_t  Get_Real_Time_Polling_Press(void)
 {
-		return POLLING_press;
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)		
+		Real_Time_Polling_Current_Index();
+#endif	
+	return POLLING_press;
 }	
 
 

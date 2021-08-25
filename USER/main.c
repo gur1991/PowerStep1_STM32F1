@@ -199,14 +199,7 @@ int main(void)
 			}
 #endif		
 
-#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
-			i++;
-			if(i==14)
-			{		
-					i=0;
-					Real_Time_Polling_Current_Index();
-			}
-#endif  
+
 			
 	}
 
