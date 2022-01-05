@@ -666,7 +666,16 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 				i++;
 				if(!Light_Sensor_Get(lightNum))
 					{				
-							light=0;		
+							light=0;
+							if(motorNum==M3_LEFT_WAIT || motorNum==M4_BLANK_NEXT 
+								|| motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
+							{
+								delay_ms(30);
+							}else{
+								delay_ms(100);
+							}
+							
+							
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=7*1000){
