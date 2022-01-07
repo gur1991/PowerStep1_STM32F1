@@ -32,7 +32,7 @@ void  Real_Time_Polling_Current_Index(void)
 		{	
 				POLLING_data.status=status;
 				//解决温度异常	
-				if(degree<=800 ||degree==1000)
+				if(degree<=800)// ||degree==1000)
 				{ 
 					POLLING_data.degree=degree;
 				}

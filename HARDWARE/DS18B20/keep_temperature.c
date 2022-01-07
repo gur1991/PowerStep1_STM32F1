@@ -180,10 +180,10 @@ void KeepTemperatureDegree(void)
 	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
 		T_STATUS=ALL_GOOD;
-		if(temp1<=0 || temp1>=600){
-				if(temp2<=0 || temp2>=600)T_STATUS=ALL_BROKE;
+		if(temp1<=0 || temp1>=800){
+				if(temp2<=0 || temp2>=800)T_STATUS=ALL_BROKE;
 			  else  T_STATUS=NUMBER_ONE_BROKE;
-		}else if(temp2<=0 || temp2>=600)T_STATUS=NUMBER_TWO_BROKE;
+		}else if(temp2<=0 || temp2>=800)T_STATUS=NUMBER_TWO_BROKE;
 		
 		
 	
