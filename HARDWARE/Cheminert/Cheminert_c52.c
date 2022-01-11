@@ -33,6 +33,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 				return ret;
 	 } 	
 
+	 timeout=timeout*10;
 	 
 	 while(1){
 				//timeout, must return
@@ -45,7 +46,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 				}
 				if(FLAG_UART_CHEMINERT)
 				{
-							delay_ms(10);
+							delay_ms(5);
 							R232_Read(rx_buf_tmp,&len);
 							//rm in the end 0d 0a from buf array
 							if(len){
@@ -57,7 +58,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, u8*rx_size,int tim
 							break;
 					}
 				timeout--;
-				delay_ms(10);
+				delay_ms(1);
 		}
 
 		LOGD("end .\r\n");

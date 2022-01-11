@@ -16,7 +16,7 @@ void UART4_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&UART4_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	 {	 	
-			HAL_UART_Receive(&UART4_Handler,&res,1,30);//115200 256byte 需要20ms，现在给30ms
+			HAL_UART_Receive(&UART4_Handler,&res,1,1);//115200 256byte 需要20ms，现在给30ms
 				
 			if(UART4_RX_CNT<LEN_MAX_UART4)
 			{
@@ -79,7 +79,7 @@ void UART4_Enable_Interrupt(void)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART4_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&UART4_Handler,buf,len,100);//串口4发送数据
+	HAL_UART_Transmit(&UART4_Handler,buf,len,10);//串口4发送数据
 	UART4_RX_CNT=0;
 }
 //buf:接收缓存首地址

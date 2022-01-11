@@ -175,11 +175,11 @@ int main(void)
 			temp_a=UART4_RX_CNT;
 
 #if USE_KEEP_TEMPERATURE_BOARD		
-			delay_ms(40);
+			delay_ms(1);
 #elif USE_AUTOMATIC_INJECTION_BOARD		
-		  delay_ms(70);
+		  delay_ms(1);
 #else
-			delay_ms(50);
+			delay_ms(1);
 #endif	
 		
 			temp_b=UART4_RX_CNT;
@@ -206,7 +206,7 @@ int main(void)
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
-			if(i==25)
+			if(i==1000)
 			{
 				i=0;		
 				keep_thermometer_degree();

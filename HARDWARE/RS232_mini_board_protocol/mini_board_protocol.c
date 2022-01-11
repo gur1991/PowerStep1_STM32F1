@@ -7,7 +7,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 	  check_bit_type_t check;
 	  int temp_a=0,temp_b=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		int times =20;
+		int times =800;
 	  check=caculate_tansfer_check_bit(*master);
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
@@ -21,7 +21,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 		while(1)
 		{
 			temp_a=UART5_RX_CNT;
-			delay_ms(40);	
+			delay_ms(1);	
 			temp_b=UART5_RX_CNT;
 			
 			if(temp_b!=0)

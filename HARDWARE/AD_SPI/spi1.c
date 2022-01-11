@@ -120,7 +120,7 @@ void SPI1_SetSpeed(u8 SPI_BaudRatePrescaler)
 u8 SPI1_ReadWriteByte(u8 TxData)
 {
     u8 Rxdata;
-    HAL_SPI_TransmitReceive(&SPI1_Handler,&TxData,&Rxdata,1, 1000);       
+    HAL_SPI_TransmitReceive(&SPI1_Handler,&TxData,&Rxdata,1, 100);       
  	return Rxdata;          		    //返回收到的数据		
 }
 

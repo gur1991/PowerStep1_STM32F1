@@ -176,7 +176,7 @@ void SysTick_Handler(void)
   */
 void EXTI9_5_IRQHandler(void)
 {
-		printf("EXTI9_5_IRQHandler\r\n");
+//		printf("EXTI9_5_IRQHandler\r\n");
 		HAL_GPIO_EXTI_IRQHandler(BSP_MOTOR_CONTROL_BOARD_BUSY_PIN2);
 	  HAL_GPIO_EXTI_IRQHandler(BSP_MOTOR_CONTROL_BOARD_FLAG_PIN2);
 }

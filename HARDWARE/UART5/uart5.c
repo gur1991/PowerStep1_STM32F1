@@ -13,7 +13,7 @@ void UART5_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&UART5_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	 {	 	
-		HAL_UART_Receive(&UART5_Handler,&res,1,30);//115200 256byte 需要20ms，现在给30ms
+		HAL_UART_Receive(&UART5_Handler,&res,1,1);//115200 256byte 需要20ms，现在给30ms
 		if(UART5_RX_CNT<LEN_MAX_UART5)
 		{
 			UART5_RX_BUF[UART5_RX_CNT]=res;		//记录接收到的值

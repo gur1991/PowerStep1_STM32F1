@@ -13,7 +13,7 @@ uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t
 			if(ARM_RS232_ASK){
 					UART2_Receive_Data((u8*)(master),len);
 					ARM_RS232_ASK=0;
-					printf("master receive data ok\r\n");
+//					printf("master receive data ok\r\n");
 					break;		
 			}
 			times--;

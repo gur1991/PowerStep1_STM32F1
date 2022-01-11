@@ -10,35 +10,37 @@
 //Camel
 
 typedef uint32_t FACTORY_TYPE;
+#define set_bit(x,b) (x) |= (1U<<(b))
 
-#define LIGHT_HAVE_STATE							 0x00000000
-#define LIGHT_NONE_STATE               0x00000001
-#define LEFT_LIGHT_STATE 							 0x00000010
-#define NEXT_LIGHT_STATE 							 0x00000020
-#define C55_CONNECT_ERROR 						 0x00000040
-#define C52_CONNECT_ERROR							 0x00000080
+typedef enum{
+ LIGHT_HAVE_STATE								=	((FACTORY_TYPE)0U),			  
+ LIGHT_NONE_STATE 							= ((FACTORY_TYPE)(1U<<0)),     
+ LEFT_LIGHT_STATE 							= ((FACTORY_TYPE)(1U<<1)),				
+ NEXT_LIGHT_STATE 							= ((FACTORY_TYPE)(1U<<2)),				
+ C55_CONNECT_ERROR 							= ((FACTORY_TYPE)(1U<<3)),		
+ C52_CONNECT_ERROR 							= ((FACTORY_TYPE)(1U<<4)),			
 //。。。。。。。。。。。。
-#define BLANK_LIGHT_ERROR							 0x00001000
-#define LEFT_LIGHT_ERROR							 0x00002000
-#define WAIT_LIGHT_ERROR							 0x00004000
-#define NEXT_LIGHT_ERROR							 0x00008000
-#define NORMAL_CHECK_DRAIN_LIGHT_ERROR 0x00010000
-#define NORMAL_NEXT_LIGHT_ERROR 			 0x00020000
-#define NORMAL_CHECK_MIX_LIGHT_ERROR   0x00040000
-#define HIGH_CHECK_LIGHT_ERROR				 0x00080000
+ BLANK_LIGHT_ERROR							= ((FACTORY_TYPE)(1U<<5)),		
+ LEFT_LIGHT_ERROR	 							= ((FACTORY_TYPE)(1U<<6)),		
+ WAIT_LIGHT_ERROR								= ((FACTORY_TYPE)(1U<<7)),			
+ NEXT_LIGHT_ERROR								= ((FACTORY_TYPE)(1U<<8)),		
+ NORMAL_CHECK_DRAIN_LIGHT_ERROR = ((FACTORY_TYPE)(1U<<9)),
+ NORMAL_NEXT_LIGHT_ERROR 				= ((FACTORY_TYPE)(1U<<10)), 
+ NORMAL_CHECK_MIX_LIGHT_ERROR   = ((FACTORY_TYPE)(1U<<11)),
+ HIGH_CHECK_LIGHT_ERROR					= ((FACTORY_TYPE)(1U<<12)),
 
-#define M1_LIGHT_WORK_ERROR 					 0x00100000
+ M1_LIGHT_WORK_ERROR 						= ((FACTORY_TYPE)(1U<<13)),					
 //。。。。。。。。。。。。
-#define M1_LIGHT_ERROR 								 0x01000000
-#define M3_LIGHT_ERROR 								 0x02000000
-#define M4_LIGHT_ERROR 								 0x04000000
-#define M7_LIGHT_ERROR 								 0x08000000
+ M1_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<14)),	
+ M3_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<15)),
+ M4_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<16)),
+ M7_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<17)),
 
-#define M8_LIGHT_ERROR 								 0x10000000
-#define M9_LIGHT_ERROR 								 0x20000000
-#define M10_LIGHT_ERROR 							 0x40000000
-#define M11_LIGHT_ERROR 							 0x80000000
-
+ M8_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<18)),
+ M9_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<19)),
+ M10_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<20)),
+ M11_LIGHT_ERROR 								= ((FACTORY_TYPE)(1U<<21)),
+}STM32_ERROR_TYPE;
 
 
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type);

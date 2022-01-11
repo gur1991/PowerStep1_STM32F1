@@ -239,9 +239,9 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			cheminert_c52_c55_type_t performer;
 			bool wait_flag;
 			LOGD("start. \r\n");
-while(j--){			
+//while(j--)
+	{			
 			memset(&performer, 0, sizeof(performer));
-			
 			
 			wait_flag=true;
 			performer.request.command=data->request.command;
@@ -416,14 +416,14 @@ while(j--){
 								LOGE("no found this cmd ! \r\n");
 			
 			}
-
+			Uart_Clear_Context();	
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
-						break;
+					//	break;
 			}
-			delay_ms(1500);
+			//delay_ms(1500);
 			Uart_Clear_Context();	
 }			
 			data->response.ret=ret;		
@@ -997,11 +997,11 @@ void  __InfoBoard__(int type)
 
 void inline __Wait_RS232_Recieve_For_Check__(void)
 {
-	delay_ms(10);
+	//delay_ms(10);
 }	
 void inline __Wait_RS232_Recieve_For_ERROR__(void)
 {
-	delay_ms(20);
+	//delay_ms(20);
 }
 
 void protocol_handle_uart_powerstep01_plain_slave_cmd(void){

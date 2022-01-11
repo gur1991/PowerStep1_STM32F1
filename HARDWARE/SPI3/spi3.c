@@ -59,7 +59,7 @@ void SPI3_SetSpeed(u8 SPI_BaudRatePrescaler)
 u8 SPI3_ReadWriteByte(u8 TxData)
 {
     u8 Rxdata;
-    HAL_SPI_TransmitReceive(&SPI3_Handler,&TxData,&Rxdata,1, 1000);   
+    HAL_SPI_TransmitReceive(&SPI3_Handler,&TxData,&Rxdata,1, 10);   
 
 		//printf("Rxdata£º%d\r\n",Rxdata);
  	return Rxdata;          		   

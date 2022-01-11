@@ -402,7 +402,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	static u8 buf[30];
 	u8 buf_cmp[30];
-	int timeout=TimeOut_S*10;
+	int timeout=TimeOut_S*100;
 	int len=0;
 	int len_cmp=0;
 	int i;
@@ -425,7 +425,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 						len_cmp=len;
 				}else break;
 		}
-		delay_ms(10);
+		delay_ms(1);
 	}
 	if(len>5){
 		len=len-2;

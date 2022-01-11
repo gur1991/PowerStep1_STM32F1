@@ -174,7 +174,7 @@ void UART2_Init_Check(u32 bound)
 void UART2_Send_Data(u8 *buf,int len)
 {
 	//printf("uart2 send\r\n");
-	HAL_UART_Transmit(&USART2_Handler,buf,len,100);//串口2发送数据
+	HAL_UART_Transmit(&USART2_Handler,buf,len,4);//串口2发送数据
 	USART2_RX_CNT=0;
 }
 //buf:接收缓存首地址

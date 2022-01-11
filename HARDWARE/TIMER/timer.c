@@ -131,7 +131,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim==(&TIM3_Handler))
     {
-			printf("hello \r\n");
+//			printf("hello \r\n");
        // LED1=!LED1;        //LED1·´×ª
     }
 }

@@ -133,12 +133,12 @@ uint8_t ReadyAndCheckNextPosition(void)
 				BSP_MotorControl_Move(0, M5_WAIT_TO_NEXT, 20000);
 				BSP_MotorControl_WaitWhileActive(0);
 				break;
-		}else if(i>=450)
+		}else if(i>=4500)
 		{
 				BSP_MotorControl_HardStop(0);
 				break;
 		}
-		delay_ms(10);
+		delay_ms(1);
 	}
 	
 	return value;
@@ -168,12 +168,12 @@ uint8_t ReadyAndCheckLeftPosition(void)
 								BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 20000);
 								BSP_MotorControl_WaitWhileActive(0);
 								break;
-					}else if(i>=450)
+					}else if(i>=4500)
 					{
 								BSP_MotorControl_HardStop(0);
 								break;
 					}
-					delay_ms(10);
+					delay_ms(1);
 		}
 		return Light_Sensor_Get(LEFT_LIGHT);
 #endif
@@ -199,12 +199,12 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				{
 						BSP_MotorControl_HardStop_Select(M3_LEFT_WAIT,NORMAL_SPEED);
 						break;
-				}else if(i>=800)
+				}else if(i>=8000)
 				{
 						BSP_MotorControl_HardStop_Select(M3_LEFT_WAIT,NORMAL_SPEED);
 						break;
 				}
-				delay_ms(10);
+				delay_ms(1);
 		}
 		return Light_Sensor_Get(WAIT_LIGHT);
 		
@@ -609,7 +609,7 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 				}	
 				if(flag1&&flag2) break;
 				
-				if(i>=1500){
+				if(i>=15000){
 						PowerStep_Select_Motor_Baby(M8_BIG_IN_OUT);
 						BSP_MotorControl_HardStop(0);	
 					
@@ -618,8 +618,7 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 							break;	
 				}
 				
-
-				delay_ms(10);	
+				delay_ms(1);	
 		}
 #endif			
 }	
