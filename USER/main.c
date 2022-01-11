@@ -145,6 +145,21 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+/*		
+	u8 string[20];
+	int length=0;
+	int TimeOut_S=100;
+	bool check=false;
+	
+	while(1)
+	{
+		Obtain_Barcode_String(string, &length,  TimeOut_S	, check);
+		delay_ms(1000);
+	}	
+*/	
+	
+	
+	
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);
   #else	

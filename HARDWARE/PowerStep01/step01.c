@@ -667,10 +667,12 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 				if(!Light_Sensor_Get(lightNum))
 					{				
 							light=0;
-							if(motorNum==M3_LEFT_WAIT || motorNum==M4_BLANK_NEXT 
-								|| motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
+							if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
 							{
 								delay_ms(30);
+							}else if(motorNum==M3_LEFT_WAIT || motorNum==M4_BLANK_NEXT)
+							{
+								delay_ms(10);
 							}else{
 								delay_ms(100);
 							}

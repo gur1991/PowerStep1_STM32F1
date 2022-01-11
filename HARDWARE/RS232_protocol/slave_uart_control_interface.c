@@ -161,9 +161,18 @@ static void protocol_command_package_motor(motor_command_package_type_t*data)
 static void protocol_get_light_sensor_level(get_light_sensor_level_t*data){
 			get_light_sensor_level_t performer;
 			performer.request.number=data->request.number;
-			data->response.value=Light_Sensor_Get(performer.request.number);
-			
-			LOGD("number:%d  value:%d \r\n",performer.request.number,data->response.value);
+			//3*3
+			uint8_t state = 1;
+			int index=50;
+			while(index--)
+			{
+					delay_ms(10);
+					state = Light_Sensor_Get(performer.request.number);
+					if(state==0)break;
+			}
+			data->response.value=state;
+	
+			//LOGD("number:%d  value:%d \r\n",performer.request.number,data->response.value);
 			
 			data->response.ret=0;
 }
@@ -1433,7 +1442,7 @@ uint8_t Rest_C55_C52_Position(void)
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(cheminert_c52_c55.response.buf[0]!='A')return 1;
 
-	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC2;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC4;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(cheminert_c52_c55.response.buf[0]!='4')return 1;
 #endif	

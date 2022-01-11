@@ -132,33 +132,15 @@ u8 __Light_Sensor_Get__(u8 number)
 
 u8 Light_Sensor_Get(u8 number)
 {
+	//return __Light_Sensor_Get__(number);
 	
-	
-	return __Light_Sensor_Get__(number);
-	
-	u8 status[2]={2,2};
-	int i=1;
-	
+	u8 status;
 
-	status[0]=__Light_Sensor_Get__(number);
-RETY:	
+	status=__Light_Sensor_Get__(number);
+	if(!status)return status;
 	delay_ms(1);
-	status[1]=__Light_Sensor_Get__(number);
-	
-	//连续两次检测一致
-	if(status[1]==status[0])
-	{	
-		return status[1];
-	
-	}else if(i)//两次不一致，可以再来一次
-	{
-			i--;
-			status[0]=status[1];
-			goto RETY;
-	}else//两次结果仍不一致，则判定异常
-	{
-		return 2;
-	}
+	status=__Light_Sensor_Get__(number);
+	return status;
 }
 
 

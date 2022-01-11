@@ -20,7 +20,7 @@ int FM100_Scan_Into_Configuration_State(void)
 	}
 	FM100_Read(rx_buf,&len);
 	FLAG_UART_FM100_INTO=0;
-	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
+	if(len==sizeof(tx_buf)&&!strncmp((const char *)tmp_buf, (const char *)rx_buf, sizeof(tx_buf)))
 	{
 			return 0;
 	}
@@ -44,7 +44,7 @@ int FM100_Scan_Exit_Configuration_State(void)
 	FM100_Read(rx_buf,&len);
 	FLAG_UART_FM100_EXIT=0;
 	
-	if(len==sizeof(tx_buf)&&!strncmp(tmp_buf, rx_buf, sizeof(tx_buf)))
+	if(len==sizeof(tx_buf)&&!strncmp((const char *)tmp_buf, (const char *)rx_buf, sizeof(tx_buf)))
 	{
 			return 0;
 	}
@@ -388,9 +388,10 @@ void Init_Scan_FM100(bool status)
 	//FM100_Scan_Read_Barcode_Time();
 	
   FM100_Scan_Goto_Command_Mode();
-	Stop_Scan_FM100();
+	
 	//Start_Scan_FM100();
 	Control_Scan_FM100_Beeper(status);
+	Stop_Scan_FM100();
 #endif	
 }	
 
@@ -419,7 +420,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 				FLAG_UART_FM100=0;
 				if(check)
 				{	
-						if(len==len_cmp&&!strncmp( buf_cmp, buf,len))break;
+						if(len==len_cmp&&!strncmp((const char *)buf_cmp, (const char *)buf,len))break;
 						memcpy(buf_cmp, buf, len);
 						len_cmp=len;
 				}else break;
@@ -431,11 +432,11 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		memcpy(string, buf, len);
 	}else{
 	  len=0;
-		Stop_Scan_FM100();
+		//
 	}
 	*length=len;
-	
-	LOGD("stop scan. \r\n");
+	Stop_Scan_FM100();
+	LOGD("stop scan:  %s \r\n", buf);
 	
 #endif	
 	return ret;
