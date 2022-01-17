@@ -19,6 +19,10 @@
 
 
 
+#define USE_DRV8434_PECKER 
+//#define USE_DRV8434_CAMEL 
+
+
 #define _SHARK_HEADER_ "VG1-"
 #define _SHARK_VERSION_ "-4.4.2201110.D"
 
@@ -38,8 +42,8 @@
 //#define STM_VERSION #_SHARK_HEADER_###_STM_BOARD_###_SHARK_VERSION_
 
 
-#define LOGD(format,...)  //do { printf("[%s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
-#define LOGE(format,...)  //do { printf("[ERROR %s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
+#define LOGD(format,...)  do { printf("[%s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
+#define LOGE(format,...)  do { printf("[ERROR %s:%d#]" format,__func__,__LINE__,##__VA_ARGS__); }while(0)
 				
 /*****************************************************/
 //UART4 ----- ARM 

@@ -135,3 +135,5 @@
 ..\obj\main.o: ..\HARDWARE\PowerStep01\factory_single.h
 ..\obj\main.o: ..\HARDWARE\WDG\wdg.h
 ..\obj\main.o: ..\HARDWARE\KEY\key.h
+..\obj\main.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

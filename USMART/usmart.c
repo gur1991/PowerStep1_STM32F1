@@ -228,6 +228,8 @@ u32 usmart_get_runtime(void)
 }  
 //下面这两个函数,非USMART函数,放到这里,仅仅方便移植. 
 //定时器4中断服务程序	 
+
+#if 0
 void TIM4_IRQHandler(void)
 { 		    		  			       
     if(__HAL_TIM_GET_IT_SOURCE(&TIM4_Handler,TIM_IT_UPDATE)==SET)//溢出中断
@@ -238,7 +240,7 @@ void TIM4_IRQHandler(void)
     }
     __HAL_TIM_CLEAR_IT(&TIM4_Handler, TIM_IT_UPDATE);//清除中断标志位
 }
-
+#endif 
 //使能定时器4,使能中断.
 void Timer4_Init(u16 arr,u16 psc)
 { 
@@ -255,7 +257,7 @@ void Timer4_Init(u16 arr,u16 psc)
     HAL_TIM_Base_Init(&TIM4_Handler);
     HAL_TIM_Base_Start_IT(&TIM4_Handler); //使能定时器4和定时器4中断 					 
 }
- 
+
 
 #endif
 ////////////////////////////////////////////////////////////////////////////////////////

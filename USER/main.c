@@ -34,6 +34,9 @@
 #include "uart_choose.h"
 #include "check_rs232.h"
 #include "export_liquid.h"
+#include "drv8434.h"
+
+
 int Check_Board_Define_Config(void)
 {
 	int value=0;
@@ -133,11 +136,47 @@ void __ack_error_msg__(void)
 int main(void)
 {	
 	HAL_Init();                    	 	
-  Stm32_Clock_Init(RCC_PLL_MUL9);   	
+  Stm32_Clock_Init(RCC_PLL_MUL9);   
+		
 	delay_init(72);               		
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
+	
+
+	LOGD("1*\r\n");
+	DRV8434_MOTOR_Config_Init();
+	LOGD("2*\r\n");
+	
+#if 1
+#if 1 	
+  //DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 10000, LOW_SPEED);
+	//DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 10000, LOW_SPEED);
+	
+//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 20000, NORMAL_SPEED);
+//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 20000, NORMAL_SPEED);
+	
+	DRV8434_Motor_Move(M10_UP_DOWM, M8_BIG_OUT, NORMAL_SPEED);//LOW_SPEED
+	//delay_ms(4000);
+	//DRV8434_Motor_HardStop_And_Goto_Sleep(11);
+#endif
+
+#if 0
+  DRV8434_Motor_Move(M8_BIG_IN_OUT, M8_BIG_IN, HIGH_SPEED);//LOW_SPEED
+	delay_ms(10000);
+	DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
+#endif	
+#endif	
+	LOGD("3*\r\n");
+	
+	while(1)
+	{
+		delay_ms(1000);
+	}	
+
+	
+	
+	
 	int i=0;
 	int temp_a=0,temp_b=0;
 	//KEY_Init(); 
@@ -145,18 +184,6 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
-/*		
-	u8 string[20];
-	int length=0;
-	int TimeOut_S=100;
-	bool check=false;
-	
-	while(1)
-	{
-		Obtain_Barcode_String(string, &length,  TimeOut_S	, check);
-		delay_ms(1000);
-	}	
-*/	
 	
 	
 	
