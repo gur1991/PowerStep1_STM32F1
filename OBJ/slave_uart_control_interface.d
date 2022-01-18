@@ -121,6 +121,9 @@
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\slave_uart_control_interface.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\slave_uart_control_interface.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\DS18B20\ds18b20.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\BL180\bl180.h

@@ -125,6 +125,9 @@
 ..\obj\main.o: ..\HARDWARE\RFID\M6E\rfid.h
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\main.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\main.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\main.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\main.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\main.o: ..\HARDWARE\DS18B20\ds18b20.h
 ..\obj\main.o: ..\HARDWARE\BL180\bl180.h
@@ -135,5 +138,3 @@
 ..\obj\main.o: ..\HARDWARE\PowerStep01\factory_single.h
 ..\obj\main.o: ..\HARDWARE\WDG\wdg.h
 ..\obj\main.o: ..\HARDWARE\KEY\key.h
-..\obj\main.o: ..\HARDWARE\DRV8434\drv8434.h
-..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

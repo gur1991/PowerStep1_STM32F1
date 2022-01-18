@@ -13,18 +13,32 @@
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type)
 {
 	  #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)
+	
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+		DRV8434_Motor_HardStop_And_Goto_Sleep(deviceId);
+		DRV8434_Motor_Select_Speed(deviceId,speed_type);
+#else	
 		PowerStep_Select_Motor_Baby(deviceId);	
 		BSP_MotorControl_HardStop(0);
 	  Choose_Single_Motor_Speed_Config(deviceId,speed_type);
-	  #endif
+#endif
+	
+	#endif
 }
 //可选速度复位，复位后，速度回复正常配置
 uint8_t RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDir,uint32_t steps,MOTOR_SPEED_type_t speed_type)
 {  uint8_t light=1;
-#if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)		
+#if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)	
+
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+		DRV8434_Motor_Select_Speed(deviceId,speed_type);
+		light=RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
+		DRV8434_Motor_Select_Speed(deviceId,NORMAL_SPEED);
+#else		
 		Choose_Single_Motor_Speed_Config(deviceId,speed_type);
 		light=RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
 		Choose_Single_Motor_Speed_Config(deviceId,NORMAL_SPEED);
+#endif	
 #endif
 	return light;
 }

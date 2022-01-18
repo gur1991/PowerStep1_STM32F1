@@ -106,6 +106,8 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 
 void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction);
 
+void DRV8434_Motor_Move_Steps(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
+
 void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId);
 
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type);

@@ -119,6 +119,9 @@
 ..\obj\factory_many.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 ..\obj\factory_many.o: ..\HARDWARE\RFID\M6E\rfid.h
 ..\obj\factory_many.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\factory_many.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\factory_many.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\factory_many.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\factory_many.o: ..\HARDWARE\RS232_protocol\slave_uart_control_interface.h
 ..\obj\factory_many.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\factory_many.o: ..\HARDWARE\DS18B20\keep_temperature.h

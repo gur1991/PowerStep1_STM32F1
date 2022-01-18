@@ -121,6 +121,9 @@
 ..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\real_time_polling.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\real_time_polling.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\real_time_polling.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\real_time_polling.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\real_time_polling.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\real_time_polling.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\real_time_polling.o: ..\HARDWARE\DS18B20\ds18b20.h
 ..\obj\real_time_polling.o: ..\HARDWARE\BL180\bl180.h

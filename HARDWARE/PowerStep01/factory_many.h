@@ -4,6 +4,7 @@
 #include "step01.h"
 #include "uart_command_control_protocol.h"
 #include "config.h"
+#include "drv8434.h"
 
 
 //Pecker
@@ -107,8 +108,6 @@ void set_DelayMs_Normal_Positon(uint16_t delayMs,uint16_t delayMsLastTwo);
 #define M9_IN FORWARD
 #define M9_OUT BACKWARD
 #endif
-
-
 
 
 #define M11_LIGHT 19

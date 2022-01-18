@@ -119,3 +119,6 @@
 ..\obj\step01.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 ..\obj\step01.o: ..\HARDWARE\RFID\M6E\rfid.h
 ..\obj\step01.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\step01.o: ..\HARDWARE\DRV8434\drv8434.h
+..\obj\step01.o: ..\HARDWARE\PowerStep01\factory_many.h
+..\obj\step01.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

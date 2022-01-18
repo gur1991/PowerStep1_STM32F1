@@ -120,4 +120,5 @@
 ..\obj\drv8434.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 ..\obj\drv8434.o: ..\HARDWARE\RFID\M6E\rfid.h
 ..\obj\drv8434.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\drv8434.o: ..\HARDWARE\DRV8434\drv8434.h
 ..\obj\drv8434.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
