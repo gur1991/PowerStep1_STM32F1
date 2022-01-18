@@ -149,22 +149,28 @@ int main(void)
 	LOGD("2*\r\n");
 	
 #if 1
-#if 1 	
-   //DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M8_BIG_OUT, 5500*3, LOW_SPEED);
-	//DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 10000, LOW_SPEED);
+#if 1 
+	 DRV8434_Motor_Select_Speed(M10_UP_DOWM, NORMAL_SPEED);	
+   DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M8_BIG_OUT, 30000);
 	
-//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 20000, NORMAL_SPEED);
-//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 20000, NORMAL_SPEED);
+	  DRV8434_Motor_Select_Speed(M10_UP_DOWM, LOW_SPEED);	
+   DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M8_BIG_IN, 30000);
 	
-	DRV8434_Motor_Move(M10_UP_DOWM, M8_BIG_OUT, NORMAL_SPEED);//LOW_SPEED
+	
+	//DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 10000);
+	
+//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 20000);
+//	DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 20000);
+	
+  //DRV8434_Motor_Move(M10_UP_DOWM, M8_BIG_OUT);//LOW_SPEED
 	//delay_ms(4000);
 	//DRV8434_Motor_HardStop_And_Goto_Sleep(11);
 #endif
 
-#if 0
-  DRV8434_Motor_Move(M8_BIG_IN_OUT, M8_BIG_IN, HIGH_SPEED);//LOW_SPEED
+#if 1
+  DRV8434_Motor_Move(M10_UP_DOWM, M8_BIG_IN);//LOW_SPEED
 	delay_ms(10000);
-	DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
+	DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);
 #endif	
 #endif	
 	LOGD("3*\r\n");

@@ -27,7 +27,7 @@ void DRV8434_MOTOR_Config_Init(void)
   HAL_NVIC_EnableIRQ(TIM4_IRQn);  
 	
 
-/*	
+
 #ifdef USE_DRV8434_CAMEL	
 	DRV8434_Motor_Select_Speed(M1_MIX_V, NORMAL_SPEED);
 	DRV8434_Motor_Select_Speed(M2_MIX, NORMAL_SPEED);
@@ -46,7 +46,7 @@ void DRV8434_MOTOR_Config_Init(void)
 	DRV8434_Motor_Select_Speed(M10_UP_DOWM, NORMAL_SPEED);
 	DRV8434_Motor_Select_Speed(M11_FAR_NEAR, NORMAL_SPEED);
 #endif
-*/
+
 
 }	
 
@@ -471,7 +471,7 @@ void TIM4_IRQHandler(void)
 
 
 
-void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount, MOTOR_SPEED_type_t speed_type)
+void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 	
@@ -485,7 +485,7 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 //	LOGD("index:%d  max:%d \r\n",sTIM_PWM_COUNT_INDEX,sTIM_PWM_COUNT_MAX);
 	
 		//step-2 运动
-	DRV8434_Motor_Move( deviceId,  direction, speed_type);
+	DRV8434_Motor_Move( deviceId,  direction);
 	//step-3 计数等待结束
 #if 1	
 	while(1)
@@ -506,7 +506,7 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 
 
 
-void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction, MOTOR_SPEED_type_t speed_type)
+void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction )
 {
 	sMOTOR_DEVICE=deviceId;
 	
@@ -516,7 +516,7 @@ void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction, MOTOR_SPEED_type
 	DRV8434_Motor_Run_Control_Timing(deviceId, direction);
 	
 	//step-2: init config
-	DRV8434_Motor_Select_Speed(deviceId, speed_type);
+	__DRV8434_Motor_Get_Speed_BK_Config__(deviceId);
 	
   //step-3:  PWM runing 
 	switch(deviceId)
@@ -710,7 +710,29 @@ double __DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(double max, double sta
 	return perAcc;
 }	
 
+void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId)
+{
+	switch(deviceId)
+	{
+#ifdef USE_DRV8434_CAMEL		
+		case M1_MIX_V:sDrvMotorSpeed.M1.use=sDrvMotorSpeed.M1.bk;break;		
+		case M2_MIX:sDrvMotorSpeed.M2.use=sDrvMotorSpeed.M2.bk;break;
+		case M3_LEFT_WAIT:sDrvMotorSpeed.M3.use=sDrvMotorSpeed.M3.bk;break;
+		case M4_BLANK_NEXT:sDrvMotorSpeed.M4.use=sDrvMotorSpeed.M4.bk;break;
+		case M5_WAIT_NEXT:sDrvMotorSpeed.M5.use=sDrvMotorSpeed.M5.bk;break;
+		case M6_BLANK_LEFT:sDrvMotorSpeed.M6.use=sDrvMotorSpeed.M6.bk;break;
+		case M7_HIGH_TURN:sDrvMotorSpeed.M7.use=sDrvMotorSpeed.M7.bk;break;
+#endif
+#ifdef USE_DRV8434_PECKER					
+		case M8_BIG_IN_OUT:sDrvMotorSpeed.M8.use=sDrvMotorSpeed.M8.bk;break;
+		case M9_IN_OUT:sDrvMotorSpeed.M8.use=sDrvMotorSpeed.M9.bk;break;
+		case M10_UP_DOWM:sDrvMotorSpeed.M10.use=sDrvMotorSpeed.M10.bk;break;
+		case M11_FAR_NEAR:sDrvMotorSpeed.M11.use=sDrvMotorSpeed.M11.bk;break;
+#endif			
+		default:
+	}
 
+}	
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 {
 	Drv_Motor_Speed_Config_t Ms;
@@ -740,9 +762,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 			
 		case M2_MIX:
@@ -766,9 +788,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M3_LEFT_WAIT:
 			Ms.slow.start=2000;
@@ -792,9 +814,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
 		
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M4_BLANK_NEXT:
 			Ms.slow.start=2000;
@@ -817,9 +839,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M5_WAIT_NEXT:
 			Ms.slow.start=2000;
@@ -842,9 +864,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M6_BLANK_LEFT:
 			Ms.slow.start=2000;
@@ -867,9 +889,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 			
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M7_HIGH_TURN:
 			Ms.slow.start=2000;
@@ -892,9 +914,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		
 
@@ -926,9 +948,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		
 		case M9_IN_OUT:
@@ -951,14 +973,14 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.accSpeed=300;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		
 		case M10_UP_DOWM:
 			Ms.slow.start=2000;
-			Ms.slow.max=10000;	
+			Ms.slow.max=6000;	
 			Ms.slow.accSpeed=3000;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
@@ -977,9 +999,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		
 		case M11_FAR_NEAR:
@@ -1003,9 +1025,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
-			if(LOW_SPEED==speed_type){Ms.use=Ms.slow;}
-			else if(NORMAL_SPEED==speed_type){Ms.use=Ms.normal;}
-			else if(HIGH_SPEED==speed_type){Ms.use=Ms.high;}
+			if(LOW_SPEED==speed_type){Ms.bk=Ms.slow;}
+			else if(NORMAL_SPEED==speed_type){Ms.bk=Ms.normal;}
+			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			
 			break;
 #endif			

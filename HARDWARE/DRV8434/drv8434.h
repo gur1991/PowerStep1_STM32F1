@@ -99,11 +99,12 @@ int __DRV8434_Motor_Caculate_Next_Dec_Speed__(uint8_t deviceId);
 
 double __DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(double max, double start, double acc);
 
+void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId);
 
 
-void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount, MOTOR_SPEED_type_t speed_type);
+void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
 
-void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction, MOTOR_SPEED_type_t speed_type);
+void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction);
 
 void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId);
 
@@ -124,6 +125,7 @@ typedef struct{
 	Drv_Motor_Speed_Run_Config_t normal;//电机中速
 	Drv_Motor_Speed_Run_Config_t high;//电机高速
 	Drv_Motor_Speed_Run_Config_t use;
+	Drv_Motor_Speed_Run_Config_t bk;
 	
 	//int currentSpeed;//当前电机速度
 }Drv_Motor_Speed_Config_t;
