@@ -91,13 +91,13 @@ void DRV8434_Motor_Run_Control_Timing(uint8_t deviceId,motorDir_t direction);
 
 void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId);
 
-int __DRV8434_Motor_Speed_To_PWM_Config__(int speed);
+int __DRV8434_Motor_Speed_To_PWM_Config__(double speed);
 
 int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId);
 
 int __DRV8434_Motor_Caculate_Next_Dec_Speed__(uint8_t deviceId);
 
-int __DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(int max, int start, int acc);
+double __DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(double max, double start, double acc);
 
 
 
@@ -111,11 +111,11 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 
 
 typedef struct{
-	int start;//启动速度
-	int acc;//加速度
-	int dec;//减速度
-	int max;//最高速度
-	int accSpeed;
+	double start;//启动速度
+	double acc;//加速度
+	double dec;//减速度
+	double max;//最高速度
+	double accSpeed;
 }Drv_Motor_Speed_Run_Config_t;
 
 
@@ -125,7 +125,7 @@ typedef struct{
 	Drv_Motor_Speed_Run_Config_t high;//电机高速
 	Drv_Motor_Speed_Run_Config_t use;
 	
-	int currentSpeed;//当前电机速度
+	//int currentSpeed;//当前电机速度
 }Drv_Motor_Speed_Config_t;
 
 

@@ -150,7 +150,7 @@ int main(void)
 	
 #if 1
 #if 1 	
-  //DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 10000, LOW_SPEED);
+   //DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M8_BIG_OUT, 5500*3, LOW_SPEED);
 	//DRV8434_Motor_Move_And_Wait(2, M8_BIG_IN, 10000, LOW_SPEED);
 	
 //	DRV8434_Motor_Move_And_Wait(2, M8_BIG_OUT, 20000, NORMAL_SPEED);
