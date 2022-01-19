@@ -42,9 +42,9 @@
 #define ENABLE_6_OUT PBout(10)
 #define DIR_6_OUT PBout(11)
 
-#define nSLEEP_5_OUT PBout(13)
-#define ENABLE_5_OUT PBout(14)
-#define DIR_5_OUT PBout(15)
+#define nSLEEP_5_OUT   PGout(3)//PBout(13)
+#define ENABLE_5_OUT   PGout(4)//PBout(14)
+#define DIR_5_OUT      PGout(5)//PBout(15)
 
 #define nSLEEP_4_OUT PDout(8)
 #define ENABLE_4_OUT PDout(9)
@@ -54,9 +54,9 @@
 #define ENABLE_3_OUT PDout(12)//****************TIM4-CH1
 #define DIR_3_OUT PGout(2)
 
-#define nSLEEP_2_OUT PGout(3)
-#define ENABLE_2_OUT PGout(4)
-#define DIR_2_OUT PGout(5)
+#define nSLEEP_2_OUT   PBout(13)//PGout(3)
+#define ENABLE_2_OUT   PBout(14)//PGout(4)
+#define DIR_2_OUT      PBout(15)//PGout(5)
 
 #define nSLEEP_1_OUT PGout(6)
 #define ENABLE_1_OUT PGout(7)

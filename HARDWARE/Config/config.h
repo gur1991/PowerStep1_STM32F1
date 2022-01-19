@@ -19,7 +19,7 @@
 
 
 
-//#define USE_DRV8434_PECKER 
+#define USE_DRV8434_PECKER 
 //#define USE_DRV8434_CAMEL 
 
 
