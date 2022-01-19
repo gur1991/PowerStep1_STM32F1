@@ -530,7 +530,64 @@ uint8_t __Normal_Move_Blank__(void)
 {
 		uint8_t ret=0;
 		int i=0;
+
+#if (defined USE_DRV8434_CAMEL)
+		DRV8434_Motor_Move_Steps(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
 	
+	  //step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
+		delay_ms(100);	
+		
+	  //step2:持续检测，等待指示灯灭掉
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{	
+							delay_ms(100);
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return 2;
+				}
+				delay_ms(1);	
+		}
+	
+		
+		//step3:持续检测，等待指示灯亮起
+		i=0;
+		while(1)
+		{
+				i++;
+				if(!Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{			delay_ms(100);						
+							DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+							break;
+				}else if(i>=5*1000)
+				{
+							ret=1;
+							LOGE("motor no find light \r\n");
+							DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+							break;	
+				}
+				delay_ms(1);	
+		}
+		
+		//step4:持续检测，等待指示灯灭掉
+ 		i=0;
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT))
+				{			delay_ms(100);	
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return 2;
+				}
+				delay_ms(1);	
+		}
+
+#else	
 		PowerStep_Select_Motor_Baby(M4_BLANK_NEXT);
 		BSP_MotorControl_Move(0, M4_NEXT_TO_BLANK, 40000);
 	
@@ -586,7 +643,9 @@ uint8_t __Normal_Move_Blank__(void)
 				}
 				delay_ms(1);	
 		}
-	
+		
+#endif
+		
 		return ret;
 }
 
@@ -596,7 +655,47 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 		uint8_t ret=0;
 		int i=0;
 	
+#if (defined USE_DRV8434_CAMEL)
+		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
 	
+		//step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
+	  delay_ms(100);	
+	
+	 //step2:持续检测，等待指示灯灭掉
+		while(1)
+		{
+				i++;
+				if(Light_Sensor_Get(lightNum))
+				{				
+							break;
+				}else if(i>=5*1000){
+							LOGE("motor can't move.\r\n");
+							return 2;
+				}
+				delay_ms(1);	
+		}
+	
+		//step3:持续检测，等待指示灯亮起
+		i=0;
+		while(1)
+		{
+				i++;
+				if(!Light_Sensor_Get(lightNum))
+				{			
+							delay_ms(delayMs);
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+							break;
+				}else if(i>=5*1000)
+				{
+							ret=1;
+							LOGE("motor no find light \r\n");
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+							break;	
+				}
+				delay_ms(1);	
+		}
+
+#else	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
 	
@@ -637,7 +736,8 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 				}
 				delay_ms(1);	
 		}
-	
+#endif
+		
 
 	return ret;
 }	
@@ -654,14 +754,49 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	
 	if(!Light_Sensor_Get(lightNum))return 0;
 	
-	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+	
+	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,LOW_SPEED);
+		
+		steps=200*10000;
+	
+		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+		while(1){
+				i++;
+				if(!Light_Sensor_Get(lightNum))
+					{				
+							light=0;
+							if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
+							{
+								delay_ms(30);
+							}else if(motorNum==M3_LEFT_WAIT || motorNum==M4_BLANK_NEXT)
+							{
+								delay_ms(10);
+							}else{
+								delay_ms(100);
+							}
+							
+							
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);	
+							break;
+				}else if(i>=7*1000){
+							light=1;
+							LOGE("motor no find light \r\n");
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+							break;	
+				}
+				delay_ms(1);	
+		}		
+	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,NORMAL_SPEED);
 
+
+#else	
+	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 		
 		steps=200*10000;
 	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
-	  //delay_ms(100);
 		while(1){
 				i++;
 				if(!Light_Sensor_Get(lightNum))
@@ -687,11 +822,11 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							break;	
 				}
 				delay_ms(1);	
-		}
-	 //BSP_MotorControl_HardStop(0);
-		
+		}		
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
-
+#endif
+		
+		
 	return light;		
 }
 
@@ -703,6 +838,36 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
   uint8_t light=1;
 	
 	if(!Light_Sensor_Get(lightNum))return 0;
+	
+	
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,LOW_SPEED);
+
+		
+		steps=200*10000;
+	
+		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+
+		while(1){
+				i++;
+				if(!Light_Sensor_Get(lightNum))
+					{				
+							light=0;
+						  delay_ms(delayMs);
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+							break;
+				}else if(i>=7*1000){
+							light=1;
+							LOGE("motor no find light \r\n");
+							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+							break;	
+				}
+				delay_ms(1);	
+		}		
+	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,NORMAL_SPEED);
+
+
+#else	
 	
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
 
@@ -727,11 +892,11 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 							break;	
 				}
 				delay_ms(1);	
-		}
-	 //BSP_MotorControl_HardStop(0);
-		
+		}		
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,NORMAL_SPEED);
-
+#endif
+		
+		
 	return light;		
 }
 
