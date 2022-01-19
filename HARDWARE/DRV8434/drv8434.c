@@ -840,23 +840,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 		
 #ifdef USE_DRV8434_CAMEL		
 		case M1_MIX_V:
-			Ms.slow.start=2000;
-			Ms.slow.max=10000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.start=500;
+			Ms.slow.max=1000;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=10000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=1000;
+			Ms.normal.max=2000;	
+			Ms.normal.accSpeed=1000;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
 			Ms.high.start=2000;
-			Ms.high.max=10000;	
-			Ms.high.accSpeed=300;
+			Ms.high.max=6000;	
+			Ms.high.accSpeed=2000;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -866,23 +866,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			break;
 			
 		case M2_MIX:
-			Ms.slow.start=2000;
-			Ms.slow.max=10000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.start=1000;
+			Ms.slow.max=2000;	
+			Ms.slow.accSpeed=1000;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=10000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=1000;
+			Ms.normal.max=3000;	
+			Ms.normal.accSpeed=1000;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
 			Ms.high.start=2000;
-			Ms.high.max=10000;	
-			Ms.high.accSpeed=300;
+			Ms.high.max=4000;	
+			Ms.high.accSpeed=1000;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -891,23 +891,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M3_LEFT_WAIT:
-			Ms.slow.start=2000;
+			Ms.slow.start=500;
 			Ms.slow.max=1000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
+			Ms.normal.start=500;
 			Ms.normal.max=1000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
+			Ms.high.start=500;
 			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -917,23 +917,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M4_BLANK_NEXT:
-			Ms.slow.start=2000;
+			Ms.slow.start=500;
 			Ms.slow.max=1000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=1000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=100;
+			Ms.normal.max=200;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
+			Ms.high.start=500;
 			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -942,23 +942,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M5_WAIT_NEXT:
-			Ms.slow.start=2000;
-			Ms.slow.max=1000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.start=100;
+			Ms.slow.max=200;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=1000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=100;
+			Ms.normal.max=200;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=100;
+			Ms.high.max=200;	
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -967,23 +967,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M6_BLANK_LEFT:
-			Ms.slow.start=2000;
-			Ms.slow.max=1000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.start=100;
+			Ms.slow.max=200;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=1000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=100;
+			Ms.normal.max=200;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=100;
+			Ms.high.max=200;	
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 			
@@ -992,23 +992,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			else if(HIGH_SPEED==speed_type){Ms.bk=Ms.high;}
 			break;
 		case M7_HIGH_TURN:
-			Ms.slow.start=2000;
-			Ms.slow.max=1000;	
-			Ms.slow.accSpeed=300;
+			Ms.slow.start=20;
+			Ms.slow.max=50;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=2000;
-			Ms.normal.max=1000;	
-			Ms.normal.accSpeed=300;
+			Ms.normal.start=20;
+			Ms.normal.max=50;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=20;
+			Ms.high.max=50;	
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -1026,23 +1026,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 		
 #ifdef USE_DRV8434_PECKER					
 		case M8_BIG_IN_OUT:
-			Ms.slow.start=2000;
-			Ms.slow.max=6000;	
-			Ms.slow.accSpeed=3000;
+			Ms.slow.start=1000;
+			Ms.slow.max=1500;	
+			Ms.slow.accSpeed=1000;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=3000;
-			Ms.normal.max=21000;	
-			Ms.normal.accSpeed=3000;
+			Ms.normal.start=1000;
+			Ms.normal.max=1500;	
+			Ms.normal.accSpeed=1000;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=1000;
+			Ms.high.max=1500;	
+			Ms.high.accSpeed=1000;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -1052,23 +1052,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			break;
 		
 		case M9_IN_OUT:
-			Ms.slow.start=2000;
-			Ms.slow.max=6000;	
-			Ms.slow.accSpeed=3000;
+			Ms.slow.start=500;
+			Ms.slow.max=750;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=3000;
-			Ms.normal.max=21000;	
-			Ms.normal.accSpeed=3000;
+			Ms.normal.start=500;
+			Ms.normal.max=750;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=10000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=500;
+			Ms.high.max=750;	
+			Ms.high.accSpeed=500;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -1078,23 +1078,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			break;
 		
 		case M10_UP_DOWM:
-			Ms.slow.start=2000;
-			Ms.slow.max=6000;	
-			Ms.slow.accSpeed=3000;
+			Ms.slow.start=500;
+			Ms.slow.max=600;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=3000;
-			Ms.normal.max=21000;	
-			Ms.normal.accSpeed=3000;
+			Ms.normal.start=1000;
+			Ms.normal.max=1200;	
+			Ms.normal.accSpeed=500;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
-			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.start=1000;
+			Ms.high.max=3000;	
+			Ms.high.accSpeed=1000;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 
@@ -1104,23 +1104,23 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			break;
 		
 		case M11_FAR_NEAR:
-			Ms.slow.start=2000;
-			Ms.slow.max=6000;	
-			Ms.slow.accSpeed=3000;
+			Ms.slow.start=50;
+			Ms.slow.max=100;	
+			Ms.slow.accSpeed=500;
 			Ms.slow.dec=40;
 			Ms.slow.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.slow.max,Ms.slow.start,Ms.slow.accSpeed);
 
 		
-			Ms.normal.start=3000;
-			Ms.normal.max=21000;	
-			Ms.normal.accSpeed=3000;
+			Ms.normal.start=500;
+			Ms.normal.max=1000;	
+			Ms.normal.accSpeed=1000;
 			Ms.normal.dec=40;
 			Ms.normal.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.normal.max,Ms.normal.start,Ms.normal.accSpeed);
 
 		
-			Ms.high.start=2000;
+			Ms.high.start=500;
 			Ms.high.max=1000;	
-			Ms.high.accSpeed=300;
+			Ms.high.accSpeed=1000;
 			Ms.high.dec=40;
 			Ms.high.acc=__DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(Ms.high.max,Ms.high.start,Ms.high.accSpeed);
 

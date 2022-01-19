@@ -71,7 +71,13 @@ void Init_Board_Config(void)
 #if USE_CLEANING_DILUTION_BOARD
   Uart2_Config_Init();//串口2配置及各串口设备的不同配置
 	Light_Sensor_Init();
+	
+#ifdef USE_DRV8434_PECKER
+	DRV8434_MOTOR_Config_Init();
+#else	
 	BSP_Motor_Control_Init();//没设备连接会卡住
+#endif	
+	
 	Electromagnetic_init();//电磁阀
 	LOGD("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
@@ -82,7 +88,14 @@ void Init_Board_Config(void)
 	Liquid_Sensor_Init();
 	Weight_Sensor_Init();
 	Light_Sensor_Init();
+	
+#ifdef USE_DRV8434_CAMEL
+	DRV8434_MOTOR_Config_Init();
+#else	
 	BSP_Motor_Control_Init();//没设备连接会卡住
+#endif	
+	
+	
 	UART5_Init(115200);
 	
 	LOGD("init scan. \r\n");
@@ -144,40 +157,12 @@ int main(void)
 	Real_Time_Polling_Init();
 	
 
-	LOGD("1*\r\n");
-	DRV8434_MOTOR_Config_Init();
-	LOGD("2*\r\n");
-	
-//	DRV8434_Motor_Move_Steps(M11_FAR_NEAR, M8_BIG_IN, 200000);
-//	DRV8434_Motor_Move_Steps(M10_UP_DOWM, M8_BIG_IN, 200000);
 /*
-	 DRV8434_Motor_Move_Steps(M10_UP_DOWM, M8_BIG_IN, 200000);
-	 DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_IN, 200000);
-	 delay_ms(2000);
-	 DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);	
-	 delay_ms(2000);
-	 
-	 DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_IN, 200000);	
-	 delay_ms(2000);
-	 DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);	
-	 delay_ms(2000);
+	DRV8434_MOTOR_Config_Init();
 	
-	 DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_OUT, 200000);
-	 DRV8434_Motor_Move_Steps(M10_UP_DOWM, M8_BIG_OUT, 200000);
-*/	
-	
-	LOGD("3*\r\n");
-	
-	while(1)
-	{
-	
-		//ENABLE_9_OUT=1;
-		delay_ms(1);
-		//ENABLE_9_OUT=0;
-	  delay_ms(1);
-	}	
-
-	
+	DRV8434_Motor_Move_Steps(M11_FAR_NEAR, M8_BIG_IN, 200000);
+	DRV8434_Motor_Move_Steps(M10_UP_DOWM, M8_BIG_IN, 200000);
+*/
 	
 	
 	int i=0;
@@ -199,7 +184,6 @@ int main(void)
 	Uart4_Rx_Clear();
 	UART4_Enable_Interrupt();
 	
-	//Mix_Blood_High_Speed();
 	while(1)
 	{
 			temp_a=UART4_RX_CNT;
