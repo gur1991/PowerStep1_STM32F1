@@ -120,17 +120,25 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
     __HAL_RCC_GPIOB_CLK_ENABLE();       //使能GPIOB时钟
     __HAL_RCC_SPI3_CLK_ENABLE();        //使能SPI3时钟
 		__HAL_RCC_AFIO_CLK_ENABLE();
-    __HAL_AFIO_REMAP_SWJ_NOJTAG();
-    
+    //__HAL_AFIO_REMAP_SWJ_NOJTAG();
+
+    GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_4;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+/*		
     //PB13,14,15
     GPIO_InitStruct.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
     GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
     GPIO_InitStruct.Pull=GPIO_PULLUP;                  //上拉
     GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;             //快速            
     HAL_GPIO_Init(GPIOB,&GPIO_InitStruct);
-		
-		//printf("init spi \r\n");
-	
+*/	
 	}
 	
 	

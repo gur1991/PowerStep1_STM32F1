@@ -302,7 +302,7 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
     /* Configure Powerstep01 - CS pin4 ----------------------------------------*/
 
 		//__HAL_AFIO_REMAP_SWJ_DISABLE();           //½ûÓÃJTAG SWD
-    __HAL_AFIO_REMAP_SWJ_NOJTAG();              //½ûÓÃJTAG
+//    __HAL_AFIO_REMAP_SWJ_NOJTAG();              //½ûÓÃJTAG
     GPIO_InitStruct.Pin = BSP_MOTOR_CONTROL_BOARD_CS_PIN4;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_PULLDOWN;

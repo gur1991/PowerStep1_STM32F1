@@ -11,7 +11,7 @@ void Electromagnetic_init(void)
 
 	
 	__HAL_RCC_AFIO_CLK_ENABLE();
-  __HAL_AFIO_REMAP_SWJ_NOJTAG();
+//  __HAL_AFIO_REMAP_SWJ_NOJTAG();
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 

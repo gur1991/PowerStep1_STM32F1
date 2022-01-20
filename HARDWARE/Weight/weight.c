@@ -128,9 +128,9 @@ u8 Weight_Sensor_Init(void)
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
     HAL_GPIO_Init(GPIOG,&GPIO_Initure);     //初始化
 	
-
 		SPI3_Init();		   			        //初始化SPI
 		SPI3_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
+
 #endif
 	
 	return 0;

@@ -48,6 +48,7 @@ int Check_Board_Define_Config(void)
 	else if(value==1)LOGD("you have choose Define Board OK in [config.h]. \r\n");
 	else LOGD("you have choose Define Board too many in [config.h]. \r\n");
 
+
 	return value-1;
 }	
 
@@ -86,16 +87,9 @@ void Init_Board_Config(void)
   Uart2_Config_Init();
 	Export_Liquid_Control_Init();
 	Liquid_Sensor_Init();
+	
 	Weight_Sensor_Init();
 	Light_Sensor_Init();
-	
-#ifdef USE_DRV8434_CAMEL
-	DRV8434_MOTOR_Config_Init();
-#else	
-	BSP_Motor_Control_Init();//没设备连接会卡住
-#endif	
-	
-	
 	UART5_Init(115200);
 	
 	LOGD("init scan. \r\n");
@@ -103,6 +97,12 @@ void Init_Board_Config(void)
 	ScanHandle->init(true);
 	
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
+#ifdef USE_DRV8434_CAMEL
+	DRV8434_MOTOR_Config_Init();
+#else	
+	BSP_Motor_Control_Init();//没设备连接会卡住
+#endif	
+
 	LOGD("[Camel],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -150,19 +150,11 @@ int main(void)
 {	
 	HAL_Init();                    	 	
   Stm32_Clock_Init(RCC_PLL_MUL9);   
-		
 	delay_init(72);               		
+	__HAL_AFIO_REMAP_SWJ_NOJTAG();
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
-	
-
-/*
-	DRV8434_MOTOR_Config_Init();
-	
-	DRV8434_Motor_Move_Steps(M11_FAR_NEAR, M8_BIG_IN, 200000);
-	DRV8434_Motor_Move_Steps(M10_UP_DOWM, M8_BIG_IN, 200000);
-*/
 	
 	
 	int i=0;
@@ -172,7 +164,13 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+	//DRV8434_MOTOR_Config_Init();
+	//DRV8434_Motor_Move_And_Wait(3, M8_BIG_IN, 200000);
 	
+	
+	//DRV8434_Motor_Move_And_Wait(3, M4_BLANK_TO_NEXT, 40000);
+	
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
 	
 	
 	#if USE_KEEP_TEMPERATURE_BOARD

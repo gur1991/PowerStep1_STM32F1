@@ -13,18 +13,13 @@ void DRV8434_MOTOR_Config_Init(void)
 {
 	//PWM频率=72000000/900=80Khz
 	DRV8434_GPIO_Init();
+	
+	//return;
+	
 	DRV8434_PWM3_Init(900-1,divClock-1);//2-1 为40K
 	DRV8434_PWM4_Init(900-1,divClock-1);//10-10为8K  
 	
-	__HAL_TIM_ENABLE_IT(&DRV_TIM3_Handler, TIM_IT_UPDATE);
-//	HAL_TIM_PWM_Start_IT(&DRV_TIM3_Handler,TIM_CHANNEL_3|TIM_CHANNEL_4);
-	HAL_NVIC_SetPriority(TIM3_IRQn,1,3);    //设置中断优先级，抢占优先级1，子优先级3
-	HAL_NVIC_EnableIRQ(TIM3_IRQn);  
-	
-	__HAL_TIM_ENABLE_IT(&DRV_TIM4_Handler, TIM_IT_UPDATE);
-//	HAL_TIM_PWM_Start_IT(&DRV_TIM4_Handler,TIM_CHANNEL_1|TIM_CHANNEL_2);
-	HAL_NVIC_SetPriority(TIM4_IRQn,1,3);    //设置中断优先级，抢占优先级1，子优先级3
-  HAL_NVIC_EnableIRQ(TIM4_IRQn);  
+
 	
 
 
@@ -120,15 +115,6 @@ void DRV8434_PWM4_Init(u16 arr,u16 psc)
 		HAL_TIM_PWM_Stop(&DRV_TIM4_Handler,TIM_CHANNEL_3);
 	  HAL_TIM_PWM_Stop(&DRV_TIM4_Handler,TIM_CHANNEL_4);
 		
-		
-		//GPIO-PD12-HIGH
-	//	DRV_CHHandler.OCMode=TIM_OCMODE_PWM1; //模式选择PWM1
-  //  DRV_CHHandler.Pulse=arr/2;            //设置比较值,此值用来确定占空比，默认比较值为自动重装载值的一半,即占空比为50%
-   // DRV_CHHandler.OCPolarity=TIM_OCPOLARITY_HIGH; //输出比较极性为低 
-	 	
-		//HAL_TIM_PWM_ConfigChannel(&DRV_TIM4_Handler,&DRV_CHHandler,TIM_CHANNEL_1);//配置TIM3通道4	
-		//HAL_TIM_PWM_Stop(&DRV_TIM4_Handler,TIM_CHANNEL_1);
-		
 #endif
 	
 }	
@@ -177,30 +163,7 @@ void DRV8434_GPIO_Init(void)
 	
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14|GPIO_PIN_15|GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_RESET);
-
-
-
-		__HAL_RCC_TIM4_CLK_ENABLE();
-		__HAL_AFIO_REMAP_TIM4_ENABLE();
-		__HAL_RCC_GPIOD_CLK_ENABLE();			//开启GPIOC时钟
-		
-		GPIO_InitStruct.Pin=GPIO_PIN_12|GPIO_PIN_13;  //PC9
-		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
-		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
-		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
-		HAL_GPIO_Init(GPIOD,&GPIO_InitStruct); 	
-		
-		
-		
-		__HAL_RCC_TIM3_CLK_ENABLE();			//使能定时器	
-		__HAL_AFIO_REMAP_TIM3_ENABLE();   //TIM3通道引脚重映射使能
-		__HAL_RCC_GPIOC_CLK_ENABLE();			//开启GPIOC时钟
-		
-		GPIO_InitStruct.Pin=GPIO_PIN_9|GPIO_PIN_8;  //PC9
-		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
-		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
-		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
-		HAL_GPIO_Init(GPIOC,&GPIO_InitStruct); 	
+	
 #endif
 
 
@@ -253,27 +216,49 @@ void DRV8434_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14|GPIO_PIN_15|GPIO_PIN_13|GPIO_PIN_11|GPIO_PIN_10, GPIO_PIN_RESET);
 
   HAL_GPIO_WritePin(GPIOE, GPIO_PIN_14|GPIO_PIN_15|GPIO_PIN_13|GPIO_PIN_12, GPIO_PIN_RESET);
+	
+		
+	GPIO_InitStruct.Pin = GPIO_PIN_12;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+		
+#endif
+}	
 
 
-		__HAL_RCC_TIM4_CLK_ENABLE();
-		__HAL_AFIO_REMAP_TIM4_ENABLE();
-		__HAL_RCC_GPIOD_CLK_ENABLE();			//开启GPIOC时钟
-		
-		GPIO_InitStruct.Pin=GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;  //PC9
-		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
-		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
-		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
-		HAL_GPIO_Init(GPIOD,&GPIO_InitStruct); 	
-		
-		
-		GPIO_InitStruct.Pin = GPIO_PIN_12;
-		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-		HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 
-		
-		
+#if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD)
+
+
+
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
+{
+   if(htim->Instance==TIM3)
+	{
+		__HAL_TIM_ENABLE_IT(&DRV_TIM3_Handler, TIM_IT_UPDATE);
+		HAL_NVIC_SetPriority(TIM3_IRQn,4,0);    //设置中断优先级，抢占优先级1，子优先级3
+		HAL_NVIC_EnableIRQ(TIM3_IRQn);  
+	}else if(htim->Instance==TIM4)
+	{
+		__HAL_TIM_ENABLE_IT(&DRV_TIM4_Handler, TIM_IT_UPDATE);
+		HAL_NVIC_SetPriority(TIM4_IRQn,4,0);    //设置中断优先级，抢占优先级1，子优先级3
+		HAL_NVIC_EnableIRQ(TIM4_IRQn);  
+	}
+}
+#endif
+
+
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
+{
+	GPIO_InitTypeDef GPIO_InitStruct;
+	
+#if (defined USE_DRV8434_CAMEL) 	
+	
+  if(htim->Instance==TIM3)
+	{
 		__HAL_RCC_TIM3_CLK_ENABLE();			//使能定时器	
 		__HAL_AFIO_REMAP_TIM3_ENABLE();   //TIM3通道引脚重映射使能
 		__HAL_RCC_GPIOC_CLK_ENABLE();			//开启GPIOC时钟
@@ -283,10 +268,59 @@ void DRV8434_GPIO_Init(void)
 		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
 		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
 		HAL_GPIO_Init(GPIOC,&GPIO_InitStruct); 	
+		
+	}else if(htim->Instance==TIM4)
+	{
+		__HAL_RCC_TIM4_CLK_ENABLE();
+		__HAL_AFIO_REMAP_TIM4_ENABLE();
+		__HAL_RCC_GPIOD_CLK_ENABLE();			//开启GPIOC时钟
+		
+		GPIO_InitStruct.Pin=GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;  //PC9
+		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
+		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
+		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
+		HAL_GPIO_Init(GPIOD,&GPIO_InitStruct); 	
+	
+	}
+#endif
+
+#if (defined USE_DRV8434_PECKER) 	
+	
+  if(htim->Instance==TIM3)
+	{
+		__HAL_RCC_TIM3_CLK_ENABLE();			//使能定时器	
+		__HAL_AFIO_REMAP_TIM3_ENABLE();   //TIM3通道引脚重映射使能
+		__HAL_RCC_GPIOC_CLK_ENABLE();			//开启GPIOC时钟
+		
+		GPIO_InitStruct.Pin=GPIO_PIN_9|GPIO_PIN_8;  //PC9
+		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
+		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
+		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
+		HAL_GPIO_Init(GPIOC,&GPIO_InitStruct); 	
+		
+	}else if(htim->Instance==TIM4)
+	{
+		__HAL_RCC_TIM4_CLK_ENABLE();
+		__HAL_AFIO_REMAP_TIM4_ENABLE();
+		__HAL_RCC_GPIOD_CLK_ENABLE();			//开启GPIOC时钟
+		
+		GPIO_InitStruct.Pin=GPIO_PIN_12|GPIO_PIN_13;  //PC9
+		GPIO_InitStruct.Mode=GPIO_MODE_AF_PP;  	//复用推挽输出
+		GPIO_InitStruct.Pull=GPIO_PULLUP;          //上拉
+		GPIO_InitStruct.Speed=GPIO_SPEED_HIGH;     //高速
+		HAL_GPIO_Init(GPIOD,&GPIO_InitStruct); 	
+	
+	}
+#endif	
+	
+	
+	
+	
+}
 #endif
 
 
-}	
+
 
 
 /********************************************************************/

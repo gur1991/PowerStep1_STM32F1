@@ -1,5 +1,6 @@
 #include "spi3.h"
 #include "config.h"
+#include "stm32f1xx_hal_gpio_ex.h"
 
 SPI_HandleTypeDef SPI3_Handler;  
 
@@ -31,14 +32,18 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 {
     GPIO_InitTypeDef GPIO_Initure;
     
-    __HAL_RCC_GPIOB_CLK_ENABLE();       //使能GPIOB时钟
-    __HAL_RCC_SPI3_CLK_ENABLE();        //使能SPI3时钟
-    
-    GPIO_Initure.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
-    GPIO_Initure.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
-    GPIO_Initure.Pull=GPIO_PULLUP;                  //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;             //快速            
-    HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+		if(hspi->Instance==SPI3)
+		{
+			__HAL_RCC_GPIOB_CLK_ENABLE();       //使能GPIOB时钟
+			__HAL_AFIO_REMAP_SPI3_ENABLE();
+			__HAL_RCC_SPI3_CLK_ENABLE();        //使能SPI3时钟
+			
+			GPIO_Initure.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
+			GPIO_Initure.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
+			GPIO_Initure.Pull=GPIO_PULLUP;                  //上拉
+			GPIO_Initure.Speed=GPIO_SPEED_HIGH;             //快速            
+			HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+		}	
 }
 #endif
 
