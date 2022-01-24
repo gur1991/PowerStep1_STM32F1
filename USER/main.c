@@ -155,8 +155,7 @@ int main(void)
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
-	
-	
+
 	int i=0;
 	int temp_a=0,temp_b=0;
 	//KEY_Init(); 
@@ -164,6 +163,44 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+	
+/*	
+	while(1)
+	{
+		LOGD("%d \r\n",Light_Sensor_Get(M1_LIGHT));
+		delay_ms(100);
+	}
+*/
+		
+		//DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT, NORMAL_SPEED);
+	  //DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_IN, 70000);
+	//¢DRV8434_Motor_Move(9,30000);
+		
+		
+		//RestSelectMotorOrgin(M11_FAR_NEAR, M11_LIGHT, M10_UP, 10000);
+		
+		DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT, NORMAL_SPEED);
+		RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT,60000);
+		//DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
+				
+	 	
+		
+	 //DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_UP, 10000);
+	 
+	
+	//DRV8434_Motor_Move_Steps(M1_MIX_V, M1_MIX_V_UP, 40000);
+	//delay_ms(100);
+	//DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
+	
+	
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 30000);
+	
+	//delay_ms(1000);
+	//DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
+	//delay_ms(1000);
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60000);
+	
+	
 	//DRV8434_MOTOR_Config_Init();
 	//DRV8434_Motor_Move_And_Wait(3, M8_BIG_IN, 200000);
 	

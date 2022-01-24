@@ -76,8 +76,6 @@
 
 
 
-
-
 void DRV8434_MOTOR_Config_Init(void);//总初始化接口
 
 void DRV8434_GPIO_Init(void);//初始化
@@ -93,7 +91,7 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId);
 
 int __DRV8434_Motor_Speed_To_PWM_Config__(double speed);
 
-int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId);
+int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId,int currentIndex);
 
 int __DRV8434_Motor_Caculate_Next_Dec_Speed__(uint8_t deviceId);
 
@@ -114,11 +112,15 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 
 
 typedef struct{
-	double start;//启动速度
-	double acc;//加速度
-	double dec;//减速度
-	double max;//最高速度
-	double accSpeed;
+	int start;//启动速度
+	int interval_acc;//加速度
+	int dec;//减速度
+	int max;//最高速度
+	int accTimes;//几次加上去
+	int interval_pwm;//多少个波形
+	
+	int accSpeed;
+	int config[21];
 }Drv_Motor_Speed_Run_Config_t;
 
 
@@ -149,6 +151,19 @@ typedef struct{
 	Drv_Motor_Speed_Config_t M10;
 	Drv_Motor_Speed_Config_t M11;
 }Drv_Motor_Speed_Config_Group_t;
+
+
+
+
+
+//梯度加速，整个加速过程分为十次加上去，而不是每次都要计算一下
+
+//每次加多少？
+int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Run_Config_t Ms);
+//分为几次加上去
+int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Run_Config_t Ms);
+
+void __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__(uint8_t deviceId);
 
 #endif
 

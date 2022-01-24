@@ -758,13 +758,15 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	
 	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,LOW_SPEED);
 		
-		steps=200*10000;
+	//	steps=200*10000;
 	
 		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
 		while(1){
 				i++;
-				if(!Light_Sensor_Get(lightNum))
-					{				
+				light=Light_Sensor_Get(lightNum);
+				//LOGD("L:%d \r\n",light);
+				if(!light)
+				{				
 							light=0;
 							if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
 							{
@@ -773,10 +775,10 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							{
 								delay_ms(10);
 							}else{
-								delay_ms(100);
+								delay_ms(10);
 							}
 							
-							
+							//LOGD("Stop \r\n");
 							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);	
 							break;
 				}else if(i>=7*1000){
@@ -785,7 +787,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
 							break;	
 				}
-				delay_ms(1);	
+				delay_us(500);	
 		}		
 	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,NORMAL_SPEED);
 
@@ -799,8 +801,9 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 		BSP_MotorControl_Move(0, motorDir, steps);
 		while(1){
 				i++;
-				if(!Light_Sensor_Get(lightNum))
-					{				
+				light=Light_Sensor_Get(lightNum);
+				if(!light)
+				{			
 							light=0;
 							if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
 							{
