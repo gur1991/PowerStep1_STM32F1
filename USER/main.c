@@ -192,11 +192,10 @@ int main(void)
 		*/
 		
 		
-		//DRV8434_Motor_Select_Speed(M5_WAIT_NEXT, NORMAL_SPEED);
-		//Light_Control_Int_Enable(M5_WAIT_NEXT , 1);
-		//DRV8434_Motor_Move_And_Wait(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 60000);
-		//Light_Control_Int_Enable(M5_WAIT_NEXT , 0);
-		
+		DRV8434_Motor_Select_Speed(M4_BLANK_NEXT, NORMAL_SPEED);
+		RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 400000);
+		RestSelectMotorOrgin(M4_BLANK_NEXT, BLANK_LIGHT, M4_NEXT_TO_BLANK, 400000);
+		//DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 10000);
 		
 		//RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
 			

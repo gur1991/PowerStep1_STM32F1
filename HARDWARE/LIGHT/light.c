@@ -99,6 +99,9 @@ void Light_Set_Delay_MS(int delay)
 	delayMS=delay;
 }	
 
+static int WHICH_MOTOR_LIGHT = 12; 
+
+
 
 void HAL_GPIO_EXTI_IRQHandler_MYSELF(uint16_t GPIO_Pin)
 {
@@ -156,7 +159,7 @@ void EXTI15_10_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_12);
 #endif	
 	
-#if (defined USE_DRV8434_CAMEL) 
+#if (defined USE_DRV8434_CAMEL)
   HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_10);
 	HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_11);
   HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_13);
@@ -171,42 +174,69 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	//LOGD("GPIO_Pin:%d \r\n",GPIO_Pin);
 #if (defined USE_DRV8434_PECKER) 		
 	//OP17-M8
-  if (GPIO_Pin == GPIO_PIN_7){
+  if (GPIO_Pin == GPIO_PIN_7 && WHICH_MOTOR_LIGHT==M8_LIGHT )
+	{
 	//	LOGD("M8 \r\n");
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
 		//OP18-M9
-  }else if (GPIO_Pin == GPIO_PIN_8){
+  }else if (GPIO_Pin == GPIO_PIN_8 && WHICH_MOTOR_LIGHT==M9_LIGHT )
+	{
 	//	LOGD("M9 \r\n");
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M9_IN_OUT);
   //OP19-M11
-	}else if (GPIO_Pin == GPIO_PIN_11){
+	}else if (GPIO_Pin == GPIO_PIN_11 && WHICH_MOTOR_LIGHT==M11_LIGHT )
+	{
 //		LOGD("M11 \r\n");
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M11_FAR_NEAR);
 		//OP20-M10
-}else if (GPIO_Pin == GPIO_PIN_12){
+}else if (GPIO_Pin == GPIO_PIN_12 && WHICH_MOTOR_LIGHT==M10_LIGHT )
+{
 //		LOGD("M10 \r\n");
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);
 }
 #endif
 	
 #if (defined USE_DRV8434_CAMEL) 
-	if (GPIO_Pin == GPIO_PIN_0 || GPIO_Pin == GPIO_PIN_5
-		  ||GPIO_Pin == GPIO_PIN_8 || GPIO_Pin == GPIO_PIN_11 )
+	if (GPIO_Pin == GPIO_PIN_0 && WHICH_MOTOR_LIGHT==M4_LIGHT )
 	{
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-//		LOGD("M4 \r\n");
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+	}else	if (GPIO_Pin == GPIO_PIN_11 && WHICH_MOTOR_LIGHT==NORMAL_NEXT_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+	}else	if (GPIO_Pin == GPIO_PIN_5 && WHICH_MOTOR_LIGHT==NORMAL_CHECK_DRAIN_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+	}else	if (GPIO_Pin == GPIO_PIN_8 && WHICH_MOTOR_LIGHT==BLANK_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
 	}
 			
-
-	if (GPIO_Pin == GPIO_PIN_1 || GPIO_Pin == GPIO_PIN_15){
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M3_LEFT_WAIT);
-//		LOGD("M3 \r\n");
+	
+	if (GPIO_Pin == GPIO_PIN_15 && WHICH_MOTOR_LIGHT==M3_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M3_LEFT_WAIT);
+	}else	if (GPIO_Pin == GPIO_PIN_1 && WHICH_MOTOR_LIGHT==WAIT_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M3_LEFT_WAIT);
+	}
+	
+	
+	if (GPIO_Pin == GPIO_PIN_13 && WHICH_MOTOR_LIGHT==M1_LIGHT )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
+	}else	if (GPIO_Pin == GPIO_PIN_14 && WHICH_MOTOR_LIGHT==M1_LIGHT_WORK )
+	{
+	//		LOGD("M10 \r\n");
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
 	}
 
-	if (GPIO_Pin == GPIO_PIN_13 ||GPIO_Pin == GPIO_PIN_14 ){
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
-//		LOGD("M1 \r\n");
-	}
 
 	if (GPIO_Pin == GPIO_PIN_10){
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M7_HIGH_TURN);
@@ -315,6 +345,8 @@ void Light_Control_Int_Enable(int lightNum , int enableInt)
 {
 	if(enableInt)
 	{		
+		WHICH_MOTOR_LIGHT=lightNum;
+		
 		switch(lightNum)
 		{
 	#if (defined USE_DRV8434_PECKER) 		

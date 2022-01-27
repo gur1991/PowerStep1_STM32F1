@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\Sepax.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Sepax.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Jan 27 09:10:51 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Jan 27 11:20:46 2022
 <BR><P>
 <H3>Maximum Stack Usage =       1760 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -386,8 +386,8 @@ Global Symbols
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Master_Mini_Board_Transfer_Interface
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;caculate_tansfer_check_bit
-<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ack_error_msg__
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
+<LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ack_error_msg__
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Real_Time_Polling_Value
@@ -489,8 +489,8 @@ Global Symbols
 <P><STRONG><a name="[9a]"></a>__aeabi_fadd</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, fadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
@@ -802,8 +802,8 @@ Global Symbols
 <P><STRONG><a name="[b6]"></a>BSP_MotorControl_HardStop_Select</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, factory_many.o(i.BSP_MotorControl_HardStop_Select))
 <BR><BR>[Stack]<UL><LI>Max Depth = 904<LI>Call Chain = BSP_MotorControl_HardStop_Select &rArr; DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
+<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 </UL>
@@ -983,10 +983,10 @@ Global Symbols
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Belt_Move_At_SameTime
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop_Select
 </UL>
@@ -1029,9 +1029,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_Steps_Disable_Acc
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Belt_Move_At_SameTime
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Move_Select
@@ -1060,7 +1060,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move
 </UL>
 
-<P><STRONG><a name="[b8]"></a>DRV8434_Motor_Select_Speed</STRONG> (Thumb, 1976 bytes, Stack size 152 bytes, drv8434.o(i.DRV8434_Motor_Select_Speed))
+<P><STRONG><a name="[b8]"></a>DRV8434_Motor_Select_Speed</STRONG> (Thumb, 2000 bytes, Stack size 152 bytes, drv8434.o(i.DRV8434_Motor_Select_Speed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 888<LI>Call Chain = DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__
@@ -1068,9 +1068,10 @@ Global Symbols
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_MOTOR_Config_Init
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_MOTOR_Config_Init
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 <LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Scan_Motor_Slow_Spin
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginSelect
@@ -1125,42 +1126,42 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, light.o(i.EXTI0_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EXTI0_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EXTI0_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler_MYSELF
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[6e]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, light.o(i.EXTI15_10_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EXTI15_10_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EXTI15_10_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler_MYSELF
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[4d]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, light.o(i.EXTI1_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EXTI1_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EXTI1_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler_MYSELF
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[4e]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.EXTI2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EXTI2_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EXTI2_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[4f]"></a>EXTI3_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.EXTI3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EXTI3_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EXTI3_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[5d]"></a>EXTI9_5_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, light.o(i.EXTI9_5_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EXTI9_5_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EXTI9_5_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler_MYSELF
 </UL>
@@ -1409,8 +1410,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 </UL>
 
-<P><STRONG><a name="[118]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, light.o(i.HAL_GPIO_EXTI_Callback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<P><STRONG><a name="[118]"></a>HAL_GPIO_EXTI_Callback</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, light.o(i.HAL_GPIO_EXTI_Callback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
 </UL>
@@ -1419,7 +1420,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f4]"></a>HAL_GPIO_EXTI_IRQHandler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
 </UL>
@@ -1428,7 +1429,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f3]"></a>HAL_GPIO_EXTI_IRQHandler_MYSELF</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, light.o(i.HAL_GPIO_EXTI_IRQHandler_MYSELF))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = HAL_GPIO_EXTI_IRQHandler_MYSELF &rArr; HAL_GPIO_EXTI_Callback &rArr; DRV8434_Motor_HardStop_And_Goto_Sleep &rArr; DRV8434_Motor_Stop_Control_Timing &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
@@ -1854,19 +1855,19 @@ Global Symbols
 <P><STRONG><a name="[14c]"></a>LeftMoveTowardWaitPosition</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, factory_many.o(i.LeftMoveTowardWaitPosition))
 <BR><BR>[Stack]<UL><LI>Max Depth = 928<LI>Call Chain = LeftMoveTowardWaitPosition &rArr; RestSelectMotorOrgin &rArr; DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
 
-<P><STRONG><a name="[14e]"></a>Light_Control_Int_Enable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, light.o(i.Light_Control_Int_Enable))
+<P><STRONG><a name="[14e]"></a>Light_Control_Int_Enable</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, light.o(i.Light_Control_Int_Enable))
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_DisableIRQ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 
 <P><STRONG><a name="[14f]"></a>Light_EXTI_Init</STRONG> (Thumb, 246 bytes, Stack size 40 bytes, light.o(i.Light_EXTI_Init))
@@ -1886,9 +1887,9 @@ Global Symbols
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Light_Sensor_Get__
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckNextPosition
 <LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadyAndCheckLeftPosition
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;March_high_wheel
@@ -1916,9 +1917,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[19e]"></a>Light_Set_Delay_MS</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, light.o(i.Light_Set_Delay_MS))
-<BR><BR>[Called By]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
+<BR><BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 
 <P><STRONG><a name="[153]"></a>Liquid_Sensor_Get</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, liquid_sensor.o(i.Liquid_Sensor_Get))
@@ -2051,9 +2052,9 @@ Global Symbols
 <P><STRONG><a name="[160]"></a>Mix_Blood_High_Speed</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, factory_many.o(i.Mix_Blood_High_Speed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 936<LI>Call Chain = Mix_Blood_High_Speed &rArr; RestSelectMotorOrgin &rArr; DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_And_Wait
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
 </UL>
@@ -3017,14 +3018,15 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Set_Delay_MS
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Control_Int_Enable
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_Steps
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_high_wheel
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_Transporter_Belt
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginSelect
@@ -3038,11 +3040,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Set_Delay_MS
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Control_Int_Enable
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_Steps
 </UL>
 <BR>[Called By]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Normal_Goto_First_Position
@@ -3051,8 +3053,8 @@ Global Symbols
 <P><STRONG><a name="[19f]"></a>RestSelectMotorOrginSelect</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, factory_many.o(i.RestSelectMotorOrginSelect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 944<LI>Call Chain = RestSelectMotorOrginSelect &rArr; RestSelectMotorOrgin &rArr; DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_Transporter_Belt
@@ -4494,13 +4496,13 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Master_Mini_Board_Transfer_Interface
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Change_Protocol_Control_Mini_Board_Set_Degree
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32_Change_Protocol_Control_Mini_Board_Get_Degree
@@ -4715,6 +4717,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Master_Mini_Board_Transfer_Interface
 <LI><a href="#[244]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
@@ -4724,7 +4727,6 @@ Global Symbols
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_And_Wait
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Normal_Pitch_Move_Next__
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrginDelay
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Receive_Data
 <LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
@@ -4815,7 +4817,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkForAvailableFeatures
 </UL>
 
-<P><STRONG><a name="[82]"></a>main</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, main.o(i.main))
+<P><STRONG><a name="[82]"></a>main</STRONG> (Thumb, 214 bytes, Stack size 32 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1760<LI>Call Chain = main &rArr; protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; protocol_rfid_get_epc_string &rArr; Get_EPC_String &rArr; TMR_SR_getNextTag &rArr; TMR_SR_hasMoreTags &rArr; TMR_SR_cmdAuthReqResponse &rArr; TMR_SR_sendMessage &rArr; TMR_SR_sendBytes &rArr; TMR__notifyTransportListeners
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -4828,8 +4830,10 @@ Global Symbols
 <LI><a href="#[222]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Enable_Interrupt
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Disable_Interrupt
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
 <LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ack_error_msg__
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
@@ -4853,8 +4857,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 992<LI>Call Chain = process_motor_command_receive &rArr; First_Open_Motor_AutoCheck_Sensor &rArr; Rest_Transporter_Belt &rArr; RestSelectMotorOrginSelect &rArr; RestSelectMotorOrgin &rArr; DRV8434_Motor_Select_Speed &rArr; __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__ &rArr; ceil &rArr; __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_num2string_
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Select_Speed
+<LI><a href="#[249]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_num2string_
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 <LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_C55_C52_Position
 <LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rearch_Degree_Wait
@@ -4890,13 +4894,13 @@ Global Symbols
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;caculate_tansfer_check_bit
 <LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Clear_Context
 <LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Send_Data
+<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_HardStop_And_Goto_Sleep
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get_All
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DRV8434_Motor_Move_Steps
 <LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_mix_motor_config
 <LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopALLMotorMotion
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Weight_Sensor_Warnning_Line
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_weight_current_gram
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Single_Weight_Sensor_Warnning_Result
