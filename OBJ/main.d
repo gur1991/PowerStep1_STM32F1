@@ -72,6 +72,7 @@
 ..\obj\main.o: ..\HARDWARE\AD_SPI\spi1.h
 ..\obj\main.o: ..\HARDWARE\Weight\weight.h
 ..\obj\main.o: ..\HARDWARE\SPI3\spi3.h
+..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
 ..\obj\main.o: ..\HARDWARE\UART5\uart5.h
 ..\obj\main.o: ..\HARDWARE\UART3\uart3.h
 ..\obj\main.o: ..\HARDWARE\UART2\uart2.h
@@ -79,7 +80,6 @@
 ..\obj\main.o: ..\HARDWARE\RS232_protocol\uart_command_control_protocol.h
 ..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01.h
 ..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\powerSTEP01\powerstep01_target_config.h
-..\obj\main.o: ..\HARDWARE\Drivers\BSP\Components\Common\motor.h
 ..\obj\main.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihmxx.h
 ..\obj\main.o: ..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.h
 ..\obj\main.o: ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.h

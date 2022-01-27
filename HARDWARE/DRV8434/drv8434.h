@@ -111,6 +111,11 @@ void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId);
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type);
 
 
+void DRV8434_Motor_Move_Steps_Disable_Acc(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
+
+void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId);
+
+
 typedef struct{
 	int start;//启动速度
 	int interval_acc;//加速度

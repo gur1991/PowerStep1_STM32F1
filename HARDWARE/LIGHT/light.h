@@ -2,6 +2,7 @@
 #define _LIGHT_H
 #include "sys.h"
 #include "real_time_polling.h"
+#include "motor.h"
 
 //下面的方式是通过直接操作HAL库函数方式读取IO
 #define LIGHT_VALUE1        HAL_GPIO_ReadPin(GPIOF,GPIO_PIN_15)  //PF4
@@ -41,6 +42,8 @@ u8 Light_Sensor_Get(u8 number);
 
 void Light_Sensor_Get_All(void);
 
+void Light_Control_Int_Enable(int lightNum , int enableInt);
+
 //参考资料 中文资料STM32F101xCDE_DS_CH_V5.pdf找5V耐压管
 
 
@@ -65,6 +68,11 @@ struct{
 		uint8_t value[3];
 }response;
 }get_all_light_sensor_level_t;
+
+void Light_EXTI_Init(void);
+
+void Light_Set_Delay_MS(int delay);
+
 
 
 #endif

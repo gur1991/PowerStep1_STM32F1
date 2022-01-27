@@ -1,0 +1,15 @@
+..\obj\stm32f10x_exti.o: ..\HALLIB\STM32F1xx_HAL_Driver\Src\stm32f10x_exti.c
+..\obj\stm32f10x_exti.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f10x_exti.h
+..\obj\stm32f10x_exti.o: D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include\stm32f10x.h
+..\obj\stm32f10x_exti.o: ..\CORE\core_cm3.h
+..\obj\stm32f10x_exti.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\stm32f10x_exti.o: ..\CORE\core_cmInstr.h
+..\obj\stm32f10x_exti.o: ..\CORE\cmsis_armcc.h
+..\obj\stm32f10x_exti.o: ..\CORE\core_cmFunc.h
+..\obj\stm32f10x_exti.o: D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include\system_stm32f10x.h
+..\obj\stm32f10x_exti.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h
+..\obj\stm32f10x_exti.o: ..\USER\stm32f1xx_hal_conf.h
+..\obj\stm32f10x_exti.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h
+..\obj\stm32f10x_exti.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h
+..\obj\stm32f10x_exti.o: ..\USER\stm32f1xx.h
+..\obj\stm32f10x_exti.o: ..\USER\stm32f103xe.h

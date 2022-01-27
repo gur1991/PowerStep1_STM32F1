@@ -36,7 +36,7 @@ void SPI1_AD_CS_init(void)
     GPIO_Initure.Pin=GPIO_PIN_4|GPIO_PIN_5;          	//C4 C5
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
+    GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH ;     //高速       
     HAL_GPIO_Init(GPIOC,&GPIO_Initure);     //初始化
 	
 	/***********************************************************/
@@ -45,7 +45,7 @@ void SPI1_AD_CS_init(void)
     GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;          	//B0 B1 B2
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
+    GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH;     //高速       
     HAL_GPIO_Init(GPIOB,&GPIO_Initure);     //初始化
 	
 	/***********************************************************/
@@ -54,7 +54,7 @@ void SPI1_AD_CS_init(void)
     GPIO_Initure.Pin=GPIO_PIN_11;          	//F11
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
+    GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH;     //高速       
     HAL_GPIO_Init(GPIOF,&GPIO_Initure);     //初始化
 }
 

@@ -184,25 +184,8 @@ uint8_t ReadyAndCheckNextPosition(void)
 	uint8_t value=0;
 	
 #if (defined USE_DRV8434_CAMEL)
-	DRV8434_Motor_Move_Steps(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 6000);
-	while(1)
-	{
-		i++;
-		value=Light_Sensor_Get(NEXT_LIGHT);
-		if(!value)
-		{
-				DRV8434_Motor_HardStop_And_Goto_Sleep(M5_WAIT_NEXT);
-				DRV8434_Motor_Move_And_Wait(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 20000);
-
-				break;
-		}else if(i>=4500)
-		{
-				DRV8434_Motor_HardStop_And_Goto_Sleep(M5_WAIT_NEXT);
-				break;
-		}
-		delay_ms(1);
-	}
-
+	DRV8434_Motor_Move_And_Wait(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 20000);
+	value=Light_Sensor_Get(NEXT_LIGHT);
 #else	
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);
 	
@@ -244,25 +227,7 @@ uint8_t ReadyAndCheckLeftPosition(void)
 		int i=0;
 
 #if (defined USE_DRV8434_CAMEL)
-		DRV8434_Motor_Move_Steps(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 80000);
-
-		while(1)
-		{
-				  i++;
-					if(!Light_Sensor_Get(LEFT_LIGHT))
-					{			
-								DRV8434_Motor_HardStop_And_Goto_Sleep(M6_BLANK_LEFT);
-								DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 20000);
-								break;
-					}else if(i>=4500)
-					{
-								DRV8434_Motor_HardStop_And_Goto_Sleep(M6_BLANK_LEFT);
-								break;
-					}
-					delay_ms(1);
-		}
-
-
+		DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 20000);
 #else	
 		PowerStep_Select_Motor_Baby(M6_BLANK_LEFT);
 		BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 80000);
@@ -299,10 +264,15 @@ uint8_t ReadyAndCheckLeftPosition(void)
 uint8_t LeftMoveTowardWaitPosition(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
+	
+#if (defined USE_DRV8434_CAMEL)
+	 DRV8434_Motor_Select_Speed(M3_LEFT_WAIT,HIGH_SPEED);
+	 RestSelectMotorOrgin(M3_LEFT_WAIT,WAIT_LIGHT, M3_LEFT_TO_WAIT,92000);
+	 DRV8434_Motor_Select_Speed(M3_LEFT_WAIT, NORMAL_SPEED);
+#else	
 		int i=0;
-	
+			
 		BSP_MotorControl_Move_Select(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 92000,HIGH_SPEED);
-	
 		while(1)
 		{
 				i++;
@@ -317,9 +287,8 @@ uint8_t LeftMoveTowardWaitPosition(void)
 				}
 				delay_ms(1);
 		}		
-		
-		return Light_Sensor_Get(WAIT_LIGHT);
-		
+			return Light_Sensor_Get(WAIT_LIGHT);
+#endif		
 #endif
 		return 0;
 }
@@ -661,7 +630,13 @@ FACTORY_TYPE First_Open_Motor_AutoCheck_Motor(void)
 void Scan_Motor_Slow_Spin(void)  //É¨Âë
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);
+
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
+	DRV8434_Motor_Select_Speed(M2_MIX ,LOW_SPEED);
+	DRV8434_Motor_Move_Steps_Disable_Acc(M2_MIX,  M2_MIX_LEFT,  200000);
+#else	
+	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
+#endif
 #endif	
 }
 
@@ -681,12 +656,9 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //»ìÔÈ
 		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50000);
 	}
 	
-	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);//----up and mix		
 	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
 	if(ret)value|=M1_LIGHT_ERROR;
-	
-	DRV8434_Motor_HardStop_And_Goto_Sleep(M2_MIX);
-	
+		
 #else	
 	Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M2_MIX);	
@@ -792,34 +764,12 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 			int flag1=0,flag2=0;
 	
 #if (defined USE_DRV8434_PECKER)		
-			DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_OUT, big_Steps);
+			
+			DRV8434_Motor_Move_Steps_Disable_Acc(M8_BIG_IN_OUT, M8_BIG_OUT, big_Steps);
 			delay_ms(time);
-		  DRV8434_Motor_Move_Steps(M10_UP_DOWM, M10_UP, up_Steps);
-		while(1){
-				i++;
-				if(!Light_Sensor_Get(M10_LIGHT)&&!flag1)
-				{		
-						DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
-						flag1=1;
-				}
-				if(!Light_Sensor_Get(M10_LIGHT)&&!flag2)
-				{		
-						DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);						
-						flag2=1;					
-						
-				}	
-				if(flag1&&flag2) break;
-				
-				if(i>=15000){
-						DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);	
-						DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);	
-					
-						break;	
-				}
-				
-				delay_ms(1);	
-		}
-	
+			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT, M10_UP,up_Steps);	
+			DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
+			DRV8434_Motor_Move_Steps_Enable_Acc(M8_BIG_IN_OUT);
 	
 #else	
 			PowerStep_Select_Motor_Baby(M8_BIG_IN_OUT);

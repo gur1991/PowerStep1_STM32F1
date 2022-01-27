@@ -125,7 +125,7 @@ u8 Weight_Sensor_Init(void)
     GPIO_Initure.Pin=GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13; 
     GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  //推挽输出
     GPIO_Initure.Pull=GPIO_PULLUP;          //上拉
-    GPIO_Initure.Speed=GPIO_SPEED_HIGH;     //高速       
+    GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH ;     //高速       
     HAL_GPIO_Init(GPIOG,&GPIO_Initure);     //初始化
 	
 		SPI3_Init();		   			        //初始化SPI

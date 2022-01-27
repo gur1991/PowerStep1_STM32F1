@@ -178,12 +178,39 @@ int main(void)
 		
 		
 		//RestSelectMotorOrgin(M11_FAR_NEAR, M11_LIGHT, M10_UP, 10000);
+			
 		
-		DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT, NORMAL_SPEED);
-		RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT,60000);
-		//DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
-				
-	 	
+		//DRV8434_Motor_Select_Speed(M7_HIGH_TURN, NORMAL_SPEED);
+		//DRV8434_Motor_Move_Steps(M7_HIGH_TURN, M8_BIG_IN, 4000000);
+		
+		//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	/*	
+		while(1)
+		{
+			delay_ms(100);
+		}	
+		*/
+		
+		
+		//DRV8434_Motor_Select_Speed(M5_WAIT_NEXT, NORMAL_SPEED);
+		//Light_Control_Int_Enable(M5_WAIT_NEXT , 1);
+		//DRV8434_Motor_Move_And_Wait(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 60000);
+		//Light_Control_Int_Enable(M5_WAIT_NEXT , 0);
+		
+		
+		//RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
+			
+			
+		//NORMAL_SPEED  HIGH_SPEED  LOW_SPEED
+		//DRV8434_Motor_Select_Speed(M2_MIX, NORMAL_SPEED);
+		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT_WORK, M1_MIX_V_DOWN, 60000);
+		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
+		//DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 60000);
+		//DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M5_WAIT_TO_NEXT, 60000);		
+		
+		//DRV8434_Motor_Select_Speed(M1_MIX_V, NORMAL_SPEED);
+		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
+		
 		
 	 //DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_UP, 10000);
 	 

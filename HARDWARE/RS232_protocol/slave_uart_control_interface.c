@@ -26,8 +26,15 @@ static void protocol_powerstep01_power(power_type_t* data){
 		{
 				StopALLMotorMotion();
 		}else{
+			
+			#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+					DRV8434_Motor_HardStop_And_Goto_Sleep(performer.request.devices);
+					DRV8434_Motor_Move_Steps_Enable_Acc(performer.request.devices);
+			#else
 					PowerStep_Select_Motor_Baby(performer.request.devices);	
 					BSP_MotorControl_HardStop(0);
+			#endif
+			
 		}
 	
 		data->response.ret=0;
@@ -37,8 +44,8 @@ static void protocol_powerstep01_rest_pos(rest_pos_type_t* data){
 		rest_pos_type_t performer;
 		performer.request.devices=data->request.devices;
 	
-		PowerStep_Select_Motor_Baby(performer.request.devices);
-		BSP_MotorControl_CmdResetPos(performer.request.devices);//此函数不连接硬件阻塞
+		//PowerStep_Select_Motor_Baby(performer.request.devices);
+		//BSP_MotorControl_CmdResetPos(performer.request.devices);//此函数不连接硬件阻塞
 		data->response.ret=0;
 }
 //discard 
@@ -59,17 +66,21 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.devices = data->request.devices;
 		performer.request.dir=data->request.dir;
 		performer.request.steps = data->request.steps;
+	
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
+		DRV8434_Motor_Move_Steps(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
+#else	
 	  PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_Move(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
-
+#endif
 	  data->response.ret=0;
 }
 //等待单个电机运动停止
 static void protocol_powerstep01_one_device_wait(one_device_wait_type_t* data){
 		one_device_wait_type_t performer;
 		performer.request.devices=data->request.devices;
-		PowerStep_Select_Motor_Baby(performer.request.devices);
-		BSP_MotorControl_WaitWhileActive(0);	
+		//PowerStep_Select_Motor_Baby(performer.request.devices);
+		//BSP_MotorControl_WaitWhileActive(0);	
 		data->response.ret=0;
 }
 
@@ -78,8 +89,8 @@ static void protocol_powerstep01_one_device_get_pos(one_device_get_pos_type_t*da
 			one_device_get_pos_type_t performer;
 			performer.request.devices=data->request.devices;
 	
-			PowerStep_Select_Motor_Baby(performer.request.devices);
-			data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);//此函数不连接硬件阻塞
+			//PowerStep_Select_Motor_Baby(performer.request.devices);
+			//data->response.pos=BSP_MotorControl_GetPosition(performer.request.devices);//此函数不连接硬件阻塞
 	
 		  data->response.ret=0;
 }
@@ -88,8 +99,8 @@ static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*
 			performer.request.devices=data->request.devices;
 			performer.request.pos=data->request.pos;
 		
-			PowerStep_Select_Motor_Baby(performer.request.devices);
-			BSP_MotorControl_SetMark(0, performer.request.pos);//此函数不连接硬件阻塞
+			//PowerStep_Select_Motor_Baby(performer.request.devices);
+			//BSP_MotorControl_SetMark(0, performer.request.pos);//此函数不连接硬件阻塞
 			data->response.ret=0;
 }
 
@@ -99,8 +110,8 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.registe=data->request.registe;
 			
-			PowerStep_Select_Motor_Baby(performer.request.devices);
-			data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.registe);
+			//PowerStep_Select_Motor_Baby(performer.request.devices);
+			//data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.registe);
 
 			data->response.ret=0;
 }
@@ -110,8 +121,8 @@ static void protocol_powerstep01_set_para(set_para_type_t*data){
 			performer.request.registe=data->request.registe;
 			performer.request.para=data->request.para;
 	
-			PowerStep_Select_Motor_Baby(performer.request.devices);
-			BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.para);
+			//PowerStep_Select_Motor_Baby(performer.request.devices);
+			//BSP_MotorControl_CmdSetParam(0,performer.request.para,performer.request.para);
 			data->response.ret=0;
 }
 static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
@@ -119,8 +130,8 @@ static void protocol_powerstep01_select_step_mode(select_step_mode_t*data){
 			performer.request.devices=data->request.devices;
 			performer.request.StepMode=data->request.StepMode;
 			
-			PowerStep_Select_Motor_Baby(performer.request.devices);
-			BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
+			//PowerStep_Select_Motor_Baby(performer.request.devices);
+			//BSP_MotorControl_SelectStepMode(0, performer.request.StepMode);
 			data->response.ret=0;
 }
 

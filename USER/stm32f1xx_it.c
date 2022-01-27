@@ -174,23 +174,25 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
+/*
 void EXTI9_5_IRQHandler(void)
 {
 //		printf("EXTI9_5_IRQHandler\r\n");
 		HAL_GPIO_EXTI_IRQHandler(BSP_MOTOR_CONTROL_BOARD_BUSY_PIN2);
 	  HAL_GPIO_EXTI_IRQHandler(BSP_MOTOR_CONTROL_BOARD_FLAG_PIN2);
 }
-
+*/
 /**
   * @brief  This function handles interrupt for External lines 10 to 15
   * @param  None
   * @retval None
   */
+/*
 void EXTI15_10_IRQHandler(void)
 {
 
 }
-
+*/
 /**
   * @brief  This function handles TIM3 interrupt request.
   * @param  None

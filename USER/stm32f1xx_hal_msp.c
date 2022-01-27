@@ -229,6 +229,7 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
   * @param[in] GPIO_Pin pin number
   * @retval None
   */
+/*
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   if (GPIO_Pin == BSP_MOTOR_CONTROL_BOARD_BUSY_PIN)
@@ -241,6 +242,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     BSP_MotorControl_FlagInterruptHandler();
   }
  }
+*/
 /**
   * @}
   */
