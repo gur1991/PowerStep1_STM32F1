@@ -21,6 +21,8 @@ void SPI3_Init(void)
     HAL_SPI_Init(&SPI3_Handler);//初始化
     
     __HAL_SPI_ENABLE(&SPI3_Handler);                    //使能SPI3
+
+
 }
 
 
@@ -30,19 +32,30 @@ void SPI3_Init(void)
 #if 0
 void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 {
-    GPIO_InitTypeDef GPIO_Initure;
+    GPIO_InitTypeDef GPIO_InitStruct;
     
 		if(hspi->Instance==SPI3)
 		{
-			__HAL_RCC_GPIOB_CLK_ENABLE();       //使能GPIOB时钟
-			__HAL_AFIO_REMAP_SPI3_ENABLE();
-			__HAL_RCC_SPI3_CLK_ENABLE();        //使能SPI3时钟
+			__HAL_RCC_GPIOB_CLK_ENABLE();
+			__HAL_RCC_SPI3_CLK_ENABLE();
+			__HAL_RCC_AFIO_CLK_ENABLE();
+			//__HAL_AFIO_REMAP_SWJ_NOJTAG();
 			
-			GPIO_Initure.Pin=GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
-			GPIO_Initure.Mode=GPIO_MODE_AF_PP;              //复用推挽输出
-			GPIO_Initure.Pull=GPIO_PULLUP;                  //上拉
-			GPIO_Initure.Speed=GPIO_SPEED_HIGH;             //快速            
-			HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+			/**SPI3 GPIO Configuration    
+			PB3     ------> SPI3_SCK
+			PB4     ------> SPI3_MISO
+			PB5     ------> SPI3_MOSI 
+			*/
+			GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
+			GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+			HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+			GPIO_InitStruct.Pin = GPIO_PIN_4;
+			GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+			GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+			HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
 		}	
 }
 #endif

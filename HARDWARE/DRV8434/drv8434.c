@@ -1048,8 +1048,8 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M1.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1.slow);
 
 		
-			sDrvMotorSpeed.M1.normal.start=10000;
-			sDrvMotorSpeed.M1.normal.max=20000;	
+			sDrvMotorSpeed.M1.normal.start=8000;
+			sDrvMotorSpeed.M1.normal.max=10000;	
 			sDrvMotorSpeed.M1.normal.accSpeed=10000;
 			sDrvMotorSpeed.M1.normal.dec=40;
 			sDrvMotorSpeed.M1.normal.accTimes=10;
@@ -1070,8 +1070,8 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			break;
 			
 		case M2_MIX:
-			sDrvMotorSpeed.M2.slow.start=10000;
-			sDrvMotorSpeed.M2.slow.max=20000;	
+			sDrvMotorSpeed.M2.slow.start=5000;
+			sDrvMotorSpeed.M2.slow.max=10000;	
 			sDrvMotorSpeed.M2.slow.accSpeed=10000;
 			sDrvMotorSpeed.M2.slow.dec=40;
 			sDrvMotorSpeed.M2.slow.accTimes=10;
@@ -1079,7 +1079,7 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M2.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2.slow);
 		
 			sDrvMotorSpeed.M2.normal.start=10000;
-			sDrvMotorSpeed.M2.normal.max=20000;	
+			sDrvMotorSpeed.M2.normal.max=15000;	
 			sDrvMotorSpeed.M2.normal.accSpeed=10000;
 			sDrvMotorSpeed.M2.normal.dec=40;
 			sDrvMotorSpeed.M2.normal.accTimes=10;

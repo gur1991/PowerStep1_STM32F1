@@ -45,22 +45,22 @@ void  Real_Time_Polling_Current_Index(void)
 		weight3=Get_weight_current_gram(WEIGHT_THREE);
 		weight4=Get_weight_current_gram(WEIGHT_FOUR);
 		//解决重力异常	 weight1
-		if(weight1<5000)
+		//if(weight1<5000)
 		{ 
 			POLLING_data.weightOne=weight1;
 		}
 		//weight2
-		if(weight2<5000)
+		//if(weight2<5000)
 		{ 
 			POLLING_data.weightTwo=weight2;
 		}
 		//weight3	
-		if(weight3<5000)
+		//if(weight3<5000)
 		{ 
 			POLLING_data.weightThree=weight3;
 		}
 		//weight4	
-		if(weight4<5000)
+		//if(weight4<5000)
 		{ 
 			POLLING_data.weightFour=weight4;
 		}

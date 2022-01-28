@@ -54,6 +54,7 @@ int Check_Board_Define_Config(void)
 
 void Init_Board_Config(void)
 {	
+	
 	LOGD("start Init_Board_Config. \r\n");
 	//串口2 电磁阀	CS片选信号 硬件流信号
 #if USE_GRADIENT_CONTROL_BOARD	
@@ -124,7 +125,7 @@ void Init_Board_Config(void)
 #endif
 
 		
-
+	  __HAL_AFIO_REMAP_SWJ_NOJTAG();
 }	
 void __ack_error_msg__(void)
 {	
@@ -151,7 +152,7 @@ int main(void)
 	HAL_Init();                    	 	
   Stm32_Clock_Init(RCC_PLL_MUL9);   
 	delay_init(72);               		
-	__HAL_AFIO_REMAP_SWJ_NOJTAG();
+	
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
@@ -162,7 +163,19 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+	
 
+//	Weight_Sensor_Init();
+/*
+	while(1)
+	{
+		LOGD("W1:%d \r\n",get_weight_sensor_value(WEIGHT_ONE));
+		LOGD("W2:%d \r\n",get_weight_sensor_value(WEIGHT_TWO));
+		LOGD("W3:%d \r\n",get_weight_sensor_value(WEIGHT_THREE));
+		LOGD("W4:%d \r\n",get_weight_sensor_value(WEIGHT_FOUR));
+		delay_ms(500);
+	}	
+*/	
 	//RestFarAndDownMotorOrgin();	
 		
 	//First_Open_Motor_AutoCheck_Sensor();
@@ -213,8 +226,8 @@ int main(void)
 		//DRV8434_Motor_Select_Speed(M1_MIX_V, NORMAL_SPEED);
 		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
 		
-		
-	 //DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_UP, 10000);
+	 //RestSelectMotorOrgin(M8_BIG_IN_OUT, M8_LIGHT, M8_BIG_OUT, 60000);
+	 //DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
 	 
 	
 	//DRV8434_Motor_Move_Steps(M1_MIX_V, M1_MIX_V_UP, 40000);
