@@ -538,7 +538,7 @@ uint8_t __Normal_Move_Blank__(void)
 		//step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
 	  Light_Set_Delay_MS(100);
 		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 1);
-		DRV8434_Motor_Move_Steps(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
+		DRV8434_Motor_Move_Steps_Disable_Acc(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
 	
 	  //step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的		
 	  //step2:持续检测，等待指示灯灭掉
@@ -554,10 +554,8 @@ uint8_t __Normal_Move_Blank__(void)
 				}
 				delay_ms(1);	
 		}
-		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 0);
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 1);
-		DRV8434_Motor_Move_Steps(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
+		DRV8434_Motor_Move_Steps_Disable_Acc(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
 		
 		//step3:持续检测，等待指示灯亮起
 		i=0;
@@ -575,10 +573,8 @@ uint8_t __Normal_Move_Blank__(void)
 				}
 				delay_ms(1);	
 		}
-		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 0);
 		DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 1);
-		DRV8434_Motor_Move_Steps(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
+		DRV8434_Motor_Move_Steps_Disable_Acc(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 40000);
 		
 		//step4:持续检测，等待指示灯灭掉
  		i=0;
@@ -594,9 +590,9 @@ uint8_t __Normal_Move_Blank__(void)
 				}
 				delay_ms(1);	
 		}
-		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 0);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
 		
+		DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
+		Light_Control_Int_Enable(NORMAL_CHECK_DRAIN_LIGHT , 0);
 #else	
 		PowerStep_Select_Motor_Baby(M4_BLANK_NEXT);
 		BSP_MotorControl_Move(0, M4_NEXT_TO_BLANK, 40000);
@@ -671,7 +667,7 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 		//step1：命令下发后先延迟一段时间，防止检测的灯本来就是灭的
 	  Light_Set_Delay_MS(20);
 		Light_Control_Int_Enable(lightNum , 1);
-		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+		DRV8434_Motor_Move_Steps_Disable_Acc(motorNum, motorDir, steps);
 	 //step2:持续检测，等待指示灯灭掉
 		while(1)
 		{
@@ -685,11 +681,9 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 				}
 				delay_ms(1);	
 		}
-		Light_Control_Int_Enable(lightNum , 0);
 		DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
 		Light_Set_Delay_MS(delayMs);
-		Light_Control_Int_Enable(lightNum , 1);	
-		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+		DRV8434_Motor_Move_Steps_Disable_Acc(motorNum, motorDir, steps);
 		//step3:持续检测，等待指示灯亮起
 		i=0;
 		while(1)
@@ -706,8 +700,9 @@ uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDi
 				}
 				delay_ms(1);	
 		}
-		Light_Control_Int_Enable(lightNum , 0);
+		
 		DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+		Light_Control_Int_Enable(lightNum , 0);
 #else	
 		PowerStep_Select_Motor_Baby(motorNum);
 		BSP_MotorControl_Move(0, motorDir, steps);
@@ -784,7 +779,9 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 		}
 		
 		Light_Control_Int_Enable(lightNum , 1);
-		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+		LOGD("A \r\n");
+		DRV8434_Motor_Move_Steps_Disable_Acc(motorNum, motorDir, steps);
+		LOGD("B \r\n");
 		while(1){
 				i++;
 				light=Light_Sensor_Get(lightNum);
@@ -801,8 +798,9 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 				}
 				delay_ms(1);	
 		}
-	Light_Control_Int_Enable(lightNum , 0);	
-	DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);		
+	LOGD("C \r\n");
+	DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);
+	Light_Control_Int_Enable(lightNum , 0);		
 	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,NORMAL_SPEED);
 	
 
@@ -862,7 +860,7 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 		steps=200*10000;
 		Light_Set_Delay_MS(delayMs);
 		Light_Control_Int_Enable(lightNum , 1);
-		DRV8434_Motor_Move_Steps(motorNum, motorDir, steps);
+		DRV8434_Motor_Move_Steps_Disable_Acc(motorNum, motorDir, steps);
 
 		while(1){
 				i++;
@@ -877,8 +875,8 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 				}
 				delay_ms(1);	
 		}
-	Light_Control_Int_Enable(lightNum , 0);	
 	DRV8434_Motor_HardStop_And_Goto_Sleep(motorNum);		
+	Light_Control_Int_Enable(lightNum , 0);
 	if(M11_FAR_NEAR==motorNum)DRV8434_Motor_Select_Speed(M11_FAR_NEAR,NORMAL_SPEED);
 
 

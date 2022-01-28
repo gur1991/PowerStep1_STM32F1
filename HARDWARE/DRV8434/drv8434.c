@@ -24,38 +24,20 @@ void DRV8434_MOTOR_Config_Init(void)
 	
 #if (defined USE_DRV8434_CAMEL)||(defined USE_DRV8434_PECKER) 
 	__HAL_TIM_ENABLE_IT(&DRV_TIM3_Handler, TIM_IT_UPDATE);
-	HAL_NVIC_SetPriority(TIM3_IRQn,3,3);    //设置中断优先级，抢占优先级1，子优先级3
-	HAL_NVIC_EnableIRQ(TIM3_IRQn);  
+	HAL_NVIC_SetPriority(TIM3_IRQn,3,1);    //设置中断优先级，抢占优先级1，子优先级3
+	HAL_NVIC_DisableIRQ(TIM3_IRQn);  
 
 	__HAL_TIM_ENABLE_IT(&DRV_TIM4_Handler, TIM_IT_UPDATE);
-	HAL_NVIC_SetPriority(TIM4_IRQn,3,3);    //设置中断优先级，抢占优先级1，子优先级3
-	HAL_NVIC_EnableIRQ(TIM4_IRQn);  
+	HAL_NVIC_SetPriority(TIM4_IRQn,3,2);    //设置中断优先级，抢占优先级1，子优先级3
+	HAL_NVIC_DisableIRQ(TIM4_IRQn);  
 #endif
 	
-#ifdef USE_DRV8434_CAMEL	
-
 	
-	DRV8434_Motor_Select_Speed(M1_MIX_V, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M2_MIX, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M3_LEFT_WAIT, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M4_BLANK_NEXT, NORMAL_SPEED);
-	
-	DRV8434_Motor_Select_Speed(M5_WAIT_NEXT, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M6_BLANK_LEFT, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M7_HIGH_TURN, NORMAL_SPEED);
-#endif	
-	
-//配置初始速度
-#ifdef USE_DRV8434_PECKER	
-
-
-	DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M9_IN_OUT, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M10_UP_DOWM, NORMAL_SPEED);
-	DRV8434_Motor_Select_Speed(M11_FAR_NEAR, NORMAL_SPEED);
-#endif
-
-
+	int i=0;
+	for(i=1;i<12;i++)
+	{
+		DRV8434_Motor_Select_Speed(i, NORMAL_SPEED);
+	}	
 }	
 
 
@@ -565,7 +547,7 @@ void TIM4_IRQHandler(void)
 }
 
 
-void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId)
+void __DRV8434_Motor_Move_Steps_Enable_Disable_Acc__(uint8_t deviceId,int enable)
 {
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 //step-1 初始化脉冲计数
@@ -575,7 +557,8 @@ void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId)
 				case M2_MIX:
 				case M6_BLANK_LEFT:
 				case M7_HIGH_TURN:
-				HAL_NVIC_EnableIRQ(TIM4_IRQn);
+				if(enable)HAL_NVIC_EnableIRQ(TIM4_IRQn);
+				else HAL_NVIC_DisableIRQ(TIM4_IRQn);
 				break;
 				
 				case M1_MIX_V:
@@ -584,7 +567,9 @@ void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId)
 				case M4_BLANK_NEXT:
 				case M8_BIG_IN_OUT:
 				case M9_IN_OUT:
-				HAL_NVIC_EnableIRQ(TIM3_IRQn);
+				
+				if(enable)HAL_NVIC_EnableIRQ(TIM3_IRQn);
+				else HAL_NVIC_DisableIRQ(TIM3_IRQn);
 				break;
 				default:
 		}
@@ -592,40 +577,24 @@ void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId)
 }	
 
 
+void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
+{
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+		__DRV8434_Motor_Move_Steps_Enable_Disable_Acc__(deviceId, 1);
+	  __DRV8434_Motor_Move_Steps__( deviceId, direction, stepCount);
+#endif
+}	
 void DRV8434_Motor_Move_Steps_Disable_Acc(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
-	
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
-//step-1 初始化脉冲计数
-		switch(deviceId){
-				case M10_UP_DOWM:
-				case M11_FAR_NEAR:		
-				case M2_MIX:
-				case M6_BLANK_LEFT:
-				case M7_HIGH_TURN:
-				HAL_NVIC_DisableIRQ(TIM4_IRQn);
-				break;
-				
-				case M1_MIX_V:
-				case M5_WAIT_NEXT:		
-				case M3_LEFT_WAIT:
-				case M4_BLANK_NEXT:
-				case M8_BIG_IN_OUT:
-				case M9_IN_OUT:
-				HAL_NVIC_DisableIRQ(TIM3_IRQn);
-				break;
-				default:
-		}
-	  DRV8434_Motor_Move_Steps( deviceId, direction, stepCount);
+		__DRV8434_Motor_Move_Steps_Enable_Disable_Acc__(deviceId, 0);
+	  __DRV8434_Motor_Move_Steps__( deviceId, direction, stepCount);
 #endif
-
-
-
 }
 
 
 
-void DRV8434_Motor_Move_Steps(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
+void __DRV8434_Motor_Move_Steps__(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 {
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 	
@@ -666,8 +635,7 @@ void DRV8434_Motor_Move_Steps(uint8_t deviceId, motorDir_t direction, uint32_t s
 	//step-2 运动
 	DRV8434_Motor_Move( deviceId,  direction);
 	
-	//step-3:  DRV goto sleep
-	//DRV8434_Motor_Stop_Control_Timing(deviceId);
+
 #endif
 
 
@@ -680,44 +648,7 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 {
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 	
-	//step-1 初始化脉冲计数
-		switch(deviceId){
-				case M10_UP_DOWM:
-				case M11_FAR_NEAR:		
-				case M2_MIX:
-				case M6_BLANK_LEFT:
-				case M7_HIGH_TURN:
-
-				sTIM_PWM_COUNT_INDEX_TIM4=0;
-				sTIM_PWM_COUNT_MAX_TIM4=stepCount;
-				DRV_MOTOR_WAIT_OK_TIM4=false;
-				sMOTOR_DEVICE_TIM4=deviceId;
-				//HAL_NVIC_EnableIRQ(TIM4_IRQn);
-				break;
-				
-				case M1_MIX_V:
-				case M5_WAIT_NEXT:		
-				case M3_LEFT_WAIT:
-				case M4_BLANK_NEXT:
-				case M8_BIG_IN_OUT:
-				case M9_IN_OUT:
-
-				sTIM_PWM_COUNT_INDEX_TIM3=0;
-				sTIM_PWM_COUNT_MAX_TIM3=stepCount;
-				DRV_MOTOR_WAIT_OK_TIM3=false;
-				sMOTOR_DEVICE_TIM3=deviceId;
-				//HAL_NVIC_EnableIRQ(TIM3_IRQn);
-				break;
-				
-				
-				default:
-		}
-	
-	//LOGD("***1 \r\n");
-		//step-2 运动
-	DRV8434_Motor_Move( deviceId,  direction);
-	//LOGD("***2 \r\n");	
-	//step-3 计数等待结束
+	DRV8434_Motor_Move_Steps_Enable_Acc(deviceId,  direction,  stepCount);
 	while(1)
 	{
 		
@@ -740,7 +671,7 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 	}
 	//LOGD("***3 \r\n");
 	//step-3:  DRV goto sleep
-	DRV8434_Motor_Stop_Control_Timing(deviceId);
+	DRV8434_Motor_HardStop_And_Goto_Sleep(deviceId);
 #endif	
 }
 
@@ -898,32 +829,7 @@ void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction )
 void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId)
 {
   //step-1:  PWM CH close
-/*
-					switch(deviceId)
-					{
-#ifdef USE_DRV8434_PECKER			
-							case M8_BIG_IN_OUT:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;
-							case M9_IN_OUT:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;		
-#endif
-
-#ifdef USE_DRV8434_CAMEL			
-							case M1_MIX_V:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;
-							case M5_WAIT_NEXT:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;
-							case M3_LEFT_WAIT:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;
-							case M4_BLANK_NEXT:sTIM_PWM_COUNT_INDEX_TIM3=sTIM_PWM_COUNT_MAX_TIM3;break;		
-#endif
-#ifdef USE_DRV8434_PECKER			
-							case M10_UP_DOWM:sTIM_PWM_COUNT_INDEX_TIM4=sTIM_PWM_COUNT_MAX_TIM4;break;
-							case M11_FAR_NEAR:sTIM_PWM_COUNT_INDEX_TIM4=sTIM_PWM_COUNT_MAX_TIM4;break;			
-#endif
-#ifdef USE_DRV8434_CAMEL			
-							case M2_MIX:sTIM_PWM_COUNT_INDEX_TIM4=sTIM_PWM_COUNT_MAX_TIM4;break;
-							case M6_BLANK_LEFT:sTIM_PWM_COUNT_INDEX_TIM4=sTIM_PWM_COUNT_MAX_TIM4;break;
-							case M7_HIGH_TURN:sTIM_PWM_COUNT_INDEX_TIM4=sTIM_PWM_COUNT_MAX_TIM4;break;
-#endif
-								default:
-					}
-*/					
+	__DRV8434_Motor_Move_Steps_Enable_Disable_Acc__(deviceId, 0);
 	
 	switch(deviceId)
 	{
@@ -1096,38 +1002,46 @@ int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Run_Config_t Ms)
 
 
 
-
-
 void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId)
 {
+		
 	switch(deviceId)
 	{	
-		case M1_MIX_V:sDrvMotorSpeed.M1.use=sDrvMotorSpeed.M1.bk;break;		
-		case M2_MIX:sDrvMotorSpeed.M2.use=sDrvMotorSpeed.M2.bk;break;
-		case M3_LEFT_WAIT:sDrvMotorSpeed.M3.use=sDrvMotorSpeed.M3.bk;break;
-		case M4_BLANK_NEXT:sDrvMotorSpeed.M4.use=sDrvMotorSpeed.M4.bk;break;
-		case M5_WAIT_NEXT:sDrvMotorSpeed.M5.use=sDrvMotorSpeed.M5.bk;break;
-		case M6_BLANK_LEFT:sDrvMotorSpeed.M6.use=sDrvMotorSpeed.M6.bk;break;
-		case M7_HIGH_TURN:sDrvMotorSpeed.M7.use=sDrvMotorSpeed.M7.bk;break;				
-		case M8_BIG_IN_OUT:sDrvMotorSpeed.M8.use=sDrvMotorSpeed.M8.bk;break;
-		case M9_IN_OUT:sDrvMotorSpeed.M9.use=sDrvMotorSpeed.M9.bk;break;
-		case M10_UP_DOWM:sDrvMotorSpeed.M10.use=sDrvMotorSpeed.M10.bk;break;
-		case M11_FAR_NEAR:sDrvMotorSpeed.M11.use=sDrvMotorSpeed.M11.bk;break;	
+		case M1_MIX_V:memset(&sDrvMotorSpeed.M1.use, 0,sizeof(sDrvMotorSpeed.M1.use));sDrvMotorSpeed.M1.use=sDrvMotorSpeed.M1.bk;break;		
+		case M2_MIX:memset(&sDrvMotorSpeed.M2.use, 0,sizeof(sDrvMotorSpeed.M2.use));sDrvMotorSpeed.M2.use=sDrvMotorSpeed.M2.bk;break;
+		case M3_LEFT_WAIT:memset(&sDrvMotorSpeed.M3.use, 0,sizeof(sDrvMotorSpeed.M3.use));sDrvMotorSpeed.M3.use=sDrvMotorSpeed.M3.bk;break;
+		case M4_BLANK_NEXT:memset(&sDrvMotorSpeed.M4.use, 0,sizeof(sDrvMotorSpeed.M4.use));sDrvMotorSpeed.M4.use=sDrvMotorSpeed.M4.bk;break;
+		case M5_WAIT_NEXT:memset(&sDrvMotorSpeed.M5.use, 0,sizeof(sDrvMotorSpeed.M5.use));sDrvMotorSpeed.M5.use=sDrvMotorSpeed.M5.bk;break;
+		case M6_BLANK_LEFT:memset(&sDrvMotorSpeed.M6.use, 0,sizeof(sDrvMotorSpeed.M6.use));sDrvMotorSpeed.M6.use=sDrvMotorSpeed.M6.bk;break;
+		case M7_HIGH_TURN:memset(&sDrvMotorSpeed.M7.use, 0,sizeof(sDrvMotorSpeed.M7.use));sDrvMotorSpeed.M7.use=sDrvMotorSpeed.M7.bk;break;				
+		case M8_BIG_IN_OUT:memset(&sDrvMotorSpeed.M8.use, 0,sizeof(sDrvMotorSpeed.M8.use));sDrvMotorSpeed.M8.use=sDrvMotorSpeed.M8.bk;break;
+		case M9_IN_OUT:memset(&sDrvMotorSpeed.M9.use, 0,sizeof(sDrvMotorSpeed.M9.use));sDrvMotorSpeed.M9.use=sDrvMotorSpeed.M9.bk;break;
+		case M10_UP_DOWM:memset(&sDrvMotorSpeed.M10.use, 0,sizeof(sDrvMotorSpeed.M10.use));sDrvMotorSpeed.M10.use=sDrvMotorSpeed.M10.bk;break;
+		case M11_FAR_NEAR:memset(&sDrvMotorSpeed.M11.use, 0,sizeof(sDrvMotorSpeed.M11.use));sDrvMotorSpeed.M11.use=sDrvMotorSpeed.M11.bk;break;	
 		default:
 	}
 
-}	
+}
+
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 {
+	__DRV8434_Motor_Select_Speed__( deviceId,  speed_type);
+	__DRV8434_Motor_Select_Speed__( deviceId,  speed_type);
+}	
+void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
+{
 	int config=0;
+	
+	
+	
 	switch(deviceId)
 	{
 		
 #ifdef USE_DRV8434_CAMEL		
 		case M1_MIX_V:
-			sDrvMotorSpeed.M1.slow.start=10000;
-			sDrvMotorSpeed.M1.slow.max=20000;	
-			sDrvMotorSpeed.M1.slow.accSpeed=10000;
+			sDrvMotorSpeed.M1.slow.start=1000;
+			sDrvMotorSpeed.M1.slow.max=2000;	
+			sDrvMotorSpeed.M1.slow.accSpeed=1000;
 			sDrvMotorSpeed.M1.slow.dec=40;
 			sDrvMotorSpeed.M1.slow.accTimes=10;
 			sDrvMotorSpeed.M1.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1.slow);
@@ -1135,7 +1049,7 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 
 		
 			sDrvMotorSpeed.M1.normal.start=10000;
-			sDrvMotorSpeed.M1.normal.max=30000;	
+			sDrvMotorSpeed.M1.normal.max=20000;	
 			sDrvMotorSpeed.M1.normal.accSpeed=10000;
 			sDrvMotorSpeed.M1.normal.dec=40;
 			sDrvMotorSpeed.M1.normal.accTimes=10;
@@ -1143,7 +1057,7 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			sDrvMotorSpeed.M1.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1.normal);
 		
 			sDrvMotorSpeed.M1.high.start=10000;
-			sDrvMotorSpeed.M1.high.max=40000;	
+			sDrvMotorSpeed.M1.high.max=20000;	
 			sDrvMotorSpeed.M1.high.accSpeed=10000;
 			sDrvMotorSpeed.M1.high.dec=40;
 			sDrvMotorSpeed.M1.high.accTimes=10;
@@ -1230,9 +1144,9 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 			sDrvMotorSpeed.M4.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4.normal);
 			sDrvMotorSpeed.M4.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4.normal);
 		
-			sDrvMotorSpeed.M4.high.start=1000;
-			sDrvMotorSpeed.M4.high.max=2000;	
-			sDrvMotorSpeed.M4.high.accSpeed=1000;
+			sDrvMotorSpeed.M4.high.start=10000;
+			sDrvMotorSpeed.M4.high.max=20000;	
+			sDrvMotorSpeed.M4.high.accSpeed=10000;
 			sDrvMotorSpeed.M4.high.dec=40;
 			sDrvMotorSpeed.M4.high.accTimes=10;
 			sDrvMotorSpeed.M4.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4.high);
@@ -1461,9 +1375,8 @@ void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 #endif			
 		default:
 	}
-	
+		
 	__DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__(deviceId);
-
 }
 
 

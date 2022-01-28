@@ -104,16 +104,28 @@ void DRV8434_Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_
 
 void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction);
 
-void DRV8434_Motor_Move_Steps(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
 
-void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId);
+
 
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type);
+void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_type);
 
 
+
+//有加速过程，起中断
+void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
+//无加速过程，不起中断
 void DRV8434_Motor_Move_Steps_Disable_Acc(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
+//停止，中断关掉
+void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId);
 
-void DRV8434_Motor_Move_Steps_Enable_Acc(uint8_t deviceId);
+
+void __DRV8434_Motor_Move_Steps_Enable_Disable_Acc__(uint8_t deviceId,int enable);
+void __DRV8434_Motor_Move_Steps__(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
+
+
+
+
 
 
 typedef struct{
@@ -156,6 +168,9 @@ typedef struct{
 	Drv_Motor_Speed_Config_t M10;
 	Drv_Motor_Speed_Config_t M11;
 }Drv_Motor_Speed_Config_Group_t;
+
+
+
 
 
 

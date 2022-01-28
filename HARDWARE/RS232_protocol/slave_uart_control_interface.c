@@ -29,7 +29,6 @@ static void protocol_powerstep01_power(power_type_t* data){
 			
 			#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 					DRV8434_Motor_HardStop_And_Goto_Sleep(performer.request.devices);
-					DRV8434_Motor_Move_Steps_Enable_Acc(performer.request.devices);
 			#else
 					PowerStep_Select_Motor_Baby(performer.request.devices);	
 					BSP_MotorControl_HardStop(0);
@@ -68,7 +67,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.steps = data->request.steps;
 	
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
-		DRV8434_Motor_Move_Steps(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
+		DRV8434_Motor_Move_Steps_Disable_Acc(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
 #else	
 	  PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_Move(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);

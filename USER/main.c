@@ -163,43 +163,46 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+	//RestFarAndDownMotorOrgin();	
+		
+	//First_Open_Motor_AutoCheck_Sensor();
+	//March_Drain_And_Wash_Motor_Orgin();
+	//Rest_Drain_And_Wash_Motor_Orgin();
+		//First_Open_Motor_AutoCheck_Motor();
+		//Rest_Injection_Module_Motor(10000,10000,200);
+		
+		//RestFarAndDownMotorOrgin();
+
+//	Mix_Work_Goto_Postion();
 	
-/*	
-	while(1)
-	{
-		LOGD("%d \r\n",Light_Sensor_Get(M1_LIGHT));
-		delay_ms(100);
-	}
-*/
+	//Scan_Motor_Slow_Spin();
+	//delay_ms(3000);
+	//DRV8434_Motor_HardStop_And_Goto_Sleep(M2_MIX);
+	//DRV8434_Motor_Move_Steps_Enable_Acc(M2_MIX);
+	//Mix_Blood_High_Speed();	
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 600*1000);
+	//Mix_Work_Goto_Postion();
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 600*1000);
+	
+	/*
+		RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT, M3_WAIT_TO_LEFT,92000);
+		LeftMoveTowardWaitPosition();
+		RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT, M3_WAIT_TO_LEFT,92000);
+		return 0;
+	
+		RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 32000);
+		Normal_Goto_First_Position();
 		
-		//DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT, NORMAL_SPEED);
-	  //DRV8434_Motor_Move_Steps(M8_BIG_IN_OUT, M8_BIG_IN, 70000);
-	//¢DRV8434_Motor_Move(9,30000);
-		
-		
-		//RestSelectMotorOrgin(M11_FAR_NEAR, M11_LIGHT, M10_UP, 10000);
-			
-		
-		//DRV8434_Motor_Select_Speed(M7_HIGH_TURN, NORMAL_SPEED);
-		//DRV8434_Motor_Move_Steps(M7_HIGH_TURN, M8_BIG_IN, 4000000);
-		
-		//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	/*	
-		while(1)
-		{
-			delay_ms(100);
-		}	
-		*/
-		
-		
-		DRV8434_Motor_Select_Speed(M4_BLANK_NEXT, NORMAL_SPEED);
-		RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 400000);
-		RestSelectMotorOrgin(M4_BLANK_NEXT, BLANK_LIGHT, M4_NEXT_TO_BLANK, 400000);
-		//DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 10000);
-		
-		//RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
-			
-			
+		int k=0;
+    for(k=0;k<10;k++){
+				Normal_Pitch_Move_Next();
+				delay_ms(500);	
+		}
+		Normal_Pitch_Move_Next_The_Last_Two();
+		Normal_Pitch_Move_Next_The_Last_Two();
+*/		
+		//Normal_Move_Blank();
+	
 		//NORMAL_SPEED  HIGH_SPEED  LOW_SPEED
 		//DRV8434_Motor_Select_Speed(M2_MIX, NORMAL_SPEED);
 		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT_WORK, M1_MIX_V_DOWN, 60000);
