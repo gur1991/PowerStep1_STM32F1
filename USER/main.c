@@ -164,6 +164,8 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+	RestSelectMotorOrgin(M8_BIG_IN_OUT, M8_LIGHT, M8_BIG_OUT, 60000);
+	DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
 
 //	Weight_Sensor_Init();
 /*

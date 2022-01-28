@@ -904,72 +904,12 @@ double __DRV8434_GET_PER_PWM_ACC_FROM_ACC_AND_MAX_SPEED__(double max, double sta
 
 
 
-void __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__(uint8_t deviceId)
-{
-	Drv_Motor_Speed_Config_t Msc;
-	memset(&Msc , 0, sizeof(Msc));
-	
-	switch(deviceId)
-	{
-		case M1_MIX_V:Msc=sDrvMotorSpeed.M1;break;		
-		case M2_MIX:Msc=sDrvMotorSpeed.M2;break;
-		case M3_LEFT_WAIT:Msc=sDrvMotorSpeed.M3;break;
-		case M4_BLANK_NEXT:Msc=sDrvMotorSpeed.M4;break;
-		case M5_WAIT_NEXT:Msc=sDrvMotorSpeed.M5;break;
-		case M6_BLANK_LEFT:Msc=sDrvMotorSpeed.M6;break;
-		case M7_HIGH_TURN:Msc=sDrvMotorSpeed.M7;break;				
-		case M8_BIG_IN_OUT:Msc=sDrvMotorSpeed.M8;break;
-		case M9_IN_OUT:Msc=sDrvMotorSpeed.M9;break;
-		case M10_UP_DOWM:Msc=sDrvMotorSpeed.M10;break;
-		case M11_FAR_NEAR:Msc=sDrvMotorSpeed.M11;break;		
-		default:
-	}
-	
-	
-	int speed =0;
-	int i=0;
-	for(i=0; i<=Msc.slow.accTimes; i++)
-	{
-			speed = Msc.slow.start + i*Msc.slow.interval_acc;
-			Msc.slow.config[i]=ceil(72000000/(divClock*speed));
-	}
 
-	for(i=0; i<=Msc.normal.accTimes; i++)
-	{
-			speed = Msc.normal.start + i*Msc.normal.interval_acc;
-			Msc.normal.config[i]=ceil(72000000/(divClock*speed));
-		  //LOGD("i:%d %d %d\r\n",i,Msc.normal.config[i],speed);
-	}
-	
-	for(i=0; i<=Msc.high.accTimes; i++)
-	{
-			speed = Msc.high.start + i*Msc.high.interval_acc;
-			Msc.high.config[i]=ceil(72000000/(divClock*speed));
-	}
-	
-	
-		switch(deviceId)
-	{
-		case M1_MIX_V:sDrvMotorSpeed.M1=Msc;break;		
-		case M2_MIX:sDrvMotorSpeed.M2=Msc;break;
-		case M3_LEFT_WAIT:sDrvMotorSpeed.M3=Msc;break;
-		case M4_BLANK_NEXT:sDrvMotorSpeed.M4=Msc;break;
-		case M5_WAIT_NEXT:sDrvMotorSpeed.M5=Msc;break;
-		case M6_BLANK_LEFT:sDrvMotorSpeed.M6=Msc;break;
-		case M7_HIGH_TURN:sDrvMotorSpeed.M7=Msc;break;				
-		case M8_BIG_IN_OUT:sDrvMotorSpeed.M8=Msc;break;
-		case M9_IN_OUT:sDrvMotorSpeed.M9=Msc;break;
-		case M10_UP_DOWM:sDrvMotorSpeed.M10=Msc;break;
-		case M11_FAR_NEAR:sDrvMotorSpeed.M11=Msc;break;		
-		default:
-	}
-	
-}	
 
 
 //梯度加速，整个加速过程分为十次加上去，而不是每次都要计算一下
 //accTimes为几次加上去
-int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Run_Config_t Ms)
+int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Config_t Ms)
 {
 	int max=Ms.max;
 	int start=Ms.start; 
@@ -985,7 +925,7 @@ int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Run_Config_t Ms)
 	return interval_Acc;
 }	
 
-int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Run_Config_t Ms)
+int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Config_t Ms)
 {
 	int max=Ms.max;
 	int start=Ms.start; 
@@ -1007,17 +947,17 @@ void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId)
 		
 	switch(deviceId)
 	{	
-		case M1_MIX_V:memset(&sDrvMotorSpeed.M1.use, 0,sizeof(sDrvMotorSpeed.M1.use));sDrvMotorSpeed.M1.use=sDrvMotorSpeed.M1.bk;break;		
-		case M2_MIX:memset(&sDrvMotorSpeed.M2.use, 0,sizeof(sDrvMotorSpeed.M2.use));sDrvMotorSpeed.M2.use=sDrvMotorSpeed.M2.bk;break;
-		case M3_LEFT_WAIT:memset(&sDrvMotorSpeed.M3.use, 0,sizeof(sDrvMotorSpeed.M3.use));sDrvMotorSpeed.M3.use=sDrvMotorSpeed.M3.bk;break;
-		case M4_BLANK_NEXT:memset(&sDrvMotorSpeed.M4.use, 0,sizeof(sDrvMotorSpeed.M4.use));sDrvMotorSpeed.M4.use=sDrvMotorSpeed.M4.bk;break;
-		case M5_WAIT_NEXT:memset(&sDrvMotorSpeed.M5.use, 0,sizeof(sDrvMotorSpeed.M5.use));sDrvMotorSpeed.M5.use=sDrvMotorSpeed.M5.bk;break;
-		case M6_BLANK_LEFT:memset(&sDrvMotorSpeed.M6.use, 0,sizeof(sDrvMotorSpeed.M6.use));sDrvMotorSpeed.M6.use=sDrvMotorSpeed.M6.bk;break;
-		case M7_HIGH_TURN:memset(&sDrvMotorSpeed.M7.use, 0,sizeof(sDrvMotorSpeed.M7.use));sDrvMotorSpeed.M7.use=sDrvMotorSpeed.M7.bk;break;				
-		case M8_BIG_IN_OUT:memset(&sDrvMotorSpeed.M8.use, 0,sizeof(sDrvMotorSpeed.M8.use));sDrvMotorSpeed.M8.use=sDrvMotorSpeed.M8.bk;break;
-		case M9_IN_OUT:memset(&sDrvMotorSpeed.M9.use, 0,sizeof(sDrvMotorSpeed.M9.use));sDrvMotorSpeed.M9.use=sDrvMotorSpeed.M9.bk;break;
-		case M10_UP_DOWM:memset(&sDrvMotorSpeed.M10.use, 0,sizeof(sDrvMotorSpeed.M10.use));sDrvMotorSpeed.M10.use=sDrvMotorSpeed.M10.bk;break;
-		case M11_FAR_NEAR:memset(&sDrvMotorSpeed.M11.use, 0,sizeof(sDrvMotorSpeed.M11.use));sDrvMotorSpeed.M11.use=sDrvMotorSpeed.M11.bk;break;	
+		case M1_MIX_V:sDrvMotorSpeed.M1.start=sDrvMotorSpeed.M1.start_bk;break;		
+		case M2_MIX:sDrvMotorSpeed.M2.start=sDrvMotorSpeed.M2.start_bk;break;
+		case M3_LEFT_WAIT:sDrvMotorSpeed.M3.start=sDrvMotorSpeed.M3.start_bk;break;
+		case M4_BLANK_NEXT:sDrvMotorSpeed.M4.start=sDrvMotorSpeed.M4.start_bk;break;
+		case M5_WAIT_NEXT:sDrvMotorSpeed.M5.start=sDrvMotorSpeed.M5.start_bk;break;
+		case M6_BLANK_LEFT:sDrvMotorSpeed.M6.start=sDrvMotorSpeed.M6.start_bk;break;
+		case M7_HIGH_TURN:sDrvMotorSpeed.M7.start=sDrvMotorSpeed.M7.start_bk;break;				
+		case M8_BIG_IN_OUT:sDrvMotorSpeed.M8.start=sDrvMotorSpeed.M8.start_bk;break;
+		case M9_IN_OUT:sDrvMotorSpeed.M9.start=sDrvMotorSpeed.M9.start_bk;break;
+		case M10_UP_DOWM:sDrvMotorSpeed.M10.start=sDrvMotorSpeed.M10.start_bk;break;
+		case M11_FAR_NEAR:sDrvMotorSpeed.M11.start=sDrvMotorSpeed.M11.start_bk;break;	
 		default:
 	}
 
@@ -1025,13 +965,15 @@ void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId)
 
 void DRV8434_Motor_Select_Speed(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 {
-	__DRV8434_Motor_Select_Speed__( deviceId,  speed_type);
+	//__DRV8434_Motor_Select_Speed__( deviceId,  speed_type);
 	__DRV8434_Motor_Select_Speed__( deviceId,  speed_type);
 }	
 void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_type)
 {
 	int config=0;
-	
+	int speed =0;
+	int i=0;
+
 	
 	
 	switch(deviceId)
@@ -1039,209 +981,240 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 		
 #ifdef USE_DRV8434_CAMEL		
 		case M1_MIX_V:
-			sDrvMotorSpeed.M1.slow.start=1000;
-			sDrvMotorSpeed.M1.slow.max=2000;	
-			sDrvMotorSpeed.M1.slow.accSpeed=1000;
-			sDrvMotorSpeed.M1.slow.dec=40;
-			sDrvMotorSpeed.M1.slow.accTimes=10;
-			sDrvMotorSpeed.M1.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1.slow);
-			sDrvMotorSpeed.M1.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1.slow);
-
 		
-			sDrvMotorSpeed.M1.normal.start=8000;
-			sDrvMotorSpeed.M1.normal.max=10000;	
-			sDrvMotorSpeed.M1.normal.accSpeed=10000;
-			sDrvMotorSpeed.M1.normal.dec=40;
-			sDrvMotorSpeed.M1.normal.accTimes=10;
-			sDrvMotorSpeed.M1.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1.normal);
-			sDrvMotorSpeed.M1.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1.normal);
+		memset(&sDrvMotorSpeed.M1, 0, sizeof(Drv_Motor_Speed_Config_t));
 		
-			sDrvMotorSpeed.M1.high.start=10000;
-			sDrvMotorSpeed.M1.high.max=20000;	
-			sDrvMotorSpeed.M1.high.accSpeed=10000;
-			sDrvMotorSpeed.M1.high.dec=40;
-			sDrvMotorSpeed.M1.high.accTimes=10;
-			sDrvMotorSpeed.M1.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1.high);
-			sDrvMotorSpeed.M1.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M1.bk=sDrvMotorSpeed.M1.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M1.bk=sDrvMotorSpeed.M1.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M1.bk=sDrvMotorSpeed.M1.high;}
+		if(LOW_SPEED==speed_type){
+			sDrvMotorSpeed.M1.start_bk=sDrvMotorSpeed.M1.start=1000;
+			sDrvMotorSpeed.M1.max=2000;	
+			sDrvMotorSpeed.M1.accSpeed=1000;
+			sDrvMotorSpeed.M1.dec=40;
+			sDrvMotorSpeed.M1.accTimes=10;
+			sDrvMotorSpeed.M1.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1);
+			sDrvMotorSpeed.M1.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M1.start_bk=sDrvMotorSpeed.M1.start=8000;
+			sDrvMotorSpeed.M1.max=10000;	
+			sDrvMotorSpeed.M1.accSpeed=10000;
+			sDrvMotorSpeed.M1.dec=40;
+			sDrvMotorSpeed.M1.accTimes=10;
+			sDrvMotorSpeed.M1.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1);
+			sDrvMotorSpeed.M1.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M1.start_bk=sDrvMotorSpeed.M1.start=10000;
+			sDrvMotorSpeed.M1.max=20000;	
+			sDrvMotorSpeed.M1.accSpeed=10000;
+			sDrvMotorSpeed.M1.dec=40;
+			sDrvMotorSpeed.M1.accTimes=10;
+			sDrvMotorSpeed.M1.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M1);
+			sDrvMotorSpeed.M1.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M1);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M1.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M1.start + i*sDrvMotorSpeed.M1.interval_acc;
+			sDrvMotorSpeed.M1.config[i]=ceil(72000000/(divClock*speed));
+		}
+		
+		
 			break;
 			
 		case M2_MIX:
-			sDrvMotorSpeed.M2.slow.start=5000;
-			sDrvMotorSpeed.M2.slow.max=10000;	
-			sDrvMotorSpeed.M2.slow.accSpeed=10000;
-			sDrvMotorSpeed.M2.slow.dec=40;
-			sDrvMotorSpeed.M2.slow.accTimes=10;
-			sDrvMotorSpeed.M2.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2.slow);
-			sDrvMotorSpeed.M2.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2.slow);
-		
-			sDrvMotorSpeed.M2.normal.start=10000;
-			sDrvMotorSpeed.M2.normal.max=15000;	
-			sDrvMotorSpeed.M2.normal.accSpeed=10000;
-			sDrvMotorSpeed.M2.normal.dec=40;
-			sDrvMotorSpeed.M2.normal.accTimes=10;
-			sDrvMotorSpeed.M2.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2.normal);
-			sDrvMotorSpeed.M2.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2.normal);
-		
-			sDrvMotorSpeed.M2.high.start=10000;
-			sDrvMotorSpeed.M2.high.max=20000;	
-			sDrvMotorSpeed.M2.high.accSpeed=10000;
-			sDrvMotorSpeed.M2.high.dec=40;
-			sDrvMotorSpeed.M2.high.accTimes=10;
-			sDrvMotorSpeed.M2.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2.high);
-			sDrvMotorSpeed.M2.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M2.bk=sDrvMotorSpeed.M2.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M2.bk=sDrvMotorSpeed.M2.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M2.bk=sDrvMotorSpeed.M2.high;}
-			break;
+			memset(&sDrvMotorSpeed.M2,0,  sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){
+			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=5000;
+			sDrvMotorSpeed.M2.max=10000;	
+			sDrvMotorSpeed.M2.accSpeed=10000;
+			sDrvMotorSpeed.M2.dec=40;
+			sDrvMotorSpeed.M2.accTimes=10;
+			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
+			sDrvMotorSpeed.M2.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=10000;
+			sDrvMotorSpeed.M2.max=15000;	
+			sDrvMotorSpeed.M2.accSpeed=10000;
+			sDrvMotorSpeed.M2.dec=40;
+			sDrvMotorSpeed.M2.accTimes=10;
+			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
+			sDrvMotorSpeed.M2.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=10000;
+			sDrvMotorSpeed.M2.max=20000;	
+			sDrvMotorSpeed.M2.accSpeed=10000;
+			sDrvMotorSpeed.M2.dec=40;
+			sDrvMotorSpeed.M2.accTimes=10;
+			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
+			sDrvMotorSpeed.M2.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2);
+		}
+		for(i=0; i<=sDrvMotorSpeed.M2.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M2.start + i*sDrvMotorSpeed.M2.interval_acc;
+			sDrvMotorSpeed.M2.config[i]=ceil(72000000/(divClock*speed));
+		}		
+		break;
 		case M3_LEFT_WAIT:
-			sDrvMotorSpeed.M3.slow.start=10000;
-			sDrvMotorSpeed.M3.slow.max=20000;	
-			sDrvMotorSpeed.M3.slow.accSpeed=10000;
-			sDrvMotorSpeed.M3.slow.dec=40;
-			sDrvMotorSpeed.M3.slow.accTimes=10;
-			sDrvMotorSpeed.M3.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3.slow);
-			sDrvMotorSpeed.M3.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3.slow);
-		
-			sDrvMotorSpeed.M3.normal.start=20000;
-			sDrvMotorSpeed.M3.normal.max=40000;	
-			sDrvMotorSpeed.M3.normal.accSpeed=20000;
-			sDrvMotorSpeed.M3.normal.dec=40;
-			sDrvMotorSpeed.M3.normal.accTimes=10;
-			sDrvMotorSpeed.M3.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3.normal);
-			sDrvMotorSpeed.M3.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3.normal);
-		
-			sDrvMotorSpeed.M3.high.start=20000;
-			sDrvMotorSpeed.M3.high.max=40000;	
-			sDrvMotorSpeed.M3.high.accSpeed=20000;
-			sDrvMotorSpeed.M3.high.dec=40;
-			sDrvMotorSpeed.M3.high.accTimes=10;
-			sDrvMotorSpeed.M3.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3.high);
-			sDrvMotorSpeed.M3.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3.high);
-		
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M3.bk=sDrvMotorSpeed.M3.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M3.bk=sDrvMotorSpeed.M3.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M3.bk=sDrvMotorSpeed.M3.high;}
+			memset(&sDrvMotorSpeed.M3, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){	
+			sDrvMotorSpeed.M3.start_bk=sDrvMotorSpeed.M3.start=10000;
+			sDrvMotorSpeed.M3.max=20000;	
+			sDrvMotorSpeed.M3.accSpeed=10000;
+			sDrvMotorSpeed.M3.dec=40;
+			sDrvMotorSpeed.M3.accTimes=10;
+			sDrvMotorSpeed.M3.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3);
+			sDrvMotorSpeed.M3.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M3.start_bk=sDrvMotorSpeed.M3.start=20000;
+			sDrvMotorSpeed.M3.max=40000;	
+			sDrvMotorSpeed.M3.accSpeed=20000;
+			sDrvMotorSpeed.M3.dec=40;
+			sDrvMotorSpeed.M3.accTimes=10;
+			sDrvMotorSpeed.M3.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3);
+			sDrvMotorSpeed.M3.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M3.start_bk=sDrvMotorSpeed.M3.start=20000;
+			sDrvMotorSpeed.M3.max=40000;	
+			sDrvMotorSpeed.M3.accSpeed=20000;
+			sDrvMotorSpeed.M3.dec=40;
+			sDrvMotorSpeed.M3.accTimes=10;
+			sDrvMotorSpeed.M3.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3);
+			sDrvMotorSpeed.M3.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3);
+		}
+		for(i=0; i<=sDrvMotorSpeed.M3.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M3.start + i*sDrvMotorSpeed.M3.interval_acc;
+			sDrvMotorSpeed.M3.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		case M4_BLANK_NEXT:
-			sDrvMotorSpeed.M4.slow.start=1000;
-			sDrvMotorSpeed.M4.slow.max=2000;	
-			sDrvMotorSpeed.M4.slow.accSpeed=1000;
-			sDrvMotorSpeed.M4.slow.dec=40;
-			sDrvMotorSpeed.M4.slow.accTimes=10;
-			sDrvMotorSpeed.M4.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4.slow);
-			sDrvMotorSpeed.M4.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4.slow);
-		
-			sDrvMotorSpeed.M4.normal.start=10000;
-			sDrvMotorSpeed.M4.normal.max=20000;	
-			sDrvMotorSpeed.M4.normal.accSpeed=10000;
-			sDrvMotorSpeed.M4.normal.dec=40;
-			sDrvMotorSpeed.M4.normal.accTimes=10;
-			sDrvMotorSpeed.M4.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4.normal);
-			sDrvMotorSpeed.M4.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4.normal);
-		
-			sDrvMotorSpeed.M4.high.start=10000;
-			sDrvMotorSpeed.M4.high.max=20000;	
-			sDrvMotorSpeed.M4.high.accSpeed=10000;
-			sDrvMotorSpeed.M4.high.dec=40;
-			sDrvMotorSpeed.M4.high.accTimes=10;
-			sDrvMotorSpeed.M4.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4.high);
-			sDrvMotorSpeed.M4.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M4.bk=sDrvMotorSpeed.M4.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M4.bk=sDrvMotorSpeed.M4.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M4.bk=sDrvMotorSpeed.M4.high;}
+			memset(&sDrvMotorSpeed.M4, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){		
+			sDrvMotorSpeed.M4.start_bk=sDrvMotorSpeed.M4.start=1000;
+			sDrvMotorSpeed.M4.max=2000;	
+			sDrvMotorSpeed.M4.accSpeed=1000;
+			sDrvMotorSpeed.M4.dec=40;
+			sDrvMotorSpeed.M4.accTimes=10;
+			sDrvMotorSpeed.M4.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4);
+			sDrvMotorSpeed.M4.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M4.start_bk=sDrvMotorSpeed.M4.start=10000;
+			sDrvMotorSpeed.M4.max=20000;	
+			sDrvMotorSpeed.M4.accSpeed=10000;
+			sDrvMotorSpeed.M4.dec=40;
+			sDrvMotorSpeed.M4.accTimes=10;
+			sDrvMotorSpeed.M4.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4);
+			sDrvMotorSpeed.M4.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M4.start_bk=sDrvMotorSpeed.M4.start=10000;
+			sDrvMotorSpeed.M4.max=20000;	
+			sDrvMotorSpeed.M4.accSpeed=10000;
+			sDrvMotorSpeed.M4.dec=40;
+			sDrvMotorSpeed.M4.accTimes=10;
+			sDrvMotorSpeed.M4.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4);
+			sDrvMotorSpeed.M4.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M4.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M4.start + i*sDrvMotorSpeed.M4.interval_acc;
+			sDrvMotorSpeed.M4.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		case M5_WAIT_NEXT:
-			sDrvMotorSpeed.M5.slow.start=1000;
-			sDrvMotorSpeed.M5.slow.max=2000;	
-			sDrvMotorSpeed.M5.slow.accSpeed=1000;
-			sDrvMotorSpeed.M5.slow.dec=40;
-			sDrvMotorSpeed.M5.slow.accTimes=10;
-			sDrvMotorSpeed.M5.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5.slow);
-			sDrvMotorSpeed.M5.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5.slow);
-		
-			sDrvMotorSpeed.M5.normal.start=10000;
-			sDrvMotorSpeed.M5.normal.max=20000;	
-			sDrvMotorSpeed.M5.normal.accSpeed=10000;
-			sDrvMotorSpeed.M5.normal.dec=40;
-			sDrvMotorSpeed.M5.normal.accTimes=10;
-			sDrvMotorSpeed.M5.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5.normal);
-			sDrvMotorSpeed.M5.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5.normal);
-		
-			sDrvMotorSpeed.M5.high.start=10000;
-			sDrvMotorSpeed.M5.high.max=20000;	
-			sDrvMotorSpeed.M5.high.accSpeed=5000;
-			sDrvMotorSpeed.M5.high.dec=40;
-			sDrvMotorSpeed.M5.high.accTimes=10;
-			sDrvMotorSpeed.M5.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5.high);
-			sDrvMotorSpeed.M5.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M5.bk=sDrvMotorSpeed.M5.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M5.bk=sDrvMotorSpeed.M5.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M5.bk=sDrvMotorSpeed.M5.high;}
+			memset(&sDrvMotorSpeed.M5, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){	
+			sDrvMotorSpeed.M5.start_bk=sDrvMotorSpeed.M5.start=1000;
+			sDrvMotorSpeed.M5.max=2000;	
+			sDrvMotorSpeed.M5.accSpeed=1000;
+			sDrvMotorSpeed.M5.dec=40;
+			sDrvMotorSpeed.M5.accTimes=10;
+			sDrvMotorSpeed.M5.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5);
+			sDrvMotorSpeed.M5.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M5.start_bk=sDrvMotorSpeed.M5.start=10000;
+			sDrvMotorSpeed.M5.max=20000;	
+			sDrvMotorSpeed.M5.accSpeed=10000;
+			sDrvMotorSpeed.M5.dec=40;
+			sDrvMotorSpeed.M5.accTimes=10;
+			sDrvMotorSpeed.M5.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5);
+			sDrvMotorSpeed.M5.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M5.start_bk=sDrvMotorSpeed.M5.start=10000;
+			sDrvMotorSpeed.M5.max=20000;	
+			sDrvMotorSpeed.M5.accSpeed=5000;
+			sDrvMotorSpeed.M5.dec=40;
+			sDrvMotorSpeed.M5.accTimes=10;
+			sDrvMotorSpeed.M5.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M5);
+			sDrvMotorSpeed.M5.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M5);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M5.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M5.start + i*sDrvMotorSpeed.M5.interval_acc;
+			sDrvMotorSpeed.M5.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		case M6_BLANK_LEFT:
-			sDrvMotorSpeed.M6.slow.start=1000;
-			sDrvMotorSpeed.M6.slow.max=2000;	
-			sDrvMotorSpeed.M6.slow.accSpeed=1000;
-			sDrvMotorSpeed.M6.slow.dec=40;
-			sDrvMotorSpeed.M6.slow.accTimes=10;
-			sDrvMotorSpeed.M6.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6.slow);
-			sDrvMotorSpeed.M6.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6.slow);
-		
-			sDrvMotorSpeed.M6.normal.start=10000;
-			sDrvMotorSpeed.M6.normal.max=20000;	
-			sDrvMotorSpeed.M6.normal.accSpeed=10000;
-			sDrvMotorSpeed.M6.normal.dec=40;
-			sDrvMotorSpeed.M6.normal.accTimes=10;
-			sDrvMotorSpeed.M6.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6.normal);
-			sDrvMotorSpeed.M6.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6.normal);
-		
-			sDrvMotorSpeed.M6.high.start=10000;
-			sDrvMotorSpeed.M6.high.max=20000;	
-			sDrvMotorSpeed.M6.high.accSpeed=10000;
-			sDrvMotorSpeed.M6.high.dec=40;
-			sDrvMotorSpeed.M6.high.accTimes=10;
-			sDrvMotorSpeed.M6.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6.high);
-			sDrvMotorSpeed.M6.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M6.bk=sDrvMotorSpeed.M6.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M6.bk=sDrvMotorSpeed.M6.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M6.bk=sDrvMotorSpeed.M6.high;}
+			memset(&sDrvMotorSpeed.M6, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){		
+			sDrvMotorSpeed.M6.start_bk=sDrvMotorSpeed.M6.start=1000;
+			sDrvMotorSpeed.M6.max=2000;	
+			sDrvMotorSpeed.M6.accSpeed=1000;
+			sDrvMotorSpeed.M6.dec=40;
+			sDrvMotorSpeed.M6.accTimes=10;
+			sDrvMotorSpeed.M6.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6);
+			sDrvMotorSpeed.M6.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M6.start_bk=sDrvMotorSpeed.M6.start=10000;
+			sDrvMotorSpeed.M6.max=20000;	
+			sDrvMotorSpeed.M6.accSpeed=10000;
+			sDrvMotorSpeed.M6.dec=40;
+			sDrvMotorSpeed.M6.accTimes=10;
+			sDrvMotorSpeed.M6.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6);
+			sDrvMotorSpeed.M6.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M6.start_bk=sDrvMotorSpeed.M6.start=10000;
+			sDrvMotorSpeed.M6.max=20000;	
+			sDrvMotorSpeed.M6.accSpeed=10000;
+			sDrvMotorSpeed.M6.dec=40;
+			sDrvMotorSpeed.M6.accTimes=10;
+			sDrvMotorSpeed.M6.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M6);
+			sDrvMotorSpeed.M6.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M6);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M6.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M6.start + i*sDrvMotorSpeed.M6.interval_acc;
+			sDrvMotorSpeed.M6.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		case M7_HIGH_TURN:
-			sDrvMotorSpeed.M7.slow.start=1000;
-			sDrvMotorSpeed.M7.slow.max=2000;	
-			sDrvMotorSpeed.M7.slow.accSpeed=1000;
-			sDrvMotorSpeed.M7.slow.dec=40;
-			sDrvMotorSpeed.M7.slow.accTimes=10;
-			sDrvMotorSpeed.M7.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7.slow);
-			sDrvMotorSpeed.M7.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7.slow);
-		
-			sDrvMotorSpeed.M7.normal.start=2000;
-			sDrvMotorSpeed.M7.normal.max=4000;	
-			sDrvMotorSpeed.M7.normal.accSpeed=4000;
-			sDrvMotorSpeed.M7.normal.dec=40;
-			sDrvMotorSpeed.M7.normal.accTimes=10;
-			sDrvMotorSpeed.M7.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7.normal);
-			sDrvMotorSpeed.M7.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7.normal);
-		
-			sDrvMotorSpeed.M7.high.start=10000;
-			sDrvMotorSpeed.M7.high.max=20000;	
-			sDrvMotorSpeed.M7.high.accSpeed=10000;
-			sDrvMotorSpeed.M7.high.dec=40;
-			sDrvMotorSpeed.M7.high.accTimes=10;
-			sDrvMotorSpeed.M7.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7.high);
-			sDrvMotorSpeed.M7.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M7.bk=sDrvMotorSpeed.M7.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M7.bk=sDrvMotorSpeed.M7.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M7.bk=sDrvMotorSpeed.M7.high;}
+			memset(&sDrvMotorSpeed.M7, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){	
+			sDrvMotorSpeed.M7.start_bk=sDrvMotorSpeed.M7.start=1000;
+			sDrvMotorSpeed.M7.max=2000;	
+			sDrvMotorSpeed.M7.accSpeed=1000;
+			sDrvMotorSpeed.M7.dec=40;
+			sDrvMotorSpeed.M7.accTimes=10;
+			sDrvMotorSpeed.M7.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7);
+			sDrvMotorSpeed.M7.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M7.start_bk=sDrvMotorSpeed.M7.start=2000;
+			sDrvMotorSpeed.M7.max=4000;	
+			sDrvMotorSpeed.M7.accSpeed=4000;
+			sDrvMotorSpeed.M7.dec=40;
+			sDrvMotorSpeed.M7.accTimes=10;
+			sDrvMotorSpeed.M7.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7);
+			sDrvMotorSpeed.M7.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M7.start_bk=sDrvMotorSpeed.M7.start=10000;
+			sDrvMotorSpeed.M7.max=20000;	
+			sDrvMotorSpeed.M7.accSpeed=10000;
+			sDrvMotorSpeed.M7.dec=40;
+			sDrvMotorSpeed.M7.accTimes=10;
+			sDrvMotorSpeed.M7.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M7);
+			sDrvMotorSpeed.M7.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M7);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M7.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M7.start + i*sDrvMotorSpeed.M7.interval_acc;
+			sDrvMotorSpeed.M7.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		
 
@@ -1253,130 +1226,146 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 		
 #ifdef USE_DRV8434_PECKER					
 		case M8_BIG_IN_OUT:
-			sDrvMotorSpeed.M8.slow.start=10000;
-			sDrvMotorSpeed.M8.slow.max=20000;	
-			sDrvMotorSpeed.M8.slow.accSpeed=10000;
-			sDrvMotorSpeed.M8.slow.dec=40;
-			sDrvMotorSpeed.M8.slow.accTimes=10;
-			sDrvMotorSpeed.M8.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8.slow);
-			sDrvMotorSpeed.M8.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8.slow);
-		
-			sDrvMotorSpeed.M8.normal.start=10000;
-			sDrvMotorSpeed.M8.normal.max=20000;	
-			sDrvMotorSpeed.M8.normal.accSpeed=10000;
-			sDrvMotorSpeed.M8.normal.dec=40;
-			sDrvMotorSpeed.M8.normal.accTimes=10;
-			sDrvMotorSpeed.M8.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8.normal);
-			sDrvMotorSpeed.M8.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8.normal);
-		
-			sDrvMotorSpeed.M8.high.start=10000;
-			sDrvMotorSpeed.M8.high.max=20000;	
-			sDrvMotorSpeed.M8.high.accSpeed=10000;
-			sDrvMotorSpeed.M8.high.dec=40;
-			sDrvMotorSpeed.M8.high.accTimes=10;
-			sDrvMotorSpeed.M8.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8.high);
-			sDrvMotorSpeed.M8.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8.high);
-
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M8.bk=sDrvMotorSpeed.M8.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M8.bk=sDrvMotorSpeed.M8.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M8.bk=sDrvMotorSpeed.M8.high;}
+			memset(&sDrvMotorSpeed.M8,0,  sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){		
+			sDrvMotorSpeed.M8.start_bk=sDrvMotorSpeed.M8.start=10000;
+			sDrvMotorSpeed.M8.max=20000;	
+			sDrvMotorSpeed.M8.accSpeed=10000;
+			sDrvMotorSpeed.M8.dec=40;
+			sDrvMotorSpeed.M8.accTimes=10;
+			sDrvMotorSpeed.M8.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8);
+			sDrvMotorSpeed.M8.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M8.start_bk=sDrvMotorSpeed.M8.start=10000;
+			sDrvMotorSpeed.M8.max=20000;	
+			sDrvMotorSpeed.M8.accSpeed=10000;
+			sDrvMotorSpeed.M8.dec=40;
+			sDrvMotorSpeed.M8.accTimes=10;
+			sDrvMotorSpeed.M8.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8);
+			sDrvMotorSpeed.M8.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M8.start_bk=sDrvMotorSpeed.M8.start=10000;
+			sDrvMotorSpeed.M8.max=20000;	
+			sDrvMotorSpeed.M8.accSpeed=10000;
+			sDrvMotorSpeed.M8.dec=40;
+			sDrvMotorSpeed.M8.accTimes=10;
+			sDrvMotorSpeed.M8.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M8);
+			sDrvMotorSpeed.M8.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8);
+		}
+		for(i=0; i<=sDrvMotorSpeed.M8.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M8.start + i*sDrvMotorSpeed.M8.interval_acc;
+			sDrvMotorSpeed.M8.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		
 		case M9_IN_OUT:
-			sDrvMotorSpeed.M9.slow.start=10000;
-			sDrvMotorSpeed.M9.slow.max=20000;	
-			sDrvMotorSpeed.M9.slow.accSpeed=10000;
-			sDrvMotorSpeed.M9.slow.dec=40;
-			sDrvMotorSpeed.M9.slow.accTimes=10;
-			sDrvMotorSpeed.M9.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9.slow);
-			sDrvMotorSpeed.M9.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9.slow);
-		
-			sDrvMotorSpeed.M9.normal.start=10000;
-			sDrvMotorSpeed.M9.normal.max=30000;	
-			sDrvMotorSpeed.M9.normal.accSpeed=10000;
-			sDrvMotorSpeed.M9.normal.dec=40;
-			sDrvMotorSpeed.M9.normal.accTimes=10;
-			sDrvMotorSpeed.M9.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9.normal);
-			sDrvMotorSpeed.M9.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9.normal);
-		
-			sDrvMotorSpeed.M9.high.start=10000;
-			sDrvMotorSpeed.M9.high.max=30000;	
-			sDrvMotorSpeed.M9.high.accSpeed=10000;
-			sDrvMotorSpeed.M9.high.dec=40;
-			sDrvMotorSpeed.M9.high.accTimes=10;
-			sDrvMotorSpeed.M9.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9.high);
-			sDrvMotorSpeed.M9.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M9.bk=sDrvMotorSpeed.M9.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M9.bk=sDrvMotorSpeed.M9.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M9.bk=sDrvMotorSpeed.M9.high;}
+			memset(&sDrvMotorSpeed.M9, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){	
+			sDrvMotorSpeed.M9.start_bk=sDrvMotorSpeed.M9.start=10000;
+			sDrvMotorSpeed.M9.max=20000;	
+			sDrvMotorSpeed.M9.accSpeed=10000;
+			sDrvMotorSpeed.M9.dec=40;
+			sDrvMotorSpeed.M9.accTimes=10;
+			sDrvMotorSpeed.M9.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9);
+			sDrvMotorSpeed.M9.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M9.start_bk=sDrvMotorSpeed.M9.start=10000;
+			sDrvMotorSpeed.M9.max=30000;	
+			sDrvMotorSpeed.M9.accSpeed=10000;
+			sDrvMotorSpeed.M9.dec=40;
+			sDrvMotorSpeed.M9.accTimes=10;
+			sDrvMotorSpeed.M9.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9);
+			sDrvMotorSpeed.M9.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M9.start_bk=sDrvMotorSpeed.M9.start=10000;
+			sDrvMotorSpeed.M9.max=30000;	
+			sDrvMotorSpeed.M9.accSpeed=10000;
+			sDrvMotorSpeed.M9.dec=40;
+			sDrvMotorSpeed.M9.accTimes=10;
+			sDrvMotorSpeed.M9.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M9);
+			sDrvMotorSpeed.M9.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M9);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M9.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M9.start + i*sDrvMotorSpeed.M9.interval_acc;
+			sDrvMotorSpeed.M9.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		
 		case M10_UP_DOWM:
-			sDrvMotorSpeed.M10.slow.start=10000;
-			sDrvMotorSpeed.M10.slow.max=20000;	
-			sDrvMotorSpeed.M10.slow.accSpeed=10000;
-			sDrvMotorSpeed.M10.slow.dec=40;
-			sDrvMotorSpeed.M10.slow.accTimes=10;
-			sDrvMotorSpeed.M10.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10.slow);
-			sDrvMotorSpeed.M10.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10.slow);
+			memset(&sDrvMotorSpeed.M10, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){	
+			sDrvMotorSpeed.M10.start_bk=sDrvMotorSpeed.M10.start=10000;
+			sDrvMotorSpeed.M10.max=20000;	
+			sDrvMotorSpeed.M10.accSpeed=10000;
+			sDrvMotorSpeed.M10.dec=40;
+			sDrvMotorSpeed.M10.accTimes=10;
+			sDrvMotorSpeed.M10.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10);
+			sDrvMotorSpeed.M10.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M10.start_bk=sDrvMotorSpeed.M10.start=10000;
+			sDrvMotorSpeed.M10.max=30000;	
+			sDrvMotorSpeed.M10.accSpeed=10000;
+			sDrvMotorSpeed.M10.dec=40;
+			sDrvMotorSpeed.M10.accTimes=10;
+			sDrvMotorSpeed.M10.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10);
+			sDrvMotorSpeed.M10.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M10.start_bk=sDrvMotorSpeed.M10.start=10000;
+			sDrvMotorSpeed.M10.max=40000;	
+			sDrvMotorSpeed.M10.accSpeed=10000;
+			sDrvMotorSpeed.M10.dec=40;
+			sDrvMotorSpeed.M10.accTimes=10;
+			sDrvMotorSpeed.M10.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10);
+			sDrvMotorSpeed.M10.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10);
+		}	
 		
-			sDrvMotorSpeed.M10.normal.start=10000;
-			sDrvMotorSpeed.M10.normal.max=30000;	
-			sDrvMotorSpeed.M10.normal.accSpeed=10000;
-			sDrvMotorSpeed.M10.normal.dec=40;
-			sDrvMotorSpeed.M10.normal.accTimes=10;
-			sDrvMotorSpeed.M10.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10.normal);
-			sDrvMotorSpeed.M10.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10.normal);
-		
-			sDrvMotorSpeed.M10.high.start=10000;
-			sDrvMotorSpeed.M10.high.max=40000;	
-			sDrvMotorSpeed.M10.high.accSpeed=10000;
-			sDrvMotorSpeed.M10.high.dec=40;
-			sDrvMotorSpeed.M10.high.accTimes=10;
-			sDrvMotorSpeed.M10.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M10.high);
-			sDrvMotorSpeed.M10.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M10.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M10.bk=sDrvMotorSpeed.M10.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M10.bk=sDrvMotorSpeed.M10.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M10.bk=sDrvMotorSpeed.M10.high;}
+		for(i=0; i<=sDrvMotorSpeed.M10.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M10.start + i*sDrvMotorSpeed.M10.interval_acc;
+			sDrvMotorSpeed.M10.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 		
 		case M11_FAR_NEAR:
-			sDrvMotorSpeed.M11.slow.start=5000;
-			sDrvMotorSpeed.M11.slow.max=15000;	
-			sDrvMotorSpeed.M11.slow.accSpeed=10000;
-			sDrvMotorSpeed.M11.slow.dec=40;
-			sDrvMotorSpeed.M11.slow.accTimes=10;
-			sDrvMotorSpeed.M11.slow.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11.slow);
-			sDrvMotorSpeed.M11.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11.slow);
-		
-			sDrvMotorSpeed.M11.normal.start=5000;
-			sDrvMotorSpeed.M11.normal.max=15000;	
-			sDrvMotorSpeed.M11.normal.accSpeed=10000;
-			sDrvMotorSpeed.M11.normal.dec=40;
-			sDrvMotorSpeed.M11.normal.accTimes=10;
-			sDrvMotorSpeed.M11.normal.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11.normal);
-			sDrvMotorSpeed.M11.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11.normal);
-		
-			sDrvMotorSpeed.M11.high.start=5000;
-			sDrvMotorSpeed.M11.high.max=15000;	
-			sDrvMotorSpeed.M11.high.accSpeed=10000;
-			sDrvMotorSpeed.M11.high.dec=40;
-			sDrvMotorSpeed.M11.high.accTimes=10;
-			sDrvMotorSpeed.M11.high.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11.high);
-			sDrvMotorSpeed.M11.high.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11.high);
-			
-			if(LOW_SPEED==speed_type){sDrvMotorSpeed.M11.bk=sDrvMotorSpeed.M11.slow;}
-			else if(NORMAL_SPEED==speed_type){sDrvMotorSpeed.M11.bk=sDrvMotorSpeed.M11.normal;}
-			else if(HIGH_SPEED==speed_type){sDrvMotorSpeed.M11.bk=sDrvMotorSpeed.M11.high;}
+			memset(&sDrvMotorSpeed.M11, 0, sizeof(Drv_Motor_Speed_Config_t));
+		if(LOW_SPEED==speed_type){		
+			sDrvMotorSpeed.M11.start_bk=sDrvMotorSpeed.M11.start=5000;
+			sDrvMotorSpeed.M11.max=15000;	
+			sDrvMotorSpeed.M11.accSpeed=10000;
+			sDrvMotorSpeed.M11.dec=40;
+			sDrvMotorSpeed.M11.accTimes=10;
+			sDrvMotorSpeed.M11.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11);
+			sDrvMotorSpeed.M11.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11);
+		}else if(NORMAL_SPEED==speed_type){
+			sDrvMotorSpeed.M11.start_bk=sDrvMotorSpeed.M11.start=5000;
+			sDrvMotorSpeed.M11.max=15000;	
+			sDrvMotorSpeed.M11.accSpeed=10000;
+			sDrvMotorSpeed.M11.dec=40;
+			sDrvMotorSpeed.M11.accTimes=10;
+			sDrvMotorSpeed.M11.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11);
+			sDrvMotorSpeed.M11.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11);
+		}else if(HIGH_SPEED==speed_type){
+			sDrvMotorSpeed.M11.start_bk=sDrvMotorSpeed.M11.start=5000;
+			sDrvMotorSpeed.M11.max=15000;	
+			sDrvMotorSpeed.M11.accSpeed=10000;
+			sDrvMotorSpeed.M11.dec=40;
+			sDrvMotorSpeed.M11.accTimes=10;
+			sDrvMotorSpeed.M11.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M11);
+			sDrvMotorSpeed.M11.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M11);
+		}	
+		for(i=0; i<=sDrvMotorSpeed.M11.accTimes; i++)
+		{
+			speed = sDrvMotorSpeed.M11.start + i*sDrvMotorSpeed.M11.interval_acc;
+			sDrvMotorSpeed.M11.config[i]=ceil(72000000/(divClock*speed));
+		}
 			break;
 			
 #endif			
 		default:
 	}
 		
-	__DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__(deviceId);
 }
 
 
@@ -1559,19 +1548,19 @@ int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId,int currentIndex)
 	}
 	
 	//LOGD("start:%f max:%f \r\n",Ms.use.start, Ms.use.max);
-	if( (Ms.use.start < Ms.use.max) && (0 == currentIndex%Ms.use.interval_pwm))
+	if( (Ms.start < Ms.max) && (0 == currentIndex%Ms.interval_pwm))
 	{
 			//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
-			if(Ms.use.start + Ms.use.interval_acc > Ms.use.max)
+			if(Ms.start + Ms.interval_acc > Ms.max)
 			{
-					Ms.use.start=Ms.use.max;
+					Ms.start=Ms.max;
 			}else
 			{
-					Ms.use.start+=Ms.use.interval_acc;
+					Ms.start+=Ms.interval_acc;
 			}
 			
-			index = currentIndex/Ms.use.interval_pwm;
-			config = Ms.use.config[index];		
+			index = currentIndex/Ms.interval_pwm;
+			config = Ms.config[index];		
 	}
 	
 			switch(deviceId)

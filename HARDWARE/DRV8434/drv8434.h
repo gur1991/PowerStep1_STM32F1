@@ -128,6 +128,7 @@ void __DRV8434_Motor_Move_Steps__(uint8_t deviceId, motorDir_t direction, uint32
 
 
 
+
 typedef struct{
 	int start;//启动速度
 	int interval_acc;//加速度
@@ -136,19 +137,9 @@ typedef struct{
 	int accTimes;//几次加上去
 	int interval_pwm;//多少个波形
 	
+	int start_bk;
 	int accSpeed;
 	int config[21];
-}Drv_Motor_Speed_Run_Config_t;
-
-
-typedef struct{
-	Drv_Motor_Speed_Run_Config_t slow; //电机慢速
-	Drv_Motor_Speed_Run_Config_t normal;//电机中速
-	Drv_Motor_Speed_Run_Config_t high;//电机高速
-	Drv_Motor_Speed_Run_Config_t use;
-	Drv_Motor_Speed_Run_Config_t bk;
-	
-	//int currentSpeed;//当前电机速度
 }Drv_Motor_Speed_Config_t;
 
 
@@ -179,11 +170,9 @@ typedef struct{
 //梯度加速，整个加速过程分为十次加上去，而不是每次都要计算一下
 
 //每次加多少？
-int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Run_Config_t Ms);
+int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Config_t Ms);
 //分为几次加上去
-int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Run_Config_t Ms);
-
-void __DRV8434_Motor_Speed_To_PWM_Config_Group_Ready__(uint8_t deviceId);
+int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Config_t Ms);
 
 #endif
 
