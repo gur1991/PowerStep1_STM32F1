@@ -1262,7 +1262,7 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M8.slow.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8.slow);
 		
 			sDrvMotorSpeed.M8.normal.start=10000;
-			sDrvMotorSpeed.M8.normal.max=40000;	
+			sDrvMotorSpeed.M8.normal.max=20000;	
 			sDrvMotorSpeed.M8.normal.accSpeed=10000;
 			sDrvMotorSpeed.M8.normal.dec=40;
 			sDrvMotorSpeed.M8.normal.accTimes=10;
@@ -1270,7 +1270,7 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M8.normal.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M8.normal);
 		
 			sDrvMotorSpeed.M8.high.start=10000;
-			sDrvMotorSpeed.M8.high.max=60000;	
+			sDrvMotorSpeed.M8.high.max=20000;	
 			sDrvMotorSpeed.M8.high.accSpeed=10000;
 			sDrvMotorSpeed.M8.high.dec=40;
 			sDrvMotorSpeed.M8.high.accTimes=10;
