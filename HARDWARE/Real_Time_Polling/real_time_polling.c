@@ -60,7 +60,7 @@ void  Real_Time_Polling_Current_Index(void)
 			POLLING_data.weightThree=weight3;
 		}
 		//weight4	
-		//if(weight4<5000)
+	//if(weight4<5000)
 		{ 
 			POLLING_data.weightFour=weight4;
 		}
