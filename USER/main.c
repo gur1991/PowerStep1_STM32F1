@@ -170,8 +170,8 @@ int main(void)
 	//March_high_wheel();
 	//Rest_high_wheel();
 	//Belt_Move_At_SameTime();
-	
 /*	
+	
 	RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
 	Normal_Goto_First_Position();
 		
