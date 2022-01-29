@@ -1529,6 +1529,150 @@ int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId,int currentIndex)
 	int config=0;
 	int index=0;	
 	
+	
+	switch(deviceId)
+	{
+		case M1_MIX_V:
+			if( (sDrvMotorSpeed.M1.start < sDrvMotorSpeed.M1.max) && (0 == currentIndex%sDrvMotorSpeed.M1.interval_pwm))
+			{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M1.start + sDrvMotorSpeed.M1.interval_acc > sDrvMotorSpeed.M1.max){sDrvMotorSpeed.M1.start=sDrvMotorSpeed.M1.max;}
+					else{sDrvMotorSpeed.M1.start+=sDrvMotorSpeed.M1.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M1.interval_pwm;
+					config = sDrvMotorSpeed.M1.config[index];		
+			}	
+		break;
+			
+		case M2_MIX:
+				if( (sDrvMotorSpeed.M2.start < sDrvMotorSpeed.M2.max) && (0 == currentIndex%sDrvMotorSpeed.M2.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M2.start + sDrvMotorSpeed.M2.interval_acc > sDrvMotorSpeed.M2.max){sDrvMotorSpeed.M2.start=sDrvMotorSpeed.M2.max;}
+					else{sDrvMotorSpeed.M2.start+=sDrvMotorSpeed.M2.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M2.interval_pwm;
+					config = sDrvMotorSpeed.M2.config[index];		
+				}	
+				break;
+		
+		case M3_LEFT_WAIT:
+				if( (sDrvMotorSpeed.M3.start < sDrvMotorSpeed.M3.max) && (0 == currentIndex%sDrvMotorSpeed.M3.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M3.start + sDrvMotorSpeed.M3.interval_acc > sDrvMotorSpeed.M3.max){sDrvMotorSpeed.M3.start=sDrvMotorSpeed.M3.max;}
+					else{sDrvMotorSpeed.M3.start+=sDrvMotorSpeed.M3.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M3.interval_pwm;
+					config = sDrvMotorSpeed.M3.config[index];		
+				}	
+				break;
+		
+
+		case M4_BLANK_NEXT:
+				if( (sDrvMotorSpeed.M4.start < sDrvMotorSpeed.M4.max) && (0 == currentIndex%sDrvMotorSpeed.M4.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M4.start + sDrvMotorSpeed.M4.interval_acc > sDrvMotorSpeed.M4.max){sDrvMotorSpeed.M4.start=sDrvMotorSpeed.M4.max;}
+					else{sDrvMotorSpeed.M4.start+=sDrvMotorSpeed.M4.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M4.interval_pwm;
+					config = sDrvMotorSpeed.M4.config[index];		
+				}	
+				break;
+		
+		
+		case M5_WAIT_NEXT:
+				if( (sDrvMotorSpeed.M5.start < sDrvMotorSpeed.M5.max) && (0 == currentIndex%sDrvMotorSpeed.M5.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M5.start + sDrvMotorSpeed.M5.interval_acc > sDrvMotorSpeed.M5.max){sDrvMotorSpeed.M5.start=sDrvMotorSpeed.M5.max;}
+					else{sDrvMotorSpeed.M5.start+=sDrvMotorSpeed.M5.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M5.interval_pwm;
+					config = sDrvMotorSpeed.M5.config[index];		
+				}	
+				break;
+		
+		
+		case M6_BLANK_LEFT:
+				if( (sDrvMotorSpeed.M6.start < sDrvMotorSpeed.M6.max) && (0 == currentIndex%sDrvMotorSpeed.M6.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M6.start + sDrvMotorSpeed.M6.interval_acc > sDrvMotorSpeed.M6.max){sDrvMotorSpeed.M6.start=sDrvMotorSpeed.M6.max;}
+					else{sDrvMotorSpeed.M6.start+=sDrvMotorSpeed.M6.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M6.interval_pwm;
+					config = sDrvMotorSpeed.M6.config[index];		
+				}	
+				break;
+		
+		case M7_HIGH_TURN:
+				if( (sDrvMotorSpeed.M7.start < sDrvMotorSpeed.M7.max) && (0 == currentIndex%sDrvMotorSpeed.M7.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M7.start + sDrvMotorSpeed.M7.interval_acc > sDrvMotorSpeed.M7.max){sDrvMotorSpeed.M7.start=sDrvMotorSpeed.M7.max;}
+					else{sDrvMotorSpeed.M7.start+=sDrvMotorSpeed.M7.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M7.interval_pwm;
+					config = sDrvMotorSpeed.M7.config[index];		
+				}	
+				break;
+		
+		
+		case M8_BIG_IN_OUT:
+				if( (sDrvMotorSpeed.M8.start < sDrvMotorSpeed.M8.max) && (0 == currentIndex%sDrvMotorSpeed.M8.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M8.start + sDrvMotorSpeed.M8.interval_acc > sDrvMotorSpeed.M8.max){sDrvMotorSpeed.M8.start=sDrvMotorSpeed.M8.max;}
+					else{sDrvMotorSpeed.M8.start+=sDrvMotorSpeed.M8.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M8.interval_pwm;
+					config = sDrvMotorSpeed.M8.config[index];		
+				}	
+				break;
+		
+		case M9_IN_OUT:
+				if( (sDrvMotorSpeed.M9.start < sDrvMotorSpeed.M9.max) && (0 == currentIndex%sDrvMotorSpeed.M9.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M9.start + sDrvMotorSpeed.M9.interval_acc > sDrvMotorSpeed.M9.max){sDrvMotorSpeed.M9.start=sDrvMotorSpeed.M9.max;}
+					else{sDrvMotorSpeed.M9.start+=sDrvMotorSpeed.M9.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M9.interval_pwm;
+					config = sDrvMotorSpeed.M9.config[index];		
+				}	
+				break;
+		
+		case M10_UP_DOWM:
+				if( (sDrvMotorSpeed.M10.start < sDrvMotorSpeed.M10.max) && (0 == currentIndex%sDrvMotorSpeed.M10.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M10.start + sDrvMotorSpeed.M10.interval_acc > sDrvMotorSpeed.M10.max){sDrvMotorSpeed.M10.start=sDrvMotorSpeed.M10.max;}
+					else{sDrvMotorSpeed.M10.start+=sDrvMotorSpeed.M10.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M10.interval_pwm;
+					config = sDrvMotorSpeed.M10.config[index];		
+				}	
+				break;
+		
+		case M11_FAR_NEAR:
+				if( (sDrvMotorSpeed.M11.start < sDrvMotorSpeed.M11.max) && (0 == currentIndex%sDrvMotorSpeed.M11.interval_pwm))
+				{
+					//当前速度+加速度后如果大于目标速度，则下一个速度为目标速度
+					if(sDrvMotorSpeed.M11.start + sDrvMotorSpeed.M11.interval_acc > sDrvMotorSpeed.M11.max){sDrvMotorSpeed.M11.start=sDrvMotorSpeed.M11.max;}
+					else{sDrvMotorSpeed.M11.start+=sDrvMotorSpeed.M11.interval_acc;}
+
+					index = currentIndex/sDrvMotorSpeed.M11.interval_pwm;
+					config = sDrvMotorSpeed.M11.config[index];		
+				}	
+				break;
+		
+		default:
+	}
+	
+	return config;
+/*	
 	Drv_Motor_Speed_Config_t Ms;
 	memset(&Ms, 0, sizeof(Ms));
 	switch(deviceId)
@@ -1578,7 +1722,9 @@ int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId,int currentIndex)
 				case M11_FAR_NEAR:sDrvMotorSpeed.M11=Ms;break;	
 				default:
 			}
+		
 	return config;
+*/	
 }
 
 
