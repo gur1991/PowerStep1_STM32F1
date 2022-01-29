@@ -164,8 +164,38 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	//RestSelectMotorOrgin(M8_BIG_IN_OUT, M8_LIGHT, M8_BIG_OUT, 60000);
-	//DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
+//RestFarAndDownMotorOrgin();
+	
+	//Rest_high_wheel();
+	//March_high_wheel();
+	//Rest_high_wheel();
+	//Belt_Move_At_SameTime();
+	
+/*	
+	RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
+	Normal_Goto_First_Position();
+		
+		int k=0;
+    for(k=0;k<10;k++){
+				Normal_Pitch_Move_Next();
+				delay_ms(500);	
+		}
+		Normal_Pitch_Move_Next_The_Last_Two();
+		Normal_Pitch_Move_Next_The_Last_Two();
+	RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
+*/	
+	
+	//Mix_Blood_High_Speed();
+	//delay_ms(5000);
+	//DRV8434_Motor_HardStop_And_Goto_Sleep(M2_MIX);
+	//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
+	
+	
+	
+	//DRV8434_Motor_Move_And_Wait(M1_MIX_V, M8_BIG_IN, 10000);
+	
+	
+	
 
 //	Weight_Sensor_Init();
 /*

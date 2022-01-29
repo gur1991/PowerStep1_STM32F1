@@ -303,8 +303,8 @@ FACTORY_TYPE Belt_Move_At_SameTime(void)
 	
 #if (defined USE_DRV8434_CAMEL)
 	
-	DRV8434_Motor_Move_Steps_Disable_Acc(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 44000);
-	DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 44000);
+	DRV8434_Motor_Move_Steps_Disable_Acc(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 60000);
+	DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 60000);
 	DRV8434_Motor_HardStop_And_Goto_Sleep(M5_WAIT_NEXT);
 	
 #else	
@@ -378,10 +378,10 @@ FACTORY_TYPE March_Drain_And_Wash_Motor_Orgin(void) //´óÐ¡×¢Éä±Ã¸´Î»
 	
 #if (defined USE_DRV8434_PECKER)	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
+			DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
 	
 	if(Light_Sensor_Get(M9_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 10000);
+			DRV8434_Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 40000);
 	
 #else
 	
