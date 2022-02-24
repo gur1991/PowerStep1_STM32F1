@@ -23,6 +23,12 @@
 //#define USE_DRV8434_CAMEL 
 
 
+
+
+//#define USE_NEW_PID_CONTROL_HEATER 
+
+
+
 #define _SHARK_HEADER_ "VG1-"
 #define _SHARK_VERSION_ "-4.4.2201110.D"
 

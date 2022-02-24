@@ -126,6 +126,7 @@
 ..\obj\factory_many.o: ..\HARDWARE\UART4\uart4.h
 ..\obj\factory_many.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\factory_many.o: ..\HARDWARE\DS18B20\ds18b20.h
+..\obj\factory_many.o: ..\HARDWARE\PID\pid.h
 ..\obj\factory_many.o: ..\HARDWARE\BL180\bl180.h
 ..\obj\factory_many.o: ..\HARDWARE\UART_CONFIG\uart_config.h
 ..\obj\factory_many.o: ..\HARDWARE\Check_RS232\check_rs232.h

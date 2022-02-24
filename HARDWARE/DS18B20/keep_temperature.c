@@ -10,7 +10,7 @@ static int FLAG_START_PID=0;
 static int current_value=0;
 pid_type_t pid;
 static uint8_t T_STATUS=ALL_GOOD;
-
+double TEMP_GROUP[3]={0.0};
 
 Thermometer_t *ThermometerHandle = 0;
 
@@ -45,6 +45,7 @@ uint8_t GetTemperatureStatus(void)
 
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 {
+					New_Pid_Setup();
 					SET_VALUE=degree;
 					FLAG_START_PID=1;
 					pid.balance=400.0-0.98*(degree-355);
@@ -115,7 +116,7 @@ void Pid_init(void)
 	
 	pid.Kp=0.8;
 	pid.Ki=0.8;
-	pid.Kd=0.4;
+	pid.Kd=0.4;//0.4
 	pid.Up=0.0,
 	pid.Ui=0.0;
 	pid.Ud=0.0;
@@ -137,7 +138,7 @@ int PID_Control(int temperature)
 	
 	pid.differ =pid.setValue - pid.actualValue;
 	
-	LOGD("set:%d get:%d ",pid.setValue,pid.actualValue);
+	//LOGD("set:%d get:%d ",pid.setValue,pid.actualValue);
 	if(pid.differ>=5){pid.duty_pwm=0;}
 	else if(pid.differ<0){
 			pid.duty_pwm=500;
@@ -156,7 +157,8 @@ int PID_Control(int temperature)
 		}
 		pid.Up=pid.differ*pid.Kp;
 		pid.Ui=-pid.differ_last*pid.Ki;
-		pid.Ud=pid.differ_pre*pid.Kd;
+		//pid.Ud=pid.differ_pre*pid.Kd;
+		pid.Ud=  pid.differ_last*pid.Kd ;//+ (pid.differ - pid.differ_last)*2.0;// + pid.differ_pre*pid.Kd;
 		pid.Upid=pid.Up+pid.Ui+pid.Ud;
 
 		pid.duty_pwm=pid.duty_pwm_last-pid.Upid;
@@ -177,7 +179,7 @@ void KeepTemperatureDegree(void)
 		
 		temp1=DS18B20_Get_Temp(TMEPERATURE_ONE);
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
-	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
+	  //LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
 		T_STATUS=ALL_GOOD;
 		if(temp1<=0 || temp1>=800){
@@ -191,8 +193,15 @@ void KeepTemperatureDegree(void)
 	  else if(T_STATUS==NUMBER_TWO_BROKE){current_value = temp1;}//温度计2坏了
     else if(T_STATUS==ALL_GOOD){
 			if(abs(temp1-temp2)>100)T_STATUS=ALL_BROKE;//两个温度传感器差10度也是异常
-			else current_value = (int)((temp1+temp2)/2);
-		}//温度都可以 
+			else{
+				TEMP_GROUP[2]=TEMP_GROUP[1];
+				TEMP_GROUP[1]=TEMP_GROUP[0];
+				TEMP_GROUP[0]= (double)((temp1+temp2)/2.0);
+				current_value = (int)((TEMP_GROUP[0]+TEMP_GROUP[1]+TEMP_GROUP[2])/3.0);
+			}	
+		}
+		
+		
 		
 		//连续5次检测到温度过高，则判断为异常，设置温度0；单次异常不会触发此机制
 	  if(T_STATUS==ALL_BROKE)
@@ -209,21 +218,65 @@ void KeepTemperatureDegree(void)
 		
 		//current_value =(int)((DS18B20_Get_Temp(TMEPERATURE_ONE)+DS18B20_Get_Temp(TMEPERATURE_TWO))/2);
 		
-		
+#ifndef USE_NEW_PID_CONTROL_HEATER		
 		duty_cycle= PID_Control(current_value);
-		
-		
+#else		
+		duty_cycle= New_Pid_Control(current_value);
+#endif		
 	
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-		LOGD(" duty:%d\r\n",duty_cycle);
+		//LOGD(" duty:%d\r\n",duty_cycle);
 		
 		//duty_cycle=0;
 		TIM_SetTIM3Compare4(duty_cycle);	
 
 #endif		
 }	
+
+
+
+/**********************NEW PID UPDATE************************************/
+PID_Calibration calibration={0};
+PID_State state={0};
+
+void New_Pid_Setup(void) 
+{
+    // configure the calibration and state structs
+    // dummy gain values
+    calibration.kp = 13;//13.0;
+    calibration.ki = 0.0012;//0.01;//0.0012;
+    calibration.kd = 1.0;//2.0;//4.0; //120.0;
+    // an initial blank starting state
+    state.actual = 0.0;
+    state.target = 0.0;
+    state.time_delta = 1.0; // assume an arbitrary time interval of 1.0
+    state.previous_error = 0.0;
+    state.integral = 0.0;
+}
+
+int New_Pid_Control(int temperature)
+{
+		int duty_cycle=500;
+		state.target = (double) SET_VALUE;
+		state.actual = (double) temperature;  
+/*		
+	  if(SET_VALUE<300)
+		{
+				duty_cycle=500;
+		}
+		else
+*/	
+			{
+				state = pid_iterate(calibration, state);
+				duty_cycle= 500  - (int)state.output ;//-100
+		}
+	  return duty_cycle; 
+}	
+
+
+
 
 
 

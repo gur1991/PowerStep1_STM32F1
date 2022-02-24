@@ -82,6 +82,7 @@
 "..\obj\check_rs232.o"
 "..\obj\export_liquid.o"
 "..\obj\drv8434.o"
+"..\obj\pid.o"
 "..\obj\usmart.o"
 "..\obj\usmart_config.o"
 "..\obj\usmart_str.o"

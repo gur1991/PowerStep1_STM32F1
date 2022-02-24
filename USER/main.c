@@ -113,11 +113,17 @@ void Init_Board_Config(void)
 	  
 		TIM3_PWM_Init(500-1,72-1);
 		Pid_init();
+
+#ifdef USE_NEW_PID_CONTROL_HEATER		
+		New_Pid_Setup();
+#endif
+
 		TIM_SetTIM3Compare4(500);	
 		ThermometerChooseHandle(DS18B20);
 		ThermometerHandle->init();
 		ThermometerHandle->set_degree(0,TMEPERATURE_CURRENT);
-	  
+	  //ThermometerHandle->set_degree(380,TMEPERATURE_CURRENT);
+		
 	  IWDG_Init(4,625*4); //4s   	MAX
     IWDG_Start();
 		LOGD("[Mini],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
@@ -329,7 +335,11 @@ int main(void)
 			
 #if USE_KEEP_TEMPERATURE_BOARD
 			i++;
+#ifdef USE_NEW_PID_CONTROL_HEATER			
+			if(i==50)
+#else
 			if(i==1000)
+#endif			
 			{
 				i=0;		
 				keep_thermometer_degree();

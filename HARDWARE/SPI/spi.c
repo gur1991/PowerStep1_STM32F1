@@ -63,7 +63,8 @@ void SPI2_SetSpeed(u8 SPI_BaudRatePrescaler)
 //返回值:读取到的字节
 u8 SPI2_ReadWriteByte(u8 TxData)
 {
-    u8 Rxdata;
+    u8 Rxdata=0;
     HAL_SPI_TransmitReceive(&SPI2_Handler,&TxData,&Rxdata,1, 100);       
- 	return Rxdata;          		    //返回收到的数据		
+ 	
+	return Rxdata;          		    //返回收到的数据		
 }

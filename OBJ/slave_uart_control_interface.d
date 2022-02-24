@@ -126,6 +126,7 @@
 ..\obj\slave_uart_control_interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\DS18B20\ds18b20.h
+..\obj\slave_uart_control_interface.o: ..\HARDWARE\PID\pid.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\BL180\bl180.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\UART_CONFIG\uart_config.h
 ..\obj\slave_uart_control_interface.o: ..\HARDWARE\Check_RS232\check_rs232.h

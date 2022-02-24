@@ -3,6 +3,7 @@
 #include "ds18b20.h"
 #include "temperature.h"
 #include "config.h"
+#include "pid.h" 
 //五分钟之内等待，否则退出
 uint8_t Rearch_Degree_Wait(void);
 
@@ -46,4 +47,11 @@ typedef struct pid_type{
 
 
 void Pid_init(void);
+
+
+void New_Pid_Setup(void);
+
+int New_Pid_Control(int temperature);
+
+
 #endif 

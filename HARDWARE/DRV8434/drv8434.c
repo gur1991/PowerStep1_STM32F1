@@ -1459,35 +1459,35 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 	{
 #ifdef USE_DRV8434_CAMEL		
 		case M1_MIX_V:
-			nSLEEP_1_OUT=1;
-			ENABLE_1_OUT=0;
+			nSLEEP_1_OUT=0;
+			ENABLE_1_OUT=1;
 			break;
 		
 		case M2_MIX:
-			nSLEEP_2_OUT=1;
-			ENABLE_2_OUT=0;
+			nSLEEP_2_OUT=0;
+			ENABLE_2_OUT=1;
 			break;
 		
 		case M3_LEFT_WAIT:
-			nSLEEP_3_OUT=1;
-			ENABLE_3_OUT=0;
+			nSLEEP_3_OUT=0;
+			ENABLE_3_OUT=1;
 			break;
 		case M4_BLANK_NEXT:
-			nSLEEP_4_OUT=1;
-			ENABLE_4_OUT=0;
+			nSLEEP_4_OUT=0;
+			ENABLE_4_OUT=1;
 			break;
 		case M5_WAIT_NEXT:
-			nSLEEP_5_OUT=1;
-			ENABLE_5_OUT=0;
+			nSLEEP_5_OUT=0;
+			ENABLE_5_OUT=1;
 			break;
 		case M6_BLANK_LEFT:
-			nSLEEP_6_OUT=1;
-			ENABLE_6_OUT=0;
+			nSLEEP_6_OUT=0;
+			ENABLE_6_OUT=1;
 			break;
 		
 		case M7_HIGH_TURN:
-			nSLEEP_7_OUT=1;
-			ENABLE_7_OUT=0;
+			nSLEEP_7_OUT=0;
+			ENABLE_7_OUT=1;
 			break;
 #endif				
 		
@@ -1495,13 +1495,13 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 		
 #ifdef USE_DRV8434_PECKER				
 		case M8_BIG_IN_OUT:
-			nSLEEP_8_OUT=1;
-			ENABLE_8_OUT=0;
+			nSLEEP_8_OUT=0;
+			ENABLE_8_OUT=1;
 		
 			break;
 		case M9_IN_OUT:
-			nSLEEP_9_OUT=1;
-			ENABLE_9_OUT=0;
+			nSLEEP_9_OUT=0;
+			ENABLE_9_OUT=1;
 		
 			break;
 		case M10_UP_DOWM://****************************电路修改降低空闲电流获得发热少
@@ -1510,8 +1510,8 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 		
 			break;
 		case M11_FAR_NEAR:	
-			nSLEEP_11_OUT=1;
-			ENABLE_11_OUT=0;
+			nSLEEP_11_OUT=0;
+			ENABLE_11_OUT=1;
 		
 			break;			
 #endif

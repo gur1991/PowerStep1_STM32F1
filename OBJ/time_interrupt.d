@@ -66,3 +66,4 @@
 ..\obj\time_interrupt.o: ..\HARDWARE\SPI3\spi3.h
 ..\obj\time_interrupt.o: ..\HARDWARE\DS18B20\keep_temperature.h
 ..\obj\time_interrupt.o: ..\HARDWARE\DS18B20\ds18b20.h
+..\obj\time_interrupt.o: ..\HARDWARE\PID\pid.h
