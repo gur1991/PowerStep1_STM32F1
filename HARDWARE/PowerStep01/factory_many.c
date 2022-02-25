@@ -649,7 +649,9 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //ªÏ‘»
 	DRV8434_Motor_Select_Speed(M2_MIX,NORMAL_SPEED);
 	for(i=0;i<5;i++)
 	{
+		delay_ms(20);
 		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 50000); //“‘«∞ «12000
+		delay_ms(20);
 		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50000);
 	}
 	

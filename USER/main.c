@@ -289,6 +289,19 @@ int main(void)
 	
 	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
 	
+	//int i=0;
+/*	
+	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	DRV8434_Motor_Select_Speed(M2_MIX,NORMAL_SPEED);
+	for(i=0;i<5;i++)
+	{
+		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 50000); //ÒÔÇ°ÊÇ12000
+		//delay_ms(20);
+		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50000);
+		//delay_ms(20);
+	}
+*/	
+	
 	
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);

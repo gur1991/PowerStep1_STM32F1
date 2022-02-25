@@ -37,6 +37,7 @@ void DRV8434_MOTOR_Config_Init(void)
 	for(i=1;i<12;i++)
 	{
 		DRV8434_Motor_Select_Speed(i, NORMAL_SPEED);
+		DRV8434_Motor_Stop_Control_Timing(i);
 	}	
 }	
 
@@ -1029,17 +1030,17 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
 			sDrvMotorSpeed.M2.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2);
 		}else if(NORMAL_SPEED==speed_type){
-			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=10000;
+			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=20000;
 			sDrvMotorSpeed.M2.max=40000;	
-			sDrvMotorSpeed.M2.accSpeed=30000;
+			sDrvMotorSpeed.M2.accSpeed=20000;
 			sDrvMotorSpeed.M2.dec=40;
 			sDrvMotorSpeed.M2.accTimes=10;
 			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
 			sDrvMotorSpeed.M2.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M2);
 		}else if(HIGH_SPEED==speed_type){
-			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=10000;
-			sDrvMotorSpeed.M2.max=20000;	
-			sDrvMotorSpeed.M2.accSpeed=10000;
+			sDrvMotorSpeed.M2.start_bk=sDrvMotorSpeed.M2.start=20000;
+			sDrvMotorSpeed.M2.max=40000;	
+			sDrvMotorSpeed.M2.accSpeed=20000;
 			sDrvMotorSpeed.M2.dec=40;
 			sDrvMotorSpeed.M2.accTimes=10;
 			sDrvMotorSpeed.M2.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M2);
@@ -1062,9 +1063,9 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M3.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3);
 			sDrvMotorSpeed.M3.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M3);
 		}else if(NORMAL_SPEED==speed_type){
-			sDrvMotorSpeed.M3.start_bk=sDrvMotorSpeed.M3.start=20000;
-			sDrvMotorSpeed.M3.max=40000;	
-			sDrvMotorSpeed.M3.accSpeed=20000;
+			sDrvMotorSpeed.M3.start_bk=sDrvMotorSpeed.M3.start=15000;
+			sDrvMotorSpeed.M3.max=30000;	
+			sDrvMotorSpeed.M3.accSpeed=15000;
 			sDrvMotorSpeed.M3.dec=40;
 			sDrvMotorSpeed.M3.accTimes=10;
 			sDrvMotorSpeed.M3.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M3);
@@ -1103,9 +1104,9 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			sDrvMotorSpeed.M4.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4);
 			sDrvMotorSpeed.M4.interval_acc=__DRV8434_GET_ACC_PER_TIMES_ADD__(sDrvMotorSpeed.M4);
 		}else if(HIGH_SPEED==speed_type){
-			sDrvMotorSpeed.M4.start_bk=sDrvMotorSpeed.M4.start=5000;
-			sDrvMotorSpeed.M4.max=10000;	
-			sDrvMotorSpeed.M4.accSpeed=5000;
+			sDrvMotorSpeed.M4.start_bk=sDrvMotorSpeed.M4.start=20000;
+			sDrvMotorSpeed.M4.max=40000;	
+			sDrvMotorSpeed.M4.accSpeed=20000;
 			sDrvMotorSpeed.M4.dec=40;
 			sDrvMotorSpeed.M4.accTimes=10;
 			sDrvMotorSpeed.M4.interval_pwm=__DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(sDrvMotorSpeed.M4);

@@ -130,13 +130,10 @@ void set_DelayMs_Normal_Positon(uint16_t delayMs,uint16_t delayMsLastTwo);
 
 
 #define M2_MIX 2
-#ifdef USE_DRV8434_CAMEL
-#define M2_MIX_LEFT FORWARD
-#define M2_MIX_RIGHT BACKWARD 
-#else
+
 #define M2_MIX_LEFT BACKWARD
 #define M2_MIX_RIGHT FORWARD
-#endif
+
 /*************************************************************/
 /*
 blank  ------check-------next
@@ -157,13 +154,9 @@ left---------------------wait
 
 #define M5_WAIT_NEXT 5
 
-#ifdef USE_DRV8434_CAMEL
-#define M5_WAIT_TO_NEXT  FORWARD
-#define M5_NEXT_TO_WAIT  BACKWARD
-#else
 #define M5_WAIT_TO_NEXT BACKWARD
 #define M5_NEXT_TO_WAIT FORWARD
-#endif
+
 
 #define M3_LIGHT 1
 #define M3_LEFT_WAIT 3
