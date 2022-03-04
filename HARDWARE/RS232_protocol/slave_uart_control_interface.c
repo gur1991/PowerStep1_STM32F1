@@ -239,7 +239,9 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			const u8 tx_buf_sd[5]={'S','D',0x0d,0x0a};
 			const u8 tx_buf_sdcc[6]={'S','D','C','C',0x0d,0x0a};
 			const u8 tx_buf_sdcw[6]={'S','D','C','W',0x0d,0x0a};
-	
+		  const u8 tx_buf_repot[4]={'R','+',0x0d,0x0a};
+			
+			
 			int type_flag=0;//type_flag =1 c52    type_flag=0 c55
 			
 			u8 rx_buf[64]={0};
@@ -323,6 +325,23 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 								break;
 					case CHEMINERT_C52_VR:
 								type_flag=1;
+								tx_size=sizeof(tx_buf_vr);	
+								memcpy(tx_buf,tx_buf_vr,tx_size);
+								break;
+					
+					
+					case CHEMINERT_C52_RO:
+								type_flag=1;
+								tx_size=sizeof(tx_buf_repot);	
+								memcpy(tx_buf,tx_buf_repot,tx_size);
+								break;
+					case CHEMINERT_C55_RO:
+								tx_size=sizeof(tx_buf_repot);	
+								memcpy(tx_buf,tx_buf_repot,tx_size);
+								break;
+					
+					
+					
 					case CHEMINERT_C55_VR:						
 								tx_size=sizeof(tx_buf_vr);	
 								memcpy(tx_buf,tx_buf_vr,tx_size);
@@ -427,7 +446,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			
 			}
 			Uart_Clear_Context();	
-			ret= cheminert_c52_c55_transfer(tx_buf,tx_size,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
+			ret= cheminert_c52_c55_transfer(tx_buf,tx_size-1,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
 			if(!ret){
 						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;

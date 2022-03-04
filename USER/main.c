@@ -81,6 +81,10 @@ void Init_Board_Config(void)
 #endif	
 	
 	Electromagnetic_init();//µç´Å·§
+	
+	test_actuator(CHEMINERT_C52_RO);
+	test_actuator(CHEMINERT_C55_RO);
+			
 	LOGD("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 

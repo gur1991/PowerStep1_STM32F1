@@ -10,7 +10,7 @@ static int FLAG_START_PID=0;
 static int current_value=0;
 pid_type_t pid;
 static uint8_t T_STATUS=ALL_GOOD;
-double TEMP_GROUP[3]={0.0};
+
 
 Thermometer_t *ThermometerHandle = 0;
 
@@ -45,7 +45,9 @@ uint8_t GetTemperatureStatus(void)
 
 void SetTemperatureDegree(int degree, TMEPERATURE_type devices)
 {
+#ifdef USE_NEW_PID_CONTROL_HEATER	
 					New_Pid_Setup();
+#endif	
 					SET_VALUE=degree;
 					FLAG_START_PID=1;
 					pid.balance=400.0-0.98*(degree-355);
@@ -138,7 +140,7 @@ int PID_Control(int temperature)
 	
 	pid.differ =pid.setValue - pid.actualValue;
 	
-	//LOGD("set:%d get:%d ",pid.setValue,pid.actualValue);
+	LOGD("set:%d get:%d ",pid.setValue,pid.actualValue);
 	if(pid.differ>=5){pid.duty_pwm=0;}
 	else if(pid.differ<0){
 			pid.duty_pwm=500;
@@ -157,8 +159,7 @@ int PID_Control(int temperature)
 		}
 		pid.Up=pid.differ*pid.Kp;
 		pid.Ui=-pid.differ_last*pid.Ki;
-		//pid.Ud=pid.differ_pre*pid.Kd;
-		pid.Ud=  pid.differ_last*pid.Kd ;//+ (pid.differ - pid.differ_last)*2.0;// + pid.differ_pre*pid.Kd;
+		pid.Ud=pid.differ_pre*pid.Kd;
 		pid.Upid=pid.Up+pid.Ui+pid.Ud;
 
 		pid.duty_pwm=pid.duty_pwm_last-pid.Upid;
@@ -179,7 +180,7 @@ void KeepTemperatureDegree(void)
 		
 		temp1=DS18B20_Get_Temp(TMEPERATURE_ONE);
 		temp2=DS18B20_Get_Temp(TMEPERATURE_TWO);
-	  //LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
+	  LOGD("T1:%0.1f,T2:%0.1f.\r\n",temp1*0.1,temp2*0.1);	
 	
 		T_STATUS=ALL_GOOD;
 		if(temp1<=0 || temp1>=800){
@@ -194,10 +195,13 @@ void KeepTemperatureDegree(void)
     else if(T_STATUS==ALL_GOOD){
 			if(abs(temp1-temp2)>100)T_STATUS=ALL_BROKE;//两个温度传感器差10度也是异常
 			else{
+			/*	
 				TEMP_GROUP[2]=TEMP_GROUP[1];
 				TEMP_GROUP[1]=TEMP_GROUP[0];
 				TEMP_GROUP[0]= (double)((temp1+temp2)/2.0);
 				current_value = (int)((TEMP_GROUP[0]+TEMP_GROUP[1]+TEMP_GROUP[2])/3.0);
+			*/
+				current_value=(int)((temp1+temp2)/2);
 			}	
 		}
 		
@@ -227,7 +231,7 @@ void KeepTemperatureDegree(void)
 		if(duty_cycle>=500)duty_cycle=500;
 		else if(duty_cycle<=0)duty_cycle=0;
 	
-		//LOGD(" duty:%d\r\n",duty_cycle);
+		LOGD(" duty:%d\r\n",duty_cycle);
 		
 		//duty_cycle=0;
 		TIM_SetTIM3Compare4(duty_cycle);	
