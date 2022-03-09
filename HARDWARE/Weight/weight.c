@@ -1,6 +1,6 @@
 #include "weight.h"
 #include "config.h"
-
+#include "delay.h"
 static int WARNNIG_VALUE_ONE=0;
 static int WARNNIG_VALUE_TWO=0;
 static int WARNNIG_VALUE_THREE=0;
@@ -129,7 +129,7 @@ u8 Weight_Sensor_Init(void)
     HAL_GPIO_Init(GPIOG,&GPIO_Initure);     //初始化
 	
 		SPI3_Init();		   			        //初始化SPI
-		SPI3_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
+		//SPI3_SetSpeed(SPI_BAUDRATEPRESCALER_64); //设置为42M时钟,高速模式
 
 #endif
 	
@@ -154,16 +154,30 @@ static __inline void Set_AD_CS(AD_type cs,AD_LEVEL_type level)
 void SPI3_Transfer(u8* txData,u8*rxData,int len,AD_type cs)
 {	
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		int i;
+/*		
+	  int i;
 		Set_AD_CS(cs,CS_LOW);
-		for(i=0;i<len;i++){
-				rxData[i]=SPI3_ReadWriteByte(txData[i]);
-		}
+		//for(i=0;i<len;i++){
+			delay_us(50);
+			rxData[i]=SPI3_ReadWriteByte(txData[i]);
+			delay_us(50);
+		//}
 		Set_AD_CS(cs,CS_HIGH);
+*/	
+
 #endif		
 }
 
 int AD_Sensor_Get_Data(AD_type cs){
+	
+		Set_AD_CS(cs,CS_LOW);
+		delay_us(20);
+		u16 value=SPI3_ReadWrite2Byte();
+		delay_us(10);
+		Set_AD_CS(cs,CS_HIGH);
+		delay_us(10);
+		return value;
+/*		
 		u8 txbuf[3]={0x00,0x00,0x00};
 		u8 rxbuf[3]={0,0,0};
 		u8 bit_low=0;
@@ -171,6 +185,9 @@ int AD_Sensor_Get_Data(AD_type cs){
 		u16 value=0;
 		
 #if USE_AUTOMATIC_INJECTION_BOARD			
+		
+		
+	
 		SPI3_Transfer(txbuf,rxbuf,sizeof(txbuf),cs);
 				
 		bit_high|=rxbuf[0]<<6;//取低2bit
@@ -181,12 +198,13 @@ int AD_Sensor_Get_Data(AD_type cs){
 		value=bit_high;
 		value<<=8;
 		value|=bit_low;
-		
+	
 		//LOGD("here value:%d \r\n",value);
 #endif
 		
 		value=value*(2500.0/65536);
 		return value;
+*/		
 }
 
 

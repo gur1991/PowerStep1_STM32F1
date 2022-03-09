@@ -174,6 +174,16 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
+/*
+	while(1)
+	{	
+		//LOGD("w1:%d \r\n",AD_Sensor_Get_Data(AD1_CS));
+		//LOGD("w2:%d \r\n",AD_Sensor_Get_Data(AD2_CS));
+		//LOGD("w3:%d \r\n",AD_Sensor_Get_Data(AD3_CS));
+		LOGD("w4:%d \r\n",AD_Sensor_Get_Data(AD4_CS));
+		delay_ms(500);	
+	}
+	*/
 //RestFarAndDownMotorOrgin();
 	
 	//Rest_high_wheel();

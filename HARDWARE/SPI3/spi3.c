@@ -9,11 +9,11 @@ void SPI3_Init(void)
     SPI3_Handler.Instance=SPI3;                         //SPI3
     SPI3_Handler.Init.Mode=SPI_MODE_MASTER;             //设置SPI工作模式，设置为主模式
     SPI3_Handler.Init.Direction=SPI_DIRECTION_2LINES;   //设置SPI单向或者双向的数据模式:SPI设置为双线模式
-    SPI3_Handler.Init.DataSize=SPI_DATASIZE_8BIT;       //设置SPI的数据大小:SPI发送接收8位帧结构
+    SPI3_Handler.Init.DataSize=SPI_DATASIZE_16BIT;       //设置SPI的数据大小:SPI发送接收8位帧结构
     SPI3_Handler.Init.CLKPolarity=SPI_POLARITY_HIGH;    //串行同步时钟的空闲状态为高电平
     SPI3_Handler.Init.CLKPhase=SPI_PHASE_2EDGE;         //串行同步时钟的第二个跳变沿（上升或下降）数据被采样
     SPI3_Handler.Init.NSS=SPI_NSS_SOFT;                 //NSS信号由硬件（NSS管脚）还是软件（使用SSI位）管理:内部NSS信号有SSI位控制
-    SPI3_Handler.Init.BaudRatePrescaler=SPI_BAUDRATEPRESCALER_32;//定义波特率预分频的值:波特率预分频值为256
+    SPI3_Handler.Init.BaudRatePrescaler=SPI_BAUDRATEPRESCALER_256;//定义波特率预分频的值:波特率预分频值为256
     SPI3_Handler.Init.FirstBit=SPI_FIRSTBIT_MSB;        //指定数据传输从MSB位还是LSB位开始:数据传输从MSB位开始
     SPI3_Handler.Init.TIMode=SPI_TIMODE_DISABLE;        //关闭TI模式
     SPI3_Handler.Init.CRCCalculation=SPI_CRCCALCULATION_DISABLE;//关闭硬件CRC校验
@@ -77,8 +77,30 @@ void SPI3_SetSpeed(u8 SPI_BaudRatePrescaler)
 u8 SPI3_ReadWriteByte(u8 TxData)
 {
     u8 Rxdata;
-    HAL_SPI_TransmitReceive(&SPI3_Handler,&TxData,&Rxdata,1, 10);   
+		u8 TxByte[4]={0x00,0x00,0x00,0x00};
+		u8 RxByte[4]={0x00,0x00,0x00,0x00};
+		
+    //HAL_SPI_TransmitReceive(&SPI3_Handler,&TxData,&Rxdata,1, 10);   
 
-		//printf("Rxdata：%d\r\n",Rxdata);
+		HAL_SPI_TransmitReceive(&SPI3_Handler, TxByte, RxByte,1, 1); 
+	
+		LOGD("Rxdata：%d %d \r\n",RxByte[0],RxByte[1]);
  	return Rxdata;          		   
 }
+
+u16 SPI3_ReadWrite2Byte(void)
+{
+		u16 Rxdata=0;
+		u8 TxByte[4]={0x00,0x00,0x00,0x00};
+		u8 RxByte[4]={0x00,0x00,0x00,0x00};
+		
+		HAL_SPI_TransmitReceive(&SPI3_Handler, TxByte, RxByte,1, 1); 
+	
+		Rxdata=RxByte[1];
+		Rxdata<<=8;
+		Rxdata+=RxByte[0];
+		
+		//LOGD("Rxdata:%d %d %d \r\n",Rxdata,RxByte[0],RxByte[1]);
+
+		return Rxdata;
+}	

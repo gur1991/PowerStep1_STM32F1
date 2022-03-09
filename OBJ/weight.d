@@ -61,3 +61,4 @@
 ..\obj\weight.o: ..\HALLIB\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h
 ..\obj\weight.o: ..\HARDWARE\SPI3\spi3.h
 ..\obj\weight.o: ..\HARDWARE\Config\config.h
+..\obj\weight.o: ..\SYSTEM\delay\delay.h
