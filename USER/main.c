@@ -183,7 +183,7 @@ int main(void)
 		LOGD("w4:%d \r\n",AD_Sensor_Get_Data(AD4_CS));
 		delay_ms(500);	
 	}
-	*/
+*/	
 //RestFarAndDownMotorOrgin();
 	
 	//Rest_high_wheel();

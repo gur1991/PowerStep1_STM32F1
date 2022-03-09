@@ -173,6 +173,7 @@ int AD_Sensor_Get_Data(AD_type cs){
 		Set_AD_CS(cs,CS_LOW);
 		delay_us(20);
 		u16 value=SPI3_ReadWrite2Byte();
+		//u32 value=SPI3_ReadWrite3Byte();
 		delay_us(10);
 		Set_AD_CS(cs,CS_HIGH);
 		delay_us(10);
