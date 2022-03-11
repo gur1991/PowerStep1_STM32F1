@@ -784,7 +784,7 @@ FACTORY_TYPE Runing_Rest_Camel_Motor(void)
 #endif
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
-	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	uint8_t ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
 	if(ret)value|=M1_LIGHT_ERROR;
 
 #endif
