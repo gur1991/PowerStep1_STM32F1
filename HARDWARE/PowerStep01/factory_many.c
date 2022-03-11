@@ -780,7 +780,7 @@ FACTORY_TYPE Runing_Rest_Camel_Motor(void)
 		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 #else	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
-		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
+		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 #endif
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
