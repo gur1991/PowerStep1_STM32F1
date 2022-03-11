@@ -27,19 +27,17 @@ Project File Date:  02/17/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
-compiling key.c...
-compiling usart.c...
 compiling stm32f1xx_it.c...
-compiling spi.c...
 compiling stm32f1xx_hal_msp.c...
-compiling x_nucleo_ihmxx.c...
+compiling usart.c...
+compiling spi.c...
+compiling key.c...
 compiling powerstep01.c...
+compiling x_nucleo_ihmxx.c...
 compiling main.c...
 main.c(381): warning:  #111-D: statement is unreachable
   	return 0;
-main.c(170): warning:  #177-D: variable "i" was declared but never referenced
-  	int i=0;
-main.c: 2 warnings, 0 errors
+main.c: 1 warning, 0 errors
 compiling stm32f1xx_nucleo.c...
 ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.c(122): warning:  #177-D: variable "sConfig" was declared but never referenced
   static ADC_ChannelConfTypeDef sConfig;
@@ -48,9 +46,23 @@ compiling stm32f1xx_nucleo.c...
 ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.c(678): warning:  #177-D: function "ADCx_MspInit" was declared but never referenced
   static void ADCx_MspInit(ADC_HandleTypeDef *hadc)
 ..\HARDWARE\Drivers\BSP\STM32F1xx-Nucleo\stm32f1xx_nucleo.c: 3 warnings, 0 errors
-compiling printpaper.c...
-compiling x_nucleo_ihm03a1_stm32f1xx.c...
 compiling Cheminert_c52.c...
+compiling x_nucleo_ihm03a1_stm32f1xx.c...
+..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.c(263): warning:  #177-D: variable "GPIO_InitStruct" was declared but never referenced
+    GPIO_InitTypeDef GPIO_InitStruct;
+..\HARDWARE\Drivers\BSP\X-NUCLEO-IHMxx\x_nucleo_ihm03a1_stm32f1xx.c: 1 warning, 0 errors
+compiling printpaper.c...
+compiling uart3.c...
+compiling light.c...
+..\HARDWARE\LIGHT\light.c(394): warning:  #127-D: expected a statement
+  		}
+..\HARDWARE\LIGHT\light.c(422): warning:  #127-D: expected a statement
+  		}
+..\HARDWARE\LIGHT\light.c(95): warning:  #550-D: variable "delayMS" was set but never used
+  static int delayMS=30;
+..\HARDWARE\LIGHT\light.c(102): warning:  #550-D: variable "WHICH_MOTOR_LIGHT" was set but never used
+  static int WHICH_MOTOR_LIGHT = 12; 
+..\HARDWARE\LIGHT\light.c: 4 warnings, 0 errors
 compiling pump_s100.c...
 ..\HARDWARE\PUMPS100\pump_s100.c(51): warning:  #177-D: variable "i" was declared but never referenced
       int len, i;
@@ -63,78 +75,57 @@ compiling pump_s100.c...
 ..\HARDWARE\PUMPS100\pump_s100.c(151): warning:  #177-D: variable "i" was declared but never referenced
       int len, i;
 ..\HARDWARE\PUMPS100\pump_s100.c: 5 warnings, 0 errors
-compiling baby18dad400.c...
-compiling uart3.c...
-compiling light.c...
-..\HARDWARE\LIGHT\light.c(394): warning:  #127-D: expected a statement
-  		}
-..\HARDWARE\LIGHT\light.c(422): warning:  #127-D: expected a statement
-  		}
-..\HARDWARE\LIGHT\light.c(95): warning:  #550-D: variable "delayMS" was set but never used
-  static int delayMS=30;
-..\HARDWARE\LIGHT\light.c(102): warning:  #550-D: variable "WHICH_MOTOR_LIGHT" was set but never used
-  static int WHICH_MOTOR_LIGHT = 12; 
-..\HARDWARE\LIGHT\light.c: 4 warnings, 0 errors
-compiling spi1.c...
 compiling timer.c...
+compiling baby18dad400.c...
+compiling spi1.c...
+compiling temperature.c...
 compiling weight.c...
 ..\HARDWARE\Weight\weight.c(41): warning:  #177-D: variable "gram" was declared but never referenced
   	int gram=0;
-..\HARDWARE\Weight\weight.c: 1 warning, 0 errors
-compiling temperature.c...
-..\HARDWARE\Temperature\temperature.c(131): warning:  #177-D: variable "value" was declared but never referenced
-  		int value=0,temperature=0;
-..\HARDWARE\Temperature\temperature.c(4): warning:  #177-D: variable "TMP_TEMPERATURE_VALUE_ONE" was declared but never referenced
-  static int TMP_TEMPERATURE_VALUE_ONE=0; 
-..\HARDWARE\Temperature\temperature.c(5): warning:  #177-D: variable "TMP_TEMPERATURE_VALUE_TWO" was declared but never referenced
-  static int TMP_TEMPERATURE_VALUE_TWO=0;
-..\HARDWARE\Temperature\temperature.c(6): warning:  #177-D: variable "TMP_TEMPERATURE_VALUE" was declared but never referenced
-  static int TMP_TEMPERATURE_VALUE=0;
-..\HARDWARE\Temperature\temperature.c(29): warning:  #177-D: function "temperature_change_to_value" was declared but never referenced
-  static  int temperature_change_to_value(int temperature)
-..\HARDWARE\Temperature\temperature.c(81): warning:  #177-D: function "value_change_to_temperature" was declared but never referenced
-  static int value_change_to_temperature(int value)
-..\HARDWARE\Temperature\temperature.c(141): warning:  #177-D: function "set_calculate_duty_cycle" was declared but never referenced
-  static int set_calculate_duty_cycle(int value,int list_value)
-..\HARDWARE\Temperature\temperature.c(157): warning:  #177-D: function "__keep_temperature_degree" was declared but never referenced
-  static  void __keep_temperature_degree(void)
-..\HARDWARE\Temperature\temperature.c: 8 warnings, 0 errors
+..\HARDWARE\Weight\weight.c(4): warning:  #550-D: variable "WARNNIG_VALUE_ONE" was set but never used
+  static int WARNNIG_VALUE_ONE=0;
+..\HARDWARE\Weight\weight.c(5): warning:  #550-D: variable "WARNNIG_VALUE_TWO" was set but never used
+  static int WARNNIG_VALUE_TWO=0;
+..\HARDWARE\Weight\weight.c(6): warning:  #550-D: variable "WARNNIG_VALUE_THREE" was set but never used
+  static int WARNNIG_VALUE_THREE=0;
+..\HARDWARE\Weight\weight.c(7): warning:  #550-D: variable "WARNNIG_VALUE_FOUR" was set but never used
+  static int WARNNIG_VALUE_FOUR=0;
+..\HARDWARE\Weight\weight.c(9): warning:  #177-D: function "__set_weight_sensor_warnning_line" was declared but never referenced
+  static void __set_weight_sensor_warnning_line(WEIGHT_type weight,int degree)
+..\HARDWARE\Weight\weight.c: 6 warnings, 0 errors
+compiling factory_many.c...
+..\HARDWARE\PowerStep01\factory_many.c(695): warning:  #550-D: variable "delayMs_Normal_Positon" was set but never used
+  static uint16_t  delayMs_Normal_Positon=0;
+..\HARDWARE\PowerStep01\factory_many.c(696): warning:  #550-D: variable "delayMs_Normal_Positon_Last_Two" was set but never used
+  static uint16_t  delayMs_Normal_Positon_Last_Two=0;
+..\HARDWARE\PowerStep01\factory_many.c: 2 warnings, 0 errors
 compiling step01.c...
 ..\HARDWARE\PowerStep01\step01.c(759): warning:  #177-D: variable "status" was declared but never referenced
   	int status=0;
 ..\HARDWARE\PowerStep01\step01.c(847): warning:  #177-D: variable "status" was declared but never referenced
   	int status=0;
+..\HARDWARE\PowerStep01\step01.c(941): warning:  #177-D: variable "i" was declared but never referenced
+  int i=0,result=0,value=0;
 ..\HARDWARE\PowerStep01\step01.c(941): warning:  #177-D: variable "result" was declared but never referenced
   int i=0,result=0,value=0;
 ..\HARDWARE\PowerStep01\step01.c(941): warning:  #177-D: variable "value" was declared but never referenced
   int i=0,result=0,value=0;
-..\HARDWARE\PowerStep01\step01.c: 4 warnings, 0 errors
-compiling uart4.c...
-compiling factory_many.c...
-..\HARDWARE\PowerStep01\factory_many.c(135): warning:  #111-D: statement is unreachable
-  		return 0;		
-..\HARDWARE\PowerStep01\factory_many.c(173): warning:  #111-D: statement is unreachable
-  		return 0;			
-..\HARDWARE\PowerStep01\factory_many.c(216): warning:  #111-D: statement is unreachable
-  		return 0;			
-..\HARDWARE\PowerStep01\factory_many.c(256): warning:  #111-D: statement is unreachable
-  		return 0;		
-..\HARDWARE\PowerStep01\factory_many.c(293): warning:  #111-D: statement is unreachable
-  		return 0;
-..\HARDWARE\PowerStep01\factory_many.c: 5 warnings, 0 errors
-compiling ds18b20.c...
-..\HARDWARE\DS18B20\ds18b20.c(111): warning:  #177-D: variable "i" was declared but never referenced
-  	u8 i,j,dat;
-..\HARDWARE\DS18B20\ds18b20.c(111): warning:  #177-D: variable "j" was declared but never referenced
-  	u8 i,j,dat;
-..\HARDWARE\DS18B20\ds18b20.c(5): warning:  #177-D: variable "CHOOSE_DS18B20" was declared but never referenced
-  static int CHOOSE_DS18B20=1;
-..\HARDWARE\DS18B20\ds18b20.c: 3 warnings, 0 errors
+..\HARDWARE\PowerStep01\step01.c(942): warning:  #177-D: variable "start" was declared but never referenced
+  int start=0,end=0;	
+..\HARDWARE\PowerStep01\step01.c(942): warning:  #177-D: variable "end" was declared but never referenced
+  int start=0,end=0;	
+..\HARDWARE\PowerStep01\step01.c: 7 warnings, 0 errors
 compiling keep_temperature.c...
-compiling uart2.c...
-compiling electromagnetic.c...
+compiling ds18b20.c...
+..\HARDWARE\DS18B20\ds18b20.c(198): warning:  #111-D: statement is unreachable
+  	return 0;	
+..\HARDWARE\DS18B20\ds18b20.c(232): warning:  #111-D: statement is unreachable
+  		return 0;
+..\HARDWARE\DS18B20\ds18b20.c: 2 warnings, 0 errors
 compiling uart_choose.c...
-compiling wdg.c...
+compiling electromagnetic.c...
+compiling uart2.c...
+compiling uart4.c...
 compiling master_uart_control_interface.c...
 ..\HARDWARE\RS232_protocol\master_uart_control_interface.c(35): warning:  #177-D: variable "times" was declared but never referenced
   		int times =100;
@@ -167,54 +158,67 @@ compiling master_uart_control_interface.c...
 ..\HARDWARE\RS232_protocol\master_uart_control_interface.c(347): warning:  #177-D: variable "times" was declared but never referenced
   		u8 times =100;
 ..\HARDWARE\RS232_protocol\master_uart_control_interface.c: 15 warnings, 0 errors
-compiling uart_command_control_protocol.c...
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(214): warning:  #111-D: statement is unreachable
-  		return ret;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(164): warning:  #177-D: variable "myMaxSpeed" was declared but never referenced
-    uint32_t myMaxSpeed;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(165): warning:  #177-D: variable "myMinSpeed" was declared but never referenced
-    uint32_t myMinSpeed;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(166): warning:  #177-D: variable "myAcceleration" was declared but never referenced
-    uint16_t myAcceleration;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(167): warning:  #177-D: variable "myDeceleration" was declared but never referenced
-    uint16_t myDeceleration;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(168): warning:  #177-D: variable "readData" was declared but never referenced
-    uint32_t readData;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(219): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(221): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(222): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
-  		u8 RX_CMD_BUF[5];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(223): warning:  #177-D: variable "len" was declared but never referenced
-  		u8 len=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(230): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(232): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(233): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
-  		u8 RX_CMD_BUF[5];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(234): warning:  #177-D: variable "len" was declared but never referenced
-  		u8 len=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(241): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(242): warning:  #177-D: variable "types" was declared but never referenced
-  		Command_type_t types= MOVE_TYPE;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(243): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(252): warning:  #177-D: variable "ret" was declared but never referenced
-  		uint8_t ret=0;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(253): warning:  #177-D: variable "types" was declared but never referenced
-  		Command_type_t types= MOVE_TYPE;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(254): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(266): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
-  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(272): warning:  #177-D: variable "RX_PARA_BUF" was declared but never referenced
-  		u8 RX_PARA_BUF[100];
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(327): warning:  #550-D: variable "motorCommand" was set but never used
-  		Powerstep1_contorl_motor_command_t motorCommand;
-..\HARDWARE\RS232_protocol\uart_command_control_protocol.c: 23 warnings, 0 errors
+compiling wdg.c...
+compiling S1125.c...
+..\HARDWARE\S1125\S1125.c(111): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\S1125\S1125.c(113): warning:  #177-D: variable "i" was declared but never referenced
+  	int i=0;
+..\HARDWARE\S1125\S1125.c(233): warning:  #177-D: variable "ret" was declared but never referenced
+  	 uint8_t ret=0;
+..\HARDWARE\S1125\S1125.c(9): warning:  #177-D: variable "S1125_rx_buf" was declared but never referenced
+  static u8 S1125_rx_buf [30];
+..\HARDWARE\S1125\S1125.c: 4 warnings, 0 errors
+compiling execute.c...
+compiling fm100.c...
+..\HARDWARE\FM100\fm100.c(13): warning:  #177-D: variable "i" was declared but never referenced
+  	int i;
+..\HARDWARE\FM100\fm100.c(36): warning:  #177-D: variable "i" was declared but never referenced
+  	int i;
+..\HARDWARE\FM100\fm100.c(63): warning:  #177-D: variable "i" was declared but never referenced
+  		int i;
+..\HARDWARE\FM100\fm100.c(64): warning:  #177-D: variable "j" was declared but never referenced
+  		int j=0;
+..\HARDWARE\FM100\fm100.c(94): warning:  #177-D: variable "i" was declared but never referenced
+  		int i;
+..\HARDWARE\FM100\fm100.c(95): warning:  #177-D: variable "j" was declared but never referenced
+  		int j=0;
+..\HARDWARE\FM100\fm100.c(121): warning:  #177-D: variable "i" was declared but never referenced
+  		int i;
+..\HARDWARE\FM100\fm100.c(122): warning:  #177-D: variable "ret" was declared but never referenced
+  		int ret;
+..\HARDWARE\FM100\fm100.c(123): warning:  #177-D: variable "j" was declared but never referenced
+  		int j=0;
+..\HARDWARE\FM100\fm100.c(150): warning:  #177-D: variable "i" was declared but never referenced
+  		int i;
+..\HARDWARE\FM100\fm100.c(175): warning:  #177-D: variable "i" was declared but never referenced
+  		int i;
+..\HARDWARE\FM100\fm100.c(197): warning:  #177-D: variable "rx_buf" was declared but never referenced
+  	u8 rx_buf[128];
+..\HARDWARE\FM100\fm100.c(198): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\FM100\fm100.c(225): warning:  #177-D: variable "tmp_buf" was declared but never referenced
+  	u8 tmp_buf[]="!";
+..\HARDWARE\FM100\fm100.c(292): warning:  #177-D: variable "rx_buf" was declared but never referenced
+  	u8 rx_buf[128];
+..\HARDWARE\FM100\fm100.c(293): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\FM100\fm100.c(294): warning:  #177-D: variable "i" was declared but never referenced
+  	int i;
+..\HARDWARE\FM100\fm100.c(309): warning:  #177-D: variable "rx_buf" was declared but never referenced
+  	u8 rx_buf[128];
+..\HARDWARE\FM100\fm100.c(310): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\FM100\fm100.c(311): warning:  #177-D: variable "i" was declared but never referenced
+  	int i;
+..\HARDWARE\FM100\fm100.c(324): warning:  #177-D: variable "rx_buf" was declared but never referenced
+  	u8 rx_buf[128];
+..\HARDWARE\FM100\fm100.c(325): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\FM100\fm100.c(326): warning:  #177-D: variable "i" was declared but never referenced
+  	int i;
+..\HARDWARE\FM100\fm100.c: 23 warnings, 0 errors
+compiling time_interrupt.c...
 compiling slave_uart_control_interface.c...
 ..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(8): warning:  #550-D: variable "performer" was set but never used
   		move_type_t performer;
@@ -301,95 +305,108 @@ compiling slave_uart_control_interface.c...
 ..\HARDWARE\RS232_protocol\slave_uart_control_interface.c(790): warning:  #177-D: function "protocol_rfid_write_blank" was declared but never referenced
   static void  protocol_rfid_write_blank(rfid_write_blank_type_t* data)
 ..\HARDWARE\RS232_protocol\slave_uart_control_interface.c: 42 warnings, 0 errors
-compiling execute.c...
-compiling time_interrupt.c...
-compiling fm100.c...
-..\HARDWARE\FM100\fm100.c(13): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(36): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(63): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(64): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(94): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(95): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(121): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(122): warning:  #177-D: variable "ret" was declared but never referenced
-  		int ret;
-..\HARDWARE\FM100\fm100.c(123): warning:  #177-D: variable "j" was declared but never referenced
-  		int j=0;
-..\HARDWARE\FM100\fm100.c(150): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(175): warning:  #177-D: variable "i" was declared but never referenced
-  		int i;
-..\HARDWARE\FM100\fm100.c(197): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(198): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(225): warning:  #177-D: variable "tmp_buf" was declared but never referenced
-  	u8 tmp_buf[]="!";
-..\HARDWARE\FM100\fm100.c(292): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(293): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(294): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(309): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(310): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(311): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(324): warning:  #177-D: variable "rx_buf" was declared but never referenced
-  	u8 rx_buf[128];
-..\HARDWARE\FM100\fm100.c(325): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\FM100\fm100.c(326): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c(408): warning:  #177-D: variable "i" was declared but never referenced
-  	int i;
-..\HARDWARE\FM100\fm100.c: 24 warnings, 0 errors
+compiling uart_command_control_protocol.c...
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(214): warning:  #111-D: statement is unreachable
+  		return ret;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(164): warning:  #177-D: variable "myMaxSpeed" was declared but never referenced
+    uint32_t myMaxSpeed;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(165): warning:  #177-D: variable "myMinSpeed" was declared but never referenced
+    uint32_t myMinSpeed;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(166): warning:  #177-D: variable "myAcceleration" was declared but never referenced
+    uint16_t myAcceleration;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(167): warning:  #177-D: variable "myDeceleration" was declared but never referenced
+    uint16_t myDeceleration;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(168): warning:  #177-D: variable "readData" was declared but never referenced
+    uint32_t readData;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(219): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(221): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(222): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(223): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(230): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(232): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(233): warning:  #177-D: variable "RX_CMD_BUF" was declared but never referenced
+  		u8 RX_CMD_BUF[5];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(234): warning:  #177-D: variable "len" was declared but never referenced
+  		u8 len=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(241): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(242): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(243): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(252): warning:  #177-D: variable "ret" was declared but never referenced
+  		uint8_t ret=0;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(253): warning:  #177-D: variable "types" was declared but never referenced
+  		Command_type_t types= MOVE_TYPE;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(254): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(266): warning:  #177-D: variable "TX_CMD_BUF" was declared but never referenced
+  		u8 TX_CMD_BUF[5]={1,2,3,4,5};
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(272): warning:  #177-D: variable "RX_PARA_BUF" was declared but never referenced
+  		u8 RX_PARA_BUF[100];
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c(327): warning:  #550-D: variable "motorCommand" was set but never used
+  		Powerstep1_contorl_motor_command_t motorCommand;
+..\HARDWARE\RS232_protocol\uart_command_control_protocol.c: 23 warnings, 0 errors
 compiling liquid_sensor.c...
-compiling S1125.c...
-..\HARDWARE\S1125\S1125.c(111): warning:  #177-D: variable "len" was declared but never referenced
-  	int len=0;
-..\HARDWARE\S1125\S1125.c(113): warning:  #177-D: variable "i" was declared but never referenced
-  	int i=0;
-..\HARDWARE\S1125\S1125.c(233): warning:  #177-D: variable "ret" was declared but never referenced
-  	 uint8_t ret=0;
-..\HARDWARE\S1125\S1125.c(9): warning:  #177-D: variable "S1125_rx_buf" was declared but never referenced
-  static u8 S1125_rx_buf [30];
-..\HARDWARE\S1125\S1125.c: 4 warnings, 0 errors
+compiling osdep_stm32F103RB.c...
 compiling bl180.c...
 ..\HARDWARE\BL180\bl180.c(69): warning:  #177-D: variable "i" was declared but never referenced
   	int i=100;
-..\HARDWARE\BL180\bl180.c: 1 warning, 0 errors
-compiling m6e_apply.c...
-..\HARDWARE\RFID\M6E\m6e_apply.c(143): warning:  #177-D: variable "dataStr" was declared but never referenced
-  	char dataStr[128];
-..\HARDWARE\RFID\M6E\m6e_apply.c: 1 warning, 0 errors
-compiling osdep_stm32F103RB.c...
-compiling spi3.c...
+..\HARDWARE\BL180\bl180.c(235): warning:  #177-D: variable "i" was declared but never referenced
+  	int i= TimeOut_S*100;
+..\HARDWARE\BL180\bl180.c(237): warning:  #177-D: variable "rx_buf" was declared but never referenced
+  	u8 rx_buf[128];
+..\HARDWARE\BL180\bl180.c(238): warning:  #177-D: variable "len" was declared but never referenced
+  	int len=0;
+..\HARDWARE\BL180\bl180.c: 4 warnings, 0 errors
+compiling uart_config.c...
 compiling serial_transport_stm32F103RB.c...
 ..\HARDWARE\RFID\serial_transport_stm32F103RB.c(78): warning:  #177-D: variable "i" was declared but never referenced
   		int i=0;
 ..\HARDWARE\RFID\serial_transport_stm32F103RB.c: 1 warning, 0 errors
-compiling uart_config.c...
-compiling mini_board_protocol.c...
 compiling uart_rts_control.c...
 ..\HARDWARE\UART_RTS_CONTROL\uart_rts_control.c(74): warning:  #1-D: last line of file ends without a newline
   	
 ..\HARDWARE\UART_RTS_CONTROL\uart_rts_control.c: 1 warning, 0 errors
-compiling uart5.c...
-compiling pid.c...
+compiling m6e_apply.c...
+..\HARDWARE\RFID\M6E\m6e_apply.c(7): warning:  #177-D: variable "r" was declared but never referenced
+  static TMR_Reader r, *rp=NULL;
+..\HARDWARE\RFID\M6E\m6e_apply.c(7): warning:  #177-D: variable "rp" was declared but never referenced
+  static TMR_Reader r, *rp=NULL;
+..\HARDWARE\RFID\M6E\m6e_apply.c(8): warning:  #177-D: variable "plan" was declared but never referenced
+  static TMR_ReadPlan plan;
+..\HARDWARE\RFID\M6E\m6e_apply.c(9): warning:  #177-D: variable "trd" was declared but never referenced
+  static TMR_TagReadData trd;
+..\HARDWARE\RFID\M6E\m6e_apply.c(12): warning:  #550-D: variable "index_get" was set but never used
+  static uint8_t index_get=0;
+..\HARDWARE\RFID\M6E\m6e_apply.c(14): warning:  #177-D: variable "gantennaList" was declared but never referenced
+  static uint8_t *gantennaList=NULL;
+..\HARDWARE\RFID\M6E\m6e_apply.c(15): warning:  #177-D: variable "gantennaCount" was declared but never referenced
+  static uint8_t gantennaCount=0x0;
+..\HARDWARE\RFID\M6E\m6e_apply.c(16): warning:  #177-D: variable "gbuffer" was declared but never referenced
+  static uint8_t gbuffer[20];	
+..\HARDWARE\RFID\M6E\m6e_apply.c: 8 warnings, 0 errors
+compiling spi3.c...
 compiling export_liquid.c...
-compiling usmart.c...
-compiling rs232_change_protocol.c...
+compiling pid.c...
 compiling check_rs232.c...
+compiling rs232_change_protocol.c...
+compiling uart5.c...
+compiling mini_board_protocol.c...
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c(7): warning:  #177-D: variable "check" was declared but never referenced
+  	  check_bit_type_t check;
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c(8): warning:  #177-D: variable "temp_a" was declared but never referenced
+  	  int temp_a=0,temp_b=0;
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c(8): warning:  #177-D: variable "temp_b" was declared but never referenced
+  	  int temp_a=0,temp_b=0;
+..\HARDWARE\RS232_mini_board_protocol\mini_board_protocol.c: 3 warnings, 0 errors
+compiling real_time_polling.c...
 compiling drv8434.c...
 ..\HARDWARE\DRV8434\drv8434.c(408): warning:  #127-D: expected a statement
   					}
@@ -424,18 +441,18 @@ compiling drv8434.c...
 ..\HARDWARE\DRV8434\drv8434.c(376): warning:  #550-D: variable "DRV_MOTOR_WAIT_OK_TIM4" was set but never used
   static bool DRV_MOTOR_WAIT_OK_TIM4=false;
 ..\HARDWARE\DRV8434\drv8434.c: 16 warnings, 0 errors
-compiling real_time_polling.c...
+compiling usmart.c...
 linking...
-Program Size: Code=60678 RO-data=1258 RW-data=912 ZI-data=8512  
+Program Size: Code=29968 RO-data=860 RW-data=832 ZI-data=4752  
 FromELF: creating hex file...
-"..\OBJ\Sepax.axf" - 0 Error(s), 163 Warning(s).
+"..\OBJ\Sepax.axf" - 0 Error(s), 171 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\新电机调试\SepaxSharkStm32\USER\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:57
+Build Time Elapsed:  00:01:03
 </pre>
 </body>
 </html>

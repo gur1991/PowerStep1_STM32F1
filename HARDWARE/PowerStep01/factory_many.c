@@ -753,6 +753,50 @@ FACTORY_TYPE Normal_Move_Blank(void)
 
 
 
+
+
+
+
+FACTORY_TYPE Runing_Rest_Pecker_Motor(void)
+{
+	FACTORY_TYPE value=0;
+#if USE_CLEANING_DILUTION_BOARD			
+	value=First_Open_Motor_AutoCheck_Motor();
+#endif
+ return value;	
+}
+
+
+FACTORY_TYPE Runing_Rest_Camel_Motor(void)
+{
+	FACTORY_TYPE value=0;
+#if USE_AUTOMATIC_INJECTION_BOARD			
+
+	value|=March_high_wheel();
+	value|=Rest_high_wheel();
+
+#if (defined USE_DRV8434_CAMEL)
+	if(Light_Sensor_Get(M1_LIGHT)==0)
+		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
+#else	
+	if(Light_Sensor_Get(M1_LIGHT)==0)
+		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
+#endif
+	
+	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
+	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	if(ret)value|=M1_LIGHT_ERROR;
+
+#endif
+ return value;	
+}
+
+
+
+
+
+
+
 /***********************************************************/
 //time ms
 
@@ -812,6 +856,11 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 
 
 
+
+
+
+
+
 FACTORY_TYPE C55_C52_connect_check(void)
 {
 	FACTORY_TYPE value=0;
@@ -867,6 +916,9 @@ static char* _num2string_(uint8_t num)
         NUM2STR(LITTLE_IN_OUT_NORMAL);
         NUM2STR(BLANK_NEXT_MOTOR_HIGH);
         NUM2STR(BLANK_NEXT_MOTOR_NORMAL);
+				
+				NUM2STR(RUNNING_REST_CAMEL_MOTOR);
+        NUM2STR(RUNNING_REST_PECKER_MOTOR);
     default:
         return "UNKNOW COMMAND";
     }
@@ -1034,6 +1086,14 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command)
 				#endif	
 				break;		
 			
+		case RUNNING_REST_CAMEL_MOTOR:
+			value = Runing_Rest_Camel_Motor();
+			break;
+		case RUNNING_REST_PECKER_MOTOR:
+			value = Runing_Rest_Pecker_Motor();
+			break;
+				
+		
 			default:
 					break;
 		}	

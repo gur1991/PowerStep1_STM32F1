@@ -246,6 +246,9 @@ typedef enum Command_Package_type{
 			
 			BLANK_NEXT_MOTOR_HIGH,
 			BLANK_NEXT_MOTOR_NORMAL,
+			
+			RUNNING_REST_CAMEL_MOTOR,
+			RUNNING_REST_PECKER_MOTOR,
 
 }Command_Package_t;
 
