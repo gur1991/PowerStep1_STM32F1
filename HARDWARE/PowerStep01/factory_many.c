@@ -341,10 +341,10 @@ FACTORY_TYPE Rest_Sample_Motor_Orgin(void)
 		uint8_t ret=0;
 	
 	ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 600*1000);
-	if(ret)value|=M10_LIGHT_ERROR;
+	if(ret)return M10_LIGHT_ERROR;
 	
 	ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 15*1000);	
-	if(ret)value|=M11_LIGHT_ERROR;
+	if(ret)return M11_LIGHT_ERROR;
 	
 #endif
 	  return value;
@@ -360,10 +360,10 @@ FACTORY_TYPE Rest_Drain_And_Wash_Motor_Orgin(void)
 	test_actuator(CHEMINERT_C55_CC4);
 	
 	ret=RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 600*1000);
-	if(ret)value|=M8_LIGHT_ERROR;
+	if(ret)return M8_LIGHT_ERROR;
 	
 	ret=RestSelectMotorOrgin(M9_IN_OUT,M9_LIGHT,M9_OUT, 600*1000);
-	if(ret)value|=M9_LIGHT_ERROR;
+	if(ret)return M9_LIGHT_ERROR;
 	
 #endif	
 	return value;
@@ -408,13 +408,13 @@ FACTORY_TYPE Rest_Transporter_Belt(void)
 	uint8_t ret=0;
 	
 	ret=RestSelectMotorOrginSelect(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 20*1000,NORMAL_SPEED);
-	if(ret)value|=M4_LIGHT_ERROR;
+	if(ret)return M4_LIGHT_ERROR;
 	
 	ret=RestSelectMotorOrginSelect(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 40*1000,NORMAL_SPEED);
-	if(ret)value|=M3_LIGHT_ERROR;
+	if(ret)return M3_LIGHT_ERROR;
 	
 	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	if(ret)value|=M1_LIGHT_ERROR;
+	if(ret)return M1_LIGHT_ERROR;
 	
 #endif
 	return value;
@@ -429,28 +429,28 @@ FACTORY_TYPE March_Transporter_Belt(void)
 
 	if(Light_Sensor_Get(M4_LIGHT)==0)
 			DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 8000);
+	if(Light_Sensor_Get(M4_LIGHT)==0)return M4_LIGHT_ERROR;
 	
 	if(Light_Sensor_Get(M3_LIGHT)==0)
 			DRV8434_Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
+	if(Light_Sensor_Get(M3_LIGHT)==0)return M3_LIGHT_ERROR;
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
-	
+	if(Light_Sensor_Get(M1_LIGHT)==0)return M1_LIGHT_ERROR;
 #else	
 	if(Light_Sensor_Get(M4_LIGHT)==0)
 			Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 8000);
+	if(Light_Sensor_Get(M4_LIGHT)==0)return M4_LIGHT_ERROR;
 	
 	if(Light_Sensor_Get(M3_LIGHT)==0)
 			Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
+	if(Light_Sensor_Get(M3_LIGHT)==0)return M3_LIGHT_ERROR;
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
-
+	if(Light_Sensor_Get(M1_LIGHT)==0)return M1_LIGHT_ERROR;
 #endif
-	
-	if(Light_Sensor_Get(M4_LIGHT)==0)value|=M4_LIGHT_ERROR;
-	if(Light_Sensor_Get(M3_LIGHT)==0)value|=M3_LIGHT_ERROR;
-	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
 	
 #endif
 		return value;
@@ -462,7 +462,7 @@ FACTORY_TYPE Rest_high_wheel(void)
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
 	uint8_t ret=RestSelectMotorOrgin(M7_HIGH_TURN,M7_LIGHT,M7_BACK_TURN, 8000);
-	if(ret)value|=M7_LIGHT_ERROR;
+	if(ret)return M7_LIGHT_ERROR;
 #endif
 	return value;
 }
@@ -480,7 +480,7 @@ FACTORY_TYPE March_high_wheel(void)
 #endif	
 	
 	
-	if(Light_Sensor_Get(M7_LIGHT)==0)value|=M7_LIGHT_ERROR;
+	if(Light_Sensor_Get(M7_LIGHT)==0)return M7_LIGHT_ERROR;
 	
 #endif
 	return value;
@@ -499,14 +499,15 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 	if(!Light_Sensor_Get(M11_LIGHT)&&!Light_Sensor_Get(M10_LIGHT))
 	{
 			DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 3000);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)return M11_LIGHT_ERROR;
 		
 			DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			if(ret)value|=M10_LIGHT_ERROR;
-			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-			if(ret)value|=M11_LIGHT_ERROR;
+			if(ret)return M10_LIGHT_ERROR;
+		  ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)return M11_LIGHT_ERROR;
 		
 	}else	if(!Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
@@ -514,62 +515,65 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 		  DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			if(ret)value|=M10_LIGHT_ERROR;
+			if(ret)return M10_LIGHT_ERROR;
+		
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-			if(ret)value|=M11_LIGHT_ERROR;
+			if(ret)return M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&!Light_Sensor_Get(M11_LIGHT))
 	{
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-		  if(ret)value|=M10_LIGHT_ERROR;
+		  if(ret)return M10_LIGHT_ERROR;
 		  DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		  if(ret)value|=M11_LIGHT_ERROR;
+		  if(ret)return M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
 		  ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			if(ret)value|=M10_LIGHT_ERROR;
+			if(ret)return M10_LIGHT_ERROR;
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		  if(ret)value|=M11_LIGHT_ERROR;
+		  if(ret)return M11_LIGHT_ERROR;
 	}
 #else	
 	if(!Light_Sensor_Get(M11_LIGHT)&&!Light_Sensor_Get(M10_LIGHT))
 	{
 			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 3000);
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)return M11_LIGHT_ERROR;
 		
 			Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 			
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			if(ret)value|=M10_LIGHT_ERROR;
+			if(ret)return M10_LIGHT_ERROR;
 		
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-			if(ret)value|=M11_LIGHT_ERROR;
+			if(ret)return M11_LIGHT_ERROR;
 	}else	if(!Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
-			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		
+			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+			if(ret)return M11_LIGHT_ERROR;
+		  
 		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
 		
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-			if(ret)value|=M10_LIGHT_ERROR;
+			if(ret)return M10_LIGHT_ERROR;
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-			if(ret)value|=M11_LIGHT_ERROR;
+			if(ret)return M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&!Light_Sensor_Get(M11_LIGHT))
 	{
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-		  if(ret)value|=M10_LIGHT_ERROR;
-			
+		  if(ret)return M10_LIGHT_ERROR;
+		
 		  Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		  if(ret)value|=M11_LIGHT_ERROR;
+		  if(ret)return M11_LIGHT_ERROR;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
 		  ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
-		  if(ret)value|=M10_LIGHT_ERROR;
-			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		  if(ret)value|=M11_LIGHT_ERROR; 
+		  if(ret)return M10_LIGHT_ERROR;		
+		  ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
+		  if(ret)return M11_LIGHT_ERROR; 
 	}
 	
 #endif
@@ -583,17 +587,17 @@ FACTORY_TYPE Get_Board_Idle_Light_State(void)
 	FACTORY_TYPE value=0;
 	
 #if USE_AUTOMATIC_INJECTION_BOARD
-	if(Light_Sensor_Get(BLANK_LIGHT)==0)value|=BLANK_LIGHT_ERROR;
-	if(Light_Sensor_Get(LEFT_LIGHT)==0)value|=LEFT_LIGHT_ERROR;
-	if(Light_Sensor_Get(WAIT_LIGHT)==0)value|=WAIT_LIGHT_ERROR;
-	if(Light_Sensor_Get(NEXT_LIGHT)==0)value|=NEXT_LIGHT_ERROR;
+	if(Light_Sensor_Get(BLANK_LIGHT)==0)return BLANK_LIGHT_ERROR;
+	else if(Light_Sensor_Get(LEFT_LIGHT)==0)return LEFT_LIGHT_ERROR;
+	else if(Light_Sensor_Get(WAIT_LIGHT)==0)return WAIT_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NEXT_LIGHT)==0)return NEXT_LIGHT_ERROR;
 	
-	if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT)==0)value|=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
-	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)value|=NORMAL_NEXT_LIGHT_ERROR;
-	if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)value|=NORMAL_CHECK_MIX_LIGHT_ERROR;
-	if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)value|=HIGH_CHECK_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT)==0)return NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)return NORMAL_NEXT_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)return NORMAL_CHECK_MIX_LIGHT_ERROR;
+	else if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)return HIGH_CHECK_LIGHT_ERROR;
 	
-	if(Light_Sensor_Get(M1_LIGHT_WORK)==0)value|=M1_LIGHT_WORK_ERROR;
+	else if(Light_Sensor_Get(M1_LIGHT_WORK)==0)return M1_LIGHT_WORK_ERROR;
 #endif	
 	return value;
 }
@@ -602,10 +606,14 @@ FACTORY_TYPE First_Open_Motor_AutoCheck_Sensor(void)
 {
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
-	value|=March_Transporter_Belt();		
+	value|=March_Transporter_Belt();
+  if(value)return value;	
 	value|=Rest_Transporter_Belt();
+	if(value)return value;
 	value|=March_high_wheel();
+	if(value)return value;
 	value|=Rest_high_wheel();
+	if(value)return value;
 	value|=Get_Board_Idle_Light_State();//»ñÈ¡ÆäËû¾Å¸ö¼ì²âµÆµÄ×´Ì¬
 #endif 
 	return value;
@@ -616,7 +624,9 @@ FACTORY_TYPE First_Open_Motor_AutoCheck_Motor(void)
 	FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD		
 	value|=RestFarAndDownMotorOrgin();	
+	if(value)return value;
 	value|=March_Drain_And_Wash_Motor_Orgin();
+	if(value)return value;
 	value|=Rest_Drain_And_Wash_Motor_Orgin();
 #endif
 	return value;
@@ -656,8 +666,8 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //»ìÔÈ
 	}
 	
 	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	if(ret)value|=M1_LIGHT_ERROR;
-		
+	if(ret)return M1_LIGHT_ERROR;
+	
 #else	
 	Choose_Single_Motor_Speed_Config(M2_MIX,NORMAL_SPEED);
 	PowerStep_Select_Motor_Baby(M2_MIX);	
@@ -670,7 +680,7 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //»ìÔÈ
 	}
 	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000,LOW_SPEED);//----up and mix		
 	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	if(ret)value|=M1_LIGHT_ERROR;
+	if(ret)return M1_LIGHT_ERROR;
 	
 	PowerStep_Select_Motor_Baby(M2_MIX);//----up and mix		
 	BSP_MotorControl_HardStop(0);//----up and mix		
@@ -685,7 +695,7 @@ FACTORY_TYPE Mix_Work_Goto_Postion(void)
 #if USE_AUTOMATIC_INJECTION_BOARD		
 	
 	uint8_t ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
-	if(ret)value|=M1_LIGHT_WORK_ERROR;
+	if(ret)return M1_LIGHT_WORK_ERROR;
 	
 #endif
 	return value;
@@ -711,7 +721,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next_The_Last_Two(void)
 		uint8_t ret=0;
 	
 	 ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon_Last_Two);
-	if(ret)value=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	if(ret)return NORMAL_CHECK_DRAIN_LIGHT_ERROR;
 #endif
 		return value;
 }
@@ -724,7 +734,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next(void)
 #if USE_AUTOMATIC_INJECTION_BOARD
 	uint8_t ret=0;
 	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon);
-	if(ret)value=NORMAL_NEXT_LIGHT_ERROR;
+	if(ret)return NORMAL_NEXT_LIGHT_ERROR;
 #endif
 	return value;
 }
@@ -734,7 +744,7 @@ FACTORY_TYPE Normal_Goto_First_Position(void)
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
 	uint8_t ret=RestSelectMotorOrginDelay(M4_BLANK_NEXT,NORMAL_NEXT_LIGHT,M4_NEXT_TO_BLANK, 32000,delayMs_Normal_Positon);
-	if(ret)value|=NORMAL_NEXT_LIGHT_ERROR;
+	if(ret)return NORMAL_NEXT_LIGHT_ERROR;
 #endif
  return value;	
 }
@@ -746,7 +756,7 @@ FACTORY_TYPE Normal_Move_Blank(void)
 	FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
 	uint8_t ret=Normal_Pitch_Move_Next_The_Last_Two();
-	if(ret)value|=NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	if(ret)return NORMAL_CHECK_DRAIN_LIGHT_ERROR;
 #endif	
 	return value;
 }	
@@ -773,8 +783,9 @@ FACTORY_TYPE Runing_Rest_Camel_Motor(void)
 #if USE_AUTOMATIC_INJECTION_BOARD			
 
 	value|=March_high_wheel();
+	if(value)return value;
 	value|=Rest_high_wheel();
-
+	if(value)return value;
 #if (defined USE_DRV8434_CAMEL)
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
@@ -783,9 +794,10 @@ FACTORY_TYPE Runing_Rest_Camel_Motor(void)
 		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 #endif
 	
-	if(Light_Sensor_Get(M1_LIGHT)==0)value|=M1_LIGHT_ERROR;
+	if(Light_Sensor_Get(M1_LIGHT)==0)return M1_LIGHT_ERROR;
+	
 	uint8_t ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	if(ret)value|=M1_LIGHT_ERROR;
+	if(ret)return M1_LIGHT_ERROR;
 
 #endif
  return value;	
@@ -805,12 +817,13 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 #if USE_CLEANING_DILUTION_BOARD		
 			int i=0;
 			int flag1=0,flag2=0;
-	
+			uint8_t ret=0;
 #if (defined USE_DRV8434_PECKER)		
 			
 			DRV8434_Motor_Move_Steps_Disable_Acc(M8_BIG_IN_OUT, M8_BIG_OUT, big_Steps);
 			delay_ms(time);
-			RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT, M10_UP,up_Steps);	
+			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT, M10_UP,up_Steps);	
+			//if(ret)return M10_LIGHT_ERROR;
 			DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
 	
 #else	
@@ -865,8 +878,11 @@ FACTORY_TYPE C55_C52_connect_check(void)
 {
 	FACTORY_TYPE value=0;
 	
-	if(C52_connect_check())value|=C52_CONNECT_ERROR;
-	if(C55_connect_check())value|=C55_CONNECT_ERROR;
+	if(C52_connect_check())
+	{
+		return C52_CONNECT_ERROR;
+	}
+	if(C55_connect_check())return C55_CONNECT_ERROR;
 	
 	//LOGD("C55 C52 0x%x \r\n",ret);
 	
@@ -946,11 +962,13 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command)
 				  break;
 			case REST_SENSOR_BOARD_MOTOR:
 					value=Rest_Transporter_Belt();
+					if(value)return value;
 					value|=Rest_high_wheel();
 				break;
 			case REST_MOTOR_BOARD_MOTOR:
 					value=Rest_Sample_Motor_Orgin();
-					value|=Rest_Drain_And_Wash_Motor_Orgin();
+					if(value)return value;
+			    value|=Rest_Drain_And_Wash_Motor_Orgin();
 				break;	
 			
 			
