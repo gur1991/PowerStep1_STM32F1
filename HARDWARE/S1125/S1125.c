@@ -34,13 +34,25 @@ void config_s1125_pump(void)
 int transfer_s1125(void)
 {
 	int len=0;
+	int temp_a=0,temp_b=0;
+	int i=150;
 #if USE_GRADIENT_CONTROL_BOARD
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
 	uart_rts_control(PUMP_UART_CS, 1);
 	
 	S1125_Write((u8*)&pump,sizeof(S1125_protocl_type));
-	delay_ms(150);
+	//delay_ms(150);
+	while(i--)
+	{
+		temp_a=USART2_RX_CNT;
+		delay_ms(1);
+		temp_b=USART2_RX_CNT;
+		if(temp_b!=0 && temp_b==temp_a)
+		{
+			break;
+		}	
+	}	
 	S1125_Read(S1125_rx_buf,&len);
 	
 	uart_rts_control(PUMP_UART_CS, 0);
@@ -60,10 +72,14 @@ uint8_t Run_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 
+	if(0==len)return 1;
+	
 	memcpy(pump.address,"012C", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
+	if(0==len)return 1;
+	else return 0;
 #endif
 	
 	return 0;
@@ -79,6 +95,8 @@ uint8_t Stop_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
+	if(0==len)return 1;
+	else return 0;
 #endif
 	
 	return 0;
@@ -94,9 +112,8 @@ uint8_t Connect_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
-	if(S1125_rx_buf[7]=='6')
-		return 0;
-	else return 1;
+	if(0==len)return 1;
+	else return 0;
 #endif
 
 	return 0;
@@ -120,7 +137,7 @@ int Read_Press_S1125_Pump(void)
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 	
-	if(len<12)return 0;	
+	if(len<12)return -1;	
 
 	for(i=7;i<11;i++)
 	{		
@@ -159,6 +176,9 @@ uint8_t Write_FlowSpeed_s1125_pump(int SpeedFlow)
 	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
 
+	if(0==len)return 1;
+	else return 0;
+	
 #endif	
 	return 0;
 }	
@@ -189,7 +209,9 @@ uint8_t Write_MinPress_s1125_pump(int MinPress)
 	memcpy(pump.address,"00C9", 4);
 	memcpy(pump.value,"0000", 4);
 	len=transfer_s1125();
-
+	
+	if(0==len)return 1;
+	else return 0;
 #endif
 	
 	return 0;
@@ -222,7 +244,9 @@ uint8_t Write_MaxPress_s1125_pump(int MaxPress)
 	memcpy(pump.address,"00CA", 4);
 	memcpy(pump.value,pump.value, 4);
 	len=transfer_s1125();
-
+	
+	if(0==len)return 1;
+	else return 0;
 #endif
 	
 	return 0;
@@ -234,6 +258,7 @@ uint8_t Write_Press_s1125_pump(int MinPress, int MaxPress)
 	
 #if USE_GRADIENT_CONTROL_BOARD				
 	ret=Write_MaxPress_s1125_pump(MaxPress);	
+	if(ret)return ret;
 	ret=Write_MinPress_s1125_pump(MinPress);
 #endif
 	return 0;

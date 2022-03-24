@@ -15,10 +15,13 @@ typedef struct{
 	  uint32_t weightFour;
 	  uint8_t liquid;
 	  uint8_t status;
+	  
+	  uint8_t degreeConnect;
 }real_time_polling_type_t;
 
 typedef struct{ 
 	  uint32_t pumpPress;
+	  uint8_t pumpConnect;
 }real_time_polling_press_type_t;
 
 

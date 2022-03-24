@@ -587,6 +587,16 @@ FACTORY_TYPE Get_Board_Idle_Light_State(void)
 	FACTORY_TYPE value=0;
 	
 #if USE_AUTOMATIC_INJECTION_BOARD
+	
+  if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT)==0)return NORMAL_CHECK_DRAIN_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)return NORMAL_NEXT_LIGHT_ERROR;
+	else if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)return NORMAL_CHECK_MIX_LIGHT_ERROR;
+	else if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)return HIGH_CHECK_LIGHT_ERROR;
+	
+	else if(Light_Sensor_Get(M1_LIGHT_WORK)==0)return M1_LIGHT_WORK_ERROR;
+	
+	
+/*	
 	if(Light_Sensor_Get(BLANK_LIGHT)==0)return BLANK_LIGHT_ERROR;
 	else if(Light_Sensor_Get(LEFT_LIGHT)==0)return LEFT_LIGHT_ERROR;
 	else if(Light_Sensor_Get(WAIT_LIGHT)==0)return WAIT_LIGHT_ERROR;
@@ -598,6 +608,7 @@ FACTORY_TYPE Get_Board_Idle_Light_State(void)
 	else if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)return HIGH_CHECK_LIGHT_ERROR;
 	
 	else if(Light_Sensor_Get(M1_LIGHT_WORK)==0)return M1_LIGHT_WORK_ERROR;
+*/
 #endif	
 	return value;
 }

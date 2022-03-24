@@ -36,6 +36,9 @@ void  Real_Time_Polling_Current_Index(void)
 				{ 
 					POLLING_data.degree=degree;
 				}
+				POLLING_data.degreeConnect=0;
+		}else{
+				POLLING_data.degreeConnect=1;
 		}
 		
 	  POLLING_data.liquid=Liquid_Sensor_Get();
@@ -69,6 +72,11 @@ void  Real_Time_Polling_Current_Index(void)
 	
 #if USE_GRADIENT_CONTROL_BOARD
 		POLLING_press.pumpPress=PumpHandle->readPress();
+		
+		if(POLLING_press.pumpPress<0)
+			 POLLING_press.pumpConnect=1;
+		else
+			 POLLING_press.pumpConnect=0;
 #endif	
 }	
 

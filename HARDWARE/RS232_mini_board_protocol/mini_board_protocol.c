@@ -7,7 +7,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 	  check_bit_type_t check;
 	  int temp_a=0,temp_b=0;
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		int times =800;
+		int times =100;
 	  check=caculate_tansfer_check_bit(*master);
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
@@ -31,6 +31,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 						LOGE("rx len is error \r\n");
 						UART5_RX_CNT=0;
 						ret=1;
+						break;
 					}
 					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))
 					{
@@ -40,7 +41,7 @@ uint8_t Master_Mini_Board_Transfer_Interface(Powerstep1_contorl_motor_command_t*
 					}	
 			}
 
-			times--;
+			//times--;
 			if(times ==0)
 			{
 					ret=1;

@@ -1760,11 +1760,11 @@ int pump_process_cmd(pump_type_t pump)
 	switch(pump.request.type)
 	{
 		case RUN_PUMP:
-			PumpHandle->run();
+			value=PumpHandle->run();
 			break;
 	
 		case STOP_PUMP:
-			PumpHandle->stop();
+			value=PumpHandle->stop();
 			break;
 		
 		case READ_PRESS:
@@ -1772,19 +1772,19 @@ int pump_process_cmd(pump_type_t pump)
 			break;
 		
 		case WRITE_MAX_PRESS:
-			PumpHandle->setMaxPress(pump.request.para);
+			value=PumpHandle->setMaxPress(pump.request.para);
 			break;
 		
 		case WRITE_MIN_PRESS:
-			PumpHandle->setMinPress(pump.request.para);
+			value=PumpHandle->setMinPress(pump.request.para);
 			break;
 		
 		case WRITE_FLOW_SPEED:
-			PumpHandle->setFlowSpeed(pump.request.para);
+			value=PumpHandle->setFlowSpeed(pump.request.para);
 			break;
 		
 		case WRITE_PRESS:
-			PumpHandle->setPress(pump.request.para,pump.request.para_nor);
+			value=PumpHandle->setPress(pump.request.para,pump.request.para_nor);
 			break;
 		case CONNECT_TEST:
 			value=PumpHandle->connect();
