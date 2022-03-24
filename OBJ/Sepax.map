@@ -5005,168 +5005,168 @@ Image Symbol Table
     i.Uart_cs_init                           0x0800b5f4   Section        0  uart_choose.o(i.Uart_cs_init)
     i.UsageFault_Handler                     0x0800b634   Section        0  stm32f1xx_it.o(i.UsageFault_Handler)
     i.Weight_Sensor_Init                     0x0800b638   Section        0  weight.o(i.Weight_Sensor_Init)
-    i.__0printf$8                            0x0800b684   Section        0  printf8.o(i.__0printf$8)
-    i.__0sprintf$8                           0x0800b6a4   Section        0  printf8.o(i.__0sprintf$8)
-    i.__DRV8434_Motor_Caculate_Next_Acc_Speed__ 0x0800b6cc   Section        0  drv8434.o(i.__DRV8434_Motor_Caculate_Next_Acc_Speed__)
-    i.__InfoBoard__                          0x0800b988   Section        0  slave_uart_control_interface.o(i.__InfoBoard__)
-    i.__Light_Sensor_Get__                   0x0800b9c4   Section        0  light.o(i.__Light_Sensor_Get__)
-    i.__Normal_Pitch_Move_Next__             0x0800ba5c   Section        0  step01.o(i.__Normal_Pitch_Move_Next__)
-    i.__ack_error_msg__                      0x0800bb38   Section        0  main.o(i.__ack_error_msg__)
-    i.__malloc$realloc                       0x0800bb98   Section        0  mallocr.o(i.__malloc$realloc)
-    i.__scatterload_copy                     0x0800bbe8   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800bbf6   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0800bbf8   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._commandTOstring_                      0x0800bc08   Section        0  slave_uart_control_interface.o(i._commandTOstring_)
-    _commandTOstring_                        0x0800bc09   Thumb Code  1360  slave_uart_control_interface.o(i._commandTOstring_)
-    i._num2string_                           0x0800c290   Section        0  factory_many.o(i._num2string_)
-    _num2string_                             0x0800c291   Thumb Code   192  factory_many.o(i._num2string_)
-    i._printf_core                           0x0800c654   Section        0  printf8.o(i._printf_core)
-    _printf_core                             0x0800c655   Thumb Code   996  printf8.o(i._printf_core)
-    i._printf_post_padding                   0x0800ca64   Section        0  printf8.o(i._printf_post_padding)
-    _printf_post_padding                     0x0800ca65   Thumb Code    36  printf8.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x0800ca88   Section        0  printf8.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x0800ca89   Thumb Code    46  printf8.o(i._printf_pre_padding)
-    i._sputc                                 0x0800cab6   Section        0  printf8.o(i._sputc)
-    _sputc                                   0x0800cab7   Thumb Code    10  printf8.o(i._sputc)
-    i.autoDetectAntennaList                  0x0800cac0   Section        0  serial_reader.o(i.autoDetectAntennaList)
-    autoDetectAntennaList                    0x0800cac1   Thumb Code   146  serial_reader.o(i.autoDetectAntennaList)
-    i.caculate_tansfer_check_bit             0x0800cb58   Section        0  check_rs232.o(i.caculate_tansfer_check_bit)
-    i.checkForAvailableFeatures              0x0800cbb8   Section        0  tm_reader.o(i.checkForAvailableFeatures)
-    i.cheminert_c52_c55_transfer             0x0800cbfc   Section        0  cheminert_c52.o(i.cheminert_c52_c55_transfer)
-    i.compareAntennas                        0x0800cd98   Section        0  serial_reader.o(i.compareAntennas)
-    i.compareVersion                         0x0800ce10   Section        0  serial_reader.o(i.compareVersion)
-    i.delay_init                             0x0800ce4c   Section        0  delay.o(i.delay_init)
-    i.delay_ms                               0x0800ce60   Section        0  delay.o(i.delay_ms)
-    i.delay_us                               0x0800ce7c   Section        0  delay.o(i.delay_us)
-    i.electromagnetic_control                0x0800ceb0   Section        0  electromagnetic.o(i.electromagnetic_control)
-    i.electromagnetic_control_package        0x0800ceb2   Section        0  electromagnetic.o(i.electromagnetic_control_package)
-    i.export_liquid_control                  0x0800ceb4   Section        0  export_liquid.o(i.export_liquid_control)
-    i.extractGen2MemoryBankValues            0x0800cec8   Section        0  serial_reader_l3.o(i.extractGen2MemoryBankValues)
-    i.filterbytes                            0x0800cf6c   Section        0  serial_reader_l3.o(i.filterbytes)
-    filterbytes                              0x0800cf6d   Thumb Code   678  serial_reader_l3.o(i.filterbytes)
-    i.fputc                                  0x0800d21c   Section        0  usart.o(i.fputc)
-    i.getPortValues                          0x0800d234   Section        0  serial_reader.o(i.getPortValues)
-    getPortValues                            0x0800d235   Thumb Code   166  serial_reader.o(i.getPortValues)
-    i.getSerialNumber                        0x0800d2dc   Section        0  serial_reader.o(i.getSerialNumber)
-    getSerialNumber                          0x0800d2dd   Thumb Code   114  serial_reader.o(i.getSerialNumber)
-    i.get_weight_sensor_value                0x0800d354   Section        0  weight.o(i.get_weight_sensor_value)
-    i.initTxRxMapFromPorts                   0x0800d37c   Section        0  serial_reader.o(i.initTxRxMapFromPorts)
-    initTxRxMapFromPorts                     0x0800d37d   Thumb Code   454  serial_reader.o(i.initTxRxMapFromPorts)
-    i.init_mix_motor_config                  0x0800d548   Section        0  step01.o(i.init_mix_motor_config)
-    i.init_motor_device                      0x0800d568   Section        0  step01.o(i.init_motor_device)
-    i.internal_alloc                         0x0800d5c8   Section        0  mallocr.o(i.internal_alloc)
-    internal_alloc                           0x0800d5c9   Thumb Code    76  mallocr.o(i.internal_alloc)
-    i.isAntDetectEnabled                     0x0800d618   Section        0  tm_reader.o(i.isAntDetectEnabled)
-    i.isContinuousReadParamSupported         0x0800d6c0   Section        0  serial_reader_l3.o(i.isContinuousReadParamSupported)
-    i.isMultiSelectSupported                 0x0800d77a   Section        0  tm_reader.o(i.isMultiSelectSupported)
-    i.l647x_GetMotorHandle                   0x0800d7ee   Section        0  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
-    i.l648x_GetMotorHandle                   0x0800d7f2   Section        0  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
-    i.main                                   0x0800d7f8   Section        0  main.o(i.main)
-    i.prepEmbReadTagMultiple                 0x0800d90c   Section        0  serial_reader.o(i.prepEmbReadTagMultiple)
-    prepEmbReadTagMultiple                   0x0800d90d   Thumb Code    56  serial_reader.o(i.prepEmbReadTagMultiple)
-    i.prepForSearch                          0x0800d944   Section        0  serial_reader.o(i.prepForSearch)
-    i.process_motor_command_receive          0x0800d9b4   Section        0  factory_many.o(i.process_motor_command_receive)
-    i.protocol_cheminert_c52_c55             0x0800dae8   Section        0  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
-    protocol_cheminert_c52_c55               0x0800dae9   Thumb Code   872  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
-    i.protocol_gravity_sensor_getting        0x0800df98   Section        0  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
-    protocol_gravity_sensor_getting          0x0800df99   Thumb Code    42  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
-    i.protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc4   Section        0  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
-    i.protocol_pump_s100_interface           0x0800e480   Section        0  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
-    protocol_pump_s100_interface             0x0800e481   Thumb Code   248  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
-    i.protocol_rfid_get_epc_string           0x0800e5dc   Section        0  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
-    protocol_rfid_get_epc_string             0x0800e5dd   Thumb Code    50  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
-    i.protocol_scan_barcode                  0x0800e610   Section        0  slave_uart_control_interface.o(i.protocol_scan_barcode)
-    protocol_scan_barcode                    0x0800e611   Thumb Code    34  slave_uart_control_interface.o(i.protocol_scan_barcode)
-    i.pump_s100_transfer                     0x0800e638   Section        0  pump_s100.o(i.pump_s100_transfer)
-    i.s_flush                                0x0800e7dc   Section        0  serial_transport_stm32f103rb.o(i.s_flush)
-    s_flush                                  0x0800e7dd   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_flush)
-    i.s_open                                 0x0800e7e0   Section        0  serial_transport_stm32f103rb.o(i.s_open)
-    s_open                                   0x0800e7e1   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_open)
-    i.s_receiveBytes                         0x0800e7e4   Section        0  serial_transport_stm32f103rb.o(i.s_receiveBytes)
-    s_receiveBytes                           0x0800e7e5   Thumb Code   154  serial_transport_stm32f103rb.o(i.s_receiveBytes)
-    i.s_sendBytes                            0x0800e88c   Section        0  serial_transport_stm32f103rb.o(i.s_sendBytes)
-    s_sendBytes                              0x0800e88d   Thumb Code    24  serial_transport_stm32f103rb.o(i.s_sendBytes)
-    i.s_setBaudRate                          0x0800e8a8   Section        0  serial_transport_stm32f103rb.o(i.s_setBaudRate)
-    s_setBaudRate                            0x0800e8a9   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_setBaudRate)
-    i.s_shutdown                             0x0800e8ac   Section        0  serial_transport_stm32f103rb.o(i.s_shutdown)
-    s_shutdown                               0x0800e8ad   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_shutdown)
-    i.setAntennaList                         0x0800e8b0   Section        0  serial_reader.o(i.setAntennaList)
-    setAntennaList                           0x0800e8b1   Thumb Code   124  serial_reader.o(i.setAntennaList)
-    i.setAntennaReadTimeHelper               0x0800e930   Section        0  serial_reader.o(i.setAntennaReadTimeHelper)
-    i.setAntennaReadTimeList                 0x0800ea2c   Section        0  serial_reader.o(i.setAntennaReadTimeList)
-    i.setPortValues                          0x0800ea78   Section        0  serial_reader.o(i.setPortValues)
-    setPortValues                            0x0800ea79   Thumb Code   234  serial_reader.o(i.setPortValues)
-    i.setProtocol                            0x0800eb68   Section        0  serial_reader.o(i.setProtocol)
-    setProtocol                              0x0800eb69   Thumb Code   106  serial_reader.o(i.setProtocol)
-    i.set_DelayMs_Normal_Positon             0x0800ebd4   Section        0  factory_many.o(i.set_DelayMs_Normal_Positon)
-    i.set_mix_motor_config                   0x0800ebe0   Section        0  step01.o(i.set_mix_motor_config)
-    i.tm_crc                                 0x0800ebec   Section        0  serial_reader_l3.o(i.tm_crc)
-    tm_crc                                   0x0800ebed   Thumb Code    54  serial_reader_l3.o(i.tm_crc)
-    i.tm_gettime_consistent                  0x0800ec28   Section        0  tmr_utils.o(i.tm_gettime_consistent)
-    i.tm_memcpy                              0x0800ec4e   Section        0  tmr_utils.o(i.tm_memcpy)
-    i.tm_strcpy                              0x0800ec64   Section        0  tmr_utils.o(i.tm_strcpy)
-    i.tm_time_subtract                       0x0800ec74   Section        0  tmr_utils.o(i.tm_time_subtract)
-    i.tm_u8s_per_bits                        0x0800ec82   Section        0  tmr_utils.o(i.tm_u8s_per_bits)
-    i.tmr_gettime                            0x0800ec94   Section        0  osdep_stm32f103rb.o(i.tmr_gettime)
-    i.tmr_gettime_high                       0x0800ecb8   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_high)
-    i.tmr_gettime_low                        0x0800ecc2   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_low)
-    i.tmr_sleep                              0x0800eccc   Section        0  osdep_stm32f103rb.o(i.tmr_sleep)
-    i.uart_init                              0x0800ecec   Section        0  usart.o(i.uart_init)
-    i.validateParams                         0x0800ed10   Section        0  serial_reader.o(i.validateParams)
-    i.validateReadPlan                       0x0800ed7c   Section        0  tm_reader.o(i.validateReadPlan)
-    i.verifySearchStatus                     0x0800ee1c   Section        0  serial_reader.o(i.verifySearchStatus)
-    i.versionCompare                         0x0800eea4   Section        0  tm_reader.o(i.versionCompare)
-    .constdata                               0x0800eed2   Section       49  main.o(.constdata)
-    __func__                                 0x0800eed2   Data           5  main.o(.constdata)
-    __func__                                 0x0800eed7   Data          26  main.o(.constdata)
-    __func__                                 0x0800eef1   Data          18  main.o(.constdata)
-    .constdata                               0x0800ef03   Section       16  system_stm32f1xx.o(.constdata)
-    .constdata                               0x0800ef13   Section        8  system_stm32f1xx.o(.constdata)
-    .constdata                               0x0800ef1b   Section       27  cheminert_c52.o(.constdata)
-    __func__                                 0x0800ef1b   Data          27  cheminert_c52.o(.constdata)
-    .constdata                               0x0800ef36   Section       60  pump_s100.o(.constdata)
-    __func__                                 0x0800ef36   Data          19  pump_s100.o(.constdata)
-    __func__                                 0x0800ef49   Data          41  pump_s100.o(.constdata)
-    .constdata                               0x0800ef72   Section       96  step01.o(.constdata)
-    __func__                                 0x0800ef72   Data          22  step01.o(.constdata)
-    __func__                                 0x0800ef88   Data          27  step01.o(.constdata)
-    __func__                                 0x0800efa3   Data          21  step01.o(.constdata)
-    __func__                                 0x0800efb8   Data          26  step01.o(.constdata)
-    .constdata                               0x0800efd2   Section       30  factory_many.o(.constdata)
-    __func__                                 0x0800efd2   Data          30  factory_many.o(.constdata)
-    .constdata                               0x0800eff0   Section      170  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800effd   Data          27  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f018   Data          29  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f035   Data          14  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f043   Data          49  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f074   Data          10  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f07e   Data          12  slave_uart_control_interface.o(.constdata)
-    __func__                                 0x0800f08a   Data          16  slave_uart_control_interface.o(.constdata)
-    .constdata                               0x0800f09a   Section       22  fm100.o(.constdata)
-    __func__                                 0x0800f09a   Data          22  fm100.o(.constdata)
-    .constdata                               0x0800f0b0   Section      122  bl180.o(.constdata)
-    __func__                                 0x0800f0b0   Data          18  bl180.o(.constdata)
-    __func__                                 0x0800f0c2   Data          18  bl180.o(.constdata)
-    __func__                                 0x0800f0d4   Data          21  bl180.o(.constdata)
-    __func__                                 0x0800f0e9   Data          13  bl180.o(.constdata)
-    __func__                                 0x0800f0f6   Data          14  bl180.o(.constdata)
-    __func__                                 0x0800f104   Data          12  bl180.o(.constdata)
-    __func__                                 0x0800f110   Data          10  bl180.o(.constdata)
-    __func__                                 0x0800f11a   Data          16  bl180.o(.constdata)
-    .constdata                               0x0800f12a   Section      132  m6e_apply.o(.constdata)
-    __func__                                 0x0800f12a   Data          16  m6e_apply.o(.constdata)
-    __func__                                 0x0800f13a   Data          14  m6e_apply.o(.constdata)
-    __func__                                 0x0800f148   Data          23  m6e_apply.o(.constdata)
-    __func__                                 0x0800f15f   Data          18  m6e_apply.o(.constdata)
-    __func__                                 0x0800f171   Data          21  m6e_apply.o(.constdata)
-    __func__                                 0x0800f186   Data          20  m6e_apply.o(.constdata)
-    __func__                                 0x0800f19a   Data          20  m6e_apply.o(.constdata)
-    .constdata                               0x0800f1b0   Section       44  serial_reader.o(.constdata)
-    .constdata                               0x0800f1dc   Section       37  mini_board_protocol.o(.constdata)
-    __func__                                 0x0800f1dc   Data          37  mini_board_protocol.o(.constdata)
-    .constdata                               0x0800f201   Section      104  rs232_change_protocol.o(.constdata)
-    __func__                                 0x0800f201   Data          52  rs232_change_protocol.o(.constdata)
-    __func__                                 0x0800f235   Data          52  rs232_change_protocol.o(.constdata)
+    i.__0printf$8                            0x0800b688   Section        0  printf8.o(i.__0printf$8)
+    i.__0sprintf$8                           0x0800b6a8   Section        0  printf8.o(i.__0sprintf$8)
+    i.__DRV8434_Motor_Caculate_Next_Acc_Speed__ 0x0800b6d0   Section        0  drv8434.o(i.__DRV8434_Motor_Caculate_Next_Acc_Speed__)
+    i.__InfoBoard__                          0x0800b98c   Section        0  slave_uart_control_interface.o(i.__InfoBoard__)
+    i.__Light_Sensor_Get__                   0x0800b9c8   Section        0  light.o(i.__Light_Sensor_Get__)
+    i.__Normal_Pitch_Move_Next__             0x0800ba60   Section        0  step01.o(i.__Normal_Pitch_Move_Next__)
+    i.__ack_error_msg__                      0x0800bb3c   Section        0  main.o(i.__ack_error_msg__)
+    i.__malloc$realloc                       0x0800bb9c   Section        0  mallocr.o(i.__malloc$realloc)
+    i.__scatterload_copy                     0x0800bbec   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0800bbfa   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x0800bbfc   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._commandTOstring_                      0x0800bc0c   Section        0  slave_uart_control_interface.o(i._commandTOstring_)
+    _commandTOstring_                        0x0800bc0d   Thumb Code  1360  slave_uart_control_interface.o(i._commandTOstring_)
+    i._num2string_                           0x0800c294   Section        0  factory_many.o(i._num2string_)
+    _num2string_                             0x0800c295   Thumb Code   192  factory_many.o(i._num2string_)
+    i._printf_core                           0x0800c658   Section        0  printf8.o(i._printf_core)
+    _printf_core                             0x0800c659   Thumb Code   996  printf8.o(i._printf_core)
+    i._printf_post_padding                   0x0800ca68   Section        0  printf8.o(i._printf_post_padding)
+    _printf_post_padding                     0x0800ca69   Thumb Code    36  printf8.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x0800ca8c   Section        0  printf8.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x0800ca8d   Thumb Code    46  printf8.o(i._printf_pre_padding)
+    i._sputc                                 0x0800caba   Section        0  printf8.o(i._sputc)
+    _sputc                                   0x0800cabb   Thumb Code    10  printf8.o(i._sputc)
+    i.autoDetectAntennaList                  0x0800cac4   Section        0  serial_reader.o(i.autoDetectAntennaList)
+    autoDetectAntennaList                    0x0800cac5   Thumb Code   146  serial_reader.o(i.autoDetectAntennaList)
+    i.caculate_tansfer_check_bit             0x0800cb5c   Section        0  check_rs232.o(i.caculate_tansfer_check_bit)
+    i.checkForAvailableFeatures              0x0800cbbc   Section        0  tm_reader.o(i.checkForAvailableFeatures)
+    i.cheminert_c52_c55_transfer             0x0800cc00   Section        0  cheminert_c52.o(i.cheminert_c52_c55_transfer)
+    i.compareAntennas                        0x0800cd9c   Section        0  serial_reader.o(i.compareAntennas)
+    i.compareVersion                         0x0800ce14   Section        0  serial_reader.o(i.compareVersion)
+    i.delay_init                             0x0800ce50   Section        0  delay.o(i.delay_init)
+    i.delay_ms                               0x0800ce64   Section        0  delay.o(i.delay_ms)
+    i.delay_us                               0x0800ce80   Section        0  delay.o(i.delay_us)
+    i.electromagnetic_control                0x0800ceb4   Section        0  electromagnetic.o(i.electromagnetic_control)
+    i.electromagnetic_control_package        0x0800ceb6   Section        0  electromagnetic.o(i.electromagnetic_control_package)
+    i.export_liquid_control                  0x0800ceb8   Section        0  export_liquid.o(i.export_liquid_control)
+    i.extractGen2MemoryBankValues            0x0800cecc   Section        0  serial_reader_l3.o(i.extractGen2MemoryBankValues)
+    i.filterbytes                            0x0800cf70   Section        0  serial_reader_l3.o(i.filterbytes)
+    filterbytes                              0x0800cf71   Thumb Code   678  serial_reader_l3.o(i.filterbytes)
+    i.fputc                                  0x0800d220   Section        0  usart.o(i.fputc)
+    i.getPortValues                          0x0800d238   Section        0  serial_reader.o(i.getPortValues)
+    getPortValues                            0x0800d239   Thumb Code   166  serial_reader.o(i.getPortValues)
+    i.getSerialNumber                        0x0800d2e0   Section        0  serial_reader.o(i.getSerialNumber)
+    getSerialNumber                          0x0800d2e1   Thumb Code   114  serial_reader.o(i.getSerialNumber)
+    i.get_weight_sensor_value                0x0800d358   Section        0  weight.o(i.get_weight_sensor_value)
+    i.initTxRxMapFromPorts                   0x0800d380   Section        0  serial_reader.o(i.initTxRxMapFromPorts)
+    initTxRxMapFromPorts                     0x0800d381   Thumb Code   454  serial_reader.o(i.initTxRxMapFromPorts)
+    i.init_mix_motor_config                  0x0800d54c   Section        0  step01.o(i.init_mix_motor_config)
+    i.init_motor_device                      0x0800d56c   Section        0  step01.o(i.init_motor_device)
+    i.internal_alloc                         0x0800d5cc   Section        0  mallocr.o(i.internal_alloc)
+    internal_alloc                           0x0800d5cd   Thumb Code    76  mallocr.o(i.internal_alloc)
+    i.isAntDetectEnabled                     0x0800d61c   Section        0  tm_reader.o(i.isAntDetectEnabled)
+    i.isContinuousReadParamSupported         0x0800d6c4   Section        0  serial_reader_l3.o(i.isContinuousReadParamSupported)
+    i.isMultiSelectSupported                 0x0800d77e   Section        0  tm_reader.o(i.isMultiSelectSupported)
+    i.l647x_GetMotorHandle                   0x0800d7f2   Section        0  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
+    i.l648x_GetMotorHandle                   0x0800d7f6   Section        0  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
+    i.main                                   0x0800d7fc   Section        0  main.o(i.main)
+    i.prepEmbReadTagMultiple                 0x0800d910   Section        0  serial_reader.o(i.prepEmbReadTagMultiple)
+    prepEmbReadTagMultiple                   0x0800d911   Thumb Code    56  serial_reader.o(i.prepEmbReadTagMultiple)
+    i.prepForSearch                          0x0800d948   Section        0  serial_reader.o(i.prepForSearch)
+    i.process_motor_command_receive          0x0800d9b8   Section        0  factory_many.o(i.process_motor_command_receive)
+    i.protocol_cheminert_c52_c55             0x0800daec   Section        0  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
+    protocol_cheminert_c52_c55               0x0800daed   Thumb Code   872  slave_uart_control_interface.o(i.protocol_cheminert_c52_c55)
+    i.protocol_gravity_sensor_getting        0x0800df9c   Section        0  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
+    protocol_gravity_sensor_getting          0x0800df9d   Thumb Code    42  slave_uart_control_interface.o(i.protocol_gravity_sensor_getting)
+    i.protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc8   Section        0  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
+    i.protocol_pump_s100_interface           0x0800e484   Section        0  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
+    protocol_pump_s100_interface             0x0800e485   Thumb Code   248  slave_uart_control_interface.o(i.protocol_pump_s100_interface)
+    i.protocol_rfid_get_epc_string           0x0800e5e0   Section        0  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
+    protocol_rfid_get_epc_string             0x0800e5e1   Thumb Code    50  slave_uart_control_interface.o(i.protocol_rfid_get_epc_string)
+    i.protocol_scan_barcode                  0x0800e614   Section        0  slave_uart_control_interface.o(i.protocol_scan_barcode)
+    protocol_scan_barcode                    0x0800e615   Thumb Code    34  slave_uart_control_interface.o(i.protocol_scan_barcode)
+    i.pump_s100_transfer                     0x0800e63c   Section        0  pump_s100.o(i.pump_s100_transfer)
+    i.s_flush                                0x0800e7e0   Section        0  serial_transport_stm32f103rb.o(i.s_flush)
+    s_flush                                  0x0800e7e1   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_flush)
+    i.s_open                                 0x0800e7e4   Section        0  serial_transport_stm32f103rb.o(i.s_open)
+    s_open                                   0x0800e7e5   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_open)
+    i.s_receiveBytes                         0x0800e7e8   Section        0  serial_transport_stm32f103rb.o(i.s_receiveBytes)
+    s_receiveBytes                           0x0800e7e9   Thumb Code   154  serial_transport_stm32f103rb.o(i.s_receiveBytes)
+    i.s_sendBytes                            0x0800e890   Section        0  serial_transport_stm32f103rb.o(i.s_sendBytes)
+    s_sendBytes                              0x0800e891   Thumb Code    24  serial_transport_stm32f103rb.o(i.s_sendBytes)
+    i.s_setBaudRate                          0x0800e8ac   Section        0  serial_transport_stm32f103rb.o(i.s_setBaudRate)
+    s_setBaudRate                            0x0800e8ad   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_setBaudRate)
+    i.s_shutdown                             0x0800e8b0   Section        0  serial_transport_stm32f103rb.o(i.s_shutdown)
+    s_shutdown                               0x0800e8b1   Thumb Code     4  serial_transport_stm32f103rb.o(i.s_shutdown)
+    i.setAntennaList                         0x0800e8b4   Section        0  serial_reader.o(i.setAntennaList)
+    setAntennaList                           0x0800e8b5   Thumb Code   124  serial_reader.o(i.setAntennaList)
+    i.setAntennaReadTimeHelper               0x0800e934   Section        0  serial_reader.o(i.setAntennaReadTimeHelper)
+    i.setAntennaReadTimeList                 0x0800ea30   Section        0  serial_reader.o(i.setAntennaReadTimeList)
+    i.setPortValues                          0x0800ea7c   Section        0  serial_reader.o(i.setPortValues)
+    setPortValues                            0x0800ea7d   Thumb Code   234  serial_reader.o(i.setPortValues)
+    i.setProtocol                            0x0800eb6c   Section        0  serial_reader.o(i.setProtocol)
+    setProtocol                              0x0800eb6d   Thumb Code   106  serial_reader.o(i.setProtocol)
+    i.set_DelayMs_Normal_Positon             0x0800ebd8   Section        0  factory_many.o(i.set_DelayMs_Normal_Positon)
+    i.set_mix_motor_config                   0x0800ebe4   Section        0  step01.o(i.set_mix_motor_config)
+    i.tm_crc                                 0x0800ebf0   Section        0  serial_reader_l3.o(i.tm_crc)
+    tm_crc                                   0x0800ebf1   Thumb Code    54  serial_reader_l3.o(i.tm_crc)
+    i.tm_gettime_consistent                  0x0800ec2c   Section        0  tmr_utils.o(i.tm_gettime_consistent)
+    i.tm_memcpy                              0x0800ec52   Section        0  tmr_utils.o(i.tm_memcpy)
+    i.tm_strcpy                              0x0800ec68   Section        0  tmr_utils.o(i.tm_strcpy)
+    i.tm_time_subtract                       0x0800ec78   Section        0  tmr_utils.o(i.tm_time_subtract)
+    i.tm_u8s_per_bits                        0x0800ec86   Section        0  tmr_utils.o(i.tm_u8s_per_bits)
+    i.tmr_gettime                            0x0800ec98   Section        0  osdep_stm32f103rb.o(i.tmr_gettime)
+    i.tmr_gettime_high                       0x0800ecbc   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_high)
+    i.tmr_gettime_low                        0x0800ecc6   Section        0  osdep_stm32f103rb.o(i.tmr_gettime_low)
+    i.tmr_sleep                              0x0800ecd0   Section        0  osdep_stm32f103rb.o(i.tmr_sleep)
+    i.uart_init                              0x0800ecf0   Section        0  usart.o(i.uart_init)
+    i.validateParams                         0x0800ed14   Section        0  serial_reader.o(i.validateParams)
+    i.validateReadPlan                       0x0800ed80   Section        0  tm_reader.o(i.validateReadPlan)
+    i.verifySearchStatus                     0x0800ee20   Section        0  serial_reader.o(i.verifySearchStatus)
+    i.versionCompare                         0x0800eea8   Section        0  tm_reader.o(i.versionCompare)
+    .constdata                               0x0800eed6   Section       49  main.o(.constdata)
+    __func__                                 0x0800eed6   Data           5  main.o(.constdata)
+    __func__                                 0x0800eedb   Data          26  main.o(.constdata)
+    __func__                                 0x0800eef5   Data          18  main.o(.constdata)
+    .constdata                               0x0800ef07   Section       16  system_stm32f1xx.o(.constdata)
+    .constdata                               0x0800ef17   Section        8  system_stm32f1xx.o(.constdata)
+    .constdata                               0x0800ef1f   Section       27  cheminert_c52.o(.constdata)
+    __func__                                 0x0800ef1f   Data          27  cheminert_c52.o(.constdata)
+    .constdata                               0x0800ef3a   Section       60  pump_s100.o(.constdata)
+    __func__                                 0x0800ef3a   Data          19  pump_s100.o(.constdata)
+    __func__                                 0x0800ef4d   Data          41  pump_s100.o(.constdata)
+    .constdata                               0x0800ef76   Section       96  step01.o(.constdata)
+    __func__                                 0x0800ef76   Data          22  step01.o(.constdata)
+    __func__                                 0x0800ef8c   Data          27  step01.o(.constdata)
+    __func__                                 0x0800efa7   Data          21  step01.o(.constdata)
+    __func__                                 0x0800efbc   Data          26  step01.o(.constdata)
+    .constdata                               0x0800efd6   Section       30  factory_many.o(.constdata)
+    __func__                                 0x0800efd6   Data          30  factory_many.o(.constdata)
+    .constdata                               0x0800eff4   Section      170  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f001   Data          27  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f01c   Data          29  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f039   Data          14  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f047   Data          49  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f078   Data          10  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f082   Data          12  slave_uart_control_interface.o(.constdata)
+    __func__                                 0x0800f08e   Data          16  slave_uart_control_interface.o(.constdata)
+    .constdata                               0x0800f09e   Section       22  fm100.o(.constdata)
+    __func__                                 0x0800f09e   Data          22  fm100.o(.constdata)
+    .constdata                               0x0800f0b4   Section      122  bl180.o(.constdata)
+    __func__                                 0x0800f0b4   Data          18  bl180.o(.constdata)
+    __func__                                 0x0800f0c6   Data          18  bl180.o(.constdata)
+    __func__                                 0x0800f0d8   Data          21  bl180.o(.constdata)
+    __func__                                 0x0800f0ed   Data          13  bl180.o(.constdata)
+    __func__                                 0x0800f0fa   Data          14  bl180.o(.constdata)
+    __func__                                 0x0800f108   Data          12  bl180.o(.constdata)
+    __func__                                 0x0800f114   Data          10  bl180.o(.constdata)
+    __func__                                 0x0800f11e   Data          16  bl180.o(.constdata)
+    .constdata                               0x0800f12e   Section      132  m6e_apply.o(.constdata)
+    __func__                                 0x0800f12e   Data          16  m6e_apply.o(.constdata)
+    __func__                                 0x0800f13e   Data          14  m6e_apply.o(.constdata)
+    __func__                                 0x0800f14c   Data          23  m6e_apply.o(.constdata)
+    __func__                                 0x0800f163   Data          18  m6e_apply.o(.constdata)
+    __func__                                 0x0800f175   Data          21  m6e_apply.o(.constdata)
+    __func__                                 0x0800f18a   Data          20  m6e_apply.o(.constdata)
+    __func__                                 0x0800f19e   Data          20  m6e_apply.o(.constdata)
+    .constdata                               0x0800f1b4   Section       44  serial_reader.o(.constdata)
+    .constdata                               0x0800f1e0   Section       37  mini_board_protocol.o(.constdata)
+    __func__                                 0x0800f1e0   Data          37  mini_board_protocol.o(.constdata)
+    .constdata                               0x0800f205   Section      104  rs232_change_protocol.o(.constdata)
+    __func__                                 0x0800f205   Data          52  rs232_change_protocol.o(.constdata)
+    __func__                                 0x0800f239   Data          52  rs232_change_protocol.o(.constdata)
     .data                                    0x20000000   Section        4  system_stm32f1xx.o(.data)
     .data                                    0x20000004   Section        4  stm32f1xx_hal.o(.data)
     uwTick                                   0x20000004   Data           4  stm32f1xx_hal.o(.data)
@@ -5860,70 +5860,70 @@ Image Symbol Table
     Uart_Select_Baby                         0x0800b52d   Thumb Code   186  uart_choose.o(i.Uart_Select_Baby)
     Uart_cs_init                             0x0800b5f5   Thumb Code    56  uart_choose.o(i.Uart_cs_init)
     UsageFault_Handler                       0x0800b635   Thumb Code     2  stm32f1xx_it.o(i.UsageFault_Handler)
-    Weight_Sensor_Init                       0x0800b639   Thumb Code    68  weight.o(i.Weight_Sensor_Init)
-    __0printf$8                              0x0800b685   Thumb Code    22  printf8.o(i.__0printf$8)
-    __1printf$8                              0x0800b685   Thumb Code     0  printf8.o(i.__0printf$8)
-    __2printf                                0x0800b685   Thumb Code     0  printf8.o(i.__0printf$8)
-    __0sprintf$8                             0x0800b6a5   Thumb Code    34  printf8.o(i.__0sprintf$8)
-    __1sprintf$8                             0x0800b6a5   Thumb Code     0  printf8.o(i.__0sprintf$8)
-    __2sprintf                               0x0800b6a5   Thumb Code     0  printf8.o(i.__0sprintf$8)
-    __DRV8434_Motor_Caculate_Next_Acc_Speed__ 0x0800b6cd   Thumb Code   694  drv8434.o(i.__DRV8434_Motor_Caculate_Next_Acc_Speed__)
-    __InfoBoard__                            0x0800b989   Thumb Code    26  slave_uart_control_interface.o(i.__InfoBoard__)
-    __Light_Sensor_Get__                     0x0800b9c5   Thumb Code   130  light.o(i.__Light_Sensor_Get__)
-    __Normal_Pitch_Move_Next__               0x0800ba5d   Thumb Code   140  step01.o(i.__Normal_Pitch_Move_Next__)
-    __ack_error_msg__                        0x0800bb39   Thumb Code    94  main.o(i.__ack_error_msg__)
-    malloc                                   0x0800bb99   Thumb Code    64  mallocr.o(i.__malloc$realloc)
-    __scatterload_copy                       0x0800bbe9   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800bbf7   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0800bbf9   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    caculate_tansfer_check_bit               0x0800cb59   Thumb Code    90  check_rs232.o(i.caculate_tansfer_check_bit)
-    checkForAvailableFeatures                0x0800cbb9   Thumb Code    66  tm_reader.o(i.checkForAvailableFeatures)
-    cheminert_c52_c55_transfer               0x0800cbfd   Thumb Code   250  cheminert_c52.o(i.cheminert_c52_c55_transfer)
-    compareAntennas                          0x0800cd99   Thumb Code   120  serial_reader.o(i.compareAntennas)
-    compareVersion                           0x0800ce11   Thumb Code    58  serial_reader.o(i.compareVersion)
-    delay_init                               0x0800ce4d   Thumb Code    16  delay.o(i.delay_init)
-    delay_ms                                 0x0800ce61   Thumb Code    26  delay.o(i.delay_ms)
-    delay_us                                 0x0800ce7d   Thumb Code    48  delay.o(i.delay_us)
-    electromagnetic_control                  0x0800ceb1   Thumb Code     2  electromagnetic.o(i.electromagnetic_control)
-    electromagnetic_control_package          0x0800ceb3   Thumb Code     2  electromagnetic.o(i.electromagnetic_control_package)
-    export_liquid_control                    0x0800ceb5   Thumb Code    14  export_liquid.o(i.export_liquid_control)
-    extractGen2MemoryBankValues              0x0800cec9   Thumb Code   164  serial_reader_l3.o(i.extractGen2MemoryBankValues)
-    fputc                                    0x0800d21d   Thumb Code    18  usart.o(i.fputc)
-    get_weight_sensor_value                  0x0800d355   Thumb Code    40  weight.o(i.get_weight_sensor_value)
-    init_mix_motor_config                    0x0800d549   Thumb Code    28  step01.o(i.init_mix_motor_config)
-    init_motor_device                        0x0800d569   Thumb Code    88  step01.o(i.init_motor_device)
-    isAntDetectEnabled                       0x0800d619   Thumb Code   128  tm_reader.o(i.isAntDetectEnabled)
-    isContinuousReadParamSupported           0x0800d6c1   Thumb Code   186  serial_reader_l3.o(i.isContinuousReadParamSupported)
-    isMultiSelectSupported                   0x0800d77b   Thumb Code   116  tm_reader.o(i.isMultiSelectSupported)
-    l647x_GetMotorHandle                     0x0800d7ef   Thumb Code     4  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
-    l648x_GetMotorHandle                     0x0800d7f3   Thumb Code     4  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
-    main                                     0x0800d7f9   Thumb Code   166  main.o(i.main)
-    prepForSearch                            0x0800d945   Thumb Code   106  serial_reader.o(i.prepForSearch)
-    process_motor_command_receive            0x0800d9b5   Thumb Code   242  factory_many.o(i.process_motor_command_receive)
-    protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc5   Thumb Code  1212  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
-    pump_s100_transfer                       0x0800e639   Thumb Code   306  pump_s100.o(i.pump_s100_transfer)
-    setAntennaReadTimeHelper                 0x0800e931   Thumb Code   242  serial_reader.o(i.setAntennaReadTimeHelper)
-    setAntennaReadTimeList                   0x0800ea2d   Thumb Code    76  serial_reader.o(i.setAntennaReadTimeList)
-    set_DelayMs_Normal_Positon               0x0800ebd5   Thumb Code     8  factory_many.o(i.set_DelayMs_Normal_Positon)
-    set_mix_motor_config                     0x0800ebe1   Thumb Code     8  step01.o(i.set_mix_motor_config)
-    tm_gettime_consistent                    0x0800ec29   Thumb Code    38  tmr_utils.o(i.tm_gettime_consistent)
-    tm_memcpy                                0x0800ec4f   Thumb Code    22  tmr_utils.o(i.tm_memcpy)
-    tm_strcpy                                0x0800ec65   Thumb Code    16  tmr_utils.o(i.tm_strcpy)
-    tm_time_subtract                         0x0800ec75   Thumb Code    14  tmr_utils.o(i.tm_time_subtract)
-    tm_u8s_per_bits                          0x0800ec83   Thumb Code    16  tmr_utils.o(i.tm_u8s_per_bits)
-    tmr_gettime                              0x0800ec95   Thumb Code    32  osdep_stm32f103rb.o(i.tmr_gettime)
-    tmr_gettime_high                         0x0800ecb9   Thumb Code    10  osdep_stm32f103rb.o(i.tmr_gettime_high)
-    tmr_gettime_low                          0x0800ecc3   Thumb Code     8  osdep_stm32f103rb.o(i.tmr_gettime_low)
-    tmr_sleep                                0x0800eccd   Thumb Code    28  osdep_stm32f103rb.o(i.tmr_sleep)
-    uart_init                                0x0800eced   Thumb Code    28  usart.o(i.uart_init)
-    validateParams                           0x0800ed11   Thumb Code   108  serial_reader.o(i.validateParams)
-    validateReadPlan                         0x0800ed7d   Thumb Code   150  tm_reader.o(i.validateReadPlan)
-    verifySearchStatus                       0x0800ee1d   Thumb Code   130  serial_reader.o(i.verifySearchStatus)
-    versionCompare                           0x0800eea5   Thumb Code    46  tm_reader.o(i.versionCompare)
-    AHBPrescTable                            0x0800ef03   Data          16  system_stm32f1xx.o(.constdata)
-    APBPrescTable                            0x0800ef13   Data           8  system_stm32f1xx.o(.constdata)
-    Region$$Table$$Base                      0x0800f26c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800f28c   Number         0  anon$$obj.o(Region$$Table)
+    Weight_Sensor_Init                       0x0800b639   Thumb Code    70  weight.o(i.Weight_Sensor_Init)
+    __0printf$8                              0x0800b689   Thumb Code    22  printf8.o(i.__0printf$8)
+    __1printf$8                              0x0800b689   Thumb Code     0  printf8.o(i.__0printf$8)
+    __2printf                                0x0800b689   Thumb Code     0  printf8.o(i.__0printf$8)
+    __0sprintf$8                             0x0800b6a9   Thumb Code    34  printf8.o(i.__0sprintf$8)
+    __1sprintf$8                             0x0800b6a9   Thumb Code     0  printf8.o(i.__0sprintf$8)
+    __2sprintf                               0x0800b6a9   Thumb Code     0  printf8.o(i.__0sprintf$8)
+    __DRV8434_Motor_Caculate_Next_Acc_Speed__ 0x0800b6d1   Thumb Code   694  drv8434.o(i.__DRV8434_Motor_Caculate_Next_Acc_Speed__)
+    __InfoBoard__                            0x0800b98d   Thumb Code    26  slave_uart_control_interface.o(i.__InfoBoard__)
+    __Light_Sensor_Get__                     0x0800b9c9   Thumb Code   130  light.o(i.__Light_Sensor_Get__)
+    __Normal_Pitch_Move_Next__               0x0800ba61   Thumb Code   140  step01.o(i.__Normal_Pitch_Move_Next__)
+    __ack_error_msg__                        0x0800bb3d   Thumb Code    94  main.o(i.__ack_error_msg__)
+    malloc                                   0x0800bb9d   Thumb Code    64  mallocr.o(i.__malloc$realloc)
+    __scatterload_copy                       0x0800bbed   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0800bbfb   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x0800bbfd   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    caculate_tansfer_check_bit               0x0800cb5d   Thumb Code    90  check_rs232.o(i.caculate_tansfer_check_bit)
+    checkForAvailableFeatures                0x0800cbbd   Thumb Code    66  tm_reader.o(i.checkForAvailableFeatures)
+    cheminert_c52_c55_transfer               0x0800cc01   Thumb Code   250  cheminert_c52.o(i.cheminert_c52_c55_transfer)
+    compareAntennas                          0x0800cd9d   Thumb Code   120  serial_reader.o(i.compareAntennas)
+    compareVersion                           0x0800ce15   Thumb Code    58  serial_reader.o(i.compareVersion)
+    delay_init                               0x0800ce51   Thumb Code    16  delay.o(i.delay_init)
+    delay_ms                                 0x0800ce65   Thumb Code    26  delay.o(i.delay_ms)
+    delay_us                                 0x0800ce81   Thumb Code    48  delay.o(i.delay_us)
+    electromagnetic_control                  0x0800ceb5   Thumb Code     2  electromagnetic.o(i.electromagnetic_control)
+    electromagnetic_control_package          0x0800ceb7   Thumb Code     2  electromagnetic.o(i.electromagnetic_control_package)
+    export_liquid_control                    0x0800ceb9   Thumb Code    14  export_liquid.o(i.export_liquid_control)
+    extractGen2MemoryBankValues              0x0800cecd   Thumb Code   164  serial_reader_l3.o(i.extractGen2MemoryBankValues)
+    fputc                                    0x0800d221   Thumb Code    18  usart.o(i.fputc)
+    get_weight_sensor_value                  0x0800d359   Thumb Code    40  weight.o(i.get_weight_sensor_value)
+    init_mix_motor_config                    0x0800d54d   Thumb Code    28  step01.o(i.init_mix_motor_config)
+    init_motor_device                        0x0800d56d   Thumb Code    88  step01.o(i.init_motor_device)
+    isAntDetectEnabled                       0x0800d61d   Thumb Code   128  tm_reader.o(i.isAntDetectEnabled)
+    isContinuousReadParamSupported           0x0800d6c5   Thumb Code   186  serial_reader_l3.o(i.isContinuousReadParamSupported)
+    isMultiSelectSupported                   0x0800d77f   Thumb Code   116  tm_reader.o(i.isMultiSelectSupported)
+    l647x_GetMotorHandle                     0x0800d7f3   Thumb Code     4  x_nucleo_ihmxx.o(i.l647x_GetMotorHandle)
+    l648x_GetMotorHandle                     0x0800d7f7   Thumb Code     4  x_nucleo_ihmxx.o(i.l648x_GetMotorHandle)
+    main                                     0x0800d7fd   Thumb Code   166  main.o(i.main)
+    prepForSearch                            0x0800d949   Thumb Code   106  serial_reader.o(i.prepForSearch)
+    process_motor_command_receive            0x0800d9b9   Thumb Code   242  factory_many.o(i.process_motor_command_receive)
+    protocol_handle_uart_powerstep01_plain_slave_cmd 0x0800dfc9   Thumb Code  1212  slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd)
+    pump_s100_transfer                       0x0800e63d   Thumb Code   306  pump_s100.o(i.pump_s100_transfer)
+    setAntennaReadTimeHelper                 0x0800e935   Thumb Code   242  serial_reader.o(i.setAntennaReadTimeHelper)
+    setAntennaReadTimeList                   0x0800ea31   Thumb Code    76  serial_reader.o(i.setAntennaReadTimeList)
+    set_DelayMs_Normal_Positon               0x0800ebd9   Thumb Code     8  factory_many.o(i.set_DelayMs_Normal_Positon)
+    set_mix_motor_config                     0x0800ebe5   Thumb Code     8  step01.o(i.set_mix_motor_config)
+    tm_gettime_consistent                    0x0800ec2d   Thumb Code    38  tmr_utils.o(i.tm_gettime_consistent)
+    tm_memcpy                                0x0800ec53   Thumb Code    22  tmr_utils.o(i.tm_memcpy)
+    tm_strcpy                                0x0800ec69   Thumb Code    16  tmr_utils.o(i.tm_strcpy)
+    tm_time_subtract                         0x0800ec79   Thumb Code    14  tmr_utils.o(i.tm_time_subtract)
+    tm_u8s_per_bits                          0x0800ec87   Thumb Code    16  tmr_utils.o(i.tm_u8s_per_bits)
+    tmr_gettime                              0x0800ec99   Thumb Code    32  osdep_stm32f103rb.o(i.tmr_gettime)
+    tmr_gettime_high                         0x0800ecbd   Thumb Code    10  osdep_stm32f103rb.o(i.tmr_gettime_high)
+    tmr_gettime_low                          0x0800ecc7   Thumb Code     8  osdep_stm32f103rb.o(i.tmr_gettime_low)
+    tmr_sleep                                0x0800ecd1   Thumb Code    28  osdep_stm32f103rb.o(i.tmr_sleep)
+    uart_init                                0x0800ecf1   Thumb Code    28  usart.o(i.uart_init)
+    validateParams                           0x0800ed15   Thumb Code   108  serial_reader.o(i.validateParams)
+    validateReadPlan                         0x0800ed81   Thumb Code   150  tm_reader.o(i.validateReadPlan)
+    verifySearchStatus                       0x0800ee21   Thumb Code   130  serial_reader.o(i.verifySearchStatus)
+    versionCompare                           0x0800eea9   Thumb Code    46  tm_reader.o(i.versionCompare)
+    AHBPrescTable                            0x0800ef07   Data          16  system_stm32f1xx.o(.constdata)
+    APBPrescTable                            0x0800ef17   Data           8  system_stm32f1xx.o(.constdata)
+    Region$$Table$$Base                      0x0800f270   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800f290   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f1xx.o(.data)
     uCRCErrorWorkaroundCheck                 0x20000008   Data           1  stm32f1xx_hal_spi_ex.o(.data)
     aRxBuffer                                0x20000010   Data           1  usart.o(.data)
@@ -5999,9 +5999,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000f620, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000f408])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000f624, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000f40c])
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000f28c, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000f290, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -6489,119 +6489,119 @@ Memory Map of the image
     0x0800b5f4   0x00000040   Code   RO         6823    i.Uart_cs_init      uart_choose.o
     0x0800b634   0x00000002   Code   RO          487    i.UsageFault_Handler  stm32f1xx_it.o
     0x0800b636   0x00000002   PAD
-    0x0800b638   0x0000004c   Code   RO         6147    i.Weight_Sensor_Init  weight.o
-    0x0800b684   0x00000020   Code   RO        10989    i.__0printf$8       mc_w.l(printf8.o)
-    0x0800b6a4   0x00000028   Code   RO        10991    i.__0sprintf$8      mc_w.l(printf8.o)
-    0x0800b6cc   0x000002bc   Code   RO        10404    i.__DRV8434_Motor_Caculate_Next_Acc_Speed__  drv8434.o
-    0x0800b988   0x0000003c   Code   RO         7035    i.__InfoBoard__     slave_uart_control_interface.o
-    0x0800b9c4   0x00000098   Code   RO         5555    i.__Light_Sensor_Get__  light.o
-    0x0800ba5c   0x000000dc   Code   RO         6221    i.__Normal_Pitch_Move_Next__  step01.o
-    0x0800bb38   0x0000005e   Code   RO            6    i.__ack_error_msg__  main.o
-    0x0800bb96   0x00000002   PAD
-    0x0800bb98   0x00000050   Code   RO        11048    i.__malloc$realloc  mc_w.l(mallocr.o)
-    0x0800bbe8   0x0000000e   Code   RO        11140    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800bbf6   0x00000002   Code   RO        11141    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800bbf8   0x0000000e   Code   RO        11142    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800bc06   0x00000002   PAD
-    0x0800bc08   0x00000688   Code   RO         7036    i._commandTOstring_  slave_uart_control_interface.o
-    0x0800c290   0x000003c4   Code   RO         6340    i._num2string_      factory_many.o
-    0x0800c654   0x00000410   Code   RO        10996    i._printf_core      mc_w.l(printf8.o)
-    0x0800ca64   0x00000024   Code   RO        10997    i._printf_post_padding  mc_w.l(printf8.o)
-    0x0800ca88   0x0000002e   Code   RO        10998    i._printf_pre_padding  mc_w.l(printf8.o)
-    0x0800cab6   0x0000000a   Code   RO        11000    i._sputc            mc_w.l(printf8.o)
-    0x0800cac0   0x00000098   Code   RO         8036    i.autoDetectAntennaList  serial_reader.o
-    0x0800cb58   0x00000060   Code   RO        10332    i.caculate_tansfer_check_bit  check_rs232.o
-    0x0800cbb8   0x00000042   Code   RO         9562    i.checkForAvailableFeatures  tm_reader.o
-    0x0800cbfa   0x00000002   PAD
-    0x0800cbfc   0x0000019c   Code   RO         5648    i.cheminert_c52_c55_transfer  cheminert_c52.o
-    0x0800cd98   0x00000078   Code   RO         8037    i.compareAntennas   serial_reader.o
-    0x0800ce10   0x0000003a   Code   RO         8038    i.compareVersion    serial_reader.o
-    0x0800ce4a   0x00000002   PAD
-    0x0800ce4c   0x00000014   Code   RO         3805    i.delay_init        delay.o
-    0x0800ce60   0x0000001a   Code   RO         3806    i.delay_ms          delay.o
-    0x0800ce7a   0x00000002   PAD
-    0x0800ce7c   0x00000034   Code   RO         3807    i.delay_us          delay.o
-    0x0800ceb0   0x00000002   Code   RO         6870    i.electromagnetic_control  electromagnetic.o
-    0x0800ceb2   0x00000002   Code   RO         6871    i.electromagnetic_control_package  electromagnetic.o
-    0x0800ceb4   0x00000014   Code   RO        10358    i.export_liquid_control  export_liquid.o
-    0x0800cec8   0x000000a4   Code   RO         8459    i.extractGen2MemoryBankValues  serial_reader_l3.o
-    0x0800cf6c   0x000002b0   Code   RO         8460    i.filterbytes       serial_reader_l3.o
-    0x0800d21c   0x00000018   Code   RO         3893    i.fputc             usart.o
-    0x0800d234   0x000000a6   Code   RO         8039    i.getPortValues     serial_reader.o
-    0x0800d2da   0x00000002   PAD
-    0x0800d2dc   0x00000078   Code   RO         8040    i.getSerialNumber   serial_reader.o
-    0x0800d354   0x00000028   Code   RO         6148    i.get_weight_sensor_value  weight.o
-    0x0800d37c   0x000001cc   Code   RO         8041    i.initTxRxMapFromPorts  serial_reader.o
-    0x0800d548   0x00000020   Code   RO         6222    i.init_mix_motor_config  step01.o
-    0x0800d568   0x00000060   Code   RO         6223    i.init_motor_device  step01.o
-    0x0800d5c8   0x00000050   Code   RO        11049    i.internal_alloc    mc_w.l(mallocr.o)
-    0x0800d618   0x000000a8   Code   RO         9564    i.isAntDetectEnabled  tm_reader.o
-    0x0800d6c0   0x000000ba   Code   RO         8465    i.isContinuousReadParamSupported  serial_reader_l3.o
-    0x0800d77a   0x00000074   Code   RO         9565    i.isMultiSelectSupported  tm_reader.o
-    0x0800d7ee   0x00000004   Code   RO         4988    i.l647x_GetMotorHandle  x_nucleo_ihmxx.o
-    0x0800d7f2   0x00000004   Code   RO         4989    i.l648x_GetMotorHandle  x_nucleo_ihmxx.o
-    0x0800d7f6   0x00000002   PAD
-    0x0800d7f8   0x00000114   Code   RO            7    i.main              main.o
-    0x0800d90c   0x00000038   Code   RO         8042    i.prepEmbReadTagMultiple  serial_reader.o
-    0x0800d944   0x00000070   Code   RO         8043    i.prepForSearch     serial_reader.o
-    0x0800d9b4   0x00000134   Code   RO         6341    i.process_motor_command_receive  factory_many.o
-    0x0800dae8   0x000004b0   Code   RO         7037    i.protocol_cheminert_c52_c55  slave_uart_control_interface.o
-    0x0800df98   0x0000002a   Code   RO         7038    i.protocol_gravity_sensor_getting  slave_uart_control_interface.o
-    0x0800dfc2   0x00000002   PAD
-    0x0800dfc4   0x000004bc   Code   RO         7039    i.protocol_handle_uart_powerstep01_plain_slave_cmd  slave_uart_control_interface.o
-    0x0800e480   0x0000015c   Code   RO         7040    i.protocol_pump_s100_interface  slave_uart_control_interface.o
-    0x0800e5dc   0x00000032   Code   RO         7041    i.protocol_rfid_get_epc_string  slave_uart_control_interface.o
-    0x0800e60e   0x00000002   PAD
-    0x0800e610   0x00000028   Code   RO         7042    i.protocol_scan_barcode  slave_uart_control_interface.o
-    0x0800e638   0x000001a4   Code   RO         5676    i.pump_s100_transfer  pump_s100.o
-    0x0800e7dc   0x00000004   Code   RO         9451    i.s_flush           serial_transport_stm32f103rb.o
-    0x0800e7e0   0x00000004   Code   RO         9452    i.s_open            serial_transport_stm32f103rb.o
-    0x0800e7e4   0x000000a8   Code   RO         9453    i.s_receiveBytes    serial_transport_stm32f103rb.o
-    0x0800e88c   0x0000001c   Code   RO         9454    i.s_sendBytes       serial_transport_stm32f103rb.o
-    0x0800e8a8   0x00000004   Code   RO         9455    i.s_setBaudRate     serial_transport_stm32f103rb.o
-    0x0800e8ac   0x00000004   Code   RO         9456    i.s_shutdown        serial_transport_stm32f103rb.o
-    0x0800e8b0   0x00000080   Code   RO         8044    i.setAntennaList    serial_reader.o
-    0x0800e930   0x000000fc   Code   RO         8045    i.setAntennaReadTimeHelper  serial_reader.o
-    0x0800ea2c   0x0000004c   Code   RO         8046    i.setAntennaReadTimeList  serial_reader.o
-    0x0800ea78   0x000000f0   Code   RO         8047    i.setPortValues     serial_reader.o
-    0x0800eb68   0x0000006a   Code   RO         8048    i.setProtocol       serial_reader.o
-    0x0800ebd2   0x00000002   PAD
-    0x0800ebd4   0x0000000c   Code   RO         6342    i.set_DelayMs_Normal_Positon  factory_many.o
-    0x0800ebe0   0x0000000c   Code   RO         6224    i.set_mix_motor_config  step01.o
-    0x0800ebec   0x0000003c   Code   RO         8466    i.tm_crc            serial_reader_l3.o
-    0x0800ec28   0x00000026   Code   RO         9921    i.tm_gettime_consistent  tmr_utils.o
-    0x0800ec4e   0x00000016   Code   RO         9922    i.tm_memcpy         tmr_utils.o
-    0x0800ec64   0x00000010   Code   RO         9925    i.tm_strcpy         tmr_utils.o
-    0x0800ec74   0x0000000e   Code   RO         9926    i.tm_time_subtract  tmr_utils.o
-    0x0800ec82   0x00000010   Code   RO         9927    i.tm_u8s_per_bits   tmr_utils.o
-    0x0800ec92   0x00000002   PAD
-    0x0800ec94   0x00000024   Code   RO         7956    i.tmr_gettime       osdep_stm32f103rb.o
-    0x0800ecb8   0x0000000a   Code   RO         7957    i.tmr_gettime_high  osdep_stm32f103rb.o
-    0x0800ecc2   0x00000008   Code   RO         7958    i.tmr_gettime_low   osdep_stm32f103rb.o
-    0x0800ecca   0x00000002   PAD
-    0x0800eccc   0x00000020   Code   RO         7960    i.tmr_sleep         osdep_stm32f103rb.o
-    0x0800ecec   0x00000024   Code   RO         3894    i.uart_init         usart.o
-    0x0800ed10   0x0000006c   Code   RO         8049    i.validateParams    serial_reader.o
-    0x0800ed7c   0x000000a0   Code   RO         9569    i.validateReadPlan  tm_reader.o
-    0x0800ee1c   0x00000088   Code   RO         8050    i.verifySearchStatus  serial_reader.o
-    0x0800eea4   0x0000002e   Code   RO         9570    i.versionCompare    tm_reader.o
-    0x0800eed2   0x00000031   Data   RO            8    .constdata          main.o
-    0x0800ef03   0x00000010   Data   RO          574    .constdata          system_stm32f1xx.o
-    0x0800ef13   0x00000008   Data   RO          575    .constdata          system_stm32f1xx.o
-    0x0800ef1b   0x0000001b   Data   RO         5649    .constdata          cheminert_c52.o
-    0x0800ef36   0x0000003c   Data   RO         5677    .constdata          pump_s100.o
-    0x0800ef72   0x00000060   Data   RO         6226    .constdata          step01.o
-    0x0800efd2   0x0000001e   Data   RO         6343    .constdata          factory_many.o
-    0x0800eff0   0x000000aa   Data   RO         7047    .constdata          slave_uart_control_interface.o
-    0x0800f09a   0x00000016   Data   RO         7415    .constdata          fm100.o
-    0x0800f0b0   0x0000007a   Data   RO         7680    .constdata          bl180.o
-    0x0800f12a   0x00000084   Data   RO         7797    .constdata          m6e_apply.o
-    0x0800f1ae   0x00000002   PAD
-    0x0800f1b0   0x0000002c   Data   RO         8051    .constdata          serial_reader.o
-    0x0800f1dc   0x00000025   Data   RO        10219    .constdata          mini_board_protocol.o
-    0x0800f201   0x00000068   Data   RO        10258    .constdata          rs232_change_protocol.o
-    0x0800f269   0x00000003   PAD
-    0x0800f26c   0x00000020   Data   RO        11138    Region$$Table       anon$$obj.o
+    0x0800b638   0x00000050   Code   RO         6147    i.Weight_Sensor_Init  weight.o
+    0x0800b688   0x00000020   Code   RO        10989    i.__0printf$8       mc_w.l(printf8.o)
+    0x0800b6a8   0x00000028   Code   RO        10991    i.__0sprintf$8      mc_w.l(printf8.o)
+    0x0800b6d0   0x000002bc   Code   RO        10404    i.__DRV8434_Motor_Caculate_Next_Acc_Speed__  drv8434.o
+    0x0800b98c   0x0000003c   Code   RO         7035    i.__InfoBoard__     slave_uart_control_interface.o
+    0x0800b9c8   0x00000098   Code   RO         5555    i.__Light_Sensor_Get__  light.o
+    0x0800ba60   0x000000dc   Code   RO         6221    i.__Normal_Pitch_Move_Next__  step01.o
+    0x0800bb3c   0x0000005e   Code   RO            6    i.__ack_error_msg__  main.o
+    0x0800bb9a   0x00000002   PAD
+    0x0800bb9c   0x00000050   Code   RO        11048    i.__malloc$realloc  mc_w.l(mallocr.o)
+    0x0800bbec   0x0000000e   Code   RO        11140    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800bbfa   0x00000002   Code   RO        11141    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800bbfc   0x0000000e   Code   RO        11142    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800bc0a   0x00000002   PAD
+    0x0800bc0c   0x00000688   Code   RO         7036    i._commandTOstring_  slave_uart_control_interface.o
+    0x0800c294   0x000003c4   Code   RO         6340    i._num2string_      factory_many.o
+    0x0800c658   0x00000410   Code   RO        10996    i._printf_core      mc_w.l(printf8.o)
+    0x0800ca68   0x00000024   Code   RO        10997    i._printf_post_padding  mc_w.l(printf8.o)
+    0x0800ca8c   0x0000002e   Code   RO        10998    i._printf_pre_padding  mc_w.l(printf8.o)
+    0x0800caba   0x0000000a   Code   RO        11000    i._sputc            mc_w.l(printf8.o)
+    0x0800cac4   0x00000098   Code   RO         8036    i.autoDetectAntennaList  serial_reader.o
+    0x0800cb5c   0x00000060   Code   RO        10332    i.caculate_tansfer_check_bit  check_rs232.o
+    0x0800cbbc   0x00000042   Code   RO         9562    i.checkForAvailableFeatures  tm_reader.o
+    0x0800cbfe   0x00000002   PAD
+    0x0800cc00   0x0000019c   Code   RO         5648    i.cheminert_c52_c55_transfer  cheminert_c52.o
+    0x0800cd9c   0x00000078   Code   RO         8037    i.compareAntennas   serial_reader.o
+    0x0800ce14   0x0000003a   Code   RO         8038    i.compareVersion    serial_reader.o
+    0x0800ce4e   0x00000002   PAD
+    0x0800ce50   0x00000014   Code   RO         3805    i.delay_init        delay.o
+    0x0800ce64   0x0000001a   Code   RO         3806    i.delay_ms          delay.o
+    0x0800ce7e   0x00000002   PAD
+    0x0800ce80   0x00000034   Code   RO         3807    i.delay_us          delay.o
+    0x0800ceb4   0x00000002   Code   RO         6870    i.electromagnetic_control  electromagnetic.o
+    0x0800ceb6   0x00000002   Code   RO         6871    i.electromagnetic_control_package  electromagnetic.o
+    0x0800ceb8   0x00000014   Code   RO        10358    i.export_liquid_control  export_liquid.o
+    0x0800cecc   0x000000a4   Code   RO         8459    i.extractGen2MemoryBankValues  serial_reader_l3.o
+    0x0800cf70   0x000002b0   Code   RO         8460    i.filterbytes       serial_reader_l3.o
+    0x0800d220   0x00000018   Code   RO         3893    i.fputc             usart.o
+    0x0800d238   0x000000a6   Code   RO         8039    i.getPortValues     serial_reader.o
+    0x0800d2de   0x00000002   PAD
+    0x0800d2e0   0x00000078   Code   RO         8040    i.getSerialNumber   serial_reader.o
+    0x0800d358   0x00000028   Code   RO         6148    i.get_weight_sensor_value  weight.o
+    0x0800d380   0x000001cc   Code   RO         8041    i.initTxRxMapFromPorts  serial_reader.o
+    0x0800d54c   0x00000020   Code   RO         6222    i.init_mix_motor_config  step01.o
+    0x0800d56c   0x00000060   Code   RO         6223    i.init_motor_device  step01.o
+    0x0800d5cc   0x00000050   Code   RO        11049    i.internal_alloc    mc_w.l(mallocr.o)
+    0x0800d61c   0x000000a8   Code   RO         9564    i.isAntDetectEnabled  tm_reader.o
+    0x0800d6c4   0x000000ba   Code   RO         8465    i.isContinuousReadParamSupported  serial_reader_l3.o
+    0x0800d77e   0x00000074   Code   RO         9565    i.isMultiSelectSupported  tm_reader.o
+    0x0800d7f2   0x00000004   Code   RO         4988    i.l647x_GetMotorHandle  x_nucleo_ihmxx.o
+    0x0800d7f6   0x00000004   Code   RO         4989    i.l648x_GetMotorHandle  x_nucleo_ihmxx.o
+    0x0800d7fa   0x00000002   PAD
+    0x0800d7fc   0x00000114   Code   RO            7    i.main              main.o
+    0x0800d910   0x00000038   Code   RO         8042    i.prepEmbReadTagMultiple  serial_reader.o
+    0x0800d948   0x00000070   Code   RO         8043    i.prepForSearch     serial_reader.o
+    0x0800d9b8   0x00000134   Code   RO         6341    i.process_motor_command_receive  factory_many.o
+    0x0800daec   0x000004b0   Code   RO         7037    i.protocol_cheminert_c52_c55  slave_uart_control_interface.o
+    0x0800df9c   0x0000002a   Code   RO         7038    i.protocol_gravity_sensor_getting  slave_uart_control_interface.o
+    0x0800dfc6   0x00000002   PAD
+    0x0800dfc8   0x000004bc   Code   RO         7039    i.protocol_handle_uart_powerstep01_plain_slave_cmd  slave_uart_control_interface.o
+    0x0800e484   0x0000015c   Code   RO         7040    i.protocol_pump_s100_interface  slave_uart_control_interface.o
+    0x0800e5e0   0x00000032   Code   RO         7041    i.protocol_rfid_get_epc_string  slave_uart_control_interface.o
+    0x0800e612   0x00000002   PAD
+    0x0800e614   0x00000028   Code   RO         7042    i.protocol_scan_barcode  slave_uart_control_interface.o
+    0x0800e63c   0x000001a4   Code   RO         5676    i.pump_s100_transfer  pump_s100.o
+    0x0800e7e0   0x00000004   Code   RO         9451    i.s_flush           serial_transport_stm32f103rb.o
+    0x0800e7e4   0x00000004   Code   RO         9452    i.s_open            serial_transport_stm32f103rb.o
+    0x0800e7e8   0x000000a8   Code   RO         9453    i.s_receiveBytes    serial_transport_stm32f103rb.o
+    0x0800e890   0x0000001c   Code   RO         9454    i.s_sendBytes       serial_transport_stm32f103rb.o
+    0x0800e8ac   0x00000004   Code   RO         9455    i.s_setBaudRate     serial_transport_stm32f103rb.o
+    0x0800e8b0   0x00000004   Code   RO         9456    i.s_shutdown        serial_transport_stm32f103rb.o
+    0x0800e8b4   0x00000080   Code   RO         8044    i.setAntennaList    serial_reader.o
+    0x0800e934   0x000000fc   Code   RO         8045    i.setAntennaReadTimeHelper  serial_reader.o
+    0x0800ea30   0x0000004c   Code   RO         8046    i.setAntennaReadTimeList  serial_reader.o
+    0x0800ea7c   0x000000f0   Code   RO         8047    i.setPortValues     serial_reader.o
+    0x0800eb6c   0x0000006a   Code   RO         8048    i.setProtocol       serial_reader.o
+    0x0800ebd6   0x00000002   PAD
+    0x0800ebd8   0x0000000c   Code   RO         6342    i.set_DelayMs_Normal_Positon  factory_many.o
+    0x0800ebe4   0x0000000c   Code   RO         6224    i.set_mix_motor_config  step01.o
+    0x0800ebf0   0x0000003c   Code   RO         8466    i.tm_crc            serial_reader_l3.o
+    0x0800ec2c   0x00000026   Code   RO         9921    i.tm_gettime_consistent  tmr_utils.o
+    0x0800ec52   0x00000016   Code   RO         9922    i.tm_memcpy         tmr_utils.o
+    0x0800ec68   0x00000010   Code   RO         9925    i.tm_strcpy         tmr_utils.o
+    0x0800ec78   0x0000000e   Code   RO         9926    i.tm_time_subtract  tmr_utils.o
+    0x0800ec86   0x00000010   Code   RO         9927    i.tm_u8s_per_bits   tmr_utils.o
+    0x0800ec96   0x00000002   PAD
+    0x0800ec98   0x00000024   Code   RO         7956    i.tmr_gettime       osdep_stm32f103rb.o
+    0x0800ecbc   0x0000000a   Code   RO         7957    i.tmr_gettime_high  osdep_stm32f103rb.o
+    0x0800ecc6   0x00000008   Code   RO         7958    i.tmr_gettime_low   osdep_stm32f103rb.o
+    0x0800ecce   0x00000002   PAD
+    0x0800ecd0   0x00000020   Code   RO         7960    i.tmr_sleep         osdep_stm32f103rb.o
+    0x0800ecf0   0x00000024   Code   RO         3894    i.uart_init         usart.o
+    0x0800ed14   0x0000006c   Code   RO         8049    i.validateParams    serial_reader.o
+    0x0800ed80   0x000000a0   Code   RO         9569    i.validateReadPlan  tm_reader.o
+    0x0800ee20   0x00000088   Code   RO         8050    i.verifySearchStatus  serial_reader.o
+    0x0800eea8   0x0000002e   Code   RO         9570    i.versionCompare    tm_reader.o
+    0x0800eed6   0x00000031   Data   RO            8    .constdata          main.o
+    0x0800ef07   0x00000010   Data   RO          574    .constdata          system_stm32f1xx.o
+    0x0800ef17   0x00000008   Data   RO          575    .constdata          system_stm32f1xx.o
+    0x0800ef1f   0x0000001b   Data   RO         5649    .constdata          cheminert_c52.o
+    0x0800ef3a   0x0000003c   Data   RO         5677    .constdata          pump_s100.o
+    0x0800ef76   0x00000060   Data   RO         6226    .constdata          step01.o
+    0x0800efd6   0x0000001e   Data   RO         6343    .constdata          factory_many.o
+    0x0800eff4   0x000000aa   Data   RO         7047    .constdata          slave_uart_control_interface.o
+    0x0800f09e   0x00000016   Data   RO         7415    .constdata          fm100.o
+    0x0800f0b4   0x0000007a   Data   RO         7680    .constdata          bl180.o
+    0x0800f12e   0x00000084   Data   RO         7797    .constdata          m6e_apply.o
+    0x0800f1b2   0x00000002   PAD
+    0x0800f1b4   0x0000002c   Data   RO         8051    .constdata          serial_reader.o
+    0x0800f1e0   0x00000025   Data   RO        10219    .constdata          mini_board_protocol.o
+    0x0800f205   0x00000068   Data   RO        10258    .constdata          rs232_change_protocol.o
+    0x0800f26d   0x00000003   PAD
+    0x0800f270   0x00000020   Data   RO        11138    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000024d0, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x0000017c])
@@ -6729,12 +6729,12 @@ Image component sizes
        344         42          0         12          0       3575   uart_choose.o
         68          0          0          0          0       2891   uart_config.o
        332         50          0          8        264       4793   usart.o
-       358         26          0         16          0       5603   weight.o
+       362         28          0         16          0       5607   weight.o
       1272        168          0         12        164      16822   x_nucleo_ihm03a1_stm32f1xx.o
        308         28          0          8          0       8396   x_nucleo_ihmxx.o
 
     ----------------------------------------------------------------------
-     57496       7498       1258        904       8508    1112922   Object Totals
+     57500       7500       1258        904       8508    1112926   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         84          0          5         11          2          0   (incl. Padding)
 
@@ -6803,15 +6803,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     60834       7600       1258        916       8508    1089338   Grand Totals
-     60834       7600       1258        380       8508    1089338   ELF Image Totals (compressed)
-     60834       7600       1258        380          0          0   ROM Totals
+     60838       7602       1258        916       8508    1089342   Grand Totals
+     60838       7602       1258        380       8508    1089342   ELF Image Totals (compressed)
+     60838       7602       1258        380          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                62092 (  60.64kB)
+    Total RO  Size (Code + RO Data)                62096 (  60.64kB)
     Total RW  Size (RW Data + ZI Data)              9424 (   9.20kB)
-    Total ROM Size (Code + RO Data + RW Data)      62472 (  61.01kB)
+    Total ROM Size (Code + RO Data + RW Data)      62476 (  61.01kB)
 
 ==============================================================================
 
