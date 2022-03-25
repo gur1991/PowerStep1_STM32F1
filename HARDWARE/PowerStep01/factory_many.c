@@ -3,7 +3,7 @@
 #include "delay.h"
 #include "slave_uart_control_interface.h"
 #include "config.h"
-
+#include "fm100.h"
 
 
 
@@ -1121,7 +1121,9 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command)
 		case RUNNING_REST_PECKER_MOTOR:
 			value = Runing_Rest_Pecker_Motor();
 			break;
-				
+		case SCAN_CONNECT_TEST:
+			value =scan_connect_test();	
+			break;
 		
 			default:
 					break;

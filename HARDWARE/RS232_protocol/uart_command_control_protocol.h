@@ -249,6 +249,7 @@ typedef enum Command_Package_type{
 			
 			RUNNING_REST_CAMEL_MOTOR,
 			RUNNING_REST_PECKER_MOTOR,
+			SCAN_CONNECT_TEST,
 
 }Command_Package_t;
 

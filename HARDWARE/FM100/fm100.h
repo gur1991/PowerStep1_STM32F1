@@ -10,6 +10,9 @@
 /*
 *status true/false  beeper open/close
 */
+uint32_t scan_connect_test(void);
+
+
 void Init_Scan_FM100(bool status);
 /*
 *TimeOut_S …®√Ë ±º‰
@@ -27,7 +30,8 @@ struct{
 		uint8_t length;
 		uint8_t string[32];
 		uint8_t ret;
-	  uint8_t nor[2];
+	  uint8_t state;
+	  uint8_t nor;
 }response;
 }scan_barcode_t;
 

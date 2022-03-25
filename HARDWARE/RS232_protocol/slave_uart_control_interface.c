@@ -688,8 +688,9 @@ static void protocol_scan_barcode(scan_barcode_t* data)
 		int length=0;
 		//Obtain_Barcode_String(data->response.string, &length, performer.request.timeout,false);
 		//Scan_Bar_Action(data->response.string, &length, performer.request.timeout,false);
-		ScanHandle->scan(data->response.string, &length, performer.request.timeout,false);
-		data->response.ret=0;
+		int state =ScanHandle->scan(data->response.string, &length, performer.request.timeout,false);
+		data->response.state=state;
+	  data->response.ret=0;
 	  data->response.length=length;
 }
 static void protocol_pump_interface(pump_type_t* data)
