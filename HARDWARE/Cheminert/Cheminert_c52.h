@@ -25,6 +25,7 @@ typedef enum Command_Cheminert_type{
 		CHEMINERT_C52_SN,
 		CHEMINERT_C52_TO,
 		CHEMINERT_C52_VR,
+		CHEMINERT_C52_RO,
 	
 		CHEMINERT_C55_CP,
 		CHEMINERT_C55_CC1,
@@ -54,9 +55,8 @@ typedef enum Command_Cheminert_type{
 		CHEMINERT_C55_SDCW,
 		CHEMINERT_C55_SN,
 		CHEMINERT_C55_VR,
-		
-		CHEMINERT_C52_RO,
 		CHEMINERT_C55_RO,
+		
 }Command_Cheminert_type_t;
 
 //actuator

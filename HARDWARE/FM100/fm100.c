@@ -603,6 +603,7 @@ uint32_t scan_connect_test(void)
 	uint32_t ret=0;
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	ret=Control_Scan_FM100_Beeper(true);
+	
 #endif
 	return ret;
 }	

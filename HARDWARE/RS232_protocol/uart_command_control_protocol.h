@@ -258,6 +258,7 @@ typedef union{
 		uint8_t command;
 	}request;
 	struct{
+		uint32_t stateError;
 		uint32_t value;
 		uint8_t ret;
 		uint8_t nor[3];
