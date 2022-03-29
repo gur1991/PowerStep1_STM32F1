@@ -2,6 +2,7 @@
 #include "real_time_polling.h"
 #include "config.h"
 
+
 //discard 
 static void protocol_powerstep01_move(move_type_t* data){
 		
@@ -243,23 +244,14 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			const u8 tx_buf_sdcw[6]={'S','D','C','W',0x0d,0x0a};
 		  const u8 tx_buf_repot[4]={'R','+',0x0d,0x0a};
 			
-			
 			int type_flag=0;//type_flag =1 c52    type_flag=0 c55
-			
 			u8 rx_buf[64]={0};
 			u8 tx_size=0;
 			u8 tx_buf[10]={0};
-			u8 ret=0,rx_size=0,i=0,j=2;
-			cheminert_c52_c55_type_t performer;
-			bool wait_flag;
-			//LOGD("start. \r\n");
-//while(j--)
-	{			
-			memset(&performer, 0, sizeof(performer));
-			
-			wait_flag=true;
-			performer.request.command=data->request.command;
-			switch(performer.request.command)
+			u8 ret=0;
+			int rx_size=0;			
+			bool wait_flag=true;
+			switch(data->request.command)
 			{
 					case CHEMINERT_C52_CP:
 								type_flag=1;
@@ -451,19 +443,16 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			}
 			Uart_Clear_Context();	
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size-1,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
+			LOGD("command:%d rx_size:%d \r\n",data->request.command,rx_size);
 			if(!ret){
-						data->response.size=rx_size;
-						if(rx_size)
-						{	
-							memcpy(data->response.buf,rx_buf,rx_size);
-						}	
-					//	break;
-			}else{
-				data->response.size=0;
+					if(rx_size)
+					{	
+						memcpy(data->response.buf,rx_buf,rx_size);
+					}	
 			}
-			//delay_ms(1500);
+			
 			Uart_Clear_Context();	
-}			
+			data->response.size=rx_size;
 			data->response.ret=0;		
 	    //LOGD("end. \r\n");
 }
@@ -1507,27 +1496,16 @@ void Gravity_Sensor_Setting(int weightA,int weightB,int weightC,int weightD)
 /*************************************************************************************/
 u8 test_actuator(Command_Cheminert_type_t type)
 {
-	u8 ret=0,i;
+	u8 ret=0;
 	
 #if USE_CLEANING_DILUTION_BOARD		
 	cheminert_c52_c55_type_t cheminert_c52_c55;
 	cheminert_c52_c55.request.command=	type;
-	cheminert_c52_c55.request.timeout=100;
+	cheminert_c52_c55.request.timeout=1000;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	//LOGD("ret:%d \r\n",cheminert_c52_c55.response.ret);
-	//LOGD("size:%d \r\n",cheminert_c52_c55.response.size);
-	//for(i=0;i<cheminert_c52_c55.response.size;i++){
-	//			LOGD("%c",cheminert_c52_c55.response.buf[i]);
-	//}
-	//LOGD("\r\n");
-
-	
-	if(cheminert_c52_c55.response.size<=0)
+	if(cheminert_c52_c55.response.size==0)
 	{
-		if(type<CHEMINERT_C55_CP)
-			return ERROR_C52_COM;
-		else 
-			return ERROR_C55_COM;
+		return 1;
 	}
 #endif
 	return ret;

@@ -6,7 +6,6 @@
 void Uart4_Rx_Clear(void);
 
 #define LEN_MAX_UART4 128
-extern u8 ARM_RS232_ASK;
 
 extern u8 UART4_RX_BUF[LEN_MAX_UART4]; 		
 extern int UART4_RX_CNT;   			

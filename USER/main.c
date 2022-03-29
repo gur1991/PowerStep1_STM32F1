@@ -174,150 +174,12 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-
-	/*
-	while(1)
-	{	
-		//LOGD("w1:%d \r\n",AD_Sensor_Get_Data(AD1_CS));
-		//LOGD("w2:%d \r\n",AD_Sensor_Get_Data(AD2_CS));
-		//LOGD("w3:%d \r\n",AD_Sensor_Get_Data(AD3_CS));
-		LOGD("w4:%d \r\n",AD_Sensor_Get_Data(AD4_CS));
-		delay_ms(500);	
-	}
-*/	
-//RestFarAndDownMotorOrgin();
-	
-	//Rest_high_wheel();
-	//March_high_wheel();
-	//Rest_high_wheel();
-	//Belt_Move_At_SameTime();
-/*	
-	
-	RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
-	Normal_Goto_First_Position();
-		
-		int k=0;
-    for(k=0;k<10;k++){
-				Normal_Pitch_Move_Next();
-				delay_ms(500);	
-		}
-		Normal_Pitch_Move_Next_The_Last_Two();
-		Normal_Pitch_Move_Next_The_Last_Two();
-	RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 60000);
-*/	
-	
-	//Mix_Blood_High_Speed();
-	//delay_ms(5000);
-	//DRV8434_Motor_HardStop_And_Goto_Sleep(M2_MIX);
-	//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
 	
 	
-	
-	//DRV8434_Motor_Move_And_Wait(M1_MIX_V, M8_BIG_IN, 10000);
-	
+	//Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
 	
 	
 
-//	Weight_Sensor_Init();
-/*
-	while(1)
-	{
-		LOGD("W1:%d \r\n",get_weight_sensor_value(WEIGHT_ONE));
-		LOGD("W2:%d \r\n",get_weight_sensor_value(WEIGHT_TWO));
-		LOGD("W3:%d \r\n",get_weight_sensor_value(WEIGHT_THREE));
-		LOGD("W4:%d \r\n",get_weight_sensor_value(WEIGHT_FOUR));
-		delay_ms(500);
-	}	
-*/	
-	//RestFarAndDownMotorOrgin();	
-		
-	//First_Open_Motor_AutoCheck_Sensor();
-	//March_Drain_And_Wash_Motor_Orgin();
-	//Rest_Drain_And_Wash_Motor_Orgin();
-		//First_Open_Motor_AutoCheck_Motor();
-		//Rest_Injection_Module_Motor(10000,10000,200);
-		
-		//RestFarAndDownMotorOrgin();
-
-//	Mix_Work_Goto_Postion();
-	
-	//Scan_Motor_Slow_Spin();
-	//delay_ms(3000);
-	//DRV8434_Motor_HardStop_And_Goto_Sleep(M2_MIX);
-	//DRV8434_Motor_Move_Steps_Enable_Acc(M2_MIX);
-	//Mix_Blood_High_Speed();	
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 600*1000);
-	//Mix_Work_Goto_Postion();
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 600*1000);
-	
-	/*
-		RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT, M3_WAIT_TO_LEFT,92000);
-		LeftMoveTowardWaitPosition();
-		RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT, M3_WAIT_TO_LEFT,92000);
-		return 0;
-	
-		RestSelectMotorOrgin(M4_BLANK_NEXT, M4_LIGHT, M4_BLANK_TO_NEXT, 32000);
-		Normal_Goto_First_Position();
-		
-		int k=0;
-    for(k=0;k<10;k++){
-				Normal_Pitch_Move_Next();
-				delay_ms(500);	
-		}
-		Normal_Pitch_Move_Next_The_Last_Two();
-		Normal_Pitch_Move_Next_The_Last_Two();
-*/		
-		//Normal_Move_Blank();
-	
-		//NORMAL_SPEED  HIGH_SPEED  LOW_SPEED
-		//DRV8434_Motor_Select_Speed(M2_MIX, NORMAL_SPEED);
-		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT_WORK, M1_MIX_V_DOWN, 60000);
-		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
-		//DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 60000);
-		//DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M5_WAIT_TO_NEXT, 60000);		
-		
-		//DRV8434_Motor_Select_Speed(M1_MIX_V, NORMAL_SPEED);
-		//RestSelectMotorOrgin(M1_MIX_V, M1_LIGHT, M1_MIX_V_UP, 60000);
-		
-	 //RestSelectMotorOrgin(M8_BIG_IN_OUT, M8_LIGHT, M8_BIG_OUT, 60000);
-	 //DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 10000);
-	 
-	
-	//DRV8434_Motor_Move_Steps(M1_MIX_V, M1_MIX_V_UP, 40000);
-	//delay_ms(100);
-	//DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
-	
-	
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 30000);
-	
-	//delay_ms(1000);
-	//DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 40000);
-	//delay_ms(1000);
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60000);
-	
-	
-	//DRV8434_MOTOR_Config_Init();
-	//DRV8434_Motor_Move_And_Wait(3, M8_BIG_IN, 200000);
-	
-	
-	//DRV8434_Motor_Move_And_Wait(3, M4_BLANK_TO_NEXT, 40000);
-	
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	
-	//int i=0;
-/*	
-	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	DRV8434_Motor_Select_Speed(M2_MIX,NORMAL_SPEED);
-	for(i=0;i<5;i++)
-	{
-		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 50000); //ÒÔÇ°ÊÇ12000
-		//delay_ms(20);
-		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50000);
-		//delay_ms(20);
-	}
-*/	
-	
-	
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);
   #else	
@@ -330,15 +192,7 @@ int main(void)
 	while(1)
 	{
 			temp_a=UART4_RX_CNT;
-
-#if USE_KEEP_TEMPERATURE_BOARD		
-			delay_ms(1);
-#elif USE_AUTOMATIC_INJECTION_BOARD		
-		  delay_ms(1);
-#else
-			delay_ms(1);
-#endif	
-		
+			delay_ms(1);	
 			temp_b=UART4_RX_CNT;
 			
 			if(temp_b!=0)
@@ -349,7 +203,7 @@ int main(void)
 							UART4_RX_CNT=0;
 #if (USE_AUTOMATIC_INJECTION_BOARD||USE_GRADIENT_CONTROL_BOARD||USE_CLEANING_DILUTION_BOARD)						
 							__ack_error_msg__();
-#endif						
+#endif	
 					}
 					
 					if((temp_a==temp_b) && (temp_b==sizeof(Powerstep1_contorl_motor_command_t)))

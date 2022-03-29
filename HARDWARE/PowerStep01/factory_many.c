@@ -374,7 +374,7 @@ FACTORY_TYPE March_Drain_And_Wash_Motor_Orgin(void) //´óÐ¡×¢Éä±Ã¸´Î»
 	FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD	
 	
-	FACTORY_TYPE ret=test_actuator(CHEMINERT_C55_GO4);	
+	u8 ret=test_actuator(CHEMINERT_C55_GO4);	
 	if(ret)return ERROR_C55_COM;
 	
 #if (defined USE_DRV8434_PECKER)	

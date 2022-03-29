@@ -1,6 +1,7 @@
 #include "master_uart_control_interface.h"
 #include "uart4.h"
 #include "config.h"
+ u8 ARM_RS232_ASK;
 
 uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t* master,int length_data,int* len){
 		uint8_t ret=0;

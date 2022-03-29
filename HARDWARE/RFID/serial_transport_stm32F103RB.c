@@ -75,7 +75,7 @@ uint32_t* messageLength, uint8_t* message, const uint32_t timeoutMs)
 {
   int index = 0;
 	u8  tmp_buf[260];
-		int i=0;
+	//	int i=0;
 	memset(tmp_buf,0,sizeof(tmp_buf));
 	Config_M6e_Transfer();
 #if (RFID_DEBUG) 	

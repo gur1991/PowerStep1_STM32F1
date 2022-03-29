@@ -34,9 +34,10 @@ void config_s1125_pump(void)
 int transfer_s1125(void)
 {
 	int len=0;
-	int temp_a=0,temp_b=0;
-	int i=150;
+
 #if USE_GRADIENT_CONTROL_BOARD
+		int temp_a=0,temp_b=0;
+	int i=150;
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
 	uart_rts_control(PUMP_UART_CS, 1);
@@ -125,11 +126,13 @@ uint8_t Connect_S1125_Pump(void)
 int Read_Press_S1125_Pump(void)
 {
 	
-	int len=0;
+
 	int press=0;
-	int i=0;
+
 
 #if USE_GRADIENT_CONTROL_BOARD	
+		int i=0;
+		int len=0;
 	config_s1125_pump();
 	
 	memcpy(pump.device,"0F04", 4);
@@ -261,7 +264,7 @@ uint8_t Write_Press_s1125_pump(int MinPress, int MaxPress)
 	if(ret)return ret;
 	ret=Write_MinPress_s1125_pump(MinPress);
 #endif
-	return 0;
+	return ret;
 }	
 
 

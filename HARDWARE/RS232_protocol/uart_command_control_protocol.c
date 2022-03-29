@@ -216,7 +216,8 @@ uint8_t motorInit(void){
 
 
 void master_device_send(void){
-		uint8_t ret=0;
+/*	
+	uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
@@ -224,10 +225,11 @@ void master_device_send(void){
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
 		LOGD("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
-   
+ */  
 }
 void master_device_receive(void){
-		uint8_t ret=0;
+/*		
+	uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
@@ -235,10 +237,11 @@ void master_device_receive(void){
 		
 		UART2_Send_Data(&types,sizeof(Command_type_t));
 		LOGD("master len: %d, types: %d \r\n",sizeof(Command_type_t),types);
-    
+ */   
 }
 void slave_device_send(void){
-		uint8_t ret=0;
+/*		
+	uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
@@ -247,9 +250,11 @@ void slave_device_send(void){
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
 		LOGD("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
-}
+*/
+	}
 void slave_device_receive(void){
-		uint8_t ret=0;
+/*	
+	uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
@@ -258,10 +263,12 @@ void slave_device_receive(void){
 		UART3_Receive_Data(RX_CMD_BUF,&len);
 		
 		LOGD("slave len: %d, types: %d \r\n",len,RX_CMD_BUF[0]);
+*/
 }
 
 uint8_t test_protocl(void){
-		uint8_t ret=0;
+#if 0
+	uint8_t ret=0;
 		Command_type_t types= MOVE_TYPE;
 		u8 TX_CMD_BUF[5]={1,2,3,4,5};
 		u8 RX_CMD_BUF[5];
@@ -319,15 +326,14 @@ uint8_t test_protocl(void){
 		}
 		
 		return ret;
+#endif
+return 0;		
 }
 
 
 uint8_t test_protocl_new(Command_type_t types){
 		uint8_t ret =0;
-		Powerstep1_contorl_motor_command_t motorCommand;
-		motorCommand.type = types;
-		//motorCommand.CommandPowerStep1.move.request.devices
-		//motorCommand.CommandPowerStep1
+
 	
 	
 		return ret;
@@ -335,7 +341,8 @@ uint8_t test_protocl_new(Command_type_t types){
 
 uint8_t master_powerStep01_move(move_type_t tx_move){
 		uint8_t ret =0;
-		int len=0;
+/*		
+	int len=0;
 		move_type_t rx_move;
 	
 		Powerstep1_contorl_motor_command_t master_motorCommand,slave_motorCommand;
@@ -355,19 +362,20 @@ uint8_t master_powerStep01_move(move_type_t tx_move){
 			default:
 					LOGE("no found this cmd ! \r\n");
 		}
-	
+*/	
 		return ret;
 }
 
 
 void test_run(void){
+/*	
 	move_type_t tx_move;
 	tx_move.request.devices=2;
 	tx_move.request.steps=6400;
 	tx_move.request.types=POWERSTEP01_GO_TO;
 	
 	master_powerStep01_move(tx_move);
-
+*/
 }
 
 

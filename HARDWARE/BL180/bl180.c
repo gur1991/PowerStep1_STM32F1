@@ -66,7 +66,6 @@ void Goto_Rest_Set(void)
 	u8 tx_buf[6]="DELT\r\n";
 	u8 rx_buf[128];
 	int len=0;	
-	int i=100;
 	
 	BL180_Write(tx_buf,sizeof(tx_buf));
 	Wait_Ack();
@@ -232,12 +231,11 @@ void End_BL180(void)
 
 int Scan_Bar_Action(u8* string,int* length, int TimeOut_S,bool check)
 {
-	int i= TimeOut_S*100;
 	int ret=0;
+#if USE_AUTOMATIC_INJECTION_BOARD			
 	u8 rx_buf[128];
 	int len=0;
-#if USE_AUTOMATIC_INJECTION_BOARD			
-	
+	int i= TimeOut_S*100;
 #if(SCAN_DEBUG)		
 	LOGD("start scan \r\n");
 #endif

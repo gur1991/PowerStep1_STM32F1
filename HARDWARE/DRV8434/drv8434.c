@@ -405,6 +405,7 @@ void TIM3_IRQHandler(void)
 							case M4_BLANK_NEXT:HAL_TIM_PWM_Stop(&DRV_TIM3_Handler,TIM_CHANNEL_1);break;		
 #endif
 							default:
+								;
 					}
 					sTIM_PWM_COUNT_INDEX_TIM3=0;
 					sTIM_PWM_COUNT_MAX_TIM3=0xFFFFFFFE;
@@ -461,6 +462,7 @@ void TIM3_IRQHandler(void)
 							break;
 							#endif
 							default:
+								;
 							}
 					}
 				}				
@@ -491,6 +493,7 @@ void TIM4_IRQHandler(void)
 								case M7_HIGH_TURN:HAL_TIM_PWM_Stop(&DRV_TIM4_Handler,TIM_CHANNEL_2);break;
 				#endif
 								default:
+									;
 						}
 					
 					sTIM_PWM_COUNT_INDEX_TIM4=0;
@@ -540,6 +543,7 @@ void TIM4_IRQHandler(void)
 								break;
 								#endif
 								default:
+									;
 								}
 					}		
 				}
@@ -703,6 +707,7 @@ void DRV8434_Motor_Move(uint8_t deviceId, motorDir_t direction )
 				break;
 	
 				default:
+					;
 		}
 	
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
@@ -878,6 +883,7 @@ void DRV8434_Motor_HardStop_And_Goto_Sleep(uint8_t deviceId)
 #endif
 		
 		default:
+			;
 	}
 	
 	
@@ -960,6 +966,7 @@ void __DRV8434_Motor_Get_Speed_BK_Config__(uint8_t deviceId)
 		case M10_UP_DOWM:sDrvMotorSpeed.M10.start=sDrvMotorSpeed.M10.start_bk;break;
 		case M11_FAR_NEAR:sDrvMotorSpeed.M11.start=sDrvMotorSpeed.M11.start_bk;break;	
 		default:
+			;
 	}
 
 }
@@ -1365,6 +1372,7 @@ void __DRV8434_Motor_Select_Speed__(uint8_t deviceId, MOTOR_SPEED_type_t speed_t
 			
 #endif			
 		default:
+			;
 	}
 		
 }
@@ -1444,6 +1452,7 @@ void DRV8434_Motor_Run_Control_Timing(uint8_t deviceId,motorDir_t direction)
 
 		
 		default:
+			;
 	}	
 	delay_us(50);//延时起timing
 }	
@@ -1518,6 +1527,7 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 #endif
 
 		default:
+			;
 	}	
 	//delay_ms(1);//延时起timing
 
@@ -1670,6 +1680,7 @@ int __DRV8434_Motor_Caculate_Next_Acc_Speed__(uint8_t deviceId,int currentIndex)
 				break;
 		
 		default:
+			;
 	}
 	
 	return config;
