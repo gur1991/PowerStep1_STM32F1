@@ -11,7 +11,6 @@ void Uart2_Rx_Clear(void);
 extern u8 USART2_RX_BUF[MAX_LENGTH]; 	
 extern int USART2_RX_CNT;   			
 
-extern u8 FLAG_UART_CHEMINERT;
 extern u8 FLAG_UART_BL180_ACK;
 extern u8 FLAG_RECEIVE_ANSOWER_BL180;
 

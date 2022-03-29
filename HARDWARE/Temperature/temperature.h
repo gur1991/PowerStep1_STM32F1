@@ -41,10 +41,10 @@ struct{
 
 typedef union{
 struct{
-		int devices;
+		uint8_t devices;
 }request;
 struct{
-		int degree;
+		uint32_t degree;
 		uint8_t ret;
 		uint8_t status;
 		uint8_t nor[2];

@@ -183,7 +183,7 @@ typedef union{
 	struct{
 		uint32_t up_Steps;
 		uint32_t big_Steps;
-		int time;
+		uint32_t time;
 	}request;
 	struct{
 		uint8_t ret;
@@ -384,8 +384,8 @@ typedef union{
 
 //获得参数----4
 struct{
-		uint8_t devices;//1,2
-		uint8_t registe;
+		uint8_t devices;//0,1,2
+		uint8_t regsiter;
 }request;
 struct{
 		uint32_t result_para;
@@ -396,8 +396,8 @@ struct{
 //设置参数----5
 typedef union{
 struct{
-		uint8_t devices;//1,2
-		uint8_t registe;
+		uint8_t devices;//0,1,2
+		uint8_t regsiter;
 		uint32_t para;
 	  uint8_t nor[2];
 }request;

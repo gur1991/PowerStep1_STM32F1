@@ -28,7 +28,7 @@ typedef struct{
 
 typedef union{ 
 struct{
-	uint8_t export_liquid_state;
+	uint8_t state;
 	uint8_t nor[43];
 }request;
 struct{

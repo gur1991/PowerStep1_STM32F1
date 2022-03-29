@@ -4,7 +4,7 @@
 
 uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t* master,int length_data,int* len){
 		uint8_t ret=0;
-		int times =1000;
+		int times =100;
 		master->OverReceiveFlag[0]=OVER_UART_VALUE0;
 		master->OverReceiveFlag[1]=OVER_UART_VALUE1;
 	
@@ -22,7 +22,7 @@ uint8_t Master_PowerStep01_Transfer_Interface(Powerstep1_contorl_motor_command_t
 					printf("transfer error ! \r\n");
 					break;
 			}
-			delay_ms(10);
+			delay_ms(1);
 			//printf("wait  \r\n");
 		}
 		return ret;
@@ -340,7 +340,7 @@ uint8_t master_cheminert_c52_c55(cheminert_c52_c55_type_t data,uint8_t*buf,uint8
 }
 
 
-uint8_t master_pump_s100_interface(pump_s100_command_type_t data,pump_s100_reply_type_t* reply,PUMP_S100_REPLY_type_t* type){
+uint8_t master_pump_s100_interface(pump_s100_command_type_t data,pump_s100_reply_type_t* reply,uint8_t* type){
 		uint8_t ret =0;
 		int len =0;
 		u8 size=0;

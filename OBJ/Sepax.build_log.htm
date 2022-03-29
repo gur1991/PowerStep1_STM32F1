@@ -27,14 +27,23 @@ Project File Date:  02/17/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'SepaxShark'
-"..\OBJ\Sepax.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+main.c(382): warning:  #111-D: statement is unreachable
+  	return 0;
+main.c(171): warning:  #177-D: variable "i" was declared but never referenced
+  	int i=0;
+main.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=27424 RO-data=772 RW-data=792 ZI-data=4736  
+FromELF: creating hex file...
+"..\OBJ\Sepax.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\STM32softeware\STM32F1\新电机调试\SepaxSharkStm32\USER\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

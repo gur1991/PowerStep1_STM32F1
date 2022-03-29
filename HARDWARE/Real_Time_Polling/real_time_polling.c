@@ -73,7 +73,7 @@ void  Real_Time_Polling_Current_Index(void)
 #if USE_GRADIENT_CONTROL_BOARD
 		POLLING_press.pumpPress=PumpHandle->readPress();
 		
-		if(POLLING_press.pumpPress<0)
+		if(POLLING_press.pumpPress < 0)
 			 POLLING_press.pumpConnect=1;
 		else
 			 POLLING_press.pumpConnect=0;

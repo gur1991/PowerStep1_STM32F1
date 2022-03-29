@@ -107,7 +107,7 @@ static void protocol_powerstep01_one_device_set_mark(one_device_set_mark_type_t*
 static void protocol_powerstep01_get_para(get_para_type_t*data){
 			get_para_type_t performer;
 			performer.request.devices=data->request.devices;
-			performer.request.registe=data->request.registe;
+			performer.request.regsiter=data->request.regsiter;
 			
 			//PowerStep_Select_Motor_Baby(performer.request.devices);
 			//data->response.result_para=BSP_MotorControl_CmdGetParam(0, performer.request.registe);
@@ -117,7 +117,7 @@ static void protocol_powerstep01_get_para(get_para_type_t*data){
 static void protocol_powerstep01_set_para(set_para_type_t*data){
 			set_para_type_t performer;
 			performer.request.devices=data->request.devices;
-			performer.request.registe=data->request.registe;
+			performer.request.regsiter=data->request.regsiter;
 			performer.request.para=data->request.para;
 	
 			//PowerStep_Select_Motor_Baby(performer.request.devices);
@@ -252,7 +252,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			u8 ret=0,rx_size=0,i=0,j=2;
 			cheminert_c52_c55_type_t performer;
 			bool wait_flag;
-			LOGD("start. \r\n");
+			//LOGD("start. \r\n");
 //while(j--)
 	{			
 			memset(&performer, 0, sizeof(performer));
@@ -336,8 +336,10 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 								type_flag=1;
 								tx_size=sizeof(tx_buf_repot);	
 								memcpy(tx_buf,tx_buf_repot,tx_size);
+								wait_flag=false;
 								break;
 					case CHEMINERT_C55_RO:
+								wait_flag=false;
 								tx_size=sizeof(tx_buf_repot);	
 								memcpy(tx_buf,tx_buf_repot,tx_size);
 								break;
@@ -450,15 +452,20 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 			Uart_Clear_Context();	
 			ret= cheminert_c52_c55_transfer(tx_buf,tx_size-1,rx_buf,&rx_size,data->request.timeout,wait_flag, type_flag);
 			if(!ret){
-						memcpy(data->response.buf,rx_buf,rx_size);
 						data->response.size=rx_size;
+						if(rx_size)
+						{	
+							memcpy(data->response.buf,rx_buf,rx_size);
+						}	
 					//	break;
+			}else{
+				data->response.size=0;
 			}
 			//delay_ms(1500);
 			Uart_Clear_Context();	
 }			
 			data->response.ret=0;		
-	    LOGD("end. \r\n");
+	    //LOGD("end. \r\n");
 }
 /*
 		u8 S100_STX;
@@ -471,7 +478,7 @@ static void protocol_cheminert_c52_c55(cheminert_c52_c55_type_t*data){
 */
 static void protocol_pump_s100_interface(pump_s100_command_type_t*data){
 			pump_s100_command_type_t performer;
-			PUMP_S100_REPLY_type_t type;
+			uint8_t type;
 	    pump_s100_reply_type_t s100_reply;
 			uint8_t ret=0,i;
 	
@@ -838,7 +845,7 @@ static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
 static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 {
 			Real_Time_Polling_t  performer;
-		  export_liquid_control(data->request.export_liquid_state);	
+		  export_liquid_control(data->request.state);	
 	
 			data->response.polling=Get_Real_Time_Polling_Value();
 	    data->response.ret = 0;
@@ -1463,20 +1470,20 @@ uint8_t Gradient_control_buffer(int Work_Flow_Speed,int A_timeS,int B_timeS,int 
 }
 
 
-uint8_t Rest_C55_C52_Position(void)
+uint32_t Rest_C55_C52_Position(void)
 {
-	uint8_t ret=0;
+	uint32_t ret=0;
 #if USE_CLEANING_DILUTION_BOARD
 	cheminert_c52_c55_type_t cheminert_c52_c55;
-	cheminert_c52_c55.request.timeout=1000;
+	cheminert_c52_c55.request.timeout=500;
 	
 	cheminert_c52_c55.request.command=	CHEMINERT_C52_CCA;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	if(cheminert_c52_c55.response.buf[0]!='A')return ERROR_C55_COM;
+	if(cheminert_c52_c55.response.buf[0]!='A')return ERROR_C52_COM;
 
-	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC4;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_GO4;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	if(cheminert_c52_c55.response.buf[0]!='4')return 1;
+	if(cheminert_c52_c55.response.buf[0]!='4')return ERROR_C55_COM;
 #endif	
 	return ret;
 }	
@@ -1507,12 +1514,12 @@ u8 test_actuator(Command_Cheminert_type_t type)
 	cheminert_c52_c55.request.command=	type;
 	cheminert_c52_c55.request.timeout=100;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
-	LOGD("ret:%d \r\n",cheminert_c52_c55.response.ret);
-	LOGD("size:%d \r\n",cheminert_c52_c55.response.size);
-	for(i=0;i<cheminert_c52_c55.response.size;i++){
-				LOGD("%c",cheminert_c52_c55.response.buf[i]);
-	}
-	LOGD("\r\n");
+	//LOGD("ret:%d \r\n",cheminert_c52_c55.response.ret);
+	//LOGD("size:%d \r\n",cheminert_c52_c55.response.size);
+	//for(i=0;i<cheminert_c52_c55.response.size;i++){
+	//			LOGD("%c",cheminert_c52_c55.response.buf[i]);
+	//}
+	//LOGD("\r\n");
 
 	
 	if(cheminert_c52_c55.response.size<=0)
@@ -1533,7 +1540,7 @@ u8 C55_connect_check(void)
 	
 #if USE_CLEANING_DILUTION_BOARD		
 	cheminert_c52_c55_type_t cheminert_c52_c55;
-	cheminert_c52_c55.request.command=	CHEMINERT_C55_CC1;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_GO1;
 	cheminert_c52_c55.request.timeout=100;
 	protocol_cheminert_c52_c55(&cheminert_c52_c55);
 	if(!cheminert_c52_c55.response.ret&&cheminert_c52_c55.response.size)

@@ -12,8 +12,6 @@ int USART2_RX_CNT=0;
 u8 FLAG_UART_BL180_ACK=0;
 u8 FLAG_RECEIVE_ANSOWER_BL180=0;
 
-u8 FLAG_UART_CHEMINERT=0;
-
 void USART2_IRQHandler(void)
 {
     u8 res;	  
@@ -22,19 +20,10 @@ void USART2_IRQHandler(void)
 		HAL_UART_Receive(&USART2_Handler,&res,1,1);
 		if(USART2_RX_CNT<MAX_LENGTH)
 		{
-			
 			USART2_RX_BUF[USART2_RX_CNT]=res;		//记录接收到的值
-			//printf("zzzz%d\r\n",res);
 			USART2_RX_CNT++;						//接收数据增加1 
 		}
 		
-#if USE_CLEANING_DILUTION_BOARD		
-		//具体根据CHEMINERT实际
-		if(USART2_RX_CNT>=3&&(USART2_RX_BUF[USART2_RX_CNT-2]==0x0d&&USART2_RX_BUF[USART2_RX_CNT-1]==0x0a))
-		{
-				FLAG_UART_CHEMINERT=1;
-		}
-#endif
 
 #if USE_AUTOMATIC_INJECTION_BOARD		
 		if(USART2_RX_CNT>=7 && USART2_RX_BUF[0]==0xff)

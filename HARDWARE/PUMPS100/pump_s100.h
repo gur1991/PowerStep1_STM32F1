@@ -19,12 +19,12 @@ typedef struct{
 		u8 S100_ETX;
 }s100_command_t;
 
-typedef enum Result_S100_type{ 
+enum {
 		NORMAL_ANSWER_S100=11,
 		SPECIAL_ACK_S100,
 		ACTIVE_EVENT_S100,
 		UNKNOWN_ANSWER,
-}PUMP_S100_REPLY_type_t;
+};
 
 typedef	union{
 struct{
@@ -51,7 +51,7 @@ struct{
 }request;
 struct{
 		uint8_t ret;
-	  PUMP_S100_REPLY_type_t PUMP_S100_REPLY_type; 
+		uint8_t PUMP_S100_REPLY_type;
 		pump_s100_reply_type_t s100_reply;		
 }response;
 }pump_s100_command_type_t;
@@ -74,7 +74,7 @@ struct{
 
 void Wait_Ack_Pump_S100_Event_And_Send_Master(void);
 
-uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pump_s100_reply_type_t* reply,u16 timeout);
+uint8_t pump_s100_transfer(s100_command_t*data, uint8_t*type, pump_s100_reply_type_t* reply,u16 timeout);
 
 #endif
 

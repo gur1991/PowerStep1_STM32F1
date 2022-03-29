@@ -83,8 +83,9 @@ void Init_Board_Config(void)
 	Electromagnetic_init();//µç´Å·§
 	
 	test_actuator(CHEMINERT_C52_RO);
+	delay_ms(500);	
 	test_actuator(CHEMINERT_C55_RO);
-			
+	delay_ms(500);			
 	LOGD("[Pecker],protocol size:%d\r\n",sizeof(Powerstep1_contorl_motor_command_t));
 #endif
 
@@ -173,8 +174,8 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-	
-/*
+
+	/*
 	while(1)
 	{	
 		//LOGD("w1:%d \r\n",AD_Sensor_Get_Data(AD1_CS));

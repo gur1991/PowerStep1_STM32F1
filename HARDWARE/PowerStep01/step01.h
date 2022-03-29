@@ -47,7 +47,7 @@ typedef struct{
 }motor_config_type_t;
 
 typedef struct {
-		powerstep01_CmVm_t ModeSelection;
+		uint8_t ModeSelection;
 		motor_commonSpeed_type_t Speed;
 		motor_config_type_t config;	
 }init_motor_type_t;
@@ -137,9 +137,9 @@ void BSP_Motor_Control_Init(void);
 /*********************************************************************/
 #define ALLOW_MANY_MOTOR 2//最多允许6个电机同时控制
 typedef struct{
-			uint8_t array;//哪个电机
-			uint32_t stepCount;	//大小
-			motorDir_t direction;//方向
+			uint8_t array;//哪烐电机
+			uint32_t stepCount;	//庴小
+			uint8_t direction;//motorDir_t direction;//窚向
 }move_motor_data_type_t;
 
 

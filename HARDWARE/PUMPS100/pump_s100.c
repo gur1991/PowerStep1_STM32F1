@@ -45,7 +45,7 @@ typedef struct{
 //此处要注意的是，泵随时向STM32发送数据，如果收到的是泵主动发送的事件，恰好此时，被等待正常命令的动作接受到
 //此种情况机率非常小，如果出现这种情况，STM32会把主动事件回传给ARM端，ARM端收是这种情况会把此命令再执行一次
 //接收到的主动事件，根据情况选择是否放弃或者对应处理，因为ARM端也怕数据接收有误（主动事件）
-uint8_t pump_s100_transfer(s100_command_t*data, PUMP_S100_REPLY_type_t*type, pump_s100_reply_type_t* reply,u16 timeout){
+uint8_t pump_s100_transfer(s100_command_t*data, uint8_t*type, pump_s100_reply_type_t* reply,u16 timeout){
 		uint8_t ret=0;
 		u8 result;
     int len, i;

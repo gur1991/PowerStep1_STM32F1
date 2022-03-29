@@ -356,7 +356,7 @@ FACTORY_TYPE Rest_Drain_And_Wash_Motor_Orgin(void)
 #if USE_CLEANING_DILUTION_BOARD
 	uint8_t ret=0;
 	
-	ret=test_actuator(CHEMINERT_C55_CC4);
+	ret=test_actuator(CHEMINERT_C55_GO4);
 	if(ret)return ERROR_C55_COM;
 	
 	ret=RestSelectMotorOrgin(M8_BIG_IN_OUT,M8_LIGHT,M8_BIG_OUT, 600*1000);
@@ -374,7 +374,7 @@ FACTORY_TYPE March_Drain_And_Wash_Motor_Orgin(void) //´óÐ¡×¢Éä±Ã¸´Î»
 	FACTORY_TYPE value=0;
 #if USE_CLEANING_DILUTION_BOARD	
 	
-	FACTORY_TYPE ret=test_actuator(CHEMINERT_C55_CC4);	
+	FACTORY_TYPE ret=test_actuator(CHEMINERT_C55_GO4);	
 	if(ret)return ERROR_C55_COM;
 	
 #if (defined USE_DRV8434_PECKER)	
