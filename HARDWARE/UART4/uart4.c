@@ -14,7 +14,7 @@ void UART4_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&UART4_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	 {	 	
-			HAL_UART_Receive(&UART4_Handler,&res,1,2);//115200 256byte 需要20ms，现在给30ms
+			HAL_UART_Receive(&UART4_Handler,&res,1,1);//115200 256byte 需要20ms，现在给30ms
 				
 			if(UART4_RX_CNT<LEN_MAX_UART4)
 			{

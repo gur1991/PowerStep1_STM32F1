@@ -74,7 +74,7 @@ void UART5_Disable_Interrupt(void)
 
 void UART5_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&UART5_Handler,buf,len,100);//串口4发送数据
+	HAL_UART_Transmit(&UART5_Handler,buf,len,10);//串口4发送数据
 	UART5_RX_CNT=0;
 }
 //buf:接收缓存首地址

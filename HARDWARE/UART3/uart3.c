@@ -138,7 +138,7 @@ void UART3_Init(u32 bound)
 //len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART3_Send_Data(u8 *buf,int len)
 {
-	HAL_UART_Transmit(&USART3_Handler,buf,len,100);
+	HAL_UART_Transmit(&USART3_Handler,buf,len,10);
 	UART3_RX_CNT=0;
 }
 //buf:接收缓存首地址

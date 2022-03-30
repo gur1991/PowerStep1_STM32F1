@@ -37,7 +37,7 @@ int transfer_s1125(void)
 
 #if USE_GRADIENT_CONTROL_BOARD
 		int temp_a=0,temp_b=0;
-	int i=150;
+	int i=200;
 	memset(S1125_rx_buf, 0, sizeof(S1125_rx_buf));
 	
 	uart_rts_control(PUMP_UART_CS, 1);
