@@ -792,7 +792,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 		{
 			Light_Set_Delay_MS(10);
 		}else{
-			Light_Set_Delay_MS(10);
+			Light_Set_Delay_MS(20);
 		}
 		
 		Light_Control_Int_Enable(lightNum , 1);
@@ -836,7 +836,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							{
 								delay_ms(10);
 							}else{
-								delay_ms(100);
+								delay_ms(20);
 							}
 							
 							
