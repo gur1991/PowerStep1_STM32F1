@@ -58,6 +58,8 @@ typedef struct
 	uint8_t (*setMaxPress)(int max);
 	uint8_t (*setMinPress)(int min);
 	uint8_t (*connect)(void);
+	//uint8_t (*start_purge)(void);
+	//uint8_t (*stop_purge)(void);
 }Pump_t;
 
 typedef enum{
@@ -80,6 +82,8 @@ enum {
 	WRITE_FLOW_SPEED,
 	WRITE_PRESS,
 	CONNECT_TEST,
+//	START_PURGE,
+//	STOP_PURGE,
 };
 
 

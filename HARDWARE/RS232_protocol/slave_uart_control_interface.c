@@ -834,7 +834,7 @@ static void  protocol_real_time_polling_press(Real_Time_Polling_Press_t* data)
 static void  protocol_real_time_polling(Real_Time_Polling_t* data)
 {
 			Real_Time_Polling_t  performer;
-		  export_liquid_control(data->request.state);	
+		  //export_liquid_control(data->request.state);	
 	
 			data->response.polling=Get_Real_Time_Polling_Value();
 	    data->response.ret = 0;
@@ -1391,6 +1391,17 @@ uint8_t Set_Pumps100_MinPress(int press)
 }
 
 
+
+uint8_t Start_Pumps100_Pugre(void)
+{
+return 0;
+}	
+uint8_t Stop_Pumps100_Pugre(void)
+{
+return 0;
+}	
+
+
 uint8_t Set_Pumps100_connect(void)
 {
 return 0;
@@ -1707,6 +1718,8 @@ Pump_t s100=
 	Set_Pumps100_MaxPress,
 	Set_Pumps100_MinPress,
 	Set_Pumps100_connect,
+//	Start_Pumps100_Pugre,
+//	Stop_Pumps100_Pugre
 };
 
 Pump_t s1125=
@@ -1720,7 +1733,8 @@ Pump_t s1125=
 	Write_MaxPress_s1125_pump,
 	Write_MinPress_s1125_pump,
 	Connect_S1125_Pump,
-	
+//	Start_S1125_Purge,
+//	Stop_S1125_Purge,
 };
 
 Pump_t* S100_GetHandle(void)
@@ -1785,7 +1799,14 @@ int pump_process_cmd(pump_type_t pump)
 		case CONNECT_TEST:
 			value=PumpHandle->connect();
 			break;
-		
+/*		
+		case START_PURGE:
+			value=PumpHandle->start_purge();
+			break;
+		case STOP_PURGE:
+			value=PumpHandle->stop_purge();
+			break;
+*/				
 		default:
 			break;
 	}	

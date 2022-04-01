@@ -67,13 +67,15 @@ uint8_t Run_S1125_Pump(void)
 #if USE_GRADIENT_CONTROL_BOARD	
 	int len=0;
 	config_s1125_pump();
+	
 	memcpy(pump.device,"0F06", 4);
-
+/*
 	memcpy(pump.address,"00CC", 4);
 	memcpy(pump.value,"0001", 4);
 	len=transfer_s1125();
 
 	if(0==len)return 1;
+*/
 	
 	memcpy(pump.address,"012C", 4);
 	memcpy(pump.value,"0001", 4);
@@ -102,6 +104,43 @@ uint8_t Stop_S1125_Pump(void)
 	
 	return 0;
 }
+
+uint8_t Start_S1125_Purge(void)
+{
+#if USE_GRADIENT_CONTROL_BOARD	
+	int len=0;
+	config_s1125_pump();
+	memcpy(pump.device,"0F06", 4);
+	memcpy(pump.address,"012E", 4);
+	memcpy(pump.value,"0001", 4);
+	len=transfer_s1125();
+	
+	if(0==len)return 1;
+	else return 0;
+#endif
+	
+	return 0;
+}
+uint8_t Stop_S1125_Purge(void)
+{
+#if USE_GRADIENT_CONTROL_BOARD	
+	int len=0;
+	config_s1125_pump();
+	memcpy(pump.device,"0F06", 4);
+	memcpy(pump.address,"012F", 4);
+	memcpy(pump.value,"0001", 4);
+	len=transfer_s1125();
+	
+	if(0==len)return 1;
+	else return 0;
+#endif
+	
+	return 0;
+}
+
+
+
+
 //test connect :0F06006F00  --6F00
 uint8_t Connect_S1125_Pump(void)
 {
@@ -125,11 +164,7 @@ uint8_t Connect_S1125_Pump(void)
 
 int Read_Press_S1125_Pump(void)
 {
-	
-
 	int press=0;
-
-
 #if USE_GRADIENT_CONTROL_BOARD	
 		int i=0;
 		int len=0;

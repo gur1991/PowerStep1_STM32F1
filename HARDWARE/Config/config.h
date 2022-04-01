@@ -8,9 +8,9 @@
 #define USE_NEW_DESIGN 1
 //new start for dev branch
 
-#define USE_GRADIENT_CONTROL_BOARD 1//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
+#define USE_GRADIENT_CONTROL_BOARD 0//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
 
-#define USE_CLEANING_DILUTION_BOARD 0//Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
+#define USE_CLEANING_DILUTION_BOARD 1//Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
 #define USE_AUTOMATIC_INJECTION_BOARD 0//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
 

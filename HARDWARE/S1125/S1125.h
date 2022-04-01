@@ -22,6 +22,12 @@ typedef struct S1125_protocl
 	u8 end[2];
 }S1125_protocl_type;
 
+
+
+uint8_t Start_S1125_Purge(void);
+
+uint8_t Stop_S1125_Purge(void);
+
 uint8_t Run_S1125_Pump(void);
 
 uint8_t Stop_S1125_Pump(void);

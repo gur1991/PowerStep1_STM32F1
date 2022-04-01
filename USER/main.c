@@ -101,6 +101,7 @@ void Init_Board_Config(void)
 	LOGD("init scan. \r\n");
 	ScanChooseHandle(FM100);
 	ScanHandle->init(true);
+	//export_liquid_control(1);
 	
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
 #ifdef USE_DRV8434_CAMEL
@@ -167,7 +168,8 @@ int main(void)
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
-
+	uint8_t exportLiquidState=1;
+	
 	int i=0;
 	int temp_a=0,temp_b=0;
 	//KEY_Init(); 
@@ -177,8 +179,6 @@ int main(void)
 	
 	
 	//Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
-	
-	
 
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);

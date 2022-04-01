@@ -1128,7 +1128,12 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 			if(stateError)
 				stateError=ERROR_SCAN_CONNECT;
 			break;
-		
+		case EXPORT_LIQUID_OPEN:
+			export_liquid_control(1);
+			break;
+		case EXPORT_LIQUID_CLOSE:
+			export_liquid_control(0);
+			break;
 			default:
 					break;
 		}	

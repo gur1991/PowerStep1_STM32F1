@@ -755,14 +755,14 @@ uint32_t get_motor_rest_steps(int motorNum)
 	uint32_t steps=0;
 	switch(motorNum)
 	{
-		case M1_MIX_V: steps=100000;break;
-		case M3_LEFT_WAIT: steps=100000;break;
-		case M4_BLANK_NEXT: steps=100000;break;
-		case M7_HIGH_TURN: steps=10000;break;
-		case M8_BIG_IN_OUT: steps=100000;break;
-		case M9_IN_OUT: steps=100000;break;
-		case M10_UP_DOWM: steps=50000;break;
-		case M11_FAR_NEAR: steps=40000;break;
+		case M1_MIX_V: steps=110000;break;
+		case M3_LEFT_WAIT: steps=110000;break;
+		case M4_BLANK_NEXT: steps=110000;break;
+		case M7_HIGH_TURN: steps=11000;break;
+		case M8_BIG_IN_OUT: steps=120000;break;
+		case M9_IN_OUT: steps=120000;break;
+		case M10_UP_DOWM: steps=60000;break;
+		case M11_FAR_NEAR: steps=50000;break;
 		default:
 			;
 	}
@@ -804,7 +804,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 				{				
 							light=0;
 							break;
-				}else if(i>=5*1000){
+				}else if(i>=6*1000){
 							light=1;
 							LOGE("motor no find light \r\n");
 							break;	
@@ -842,7 +842,7 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=5*1000){
+				}else if(i>=6*1000){
 							light=1;
 							LOGE("motor no find light \r\n");
 							BSP_MotorControl_HardStop(0);	
@@ -880,7 +880,7 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 					{				
 							light=0;
 							break;
-				}else if(i>=5*1000){
+				}else if(i>=6*1000){
 							light=1;
 							LOGE("motor no find light \r\n");
 							break;	
@@ -910,7 +910,7 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 						  delay_ms(delayMs);
 							BSP_MotorControl_HardStop(0);	
 							break;
-				}else if(i>=5*1000){
+				}else if(i>=6*1000){
 							light=1;
 							LOGE("motor no find light \r\n");
 							BSP_MotorControl_HardStop(0);	
