@@ -178,6 +178,8 @@ int main(void)
 	Init_Board_Config();
 	
 		
+	//Mix_Blood_High_Speed();
+	
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);
   #else	
