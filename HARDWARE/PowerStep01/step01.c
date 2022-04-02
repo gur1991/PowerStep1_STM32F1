@@ -785,12 +785,15 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 	
 		steps=get_motor_rest_steps(motorNum);
 	
-			if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
+		if(motorNum==M11_FAR_NEAR || motorNum==M7_HIGH_TURN )
 		{
 			Light_Set_Delay_MS(30);
 		}else if(motorNum==M3_LEFT_WAIT || motorNum==M4_BLANK_NEXT)
 		{
 			Light_Set_Delay_MS(10);
+		}else if(motorNum==M1_MIX_V)
+		{
+			Light_Set_Delay_MS(20);
 		}else{
 			Light_Set_Delay_MS(20);
 		}

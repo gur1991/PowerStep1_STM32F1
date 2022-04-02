@@ -177,9 +177,7 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-	
-	//Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCount)
-
+		
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);
   #else	
