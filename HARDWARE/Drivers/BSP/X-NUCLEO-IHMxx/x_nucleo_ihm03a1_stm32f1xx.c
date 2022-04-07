@@ -450,11 +450,6 @@ void Powerstep01_Board_GpioInit(uint8_t deviceId)
     HAL_GPIO_Init(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT11, &GPIO_InitStruct);
 #endif
 		
-	Powerstep01_Board_PullUp_Cs_All();
-		
-	Powerstep01_Board_Reset_All();
-
-	delay_ms(5);
   }
 }
 
@@ -583,7 +578,7 @@ void Powerstep01_Board_Reset_All(void)
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT4, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN4, GPIO_PIN_RESET); 
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT5, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN5, GPIO_PIN_RESET); 
 			HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT6, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN6, GPIO_PIN_RESET); 
-		  	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7, GPIO_PIN_RESET); 
+		  HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PORT7, BSP_MOTOR_CONTROL_BOARD_STBY_RESET_PIN7, GPIO_PIN_RESET); 
 #endif
 
 #if USE_CLEANING_DILUTION_BOARD	
@@ -632,7 +627,6 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
 {
   HAL_StatusTypeDef status;
   uint32_t i;
-	
   
 	Powerstep01_Board_Cs_Pull_Low();
   for (i = 0; i < nbDevices; i++)
@@ -647,20 +641,18 @@ uint8_t Powerstep01_Board_SpiWriteBytes(uint8_t *pByteToTransmit, uint8_t *pRece
   }
   Powerstep01_Board_Cs_Pull_High();
   
-	
-  
   return (uint8_t) status;  
 }
 
 void Powerstep01_Board_Cs_Pull_High(void)
 {
-	//delay_us(10);
+	delay_us(1);
 	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_SET);
 }	
 void Powerstep01_Board_Cs_Pull_Low(void)
 {
 	HAL_GPIO_WritePin(BSP_MOTOR_CONTROL_BOARD_CS_PORT, BSP_MOTOR_CONTROL_BOARD_CS_PIN, GPIO_PIN_RESET);
-	//delay_us(10);
+	delay_us(1);
 }	
 
 

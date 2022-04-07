@@ -10,7 +10,7 @@ int FM100_Scan_Into_Configuration_State(void)
 	u8 tmp_buf[4]="@@@@";
 	u8 rx_buf[10];
 	int len=0;
-	int time =50;
+	int time =100;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
 	while(time--){
@@ -37,7 +37,7 @@ int FM100_Scan_Exit_Configuration_State(void)
 	u8 tmp_buf[4]="^^^^";
 	u8 rx_buf[10];
 	int len=0;
-	int time=50;
+	int time=100;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
 	while(time--){
@@ -66,7 +66,7 @@ int FM100_Scan_Control_Status(bool status)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=50;
+		int time=100;
 	
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	if(status)
@@ -98,7 +98,7 @@ int FM100_Scan_Continuous_Mode(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=50;
+		int time=100;
 	
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -126,7 +126,7 @@ int FM100_Scan_Command_Mode(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=50;
+		int time=100;
 	
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -155,7 +155,7 @@ int FM100_Scan_Command_Mode_Start(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=50;
+		int time=100;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
@@ -182,7 +182,7 @@ int FM100_Scan_Command_Mode_Stop(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time =50;
+		int time =100;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
@@ -235,7 +235,7 @@ int FM100_Scan_Close_Beeper(void)
 	u8 tmp_buf[]="!";
 	u8 rx_buf[128];
 	int len=0;
-	int time=50;
+	int time=100;
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
 	while(time--){
@@ -257,7 +257,7 @@ int FM100_Scan_Open_Beeper(void)
 	u8 tx_buf[10]="#99900041;";
 	u8 rx_buf[128];
 	int len=0;
-	int time=50;
+	int time=100;
 	FM100_Write(tx_buf,sizeof(tx_buf));
 	while(time--){
 		if(FLAG_UART_FM100_ACK){
@@ -277,7 +277,7 @@ int FM100_Scan_Rs232_Config(void)
 	u8 tx_buf_baud_rate[]="#99902104;";
 	u8 tx_buf_no_flow_control[]="#99902140;";
 	u8 tx_buf_data_bit[]="#99902160;";
-	int time=50;
+	int time=100;
 	u8 rx_buf[128];
 	int len=0;
 	

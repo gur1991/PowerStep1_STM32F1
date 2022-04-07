@@ -331,28 +331,13 @@ void Powerstep01_Init_Register(void* pInit)
 
 void Powerstep01_Init(void* pInit)
 { 
-  /* Initialise the GPIOs of the just added device */
   Powerstep01_Board_GpioInit(powerstep01DriverInstance);
 	
-  if(Powerstep01_Board_SpiInit() != 0)
-  {
-    /* Initialization Error */
-   // Powerstep01_ErrorHandler(POWERSTEP01_ERROR_0);
-  } 
-  /* configure the step clock */
-  //Powerstep01_Board_StepClockInit();
-
-  /* Standby-reset deactivation */
-  //Powerstep01_Board_ReleaseReset(powerstep01DriverInstance);//此处全部置高
-  Powerstep01_Board_ReleaseReset_All();
-
-  /* Let a delay after reset */
-  //Powerstep01_Board_Delay(5);
-	delay_ms(5);
-//  LOGD("spi delay ok \r\n");
-
-	//Powerstep01_Init_Register(pInit);
- // powerstep01DriverInstance++;
+  Powerstep01_Board_SpiInit();
+	Powerstep01_Board_PullUp_Cs_All();
+	Powerstep01_Board_Reset_All();
+	delay_ms(1);
+	Powerstep01_Board_ReleaseReset_All();
 }
 
 /******************************************************//**
@@ -2030,6 +2015,7 @@ void Powerstep01_WriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte)
 
   if (Powerstep01_Board_SpiWriteBytes(pByteToTransmit, pReceivedByte, numberOfDevices) != 0)
   {
+		LOGE("SPI ERROR \r\n");
     //Powerstep01_ErrorHandler(POWERSTEP01_ERROR_1);
   }
 	

@@ -846,9 +846,10 @@ uint8_t RestSelectMotorOrgin(int motorNum,int lightNum, motorDir_t motorDir,uint
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=6*1000){
+							BSP_MotorControl_HardStop(0);	
 							light=1;
 							LOGE("motor no find light \r\n");
-							BSP_MotorControl_HardStop(0);	
+							
 							break;	
 				}
 				delay_ms(1);	
@@ -914,9 +915,9 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 							BSP_MotorControl_HardStop(0);	
 							break;
 				}else if(i>=6*1000){
+							BSP_MotorControl_HardStop(0);	
 							light=1;
 							LOGE("motor no find light \r\n");
-							BSP_MotorControl_HardStop(0);	
 							break;	
 				}
 				delay_ms(1);	
