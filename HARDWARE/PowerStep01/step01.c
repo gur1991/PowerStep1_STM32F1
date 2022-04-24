@@ -897,10 +897,8 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 
 
 #else	
-	
+			
 	if(M11_FAR_NEAR==motorNum)Choose_Single_Motor_Speed_Config(M11_FAR_NEAR,LOW_SPEED);
-
-		
 		steps=get_motor_rest_steps(motorNum);
 	
 		PowerStep_Select_Motor_Baby(motorNum);

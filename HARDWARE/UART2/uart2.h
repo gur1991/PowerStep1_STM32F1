@@ -4,24 +4,12 @@
 #include "uart3.h"
 #include "config.h"
 
-#define MAX_LENGTH 260
+#define MAX_LENGTH 128
 
 void Uart2_Rx_Clear(void);
 
-extern u8 USART2_RX_BUF[MAX_LENGTH]; 	
 extern int USART2_RX_CNT;   			
-
-extern u8 FLAG_UART_BL180_ACK;
-extern u8 FLAG_RECEIVE_ANSOWER_BL180;
-
-extern u8 FLAG_UART_FM100;
-extern u8 FLAG_UART_FM100_INTO;
-extern u8 FLAG_UART_FM100_EXIT;
-extern u8 FLAG_UART_FM100_ACK;
-
-extern u8 FLAG_RECEIVE_ACK_PUMP100;
-extern u8 FLAG_RECEIVE_ANSOWER_PUMP100;
-
+extern u8 FLAG_RECEIVE_RFID;
 void UART2_Init(u32 bound);
 void UART2_Init_Check(u32 bound);
 

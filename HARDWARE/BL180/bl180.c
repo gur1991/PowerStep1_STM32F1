@@ -5,7 +5,7 @@
 
 Uart_Receive_Data BL180_Read=NULL ;
 Uart_Send_Data BL180_Write=NULL ;
-
+int FLAG_RECEIVE_ANSOWER_BL180=0;
 
 Scan_t* ScanHandle=0;
 

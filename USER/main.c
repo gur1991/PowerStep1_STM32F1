@@ -177,7 +177,6 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 	
-		
 	//Mix_Blood_High_Speed();
 	
 	#if USE_KEEP_TEMPERATURE_BOARD

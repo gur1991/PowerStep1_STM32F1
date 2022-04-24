@@ -1,7 +1,8 @@
 #include "pump_s100.h"
 #include "uart_command_control_protocol.h"
 #include "config.h"
-
+int FLAG_RECEIVE_ACK_PUMP100=0;
+int FLAG_RECEIVE_ANSOWER_PUMP100=0;
 void Big_Little_Endian_Convert(u8*array,u8 array_size){
 		u8 tmp_data[128];
 		u8 i;

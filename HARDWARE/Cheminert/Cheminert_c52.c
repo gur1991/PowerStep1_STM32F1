@@ -34,16 +34,16 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, int*rx_size,int ti
 				return ret;
 	 } 	
 
-	 timeout=800;
+	 timeout=300;
 	 
 	 while(1){
 				temp_a=USART2_RX_CNT;
-				delay_ms(1);
+				delay_ms(3);
 				temp_b=USART2_RX_CNT;
 			
 				if(temp_a==temp_b && temp_a!=0)
 				{
-							delay_ms(1);
+							delay_ms(2);
 							R232_Read(rx_buf,rx_size);
 							break;
 					}

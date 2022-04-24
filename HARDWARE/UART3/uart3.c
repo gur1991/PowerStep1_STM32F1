@@ -8,21 +8,8 @@
 
 UART_HandleTypeDef USART3_Handler; 
 
-//接收缓存区 	
 u8 UART3_RX_BUF[LEN_MAX_UART3];  
-//接收到的数据长度
 int UART3_RX_CNT=0;  
-
-
-u8 FLAG_RECEIVE_ACK_PUMP100=0;
-u8 FLAG_RECEIVE_ANSOWER_PUMP100=0;
-u8 FLAG_RECEIVE_RFID=0;
-
-u8 FLAG_UART_FM100=0;
-u8 FLAG_UART_FM100_INTO=0;
-u8 FLAG_UART_FM100_EXIT=0;
-u8 FLAG_UART_FM100_ACK=0;
-
 
 
 void USART3_IRQHandler(void)
@@ -30,48 +17,13 @@ void USART3_IRQHandler(void)
     u8 res;
     if((__HAL_UART_GET_FLAG(&USART3_Handler,UART_FLAG_RXNE)!=RESET))  //接收中断
 	{	 	
-		HAL_UART_Receive(&USART3_Handler,&res,1,1);
+		HAL_UART_Receive(&USART3_Handler,&res,1,2);
 		if(UART3_RX_CNT<LEN_MAX_UART3)
 		{
 			UART3_RX_BUF[UART3_RX_CNT]=res;		//记录接收到的值
 			UART3_RX_CNT++;						//接收数据增加1	
-			//LOGD("zzzzzzzzz%c \r\n",res);
 		} 
 		
-		if(UART3_RX_CNT>=7 && UART3_RX_BUF[0]==0xff)
-		{
-				if(UART3_RX_CNT == UART3_RX_BUF[1]+7)FLAG_RECEIVE_RFID=1;
-			
-		}
-
-#if USE_GRADIENT_CONTROL_BOARD			
-		if(UART3_RX_CNT==1&&(UART3_RX_BUF[0]==0x23||UART3_RX_BUF[0]==0x24||UART3_RX_BUF[0]==0x25)){
-					FLAG_RECEIVE_ACK_PUMP100=1;
-		}
-		
-		if(UART3_RX_CNT>2&&(UART3_RX_BUF[UART3_RX_CNT-1]==0x0a||UART3_RX_BUF[UART3_RX_CNT-1]==0x0d)){
-					FLAG_RECEIVE_ANSOWER_PUMP100=1;
-		}	
-#endif
-		
-		
-		if(UART3_RX_CNT>4&&UART3_RX_BUF[UART3_RX_CNT-1]==0x0a&&UART3_RX_BUF[UART3_RX_CNT-2]==0x0d)
-		{
-				FLAG_UART_FM100=1;
-		}
-		if(UART3_RX_CNT==4&&(UART3_RX_BUF[UART3_RX_CNT-1]=='@')&&(UART3_RX_BUF[UART3_RX_CNT-2]=='@'))
-		{
-				FLAG_UART_FM100_INTO=1;
-		}
-		if(UART3_RX_CNT==4&&(UART3_RX_BUF[UART3_RX_CNT-1]=='^')&&(UART3_RX_BUF[UART3_RX_CNT-2]=='^'))
-		{
-				FLAG_UART_FM100_EXIT=1;
-		}
-		if(UART3_RX_CNT==10&&(UART3_RX_BUF[UART3_RX_CNT-1]==';'))
-		{
-				FLAG_UART_FM100_ACK=1;
-		}
-
 
 	}
 } 
