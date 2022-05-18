@@ -3,9 +3,9 @@
 <title>Static Call Graph - [..\OBJ\Sepax.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\Sepax.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon May 09 12:58:36 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Wed May 18 14:01:55 2022
 <BR><P>
-<H3>Maximum Stack Usage =        768 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        776 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; protocol_cheminert_c52_c55 &rArr; cheminert_c52_c55_transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
 <P>
@@ -364,23 +364,23 @@ Global Symbols
 <P><STRONG><a name="[ba]"></a>__aeabi_memcpy</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, memmovea.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Big_Little_Endian_Convert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M6e_Magic_Get_One_Rfid_Info
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_rfid_get_epc_string
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_cheminert_c52_c55
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Big_Little_Endian_Convert
 </UL>
 
 <P><STRONG><a name="[c2]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;caculate_tansfer_check_bit
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ack_error_msg__
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Real_Time_Polling_Value
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_cheminert_c52_c55
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 </UL>
 
 <P><STRONG><a name="[180]"></a>__aeabi_memmove</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, memmovea.o(.text), UNUSED)
@@ -405,14 +405,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c6]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR><BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;caculate_tansfer_check_bit
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Real_Time_Polling_Init
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ack_error_msg__
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_cheminert_c52_c55
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
 </UL>
 
 <P><STRONG><a name="[185]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
@@ -611,8 +611,8 @@ Global Symbols
 <P><STRONG><a name="[189]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[a4]"></a>_float_round</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fepilogue.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
 <P><STRONG><a name="[a3]"></a>_float_epilogue</STRONG> (Thumb, 92 bytes, Stack size 4 bytes, fepilogue.o(.text))
@@ -662,9 +662,9 @@ Global Symbols
 <P><STRONG><a name="[b6]"></a>BSP_MotorControl_HardStop</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, x_nucleo_ihmxx.o(i.BSP_MotorControl_HardStop))
 <BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_ErrorHandler
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Select_Motor
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Select_Motor
 </UL>
 
 <P><STRONG><a name="[170]"></a>BSP_MotorControl_HardStop_Select</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, factory_many.o(i.BSP_MotorControl_HardStop_Select))
@@ -674,8 +674,8 @@ Global Symbols
 <P><STRONG><a name="[b8]"></a>BSP_MotorControl_Move</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, x_nucleo_ihmxx.o(i.BSP_MotorControl_Move))
 <BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_ErrorHandler
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 
 <P><STRONG><a name="[16f]"></a>BSP_MotorControl_Move_Select</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, factory_many.o(i.BSP_MotorControl_Move_Select))
@@ -731,15 +731,15 @@ Global Symbols
 <P><STRONG><a name="[c0]"></a>Choose_Single_Motor_Speed_Config</STRONG> (Thumb, 58 bytes, Stack size 40 bytes, step01.o(i.Choose_Single_Motor_Speed_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init_Register
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_motor_device
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigMotorAllDevice
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<BR>[Called By]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 
 <P><STRONG><a name="[c1]"></a>ConfigMotorAllDevice</STRONG> (Thumb, 446 bytes, Stack size 40 bytes, step01.o(i.ConfigMotorAllDevice))
@@ -815,10 +815,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
-<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
+<BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_s1125_pump
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Scan_FM100
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 </UL>
 
 <P><STRONG><a name="[cf]"></a>GetUartSend</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, uart_choose.o(i.GetUartSend))
@@ -826,10 +826,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
-<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
+<BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_s1125_pump
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Scan_FM100
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 </UL>
 
 <P><STRONG><a name="[161]"></a>Get_All_Weight_Sensor_Warnning_Result</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, weight.o(i.Get_All_Weight_Sensor_Warnning_Result))
@@ -903,13 +903,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cb]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Rts_Control_Init
+<BR><BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Rts_Control_Init
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Electromagnetic_init
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Cs_Pull_Low
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Cs_Pull_High
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_cs_init
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset
 </UL>
 
 <P><STRONG><a name="[d4]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
@@ -1107,9 +1107,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_IRQHandler
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_IRQHandler
 </UL>
 
 <P><STRONG><a name="[13f]"></a>HAL_UART_Receive_IT</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_Receive_IT))
@@ -1127,9 +1127,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Send_Data
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Send_Data
+<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Send_Data
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART3_Send_Data
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART2_Send_Data
 </UL>
 
 <P><STRONG><a name="[eb]"></a>HAL_UART_TxCpltCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_TxCpltCallback))
@@ -1181,8 +1181,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
 </UL>
 
 <P><STRONG><a name="[15e]"></a>Light_Sensor_Get_All</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, light.o(i.Light_Sensor_Get_All))
@@ -1230,10 +1230,10 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[c4]"></a>PowerStep_Select_Motor_Baby</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.PowerStep_Select_Motor_Baby))
-<BR><BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR><BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stop_Select_Motor
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 </UL>
 
 <P><STRONG><a name="[fb]"></a>Powerstep01_AccDec_RegVal_to_Steps_s2</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_AccDec_RegVal_to_Steps_s2))
@@ -1372,9 +1372,9 @@ Global Symbols
 <P><STRONG><a name="[10a]"></a>Powerstep01_Board_SpiWriteBytes</STRONG> (Thumb, 62 bytes, Stack size 32 bytes, x_nucleo_ihm03a1_stm32f1xx.o(i.Powerstep01_Board_SpiWriteBytes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_TransmitReceive
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Cs_Pull_Low
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Cs_Pull_Low
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Cs_Pull_High
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_TransmitReceive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
 </UL>
@@ -1670,12 +1670,12 @@ Global Symbols
 <P><STRONG><a name="[0]"></a>Powerstep01_Init</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, powerstep01.o(i.Powerstep01_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Powerstep01_Init &rArr; delay_ms &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
+<BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_SpiInit
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_Reset_All
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_ReleaseReset_All
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_PullUp_Cs_All
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Board_GpioInit
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> powerstep01.o(.data)
 </UL>
@@ -2100,13 +2100,13 @@ Global Symbols
 <P><STRONG><a name="[12e]"></a>RestSelectMotorOrgin</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, step01.o(i.RestSelectMotorOrgin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = RestSelectMotorOrgin &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_motor_rest_steps
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Move
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerStep_Select_Motor_Baby
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_motor_rest_steps
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
@@ -2508,10 +2508,7 @@ Global Symbols
 <P><STRONG><a name="[bf]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf8.o(i.__0printf$8))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Board_Config
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Board_Define_Config
@@ -2521,6 +2518,9 @@ Global Symbols
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_pump_s100_interface
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_cheminert_c52_c55
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_WriteBytes
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 </UL>
 
 <P><STRONG><a name="[147]"></a>__0sprintf$8</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf8.o(i.__0sprintf$8), UNUSED)
@@ -2620,15 +2620,15 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cheminert_c52_c55_transfer
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Light_Sensor_Get
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Select_Baby
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_s1125
+<LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Powerstep01_Init
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pump_s100_transfer
 </UL>
 
 <P><STRONG><a name="[104]"></a>delay_us</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, delay.o(i.delay_us))
@@ -2643,6 +2643,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = electromagnetic_control
 </UL>
 <BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;electromagnetic_control_package
 </UL>
 
@@ -2676,11 +2677,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 </UL>
 
-<P><STRONG><a name="[94]"></a>main</STRONG> (Thumb, 162 bytes, Stack size 32 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 768<LI>Call Chain = main &rArr; protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; protocol_cheminert_c52_c55 &rArr; cheminert_c52_c55_transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
+<P><STRONG><a name="[94]"></a>main</STRONG> (Thumb, 202 bytes, Stack size 40 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 776<LI>Call Chain = main &rArr; protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; protocol_cheminert_c52_c55 &rArr; cheminert_c52_c55_transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
+<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;electromagnetic_control
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart4_Rx_Clear
@@ -2700,13 +2702,13 @@ Global Symbols
 <P><STRONG><a name="[155]"></a>process_motor_command_receive</STRONG> (Thumb, 178 bytes, Stack size 24 bytes, factory_many.o(i.process_motor_command_receive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = process_motor_command_receive &rArr; Choose_Single_Motor_Speed_Config &rArr; Powerstep01_Init_Register &rArr; Powerstep01_SetRegisterToPredefinedValues &rArr; Powerstep01_CmdSetParam &rArr; Powerstep01_WriteBytes &rArr; Powerstep01_Board_SpiWriteBytes &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_num2string_
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_connect_test
+<BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_connect_test
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;export_liquid_control
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rest_C55_C52_Position
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rearch_Degree_Wait
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;C55_C52_connect_check
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_num2string_
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Choose_Single_Motor_Speed_Config
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_handle_uart_powerstep01_plain_slave_cmd
@@ -2715,13 +2717,7 @@ Global Symbols
 <P><STRONG><a name="[154]"></a>protocol_handle_uart_powerstep01_plain_slave_cmd</STRONG> (Thumb, 1296 bytes, Stack size 192 bytes, slave_uart_control_interface.o(i.protocol_handle_uart_powerstep01_plain_slave_cmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 736<LI>Call Chain = protocol_handle_uart_powerstep01_plain_slave_cmd &rArr; protocol_cheminert_c52_c55 &rArr; cheminert_c52_c55_transfer &rArr; GetUartSend &rArr; Uart_Select_Baby &rArr; delay_ms &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_mix_motor_config
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopALLMotorMotion
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
-<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Weight_Sensor_Warnning_Line
-<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_weight_current_gram
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Single_Weight_Sensor_Warnning_Result
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_All_Weight_Sensor_Warnning_Result
+<BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;electromagnetic_control
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;caculate_tansfer_check_bit
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Clear_Context
@@ -2747,7 +2743,6 @@ Global Symbols
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_pump_s100_interface
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_cheminert_c52_c55
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;electromagnetic_control_package
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;electromagnetic_control
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_Receive_Data
 <LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_DelayMs_Normal_Positon
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_motor_command_receive
@@ -2758,6 +2753,13 @@ Global Symbols
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Move_And_Wait
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_Move_Select
 <LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_MotorControl_HardStop_Select
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_mix_motor_config
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopALLMotorMotion
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestSelectMotorOrgin
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Weight_Sensor_Warnning_Line
+<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_weight_current_gram
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Single_Weight_Sensor_Warnning_Result
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_All_Weight_Sensor_Warnning_Result
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -2776,11 +2778,11 @@ Global Symbols
 <P><STRONG><a name="[174]"></a>pump_s100_transfer</STRONG> (Thumb, 300 bytes, Stack size 56 bytes, pump_s100.o(i.pump_s100_transfer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = pump_s100_transfer &rArr; Big_Little_Endian_Convert &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CRC_Digital_Convert_Get
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Big_Little_Endian_Convert
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartSend
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUartReceive
+<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CRC_Digital_Convert_Get
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Big_Little_Endian_Convert
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_pump_s100_interface

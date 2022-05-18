@@ -168,8 +168,7 @@ int main(void)
 	uart_init(115200);					
 	UART4_Init(115200);
 	Real_Time_Polling_Init();
-	uint8_t exportLiquidState=1;
-	
+	int countIndex=0;	
 	int i=0;
 	int temp_a=0,temp_b=0;
 	//KEY_Init(); 
@@ -177,35 +176,16 @@ int main(void)
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
 
+
 	
-	
-	//Init_M6e_Config(TMR_REGION_PRC , 2000 ,2000 , TWO_ALL );
-	//LOGD("scan:%d \r\n",scan_connect_test());
-	
-#if 0
-	int state=0;
-	int lengthScan=0;
-	u8 stringScan[30];
-	LOGD("start\r\n");
-	while(1)
-	{
-			memset(stringScan,0,sizeof(stringScan));
-			state = Obtain_Barcode_String( stringScan, &lengthScan, 30, false);
-			if(state){
-				LOGE("connect error \r\n");
-				break;
-			}	
-			else LOGD("%s \r\n",stringScan);
-	}	
-#endif	
-	//Mix_Blood_High_Speed();
-	
+
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);
   #else	
 	delay_ms(1000*8);
 	#endif
-	
+
+
 	Uart4_Rx_Clear();
 	UART4_Enable_Interrupt();
 	
@@ -249,8 +229,23 @@ int main(void)
 			}
 #endif		
 
-
+//electromagnetic_control(VALUE_0,1);	
 			
+//20min一个周期 19min 40s 等待 ,0s 开始排液  20s停止排液
+#if USE_GRADIENT_CONTROL_BOARD
+			if(0==countIndex)
+			{
+				//LOGD("open \r\n");
+				electromagnetic_control(10,1);	
+			}else if(1000*20==countIndex)
+			{
+				//LOGD("close \r\n");
+				electromagnetic_control(10,0);		
+			}
+			countIndex++;
+			if(20*60*1000<=countIndex)countIndex=0;
+			//if(60*1000<=countIndex)countIndex=0;
+#endif						
 	}
 
 	return 0;
