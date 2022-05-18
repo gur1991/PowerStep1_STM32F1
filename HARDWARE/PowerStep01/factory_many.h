@@ -120,6 +120,10 @@ FACTORY_TYPE C55_C52_connect_check(void);
 
 void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time);
 
+void Stop_Select_Motor(int devices);
+
+void Scan_Motor_Slow_Spin(void);
+
 void set_DelayMs_Normal_Positon(uint16_t delayMs,uint16_t delayMsLastTwo);
 /****************new start*******************************/
 

@@ -124,8 +124,6 @@ uint32_t Init_M6e_Config(TMR_Region region, uint32_t Rpowerdbm,uint32_t Wpowerdb
 			ret = TMR_paramSet(rp, TMR_PARAM_METADATAFLAG, &metadata);
 	}
 
-
-
 	Exit_RFID_Uart_Config();	
 	
 #endif	

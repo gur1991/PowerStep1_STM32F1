@@ -6,8 +6,15 @@
 #include "fm100.h"
 
 
-
-
+void Stop_Select_Motor(int devices)
+{
+#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
+		DRV8434_Motor_HardStop_And_Goto_Sleep(devices);
+#else
+		PowerStep_Select_Motor_Baby(devices);	
+		BSP_MotorControl_HardStop(0);
+#endif
+}
 
 //停止可变速度配置
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type)

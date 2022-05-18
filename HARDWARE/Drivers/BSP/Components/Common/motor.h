@@ -83,7 +83,9 @@
   * @{
   */
 ///bool Type
+#ifndef bool
 typedef uint8_t  bool;
+#endif
 /**
   * @}
   */   

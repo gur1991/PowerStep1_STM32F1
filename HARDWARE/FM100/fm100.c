@@ -1,5 +1,7 @@
 #include "fm100.h"
 #include "config.h"
+#include "uart2.h"
+#include "factory_many.h"
 
 Uart_Receive_Data FM100_Read=NULL ;
 Uart_Send_Data FM100_Write=NULL ;
@@ -23,10 +25,11 @@ int FM100_Scan_Into_Configuration_State(void)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
+				LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
-	return strncmp((const char *)tmp_buf, (const char *)rx_buf, 4);
+	return len>3?0:1;//strncmp((const char *)tmp_buf, (const char *)rx_buf, 4);
 }	
 
 int FM100_Scan_Exit_Configuration_State(void)
@@ -48,10 +51,11 @@ int FM100_Scan_Exit_Configuration_State(void)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
+				LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
-	return strncmp((const char *)tmp_buf, (const char *)rx_buf, 4);
+	return len>3?0:1;//strncmp((const char *)tmp_buf, (const char *)rx_buf, 4);
 }	
 
 
@@ -80,9 +84,15 @@ int FM100_Scan_Control_Status(bool status)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
+				LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
+	
+	return len>3?0:1;
+	
+	
+	
 	
 	if(rx_buf[0]==tmp_buf[0])
 	{
@@ -220,7 +230,7 @@ int FM100_Scan_Command_Mode_Stop(void)
 
 int FM100_Scan_Security(int level)
 {
-/*	
+
 		u8 tx_buf[10]="#99900120;";
 	switch(level)
 	{
@@ -240,7 +250,7 @@ int FM100_Scan_Security(int level)
 	}	
 	
 	FM100_Write(tx_buf,sizeof(tx_buf));
-*/
+
 	return 0;
 }	
 
@@ -589,6 +599,8 @@ void Init_Scan_FM100(bool status)
 	ret=Control_Scan_FM100_Beeper(status);
 	if(ret)return ;
 	
+	FM100_Scan_Security(2);
+	
 	Stop_Scan_FM100();
 #endif	
 }	
@@ -599,7 +611,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	u8 buf[128];
-	int time=TimeOut_S*33;
+	int time=TimeOut_S*10;
 	int len=0;
 	int temp_a=0,temp_b=0;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
@@ -608,26 +620,29 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	
 	ret=Start_Scan_FM100();
 	if(ret)return ret;
-	
 	memset(buf, 0 ,sizeof(buf));
-  while(time--)
+  LOGD("start \r\n");
+	while(time--)
 	{	
 		temp_a=USART2_RX_CNT;
-		delay_ms(3);
+		delay_ms(10);
 		temp_b=USART2_RX_CNT;
 
-		if(temp_a==temp_b && temp_a!=0)
+		if(temp_a==temp_b && temp_a>3 && FLAG_SCAN_OK)
 		{	
 				FM100_Read(buf,&len);
+				LOGD("%d %s %dms\r\n", len, buf, 10*(TimeOut_S*10-time));
 				break;
-		}	
+		}
+		//最后200ms停止电机，防止还在解码的过程中切换了命令
 	}
-	
+	LOGD("end \r\n");
 	if(len>2)len-=2;
 	else len=0;
 	
 	memcpy(string, buf, len);
 	*length=len;
+
 	ret=Stop_Scan_FM100();
 	if(ret)return ret;	
 #endif	
@@ -639,6 +654,8 @@ uint32_t scan_connect_test(void)
 {
 	uint32_t ret=0;
 #if USE_AUTOMATIC_INJECTION_BOARD	
+	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
+	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
 	ret=Control_Scan_FM100_Beeper(true);
 	
 #endif

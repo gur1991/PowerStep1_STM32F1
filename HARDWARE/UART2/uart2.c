@@ -8,6 +8,7 @@ UART_HandleTypeDef USART2_Handler;
 u8 USART2_RX_BUF[MAX_LENGTH];  	
 int USART2_RX_CNT=0; 
 u8 FLAG_RECEIVE_RFID=0;
+u8 FLAG_SCAN_OK=0;
 
 void USART2_IRQHandler(void)
 {
@@ -28,9 +29,26 @@ void USART2_IRQHandler(void)
 		{
 				if(USART2_RX_CNT == USART2_RX_BUF[1]+7)FLAG_RECEIVE_RFID=1;
 		}
+		
+		if(USART2_RX_CNT>=3 && USART2_RX_BUF[USART2_RX_CNT-1]==0x0a
+												&& USART2_RX_BUF[USART2_RX_CNT-2]==0x0d)
+		{
+				FLAG_SCAN_OK=1;
+		}else if(USART2_RX_CNT<3)
+		{
+				FLAG_SCAN_OK=0;
+		}
 #endif		
+		
 	} 
 }    
+
+
+void UART2_Config_Baurd(u32 bound)
+{
+	USART2_Handler.Init.BaudRate=bound;		        
+	HAL_UART_Init(&USART2_Handler);			     
+}
 
 
 //初始化IO 串口2
@@ -69,8 +87,8 @@ void UART2_Init(u32 bound)
 	USART2_Handler.Init.HwFlowCtl=UART_HWCONTROL_NONE;	//无硬件流控
 	USART2_Handler.Init.Mode=UART_MODE_TX_RX;		    //收发模式
 	USART2_Handler.Init.OverSampling = UART_OVERSAMPLING_16;
-	HAL_UART_Init(&USART2_Handler);			        //HAL_UART_Init()会使能USART2
-    
+	HAL_UART_Init(&USART2_Handler);			        //HAL_UART_Init()会使能USART2	
+		
   __HAL_UART_DISABLE_IT(&USART2_Handler,UART_IT_TC);
 	__HAL_UART_ENABLE_IT(&USART2_Handler,UART_IT_RXNE);//开启接收中断
 	HAL_NVIC_EnableIRQ(USART2_IRQn);				        //使能USART1中断
@@ -116,33 +134,22 @@ void UART2_Init_Check(u32 bound)
 	HAL_NVIC_SetPriority(USART2_IRQn,3,3);			        //抢占优先级3，子优先级3
 }
 
-
-
-//buf:发送区首地址
-//len:发送的字节数(为了和本代码的接收匹配,这里建议不要超过64个字节)
 void UART2_Send_Data(u8 *buf,int len)
 {
-	//printf("uart2 send\r\n");
 	HAL_UART_Transmit(&USART2_Handler,buf,len,10);//串口2发送数据
 	USART2_RX_CNT=0;
 }
-//buf:接收缓存首地址
-//len:读到的数据长度
+
 void UART2_Receive_Data(u8 *buf,int *len)
 {
-	int rxlen=USART2_RX_CNT;
 	int i=0;
-	*len=0;				//默认为0
-	//delay_ms(10);		//等待10ms,连续超过10ms没有接收到一个数据,则认为接收结束
-	if(rxlen==USART2_RX_CNT&&rxlen)//接收到了数据,且接收完成了
+	for(i=0;i<USART2_RX_CNT;i++)
 	{
-		for(i=0;i<rxlen;i++)
-		{
-			buf[i]=USART2_RX_BUF[i];	
-		}		
-		*len=USART2_RX_CNT;	//记录本次数据长度
-		USART2_RX_CNT=0;		//清零
-	}
+		buf[i]=USART2_RX_BUF[i];	
+	}		
+	*len=USART2_RX_CNT;	
+	
+	USART2_RX_CNT=0;	
 } 
 
 void Uart2_Rx_Clear(void)

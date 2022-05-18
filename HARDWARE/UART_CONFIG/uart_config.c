@@ -26,14 +26,14 @@ void Uart2_Config_Init(void)
 void Load_RFID_Uart_Config(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		UART2_Init(115200);
+		UART2_Config_Baurd(115200);
 #endif	
 }
 
 void Exit_RFID_Uart_Config(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD			
-		UART2_Init(9600);
+		UART2_Config_Baurd(9600);
 #endif	
 }
 

@@ -176,7 +176,28 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
+
 	
+	
+	//Init_M6e_Config(TMR_REGION_PRC , 2000 ,2000 , TWO_ALL );
+	//LOGD("scan:%d \r\n",scan_connect_test());
+	
+#if 0
+	int state=0;
+	int lengthScan=0;
+	u8 stringScan[30];
+	LOGD("start\r\n");
+	while(1)
+	{
+			memset(stringScan,0,sizeof(stringScan));
+			state = Obtain_Barcode_String( stringScan, &lengthScan, 30, false);
+			if(state){
+				LOGE("connect error \r\n");
+				break;
+			}	
+			else LOGD("%s \r\n",stringScan);
+	}	
+#endif	
 	//Mix_Blood_High_Speed();
 	
 	#if USE_KEEP_TEMPERATURE_BOARD

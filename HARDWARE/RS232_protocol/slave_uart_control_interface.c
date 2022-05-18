@@ -28,13 +28,15 @@ static void protocol_powerstep01_power(power_type_t* data){
 				StopALLMotorMotion();
 		}else{
 			
+			Stop_Select_Motor(performer.request.devices);
+/*			
 			#if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
 					DRV8434_Motor_HardStop_And_Goto_Sleep(performer.request.devices);
 			#else
 					PowerStep_Select_Motor_Baby(performer.request.devices);	
 					BSP_MotorControl_HardStop(0);
 			#endif
-			
+*/			
 		}
 	
 		data->response.ret=0;

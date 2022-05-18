@@ -330,13 +330,13 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
 		
 			TempMotor.request.init_motor.config.acc=20;
-		  TempMotor.request.init_motor.config.hold=5;
+		  TempMotor.request.init_motor.config.hold=15;
 		
 		  TempMotor.request.init_motor.config.dec=20;
 			TempMotor.request.init_motor.config.run=20;
 		
-			TempMotor.request.init_motor.Speed.acceleration=700;
-			TempMotor.request.init_motor.Speed.deceleration=700;
+			TempMotor.request.init_motor.Speed.acceleration=50;
+			TempMotor.request.init_motor.Speed.deceleration=50;
 			TempMotor.request.init_motor.Speed.maxSpeed=50;
 
 		

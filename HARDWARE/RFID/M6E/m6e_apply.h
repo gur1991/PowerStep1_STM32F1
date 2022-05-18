@@ -39,6 +39,7 @@ uint32_t M6e_Magic_Write_Rfid_Blank(uint8_t wordCount,uint16_t* writeData);
 uint32_t M6e_Read_Info(void);
 
 
+
 void Protocol_Output_Report(Chemical_reagent_Info_type info);
 void Process_Regent_Info(Sepax_EPC_Type_T Sepc);
 void Process_Filiter_Info(Sepax_EPC_Type_T Sepc);
