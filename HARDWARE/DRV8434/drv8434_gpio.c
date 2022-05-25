@@ -152,6 +152,61 @@ void GP_Init_Drv8434_Speed_Config(void)
 	
 }	
 
+int GP_DRV8434_From_DelayMS_Get_Steps_Count(int deviceId, int delayMs)
+{
+	int count =0;
+		switch(deviceId)
+	{
+#ifdef USE_DRV8434_CAMEL		
+		case M1_MIX_V:
+			count=(delayMs*1000)/(2*sDRV8434Config.M1.e);
+			break;
+		case M2_MIX:
+			count=(delayMs*1000)/(2*sDRV8434Config.M2.e);
+			break;
+		case M3_LEFT_WAIT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M3.e);
+			break;
+		case M4_BLANK_NEXT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M4.e);
+			break;
+		case M5_WAIT_NEXT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M5.e);
+			break;
+		case M6_BLANK_LEFT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M6.e);
+			break;
+		case M7_HIGH_TURN:
+			count=(delayMs*1000)/(2*sDRV8434Config.M7.e);
+			break;
+#endif		
+		
+		
+#ifdef USE_DRV8434_PECKER		
+		case M8_BIG_IN_OUT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M8.e);
+			break;
+		case M9_IN_OUT:
+			count=(delayMs*1000)/(2*sDRV8434Config.M9.e);
+			break;
+		case M10_UP_DOWM:
+			count=(delayMs*1000)/(2*sDRV8434Config.M10.e);
+			break;
+		case M11_FAR_NEAR:	
+			count=(delayMs*1000)/(2*sDRV8434Config.M11.e);
+			break;			
+#endif
+
+		default:
+			;
+	}	
+	return count;
+}
+
+
+
+
+
 
 
 
@@ -619,9 +674,6 @@ void GP_DRV8434_Motor_Run_Control_Timing(uint8_t deviceId,motorDir_t direction)
 	delay_us(1);
 }	
 
-void GP_DRV8434_Motor_Stop_Move(void)
-{
-}
 
 void GP_DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 {

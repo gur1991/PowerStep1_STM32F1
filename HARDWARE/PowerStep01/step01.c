@@ -684,7 +684,7 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 
 		steps=get_motor_rest_steps(motorNum);
 		GP_DRV8434_Motor_Move_Steps_Single_Check_Light(motorNum, motorDir, steps,lightNum);
-		GP_DRV8434_Motor_Move_Steps_Single(motorNum, motorDir, 200);
+		GP_DRV8434_Motor_Move_Steps_Single(motorNum, motorDir, GP_DRV8434_From_DelayMS_Get_Steps_Count(motorNum,delayMs));
 	
 		light=Light_Sensor_Get(lightNum);
 
