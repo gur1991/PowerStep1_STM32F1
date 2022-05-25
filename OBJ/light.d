@@ -122,3 +122,4 @@
 ..\obj\light.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\light.o: ..\HARDWARE\DRV8434\drv8434.h
 ..\obj\light.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\obj\light.o: ..\HARDWARE\DRV8434\drv8434_gpio.h

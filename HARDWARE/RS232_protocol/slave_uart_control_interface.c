@@ -1,6 +1,7 @@
 #include "slave_uart_control_interface.h"
 #include "real_time_polling.h"
 #include "config.h"
+#include "drv8434_gpio.h"
 
 
 //discard 
@@ -70,7 +71,7 @@ static void protocol_powerstep01_one_device_move(one_device_move_type_t* data){
 		performer.request.steps = data->request.steps;
 	
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
-		DRV8434_Motor_Move_Steps_Disable_Acc(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
+		GP_DRV8434_Motor_Move_Steps_Single(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);
 #else	
 	  PowerStep_Select_Motor_Baby(performer.request.devices);
 		BSP_MotorControl_Move(performer.request.devices, (motorDir_t)performer.request.dir, performer.request.steps);

@@ -4,12 +4,12 @@
 #include "slave_uart_control_interface.h"
 #include "config.h"
 #include "fm100.h"
-
+#include "drv8434_gpio.h"
 
 void Stop_Select_Motor(int devices)
 {
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
-		DRV8434_Motor_HardStop_And_Goto_Sleep(devices);
+		GP_DRV8434_Motor_Stop_Control_Timing(devices);
 #else
 		PowerStep_Select_Motor_Baby(devices);	
 		BSP_MotorControl_HardStop(0);
@@ -22,8 +22,7 @@ void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type
 	  #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)
 	
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
-		DRV8434_Motor_HardStop_And_Goto_Sleep(deviceId);
-		DRV8434_Motor_Select_Speed(deviceId,speed_type);
+		GP_DRV8434_Motor_Stop_Control_Timing(deviceId);
 #else	
 		PowerStep_Select_Motor_Baby(deviceId);	
 		BSP_MotorControl_HardStop(0);
@@ -38,9 +37,7 @@ uint8_t RestSelectMotorOrginSelect(int deviceId,int lightNum, motorDir_t motorDi
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)	
 
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)	
-		DRV8434_Motor_Select_Speed(deviceId,speed_type);
 		light=RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
-		DRV8434_Motor_Select_Speed(deviceId,NORMAL_SPEED);
 #else		
 		Choose_Single_Motor_Speed_Config(deviceId,speed_type);
 		light=RestSelectMotorOrgin(deviceId,lightNum,motorDir, steps);
@@ -55,8 +52,7 @@ void BSP_MotorControl_Move_Select(uint8_t deviceId, motorDir_t direction, uint32
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)
 
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
-	DRV8434_Motor_Select_Speed(deviceId,speed_type);
-	DRV8434_Motor_Move_Steps_Disable_Acc( deviceId,  direction,  stepCount);
+	GP_DRV8434_Motor_Move_Steps_Single( deviceId,  direction,  stepCount);
 #else
 	Choose_Single_Motor_Speed_Config(deviceId,speed_type);
 	PowerStep_Select_Motor_Baby(deviceId);	
@@ -73,7 +69,7 @@ void Motor_Move_And_Wait(uint8_t deviceId, motorDir_t direction, uint32_t stepCo
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)
 
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)
-	DRV8434_Motor_Move_And_Wait( deviceId,  direction,  stepCount);
+	GP_DRV8434_Motor_Move_Steps_Single( deviceId,  direction,  stepCount);
 #else	
 	PowerStep_Select_Motor_Baby(deviceId);	
 	BSP_MotorControl_Move(0, direction, stepCount);
@@ -91,9 +87,7 @@ void Motor_Move_And_Wait_Select(uint8_t deviceId, motorDir_t direction, uint32_t
 #if (USE_CLEANING_DILUTION_BOARD||USE_AUTOMATIC_INJECTION_BOARD)
 
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)
-	DRV8434_Motor_Select_Speed(deviceId,speed_type);
-	DRV8434_Motor_Move_And_Wait( deviceId,  direction,  stepCount);
-	DRV8434_Motor_Select_Speed(deviceId,NORMAL_SPEED);
+	GP_DRV8434_Motor_Move_Steps_Single( deviceId,  direction,  stepCount);
 #else		
 	Choose_Single_Motor_Speed_Config(deviceId,speed_type);
 	Motor_Move_And_Wait( deviceId,  direction,  stepCount);
@@ -115,7 +109,7 @@ uint8_t ClearAndCheckBlankPosition(void)
 	while(1)
 	{
 		i++;
-		DRV8434_Motor_Move_And_Wait( M6_BLANK_LEFT,  M6_BLANK_TO_LEFT,  6000);
+		GP_DRV8434_Motor_Move_Steps_Single( M6_BLANK_LEFT,  M6_BLANK_TO_LEFT,  6000);
 		value=Light_Sensor_Get(BLANK_LIGHT);
 
 		if(value||i>=2)break;
@@ -154,7 +148,7 @@ uint8_t ClearAndCheckWaitPosition(void)
 	while(1)
 	{
 		i++;
-		DRV8434_Motor_Move_And_Wait( M5_WAIT_NEXT,  M5_WAIT_TO_NEXT,  6000);
+		GP_DRV8434_Motor_Move_Steps_Single( M5_WAIT_NEXT,  M5_WAIT_TO_NEXT,  6000);
 		value=Light_Sensor_Get(WAIT_LIGHT);
 
 		if(value||i>=2)break;
@@ -191,7 +185,7 @@ uint8_t ReadyAndCheckNextPosition(void)
 	uint8_t value=0;
 	
 #if (defined USE_DRV8434_CAMEL)
-	DRV8434_Motor_Move_And_Wait(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 20000);
+	GP_DRV8434_Motor_Move_Steps_Single(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 20000);
 	value=Light_Sensor_Get(NEXT_LIGHT);
 #else	
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);
@@ -234,7 +228,7 @@ uint8_t ReadyAndCheckLeftPosition(void)
 		int i=0;
 
 #if (defined USE_DRV8434_CAMEL)
-		DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 20000);
+		GP_DRV8434_Motor_Move_Steps_Single(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 20000);
 #else	
 		PowerStep_Select_Motor_Baby(M6_BLANK_LEFT);
 		BSP_MotorControl_Move(0, M6_BLANK_TO_LEFT, 80000);
@@ -273,9 +267,7 @@ uint8_t LeftMoveTowardWaitPosition(void)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
 #if (defined USE_DRV8434_CAMEL)
-	 //DRV8434_Motor_Select_Speed(M3_LEFT_WAIT, NORMAL_SPEED);
 	 RestSelectMotorOrgin(M3_LEFT_WAIT,WAIT_LIGHT, M3_LEFT_TO_WAIT,92000);
-	 //DRV8434_Motor_Select_Speed(M3_LEFT_WAIT, NORMAL_SPEED);
 #else	
 		int i=0;
 			
@@ -309,10 +301,7 @@ FACTORY_TYPE Belt_Move_At_SameTime(uint8_t*leftLight, uint8_t*nextLight)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
 #if (defined USE_DRV8434_CAMEL)
-	
-	DRV8434_Motor_Move_Steps_Disable_Acc(M5_WAIT_NEXT, M5_WAIT_TO_NEXT, 60000);
-	DRV8434_Motor_Move_And_Wait(M6_BLANK_LEFT, M6_BLANK_TO_LEFT, 60000);
-	DRV8434_Motor_HardStop_And_Goto_Sleep(M5_WAIT_NEXT);
+	GP_DRV8434_Motor_Move_Steps_Dual(M5_WAIT_NEXT,M5_WAIT_TO_NEXT,M6_BLANK_LEFT,M6_BLANK_TO_LEFT,66000);
 	
 #else	
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);	
@@ -386,10 +375,10 @@ FACTORY_TYPE March_Drain_And_Wash_Motor_Orgin(void) //大小注射泵复位
 	
 #if (defined USE_DRV8434_PECKER)	
 	if(Light_Sensor_Get(M8_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
+			GP_DRV8434_Motor_Move_Steps_Single(M8_BIG_IN_OUT, M8_BIG_IN, 40000);
 	
 	if(Light_Sensor_Get(M9_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M9_IN_OUT, M9_IN, 40000);
+			GP_DRV8434_Motor_Move_Steps_Single(M9_IN_OUT, M9_IN, 40000);
 	
 #else
 	
@@ -437,15 +426,15 @@ FACTORY_TYPE March_Transporter_Belt(void)
 #if (defined USE_DRV8434_CAMEL)
 
 	if(Light_Sensor_Get(M4_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 8000);
+			GP_DRV8434_Motor_Move_Steps_Single(M4_BLANK_NEXT, M4_NEXT_TO_BLANK, 8000);
 	if(Light_Sensor_Get(M4_LIGHT)==0)return ERROR_M4_LIGHT;
 	
 	if(Light_Sensor_Get(M3_LIGHT)==0)
-			DRV8434_Motor_Move_And_Wait(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
+			GP_DRV8434_Motor_Move_Steps_Single(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
 	if(Light_Sensor_Get(M3_LIGHT)==0)return ERROR_M3_LIGHT;
 	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
-		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
+		  GP_DRV8434_Motor_Move_Steps_Single(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 	if(Light_Sensor_Get(M1_LIGHT)==0)return ERROR_M1_LIGHT;
 #else	
 	if(Light_Sensor_Get(M4_LIGHT)==0)
@@ -482,7 +471,7 @@ FACTORY_TYPE March_high_wheel(void)
 	
 #if (defined USE_DRV8434_CAMEL)	
 	if(Light_Sensor_Get(M7_LIGHT)==0)
-		  DRV8434_Motor_Move_And_Wait(M7_HIGH_TURN, M7_FRONT_TURN, 1400);
+		  GP_DRV8434_Motor_Move_Steps_Single(M7_HIGH_TURN, M7_FRONT_TURN, 1400);
 #else
 	if(Light_Sensor_Get(M7_LIGHT)==0)
 		  Motor_Move_And_Wait(M7_HIGH_TURN, M7_FRONT_TURN, 2400);
@@ -507,12 +496,12 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 #if (defined USE_DRV8434_PECKER)	
 	if(!Light_Sensor_Get(M11_LIGHT)&&!Light_Sensor_Get(M10_LIGHT))
 	{
-			DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 3000);
+			GP_DRV8434_Motor_Move_Steps_Single(M11_FAR_NEAR, M11_FAR, 3000);
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 			if(ret)return ERROR_M11_LIGHT;
 		
-			DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
-			DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
+			GP_DRV8434_Motor_Move_Steps_Single(M11_FAR_NEAR, M11_FAR, 640);
+			GP_DRV8434_Motor_Move_Steps_Single(M10_UP_DOWM, M10_DOWM, 5000);
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 			if(ret)return ERROR_M10_LIGHT;
 		  ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
@@ -521,8 +510,8 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 	}else	if(!Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
 	{
 			RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
-		  DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
-			DRV8434_Motor_Move_And_Wait(M10_UP_DOWM, M10_DOWM, 5000);
+		  GP_DRV8434_Motor_Move_Steps_Single(M11_FAR_NEAR, M11_FAR, 640);
+			GP_DRV8434_Motor_Move_Steps_Single(M10_UP_DOWM, M10_DOWM, 5000);
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 			if(ret)return ERROR_M10_LIGHT;
 		
@@ -532,7 +521,7 @@ FACTORY_TYPE RestFarAndDownMotorOrgin(void)
 	{
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT,M10_UP, 80*10000);
 		  if(ret)return ERROR_M10_LIGHT;
-		  DRV8434_Motor_Move_And_Wait(M11_FAR_NEAR, M11_FAR, 640);
+		  GP_DRV8434_Motor_Move_Steps_Single(M11_FAR_NEAR, M11_FAR, 640);
 			ret=RestSelectMotorOrgin(M11_FAR_NEAR,M11_LIGHT,M11_NEAR, 80*10000);
 		  if(ret)return ERROR_M11_LIGHT;
 	}else	if(Light_Sensor_Get(M10_LIGHT)&&Light_Sensor_Get(M11_LIGHT))
@@ -659,8 +648,7 @@ void Scan_Motor_Slow_Spin(void)  //扫码
 #if USE_AUTOMATIC_INJECTION_BOARD	
 
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
-	DRV8434_Motor_Select_Speed(M2_MIX ,LOW_SPEED);
-	DRV8434_Motor_Move_Steps_Disable_Acc(M2_MIX,  M2_MIX_LEFT,  200000);
+	//GP_DRV8434_Motor_Move_Steps_Single(M2_MIX,  M2_MIX_LEFT,  200000);
 #else	
 	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
 #endif
@@ -676,13 +664,12 @@ FACTORY_TYPE Mix_Blood_High_Speed(void) //混匀
 	
 #if (defined USE_DRV8434_CAMEL)	
 	
-	DRV8434_Motor_Select_Speed(M2_MIX,NORMAL_SPEED);
 	for(i=0;i<5;i++)
 	{
-		delay_ms(20);
-		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 50000); //以前是12000
-		delay_ms(20);
-		DRV8434_Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50000);
+		GP_DRV8434_Motor_Move_Steps_Single(M2_MIX, M2_MIX_RIGHT, 50000); //以前是12000
+		//delay_ms(20);
+		GP_DRV8434_Motor_Move_Steps_Single(M2_MIX, M2_MIX_LEFT, 50000);
+		//delay_ms(20);
 	}
 	
 	ret=RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
@@ -739,8 +726,7 @@ FACTORY_TYPE  Normal_Pitch_Move_Next_The_Last_Two(void)
 	 FACTORY_TYPE value=0;
 #if USE_AUTOMATIC_INJECTION_BOARD
 		uint8_t ret=0;
-	
-	 ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon_Last_Two);
+	ret=__Normal_Pitch_Move_Next__(M4_BLANK_NEXT,NORMAL_CHECK_DRAIN_LIGHT, M4_NEXT_TO_BLANK,30000,delayMs_Normal_Positon_Last_Two);
 	if(ret)return ERROR_NORMAL_CHECK_DRAIN_LIGHT;
 #endif
 		return value;
@@ -808,7 +794,7 @@ FACTORY_TYPE Runing_Rest_Camel_Motor(void)
 	if(value)return value;
 #if (defined USE_DRV8434_CAMEL)
 	if(Light_Sensor_Get(M1_LIGHT)==0)
-		  DRV8434_Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
+		  GP_DRV8434_Motor_Move_Steps_Single(M1_MIX_V, M1_MIX_V_DOWN, 10000);
 #else	
 	if(Light_Sensor_Get(M1_LIGHT)==0)
 		  Motor_Move_And_Wait(M1_MIX_V, M1_MIX_V_DOWN, 10000);
@@ -840,12 +826,8 @@ void  Rest_Injection_Module_Motor(uint32_t up_Steps,uint32_t big_Steps,int time)
 			uint8_t ret=0;
 #if (defined USE_DRV8434_PECKER)		
 			
-			DRV8434_Motor_Move_Steps_Disable_Acc(M8_BIG_IN_OUT, M8_BIG_OUT, big_Steps);
-			delay_ms(time);
+			GP_DRV8434_Motor_Move_Steps_Single(M8_BIG_IN_OUT, M8_BIG_OUT, big_Steps);
 			ret=RestSelectMotorOrgin(M10_UP_DOWM,M10_LIGHT, M10_UP,up_Steps);	
-			//if(ret)return M10_LIGHT_ERROR;
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
-	
 #else	
 			PowerStep_Select_Motor_Baby(M8_BIG_IN_OUT);
 			BSP_MotorControl_Move(0, M8_BIG_OUT, big_Steps);
@@ -1052,7 +1034,6 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 				break;
 			case BIG_IN_OUT_SLOW:
 				#if (defined USE_DRV8434_CAMEL)
-					DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT,LOW_SPEED);
 				#else
 					Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,LOW_SPEED);
 				#endif
@@ -1060,7 +1041,6 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 				break;
 			case BIG_IN_OUT_NORMAL:
 				#if (defined USE_DRV8434_CAMEL)
-					DRV8434_Motor_Select_Speed(M8_BIG_IN_OUT,NORMAL_SPEED);
 				#else
 					Choose_Single_Motor_Speed_Config(M8_BIG_IN_OUT,NORMAL_SPEED);
 				#endif
@@ -1077,7 +1057,6 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 #if USE_CLEANING_DILUTION_BOARD
 			
 				#if (defined USE_DRV8434_PECKER)
-					DRV8434_Motor_Select_Speed(M10_UP_DOWM,LOW_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M10_UP_DOWM,LOW_SPEED);
 				#endif
@@ -1087,7 +1066,6 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 			case MOTOR_UP_DOWN_NORMAL:
 #if USE_CLEANING_DILUTION_BOARD	
 				#if (defined USE_DRV8434_PECKER)
-					DRV8434_Motor_Select_Speed(M10_UP_DOWM,NORMAL_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M10_UP_DOWM,NORMAL_SPEED);
 				#endif			
@@ -1095,21 +1073,18 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 					break;	
 			case LITTLE_IN_OUT_SLOW:
 				#if (defined USE_DRV8434_PECKER)
-					DRV8434_Motor_Select_Speed(M9_IN_OUT,LOW_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M9_IN_OUT,LOW_SPEED);
 				#endif		
 				break;
 			case	LITTLE_IN_OUT_NORMAL:
 				#if (defined USE_DRV8434_PECKER)
-					DRV8434_Motor_Select_Speed(M9_IN_OUT,NORMAL_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M9_IN_OUT,NORMAL_SPEED);
 				#endif					
 					break;	
 			case BLANK_NEXT_MOTOR_HIGH:
 				#if (defined USE_DRV8434_CAMEL)
-					DRV8434_Motor_Select_Speed(M4_BLANK_NEXT,HIGH_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M4_BLANK_NEXT,HIGH_SPEED);
 				#endif	
@@ -1118,7 +1093,6 @@ FACTORY_TYPE process_motor_command_receive(Command_Package_t command,uint32_t* v
 		case	BLANK_NEXT_MOTOR_NORMAL:
 				
 				#if (defined USE_DRV8434_CAMEL)
-					DRV8434_Motor_Select_Speed(M4_BLANK_NEXT,NORMAL_SPEED);
 				#else				
 					Choose_Single_Motor_Speed_Config(M4_BLANK_NEXT,NORMAL_SPEED);
 				#endif	

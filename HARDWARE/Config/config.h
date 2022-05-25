@@ -8,22 +8,22 @@
 #define USE_NEW_DESIGN 1
 //new start for dev branch
 
-#define USE_GRADIENT_CONTROL_BOARD 1//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
+#define USE_GRADIENT_CONTROL_BOARD 0//Hummingbird--梯度控制，输液泵，电磁阀ABC，脱气机，薄而贴，风扇
 
 #define USE_CLEANING_DILUTION_BOARD 0//Pecker----C55 C52 两个注射器  控制上下和控制远近的电机
 
-#define USE_AUTOMATIC_INJECTION_BOARD 0//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
+#define USE_AUTOMATIC_INJECTION_BOARD 1//Camel---其他温度重力等模块    旋转混匀 传送带 扫码器 RFID
 
 #define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 
 //#define USE_DRV8434_PECKER 
-//#define USE_DRV8434_CAMEL 
+#define USE_DRV8434_CAMEL 
 
 //#define USE_NEW_PID_CONTROL_HEATER 
 
 
 #define _SHARK_HEADER_ "VG1-"
-#define _SHARK_VERSION_ "-4.4.2204210.R"
+#define _SHARK_VERSION_ "-4.4.2205230.R"
 
 #if USE_GRADIENT_CONTROL_BOARD
 	#define _STM_BOARD_  "SH"

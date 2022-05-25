@@ -1,6 +1,6 @@
 #include "drv8434.h"
 
-
+#if 0
 TIM_HandleTypeDef 	DRV_TIM3_Handler;      	//定时器句柄 
 TIM_HandleTypeDef 	DRV_TIM4_Handler;      	//定时器句柄 
 
@@ -1529,8 +1529,6 @@ void DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 		default:
 			;
 	}	
-	//delay_ms(1);//延时起timing
-
 }	
 
 
@@ -1749,7 +1747,7 @@ int __DRV8434_Motor_Caculate_Next_Dec_Speed__(uint8_t deviceId)
 	
 	return next;
 }
-
+#endif
 
 
 

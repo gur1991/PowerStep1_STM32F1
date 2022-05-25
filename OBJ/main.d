@@ -139,3 +139,4 @@
 ..\obj\main.o: ..\HARDWARE\PowerStep01\factory_single.h
 ..\obj\main.o: ..\HARDWARE\WDG\wdg.h
 ..\obj\main.o: ..\HARDWARE\KEY\key.h
+..\obj\main.o: ..\HARDWARE\DRV8434\drv8434_gpio.h

@@ -88,8 +88,6 @@ uint8_t RestSelectMotorOrginDelay(int motorNum,int lightNum, motorDir_t motorDir
 
 uint8_t __Normal_Pitch_Move_Next__(int motorNum,int lightNum, motorDir_t motorDir,uint32_t steps, uint16_t delayMs);
 
-uint8_t __Normal_Move_Blank__(void);
-
 typedef union{ 
 struct{
 		uint8_t motorNum;

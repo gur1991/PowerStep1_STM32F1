@@ -83,6 +83,7 @@
 "..\obj\export_liquid.o"
 "..\obj\drv8434.o"
 "..\obj\pid.o"
+"..\obj\drv8434_gpio.o"
 "..\obj\usmart.o"
 "..\obj\usmart_config.o"
 "..\obj\usmart_str.o"

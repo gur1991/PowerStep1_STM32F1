@@ -81,6 +81,11 @@ enum {
 	WARRNING_WEIGHT_H_MAX,
 };
 
+FACTORY_TYPE  Normal_Pitch_Move_Next_The_Last_Two(void);
+FACTORY_TYPE  Normal_Pitch_Move_Next(void);
+FACTORY_TYPE Normal_Goto_First_Position(void);
+FACTORY_TYPE Normal_Move_Blank(void);
+
 
 void BSP_MotorControl_HardStop_Select(int deviceId,MOTOR_SPEED_type_t speed_type);
 

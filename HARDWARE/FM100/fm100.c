@@ -2,6 +2,7 @@
 #include "config.h"
 #include "uart2.h"
 #include "factory_many.h"
+#include "drv8434_gpio.h"
 
 Uart_Receive_Data FM100_Read=NULL ;
 Uart_Send_Data FM100_Write=NULL ;
@@ -611,7 +612,11 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	u8 buf[128];
+#ifndef USE_DRV8434_CAMEL	
 	int time=TimeOut_S*10;
+#else
+	int time=TimeOut_S/4;
+#endif	
 	int len=0;
 	int temp_a=0,temp_b=0;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
@@ -634,6 +639,9 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 				LOGD("%d %s %dms\r\n", len, buf, 10*(TimeOut_S*10-time));
 				break;
 		}
+#ifdef USE_DRV8434_CAMEL
+		GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  2000);
+#endif
 		//最后200ms停止电机，防止还在解码的过程中切换了命令
 	}
 	LOGD("end \r\n");

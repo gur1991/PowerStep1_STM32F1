@@ -5,12 +5,13 @@
 #include "drv8434.h"
 #include "motor.h"
 #include "factory_many.h"
+#include "drv8434_gpio.h"
 
 void Light_Sensor_Init(void)
 {
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
-#if (defined USE_DRV8434_CAMEL)
+#if 0//(defined USE_DRV8434_CAMEL)
 	  Light_EXTI_Init();
 #else	
     GPIO_InitTypeDef GPIO_Initure;
@@ -59,7 +60,7 @@ void Light_Sensor_Init(void)
 
 #if USE_CLEANING_DILUTION_BOARD
 
-#if (defined USE_DRV8434_PECKER) 
+#if 0//(defined USE_DRV8434_PECKER) 
 	 Light_EXTI_Init();
 #else
 
@@ -92,180 +93,27 @@ void Light_Sensor_Init(void)
 
 //////////////////////////////DELAY_STOP/////////////
 
-static int delayMS=30;
-
-void Light_Set_Delay_MS(int delay)
-{
-	delayMS=delay;
-}	
-
-static int WHICH_MOTOR_LIGHT = 12; 
-
-
-
-void HAL_GPIO_EXTI_IRQHandler_MYSELF(uint16_t GPIO_Pin)
-{
-  /* EXTI line interrupt detected */
-  if(__HAL_GPIO_EXTI_GET_IT(GPIO_Pin) != RESET) 
-  { 
-		__HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin);
-		//Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-		
-		HAL_GPIO_EXTI_Callback(GPIO_Pin);
-  }
-}
-
-
-
 
 
 void EXTI0_IRQHandler(void)
 {
-//	LOGD("0 \r\n");
-#if (defined USE_DRV8434_CAMEL) 	
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_0);
-#endif	
+	HAL_NVIC_DisableIRQ(EXTI0_IRQn);
 }
 
 void EXTI1_IRQHandler(void)
 {
-//	LOGD("1 \r\n");
-#if (defined USE_DRV8434_CAMEL) 	
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_1);
-#endif
-	
+	HAL_NVIC_DisableIRQ(EXTI1_IRQn);
 }
-
 
 void EXTI9_5_IRQHandler(void)
 {
-//	LOGD("5-9\r\n");
-#if (defined USE_DRV8434_PECKER) 	
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_7);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_8);
-#endif
-
-#if (defined USE_DRV8434_CAMEL) 
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_5);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_8);
-#endif
-	
+	HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
 }
 
 void EXTI15_10_IRQHandler(void)
 {
-//	LOGD("10-15\r\n");
-#if (defined USE_DRV8434_PECKER) 	
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_11);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_12);
-#endif	
-	
-#if (defined USE_DRV8434_CAMEL)
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_10);
-	HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_11);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_13);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_14);
-  HAL_GPIO_EXTI_IRQHandler_MYSELF(GPIO_PIN_15);
-#endif		
+	HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
 }
-
-
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	//LOGD("GPIO_Pin:%d \r\n",GPIO_Pin);
-#if (defined USE_DRV8434_PECKER) 		
-	//OP17-M8
-  if (GPIO_Pin == GPIO_PIN_7 && WHICH_MOTOR_LIGHT==M8_LIGHT )
-	{
-	//	LOGD("M8 \r\n");
-				
-		Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-		delay_ms(delayMS);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M8_BIG_IN_OUT);
-		//OP18-M9
-  }else if (GPIO_Pin == GPIO_PIN_8 && WHICH_MOTOR_LIGHT==M9_LIGHT )
-	{
-	//	LOGD("M9 \r\n");
-		Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);	
-		delay_ms(delayMS);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M9_IN_OUT);
-  //OP19-M11
-	}else if (GPIO_Pin == GPIO_PIN_11 && WHICH_MOTOR_LIGHT==M11_LIGHT )
-	{
-		//LOGD("M11 -1\r\n");
-		Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-		delay_ms(delayMS);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M11_FAR_NEAR);
-		//LOGD("M11 -2\r\n");
-		//OP20-M10
-}else if (GPIO_Pin == GPIO_PIN_12 && WHICH_MOTOR_LIGHT==M10_LIGHT )
-{
-		//LOGD("M10 \r\n");
-		Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-		delay_ms(delayMS);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M10_UP_DOWM);
-}
-#endif
-	
-#if (defined USE_DRV8434_CAMEL) 
-	if (GPIO_Pin == GPIO_PIN_0 && WHICH_MOTOR_LIGHT==M4_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-	}else	if (GPIO_Pin == GPIO_PIN_11 && WHICH_MOTOR_LIGHT==NORMAL_NEXT_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-	}else	if (GPIO_Pin == GPIO_PIN_5 && WHICH_MOTOR_LIGHT==NORMAL_CHECK_DRAIN_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-	}else	if (GPIO_Pin == GPIO_PIN_8 && WHICH_MOTOR_LIGHT==BLANK_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M4_BLANK_NEXT);
-	}
-			
-	
-	if (GPIO_Pin == GPIO_PIN_15 && WHICH_MOTOR_LIGHT==M3_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M3_LEFT_WAIT);
-	}else	if (GPIO_Pin == GPIO_PIN_1 && WHICH_MOTOR_LIGHT==WAIT_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M3_LEFT_WAIT);
-	}
-	
-	
-	if (GPIO_Pin == GPIO_PIN_13 && WHICH_MOTOR_LIGHT==M1_LIGHT )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
-	}else	if (GPIO_Pin == GPIO_PIN_14 && WHICH_MOTOR_LIGHT==M1_LIGHT_WORK )
-	{
-			Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-			delay_ms(delayMS);
-			DRV8434_Motor_HardStop_And_Goto_Sleep(M1_MIX_V);
-	}
-
-
-	if (GPIO_Pin == GPIO_PIN_10){
-		Light_Control_Int_Enable(WHICH_MOTOR_LIGHT, 0);
-		delay_ms(delayMS);
-		DRV8434_Motor_HardStop_And_Goto_Sleep(M7_HIGH_TURN);
-	}	
-#endif	
-}
-
-
 
 
 
@@ -276,8 +124,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 void Light_EXTI_Init(void)
 {
+	  GPIO_InitTypeDef GPIO_InitStruct;
+
 #if (defined USE_DRV8434_PECKER) 
-  GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOE_CLK_ENABLE();
@@ -288,7 +137,7 @@ void Light_EXTI_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-	
+
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
   HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
   /* EXTI9_5_IRQn interrupt configuration */
@@ -301,7 +150,6 @@ void Light_EXTI_Init(void)
 	
 
 #if (defined USE_DRV8434_CAMEL) 
-  GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -316,6 +164,7 @@ void Light_EXTI_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
 	
 	//OP8 NEXT--REPEAT
 	GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_10|GPIO_PIN_11;
@@ -323,13 +172,14 @@ void Light_EXTI_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
 	GPIO_InitStruct.Speed=GPIO_SPEED_FREQ_HIGH ;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-	
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8|GPIO_PIN_10|GPIO_PIN_11, 1);
 	
   /*Configure GPIO pin : PC5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, 1);
 
 
 	
@@ -338,6 +188,7 @@ void Light_EXTI_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
 	GPIO_InitStruct.Speed=GPIO_SPEED_FREQ_MEDIUM;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, 1);
 
 
 
@@ -363,10 +214,9 @@ void Light_EXTI_Init(void)
 
 void Light_Control_Int_Enable(int lightNum , int enableInt)
 {
+	return ;
 	if(enableInt)
-	{		
-		WHICH_MOTOR_LIGHT=lightNum;
-		
+	{				
 		switch(lightNum)
 		{
 	#if (defined USE_DRV8434_PECKER) 		

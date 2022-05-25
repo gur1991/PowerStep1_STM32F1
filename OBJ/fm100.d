@@ -122,3 +122,4 @@
 ..\obj\fm100.o: ..\HARDWARE\DRV8434\drv8434.h
 ..\obj\fm100.o: ..\HARDWARE\PowerStep01\factory_many.h
 ..\obj\fm100.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\obj\fm100.o: ..\HARDWARE\DRV8434\drv8434_gpio.h

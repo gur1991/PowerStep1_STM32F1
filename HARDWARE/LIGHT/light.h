@@ -35,6 +35,8 @@
 #define LIGHT_VALUE24        HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_10)
 
 
+u8 __Light_Sensor_Get__(u8 number);
+
 extern u8 gStatusLight[3];
 
 void Light_Sensor_Init(void);
@@ -71,7 +73,6 @@ struct{
 
 void Light_EXTI_Init(void);
 
-void Light_Set_Delay_MS(int delay);
 
 
 

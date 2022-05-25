@@ -844,6 +844,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PID\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>drv8434_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\DRV8434\drv8434_gpio.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

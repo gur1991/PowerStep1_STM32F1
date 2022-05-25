@@ -35,7 +35,8 @@
 #include "check_rs232.h"
 #include "export_liquid.h"
 #include "drv8434.h"
-
+#include "drv8434_gpio.h"
+#include "factory_many.h"
 
 int Check_Board_Define_Config(void)
 {
@@ -75,7 +76,8 @@ void Init_Board_Config(void)
 	Light_Sensor_Init();
 	
 #ifdef USE_DRV8434_PECKER
-	DRV8434_MOTOR_Config_Init();
+	//DRV8434_MOTOR_Config_Init();
+	GP_DRV8434_MOTOR_GPIO_Config_Init();
 #else	
 	BSP_Motor_Control_Init();//没设备连接会卡住
 #endif	
@@ -105,7 +107,8 @@ void Init_Board_Config(void)
 	
 	//Init_M6e_Config(TMR_REGION_PRC,0,0);
 #ifdef USE_DRV8434_CAMEL
-	DRV8434_MOTOR_Config_Init();
+	//DRV8434_MOTOR_Config_Init();
+	GP_DRV8434_MOTOR_GPIO_Config_Init();
 #else	
 	BSP_Motor_Control_Init();//没设备连接会卡住
 #endif	
@@ -175,9 +178,19 @@ int main(void)
 	LOGD("STM_VERSION:%s%s%s\r\n",_SHARK_HEADER_,_STM_BOARD_,_SHARK_VERSION_);
 	if(Check_Board_Define_Config())return 0;
 	Init_Board_Config();
-
-
 	
+	
+	//Obtain_Barcode_String(NULL, &i, 50	,false);
+	
+/*
+	while(1)
+	{	
+		LOGD("%d \r\n",RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 80*10000));
+		delay_ms(500);
+	  GP_DRV8434_Motor_Move_Steps_Single(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
+		delay_ms(500);
+	}
+*/
 
 	#if USE_KEEP_TEMPERATURE_BOARD
   delay_ms(1);

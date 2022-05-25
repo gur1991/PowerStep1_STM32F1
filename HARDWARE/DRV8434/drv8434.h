@@ -74,7 +74,7 @@
 
 
 
-
+#if 0
 
 void DRV8434_MOTOR_Config_Init(void);//总初始化接口
 
@@ -173,6 +173,9 @@ typedef struct{
 int __DRV8434_GET_ACC_PER_TIMES_ADD__(Drv_Motor_Speed_Config_t Ms);
 //分为几次加上去
 int __DRV8434_GET_ACC_INTERVAL_PWM_COUNT_(Drv_Motor_Speed_Config_t Ms);
+
+
+#endif
 
 #endif
 
