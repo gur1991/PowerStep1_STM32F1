@@ -665,7 +665,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	{	
 		
 		temp_a=USART2_RX_CNT;
-		delay_ms(3);
+		delay_ms(6);
 		temp_b=USART2_RX_CNT;
 
 		if(temp_a==temp_b && temp_a>3 && FLAG_SCAN_OK)
