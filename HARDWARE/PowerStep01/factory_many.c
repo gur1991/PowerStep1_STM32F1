@@ -587,8 +587,9 @@ FACTORY_TYPE Get_Board_Idle_Light_State(void)
 #if USE_AUTOMATIC_INJECTION_BOARD
 	
   if(Light_Sensor_Get(NORMAL_CHECK_DRAIN_LIGHT)==0)return ERROR_NORMAL_CHECK_DRAIN_LIGHT;
-	else if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)return ERROR_NORMAL_LIGHT_NEXT;
-	else if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)return ERROR_NORMAL_CHECK_MIX_LIGHT;
+	else 
+	if(Light_Sensor_Get(NORMAL_NEXT_LIGHT)==0)return ERROR_NORMAL_LIGHT_NEXT;
+	//else if(Light_Sensor_Get(NORMAL_CHECK_MIX_LIGHT)==0)return ERROR_NORMAL_CHECK_MIX_LIGHT;
 	else if(Light_Sensor_Get(HIGH_CHECK_LIGHT)==0)return ERROR_HIGH_CHECK_LIGHT;
 	
 	else if(Light_Sensor_Get(M1_LIGHT_WORK)==0)return ERROR_M1_LIGHT_WORK;
@@ -650,7 +651,7 @@ void Scan_Motor_Slow_Spin(void)  //ЩЈТы
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
 	//GP_DRV8434_Motor_Move_Steps_Single(M2_MIX,  M2_MIX_LEFT,  200000);
 #else	
-	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
+	//BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
 #endif
 #endif	
 }
@@ -709,8 +710,8 @@ FACTORY_TYPE Mix_Work_Goto_Postion(void)
 }
 
 
-static uint16_t  delayMs_Normal_Positon=0;
-static uint16_t  delayMs_Normal_Positon_Last_Two=0;
+static uint16_t  delayMs_Normal_Positon=10;
+static uint16_t  delayMs_Normal_Positon_Last_Two=10;
 
 void set_DelayMs_Normal_Positon(uint16_t delayMs,uint16_t delayMsLastTwo)
 {

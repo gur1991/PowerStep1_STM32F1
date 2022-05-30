@@ -13,7 +13,7 @@ int FM100_Scan_Into_Configuration_State(void)
 	u8 tmp_buf[4]="@@@@";
 	u8 rx_buf[10];
 	int len=0;
-	int time =40;
+	int time =200;
 	int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
@@ -26,7 +26,7 @@ int FM100_Scan_Into_Configuration_State(void)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
-				LOGD("%d %s \r\n", len, rx_buf);
+				///LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
@@ -39,7 +39,7 @@ int FM100_Scan_Exit_Configuration_State(void)
 	u8 tmp_buf[4]="^^^^";
 	u8 rx_buf[128];
 	int len=0;
-	int time=40;
+	int time=200;
 	int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	FM100_Write(tx_buf,sizeof(tx_buf));
@@ -52,7 +52,7 @@ int FM100_Scan_Exit_Configuration_State(void)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
-				LOGD("%d %s \r\n", len, rx_buf);
+				///LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
@@ -68,7 +68,7 @@ int FM100_Scan_Control_Status(bool status)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=40;
+		int time=200;
 		int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	if(status)
@@ -85,7 +85,7 @@ int FM100_Scan_Control_Status(bool status)
 		if(temp_a==temp_b && temp_a!=0)
 		{	
 				FM100_Read(rx_buf,&len);
-				LOGD("%d %s \r\n", len, rx_buf);
+				///LOGD("%d %s \r\n", len, rx_buf);
 				break;
 		}	
 	}
@@ -109,7 +109,7 @@ int FM100_Scan_Continuous_Mode(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=40;
+		int time=200;
 		int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -140,7 +140,7 @@ int FM100_Scan_Command_Mode(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=40;
+		int time=200;
 		int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -172,7 +172,7 @@ int FM100_Scan_Command_Mode_Start(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time=40;
+		int time=200;
 	int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -203,7 +203,7 @@ int FM100_Scan_Command_Mode_Stop(void)
 		u8 tmp_buf[]="!";
 		u8 rx_buf[128];
 		int len=0;
-		int time =40;
+		int time =200;
 	int temp_a=0,temp_b=0;
 	memset(rx_buf, 0 ,sizeof(rx_buf));
 	
@@ -262,7 +262,7 @@ int FM100_Scan_Close_Beeper(void)
 	u8 tmp_buf[]="!";
 	u8 rx_buf[128];
 	int len=0;
-	int time=40;
+	int time=200;
 	int temp_a=0,temp_b=0;
 	FM100_Write(tx_buf,sizeof(tx_buf));
 while(time--)
@@ -290,7 +290,7 @@ int FM100_Scan_Open_Beeper(void)
 	u8 tx_buf[10]="#99900041;";
 	u8 rx_buf[128];
 	int len=0;
-	int time=40;
+	int time=200;
 	u8 tmp_buf[]="!";
 	int temp_a=0,temp_b=0;
 	FM100_Write(tx_buf,sizeof(tx_buf));
@@ -319,7 +319,7 @@ int FM100_Scan_Rs232_Config(void)
 	u8 tx_buf_baud_rate[]="#99902104;";
 	u8 tx_buf_no_flow_control[]="#99902140;";
 	u8 tx_buf_data_bit[]="#99902160;";
-	int time=40;
+	int time=200;
 	u8 rx_buf[128];
 	int len=0;
 	int temp_a=0,temp_b=0;
@@ -606,18 +606,50 @@ void Init_Scan_FM100(bool status)
 #endif	
 }	
 
+int Scan_Code_Wait_TimeOut(u8* buf,int* len)
+{
+	int ret=0;
+	int temp_a=0,temp_b=0;
+	int time=100;
+	ret=Start_Scan_FM100();
+	if(ret)return ret;
+	
+	*len=0;
+	
+	while(time--)
+	{	
+		//LOGD("%d \r\n",time);
+		temp_a=USART2_RX_CNT;
+		delay_ms(3);
+		temp_b=USART2_RX_CNT;
+
+		if(temp_a==temp_b && temp_a>3 && FLAG_SCAN_OK)
+		{		
+				//LOGD("%d \r\n",100-time);	
+				FM100_Read(buf,len);
+				break;
+		}
+	}
+	Stop_Scan_FM100();
+	
+	return ret;
+}
+
 int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 {
 	int ret=0;
 	
 #if USE_AUTOMATIC_INJECTION_BOARD	
-	u8 buf[128];
+	u8 buf[64];
+	u8 bufTemp[64];
+	int len=0,lenTemp=0;
 #ifndef USE_DRV8434_CAMEL	
-	int time=TimeOut_S*10;
+	int time=120;
 #else
-	int time=TimeOut_S/4;
-#endif	
-	int len=0;
+	int time=120;
+#endif
+	int TT=500;	
+	
 	int temp_a=0,temp_b=0;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
@@ -626,24 +658,62 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	ret=Start_Scan_FM100();
 	if(ret)return ret;
 	memset(buf, 0 ,sizeof(buf));
+	memset(bufTemp, 0 ,sizeof(bufTemp));
+	
   LOGD("start \r\n");
 	while(time--)
 	{	
+		
 		temp_a=USART2_RX_CNT;
-		delay_ms(10);
+		delay_ms(3);
 		temp_b=USART2_RX_CNT;
 
 		if(temp_a==temp_b && temp_a>3 && FLAG_SCAN_OK)
-		{	
-				FM100_Read(buf,&len);
-				LOGD("%d %s %dms\r\n", len, buf, 10*(TimeOut_S*10-time));
+		{
+				//LOGD("%d \r\n",120-time);	
+				FM100_Read(bufTemp,&lenTemp);
+				Stop_Scan_FM100();
+				LOGD("[1]%d: %s \r\n",lenTemp, bufTemp);
+#ifdef USE_DRV8434_CAMEL
+				GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  40);
+#else
+				Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 10);	
+#endif
+				
+				memset(buf, 0 ,sizeof(buf));
+				Scan_Code_Wait_TimeOut(buf, &len);
+				LOGD("[2]%d: %s \r\n",len, buf);
+				if(len<lenTemp)//第二次读的长度大于第一次读到的，则返回
+				{
+						#ifdef USE_DRV8434_CAMEL
+						GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_RIGHT,  80);
+						#else
+						Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 20);	
+						#endif
+						memset(buf, 0 ,sizeof(buf));
+						Scan_Code_Wait_TimeOut(buf, &len);
+						LOGD("[3]%d: %s \r\n",len, buf);
+						//第三次读取和第一次读到的长度对比，取最长
+						if(len < lenTemp)
+						{
+								len=lenTemp;
+								memset(buf, 0 ,sizeof(buf));
+								memcpy(buf,bufTemp,lenTemp);
+						}	
+				} 
+						
 				break;
 		}
+		
 #ifdef USE_DRV8434_CAMEL
-		GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  2000);
+		GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  120);
+#else
+		Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 30);	
 #endif
+		
 		//最后200ms停止电机，防止还在解码的过程中切换了命令
 	}
+	//LOGD("%d: %s \r\n",len, buf);
 	LOGD("end \r\n");
 	if(len>2)len-=2;
 	else len=0;

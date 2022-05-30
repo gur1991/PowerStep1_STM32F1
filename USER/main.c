@@ -180,6 +180,16 @@ int main(void)
 	Init_Board_Config();
 	
 	
+
+		//Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50);	
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
+	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	
+	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 32000);
+	//Normal_Goto_First_Position();
+	//Normal_Pitch_Move_Next();
+	//Normal_Pitch_Move_Next_The_Last_Two();
+	
 	//Obtain_Barcode_String(NULL, &i, 50	,false);
 	
 /*

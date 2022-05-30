@@ -111,43 +111,44 @@ void GP_DRV8434_MOTOR_GPIO_Config_Init(void)
 }
 
 GP_Drv_Motor_Speed_Config_Group_t sDRV8434Config;
-
+//700 1s
+//500 0.5s
 
 void GP_Init_Drv8434_Speed_Config(void)
 {
 	memset(&sDRV8434Config,0,sizeof(sDRV8434Config));
 	
-	sDRV8434Config.M1.s=100;
+	sDRV8434Config.M1.s=400;
 	sDRV8434Config.M1.e=20;
 	
-	sDRV8434Config.M2.s=100;
+	sDRV8434Config.M2.s=200;
 	sDRV8434Config.M2.e=5;
 	
-	sDRV8434Config.M3.s=100;
+	sDRV8434Config.M3.s=400;
   sDRV8434Config.M3.e=20;
 	
-	sDRV8434Config.M4.s=100;
+	sDRV8434Config.M4.s=400;
   sDRV8434Config.M4.e=40;
 	
-	sDRV8434Config.M5.s=200;
+	sDRV8434Config.M5.s=400;
   sDRV8434Config.M5.e=100;
 	
-	sDRV8434Config.M6.s=100;
+	sDRV8434Config.M6.s=400;
   sDRV8434Config.M6.e=30;
 	
-	sDRV8434Config.M7.s=400;
+	sDRV8434Config.M7.s=500;
   sDRV8434Config.M7.e=300;
 	
-	sDRV8434Config.M8.s=100;
+	sDRV8434Config.M8.s=400;
   sDRV8434Config.M8.e=20;
 	
-	sDRV8434Config.M9.s=100;
+	sDRV8434Config.M9.s=400;
   sDRV8434Config.M9.e=20;
 	
-	sDRV8434Config.M10.s=100;
+	sDRV8434Config.M10.s=400;
   sDRV8434Config.M10.e=50;
 	
-	sDRV8434Config.M11.s=100;
+	sDRV8434Config.M11.s=400;
   sDRV8434Config.M11.e=40;
 	
 }	
