@@ -8,23 +8,23 @@
 
 static powerstep01_Init_u_t MotorConfig;
 static init_motor_speed_tension_type_t TempMotor;
-static mix_motor_config_type_t sMix;
+//static mix_motor_config_type_t sMix;
 
 
 void init_mix_motor_config(void)
 {
-		sMix.max_slow=300;
-		sMix.acc_slow=300;
-		sMix.dec_slow=300;
+	//	sMix.max_slow=300;
+	//	sMix.acc_slow=300;
+	//	sMix.dec_slow=300;
 		
-		sMix.max_normal=2000;
-		sMix.acc_normal=15000;
-		sMix.dec_normal=15000;
+	//	sMix.max_normal=2000;
+	//	sMix.acc_normal=15000;
+	//	sMix.dec_normal=15000;
 }
 
 void set_mix_motor_config(mix_motor_config_type_t p)
 {
-		memcpy(&sMix, &p, sizeof(sMix));
+		//memcpy(&sMix, &p, sizeof(sMix));
 }
 
 
@@ -228,15 +228,15 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 		
 			if(speed_type==NORMAL_SPEED)
 			{
-				TempMotor.request.init_motor.Speed.acceleration=sMix.acc_normal;//15000;
-				TempMotor.request.init_motor.Speed.deceleration=sMix.dec_normal;//15000;
+				TempMotor.request.init_motor.Speed.acceleration=15000;//15000;
+				TempMotor.request.init_motor.Speed.deceleration=15000;//15000;
 		
 				TempMotor.request.init_motor.config.acc=100;
 				TempMotor.request.init_motor.config.hold=10;
 		
 				TempMotor.request.init_motor.config.dec=100;
 				TempMotor.request.init_motor.config.run=100;
-				TempMotor.request.init_motor.Speed.maxSpeed=sMix.max_normal;//2000;
+				TempMotor.request.init_motor.Speed.maxSpeed=2000;//2000;
 				
 			}
 			else if (speed_type==LOW_SPEED)
@@ -245,9 +245,9 @@ int ConfigMotorAllDevice(int chip, MOTOR_SPEED_type_t speed_type)
 				TempMotor.request.init_motor.config.hold=10;
 				TempMotor.request.init_motor.config.dec=100;
 				TempMotor.request.init_motor.config.run=100;
-				TempMotor.request.init_motor.Speed.acceleration=sMix.acc_slow;
-				TempMotor.request.init_motor.Speed.deceleration=sMix.dec_slow;
-				TempMotor.request.init_motor.Speed.maxSpeed=sMix.max_slow;
+				TempMotor.request.init_motor.Speed.acceleration=15000;
+				TempMotor.request.init_motor.Speed.deceleration=15000;
+				TempMotor.request.init_motor.Speed.maxSpeed=2000;
 			}
 				
    		break;	

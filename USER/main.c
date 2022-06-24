@@ -180,6 +180,20 @@ int main(void)
 	Init_Board_Config();
 	
 	
+//	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
+	
+//	Choose_Single_Motor_Speed_Config(M2_MIX,LOW_SPEED);
+//	Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 10000);	
+/*	
+	while(1)
+	{
+		LOGD("A:%d \r\n",Get_weight_current_gram(WEIGHT_ONE));
+		LOGD("B:%d \r\n",Get_weight_current_gram(WEIGHT_TWO));
+		LOGD("C:%d \r\n",Get_weight_current_gram(WEIGHT_THREE));
+		LOGD("H:%d \r\n",Get_weight_current_gram(WEIGHT_FOUR));
+		delay_ms(500);
+	}	
+*/	
 
 		//Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50);	
 	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
@@ -258,11 +272,11 @@ int main(void)
 #if USE_GRADIENT_CONTROL_BOARD
 			if(0==countIndex)
 			{
-				//LOGD("open \r\n");
+				LOGD("open \r\n");
 				electromagnetic_control(10,1);	
 			}else if(1000*20==countIndex)
 			{
-				//LOGD("close \r\n");
+				LOGD("close \r\n");
 				electromagnetic_control(10,0);		
 			}
 			countIndex++;

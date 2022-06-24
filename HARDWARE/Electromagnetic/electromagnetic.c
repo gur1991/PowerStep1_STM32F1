@@ -89,6 +89,7 @@ void electromagnetic_control(uint8_t devices, uint8_t status)
 			
 			default:break;
 		}
+		LOGD("do \r\n");
 }
 
 void electromagnetic_control_package(electromagnetic_package_type_t data)
