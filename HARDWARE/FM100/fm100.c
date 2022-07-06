@@ -674,6 +674,11 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 				FM100_Read(bufTemp,&lenTemp);
 				Stop_Scan_FM100();
 				LOGD("[1]%d: %s \r\n",lenTemp, bufTemp);
+				len=lenTemp;
+				memset(buf, 0 ,sizeof(buf));
+				memcpy(buf,bufTemp,lenTemp);
+				break;
+/*			
 #ifdef USE_DRV8434_CAMEL
 				GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  40);
 #else
@@ -701,8 +706,9 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 								memcpy(buf,bufTemp,lenTemp);
 						}	
 				} 
-						
+				
 				break;
+*/						
 		}
 		
 #ifdef USE_DRV8434_CAMEL

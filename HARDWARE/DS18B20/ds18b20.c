@@ -201,7 +201,8 @@ u8 DS18B20_Init(void)
 //从ds18b20得到温度值
 //精度：0.1C
 //返回值：温度值 （-550~1250） 
-short DS18B20_Get_Temp(int chip)
+
+short __DS18B20_Get_Temp__(int chip)
 {
 #if USE_KEEP_TEMPERATURE_BOARD	
     u8 temp;
@@ -229,7 +230,22 @@ short DS18B20_Get_Temp(int chip)
 	if(temp)return tem; //返回温度值
 	else return -tem;    
 #endif
+		
 		return 0;
+}	
+
+short DS18B20_Get_Temp(int chip)
+{
+	int ret=0;
+	short value[3]={0,0,0};
+	int i=0;
+	
+	for(i=0;i<3;i++)
+	{
+		value[i]=__DS18B20_Get_Temp__(chip);
+	}
+	
+	return (value[0]+value[1]+value[2])/3.0;
 }
 
 

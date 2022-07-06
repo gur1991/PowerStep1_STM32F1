@@ -170,13 +170,20 @@ void SPI3_Transfer(u8* txData,u8*rxData,int len,AD_type cs)
 
 int AD_Sensor_Get_Data(AD_type cs){
 	
-		Set_AD_CS(cs,CS_LOW);
-		delay_us(20);
-		u16 value=SPI3_ReadWrite2Byte();
-		//u32 value=SPI3_ReadWrite3Byte();
-		delay_us(10);
-		Set_AD_CS(cs,CS_HIGH);
-		delay_us(10);
+		int i=0;
+		int value=0;
+		int weight[3]={0,0,0};
+		
+	  for(i=0;i<3;i++)
+		{	
+			Set_AD_CS(cs,CS_LOW);
+			delay_us(5);
+			weight[i]=SPI3_ReadWrite2Byte();
+			Set_AD_CS(cs,CS_HIGH);
+			delay_us(5);
+		}
+		value=(weight[0]+weight[1]+weight[2])/3.0;
+		
 		return value;
 /*		
 		u8 txbuf[3]={0x00,0x00,0x00};
