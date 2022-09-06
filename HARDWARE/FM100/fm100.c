@@ -635,6 +635,7 @@ int Scan_Code_Wait_TimeOut(u8* buf,int* len)
 	return ret;
 }
 
+//停止转动后稍等下，防止停止转动的瞬间又读到信息了
 int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 {
 	int ret=0;
@@ -643,10 +644,11 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	u8 buf[64];
 	u8 bufTemp[64];
 	int len=0,lenTemp=0;
+	//多走一些防止没绕一圈
 #ifndef USE_DRV8434_CAMEL	
-	int time=120;
+	int time=140;
 #else
-	int time=120;
+	int time=140;
 #endif
 	int TT=500;	
 	
@@ -717,18 +719,23 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 30);	
 #endif
 		
+		//停止转动后稍等下，防止停止转动的瞬间又读到信息了
+		if(1==time)
+		{
+			delay_ms(120);
+			ret=Stop_Scan_FM100();
+			if(ret)return ret;	
+		}	
 		//最后200ms停止电机，防止还在解码的过程中切换了命令
 	}
 	//LOGD("%d: %s \r\n",len, buf);
 	LOGD("end \r\n");
 	if(len>2)len-=2;
-	else len=0;
-	
+	else{
+		len=0;
+	}	
 	memcpy(string, buf, len);
 	*length=len;
-
-	ret=Stop_Scan_FM100();
-	if(ret)return ret;	
 #endif	
 	return ret;
 }
