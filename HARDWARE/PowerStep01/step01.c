@@ -554,7 +554,7 @@ uint32_t get_motor_rest_steps(int motorNum)
 	uint32_t steps=0;
 	switch(motorNum)
 	{
-		case M1_MIX_V: steps=110000;break;
+		case M1_MIX_V: steps=150000;break;
 		case M3_LEFT_WAIT: steps=110000;break;
 		case M4_BLANK_NEXT: steps=110000;break;
 		case M7_HIGH_TURN: steps=11000;break;
