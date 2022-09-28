@@ -180,21 +180,16 @@ int main(void)
 	Init_Board_Config();
 	
 	
-
 /*
+	int countS=0;
 	while(1)
 	{	
+		countS++;
 		C52_connect_checkB();
-		delay_ms(200);
-	  C55_connect_check2();
-		C55_connect_check2();
-		delay_ms(200);
-		
+		delay_ms(2000);		
 		C52_connect_check();
-		delay_ms(200);
-	  C55_connect_check();
-		//C55_connect_check();
-		delay_ms(200);
+		delay_ms(2000);
+		LOGD("count:%d \r\n",countS);
 	}
 */
 
