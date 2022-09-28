@@ -585,7 +585,8 @@ void Init_Scan_FM100(bool status)
 {
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-
+	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
+	
 #if USE_AUTOMATIC_INJECTION_BOARD		
 	int ret=FM100_Scan_Code_Programming(false);
 	if(ret)return ;
@@ -655,6 +656,8 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	int temp_a=0,temp_b=0;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
+	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
+	
 	delay_ms(10);
 	
 	ret=Start_Scan_FM100();
@@ -747,6 +750,7 @@ uint32_t scan_connect_test(void)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
+	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
 	ret=Control_Scan_FM100_Beeper(true);
 	
 #endif

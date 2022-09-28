@@ -18,6 +18,10 @@
 #include "check_rs232.h"
 #include "export_liquid.h"
 
+
+u8 C55_connect_check2(void);
+u8 C52_connect_checkB(void);
+
 uint32_t Rest_C55_C52_Position(void);
 
 

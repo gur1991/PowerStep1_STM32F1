@@ -54,7 +54,7 @@ uint8_t pump_s100_transfer(s100_command_t*data, uint8_t*type, pump_s100_reply_ty
 		u8 rs485buf[16];
 		Uart_Receive_Data R232_Read = GetUartReceive( PUMP_UART_PORT, PUMP_UART_CS);
 		Uart_Send_Data R232_Write = GetUartSend( PUMP_UART_PORT, PUMP_UART_CS);
-
+		Uart_Select_Baby(PUMP_UART_PORT, PUMP_UART_CS);
 	
 	
 		CRC_Digital_Convert_Get(data);
@@ -154,6 +154,7 @@ void Wait_Ack_Pump_S100_Event_And_Send_Master(void)
 		Powerstep1_contorl_motor_command_t CommandData;
 		Uart_Receive_Data R232_Read = GetUartReceive( PUMP_UART_PORT, PUMP_UART_CS);
 		Uart_Send_Data R232_Write = GetUartSend( PUMP_UART_PORT, PUMP_UART_CS);
+		Uart_Select_Baby(PUMP_UART_PORT, PUMP_UART_CS);
 	
 		CommandData.type = PUMP_S100_TYPE;
 		CommandData.OverReceiveFlag[0]=OVER_UART_VALUE0;

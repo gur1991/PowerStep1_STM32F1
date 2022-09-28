@@ -180,39 +180,21 @@ int main(void)
 	Init_Board_Config();
 	
 	
-//	RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	
-//	Choose_Single_Motor_Speed_Config(M2_MIX,LOW_SPEED);
-//	Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 10000);	
-/*	
-	while(1)
-	{
-		LOGD("A:%d \r\n",Get_weight_current_gram(WEIGHT_ONE));
-		LOGD("B:%d \r\n",Get_weight_current_gram(WEIGHT_TWO));
-		LOGD("C:%d \r\n",Get_weight_current_gram(WEIGHT_THREE));
-		LOGD("H:%d \r\n",Get_weight_current_gram(WEIGHT_FOUR));
-		delay_ms(500);
-	}	
-*/	
 
-		//Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 50);	
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT_WORK,M1_MIX_V_DOWN, 600*1000);
-	//RestSelectMotorOrgin(M1_MIX_V,M1_LIGHT,M1_MIX_V_UP, 60*10000);
-	
-	//RestSelectMotorOrgin(M4_BLANK_NEXT,M4_LIGHT,M4_BLANK_TO_NEXT, 32000);
-	//Normal_Goto_First_Position();
-	//Normal_Pitch_Move_Next();
-	//Normal_Pitch_Move_Next_The_Last_Two();
-	
-	//Obtain_Barcode_String(NULL, &i, 50	,false);
-	
 /*
 	while(1)
 	{	
-		LOGD("%d \r\n",RestSelectMotorOrgin(M3_LEFT_WAIT,M3_LIGHT,M3_WAIT_TO_LEFT, 80*10000));
-		delay_ms(500);
-	  GP_DRV8434_Motor_Move_Steps_Single(M3_LEFT_WAIT, M3_LEFT_TO_WAIT, 8000);
-		delay_ms(500);
+		C52_connect_checkB();
+		delay_ms(200);
+	  C55_connect_check2();
+		C55_connect_check2();
+		delay_ms(200);
+		
+		C52_connect_check();
+		delay_ms(200);
+	  C55_connect_check();
+		//C55_connect_check();
+		delay_ms(200);
 	}
 */
 

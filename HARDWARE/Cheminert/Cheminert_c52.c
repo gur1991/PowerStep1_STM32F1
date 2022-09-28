@@ -18,12 +18,16 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, int*rx_size,int ti
 			//LOGD("c52\r\n");
 			R232_Read = GetUartReceive(C52_UART_PORT, C52_UART_CS);
 			R232_Write = GetUartSend(C52_UART_PORT, C52_UART_CS);
+			Uart_Select_Baby(C52_UART_PORT, C52_UART_CS);
 	}else{
 			//LOGD("c55\r\n");
 			R232_Read = GetUartReceive(C55_UART_PORT, C55_UART_CS);
 			R232_Write = GetUartSend(C55_UART_PORT, C55_UART_CS);
+		  Uart_Select_Baby(C55_UART_PORT, C55_UART_CS);
 	}
-	 R232_Write(tx_buf,tx_size);
+		
+	 //R232_Write(tx_buf,tx_size);
+	UART2_Send_Data(tx_buf,tx_size);
 		
 	 //SDCC SDCW return null,need to add OK	
 	 if(wait_flag==false){
@@ -38,17 +42,22 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, int*rx_size,int ti
 	 
 	 while(1){
 				temp_a=USART2_RX_CNT;
-				delay_ms(3);
+				delay_ms(5);
 				temp_b=USART2_RX_CNT;
 			
 				if(temp_a==temp_b && temp_a!=0)
 				{
-							delay_ms(2);
-							R232_Read(rx_buf,rx_size);
+							//delay_ms(5);
+							//R232_Read(rx_buf,rx_size);
+							UART2_Receive_Data(rx_buf,rx_size);
+							*rx_size=temp_a;
 							break;
-					}
+				}
 			
-				if(!timeout--){
+				timeout=timeout-1;
+
+				if(0==timeout)
+				{
 					ret=1;
 					LOGE("cheminert_c52_c55_transfer fuck timeout! \r\n");
 					*rx_size=0;

@@ -53,7 +53,7 @@ void Config_BL80_Transfer(void)
 {
 	BL180_Read = GetUartReceive(BL180_UART_PORT,BL180_UART_CS);
 	BL180_Write = GetUartSend(BL180_UART_PORT,BL180_UART_CS);
-	
+	Uart_Select_Baby(BL180_UART_PORT, BL180_UART_CS);
 }	
 void Wait_Ack(void)
 {

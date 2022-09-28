@@ -1566,7 +1566,43 @@ u8 C52_connect_check(void)
 
 
 
+u8 C52_connect_checkB(void)
+{
+	u8 ret=0;
+	
+#if USE_CLEANING_DILUTION_BOARD		
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.command=	CHEMINERT_C52_CCB;
+	cheminert_c52_c55.request.timeout=100;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(!cheminert_c52_c55.response.ret&&cheminert_c52_c55.response.size)
+	{
+		if(cheminert_c52_c55.response.buf[0]=='B')ret=0;
+		else	ret=1;		
+	}else ret=1;
+#endif
+	
+	return ret;
+}
 
+u8 C55_connect_check2(void)
+{
+	u8 ret=0;
+	
+#if USE_CLEANING_DILUTION_BOARD		
+	cheminert_c52_c55_type_t cheminert_c52_c55;
+	cheminert_c52_c55.request.command=	CHEMINERT_C55_GO2;
+	cheminert_c52_c55.request.timeout=100;
+	protocol_cheminert_c52_c55(&cheminert_c52_c55);
+	if(!cheminert_c52_c55.response.ret&&cheminert_c52_c55.response.size)
+	{
+		if(cheminert_c52_c55.response.buf[0]=='2')ret=0;
+		else	ret=1;		
+	}else ret=1;
+#endif
+	
+	return ret;
+}
 
 
 
