@@ -257,7 +257,7 @@ int main(void)
 				electromagnetic_control(10,0);		
 			}
 			countIndex++;
-			if(15*60*1000<=countIndex)countIndex=0;
+			if(20*60*1000<=countIndex)countIndex=0;
 			//if(60*1000<=countIndex)countIndex=0;
 #endif						
 	}
