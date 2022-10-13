@@ -28,7 +28,7 @@ u8 cheminert_c52_c55_transfer(u8*tx_buf,u8 tx_size,u8*rx_buf, int*rx_size,int ti
 		
 	 //R232_Write(tx_buf,tx_size);
 	UART2_Send_Data(tx_buf,tx_size);
-	LOGD("cmd:%s\r\n",tx_buf);
+	//LOGD("cmd:%s\r\n",tx_buf);
 		
 	 //SDCC SDCW return null,need to add OK	
 	 if(wait_flag==false){

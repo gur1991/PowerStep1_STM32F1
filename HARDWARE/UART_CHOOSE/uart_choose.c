@@ -13,12 +13,15 @@ void Uart_cs_init(void)
 
   __HAL_RCC_GPIOA_CLK_ENABLE();
   
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+ // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
   
 	GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	
+	UART2_H_CS=0;
+	UART2_L_CS=0;
 #endif
 
 //PF5--1  PF6--0
@@ -27,12 +30,15 @@ void Uart_cs_init(void)
 
   __HAL_RCC_GPIOF_CLK_ENABLE();
   
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+ // HAL_GPIO_WritePin(GPIOF, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
   
 	GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+	
+	UART2_H_CS=0;
+	UART2_L_CS=0;
 #endif
 
 
@@ -42,12 +48,15 @@ void Uart_cs_init(void)
 
   __HAL_RCC_GPIOA_CLK_ENABLE();
   
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_4, GPIO_PIN_RESET);
+//  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_4, GPIO_PIN_RESET);
   
 	GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	
+	UART2_H_CS=0;
+	UART2_L_CS=0;
 #endif
 
 }
@@ -56,8 +65,11 @@ void Uart_cs_init(void)
 
 //uart 2或 3
 //chip 0-3
+
+
 int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
-{
+{	
+		
 		int ret=0;
 		if(uart==UART2_RS232){
 				switch(cs)
@@ -82,6 +94,9 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 						ret=-1;
 						break;
 				}
+				
+
+					
 		}else if(uart==UART3_RS232)
 		{
 				switch(cs)
@@ -110,7 +125,7 @@ int Uart_Select_Baby(UART_TYPE uart, UART_CS_TYPE cs)
 
 		//此处一定要延时，两个作用，模拟电路电平发出需要时间切换
 		//rs232接收数据需要等待
-		//delay_ms(5);
+		delay_ms(2);
 		return ret;
 	
 	

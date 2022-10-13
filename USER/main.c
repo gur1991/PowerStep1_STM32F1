@@ -251,13 +251,13 @@ int main(void)
 			{
 				LOGD("open \r\n");
 				electromagnetic_control(10,1);	
-			}else if(1000*20==countIndex)
+			}else if(1000*30==countIndex)
 			{
 				LOGD("close \r\n");
 				electromagnetic_control(10,0);		
 			}
 			countIndex++;
-			if(20*60*1000<=countIndex)countIndex=0;
+			if(15*60*1000<=countIndex)countIndex=0;
 			//if(60*1000<=countIndex)countIndex=0;
 #endif						
 	}
