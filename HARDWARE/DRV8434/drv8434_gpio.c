@@ -672,13 +672,13 @@ void GP_DRV8434_Motor_Run_Control_Timing(uint8_t deviceId,motorDir_t direction)
 		default:
 			;
 	}	
-	delay_us(1);
+	delay_us(5);
 }	
 
 
 void GP_DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 {
-		delay_us(1);//延时起timing
+		delay_us(5);//延时起timing
 	switch(deviceId)
 	{
 #ifdef USE_DRV8434_CAMEL		
@@ -743,6 +743,7 @@ void GP_DRV8434_Motor_Stop_Control_Timing(uint8_t deviceId)
 		default:
 			;
 	}	
+	delay_us(5);
 }
 
 

@@ -585,8 +585,7 @@ void Init_Scan_FM100(bool status)
 {
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
-	
+
 #if USE_AUTOMATIC_INJECTION_BOARD		
 	int ret=FM100_Scan_Code_Programming(false);
 	if(ret)return ;
@@ -647,17 +646,15 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	int len=0,lenTemp=0;
 	//多走一些防止没绕一圈
 #ifndef USE_DRV8434_CAMEL	
-	int time=140;
+	int time=1400;
 #else
-	int time=140;
+	int time=200;
 #endif
 	int TT=500;	
 	
 	int temp_a=0,temp_b=0;
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
-	
 	delay_ms(10);
 	
 	ret=Start_Scan_FM100();
@@ -665,7 +662,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 	memset(buf, 0 ,sizeof(buf));
 	memset(bufTemp, 0 ,sizeof(bufTemp));
 	
-  LOGD("start \r\n");
+  //LOGD("start \r\n");
 	while(time--)
 	{	
 		
@@ -675,51 +672,18 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 
 		if(temp_a==temp_b && temp_a>3 && FLAG_SCAN_OK)
 		{
-				//LOGD("%d \r\n",120-time);	
 				FM100_Read(bufTemp,&lenTemp);
 				Stop_Scan_FM100();
-				LOGD("[1]%d: %s \r\n",lenTemp, bufTemp);
 				len=lenTemp;
 				memset(buf, 0 ,sizeof(buf));
 				memcpy(buf,bufTemp,lenTemp);
-				break;
-/*			
-#ifdef USE_DRV8434_CAMEL
-				GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  40);
-#else
-				Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 10);	
-#endif
-				
-				memset(buf, 0 ,sizeof(buf));
-				Scan_Code_Wait_TimeOut(buf, &len);
-				LOGD("[2]%d: %s \r\n",len, buf);
-				if(len<lenTemp)//第二次读的长度大于第一次读到的，则返回
-				{
-						#ifdef USE_DRV8434_CAMEL
-						GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_RIGHT,  80);
-						#else
-						Motor_Move_And_Wait(M2_MIX, M2_MIX_RIGHT, 20);	
-						#endif
-						memset(buf, 0 ,sizeof(buf));
-						Scan_Code_Wait_TimeOut(buf, &len);
-						LOGD("[3]%d: %s \r\n",len, buf);
-						//第三次读取和第一次读到的长度对比，取最长
-						if(len < lenTemp)
-						{
-								len=lenTemp;
-								memset(buf, 0 ,sizeof(buf));
-								memcpy(buf,bufTemp,lenTemp);
-						}	
-				} 
-				
-				break;
-*/						
+				break;						
 		}
 		
 #ifdef USE_DRV8434_CAMEL
-		GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  120);
+	GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(M2_MIX,  M2_MIX_LEFT,  120);
 #else
-		Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 30);	
+		//Motor_Move_And_Wait(M2_MIX, M2_MIX_LEFT, 30);	
 #endif
 		
 		//停止转动后稍等下，防止停止转动的瞬间又读到信息了
@@ -731,8 +695,7 @@ int Obtain_Barcode_String(u8* string,int* length, int TimeOut_S	,bool check)
 		}	
 		//最后200ms停止电机，防止还在解码的过程中切换了命令
 	}
-	//LOGD("%d: %s \r\n",len, buf);
-	LOGD("end \r\n");
+	
 	if(len>2)len-=2;
 	else{
 		len=0;
@@ -750,7 +713,6 @@ uint32_t scan_connect_test(void)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	FM100_Read = GetUartReceive(FM100_UART_PORT,FM100_UART_CS);
 	FM100_Write = GetUartSend(FM100_UART_PORT,FM100_UART_CS);
-	Uart_Select_Baby(FM100_UART_PORT, FM100_UART_CS);
 	ret=Control_Scan_FM100_Beeper(true);
 	
 #endif

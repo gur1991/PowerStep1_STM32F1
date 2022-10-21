@@ -25,7 +25,6 @@ void config_s1125_pump(void)
 {
 	S1125_Read = GetUartReceive(PUMP_UART_PORT,PUMP_UART_CS);
 	S1125_Write = GetUartSend(PUMP_UART_PORT,PUMP_UART_CS);
-	Uart_Select_Baby(PUMP_UART_PORT, PUMP_UART_CS);
 	
 	pump.start=':';
 	pump.check[0]=pump.check[1]='?';

@@ -19,7 +19,6 @@ void Config_M6e_Transfer(void)
 {
 	M6E_Read = GetUartReceive(RFID_UART_PORT,RFID_UART_CS);
 	M6E_Write = GetUartSend(RFID_UART_PORT,RFID_UART_CS);
-	Uart_Select_Baby(RFID_UART_PORT, RFID_UART_CS);
 }	
 
 typedef struct MessageBuf {

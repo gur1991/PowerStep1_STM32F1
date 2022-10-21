@@ -301,7 +301,7 @@ FACTORY_TYPE Belt_Move_At_SameTime(uint8_t*leftLight, uint8_t*nextLight)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
 #if (defined USE_DRV8434_CAMEL)
-	GP_DRV8434_Motor_Move_Steps_Dual(M5_WAIT_NEXT,M5_WAIT_TO_NEXT,M6_BLANK_LEFT,M6_BLANK_TO_LEFT,88000);
+	GP_DRV8434_Motor_Move_Steps_Dual(M5_WAIT_NEXT,M5_WAIT_TO_NEXT,M6_BLANK_LEFT,M6_BLANK_TO_LEFT,66000);
 	
 #else	
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);	
@@ -651,7 +651,7 @@ void Scan_Motor_Slow_Spin(void)  //ЩЈТы
 #if (defined USE_DRV8434_CAMEL) || (defined USE_DRV8434_PECKER)		
 	//GP_DRV8434_Motor_Move_Steps_Single(M2_MIX,  M2_MIX_LEFT,  200000);
 #else	
-	//BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
+	BSP_MotorControl_Move_Select(M2_MIX, M2_MIX_LEFT, 200000, LOW_SPEED);
 #endif
 #endif	
 }
