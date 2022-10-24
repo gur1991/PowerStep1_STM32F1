@@ -301,7 +301,7 @@ FACTORY_TYPE Belt_Move_At_SameTime(uint8_t*leftLight, uint8_t*nextLight)
 #if USE_AUTOMATIC_INJECTION_BOARD	
 	
 #if (defined USE_DRV8434_CAMEL)
-	GP_DRV8434_Motor_Move_Steps_Dual(M5_WAIT_NEXT,M5_WAIT_TO_NEXT,M6_BLANK_LEFT,M6_BLANK_TO_LEFT,66000);
+	GP_DRV8434_Motor_Move_Steps_Dual(M5_WAIT_NEXT,M5_WAIT_TO_NEXT,M6_BLANK_LEFT,M6_BLANK_TO_LEFT,88000);
 	
 #else	
 	PowerStep_Select_Motor_Baby(M5_WAIT_NEXT);	
