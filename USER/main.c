@@ -270,18 +270,21 @@ int main(void)
 			
 //20min一个周期 19min 40s 等待 ,0s 开始排液  20s停止排液
 #if USE_GRADIENT_CONTROL_BOARD
-			if(0==countIndex)
-			{
-				LOGD("open \r\n");
-				electromagnetic_control(10,1);	
-			}else if(1000*30==countIndex)
-			{
-				LOGD("close \r\n");
-				electromagnetic_control(10,0);		
+			
+			if(mode_switch_flag)
+			{	
+					if(0==countIndex)
+					{
+						LOGD("open \r\n");
+						electromagnetic_control(10,1);	
+					}else if(1000*30==countIndex)
+					{
+						LOGD("close \r\n");
+						electromagnetic_control(10,0);		
+					}
+					countIndex++;
+					if(20*60*1000<=countIndex)countIndex=0;
 			}
-			countIndex++;
-			if(20*60*1000<=countIndex)countIndex=0;
-			//if(60*1000<=countIndex)countIndex=0;
 #endif						
 	}
 

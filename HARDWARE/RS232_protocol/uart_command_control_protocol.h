@@ -126,6 +126,7 @@ typedef enum Command_type{
 		
 		GET_VERSION,
 		CONFIG_MIX_SPEED,
+		MODE_SWITCH,
 
 }Command_type_t;
 
@@ -431,6 +432,17 @@ struct{
 }get_version_t;
 
 
+typedef union{ 
+struct{
+	  uint8_t mode;
+}request;
+struct{
+		uint8_t nor[31];
+		uint8_t ret;	
+}response;
+}mode_switch_t;
+
+
 
 typedef struct{
 		u8 StartReceiveFlag[2];
@@ -516,7 +528,7 @@ typedef struct{
 				normal_position_more_run_type_t normal_position_more_run;
 				get_version_t get_version;
 				mix_motor_speed_config_type_t mix_motor_speed_config;
-
+				mode_switch_t mode_switch;
 /*
 *print move rk3188
 */

@@ -4,6 +4,8 @@
 *stm32f1xx_hal_gpio_ex.h 文件里面有关于管教复用很多资源。如果遇到资源不好使或者冲突，应该考虑到这个情况。
 */
 
+uint8_t mode_switch_flag=1;
+
 void Electromagnetic_init(void)
 {
 #if USE_GRADIENT_CONTROL_BOARD	
@@ -56,6 +58,15 @@ void Electromagnetic_init(void)
 	
 }
 
+
+void set_mode_switch_flag(uint8_t flag)
+{
+		if(0==flag)electromagnetic_control(10,0);	
+	
+		mode_switch_flag=flag;
+}
+
+
 /*example*/
 //FET0=1;
 //FET0=0;
@@ -76,6 +87,7 @@ void electromagnetic_control(uint8_t devices, uint8_t status)
 			case 8:	  VALUE_B=status;break;
 			case 9:	  VALUE_C=status;break;
 			case 10:	VALUE_0=status;break;
+	
 #endif
 			
 #if	USE_CLEANING_DILUTION_BOARD				

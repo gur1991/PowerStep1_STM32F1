@@ -930,6 +930,13 @@ static void protocol_mix_motor_speed_config(mix_motor_speed_config_type_t*data)
 
 
 
+static void protocol_mode_switch(mode_switch_t*data)
+{
+		set_mode_switch_flag(data->request.mode);
+	  data->response.ret=0;
+}
+
+
 
 #define NUM2STR(x) case x: return #x
 static char* _commandTOstring_(uint8_t num)
@@ -1245,6 +1252,10 @@ void protocol_handle_uart_powerstep01_plain_slave_cmd(void){
 				protocol_mix_motor_speed_config(&slave_motorCommand.CommandPowerStep1.mix_motor_speed_config);
 			break;
 		
+		case MODE_SWITCH:
+				protocol_mode_switch(&slave_motorCommand.CommandPowerStep1.mode_switch);
+			break;
+			
 			default:
 					LOGE("no found this cmd ! %d \r\n",slave_motorCommand.type);
 					goto ERROE_OVER;

@@ -90,4 +90,10 @@ typedef union{
 }electromagnetic_package_type_t;
 
 void electromagnetic_control_package(electromagnetic_package_type_t data);
+
+void set_mode_switch_flag(uint8_t flag);
+
+extern uint8_t mode_switch_flag;
+
 #endif
+
