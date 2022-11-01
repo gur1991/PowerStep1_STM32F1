@@ -278,10 +278,12 @@ void GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(uint8_t deviceId, motorDir_t d
 
 
 
-void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,u8 light)
+uint8_t GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,u8 light)
 {
 	uint32_t DelayUs=100;
 	uint32_t i=0;
+	uint8_t result=1;
+	
 	//LOGD("start \r\n");
 	GP_DRV8434_Motor_Run_Control_Timing(deviceId, direction);
 	switch(deviceId)
@@ -291,8 +293,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 		DelayUs=sDRV8434Config.M1.s;
 		for(i=0; i<stepCount; i++)
 		{
-			if(0==__Light_Sensor_Get__(light))break;
-			
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_1_OUT=1;
 			delay_us(DelayUs);
 			STEP_1_OUT=0;
@@ -305,7 +306,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 		
 		for(i=0; i<stepCount; i++)
 		{
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			
 			STEP_2_OUT=1;
 			delay_us(DelayUs);
@@ -318,7 +319,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M3.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_3_OUT=1;
 			delay_us(DelayUs);
 			STEP_3_OUT=0;
@@ -331,7 +332,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M4.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_4_OUT=1;
 			delay_us(DelayUs);
 			STEP_4_OUT=0;
@@ -343,7 +344,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M5.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_5_OUT=1;
 			delay_us(DelayUs);
 			STEP_5_OUT=0;
@@ -355,7 +356,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M6.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_6_OUT=1;
 			delay_us(DelayUs);
 			STEP_6_OUT=0;
@@ -367,7 +368,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M7.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_7_OUT=1;
 			delay_us(DelayUs);
 			STEP_7_OUT=0;
@@ -379,7 +380,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M8.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_8_OUT=1;
 			delay_us(DelayUs);
 			STEP_8_OUT=0;
@@ -391,7 +392,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M9.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_9_OUT=1;
 			delay_us(DelayUs);
 			STEP_9_OUT=0;
@@ -403,7 +404,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M10.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_10_OUT=1;
 			delay_us(DelayUs);
 			STEP_10_OUT=0;
@@ -415,7 +416,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 			DelayUs=sDRV8434Config.M11.s;
 		for(i=0; i<stepCount; i++)
 		{	
-			if(0==__Light_Sensor_Get__(light))break;
+			if(0==__Light_Sensor_Get__(light)){result=0;break;}	
 			STEP_11_OUT=1;
 			delay_us(DelayUs);
 			STEP_11_OUT=0;
@@ -429,6 +430,7 @@ void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t
 	}
 	GP_DRV8434_Motor_Stop_Control_Timing(deviceId);
 	//LOGD("end \r\n");
+	return result;
 }	
 
 

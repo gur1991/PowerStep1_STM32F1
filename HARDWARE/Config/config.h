@@ -17,7 +17,7 @@
 #define USE_KEEP_TEMPERATURE_BOARD 0// mini control temperature
 
 //#define USE_DRV8434_PECKER 
-//#define USE_DRV8434_CAMEL 
+#define USE_DRV8434_CAMEL 
 
 //#define USE_NEW_PID_CONTROL_HEATER 
 

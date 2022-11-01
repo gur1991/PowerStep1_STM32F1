@@ -28,7 +28,7 @@ void GP_DRV8434_Motor_Move_Steps_Single(uint8_t deviceId, motorDir_t direction, 
 void GP_DRV8434_Motor_Move_Steps_Dual(uint8_t deviceId_1, motorDir_t direction_1,
 													uint8_t deviceId_2, motorDir_t direction_2, uint32_t stepCount);
 void GP_DRV8434_Motor_Move_Steps_Single_Soft_Stop(uint8_t deviceId, motorDir_t direction, uint32_t stepCount);
-void GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,u8 light);
+uint8_t GP_DRV8434_Motor_Move_Steps_Single_Check_Light(uint8_t deviceId, motorDir_t direction, uint32_t stepCount,u8 light);
 int GP_DRV8434_From_DelayMS_Get_Steps_Count(int deviceId, int delayMs);
 
 
