@@ -140,7 +140,7 @@ void GP_Init_Drv8434_Speed_Config(void)
   sDRV8434Config.M7.e=300;
 	
 	sDRV8434Config.M8.s=400;
-  sDRV8434Config.M8.e=20;
+  sDRV8434Config.M8.e=25;
 	
 	sDRV8434Config.M9.s=400;
   sDRV8434Config.M9.e=20;
